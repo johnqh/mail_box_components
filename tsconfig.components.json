@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "../../lib/utils": ["src/lib/utils"],
+      "../../design-system": ["src/design-system/index"],
+      "../../hooks/useClickOutside": ["src/hooks/useClickOutside"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "include": [
+    "src/lib/**/*",
+    "src/design-system/**/*",
+    "src/hooks/**/*",
+    "src/ui/button.tsx",
+    "src/ui/input.tsx",
+    "src/ui/card.tsx",
+    "src/ui/typography.tsx",
+    "src/ui/status-badge.tsx"
+  ]
+}

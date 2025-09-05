@@ -1,6 +1,6 @@
 import React from 'react';
-import { cn } from '../lib/utils';
-import { ui, textVariants } from '../design-system';
+import { cn } from '../../lib/utils';
+import { designTokens, textVariants } from '../../design-system';
 
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -9,16 +9,16 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const variantStyles = {
-  default: ui.background.surface,
-  bordered: `${ui.background.surface} ${ui.border.default}`,
-  elevated: `${ui.background.surface} ${ui.shadow.md}`
+  default: 'bg-white dark:bg-gray-800',
+  bordered: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
+  elevated: 'bg-white dark:bg-gray-800 shadow-md'
 };
 
 const paddingStyles = {
   none: '',
-  sm: ui.spacing.card.sm,
-  md: ui.spacing.card.md,
-  lg: ui.spacing.card.lg
+  sm: 'p-3',
+  md: 'p-6',
+  lg: 'p-8'
 };
 
 export const Card: React.FC<CardProps> = ({
@@ -31,7 +31,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       className={cn(
-        ui.border.radius,
+        'rounded-lg',
         variantStyles[variant],
         paddingStyles[padding],
         className

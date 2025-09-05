@@ -7,10 +7,9 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react-jsx",
 
     /* Linting */
@@ -26,11 +25,13 @@
     "rootDir": "src"
   },
   "include": [
-    "src"
+    "src/index.ts",
+    "src/lib/**/*",
+    "src/design-system/**/*",
+    "src/hooks/**/*"
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "src/ui"
+    "dist"
   ]
 }

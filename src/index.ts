@@ -14,7 +14,7 @@ export * from './lib/utils';
 // Export design system
 export * from './design-system';
 
-// Export UI components (currently disabled until dependencies are resolved)
+// Export UI components (Phase 2: Dependencies resolved) - temporarily disabled
 // export * from './ui';
 
 // Default export for convenience

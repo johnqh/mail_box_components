@@ -3,8 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "../../lib/utils": ["src/lib/utils"],
-      "../../design-system": ["src/design-system/index"],
+      "../lib/utils": ["src/lib/utils"],
+      "../design-system": ["src/design-system/index"],
       "../../hooks/useClickOutside": ["src/hooks/useClickOutside"]
     }
   },

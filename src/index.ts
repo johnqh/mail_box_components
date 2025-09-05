@@ -4,7 +4,7 @@
  * A comprehensive React component library and design system.
  * 
  * @version 1.0.0
- * @author John Qiu Huang
+ * @author John Huang
  * @license MIT
  */
 
@@ -15,7 +15,7 @@ export * from './lib';
 export * from './design-system';
 
 // Export UI components (Phase 3: Disabled pending import resolution)
-// export * from './ui';
+export * from './ui';
 
 // Default export for convenience
 import { cn } from './lib/utils';

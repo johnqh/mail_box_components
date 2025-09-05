@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useClickOutside } from '../../hooks/useClickOutside';
-import { variants } from "../../design-system";
+import { useClickOutside } from '../hooks/useClickOutside';
+import { variants } from "../design-system";
 
 interface DropdownItem {
   id: string;
@@ -25,10 +25,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   
-  const ref = useClickOutside<HTMLDivElement>({
-    onClickOutside: () => setIsOpen(false),
-    enabled: isOpen
-  });
+  const ref = React.useRef<HTMLDivElement>(null);
+  
+  useClickOutside(ref, () => setIsOpen(false));
 
   const handleItemClick = (item: DropdownItem) => {
     if (!item.disabled) {
@@ -40,7 +39,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   const alignmentClasses = align === 'left' ? variants.overlays.dropdown.menuRight() : variants.overlays.dropdown.menuLeft();
 
   return (
-    <div className={variants.overlays.dropdown.container() + ` ${className}`} ref={ref}>
+    <div className={`${variants.overlays.dropdown.container()} ${className}`} ref={ref}>
       <div className={variants.overlays.dropdown.trigger()} onClick={() => setIsOpen(!isOpen)}>
         {trigger}
       </div>

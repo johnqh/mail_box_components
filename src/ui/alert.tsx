@@ -1,6 +1,6 @@
 import React from 'react';
-import { cn } from "../../lib/utils";
-import { variants } from "../../design-system";
+import { cn } from "../lib/utils";
+import { variants } from "../design-system";
 import { 
   CheckCircleIcon,
   ExclamationTriangleIcon,
@@ -25,6 +25,14 @@ const defaultIcons = {
   error: XCircleIcon
 };
 
+export const AlertTitle: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+  <div className={cn('font-medium mb-1', className)}>{children}</div>
+);
+
+export const AlertDescription: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+  <div className={cn('text-sm', className)}>{children}</div>
+);
+
 export const Alert: React.FC<AlertProps> = ({
   variant = 'info',
   title,
@@ -40,7 +48,7 @@ export const Alert: React.FC<AlertProps> = ({
   const alertClass = variants.alert[variant]();
 
   return (
-    <div className={cn(alertClass, className)}>
+    <div role="alert" className={cn(alertClass, className)}>
       {IconComponent && (
         <div className="flex-shrink-0">
           {IconComponent}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from "../../lib/utils";
-import { designTokens } from "../../design-system";
+import { cn } from "../lib/utils";
+import { designTokens } from "../design-system";
 
 const sectionVariants = cva(
   "",

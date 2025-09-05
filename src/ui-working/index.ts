@@ -3,7 +3,35 @@
  * Only components without external dependencies
  */
 
-// Core working components
+// === CORE WORKING COMPONENTS ===
+export { Button, buttonVariants } from '../ui/button';
+export { Input } from '../ui/input';
+export { Card, CardHeader, CardContent, CardFooter } from '../ui/card';
+export { PageTitle, SectionTitle, BodyText, TextLink } from '../ui/typography';
+export { StatusBadge, ChainBadge } from '../ui/status-badge';
+export { Select } from '../ui/select';
+export { Alert, AlertTitle, AlertDescription } from '../ui/alert';
+export { Spinner } from '../ui/spinner';
+export { Switch } from '../ui/switch';
+export { Tabs } from '../ui/tabs';
+export { Label } from '../ui/label';
+export { Modal } from '../ui/modal';
+export { LoadingState } from '../ui/loading-state';
+export { EmptyState } from '../ui/empty-state';
+export { NoContent } from '../ui/no-content';
+export { StatusIndicator } from '../ui/status-indicator';
+export { ConfirmationDialog } from '../ui/confirmation-dialog';
+export { IconContainer } from '../ui/icon-container';
+export { FormFieldGroup } from '../ui/form-field-group';
+export { EmailInputGroup } from '../ui/email-input-group';
+export { SectionBadge } from '../ui/section-badge';
+export { AnimatedSection, FadeInUp, FadeInScale, FloatingElement } from '../ui/animated-section';
+
+// Component types
+export type { ButtonProps, StatusType, ChainType } from '../ui';
+
+// === LEGACY WILDCARD EXPORTS ===
+// For backward compatibility
 export * from '../ui/button';
 export * from '../ui/input';
 export * from '../ui/card';

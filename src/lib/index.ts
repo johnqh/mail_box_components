@@ -2,16 +2,37 @@
  * Utility functions and helpers
  */
 
-// Core utilities
-export * from './utils';
-
-// Theme utilities
-export * from './theme-utils';
-
-// Component helpers
-export * from './component-helpers';
-
-// Re-export commonly used functions
+// === CORE UTILITIES ===
 export { cn } from './utils';
-export type { ThemeMode, ResponsiveBreakpoint } from './theme-utils';
-export type { ComponentSize, ComponentVariant } from './component-helpers';
+
+// === THEME UTILITIES ===
+export { 
+  withOpacity, 
+  responsive, 
+  themeColor 
+} from './theme-utils';
+
+export type { 
+  ThemeMode, 
+  ResponsiveBreakpoint 
+} from './theme-utils';
+
+// === COMPONENT HELPERS ===
+export { 
+  getSizeClasses,
+  buttonVariant,
+  inputVariant,
+  cardVariant,
+  textVariant
+} from './component-helpers';
+
+export type { 
+  ComponentSize, 
+  ComponentVariant 
+} from './component-helpers';
+
+// === LEGACY WILDCARD EXPORTS ===
+// For backward compatibility
+export * from './utils';
+export * from './theme-utils';
+export * from './component-helpers';

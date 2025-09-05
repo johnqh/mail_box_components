@@ -11,7 +11,7 @@ import { webStyleGenerator } from './web';
 // Register the web platform generator
 platformRegistry.register('web', webStyleGenerator);
 
-// Re-export for convenience
+// === PRIMARY EXPORTS ===
 export { webStyleGenerator } from './web';
 export { platformRegistry } from '@johnqh/design-system';
 

@@ -43,3 +43,10 @@ export * from './typography';
 
 // Badge Components with Local Types (Phase 2)
 export * from './status-badge';
+
+// Phase 3 Components - More advanced UI components
+export * from './design-system-components';
+export * from './section';
+export * from './page-container';
+export * from './gradient-button';
+export * from './flex-container';

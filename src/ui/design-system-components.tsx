@@ -1,11 +1,11 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../lib/utils';
-import { ui } from '../design-system';
+import { cn } from "../../lib/utils";
+// Removed ui import - using hardcoded styles for compatibility
 
 // Info Panel Component
 const infoPanelVariants = cva(
-  `${ui.border.radius} border p-4 flex items-start gap-3`,
+  `rounded-lg border p-4 flex items-start gap-3`,
   {
     variants: {
       variant: {
@@ -13,7 +13,7 @@ const infoPanelVariants = cva(
         success: "bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800/50 dark:text-green-200",
         warning: "bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-900/20 dark:border-amber-800/50 dark:text-amber-200", 
         error: "bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800/50 dark:text-red-200",
-        neutral: `${ui.background.surface} ${ui.border.default}`
+        neutral: `bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700`
       },
       size: {
         sm: "p-3 text-sm",
@@ -80,12 +80,12 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({
 
 // Stat Card Component
 const statCardVariants = cva(
-  `${ui.background.surface} ${ui.border.radius} ${ui.shadow.md} p-6 transition-all duration-200`,
+  `bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-200`,
   {
     variants: {
       variant: {
-        default: `${ui.border.default} border hover:shadow-lg`,
-        elevated: `${ui.shadow.lg} hover:shadow-xl`,
+        default: `border-gray-200 dark:border-gray-700 border hover:shadow-lg`,
+        elevated: `shadow-lg hover:shadow-xl`,
         minimal: "bg-transparent shadow-none border-none p-4"
       },
       trend: {
@@ -168,7 +168,7 @@ const formSectionVariants = cva(
     variants: {
       variant: {
         default: "",
-        card: `${ui.background.surface} ${ui.border.radius} ${ui.border.default} border p-6`,
+        card: `bg-white dark:bg-gray-800 rounded-lg border-gray-200 dark:border-gray-700 border p-6`,
         minimal: "space-y-4"
       },
       spacing: {

@@ -8,21 +8,32 @@
  * @license MIT
  */
 
-// Export utilities
-export * from './lib/utils';
+// Export utilities and helpers (Phase 3 enhancement)
+export * from './lib';
 
 // Export design system
 export * from './design-system';
 
-// Export UI components (Phase 2: Dependencies resolved) - temporarily disabled
+// Export UI components (Phase 3: Disabled pending import resolution)
 // export * from './ui';
 
 // Default export for convenience
 import { cn } from './lib/utils';
+import { withOpacity, responsive, themeColor, getSizeClasses, buttonVariant, inputVariant, cardVariant, textVariant } from './lib';
 import { colors, designTokens, textVariants, variants } from './design-system';
 
 export default {
-  utils: { cn },
+  utils: { 
+    cn,
+    withOpacity,
+    responsive,
+    themeColor,
+    getSizeClasses,
+    buttonVariant,
+    inputVariant,
+    cardVariant,
+    textVariant,
+  },
   design: {
     colors,
     tokens: designTokens,

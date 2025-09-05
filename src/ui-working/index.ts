@@ -22,8 +22,8 @@ export { NoContent } from '../ui/no-content';
 export { StatusIndicator } from '../ui/status-indicator';
 export { ConfirmationDialog } from '../ui/confirmation-dialog';
 export { IconContainer } from '../ui/icon-container';
-export { FormFieldGroup } from '../ui/form-field-group';
-export { EmailInputGroup } from '../ui/email-input-group';
+export { FormFieldGroup, TextField, TextAreaField, SelectField } from '../ui/form-field-group';
+export { EmailInputGroup, EmailInputField, CollapsibleEmailField } from '../ui/email-input-group';
 export { SectionBadge } from '../ui/section-badge';
 export { AnimatedSection, FadeInUp, FadeInScale, FloatingElement } from '../ui/animated-section';
 

@@ -76,7 +76,12 @@ export {
 // Form Components
 export { 
   EmailInputGroup,
-  FormFieldGroup
+  EmailInputField,
+  CollapsibleEmailField,
+  FormFieldGroup,
+  TextField,
+  TextAreaField,
+  SelectField
 } from './ui';
 
 // Status & Feedback Components
@@ -98,7 +103,12 @@ export {
 // Navigation & Interactive Components
 export { 
   SmartLink,
+  SmartContent,
+  useSmartLinks,
   Modal,
+  ModalHeader,
+  ModalContent,
+  ModalFooter,
   ConfirmationDialog
 } from './ui';
 

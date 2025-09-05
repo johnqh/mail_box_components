@@ -30,8 +30,8 @@ export { LoadingState } from './loading-state';
 export { NoContent } from './no-content';
 
 // Form Components
-export { EmailInputGroup } from './email-input-group';
-export { FormFieldGroup } from './form-field-group';
+export { EmailInputGroup, EmailInputField, CollapsibleEmailField } from './email-input-group';
+export { FormFieldGroup, TextField, TextAreaField, SelectField } from './form-field-group';
 
 // Status & Feedback Components
 export { StatusBadge, ChainBadge } from './status-badge';
@@ -42,8 +42,8 @@ export { SectionBadge } from './section-badge';
 export { PageTitle, SectionTitle, BodyText, TextLink } from './typography';
 
 // Navigation & Interactive Components
-export { SmartLink } from './smart-link';
-export { Modal } from './modal';
+export { SmartLink, SmartContent, useSmartLinks } from './smart-link';
+export { Modal, ModalHeader, ModalContent, ModalFooter } from './modal';
 export { ConfirmationDialog } from './confirmation-dialog';
 
 // Utility Components

@@ -9,11 +9,22 @@ export { Input } from '../ui/input';
 export { Card, CardHeader, CardContent, CardFooter } from '../ui/card';
 export { PageTitle, SectionTitle, BodyText, TextLink } from '../ui/typography';
 export { StatusBadge, ChainBadge } from '../ui/status-badge';
-export { Select } from '../ui/select';
+export { 
+  Select, 
+  SelectGroup, 
+  SelectValue, 
+  SelectTrigger, 
+  SelectContent, 
+  SelectLabel, 
+  SelectItem, 
+  SelectSeparator, 
+  SelectScrollUpButton, 
+  SelectScrollDownButton 
+} from '../ui/select';
 export { Alert, AlertTitle, AlertDescription } from '../ui/alert';
 export { Spinner } from '../ui/spinner';
 export { Switch } from '../ui/switch';
-export { Tabs } from '../ui/tabs';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
 export { Label } from '../ui/label';
 export { Modal } from '../ui/modal';
 export { LoadingState } from '../ui/loading-state';
@@ -28,7 +39,19 @@ export { SectionBadge } from '../ui/section-badge';
 export { AnimatedSection, FadeInUp, FadeInScale, FloatingElement } from '../ui/animated-section';
 
 // Component types
-export type { ButtonProps, StatusType, ChainType } from '../ui';
+export type { 
+  ButtonProps, 
+  StatusType, 
+  ChainType,
+  InputProps,
+  ModalProps,
+  ModalHeaderProps,
+  ModalContentProps,
+  ModalFooterProps,
+  ConfirmationDialogProps,
+  SmartLinkProps,
+  SmartContentProps
+} from '../ui';
 
 // === LEGACY WILDCARD EXPORTS ===
 // For backward compatibility

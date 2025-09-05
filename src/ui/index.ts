@@ -14,10 +14,21 @@ export { Dropdown } from './dropdown';
 export { GradientButton } from './gradient-button';
 export { Input } from './input';
 export { Label } from './label';
-export { Select } from './select';
+export { 
+  Select, 
+  SelectGroup, 
+  SelectValue, 
+  SelectTrigger, 
+  SelectContent, 
+  SelectLabel, 
+  SelectItem, 
+  SelectSeparator, 
+  SelectScrollUpButton, 
+  SelectScrollDownButton 
+} from './select';
 export { Spinner } from './spinner';
 export { Switch } from './switch';
-export { Tabs } from './tabs';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 
 // Layout Components
 export { FlexContainer } from './flex-container';
@@ -42,7 +53,7 @@ export { SectionBadge } from './section-badge';
 export { PageTitle, SectionTitle, BodyText, TextLink } from './typography';
 
 // Navigation & Interactive Components
-export { SmartLink, SmartContent, useSmartLinks } from './smart-link';
+export { SmartLink, SmartContent, useSmartLinks, smartLinkVariants } from './smart-link';
 export { Modal, ModalHeader, ModalContent, ModalFooter } from './modal';
 export { ConfirmationDialog } from './confirmation-dialog';
 
@@ -54,6 +65,10 @@ export { InfoPanel, StatCard, FormSection, FeatureBlock } from './design-system-
 // Re-export component types for convenience
 export type { ButtonProps } from './button';
 export type { StatusType, ChainType } from './status-badge';
+export type { InputProps } from './input';
+export type { ModalProps, ModalHeaderProps, ModalContentProps, ModalFooterProps } from './modal';
+export type { ConfirmationDialogProps } from './confirmation-dialog';
+export type { SmartLinkProps, SmartContentProps } from './smart-link';
 
 // Legacy wildcard exports for backward compatibility
 export * from './alert';

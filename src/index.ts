@@ -12,6 +12,9 @@
 // Core utilities
 export { cn } from './lib/utils';
 
+// Hooks
+export { useClickOutside } from './hooks/useClickOutside';
+
 // Enhanced utilities  
 export { 
   withOpacity, 
@@ -54,9 +57,21 @@ export {
   Input,
   Label,
   Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
   Spinner,
   Switch,
-  Tabs
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent
 } from './ui';
 
 // Layout Components
@@ -105,6 +120,7 @@ export {
   SmartLink,
   SmartContent,
   useSmartLinks,
+  smartLinkVariants,
   Modal,
   ModalHeader,
   ModalContent,
@@ -126,7 +142,15 @@ export {
 export type { 
   ButtonProps,
   StatusType, 
-  ChainType
+  ChainType,
+  InputProps,
+  ModalProps,
+  ModalHeaderProps,
+  ModalContentProps,
+  ModalFooterProps,
+  ConfirmationDialogProps,
+  SmartLinkProps,
+  SmartContentProps
 } from './ui';
 
 // === LEGACY WILDCARD EXPORTS ===

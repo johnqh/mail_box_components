@@ -27,7 +27,10 @@ export * from './performance';
 export * from './seo';
 
 // Optimization utilities
-export * from './optimization';
+export { RoutePreloadingService } from './optimization/route-preloading';
+export type { RoutePreloadingConfig, RoutePreloadConfig } from './optimization/route-preloading';
+export { setupCSPReporting } from './optimization/securityHeaders';
+export { isWebEnvironment } from './optimization/css-loader';
 
 // UI utilities
 export * from './ui';
@@ -43,3 +46,15 @@ export * from './navigationHelpers';
 
 // Tree shaking utilities
 export * from './treeShaking';
+
+// API utilities
+export * from './api/indexer-graphql';
+export * from './api/indexer-webhooks';
+export * from './api/indexer-admin';
+
+// Enhanced lazy components
+export * from './lazy-components';
+export { default as lazyComponents } from './lazy-components';
+
+// Navigation service
+export * from './navigation';

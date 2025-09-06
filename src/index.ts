@@ -30,6 +30,10 @@ export {
   textVariant 
 } from './lib';
 
+// === TYPE DECLARATIONS ===
+// Global types and interfaces
+export * from './types/ui-navigation';
+
 // === DESIGN SYSTEM ===
 // Design tokens and variants
 export { 

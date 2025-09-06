@@ -263,12 +263,17 @@ describe('API Optimization Utils', () => {
     });
 
     it('should throw after all retries exhausted', async () => {
-      const alwaysFailingFn = vi.fn().mockRejectedValue(new Error('Always fails'));
+      const alwaysFailingFn = vi.fn().mockImplementation(async () => {
+        throw new Error('Always fails');
+      });
       
       const failPromise = withRetry(alwaysFailingFn, 2, 10);
       
-      // Fast-forward past retry delays
-      vi.advanceTimersByTime(100);
+      // Let the first attempt fail immediately, then advance timers for retries
+      await vi.runOnlyPendingTimersAsync();
+      
+      // Advance time for all retry attempts
+      vi.advanceTimersByTime(200);
       await vi.runAllTimersAsync();
       
       await expect(failPromise).rejects.toThrow('Always fails');
@@ -276,19 +281,20 @@ describe('API Optimization Utils', () => {
     });
 
     it('should respect custom retry delay', async () => {
-      const failingFn = vi.fn().mockRejectedValue(new Error('Fails'));
+      const failingFn = vi.fn().mockImplementation(async () => {
+        throw new Error('Fails');
+      });
       
       const failPromise = withRetry(failingFn, 2, 50);
       
+      // Let the first attempt fail immediately, then advance timers for retries
+      await vi.runOnlyPendingTimersAsync();
+      
       // Fast-forward past retry delays
-      vi.advanceTimersByTime(200);
+      vi.advanceTimersByTime(500);
       await vi.runAllTimersAsync();
       
-      try {
-        await failPromise;
-      } catch {
-        // Expected to fail
-      }
+      await expect(failPromise).rejects.toThrow('Fails');
       
       // Should have made retries
       expect(failingFn).toHaveBeenCalledTimes(3); // maxRetries 2 = 3 total attempts (0, 1, 2)

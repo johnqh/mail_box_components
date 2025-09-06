@@ -25,9 +25,10 @@ describe('Input Component', () => {
   });
 
   it('shows error state', () => {
-    render(<Input error placeholder="Error input" />);
+    render(<Input aria-invalid="true" placeholder="Error input" />);
     const input = screen.getByPlaceholderText('Error input');
     expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute('aria-invalid', 'true');
   });
 
   it('renders with different sizes', () => {

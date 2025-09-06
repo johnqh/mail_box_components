@@ -2,7 +2,6 @@ import { useEffect, RefObject } from 'react';
 
 export function useClickOutside<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,
-  // eslint-disable-next-line no-unused-vars
   handler: (event: Event) => void
 ) {
   useEffect(() => {

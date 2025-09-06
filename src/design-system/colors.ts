@@ -722,7 +722,6 @@ export const getColorClasses = (
   const variantColors = componentColorSet[variant];
   
   if (!variantColors) {
-    // eslint-disable-next-line no-console
     console.warn(`Color variant '${variant}' not found for component '${component}'`);
     return '';
   }

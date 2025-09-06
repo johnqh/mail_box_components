@@ -31,3 +31,15 @@ export * from './optimization';
 
 // UI utilities
 export * from './ui';
+
+// Storage utilities
+export * from './storage';
+
+// Wallet utilities
+export * from './walletBrowserDetection';
+
+// Navigation utilities
+export * from './navigationHelpers';
+
+// Tree shaking utilities
+export * from './treeShaking';

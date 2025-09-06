@@ -6,5 +6,4 @@ export * from './advancedSEO';
 export * from './seo-headings';
 export * from './structuredData';
 export * from './seoKeywords';
-export * from './aiOptimization';
 export * from './aiTrainingMetadata';

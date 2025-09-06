@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 
-export interface TOCSection {
+interface TOCSection {
   id: string;
   title: string;
   subsections?: TOCSection[];
@@ -60,7 +60,7 @@ const CollapsibleSubsections: React.FC<{
   );
 };
 
-export const TableOfContents: React.FC<TableOfContentsProps> = ({
+const TableOfContents: React.FC<TableOfContentsProps> = ({
   sections,
   selectedSection,
   selectedSubsection,
@@ -113,3 +113,5 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     </nav>
   );
 };
+
+export { TableOfContents, type TOCSection };

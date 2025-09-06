@@ -27,7 +27,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   
   const ref = React.useRef<HTMLDivElement>(null);
   
-  useClickOutside(ref, () => setIsOpen(false));
+  useClickOutside(ref as React.RefObject<HTMLElement>, () => setIsOpen(false));
 
   const handleItemClick = (item: DropdownItem) => {
     if (!item.disabled) {

@@ -12,6 +12,9 @@
 // Core utilities
 export { cn } from './lib/utils';
 
+// Performance & Optimization utilities
+export * from './utils';
+
 // Hooks
 export { useClickOutside } from './hooks/useClickOutside';
 
@@ -33,7 +36,8 @@ export {
   colors, 
   designTokens, 
   textVariants, 
-  variants
+  variants,
+  ui
 } from './design-system';
 
 // === UI COMPONENTS ===
@@ -76,10 +80,12 @@ export {
 
 // Layout Components
 export { 
-  FlexContainer,
   PageContainer,
   Section
 } from './ui';
+
+// Additional Components (from /components)
+export * from './components';
 
 // Content Components
 export { 
@@ -158,6 +164,7 @@ export type {
 export * from './lib';
 export * from './design-system';
 export * from './ui';
+export * from './components';
 
 // === DEFAULT EXPORT ===
 // Grouped exports for convenience

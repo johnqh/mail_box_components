@@ -32,10 +32,17 @@
     "src/index.ts",
     "src/lib/**/*",
     "src/design-system/**/*",
-    "src/hooks/**/*"
+    "src/hooks/**/*",
+    "src/components/**/*",
+    "src/ui/**/*",
+    "src/utils/**/*"
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "**/*.test.*",
+    "**/__tests__/**",
+    "src/utils/optimization/selectiveImports.ts",
+    "src/utils/optimization/web3Optimization.ts"
   ]
 }

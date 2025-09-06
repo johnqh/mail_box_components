@@ -10,7 +10,10 @@ export { Alert, AlertTitle, AlertDescription } from './alert';
 export { AnimatedSection, FadeInUp, FadeInScale, FloatingElement } from './animated-section';
 export { Button, buttonVariants } from './button';
 export { Card, CardHeader, CardContent, CardFooter } from './card';
+export { ComparisonSection, createComparisonData, createEmailComparisonData } from './comparison-section';
+export { ContentContainer } from './content-container';
 export { Dropdown } from './dropdown';
+export { FeatureGrid, createFeature, createSecurityFeatures } from './feature-grid';
 export { GradientButton } from './gradient-button';
 export { Input } from './input';
 export { Label } from './label';
@@ -28,6 +31,7 @@ export {
 } from './select';
 export { Spinner } from './spinner';
 export { Switch } from './switch';
+export { TableOfContents } from './table-of-contents';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 
 // Layout Components
@@ -69,19 +73,25 @@ export type { InputProps } from './input';
 export type { ModalProps, ModalHeaderProps, ModalContentProps, ModalFooterProps } from './modal';
 export type { ConfirmationDialogProps } from './confirmation-dialog';
 export type { SmartLinkProps, SmartContentProps } from './smart-link';
+export type { Feature } from './feature-grid';
+export type { TOCSection } from './table-of-contents';
 
 // Legacy wildcard exports for backward compatibility
 export * from './alert';
 export * from './animated-section';
 export * from './button';
 export * from './card';
+export * from './comparison-section';
+export * from './content-container';
 export * from './dropdown';
+export * from './feature-grid';
 export * from './gradient-button';
 export * from './input';
 export * from './label';
 export * from './select';
 export * from './spinner';
 export * from './switch';
+export * from './table-of-contents';
 export * from './tabs';
 export * from './flex-container';
 export * from './page-container';

@@ -60,7 +60,14 @@ export {
   CardHeader, 
   CardContent, 
   CardFooter,
+  ComparisonSection,
+  createComparisonData,
+  createEmailComparisonData,
+  ContentContainer,
   Dropdown,
+  FeatureGrid,
+  createFeature,
+  createSecurityFeatures,
   GradientButton,
   Input,
   Label,
@@ -76,6 +83,7 @@ export {
   SelectScrollDownButton,
   Spinner,
   Switch,
+  TableOfContents,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -160,7 +168,9 @@ export type {
   ModalFooterProps,
   ConfirmationDialogProps,
   SmartLinkProps,
-  SmartContentProps
+  SmartContentProps,
+  Feature,
+  TOCSection
 } from './ui';
 
 // === LEGACY WILDCARD EXPORTS ===

@@ -6,7 +6,7 @@
  */
 
 
-export const variants = {
+const variants = {
   // Button variants with complete styling
   button: {
     primary: {
@@ -2362,3 +2362,5 @@ export const variants = {
     },
   },
 } as const;
+
+export { variants };

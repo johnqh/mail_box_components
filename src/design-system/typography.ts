@@ -7,7 +7,7 @@
 
 import { designTokens } from './tokens';
 
-export const textVariants = {
+const textVariants = {
   // =============================================================================
   // HEADINGS
   // =============================================================================
@@ -231,7 +231,7 @@ export const textVariants = {
 } as const;
 
 // Export utility functions for building custom text styles
-export const createTextStyle = (
+const createTextStyle = (
   family: keyof typeof designTokens.typography.family = 'body',
   size: keyof typeof designTokens.typography.semantic = 'body',
   weight: keyof typeof designTokens.typography.weight = 'body',
@@ -263,12 +263,12 @@ export const createTextStyle = (
 };
 
 // Helper function to combine text styles
-export const combineTextStyles = (...styles: string[]): string => {
+const combineTextStyles = (...styles: string[]): string => {
   return styles.filter(Boolean).join(' ');
 };
 
 // Helper function to create responsive text styles
-export const createResponsiveText = (
+const createResponsiveText = (
   baseStyle: string,
   breakpoints: {
     sm?: string;
@@ -290,3 +290,5 @@ export const createResponsiveText = (
   
   return responsiveClasses.join(' ');
 };
+
+export { textVariants, createTextStyle, combineTextStyles, createResponsiveText };

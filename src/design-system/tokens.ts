@@ -5,7 +5,7 @@
  * These provide consistent spacing, typography, and other design properties.
  */
 
-export const designTokens = {
+const designTokens = {
   // Spacing scale (based on 4px grid)
   spacing: {
     xs: 'p-1',      // 4px
@@ -411,3 +411,5 @@ export const designTokens = {
     minScreen: 'min-h-screen',
   },
 } as const;
+
+export { designTokens };

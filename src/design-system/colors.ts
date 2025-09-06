@@ -202,7 +202,7 @@ const rawColors = {
  * Semantic color tokens - organized by purpose and context
  * These provide consistent theming across light and dark modes
  */
-export const semanticColors = {
+const semanticColors = {
   // Text colors
   text: {
     primary: {
@@ -468,7 +468,7 @@ export const semanticColors = {
  * Component-specific color configurations
  * These provide ready-to-use Tailwind classes for components
  */
-export const componentColors = {
+const componentColors = {
   button: {
     // Primary button - main brand actions
     primary: {
@@ -713,7 +713,7 @@ export const componentColors = {
  * Utility function to get complete color class string for a component variant
  * Combines base, dark, focus, and other states into a single string
  */
-export const getColorClasses = (
+const getColorClasses = (
   component: keyof typeof componentColors,
   variant: string,
   states: ('focus' | 'hover' | 'disabled' | 'active')[] = ['focus']
@@ -738,7 +738,7 @@ export const getColorClasses = (
 /**
  * Utility to build custom color combinations
  */
-export const buildColorClass = (
+const buildColorClass = (
   background: string,
   text: string,
   border?: string,
@@ -778,7 +778,7 @@ export const buildColorClass = (
 /**
  * Main colors export with organized structure
  */
-export const colors = {
+const colors = {
   // Raw color palette (use sparingly, prefer semantic tokens)
   raw: rawColors,
   
@@ -795,4 +795,5 @@ export const colors = {
   },
 } as const;
 
+export { colors, semanticColors, componentColors, getColorClasses, buildColorClass };
 export default colors;

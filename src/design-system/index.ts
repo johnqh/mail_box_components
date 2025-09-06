@@ -20,7 +20,7 @@ export { variants as Variants } from './variants';
 /**
  * Quick access to commonly used design patterns
  */
-export const ui = {
+const ui = {
   // Layout utilities
   layout: {
     container: 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8',
@@ -154,6 +154,8 @@ export const ui = {
     addressText: 'font-mono text-sm text-gray-600 dark:text-gray-400',
   },
 } as const;
+
+export { ui };
 
 // === LEGACY WILDCARD EXPORTS ===
 // For backward compatibility

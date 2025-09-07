@@ -100,17 +100,14 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
     };
 
     // 5. Web Vitals measurement and reporting
-    const measureWebVitals = async () => {
+    const measureWebVitals = () => {
       try {
-        const webVitals = await import('web-vitals');
-        
-        // Measure Core Web Vitals
-        if (webVitals.onCLS) webVitals.onCLS(() => { /* CLS measured */ });
-        if ((webVitals as unknown as { onINP?: (callback: (metric: unknown) => void) => void }).onINP) 
-          (webVitals as unknown as { onINP: (callback: (metric: unknown) => void) => void }).onINP(() => { /* INP measured */ });
-        if (webVitals.onFCP) webVitals.onFCP(() => { /* FCP measured */ });
-        if (webVitals.onLCP) webVitals.onLCP(() => { /* LCP measured */ });
-        if (webVitals.onTTFB) webVitals.onTTFB(() => { /* TTFB measured */ });
+        // Use the existing performance monitoring system instead of dynamic import
+        import('../utils/performance-monitoring').then(({ initializePerformanceMonitoring }) => {
+          initializePerformanceMonitoring();
+        }).catch(() => {
+          // Performance monitoring not available
+        });
       } catch {
         // Web Vitals library not available
       }

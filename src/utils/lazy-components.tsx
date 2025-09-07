@@ -48,7 +48,7 @@ export const createUIComponentLazyLoader = (
   fallbackMessage?: string
 ) => {
   return createLazyComponent(
-    () => import(componentImportPath).then(m => ({ default: m[componentName] })),
+    () => import(/* @vite-ignore */ componentImportPath).then(m => ({ default: m[componentName] })),
     null,
     fallbackMessage || `Loading ${componentName.toLowerCase()}...`
   );
@@ -60,7 +60,7 @@ export const createThirdPartyLazyLoader = (
   fallbackMessage?: string
 ) => {
   return createLazyComponent(
-    () => import(packageImportPath),
+    () => import(/* @vite-ignore */ packageImportPath),
     null,
     fallbackMessage || 'Loading component...'
   );

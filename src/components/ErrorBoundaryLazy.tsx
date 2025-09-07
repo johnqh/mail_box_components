@@ -25,7 +25,7 @@ interface State {
 }
 
 export class LazyErrorBoundary extends Component<Props, State> {
-  private retryTimer: number | null = null;
+  private retryTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(props: Props) {
     super(props);

@@ -109,7 +109,7 @@ export const createSelectiveExports = (modules: Record<string, Record<string, st
     selectiveExports[moduleName] = {};
     Object.entries(exports).forEach(([exportName, importPath]) => {
       selectiveExports[moduleName][exportName] = () => 
-        import(importPath).then(m => ({ [exportName]: m[exportName] }));
+        import(/* @vite-ignore */ importPath).then(m => ({ [exportName]: m[exportName] }));
     });
   });
   

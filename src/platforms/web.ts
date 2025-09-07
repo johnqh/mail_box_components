@@ -4,8 +4,18 @@
  * Converts design system data to Tailwind CSS classes for web components
  */
 
-import { PlatformStyleGenerator } from '@johnqh/design-system';
 import { cn } from '../lib/utils';
+
+/**
+ * Platform Style Generator Interface
+ */
+interface PlatformStyleGenerator {
+  generateComponentStyles(variant: any, size?: any): string;
+  generateTypographyStyles(textVariant: any): string;
+  generateSpacingStyles(spacing: any): string;
+  generateColorStyles(colors: any): string;
+  generateAnimationStyles(animation: any): string;
+}
 
 /**
  * Convert color value to Tailwind CSS class or custom CSS property

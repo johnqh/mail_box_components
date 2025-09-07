@@ -35,10 +35,19 @@ export default defineConfig({
         'tailwind-merge'
       ],
       output: {
+        exports: 'named',
         globals: {
           'react': 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'ReactJSXRuntime',
+          'clsx': 'clsx',
+          'tailwind-merge': 'tailwindMerge',
+          '@heroicons/react/24/outline': 'HeroiconsOutline',
+          '@heroicons/react/24/solid': 'HeroiconsSolid',
+          '@radix-ui/react-label': 'RadixLabel',
+          '@radix-ui/react-select': 'RadixSelect',
+          '@radix-ui/react-switch': 'RadixSwitch',
+          '@radix-ui/react-tabs': 'RadixTabs',
         },
       },
     },

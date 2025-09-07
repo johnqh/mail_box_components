@@ -12,6 +12,7 @@ export interface ConfirmationDialogProps {
   message: string;
   confirmText?: string;
   cancelText?: string;
+  loadingText?: string;
   variant?: 'default' | 'warning' | 'danger' | 'success' | 'info';
   isLoading?: boolean;
 }
@@ -48,6 +49,7 @@ export const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   message,
   confirmText = 'Confirm',
   cancelText = 'Cancel',
+  loadingText = 'Processing...',
   variant = 'default',
   isLoading = false,
 }) => {
@@ -80,7 +82,7 @@ export const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
           {cancelText}
         </Button>
         <Button variant={buttonVariant} onClick={onConfirm} disabled={isLoading}>
-          {isLoading ? 'Processing...' : confirmText}
+          {isLoading ? loadingText : confirmText}
         </Button>
       </ModalFooter>
     </Modal>

@@ -106,6 +106,7 @@ export const Modal: React.FC<ModalProps> = ({
       >
         <div
           ref={modalRef}
+          data-testid="modal-content"
           className={cn(getContainerClass(), className)}
           tabIndex={-1}
           onClick={(e) => e.stopPropagation()}
@@ -146,7 +147,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   variant: _variant = 'default',
   className
 }) => (
-  <div className={cn(variants.overlays.modal.header(), className)}>
+  <div data-testid="modal-header" className={cn(variants.overlays.modal.header(), className)}>
     {children}
   </div>
 );
@@ -162,7 +163,7 @@ export const ModalContent: React.FC<ModalContentProps> = ({
   variant: _variant = 'default',
   className
 }) => (
-  <div className={cn(variants.overlays.modal.body(), className)}>
+  <div data-testid="modal-body" className={cn(variants.overlays.modal.body(), className)}>
     {children}
   </div>
 );
@@ -178,7 +179,7 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
   variant: _variant = 'default',
   className
 }) => (
-  <div className={cn(variants.overlays.modal.footer(), className)}>
+  <div data-testid="modal-footer" className={cn(variants.overlays.modal.footer(), className)}>
     {children}
   </div>
 );

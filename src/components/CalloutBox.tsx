@@ -57,15 +57,19 @@ export const CalloutBox: React.FC<CalloutBoxProps> = ({
   };
 
   return (
-    <div className={cn(
-      variantStyles[variant],
-      sizeStyles[size],
-      className
-    )}>
-      <div className={cn(
-        'space-y-4',
-        centered && 'text-center'
+    <div 
+      data-testid="callout-box"
+      className={cn(
+        variantStyles[variant],
+        sizeStyles[size],
+        className
       )}>
+      <div 
+        data-testid="callout-box-content"
+        className={cn(
+          'space-y-4',
+          centered && 'text-center'
+        )}>
         {/* Icon */}
         {icon && (
           <div className={cn(

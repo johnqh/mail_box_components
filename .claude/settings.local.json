@@ -14,7 +14,8 @@
       "Bash(find:*)",
       "Bash(timeout 5 npm test)",
       "Bash(timeout 10 npm test)",
-      "Bash(timeout 30 npm test)"
+      "Bash(timeout 30 npm test)",
+      "Bash(timeout 30 npm test -- --run)"
     ],
     "deny": [],
     "ask": []

@@ -39,12 +39,14 @@ export const InfoCard: React.FC<InfoCardProps> = ({
   };
 
   return (
-    <div className={cn(
-      'rounded-lg',
-      variantStyles[variant],
-      sizeStyles[size],
-      className
-    )}>
+    <div 
+      data-testid="info-card"
+      className={cn(
+        'rounded-lg',
+        variantStyles[variant],
+        sizeStyles[size],
+        className
+      )}>
       {title && (
         <h3 className={cn(
           'font-semibold mb-2',

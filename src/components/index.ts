@@ -38,3 +38,8 @@ export { SecurityProvider, default as SecurityProviderDefault } from './Security
 // UI Components with minimal dependencies
 export { Breadcrumb, type BreadcrumbProps } from './Breadcrumb';
 export { PageHeader, type PageHeaderProps } from './PageHeader';
+
+// Documentation Components
+export { InfoCard, type InfoCardProps } from './InfoCard';
+export { StepList, type StepListProps, type StepListItem } from './StepList';
+export { CalloutBox, type CalloutBoxProps } from './CalloutBox';

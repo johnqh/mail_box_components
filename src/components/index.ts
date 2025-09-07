@@ -28,3 +28,13 @@ export * from './icons';
 
 // Optimized Components
 export * from './optimized/MemoizedComponent';
+
+// Pure React Wrapper Components
+export { AITrainingEnhancer } from './AITrainingEnhancer';
+export { OptimizedRoutePreloader } from './OptimizedRoutePreloader';
+export { SafeAppWrapper } from './SafeAppWrapper';
+export { SecurityProvider, default as SecurityProviderDefault } from './SecurityProvider';
+
+// UI Components with minimal dependencies
+export { Breadcrumb, type BreadcrumbProps } from './Breadcrumb';
+export { PageHeader, type PageHeaderProps } from './PageHeader';

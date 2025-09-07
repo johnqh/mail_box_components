@@ -43,3 +43,9 @@ export { PageHeader, type PageHeaderProps } from './PageHeader';
 export { InfoCard, type InfoCardProps } from './InfoCard';
 export { StepList, type StepListProps, type StepListItem } from './StepList';
 export { CalloutBox, type CalloutBoxProps } from './CalloutBox';
+
+// Meta and SEO Components
+export { AIMeta, type AIMetaProps } from './AIMeta';
+
+// CTA and Marketing Components
+export { CTASection } from './CTASection';

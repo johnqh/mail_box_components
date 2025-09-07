@@ -77,6 +77,7 @@
   },
   "homepage": "https://github.com/johnqh/mail-box-components#readme",
   "dependencies": {
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.8.2",
     "web-vitals": "^5.1.0"
   }

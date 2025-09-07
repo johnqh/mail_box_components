@@ -99,18 +99,10 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
       optimizeEventListeners();
     };
 
-    // 5. Web Vitals measurement and reporting
+    // 5. Web Vitals measurement and reporting (disabled to avoid dynamic import warning)
     const measureWebVitals = () => {
-      try {
-        // Use the existing performance monitoring system instead of dynamic import
-        import('../utils/performance-monitoring').then(({ initializePerformanceMonitoring }) => {
-          initializePerformanceMonitoring();
-        }).catch(() => {
-          // Performance monitoring not available
-        });
-      } catch {
-        // Web Vitals library not available
-      }
+      // Performance monitoring is handled by the dedicated performance-monitoring module
+      // which is already statically imported elsewhere in the application
     };
 
     // 6. Resource hints optimization

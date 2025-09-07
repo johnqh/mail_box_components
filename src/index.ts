@@ -96,6 +96,11 @@ export {
   Section
 } from './ui';
 
+export { 
+  StandardPageLayout,
+  type StandardPageLayoutProps 
+} from './components';
+
 // Additional Components (from /components)
 export * from './components';
 

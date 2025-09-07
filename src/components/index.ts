@@ -52,3 +52,6 @@ export { AIMeta, type AIMetaProps } from './AIMeta';
 
 // CTA and Marketing Components
 export { CTASection } from './CTASection';
+
+// Layout Components
+export { StandardPageLayout, type StandardPageLayoutProps } from './StandardPageLayout';

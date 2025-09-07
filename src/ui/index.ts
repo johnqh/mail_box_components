@@ -66,6 +66,12 @@ export { IconContainer } from './icon-container';
 export { FreeEmailBanner } from './free-email-banner';
 export { InfoPanel, StatCard, FormSection, FeatureBlock } from './design-system-components';
 
+// Additional Components
+export { WalletIcon } from './wallet-icon';
+export { WalletSelectionGrid, WalletSelectionButton } from './wallet-selection';
+export { Logo } from './logo';
+export { default as InternalLinkClusters } from './internal-link-clusters';
+
 // Re-export component types for convenience
 export type { ButtonProps } from './button';
 export type { StatusType, ChainType } from './status-badge';
@@ -111,3 +117,7 @@ export * from './confirmation-dialog';
 export * from './icon-container';
 export * from './free-email-banner';
 export * from './design-system-components';
+export * from './wallet-icon';
+export * from './wallet-selection';
+export * from './logo';
+export * from './internal-link-clusters';

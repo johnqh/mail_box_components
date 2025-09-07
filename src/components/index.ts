@@ -4,11 +4,12 @@
  * Main export file for all reusable components.
  */
 
-// UI Components that actually exist
-export * from './ui/icon-container';
-export * from './ui/wallet-icon';
-export * from './ui/logo';
-export * from './ui/internal-link-clusters';
+// UI Components that actually exist (moved to ../ui/)
+export * from '../ui/icon-container';
+export * from '../ui/wallet-icon';
+export * from '../ui/logo';
+export * from '../ui/internal-link-clusters';
+export * from '../ui/wallet-selection';
 
 // Core Components that actually exist
 export { ErrorBoundary } from './ErrorBoundary';
@@ -38,6 +39,8 @@ export { SecurityProvider, default as SecurityProviderDefault } from './Security
 // UI Components with minimal dependencies
 export { Breadcrumb, type BreadcrumbProps } from './Breadcrumb';
 export { PageHeader, type PageHeaderProps } from './PageHeader';
+export { default as BreadcrumbSection } from './BreadcrumbSection';
+export { type BreadcrumbItem } from '../utils/navigationHelpers';
 
 // Documentation Components
 export { InfoCard, type InfoCardProps } from './InfoCard';

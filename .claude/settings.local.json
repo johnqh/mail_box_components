@@ -15,7 +15,12 @@
       "Bash(timeout 5 npm test)",
       "Bash(timeout 10 npm test)",
       "Bash(timeout 30 npm test)",
-      "Bash(timeout 30 npm test -- --run)"
+      "Bash(timeout 30 npm test -- --run)",
+      "Bash(tree:*)",
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(mkdir:*)",
+      "Bash(sed:*)"
     ],
     "deny": [],
     "ask": []

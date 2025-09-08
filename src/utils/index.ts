@@ -25,10 +25,8 @@ export * from './ui-constants';
 export * from './navigation';
 export * from './navigationHelpers';
 
-// API utilities
-export * from './indexer-admin';
-export * from './indexer-graphql';
-export * from './indexer-webhooks';
+// Note: Indexer API utilities moved to @johnqh/lib
+// These were network logic and belonged in the core lib rather than components
 
 // Lazy loading and components
 export * from './lazy-components';

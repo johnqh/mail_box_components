@@ -31,7 +31,6 @@
   "include": [
     "src/index.ts",
     "src/lib/**/*",
-    "src/design-system/**/*",
     "src/hooks/**/*",
     "src/components/**/*",
     "src/ui/**/*",

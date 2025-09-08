@@ -35,14 +35,14 @@ export {
 export * from './types/ui-navigation';
 
 // === DESIGN SYSTEM ===
-// Design tokens and variants
+// Design tokens and variants from external package
 export { 
   colors, 
   designTokens, 
   textVariants, 
   variants,
   ui
-} from './design-system';
+} from '@johnqh/design-system';
 
 // === UI COMPONENTS ===
 // Core Components
@@ -181,7 +181,7 @@ export type {
 // === LEGACY WILDCARD EXPORTS ===
 // For backward compatibility
 export * from './lib';
-export * from './design-system';
+export * from '@johnqh/design-system';
 export * from './ui';
 export * from './components';
 
@@ -189,7 +189,7 @@ export * from './components';
 // Grouped exports for convenience
 import { cn } from './lib/utils';
 import { withOpacity, responsive, themeColor, getSizeClasses, buttonVariant, inputVariant, cardVariant, textVariant } from './lib';
-import { colors, designTokens, textVariants, variants } from './design-system';
+import { colors, designTokens, textVariants, variants } from '@johnqh/design-system';
 
 export default {
   utils: { 

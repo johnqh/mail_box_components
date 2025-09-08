@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a React component library and design system (`@johnqh/mail-box-components`) built with TypeScript, Vite, and Tailwind CSS. It provides reusable UI components based on Radix UI primitives with a comprehensive design token system.
+This is a React component library (`@johnqh/mail-box-components`) built with TypeScript, Vite, and Tailwind CSS. It provides 20+ reusable UI components based on Radix UI primitives, with design system functionality imported from a separate `@johnqh/design-system` package.
 
 ## Common Development Commands
 
@@ -21,9 +21,12 @@ npm run type-check
 # Linting (ESLint with TypeScript rules)
 npm run lint
 
-# Testing (Vitest)
+# Testing (Vitest with React Testing Library)
 npm test
 npm run test:ui
+
+# Run single test file
+npm test -- src/__tests__/button.test.tsx
 
 # Package preparation
 npm run prepublishOnly
@@ -31,53 +34,113 @@ npm run prepublishOnly
 
 ## Architecture
 
+### Multi-Package Structure
+This project uses a **dual-package architecture**:
+
+1. **`@johnqh/mail-box-components`** (this repo) - UI components and library
+2. **`@johnqh/design-system`** (`../design_system`) - Design tokens, colors, typography, variants
+
+The design system is imported as a local file dependency and re-exported for backward compatibility.
+
 ### Source Structure
-- `src/index.ts` - Main library entry point
-- `src/lib/utils.ts` - Utilities (primarily `cn` for class merging)
-- `src/design-system/` - Complete design token system
-- `src/components/` - UI components (currently disabled in exports)
+- `src/index.ts` - Main library entry point with comprehensive exports
+- `src/lib/` - Core utilities (`cn`, theme helpers, component helpers)
+- `src/ui/` - UI component implementations (buttons, forms, modals, etc.)
+- `src/components/` - Specialized components and layout components
+- `src/hooks/` - Custom React hooks
+- `src/utils/` - Performance, SEO, and optimization utilities
+- `src/types/` - TypeScript type definitions
+- `src/platforms/` - Platform-specific implementations
 
-### Design System Architecture
-The design system is the core of this library, organized into:
+### Component Categories
 
-- **Colors** (`colors.ts`) - Semantic color palette with dark mode support
-- **Design Tokens** (`tokens.ts`) - Comprehensive spacing, typography, animation, and layout tokens
-- **Typography** (`typography.ts`) - Text variants and semantic typography
-- **Variants** (`variants.ts`) - Component style variants
+**Core UI Components** (`src/ui/`):
+- Form controls: Button, Input, Select, Switch, Tabs, Label
+- Layout: Card, Modal, Alert, Spinner, Section, PageContainer
+- Navigation: SmartLink, ConfirmationDialog, TableOfContents
+- Typography: PageTitle, SectionTitle, BodyText, TextLink
+- Status: StatusBadge, StatusIndicator, ChainBadge, SectionBadge
+
+**Specialized Components** (`src/components/`):
+- StandardPageLayout, FeatureGrid, StepList, CodeExampleBlock
+- Performance: PerformanceOptimizer, LoadingOptimizer
+- SEO: AIMeta, SemanticHTML
+- Security: SafeAppWrapper, SecurityProvider, ErrorBoundary
 
 ### Build Configuration
 - **Vite** - Library bundling with ES modules and UMD formats
 - **TypeScript** - Strict compilation with declaration files
-- **Tailwind CSS** - Utility-first styling with CSS custom properties
+- **Tailwind CSS** - Utility-first styling
 - **Path Alias** - `@/` maps to `src/`
+- **External Dependencies** - React, Radix UI, Heroicons externalized
 
-### Dependencies
-- **Peer Dependencies**: React, Radix UI components, Heroicons, clsx, tailwind-merge
-- **External Bundle**: All peer dependencies are externalized in build
-- **Design Tokens**: Uses Tailwind CSS custom properties for theming
+### Testing Architecture
+- **Vitest** - Test runner with React Testing Library
+- **Comprehensive Coverage** - 341 tests across 23 test files
+- **Component Testing** - Every UI component has dedicated test coverage
+- **Utility Testing** - Performance, SEO, and optimization utilities tested
 
 ## Key Implementation Details
 
-### Component Export Strategy
-Currently, components are disabled in the main export (`src/index.ts:18`) while dependency issues are resolved. The library primarily exports the design system and utilities.
+### Design System Integration
+The design system is imported from `@johnqh/design-system` and includes:
+- **Colors** - Semantic color palette with dark mode support
+- **Design Tokens** - Spacing, typography, animation tokens (4px grid)
+- **Typography** - Text variants and semantic typography system
+- **Variants** - Component style variants and utilities
+- **UI Utilities** - Layout patterns and common design patterns
 
-### Design Token System
-The design tokens in `src/design-system/tokens.ts` provide a comprehensive system including:
-- Spacing scale based on 4px grid
-- Semantic typography with size/weight/leading combinations
-- Animation timings and easing functions
-- Z-index layering system
-- Responsive grid patterns
-- Flex utility combinations
-
-### Styling Approach
+### Component Styling Strategy
 - Uses `cn()` utility for conditional class merging (clsx + tailwind-merge)
-- CSS custom properties for theme variables
-- Semantic color system with HSL values
-- Component variants defined through design tokens
+- Component variants defined through design system tokens
+- Accessibility-first with Radix UI primitives
+- Dark mode support throughout
+- Responsive design with mobile-first approach
 
-### Library Build
-- Outputs ES modules (`index.esm.js`) and UMD (`index.umd.js`)
+### Performance & Optimization Features
+- **Tree-shakeable exports** - Import only what you need
+- **Lazy loading** - Advanced lazy loading for components and routes
+- **Performance monitoring** - Built-in performance tracking utilities
+- **SEO optimization** - Structured data, meta tags, semantic HTML
+- **AI training metadata** - Enhanced for AI-assisted development
+
+### Library Build Output
+- ES modules (`dist/index.esm.js`) - 547KB, 122KB gzipped
+- UMD (`dist/index.umd.js`) - 408KB, 100KB gzipped  
 - TypeScript declarations with source maps
-- Tree-shakeable exports
-- Optimized for both bundler and direct browser use
+- Optimized for bundler and direct browser use
+
+## Development Workflow
+
+### Adding New Components
+1. Create component in appropriate directory (`src/ui/` for UI, `src/components/` for specialized)
+2. Add comprehensive tests in `src/__tests__/[component-name].test.tsx`
+3. Export from respective index files and main `src/index.ts`
+4. Update TypeScript types if needed
+5. Ensure accessibility with Radix UI primitives where applicable
+
+### Working with Design System
+- Design system is in separate `../design_system` package
+- Local file dependency means changes require rebuilding design system
+- Import design tokens: `import { designTokens, colors } from '@johnqh/design-system'`
+- Use `cn()` utility for conditional styling: `cn('base-classes', condition && 'conditional-class')`
+
+### Testing Guidelines
+- Every component requires test coverage
+- Use React Testing Library for component tests
+- Test user interactions, accessibility, and edge cases
+- Performance utilities have dedicated test suites
+- Run specific tests: `npm test -- src/__tests__/button.test.tsx`
+
+### Performance Considerations
+- Components use lazy loading patterns in `src/utils/lazy-loading.tsx`
+- Optimization utilities in `src/utils/optimization/` directory
+- Tree-shaking friendly exports structure
+- Built-in performance monitoring for production use
+
+### AI-Assisted Development Features
+- Enhanced with AI training metadata (`src/utils/aiTrainingMetadata.ts`)
+- Semantic HTML structure for better AI understanding
+- Comprehensive TypeScript types for IntelliSense
+- Well-documented component APIs and props
+- Consistent naming conventions and patterns

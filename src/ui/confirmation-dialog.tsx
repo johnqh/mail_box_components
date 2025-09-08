@@ -2,7 +2,7 @@ import React from 'react';
 import { ExclamationTriangleIcon, InformationCircleIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { Modal, ModalContent, ModalFooter } from './modal';
 import { Button } from './button';
-import { textVariants, variants } from "../design-system";
+import { textVariants, variants } from "@johnqh/design-system";
 
 export interface ConfirmationDialogProps {
   isOpen: boolean;

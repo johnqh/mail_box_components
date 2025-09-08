@@ -1,5 +1,5 @@
 import React from 'react';
-import { variants } from '../design-system';
+import { variants } from '@johnqh/design-system';
 
 export type StatusType = 'verified' | 'connected' | 'disconnected' | 'pending' | 'error' | 'success' | 'warning';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { variants, textVariants } from "../design-system";
+import { variants, textVariants } from "@johnqh/design-system";
 import Spinner from './spinner';
 
 interface LoadingStateProps {

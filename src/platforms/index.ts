@@ -1,19 +1,37 @@
 /**
  * Platform Integrations for mail_box_components
  * 
- * This module registers platform-specific style generators with the design system
- * and provides utilities for component development.
+ * This module provides platform-specific style generators and utilities
+ * for component development.
  */
 
-import { platformRegistry } from '@johnqh/design-system';
 import { webStyleGenerator } from './web';
+
+// Local platform registry
+class PlatformRegistry {
+  private generators = new Map<string, any>();
+
+  register(platform: string, generator: any) {
+    this.generators.set(platform, generator);
+  }
+
+  get(platform: string) {
+    return this.generators.get(platform);
+  }
+
+  has(platform: string): boolean {
+    return this.generators.has(platform);
+  }
+}
+
+// Create and configure the platform registry
+export const platformRegistry = new PlatformRegistry();
 
 // Register the web platform generator
 platformRegistry.register('web', webStyleGenerator);
 
 // === PRIMARY EXPORTS ===
 export { webStyleGenerator } from './web';
-export { platformRegistry } from '@johnqh/design-system';
 
 // Platform detection utility
 export function detectPlatform(): string {

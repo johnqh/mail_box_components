@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { variants } from "../design-system";
+import { variants } from "@johnqh/design-system";
 import { 
   CheckCircleIcon,
   ExclamationTriangleIcon,

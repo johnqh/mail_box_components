@@ -1,7 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { designTokens } from '../design-system/tokens';
+import { designTokens } from '@johnqh/design-system';
 
 const contentContainerVariants = cva(
   "mx-auto px-4 sm:px-6",

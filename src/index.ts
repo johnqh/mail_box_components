@@ -65,12 +65,16 @@ export {
   createEmailComparisonData,
   ContentContainer,
   Dropdown,
+  FeatureCard,
   FeatureGrid,
   createFeature,
   createSecurityFeatures,
   GradientButton,
+  HeroBannerWithBadge,
   Input,
   Label,
+  MetricsGrid,
+  ProcessSteps,
   Select,
   SelectGroup,
   SelectValue,
@@ -87,7 +91,8 @@ export {
   Tabs,
   TabsList,
   TabsTrigger,
-  TabsContent
+  TabsContent,
+  UseCaseGrid
 } from './ui';
 
 // Layout Components
@@ -175,6 +180,14 @@ export type {
   SmartLinkProps,
   SmartContentProps,
   Feature,
+  FeatureCardProps,
+  HeroBannerWithBadgeProps,
+  MetricsGridProps,
+  MetricItem,
+  ProcessStepsProps,
+  ProcessStep,
+  UseCaseGridProps,
+  UseCase,
   TOCSection
 } from './ui';
 

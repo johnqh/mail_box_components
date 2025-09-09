@@ -13,10 +13,14 @@ export { Card, CardHeader, CardContent, CardFooter } from './card';
 export { ComparisonSection, createComparisonData, createEmailComparisonData } from './comparison-section';
 export { ContentContainer } from './content-container';
 export { Dropdown } from './dropdown';
+export { FeatureCard } from './feature-card';
 export { FeatureGrid, createFeature, createSecurityFeatures } from './feature-grid';
 export { GradientButton } from './gradient-button';
+export { HeroBannerWithBadge } from './hero-banner-with-badge';
 export { Input } from './input';
 export { Label } from './label';
+export { MetricsGrid } from './metrics-grid';
+export { ProcessSteps } from './process-steps';
 export { 
   Select, 
   SelectGroup, 
@@ -33,6 +37,7 @@ export { Spinner } from './spinner';
 export { Switch } from './switch';
 export { TableOfContents } from './table-of-contents';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
+export { UseCaseGrid } from './use-case-grid';
 
 // Layout Components
 export { FlexContainer } from './flex-container';
@@ -80,6 +85,11 @@ export type { ModalProps, ModalHeaderProps, ModalContentProps, ModalFooterProps 
 export type { ConfirmationDialogProps } from './confirmation-dialog';
 export type { SmartLinkProps, SmartContentProps } from './smart-link';
 export type { Feature } from './feature-grid';
+export type { FeatureCardProps } from './feature-card';
+export type { HeroBannerWithBadgeProps } from './hero-banner-with-badge';
+export type { MetricsGridProps, MetricItem } from './metrics-grid';
+export type { ProcessStepsProps, ProcessStep } from './process-steps';
+export type { UseCaseGridProps, UseCase } from './use-case-grid';
 export type { TOCSection } from './table-of-contents';
 
 // Legacy wildcard exports for backward compatibility
@@ -90,15 +100,20 @@ export * from './card';
 export * from './comparison-section';
 export * from './content-container';
 export * from './dropdown';
+export * from './feature-card';
 export * from './feature-grid';
 export * from './gradient-button';
+export * from './hero-banner-with-badge';
 export * from './input';
 export * from './label';
+export * from './metrics-grid';
+export * from './process-steps';
 export * from './select';
 export * from './spinner';
 export * from './switch';
 export * from './table-of-contents';
 export * from './tabs';
+export * from './use-case-grid';
 export * from './flex-container';
 export * from './page-container';
 export * from './section';

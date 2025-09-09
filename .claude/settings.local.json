@@ -22,7 +22,14 @@
       "Bash(mkdir:*)",
       "Bash(sed:*)",
       "Bash(npm run lint:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Read(//Users/qianghuang/mail_box_lib/.github/workflows/**)",
+      "Bash(chmod:*)",
+      "Bash(USE_LOCAL_LIB=false node scripts/setup-dependencies.js)",
+      "Bash(USE_LOCAL_LIB=true node scripts/setup-dependencies.js)",
+      "Bash(node:*)",
+      "Bash(npm view:*)",
+      "Bash(npm run setup:local:*)"
     ],
     "deny": [],
     "ask": []

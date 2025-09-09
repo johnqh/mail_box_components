@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
 
@@ -152,9 +152,11 @@ describe('Tabs Component', () => {
 
     const tab1 = screen.getByRole('tab', { name: 'Tab 1' });
     const tab2 = screen.getByRole('tab', { name: 'Tab 2' });
-    tab1.focus();
     
-    fireEvent.keyDown(tab1, { key: 'ArrowRight' });
+    act(() => {
+      tab1.focus();
+      fireEvent.keyDown(tab1, { key: 'ArrowRight' });
+    });
     // Note: Radix UI handles keyboard navigation internally
     expect(tab1).toBeInTheDocument();
     expect(tab2).toBeInTheDocument();

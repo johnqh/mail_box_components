@@ -16,7 +16,10 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "setup:deps": "node scripts/setup-dependencies.js",
+    "setup:local": "USE_LOCAL_LIB=true INSTALL_DEPS=true npm run setup:deps",
+    "setup:npm": "USE_LOCAL_LIB=false INSTALL_DEPS=true npm run setup:deps"
   },
   "keywords": [
     "react",

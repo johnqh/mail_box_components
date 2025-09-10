@@ -87,7 +87,7 @@
   },
   "homepage": "https://github.com/johnqh/mail-box-components#readme",
   "dependencies": {
-    "@johnqh/design-system": "file:../design_system",
+    "@johnqh/design-system": "^1.0.8",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.8.2",
     "react-share": "^5.2.2",

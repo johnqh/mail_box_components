@@ -30,8 +30,11 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
         
+    - name: Setup dependencies for CI
+      run: USE_LOCAL_LIB=false node scripts/setup-dependencies.js
+      
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Run ESLint
       run: npm run lint
@@ -53,8 +56,11 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
         
+    - name: Setup dependencies for CI
+      run: USE_LOCAL_LIB=false node scripts/setup-dependencies.js
+      
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Run tests
       run: npm test -- --run
@@ -82,8 +88,11 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
         
+    - name: Setup dependencies for CI
+      run: USE_LOCAL_LIB=false node scripts/setup-dependencies.js
+      
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Build package
       run: npm run build
@@ -120,8 +129,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         
+    - name: Setup dependencies for CI
+      run: USE_LOCAL_LIB=false node scripts/setup-dependencies.js
+      
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Run tests
       run: npm test -- --run
@@ -143,8 +155,11 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
         
+    - name: Setup dependencies for CI
+      run: USE_LOCAL_LIB=false node scripts/setup-dependencies.js
+      
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Run security audit
       run: npm audit --audit-level moderate --omit=dev || true
@@ -166,8 +181,11 @@ jobs:
         cache: 'npm'
         registry-url: 'https://registry.npmjs.org'
         
+    - name: Setup dependencies for CI
+      run: USE_LOCAL_LIB=false node scripts/setup-dependencies.js
+      
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Build package
       run: npm run build
@@ -192,8 +210,11 @@ jobs:
         cache: 'npm'
         registry-url: 'https://registry.npmjs.org'
         
+    - name: Setup dependencies for CI
+      run: USE_LOCAL_LIB=false node scripts/setup-dependencies.js
+      
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Build package
       run: npm run build

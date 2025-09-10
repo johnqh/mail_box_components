@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { variants } from "@johnqh/design-system";
+import { v } from "../lib/variants";
 import { 
   CheckCircleIcon,
   ExclamationTriangleIcon,
@@ -44,8 +44,8 @@ export const Alert: React.FC<AlertProps> = ({
   const DefaultIcon = defaultIcons[variant];
   const IconComponent = icon || <DefaultIcon className="h-5 w-5" />;
   
-  // Use design system alert variants for consistent styling
-  const alertClass = variants.alert[variant]();
+  // ✨ SIMPLE: Get variant classes using the new system
+  const alertClass = v.alert(variant);
 
   return (
     <div role="alert" className={cn(alertClass, className)}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { variants } from "@johnqh/design-system";
+import { v } from "../lib/variants";
 
 interface GradientButtonProps {
   children: React.ReactNode;
@@ -14,24 +14,9 @@ interface GradientButtonProps {
   className?: string;
 }
 
-// Use design system gradient button variants
+// ✨ SIMPLE: Get variant classes using the new system
 const getVariantClass = (variant: 'primary' | 'secondary' | 'success' | 'warning' | 'error') => {
-  switch (variant) {
-    case 'primary':
-      return variants.button.gradient.primary();
-    case 'secondary':
-      return variants.button.gradient.secondary();
-    case 'success':
-      return variants.button.gradient.success();
-    case 'warning':
-      // Fallback for warning (not in design system)
-      return 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 focus:ring-yellow-500 text-white border-transparent shadow-lg hover:shadow-xl focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-200';
-    case 'error':
-      // Fallback for error (not in design system)
-      return 'bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 focus:ring-red-500 text-white border-transparent shadow-lg hover:shadow-xl focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-200';
-    default:
-      return variants.button.gradient.primary();
-  }
+  return v.nested(`button.gradient.${variant}`);
 };
 
 // Size classes that complement the design system

@@ -29,7 +29,19 @@
       "Bash(USE_LOCAL_LIB=true node scripts/setup-dependencies.js)",
       "Bash(node:*)",
       "Bash(npm view:*)",
-      "Bash(npm run setup:local:*)"
+      "Bash(npm run setup:local:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm run setup:npm:*)",
+      "Bash(npm ci:*)",
+      "Bash(nvm use:*)",
+      "Bash(npm outdated)",
+      "Read(//Users/qianghuang/design_system/**)",
+      "Bash(cat:*)",
+      "Bash(npm version patch)",
+      "Bash(npm update:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(git rm:*)",
+      "Bash(npm publish:*)"
     ],
     "deny": [],
     "ask": []

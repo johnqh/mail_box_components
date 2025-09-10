@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cn } from "../lib/utils"
-import { variants } from "@johnqh/design-system"
+import { v } from "../lib/variants"
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
@@ -11,7 +11,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <input
         type={type}
         className={cn(
-          variants.input.default(),
+          v.input('default'),
           className
         )}
         ref={ref}

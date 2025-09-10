@@ -3,8 +3,7 @@
  * Simple, robust, platform-agnostic variant system
  */
 
-import { variants as designSystemVariants } from "@johnqh/design-system";
-import { createQuickVariants } from "./simple-variants";
+import { variants as designSystemVariants, createQuickVariants } from "@johnqh/design-system";
 
 // Create the main variant resolver
 export const v = createQuickVariants(designSystemVariants);

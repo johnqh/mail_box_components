@@ -84,6 +84,9 @@
     "url": "https://github.com/johnqh/mail-box-components/issues"
   },
   "homepage": "https://github.com/johnqh/mail-box-components#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@johnqh/design-system": "file:./vendor/@johnqh/design-system",
     "react-helmet-async": "^2.0.5",

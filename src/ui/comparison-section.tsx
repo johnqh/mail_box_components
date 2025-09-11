@@ -266,35 +266,49 @@ export const createComparisonData = (
   ...options
 });
 
-// Predefined comparison examples
-export const createEmailComparisonData = () => ({
-  traditional: createComparisonData(
-    "Traditional Email",
-    [
-      { text: "Create account with email/password", icon: "🔑" },
-      { text: "Remember multiple passwords", icon: "🧠" },
-      { text: "Verify email address", icon: "📧" },
-      { text: "Risk of password theft", icon: "⚠️" },
-      { text: "Data stored on company servers", icon: "🏢" },
-      { text: "Account can be locked/suspended", icon: "🔒" }
-    ],
-    'traditional',
-    { badge: { text: "Old Way", color: "red" } }
-  ),
-  
-  web3: createComparisonData(
-    "Web3 Email",
-    [
-      { text: "Connect your wallet", icon: "🔗" },
-      { text: "No passwords needed", icon: "🚫" },
-      { text: "Instant authentication", icon: "⚡" },
-      { text: "Cryptographically secure", icon: "🔐" },
-      { text: "You own your data", icon: "👑" },
-      { text: "Censorship resistant", icon: "🛡️" }
-    ],
-    'web3',
-    { badge: { text: "New Way", color: "green" } }
-  )
-});
+// Predefined comparison examples - for backward compatibility
+// Note: These should be moved to consuming application with proper localization
+export const createEmailComparisonData = (labels?: {
+  traditionalTitle?: string;
+  web3Title?: string;
+  traditionalItems?: { text: string; icon: string }[];
+  web3Items?: { text: string; icon: string }[];
+  traditionalBadge?: string;
+  web3Badge?: string;
+}) => {
+  const defaultTraditionalItems = [
+    { text: "Create account with email/password", icon: "🔑" },
+    { text: "Remember multiple passwords", icon: "🧠" },
+    { text: "Verify email address", icon: "📧" },
+    { text: "Risk of password theft", icon: "⚠️" },
+    { text: "Data stored on company servers", icon: "🏢" },
+    { text: "Account can be locked/suspended", icon: "🔒" }
+  ];
+
+  const defaultWeb3Items = [
+    { text: "Connect your wallet", icon: "🔗" },
+    { text: "No passwords needed", icon: "🚫" },
+    { text: "Instant authentication", icon: "⚡" },
+    { text: "Cryptographically secure", icon: "🔐" },
+    { text: "You own your data", icon: "👑" },
+    { text: "Censorship resistant", icon: "🛡️" }
+  ];
+
+  return {
+    traditional: createComparisonData(
+      labels?.traditionalTitle || "Traditional Email",
+      labels?.traditionalItems || defaultTraditionalItems,
+      'traditional',
+      { badge: { text: labels?.traditionalBadge || "Old Way", color: "red" } }
+    ),
+    
+    web3: createComparisonData(
+      labels?.web3Title || "Web3 Email",
+      labels?.web3Items || defaultWeb3Items,
+      'web3',
+      { badge: { text: labels?.web3Badge || "New Way", color: "green" } }
+    )
+  };
+};
 
 export default ComparisonSection;

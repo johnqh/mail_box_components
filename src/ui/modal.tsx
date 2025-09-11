@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from "../lib/utils";
-import { variants } from "@johnqh/design-system";
+import { variants } from "../lib/variants";
 
 export interface ModalProps {
   isOpen: boolean;
@@ -19,6 +19,7 @@ export interface ModalProps {
   className?: string;
   'aria-labelledby'?: string;
   'aria-describedby'?: string;
+  closeAriaLabel?: string;
 }
 
  
@@ -36,6 +37,7 @@ export const Modal: React.FC<ModalProps> = ({
   className,
   'aria-labelledby': ariaLabelledBy,
   'aria-describedby': ariaDescribedBy,
+  closeAriaLabel = "Close modal"
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -120,7 +122,7 @@ export const Modal: React.FC<ModalProps> = ({
                 <button
                   onClick={onClose}
                   className={variants.overlays.modal.closeButton()}
-                  aria-label="Close modal"
+                  aria-label={closeAriaLabel}
                 >
                   <XMarkIcon className={variants.icon.variant.muted.md()} />
                 </button>

@@ -104,6 +104,20 @@ interface EmailInputGroupProps {
     bcc?: string;
   };
   className?: string;
+  labels?: {
+    to?: string;
+    cc?: string;
+    bcc?: string;
+    addCc?: string;
+    removeCc?: string;
+    addBcc?: string;
+    removeBcc?: string;
+  };
+  placeholders?: {
+    to?: string;
+    cc?: string;
+    bcc?: string;
+  };
 }
 
 export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
@@ -118,16 +132,36 @@ export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
   onToggleCc,
   onToggleBcc,
   errors = {},
-  className = ''
+  className = '',
+  labels = {},
+  placeholders = {}
 }) => {
+  const defaultLabels = {
+    to: 'To',
+    cc: 'CC',
+    bcc: 'BCC',
+    addCc: 'Add CC',
+    removeCc: 'Remove CC',
+    addBcc: 'Add BCC',
+    removeBcc: 'Remove BCC'
+  };
+
+  const defaultPlaceholders = {
+    to: 'recipient@example.com',
+    cc: 'cc@example.com',
+    bcc: 'bcc@example.com'
+  };
+
+  const finalLabels = { ...defaultLabels, ...labels };
+  const finalPlaceholders = { ...defaultPlaceholders, ...placeholders };
   return (
     <div className={`space-y-4 ${className}`}>
       {/* To Field - Always visible */}
       <EmailInputField
-        label="To"
+        label={finalLabels.to}
         value={to}
         onChange={onToChange}
-        placeholder="recipient@example.com"
+        placeholder={finalPlaceholders.to}
         required
         error={errors.to}
       />
@@ -135,30 +169,30 @@ export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
       {/* CC Field - Collapsible */}
       {onToggleCc && onCcChange && (
         <CollapsibleEmailField
-          label="CC"
+          label={finalLabels.cc}
           value={cc}
           onChange={onCcChange}
-          placeholder="cc@example.com"
+          placeholder={finalPlaceholders.cc}
           error={errors.cc}
           isVisible={showCc}
           onToggle={onToggleCc}
-          showLabel="Add CC"
-          hideLabel="Remove CC"
+          showLabel={finalLabels.addCc}
+          hideLabel={finalLabels.removeCc}
         />
       )}
 
       {/* BCC Field - Collapsible */}
       {onToggleBcc && onBccChange && (
         <CollapsibleEmailField
-          label="BCC"
+          label={finalLabels.bcc}
           value={bcc}
           onChange={onBccChange}
-          placeholder="bcc@example.com"
+          placeholder={finalPlaceholders.bcc}
           error={errors.bcc}
           isVisible={showBcc}
           onToggle={onToggleBcc}
-          showLabel="Add BCC"
-          hideLabel="Remove BCC"
+          showLabel={finalLabels.addBcc}
+          hideLabel={finalLabels.removeBcc}
         />
       )}
     </div>

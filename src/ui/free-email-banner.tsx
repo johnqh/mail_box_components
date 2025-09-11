@@ -69,6 +69,7 @@ interface FreeEmailBannerProps extends VariantProps<typeof bannerVariants> {
   badgeText?: string;
   onDismiss?: () => void;
   isDismissible?: boolean;
+  dismissAriaLabel?: string;
 }
 
 export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
@@ -81,7 +82,8 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
   showBadge = true,
   badgeText = "FREE",
   onDismiss,
-  isDismissible = false
+  isDismissible = false,
+  dismissAriaLabel = "Dismiss banner"
 }) => {
   return (
     <div className={cn(bannerVariants({ variant, size }), className)}>
@@ -91,7 +93,7 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
             <button
               onClick={onDismiss}
               className="absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
-              aria-label="Dismiss banner"
+              aria-label={dismissAriaLabel}
             >
               <svg className="w-4 h-4 text-current opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

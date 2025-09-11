@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useClickOutside } from '../hooks/useClickOutside';
-import { variants } from "@johnqh/design-system";
+import { variants } from "../lib/variants";
 
 interface DropdownItem {
   id: string;

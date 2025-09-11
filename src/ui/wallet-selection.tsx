@@ -16,12 +16,17 @@ interface WalletSelectionButtonProps {
   wallet: WalletOption;
   disabled?: boolean;
   className?: string;
+  statusLabels?: {
+    available: string;
+    notAvailable: string;
+  };
 }
 
 export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
   wallet,
   disabled = false,
-  className = ''
+  className = '',
+  statusLabels = { available: 'Available', notAvailable: 'Not Available' }
 }) => {
   return (
     <button
@@ -47,7 +52,7 @@ export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
               ? 'text-green-600 dark:text-green-400' 
               : 'text-red-600 dark:text-red-400'
           }`}>
-            {wallet.available ? 'Available' : 'Not Available'}
+            {wallet.available ? statusLabels.available : statusLabels.notAvailable}
           </p>
         </div>
       </div>
@@ -107,6 +112,15 @@ interface WalletSelectionGridProps {
   onTabChange: (tab: 'ethereum' | 'solana') => void;
   connectingWallet?: string | null;
   className?: string;
+  labels?: {
+    ethereum?: string;
+    solana?: string;
+    available?: string;
+    notAvailable?: string;
+    noWalletText?: string;
+    installMetaMask?: string;
+    installPhantom?: string;
+  };
 }
 
 export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
@@ -115,8 +129,20 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
   activeTab,
   onTabChange,
   connectingWallet,
-  className = ''
+  className = '',
+  labels = {}
 }) => {
+  const defaultLabels = {
+    ethereum: 'Ethereum',
+    solana: 'Solana',
+    available: 'Available',
+    notAvailable: 'Not Available',
+    noWalletText: "Don't have a wallet?",
+    installMetaMask: 'Install MetaMask',
+    installPhantom: 'Install Phantom'
+  };
+
+  const finalLabels = { ...defaultLabels, ...labels };
   const currentWallets = activeTab === 'ethereum' ? evmWallets : solanaWallets;
 
   return (
@@ -127,14 +153,14 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
           active={activeTab === 'ethereum'}
           onClick={() => onTabChange('ethereum')}
           icon="⟠"
-          label="Ethereum"
+          label={finalLabels.ethereum}
           color="blue"
         />
         <WalletTab
           active={activeTab === 'solana'}
           onClick={() => onTabChange('solana')}
           icon="◎"
-          label="Solana"
+          label={finalLabels.solana}
           color="purple"
         />
       </div>
@@ -149,6 +175,10 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
               connecting: connectingWallet === wallet.name
             }}
             disabled={!!connectingWallet}
+            statusLabels={{
+              available: finalLabels.available,
+              notAvailable: finalLabels.notAvailable
+            }}
           />
         ))}
       </div>
@@ -156,7 +186,7 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
       {/* Help Text */}
       <div className="text-center pt-2">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Don't have a wallet?{' '}
+          {finalLabels.noWalletText}{' '}
           {activeTab === 'ethereum' ? (
             <a
               href="https://metamask.io/download/"
@@ -164,7 +194,7 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
             >
-              Install MetaMask
+              {finalLabels.installMetaMask}
             </a>
           ) : (
             <a
@@ -173,7 +203,7 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
               rel="noopener noreferrer"
               className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300"
             >
-              Install Phantom
+              {finalLabels.installPhantom}
             </a>
           )}
         </p>

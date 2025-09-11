@@ -1,17 +1,21 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { variants } from "@johnqh/design-system";
+import { variants } from "../lib/variants";
 
 interface SpinnerProps {
   size?: 'small' | 'default' | 'large' | 'extraLarge';
   variant?: 'default' | 'white' | 'success' | 'warning' | 'error';
   className?: string;
+  ariaLabel?: string;
+  loadingText?: string;
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({
   size = 'default',
   variant = 'default',
-  className
+  className,
+  ariaLabel = "Loading",
+  loadingText = "Loading..."
 }) => {
   const getSpinnerClass = () => {
     if (size === 'default') {
@@ -38,9 +42,9 @@ export const Spinner: React.FC<SpinnerProps> = ({
         className
       )}
       role="status"
-      aria-label="Loading"
+      aria-label={ariaLabel}
     >
-      <span className="sr-only">Loading...</span>
+      <span className="sr-only">{loadingText}</span>
     </div>
   );
 };

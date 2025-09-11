@@ -38,11 +38,11 @@ export * from './types/ui-navigation';
 // Design tokens and variants from external package
 export { 
   colors, 
-  designTokens, 
-  textVariants, 
-  variants,
+  designTokens,
   ui
 } from '@johnqh/design-system';
+export { variants } from './lib/variants';
+export { textVariants } from './lib/textVariants';
 
 // === UI COMPONENTS ===
 // Core Components
@@ -202,7 +202,9 @@ export * from './components';
 // Grouped exports for convenience
 import { cn } from './lib/utils';
 import { withOpacity, responsive, themeColor, getSizeClasses, buttonVariant, inputVariant, cardVariant, textVariant } from './lib';
-import { colors, designTokens, textVariants, variants } from '@johnqh/design-system';
+import { colors, designTokens } from '@johnqh/design-system';
+import { variants } from './lib/variants';
+import { textVariants } from './lib/textVariants';
 
 export default {
   utils: { 

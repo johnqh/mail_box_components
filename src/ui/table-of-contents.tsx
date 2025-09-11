@@ -32,7 +32,8 @@ const CollapsibleSubsections: React.FC<{
   useEffect(() => {
     if (contentRef.current) {
       const scrollHeight = contentRef.current.scrollHeight;
-      setHeight(isExpanded ? scrollHeight : 0);
+      // Add small buffer to prevent bottom cutoff
+      setHeight(isExpanded ? scrollHeight + 8 : 0);
     }
   }, [isExpanded, subsections]);
 

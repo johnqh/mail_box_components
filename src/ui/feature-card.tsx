@@ -10,6 +10,7 @@ export interface FeatureCardProps {
   color?: string;
   isHighlight?: boolean;
   learnMoreUrl?: string;
+  cta?: React.ReactNode;  // Optional CTA element (e.g., Link component)
   className?: string;
 }
 
@@ -22,6 +23,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   color = 'blue',
   isHighlight = false,
   learnMoreUrl,
+  cta,
   className
 }) => {
   const colorClasses = {
@@ -47,6 +49,12 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
         <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
           {description}
         </p>
+        
+        {cta && (
+          <div className="mt-3 mb-4">
+            {cta}
+          </div>
+        )}
         
         {benefits && benefits.length > 0 && (
           <ul className="space-y-2 mb-4">

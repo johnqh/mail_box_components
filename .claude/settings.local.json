@@ -41,7 +41,8 @@
       "Bash(npm update:*)",
       "Bash(npm uninstall:*)",
       "Bash(git rm:*)",
-      "Bash(npm publish:*)"
+      "Bash(npm publish:*)",
+      "Bash(npx tsc:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { variants } from "../lib/variants";
 
 interface SpinnerProps {
   size?: 'small' | 'default' | 'large' | 'extraLarge';
@@ -18,21 +17,22 @@ export const Spinner: React.FC<SpinnerProps> = ({
   loadingText = "Loading..."
 }) => {
   const getSpinnerClass = () => {
-    if (size === 'default') {
-      return variants.loading.spinner[variant]();
-    }
-    
-    // For other sizes, we need to override the size while keeping the color
-    const baseClass = variants.loading.spinner[variant]();
-    const sizeOverrides = {
+    const sizeClasses = {
       small: 'w-4 h-4',
+      default: 'w-6 h-6',
       large: 'w-8 h-8',
       extraLarge: 'w-16 h-16 border-4'
     };
     
-    // Remove existing size classes and apply the new ones
-    const classWithoutSize = baseClass.replace(/w-\d+\s+h-\d+(\s+border-\d+)?/, '');
-    return `${classWithoutSize} ${sizeOverrides[size]}`;
+    const variantClasses = {
+      default: 'border-gray-300 border-t-blue-600',
+      white: 'border-white/30 border-t-white',
+      success: 'border-gray-300 border-t-green-600',
+      warning: 'border-gray-300 border-t-orange-600',
+      error: 'border-gray-300 border-t-red-600'
+    };
+    
+    return `animate-spin rounded-full border-2 ${sizeClasses[size]} ${variantClasses[variant]}`;
   };
 
   return (

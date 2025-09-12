@@ -1,7 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { designTokens } from '@johnqh/design-system';
 
 const contentContainerVariants = cva(
   "mx-auto px-4 sm:px-6",
@@ -17,13 +16,13 @@ const contentContainerVariants = cva(
       },
       spacing: {
         none: "",
-        xs: designTokens.spacing.xs, // py-2
-        sm: designTokens.spacing.sm, // py-3 
-        md: designTokens.spacing.md, // py-4
-        lg: designTokens.spacing.lg, // py-6
-        xl: designTokens.spacing.xl, // py-8
-        "2xl": designTokens.spacing["2xl"], // py-12
-        "3xl": designTokens.spacing["3xl"] // py-16
+        xs: "py-2", // 8px
+        sm: "py-3", // 12px
+        md: "py-4", // 16px
+        lg: "py-6", // 24px
+        xl: "py-8", // 32px
+        "2xl": "py-12", // 48px
+        "3xl": "py-16" // 64px
       },
       align: {
         left: "text-left",

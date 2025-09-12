@@ -1,7 +1,5 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { variants } from "../lib/variants";
-import { textVariants } from "../lib/textVariants";
 import Spinner from './spinner';
 
 interface LoadingStateProps {
@@ -20,22 +18,19 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
   className
 }) => {
   const sizeConfig = {
-    small: { spinner: 'small' as const, text: textVariants.body.sm() },
-    default: { spinner: 'default' as const, text: textVariants.body.md() },
-    large: { spinner: 'large' as const, text: textVariants.body.lg() }
+    small: { spinner: 'small' as const, text: "text-sm" },
+    default: { spinner: 'default' as const, text: "text-base" },
+    large: { spinner: 'large' as const, text: "text-lg" }
   };
 
   const config = sizeConfig[size];
 
   const containerClass = fullScreen 
-    ? variants.notifications.loading.overlay()
-    : variants.notifications.loading.inline();
+    ? "fixed inset-0 z-50 flex items-center justify-center bg-white/80 dark:bg-gray-900/80"
+    : "flex flex-col items-center justify-center p-8";
 
   const content = (
-    <div className={cn(
-      containerClass,
-      className
-    )}>
+    <div className={cn(containerClass, className)}>
       <Spinner size={config.spinner} variant={variant} className="mb-4" />
       {message && (
         <p className={cn(
@@ -50,11 +45,11 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
 
   if (fullScreen) {
     return (
-      <div className={variants.overlays.loading.backdrop()}>
-        <div className={variants.overlays.loading.container()}>
-          <Spinner size={config.spinner} variant={variant} className={variants.overlays.loading.spinner()} />
+      <div className="fixed inset-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+        <div className="flex items-center justify-center min-h-full p-4">
+          <Spinner size={config.spinner} variant={variant} className="mb-4" />
           {message && (
-            <p className={variants.overlays.loading.text()}>
+            <p className="text-center text-gray-600 dark:text-gray-400 max-w-sm">
               {message}
             </p>
           )}

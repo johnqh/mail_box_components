@@ -89,7 +89,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@johnqh/design-system": "^1.0.11",
+    "@johnqh/design-system": "file:../design_system",
     "ajv": "^8.17.1",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.8.2",

@@ -12,8 +12,11 @@
 // Core utilities
 export { cn } from './lib/utils';
 
-// Performance & Optimization utilities
+// Performance & Optimization utilities - Temporary wildcard for compatibility
 export * from './utils';
+
+// Structured data re-exported from design system
+export { createTechArticleData } from '@johnqh/design-system';
 
 // Hooks
 export { useClickOutside } from './hooks/useClickOutside';
@@ -31,18 +34,25 @@ export {
 } from './lib';
 
 // === TYPE DECLARATIONS ===
-// Global types and interfaces
-export * from './types/ui-navigation';
+// Global types and interfaces from design system
+export type { 
+  UINavigationState, 
+  UINavigationOptions,
+  UINavigationService,
+  UINavigationHook,
+  UILocationHook,
+  UINavigationConfig
+} from '@johnqh/design-system';
 
 // === DESIGN SYSTEM ===
 // Design tokens and variants from external package
 export { 
   colors, 
   designTokens,
-  ui
+  ui,
+  textVariants,
+  variants
 } from '@johnqh/design-system';
-export { variants } from './lib/variants';
-export { textVariants } from './lib/textVariants';
 
 // === UI COMPONENTS ===
 // Core Components
@@ -97,16 +107,12 @@ export {
 
 // Layout Components
 export { 
+  FlexContainer,
   PageContainer,
   Section
 } from './ui';
 
-export { 
-  StandardPageLayout,
-  type StandardPageLayoutProps 
-} from './components';
-
-// Additional Components (from /components)
+// Additional Components (from /components) - Temporary wildcard for compatibility
 export * from './components';
 
 // Content Components
@@ -191,20 +197,17 @@ export type {
   TOCSection
 } from './ui';
 
-// === LEGACY WILDCARD EXPORTS ===
-// For backward compatibility
-export * from './lib';
-export * from '@johnqh/design-system';
-export * from './ui';
-export * from './components';
+// === LEGACY NAMED EXPORTS ===
+// For backward compatibility - specific named exports
+export { cn as combineClassNames } from './lib';
+export { GRADIENTS as GRADIENTSLegacy, GRADIENT_CLASSES as GRADIENT_CLASSESLegacy, UI_CONSTANTS as UI_CONSTANTSLegacy, colors as colorsLegacy, designTokens as designTokensLegacy, ui as uiLegacy } from '@johnqh/design-system';
 
 // === DEFAULT EXPORT ===
 // Grouped exports for convenience
 import { cn } from './lib/utils';
 import { withOpacity, responsive, themeColor, getSizeClasses, buttonVariant, inputVariant, cardVariant, textVariant } from './lib';
-import { colors, designTokens } from '@johnqh/design-system';
-import { variants } from './lib/variants';
-import { textVariants } from './lib/textVariants';
+import { colors, designTokens, textVariants } from '@johnqh/design-system';
+import { variants } from '@johnqh/design-system';
 
 export default {
   utils: { 

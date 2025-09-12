@@ -88,7 +88,7 @@ class PerformanceMonitor {
       try {
         navigationObserver.observe({ entryTypes: ['navigation'] });
         this.observers.push(navigationObserver);
-      } catch (_e) {
+      } catch {
         console.warn('Navigation timing observer not supported');
       }
       
@@ -105,7 +105,7 @@ class PerformanceMonitor {
       try {
         resourceObserver.observe({ entryTypes: ['resource'] });
         this.observers.push(resourceObserver);
-      } catch (_e) {
+      } catch {
         console.warn('Resource timing observer not supported');
       }
     }

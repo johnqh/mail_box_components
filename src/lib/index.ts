@@ -1,38 +1,30 @@
 /**
- * Utility functions and helpers
+ * Utility functions and helpers - Re-exported from design system
  */
 
 // === CORE UTILITIES ===
 export { cn } from './utils';
 
-// === THEME UTILITIES ===
+// === DESIGN SYSTEM UTILITIES ===
+// Import all utilities from design system
 export { 
   withOpacity, 
   responsive, 
-  themeColor 
-} from './theme-utils';
-
-export type { 
-  ThemeMode, 
-  ResponsiveBreakpoint 
-} from './theme-utils';
-
-// === COMPONENT HELPERS ===
-export { 
+  themeColor,
   getSizeClasses,
   buttonVariant,
   inputVariant,
   cardVariant,
   textVariant
-} from './component-helpers';
+} from '@johnqh/design-system';
 
 export type { 
+  ThemeMode, 
+  ResponsiveBreakpoint,
   ComponentSize, 
   ComponentVariant 
-} from './component-helpers';
+} from '@johnqh/design-system';
 
 // === LEGACY WILDCARD EXPORTS ===
 // For backward compatibility
 export * from './utils';
-export * from './theme-utils';
-export * from './component-helpers';

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { GRADIENTS, GRADIENT_CLASSES, getGradient, combineGradient } from '../utils/gradients';
+import { GRADIENTS, GRADIENT_CLASSES, getGradient, combineGradient } from '../utils/index';
 
 describe('Gradients Utils', () => {
   describe('GRADIENTS constant', () => {

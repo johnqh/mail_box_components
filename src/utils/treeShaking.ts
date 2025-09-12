@@ -205,7 +205,7 @@ export const cssOptimization = {
         if (document.querySelector(selector)) {
           usedSelectors.add(selector);
         }
-      } catch (e) {
+      } catch {
         // Invalid selector, skip
       }
     });

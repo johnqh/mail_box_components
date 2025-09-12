@@ -2,7 +2,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../lib/utils"
-import { v } from "../lib/variants"
+import { variants as v } from "@johnqh/design-system"
 
 const buttonVariants = cva(
   "min-h-[44px] touch-manipulation",
@@ -70,11 +70,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const sizeName = size && size !== 'default' && size !== 'icon' ? size : undefined;
     
     // Handle nested variants for gradients and web3
-    const designSystemClass = variantName.startsWith('gradient') 
-      ? v.nested(`button.gradient.${variantName.replace('gradient-', '').replace('gradient', 'primary')}`)
-      : variantName.startsWith('web3') || ['wallet', 'connect', 'disconnect'].includes(variantName)
-      ? v.nested(`button.web3.${variantName}`) 
-      : v.button(variantName, sizeName);
+    const getButtonClass = () => {
+      if (variantName.startsWith('gradient')) {
+        const gradientType = variantName.replace('gradient-', '').replace('gradient', 'primary');
+        return v.button.gradient[gradientType]?.() || v.button.primary.default();
+      } else if (['wallet', 'connect', 'disconnect'].includes(variantName)) {
+        return v.button.web3[variantName]?.() || v.button.primary.default();
+      } else {
+        const sizeType = sizeName || 'default';
+        return v.button[variantName]?.[sizeType]?.() || v.button.primary.default();
+      }
+    };
+    const designSystemClass = getButtonClass();
     
     return (
       <Comp

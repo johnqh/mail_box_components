@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { v } from "../lib/variants";
+import { variants as v } from "@johnqh/design-system";
 
 interface GradientButtonProps {
   children: React.ReactNode;
@@ -16,7 +16,14 @@ interface GradientButtonProps {
 
 // ✨ SIMPLE: Get variant classes using the new system
 const getVariantClass = (variant: 'primary' | 'secondary' | 'success' | 'warning' | 'error') => {
-  return v.nested(`button.gradient.${variant}`);
+  const variantMap = {
+    primary: v.button.gradient.primary,
+    secondary: v.button.gradient.secondary,
+    success: v.button.gradient.success,
+    warning: v.button.gradient.primary, // fallback to primary
+    error: v.button.gradient.primary,   // fallback to primary
+  };
+  return variantMap[variant]();
 };
 
 // Size classes that complement the design system

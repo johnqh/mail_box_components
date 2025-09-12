@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from "../lib/utils";
-import { variants } from "../lib/variants";
+import { variants } from "@johnqh/design-system";
 
 export interface ModalProps {
   isOpen: boolean;

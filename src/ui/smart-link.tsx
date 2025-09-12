@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link } from "react-router-dom"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../lib/utils"
-import { textVariants } from "../lib/textVariants"
+import { textVariants } from "@johnqh/design-system"
 
 const smartLinkVariants = cva(
   "transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm",

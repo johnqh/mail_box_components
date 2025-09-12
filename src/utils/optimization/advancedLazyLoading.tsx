@@ -109,7 +109,7 @@ export function createAdvancedLazyComponent<T extends ComponentType<Record<strin
               timestamp: loadedComponent.timestamp,
               loadTime
             }));
-          } catch (_e) {
+          } catch {
             console.warn('Session storage failed for lazy component cache');
           }
         }

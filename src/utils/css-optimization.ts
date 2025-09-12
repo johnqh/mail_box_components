@@ -227,7 +227,8 @@ export const useLazyStyles = (
     return () => {
       mounted = false;
     };
-  }, deps);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getStyles, ...deps]);
   
   return { styles, loading };
 };

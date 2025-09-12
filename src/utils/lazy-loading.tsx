@@ -287,7 +287,8 @@ export function useDynamicImport<T>(
     return () => {
       mounted = false;
     };
-  }, deps);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [importFn, ...deps]);
 
   return { module, loading, error };
 }

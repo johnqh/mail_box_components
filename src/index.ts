@@ -15,6 +15,9 @@ export { cn } from './lib/utils';
 // Performance & Optimization utilities - Temporary wildcard for compatibility
 export * from './utils';
 
+// Performance monitoring utilities
+export { getPerformanceMonitor, initializePerformanceMonitoring, type PerformanceMetrics } from './optimization/performance-monitoring';
+
 // File & Utility Functions
 export { 
   formatFileSize, 
@@ -117,7 +120,8 @@ export {
   TabsList,
   TabsTrigger,
   TabsContent,
-  UseCaseGrid
+  UseCaseGrid,
+  WalletIcon
 } from './ui';
 
 // Layout Components
@@ -142,6 +146,38 @@ export * from './optimization';
 
 // SEO Components (search optimization)
 export * from './seo';
+
+// Explicit re-exports for backward compatibility
+export { AIMeta, type AIMetaProps } from './seo/AIMeta';
+export { generateAdvancedSEO, pageSEOConfigs, createAIMetaTags } from './seo/advancedSEO';
+
+// Core components with renamed default exports
+export { Breadcrumb } from './core/Breadcrumb';
+export { default as BreadcrumbSection } from './core/BreadcrumbSection';
+export { SafeAppWrapper } from './core/SafeAppWrapper';
+export { SecurityProvider } from './core/SecurityProvider';
+export { default as CodeBlock } from './core/CodeBlock';
+export { default as CodeExampleBlock } from './core/CodeExampleBlock';
+export { default as CollapsibleDocumentationTopic, type CollapsibleDocumentationTopicProps } from './core/CollapsibleDocumentationTopic';
+export { default as PromotionalBanner } from './core/PromotionalBanner';
+export { default as LanguageSelector } from './core/LanguageSelector';
+export { default as TrackedButton } from './core/TrackedButton';
+export { default as TrackedLink } from './core/TrackedLink';
+
+// Optimization components
+export { default as PerformanceOptimizer } from './optimization/PerformanceOptimizer';
+export { default as LoadingOptimizer } from './optimization/LoadingOptimizer';
+export { OptimizedRoutePreloader } from './optimization/OptimizedRoutePreloader';
+
+// SEO components
+export { AITrainingEnhancer } from './seo/AITrainingEnhancer';
+
+// Layout components  
+export { PageHeader } from './layout/PageHeader';
+export { default as StandardPageLayout } from './layout/StandardPageLayout';
+
+// Feature components
+export { default as CTASection } from './features/CTASection';
 
 // Content Components
 export { 

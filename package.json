@@ -1,6 +1,6 @@
 {
   "name": "@johnqh/mail-box-components",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Reusable UI components and design system for mail box applications",
   "type": "module",
   "main": "dist/index.umd.js",

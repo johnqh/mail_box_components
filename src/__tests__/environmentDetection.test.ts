@@ -5,7 +5,7 @@ import {
   isNetworkAccess,
   getEnvironmentType,
   shouldEnableWallet
-} from '../utils/optimization/environmentDetection';
+} from '../optimization/optimization/environmentDetection';
 
 // Mock window object
 const mockWindow = {

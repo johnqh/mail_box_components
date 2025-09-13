@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from "../lib/utils";
-import { textVariants } from "@johnqh/design-system";
+import { textVariants } from "@johnqh/design_system";
 
 interface EmptyStateProps {
   icon?: React.ReactNode;

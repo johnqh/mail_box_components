@@ -16,14 +16,14 @@ export {
   inputVariant,
   cardVariant,
   textVariant
-} from '@johnqh/design-system';
+} from '@johnqh/design_system';
 
 export type { 
   ThemeMode, 
   ResponsiveBreakpoint,
   ComponentSize, 
   ComponentVariant 
-} from '@johnqh/design-system';
+} from '@johnqh/design_system';
 
 // === LEGACY WILDCARD EXPORTS ===
 // For backward compatibility

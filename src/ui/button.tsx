@@ -2,7 +2,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../lib/utils"
-import { variants as v } from "@johnqh/design-system"
+import { variants as v } from "@johnqh/design_system"
 
 const buttonVariants = cva(
   "min-h-[44px] touch-manipulation",

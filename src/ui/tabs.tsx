@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Root, List, Trigger, Content } from "@radix-ui/react-tabs"
 import { cn } from "../lib/utils"
-import { variants } from "@johnqh/design-system"
+import { variants } from "@johnqh/design_system"
 
 const Tabs = Root
 

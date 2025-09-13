@@ -5,10 +5,10 @@ import {
   withRetry,
   CancellableRequest,
   cacheUtils
-} from '../utils/optimization/apiOptimization';
+} from '../optimization/optimization/apiOptimization';
 
 // Import the CACHE_CONFIGS constant from the default export
-import apiOptimizationUtils from '../utils/optimization/apiOptimization';
+import apiOptimizationUtils from '../optimization/optimization/apiOptimization';
 const { CACHE_CONFIGS } = apiOptimizationUtils;
 
 // Mock fetch globally

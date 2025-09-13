@@ -7,7 +7,7 @@ import {
   validateHeadingStructure,
   WEB3_EMAIL_HEADINGS,
   type HeadingConfig
-} from '../utils/seo-headings';
+} from '../seo/seo-headings';
 
 describe('SEO Headings Utils', () => {
   describe('createSemanticHeading function', () => {

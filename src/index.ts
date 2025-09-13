@@ -15,11 +15,25 @@ export { cn } from './lib/utils';
 // Performance & Optimization utilities - Temporary wildcard for compatibility
 export * from './utils';
 
+// File & Utility Functions
+export { 
+  formatFileSize, 
+  convertFileSize, 
+  parseFileSize 
+} from './utils/formatFileSize';
+
 // Structured data re-exported from design system
-export { createTechArticleData } from '@johnqh/design-system';
+export { createTechArticleData } from '@johnqh/design_system';
 
 // Hooks
 export { useClickOutside } from './hooks/useClickOutside';
+export { useCodeLoader } from './hooks/useCodeLoader';
+export { 
+  useCopyToClipboard, 
+  useMultipleCopyToClipboard,
+  type CopyToClipboardOptions,
+  type CopyToClipboardResult
+} from './hooks/useCopyToClipboard';
 
 // Enhanced utilities  
 export { 
@@ -42,7 +56,7 @@ export type {
   UINavigationHook,
   UILocationHook,
   UINavigationConfig
-} from '@johnqh/design-system';
+} from '@johnqh/design_system';
 
 // === DESIGN SYSTEM ===
 // Design tokens and variants from external package
@@ -52,7 +66,7 @@ export {
   ui,
   textVariants,
   variants
-} from '@johnqh/design-system';
+} from '@johnqh/design_system';
 
 // === UI COMPONENTS ===
 // Core Components
@@ -83,6 +97,7 @@ export {
   HeroBannerWithBadge,
   Input,
   Label,
+  Logo,
   MetricsGrid,
   ProcessSteps,
   Select,
@@ -112,8 +127,21 @@ export {
   Section
 } from './ui';
 
-// Additional Components (from /components) - Temporary wildcard for compatibility
-export * from './components';
+// === ORGANIZED COMPONENTS ===
+// Core Components (essential functionality)
+export * from './core';
+
+// Feature Components (specific features)
+export * from './features';
+
+// Layout Components (page structure)
+export * from './layout';
+
+// Optimization Components (performance)
+export * from './optimization';
+
+// SEO Components (search optimization)
+export * from './seo';
 
 // Content Components
 export { 
@@ -172,6 +200,12 @@ export {
   FeatureBlock
 } from './ui';
 
+// Development & Documentation Components (now in core/)
+// Note: These are now exported via ./core but kept here for backward compatibility
+
+// Enhanced Tracking Components (now in core/)
+// Note: These are now exported via ./core but kept here for backward compatibility
+
 // Component types
 export type { 
   ButtonProps,
@@ -200,14 +234,14 @@ export type {
 // === LEGACY NAMED EXPORTS ===
 // For backward compatibility - specific named exports
 export { cn as combineClassNames } from './lib';
-export { GRADIENTS as GRADIENTSLegacy, GRADIENT_CLASSES as GRADIENT_CLASSESLegacy, UI_CONSTANTS as UI_CONSTANTSLegacy, colors as colorsLegacy, designTokens as designTokensLegacy, ui as uiLegacy } from '@johnqh/design-system';
+export { GRADIENTS as GRADIENTSLegacy, GRADIENT_CLASSES as GRADIENT_CLASSESLegacy, UI_CONSTANTS as UI_CONSTANTSLegacy, colors as colorsLegacy, designTokens as designTokensLegacy, ui as uiLegacy } from '@johnqh/design_system';
 
 // === DEFAULT EXPORT ===
 // Grouped exports for convenience
 import { cn } from './lib/utils';
 import { withOpacity, responsive, themeColor, getSizeClasses, buttonVariant, inputVariant, cardVariant, textVariant } from './lib';
-import { colors, designTokens, textVariants } from '@johnqh/design-system';
-import { variants } from '@johnqh/design-system';
+import { colors, designTokens, textVariants } from '@johnqh/design_system';
+import { variants } from '@johnqh/design_system';
 
 export default {
   utils: { 

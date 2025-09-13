@@ -9,7 +9,7 @@ import {
   UILocationHook,
   UINavigationConfig,
   UINavigationOptions
-} from '@johnqh/design-system';
+} from '@johnqh/design_system';
 
 let navigationService: UINavigationService;
 
@@ -228,4 +228,4 @@ export type {
   UINavigationConfig,
   UINavigationOptions,
   UINavigationState
-} from '@johnqh/design-system';
+} from '@johnqh/design_system';

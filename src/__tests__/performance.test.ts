@@ -15,7 +15,7 @@ import {
   preloadResource,
   useMemoryLeakDetection,
   performanceBudget
-} from '../utils/performance';
+} from '../optimization/performance';
 
 // Mock React
 vi.mock('react', async () => {

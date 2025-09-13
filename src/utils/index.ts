@@ -2,10 +2,8 @@
  * Utilities and helpers
  */
 
-// SEO and AI optimization
-export * from './advancedSEO';
-export * from './seo-headings';
-export * from './aiTrainingMetadata';
+// SEO and AI optimization (moved to ../seo/ folder)
+// Note: These utilities have been moved to ../seo/ for better organization
 
 // Re-export specific utilities from design system (avoiding type conflicts)
 export { 
@@ -32,15 +30,13 @@ export {
   getWeb3ProjectsKeywords,
   getSubscriptionKeywords,
   getContactKeywords
-} from '@johnqh/design-system';
+} from '@johnqh/design_system';
 
-// Performance utilities
-export * from './criticalPathOptimizer';
+// Performance utilities (some moved to ../optimization/ folder)
 export * from './css-optimization';
 export * from './image-optimization';
-export * from './performance-monitoring';
-export * from './performance';
 export * from './treeShaking';
+// Note: criticalPathOptimizer, performance-monitoring, and performance moved to ../optimization/
 
 // UI utilities moved to design system - available via re-export above
 
@@ -51,8 +47,8 @@ export * from './navigationHelpers';
 // Note: Indexer API utilities moved to @johnqh/lib
 // These were network logic and belonged in the core lib rather than components
 
-// Lazy loading and components
-export * from './lazy-components';
+// Lazy loading and components (lazy-components moved to ../optimization/)
+// Note: lazy-components exports moved to ../optimization/ to avoid conflicts
 export * from './lazy-loading';
 
 // Other utilities

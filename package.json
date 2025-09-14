@@ -90,7 +90,6 @@
   },
   "dependencies": {
     "@johnqh/design_system": "^1.0.14",
-    "ajv": "^8.17.1",
     "i18next": "^25.5.2",
     "react-helmet-async": "^2.0.5",
     "react-i18next": "^15.7.3",

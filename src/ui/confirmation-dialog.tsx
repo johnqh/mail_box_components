@@ -27,11 +27,11 @@ const iconMap = {
 };
 
 const iconVariantMap = {
-  default: variants.icon.variant.default.lg,
-  warning: variants.icon.variant.warning.lg,
-  danger: variants.icon.variant.error.lg,
-  success: variants.icon.variant.success.lg,
-  info: variants.icon.variant.default.lg,
+  default: () => variants.icon.variant.default.lg(),
+  warning: () => variants.icon.variant.warning.lg(),
+  danger: () => variants.icon.variant.error.lg(),
+  success: () => variants.icon.variant.success.lg(),
+  info: () => variants.icon.variant.default.lg(),
 };
 
 const buttonVariantMap = {

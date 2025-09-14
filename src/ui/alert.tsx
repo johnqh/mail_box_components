@@ -45,8 +45,7 @@ export const Alert: React.FC<AlertProps> = ({
   const IconComponent = icon || <DefaultIcon className="h-5 w-5" />;
   
   // ✨ SIMPLE: Get variant classes using the new system
-  const alertVariant = v.alert[variant];
-  const alertClass = typeof alertVariant === 'function' ? alertVariant() : alertVariant?.default?.() || '';
+  const alertClass = typeof v.alert[variant] === 'function' ? v.alert[variant]() : '';
 
   return (
     <div role="alert" className={cn(alertClass, className)}>

@@ -52,14 +52,7 @@ export {
 
 // === TYPE DECLARATIONS ===
 // Global types and interfaces from design system
-export type { 
-  UINavigationState, 
-  UINavigationOptions,
-  UINavigationService,
-  UINavigationHook,
-  UILocationHook,
-  UINavigationConfig
-} from '@johnqh/design_system';
+// Note: Navigation types removed - not available in current design system version
 
 // === DESIGN SYSTEM ===
 // Design tokens and variants from external package
@@ -116,6 +109,7 @@ export {
   Spinner,
   Switch,
   TableOfContents,
+  EmailAccountsList,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -264,7 +258,9 @@ export type {
   ProcessStep,
   UseCaseGridProps,
   UseCase,
-  TOCSection
+  TOCSection,
+  EmailAccount,
+  WalletEmailGroup
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

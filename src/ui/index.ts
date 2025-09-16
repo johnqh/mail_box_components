@@ -36,6 +36,7 @@ export {
 export { Spinner } from './spinner';
 export { Switch } from './switch';
 export { TableOfContents } from './table-of-contents';
+export { EmailAccountsList } from './email-accounts-list';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 export { UseCaseGrid } from './use-case-grid';
 
@@ -91,6 +92,7 @@ export type { MetricsGridProps, MetricItem } from './metrics-grid';
 export type { ProcessStepsProps, ProcessStep } from './process-steps';
 export type { UseCaseGridProps, UseCase } from './use-case-grid';
 export type { TOCSection } from './table-of-contents';
+export type { EmailAccount, WalletEmailGroup } from './email-accounts-list';
 
 // Legacy wildcard exports for backward compatibility
 export * from './alert';
@@ -136,3 +138,4 @@ export * from './wallet-icon';
 export * from './wallet-selection';
 export * from './logo';
 export * from './internal-link-clusters';
+export * from './email-accounts-list';

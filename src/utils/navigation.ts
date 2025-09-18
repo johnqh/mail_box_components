@@ -3,13 +3,57 @@
  * Automatically selects the appropriate navigation implementation based on platform
  */
 
-import {
-  UINavigationService,
-  UINavigationHook,
-  UILocationHook,
-  UINavigationConfig,
-  UINavigationOptions
-} from '@johnqh/design_system';
+// Navigation types - define locally since not available in design system
+interface UINavigationConfig {
+  defaultRoute?: string;
+  enableHistory?: boolean;
+}
+
+interface UINavigationOptions {
+  replace?: boolean;
+  state?: any;
+}
+
+interface UINavigationState {
+  currentRoute: string;
+  currentPath: string;
+  history: string[];
+  searchParams: URLSearchParams;
+  params: Record<string, string>;
+}
+
+interface UINavigationService {
+  navigate: (route: string, options?: UINavigationOptions) => void;
+  getCurrentRoute: () => string;
+  getCurrentState: () => UINavigationState;
+  getCurrentPath: () => string;
+  getSearchParams: () => URLSearchParams;
+  getHistory: () => string[];
+  goBack: (fallbackPath?: string) => void;
+  replace: (route: string, options?: UINavigationOptions) => void;
+  canGoBack: () => boolean;
+  isSupported: () => boolean;
+}
+
+interface UINavigationHook {
+  navigate: (route: string, options?: UINavigationOptions) => void;
+  goBack: (fallbackPath?: string) => void;
+  replace: (route: string, options?: UINavigationOptions) => void;
+  currentPath: string;
+  searchParams: URLSearchParams;
+  params: Record<string, string>;
+  canGoBack: boolean;
+  isSupported: boolean;
+}
+
+interface UILocationHook {
+  pathname: string;
+  search: string;
+  hash: string;
+  searchParams: URLSearchParams;
+  state: Record<string, any>;
+  key: string;
+}
 
 let navigationService: UINavigationService;
 
@@ -220,7 +264,7 @@ export const navigationHelper = {
   }
 };
 
-// Re-export types for convenience
+// Export locally defined navigation types
 export type {
   UINavigationService,
   UINavigationHook,
@@ -228,4 +272,4 @@ export type {
   UINavigationConfig,
   UINavigationOptions,
   UINavigationState
-} from '@johnqh/design_system';
+};

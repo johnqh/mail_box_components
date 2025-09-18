@@ -44,7 +44,8 @@
       "Bash(npm publish:*)",
       "Bash(npx tsc:*)",
       "Bash(npm version:*)",
-      "Bash(xargs sed:*)"
+      "Bash(xargs sed:*)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []

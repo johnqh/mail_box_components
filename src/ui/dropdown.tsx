@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useClickOutside } from '../hooks/useClickOutside';
-import { variants } from "@johnqh/design_system";
+import { variants } from '@johnqh/design_system';
 
 interface DropdownItem {
   id: string;
@@ -21,12 +21,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
   trigger,
   items,
   align = 'right',
-  className = ''
+  className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const ref = React.useRef<HTMLDivElement>(null);
-  
+
   useClickOutside(ref as React.RefObject<HTMLElement>, () => setIsOpen(false));
 
   const handleItemClick = (item: DropdownItem) => {
@@ -36,29 +36,44 @@ export const Dropdown: React.FC<DropdownProps> = ({
     }
   };
 
-  const alignmentClasses = align === 'left' ? variants.overlays.dropdown.menuRight() : variants.overlays.dropdown.menuLeft();
+  const alignmentClasses =
+    align === 'left'
+      ? variants.overlays.dropdown.menuRight()
+      : variants.overlays.dropdown.menuLeft();
 
   return (
-    <div className={`${variants.overlays.dropdown.container()} ${className}`} ref={ref}>
-      <div className={variants.overlays.dropdown.trigger()} onClick={() => setIsOpen(!isOpen)}>
+    <div
+      className={`${variants.overlays.dropdown.container()} ${className}`}
+      ref={ref}
+    >
+      <div
+        className={variants.overlays.dropdown.trigger()}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {trigger}
       </div>
 
       {isOpen && (
-        <div className={`${variants.overlays.dropdown.menu()} ${alignmentClasses} ${variants.overlays.dropdown.menuBottom()}`}>
+        <div
+          className={`${variants.overlays.dropdown.menu()} ${alignmentClasses} ${variants.overlays.dropdown.menuBottom()}`}
+        >
           <div className={variants.overlays.dropdown.itemContainer()}>
-            {items.map((item) => (
+            {items.map(item => (
               <button
                 key={item.id}
                 onClick={() => handleItemClick(item)}
                 disabled={item.disabled}
                 className={
-                  item.disabled 
+                  item.disabled
                     ? variants.overlays.dropdown.itemDisabled()
                     : variants.overlays.dropdown.item()
                 }
               >
-                {item.icon && <item.icon className={variants.overlays.dropdown.itemIcon()} />}
+                {item.icon && (
+                  <item.icon
+                    className={variants.overlays.dropdown.itemIcon()}
+                  />
+                )}
                 <span>{item.label}</span>
               </button>
             ))}

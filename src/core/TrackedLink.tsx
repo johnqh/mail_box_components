@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 // Type for tracking link click events
 export interface LinkClickTrackingParams {
@@ -13,7 +13,8 @@ export interface LinkClickTrackingParams {
 export type LinkTrackingFunction = (params: LinkClickTrackingParams) => void;
 
 // Generic props that work with any Link component
-interface TrackedLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface TrackedLinkProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children?: React.ReactNode;
   to?: string | { pathname?: string; [key: string]: any };
   href?: string; // For regular anchor tags
@@ -29,7 +30,7 @@ interface TrackedLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>
 
 /**
  * TrackedLink - Enhanced Link component with automatic analytics tracking
- * 
+ *
  * Features:
  * - Automatically tracks link clicks with customizable parameters
  * - Framework agnostic - works with any Link component (React Router, Next.js, etc.)
@@ -37,7 +38,7 @@ interface TrackedLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>
  * - Flexible tracking function injection for different analytics providers
  * - Extracts link text automatically for tracking labels
  * - Type-safe tracking parameter interface
- * 
+ *
  * @param to - Destination URL or route object (for router Links)
  * @param href - Destination URL (for anchor tags)
  * @param LinkComponent - Link component to use (e.g., React Router's Link)
@@ -66,18 +67,18 @@ export const TrackedLink: React.FC<TrackedLinkProps> = ({
       // Extract link text for tracking
       const linkText =
         trackingLabel ||
-        (typeof children === "string" ? children : "") ||
-        "Unknown Link";
+        (typeof children === 'string' ? children : '') ||
+        'Unknown Link';
 
       // Extract destination URL
       const linkUrl = (() => {
         if (to) {
-          return typeof to === "string" ? to : to.pathname || "";
+          return typeof to === 'string' ? to : to.pathname || '';
         }
         if (href) {
           return href;
         }
-        return "";
+        return '';
       })();
 
       // Call tracking function with comprehensive parameters
@@ -85,7 +86,7 @@ export const TrackedLink: React.FC<TrackedLinkProps> = ({
         link_text: linkText,
         link_url: linkUrl,
         to_page: linkUrl,
-        navigation_type: LinkComponent ? "router_link" : "anchor_link",
+        navigation_type: LinkComponent ? 'router_link' : 'anchor_link',
         component_name: componentName,
         ...trackingParams, // Spread additional tracking parameters
       });
@@ -100,26 +101,21 @@ export const TrackedLink: React.FC<TrackedLinkProps> = ({
   // Use provided LinkComponent if available
   if (LinkComponent && to !== undefined) {
     return (
-      <LinkComponent
-        {...linkProps}
-        to={to}
-        onClick={handleClick}
-        {...props}
-      >
+      <LinkComponent {...linkProps} to={to} onClick={handleClick} {...props}>
         {children}
       </LinkComponent>
     );
   }
 
   // Fall back to regular anchor tag
-  const finalHref = to ? (typeof to === "string" ? to : to.pathname || "#") : href;
+  const finalHref = to
+    ? typeof to === 'string'
+      ? to
+      : to.pathname || '#'
+    : href;
 
   return (
-    <a
-      {...props}
-      href={finalHref}
-      onClick={handleClick}
-    >
+    <a {...props} href={finalHref} onClick={handleClick}>
       {children}
     </a>
   );

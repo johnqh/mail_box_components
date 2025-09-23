@@ -44,12 +44,12 @@ const appendToDocumentHead = (element: Node): boolean => {
   return false;
 };
 
-type AnimationType = 
-  | 'fade-in-up' 
-  | 'fade-in-scale' 
-  | 'fade-in-left' 
+type AnimationType =
+  | 'fade-in-up'
+  | 'fade-in-scale'
+  | 'fade-in-left'
   | 'fade-in-right'
-  | 'float' 
+  | 'float'
   | 'bounce-slow'
   | 'slide-in-bottom'
   | 'zoom-in'
@@ -72,7 +72,7 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   once = true,
   children,
   className = '',
-  threshold = 0.1
+  threshold = 0.1,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -117,12 +117,12 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 
   const getAnimationClasses = () => {
     if (animation === 'none') return '';
-    
+
     const baseTransition = `transition-all duration-${duration} ease-out`;
     const delayClass = delay > 0 ? `delay-${delay}` : '';
-    
+
     const animations = {
-      'fade-in-up': isVisible 
+      'fade-in-up': isVisible
         ? `opacity-100 translate-y-0 ${baseTransition} ${delayClass}`
         : `opacity-0 translate-y-8 ${baseTransition} ${delayClass}`,
       'fade-in-scale': isVisible
@@ -140,8 +140,8 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       'zoom-in': isVisible
         ? `opacity-100 scale-100 ${baseTransition} ${delayClass}`
         : `opacity-0 scale-50 ${baseTransition} ${delayClass}`,
-      'float': 'animate-float', // CSS keyframe animation
-      'bounce-slow': 'animate-bounce-slow' // CSS keyframe animation
+      float: 'animate-float', // CSS keyframe animation
+      'bounce-slow': 'animate-bounce-slow', // CSS keyframe animation
     };
 
     return animations[animation] || animations['fade-in-up'];
@@ -183,41 +183,42 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   }, [animation]);
 
   return (
-    <div 
-      ref={ref}
-      className={`${getAnimationClasses()} ${className}`}
-    >
+    <div ref={ref} className={`${getAnimationClasses()} ${className}`}>
       {children}
     </div>
   );
 };
 
 // Utility component for common animation patterns
-export const FadeInUp: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ 
-  children, 
-  delay = 0, 
-  className = '' 
-}) => (
-  <AnimatedSection animation="fade-in-up" delay={delay} className={className}>
+export const FadeInUp: React.FC<{
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}> = ({ children, delay = 0, className = '' }) => (
+  <AnimatedSection animation='fade-in-up' delay={delay} className={className}>
     {children}
   </AnimatedSection>
 );
 
-export const FadeInScale: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ 
-  children, 
-  delay = 0, 
-  className = '' 
-}) => (
-  <AnimatedSection animation="fade-in-scale" delay={delay} className={className}>
+export const FadeInScale: React.FC<{
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}> = ({ children, delay = 0, className = '' }) => (
+  <AnimatedSection
+    animation='fade-in-scale'
+    delay={delay}
+    className={className}
+  >
     {children}
   </AnimatedSection>
 );
 
-export const FloatingElement: React.FC<{ children: React.ReactNode; className?: string }> = ({ 
-  children, 
-  className = '' 
-}) => (
-  <AnimatedSection animation="float" className={className}>
+export const FloatingElement: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+}> = ({ children, className = '' }) => (
+  <AnimatedSection animation='float' className={className}>
     {children}
   </AnimatedSection>
 );

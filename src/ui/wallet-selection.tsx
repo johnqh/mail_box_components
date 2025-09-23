@@ -1,5 +1,5 @@
 import React from 'react';
-import { WalletIcon } from "./wallet-icon";
+import { WalletIcon } from './wallet-icon';
 
 export interface WalletOption {
   id: string;
@@ -26,7 +26,7 @@ export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
   wallet,
   disabled = false,
   className = '',
-  statusLabels = { available: 'Available', notAvailable: 'Not Available' }
+  statusLabels = { available: 'Available', notAvailable: 'Not Available' },
 }) => {
   return (
     <button
@@ -41,28 +41,37 @@ export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
         ${className}
       `}
     >
-      <div className="flex items-center space-x-3">
-        <WalletIcon wallet={wallet.name.toLowerCase()} connector={wallet.connector as { icon?: string; } | undefined} />
-        <div className="text-left">
-          <p className="font-medium text-gray-900 dark:text-white">
+      <div className='flex items-center space-x-3'>
+        <WalletIcon
+          wallet={wallet.name.toLowerCase()}
+          connector={wallet.connector as { icon?: string } | undefined}
+        />
+        <div className='text-left'>
+          <p className='font-medium text-gray-900 dark:text-white'>
             {wallet.name}
           </p>
-          <p className={`text-xs ${
-            wallet.available 
-              ? 'text-green-600 dark:text-green-400' 
-              : 'text-red-600 dark:text-red-400'
-          }`}>
-            {wallet.available ? statusLabels.available : statusLabels.notAvailable}
+          <p
+            className={`text-xs ${
+              wallet.available
+                ? 'text-green-600 dark:text-green-400'
+                : 'text-red-600 dark:text-red-400'
+            }`}
+          >
+            {wallet.available
+              ? statusLabels.available
+              : statusLabels.notAvailable}
           </p>
         </div>
       </div>
-      
+
       {wallet.connecting && (
-        <div className={`w-4 h-4 border-2 border-t-transparent rounded-full animate-spin ${
-          wallet.chainType === 'solana' 
-            ? 'border-purple-600' 
-            : 'border-blue-600'
-        }`} />
+        <div
+          className={`w-4 h-4 border-2 border-t-transparent rounded-full animate-spin ${
+            wallet.chainType === 'solana'
+              ? 'border-purple-600'
+              : 'border-blue-600'
+          }`}
+        />
       )}
     </button>
   );
@@ -81,15 +90,15 @@ export const WalletTab: React.FC<WalletTabProps> = ({
   onClick,
   icon,
   label,
-  color
+  color,
 }) => {
   const colorClasses = {
-    blue: active 
+    blue: active
       ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm'
       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200',
     purple: active
       ? 'bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 shadow-sm'
-      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200',
   };
 
   return (
@@ -97,7 +106,7 @@ export const WalletTab: React.FC<WalletTabProps> = ({
       onClick={onClick}
       className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${colorClasses[color]}`}
     >
-      <span className="flex items-center justify-center space-x-2">
+      <span className='flex items-center justify-center space-x-2'>
         <span>{icon}</span>
         <span>{label}</span>
       </span>
@@ -130,7 +139,7 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
   onTabChange,
   connectingWallet,
   className = '',
-  labels = {}
+  labels = {},
 }) => {
   const defaultLabels = {
     ethereum: 'Ethereum',
@@ -139,7 +148,7 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
     notAvailable: 'Not Available',
     noWalletText: "Don't have a wallet?",
     installMetaMask: 'Install MetaMask',
-    installPhantom: 'Install Phantom'
+    installPhantom: 'Install Phantom',
   };
 
   const finalLabels = { ...defaultLabels, ...labels };
@@ -148,60 +157,60 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Tab Navigation */}
-      <div className="flex space-x-1 p-1 bg-gray-100 dark:bg-gray-700 rounded-lg">
+      <div className='flex space-x-1 p-1 bg-gray-100 dark:bg-gray-700 rounded-lg'>
         <WalletTab
           active={activeTab === 'ethereum'}
           onClick={() => onTabChange('ethereum')}
-          icon="⟠"
+          icon='⟠'
           label={finalLabels.ethereum}
-          color="blue"
+          color='blue'
         />
         <WalletTab
           active={activeTab === 'solana'}
           onClick={() => onTabChange('solana')}
-          icon="◎"
+          icon='◎'
           label={finalLabels.solana}
-          color="purple"
+          color='purple'
         />
       </div>
 
       {/* Wallet Grid */}
-      <div className="space-y-3">
-        {currentWallets.map((wallet) => (
+      <div className='space-y-3'>
+        {currentWallets.map(wallet => (
           <WalletSelectionButton
             key={wallet.id}
             wallet={{
               ...wallet,
-              connecting: connectingWallet === wallet.name
+              connecting: connectingWallet === wallet.name,
             }}
             disabled={!!connectingWallet}
             statusLabels={{
               available: finalLabels.available,
-              notAvailable: finalLabels.notAvailable
+              notAvailable: finalLabels.notAvailable,
             }}
           />
         ))}
       </div>
 
       {/* Help Text */}
-      <div className="text-center pt-2">
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+      <div className='text-center pt-2'>
+        <p className='text-sm text-gray-600 dark:text-gray-400'>
           {finalLabels.noWalletText}{' '}
           {activeTab === 'ethereum' ? (
             <a
-              href="https://metamask.io/download/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              href='https://metamask.io/download/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300'
             >
               {finalLabels.installMetaMask}
             </a>
           ) : (
             <a
-              href="https://phantom.app/download"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300"
+              href='https://phantom.app/download'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300'
             >
               {finalLabels.installPhantom}
             </a>

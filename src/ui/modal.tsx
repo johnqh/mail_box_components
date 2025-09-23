@@ -1,9 +1,8 @@
- 
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { cn } from "../lib/utils";
-import { variants } from "@johnqh/design_system";
+import { cn } from '../lib/utils';
+import { variants } from '@johnqh/design_system';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -22,7 +21,6 @@ export interface ModalProps {
   closeAriaLabel?: string;
 }
 
- 
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
@@ -37,7 +35,7 @@ export const Modal: React.FC<ModalProps> = ({
   className,
   'aria-labelledby': ariaLabelledBy,
   'aria-describedby': ariaDescribedBy,
-  closeAriaLabel = "Close modal"
+  closeAriaLabel = 'Close modal',
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -74,7 +72,7 @@ export const Modal: React.FC<ModalProps> = ({
     return () => {
       // Restore body scroll
       document.body.style.overflow = 'unset';
-      
+
       // Restore focus to the previously focused element
       if (previousFocusRef.current) {
         previousFocusRef.current.focus();
@@ -98,24 +96,30 @@ export const Modal: React.FC<ModalProps> = ({
 
   const modalContent = (
     <>
-      <div className={variants.overlays.modal.backdrop()} onClick={handleOverlayClick} />
-      <div 
+      <div
+        className={variants.overlays.modal.backdrop()}
+        onClick={handleOverlayClick}
+      />
+      <div
         className={variants.overlays.modal.container()}
-        role="dialog"
-        aria-modal="true"
+        role='dialog'
+        aria-modal='true'
         aria-labelledby={ariaLabelledBy}
         aria-describedby={ariaDescribedBy}
       >
         <div
           ref={modalRef}
-          data-testid="modal-content"
+          data-testid='modal-content'
           className={cn(getContainerClass(), className)}
           tabIndex={-1}
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
         >
           {title && (
             <div className={variants.overlays.modal.header()}>
-              <h2 id={ariaLabelledBy} className={variants.overlays.modal.title()}>
+              <h2
+                id={ariaLabelledBy}
+                className={variants.overlays.modal.title()}
+              >
                 {title}
               </h2>
               {showCloseButton && (
@@ -147,9 +151,12 @@ export interface ModalHeaderProps {
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
   children,
   variant: _variant = 'default',
-  className
+  className,
 }) => (
-  <div data-testid="modal-header" className={cn(variants.overlays.modal.header(), className)}>
+  <div
+    data-testid='modal-header'
+    className={cn(variants.overlays.modal.header(), className)}
+  >
     {children}
   </div>
 );
@@ -163,9 +170,12 @@ export interface ModalContentProps {
 export const ModalContent: React.FC<ModalContentProps> = ({
   children,
   variant: _variant = 'default',
-  className
+  className,
 }) => (
-  <div data-testid="modal-body" className={cn(variants.overlays.modal.body(), className)}>
+  <div
+    data-testid='modal-body'
+    className={cn(variants.overlays.modal.body(), className)}
+  >
     {children}
   </div>
 );
@@ -179,9 +189,12 @@ export interface ModalFooterProps {
 export const ModalFooter: React.FC<ModalFooterProps> = ({
   children,
   variant: _variant = 'default',
-  className
+  className,
 }) => (
-  <div data-testid="modal-footer" className={cn(variants.overlays.modal.footer(), className)}>
+  <div
+    data-testid='modal-footer'
+    className={cn(variants.overlays.modal.footer(), className)}
+  >
     {children}
   </div>
 );

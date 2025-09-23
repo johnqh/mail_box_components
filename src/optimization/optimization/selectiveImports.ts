@@ -7,26 +7,20 @@
 // These are placeholders for conditional loading features
 export const PACKAGE_FLAGS = {
   radix: typeof window !== 'undefined',
-  crypto: typeof crypto !== 'undefined', 
-  firebase: false // placeholder for firebase detection
+  crypto: typeof crypto !== 'undefined',
+  firebase: false, // placeholder for firebase detection
 } as const;
 
 // Radix UI selective imports
 export const loadRadixComponents = async () => {
   // Only import the specific Radix components we actually use
   try {
-    const [
-      Dialog,
-      Popover,
-      Tooltip,
-      Select,
-      DropdownMenu
-    ] = await Promise.all([
+    const [Dialog, Popover, Tooltip, Select, DropdownMenu] = await Promise.all([
       import('@radix-ui/react-dialog'),
-      import('@radix-ui/react-popover'), 
+      import('@radix-ui/react-popover'),
       import('@radix-ui/react-tooltip'),
       import('@radix-ui/react-select'),
-      import('@radix-ui/react-dropdown-menu')
+      import('@radix-ui/react-dropdown-menu'),
     ]);
 
     return {
@@ -49,7 +43,7 @@ export const loadRadixComponents = async () => {
       DropdownMenu: DropdownMenu.Root,
       DropdownMenuContent: DropdownMenu.Content,
       DropdownMenuItem: DropdownMenu.Item,
-      DropdownMenuTrigger: DropdownMenu.Trigger
+      DropdownMenuTrigger: DropdownMenu.Trigger,
     };
   } catch (error) {
     console.warn('Radix UI components not available:', error);
@@ -75,7 +69,7 @@ export const loadHeroicons = async () => {
     { ScaleIcon },
     { BuildingLibraryIcon },
     { CurrencyDollarIcon },
-    { GlobeAltIcon }
+    { GlobeAltIcon },
   ] = await Promise.all([
     import('@heroicons/react/24/outline'),
     import('@heroicons/react/24/outline'),
@@ -91,7 +85,7 @@ export const loadHeroicons = async () => {
     import('@heroicons/react/24/outline'),
     import('@heroicons/react/24/outline'),
     import('@heroicons/react/24/outline'),
-    import('@heroicons/react/24/outline')
+    import('@heroicons/react/24/outline'),
   ]);
 
   return {
@@ -109,7 +103,7 @@ export const loadHeroicons = async () => {
     ScaleIcon,
     BuildingLibraryIcon,
     CurrencyDollarIcon,
-    GlobeAltIcon
+    GlobeAltIcon,
   };
 };
 
@@ -118,7 +112,7 @@ export const loadCryptoUtils = async () => {
   // Load only needed crypto utilities
   try {
     const { secp256k1 } = await import('@noble/curves/secp256k1');
-    
+
     // Use sha3 instead of keccak256 if needed
     const { sha3_256 } = await import('@noble/hashes/sha3');
 
@@ -133,21 +127,18 @@ export const loadCryptoUtils = async () => {
 export const loadFirebaseComponents = async () => {
   // Import only Firebase modules we use
   try {
-    const [
-      { getApps, initializeApp },
-      { getAuth },
-      { getAnalytics }
-    ] = await Promise.all([
-      import('firebase/app'),
-      import('firebase/auth'),
-      import('firebase/analytics')
-    ]);
+    const [{ getApps, initializeApp }, { getAuth }, { getAnalytics }] =
+      await Promise.all([
+        import('firebase/app'),
+        import('firebase/auth'),
+        import('firebase/analytics'),
+      ]);
 
     return {
       getApps,
       initializeApp,
       getAuth,
-      getAnalytics
+      getAnalytics,
     };
   } catch (error) {
     console.warn('Firebase not available:', error);
@@ -155,7 +146,7 @@ export const loadFirebaseComponents = async () => {
       getApps: null,
       initializeApp: null,
       getAuth: null,
-      getAnalytics: null
+      getAnalytics: null,
     };
   }
 };

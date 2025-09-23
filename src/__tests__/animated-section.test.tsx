@@ -1,6 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { AnimatedSection, FadeInUp, FadeInScale, FloatingElement } from '../ui/animated-section';
+import {
+  AnimatedSection,
+  FadeInUp,
+  FadeInScale,
+  FloatingElement,
+} from '../ui/animated-section';
 
 // Mock IntersectionObserver
 const mockIntersectionObserver = vi.fn();
@@ -23,38 +28,38 @@ describe('AnimatedSection Component', () => {
         <div>Animated content</div>
       </AnimatedSection>
     );
-    
+
     expect(screen.getByText('Animated content')).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
     render(
-      <AnimatedSection className="custom-animation">
+      <AnimatedSection className='custom-animation'>
         <div>Content</div>
       </AnimatedSection>
     );
-    
+
     const content = screen.getByText('Content');
     expect(content.parentElement).toHaveClass('custom-animation');
   });
 
   it('renders with different animation types', () => {
     const { rerender } = render(
-      <AnimatedSection animation="fade-in-up">
+      <AnimatedSection animation='fade-in-up'>
         <div>Fade up content</div>
       </AnimatedSection>
     );
     expect(screen.getByText('Fade up content')).toBeInTheDocument();
 
     rerender(
-      <AnimatedSection animation="fade-in-scale">
+      <AnimatedSection animation='fade-in-scale'>
         <div>Scale content</div>
       </AnimatedSection>
     );
     expect(screen.getByText('Scale content')).toBeInTheDocument();
 
     rerender(
-      <AnimatedSection animation="float">
+      <AnimatedSection animation='float'>
         <div>Float content</div>
       </AnimatedSection>
     );
@@ -63,11 +68,11 @@ describe('AnimatedSection Component', () => {
 
   it('handles no animation', () => {
     render(
-      <AnimatedSection animation="none">
+      <AnimatedSection animation='none'>
         <div>No animation</div>
       </AnimatedSection>
     );
-    
+
     expect(screen.getByText('No animation')).toBeInTheDocument();
   });
 
@@ -77,7 +82,7 @@ describe('AnimatedSection Component', () => {
         <div>Observed content</div>
       </AnimatedSection>
     );
-    
+
     expect(mockIntersectionObserver).toHaveBeenCalledWith(
       expect.any(Function),
       { threshold: 0.1 }
@@ -93,7 +98,7 @@ describe('Utility Animation Components', () => {
           <div>Fade up content</div>
         </FadeInUp>
       );
-      
+
       expect(screen.getByText('Fade up content')).toBeInTheDocument();
     });
 
@@ -103,7 +108,7 @@ describe('Utility Animation Components', () => {
           <div>Delayed content</div>
         </FadeInUp>
       );
-      
+
       expect(screen.getByText('Delayed content')).toBeInTheDocument();
     });
   });
@@ -115,7 +120,7 @@ describe('Utility Animation Components', () => {
           <div>Scale content</div>
         </FadeInScale>
       );
-      
+
       expect(screen.getByText('Scale content')).toBeInTheDocument();
     });
   });
@@ -127,7 +132,7 @@ describe('Utility Animation Components', () => {
           <div>Floating content</div>
         </FloatingElement>
       );
-      
+
       expect(screen.getByText('Floating content')).toBeInTheDocument();
     });
   });

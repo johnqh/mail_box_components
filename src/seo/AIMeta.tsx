@@ -18,16 +18,16 @@ interface AIMetaProps {
   learningOutcomes?: string[];
 }
 
-const AIMeta: React.FC<AIMetaProps> = ({ 
-  contentType, 
+const AIMeta: React.FC<AIMetaProps> = ({
+  contentType,
   aiSummary,
-  technicalComplexity = 'intermediate'
+  technicalComplexity = 'intermediate',
 }) => {
   return (
     <Helmet>
-      <meta name="ai:content-type" content={contentType} />
-      <meta name="ai:summary" content={aiSummary} />
-      <meta name="ai:complexity" content={technicalComplexity} />
+      <meta name='ai:content-type' content={contentType} />
+      <meta name='ai:summary' content={aiSummary} />
+      <meta name='ai:complexity' content={technicalComplexity} />
     </Helmet>
   );
 };

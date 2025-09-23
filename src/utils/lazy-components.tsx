@@ -13,27 +13,31 @@ export const createLazyComponent = <T extends ComponentType<any>>(
 ): T => {
   const LazyComponent = lazy(async () => {
     let lastError: Error | null = null;
-    
+
     for (let attempt = 0; attempt < retryAttempts; attempt++) {
       try {
         return await importFunc();
       } catch (error) {
         lastError = error as Error;
-        
+
         // Wait before retrying with exponential backoff
         if (attempt < retryAttempts - 1) {
-          await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+          await new Promise(resolve =>
+            setTimeout(resolve, Math.pow(2, attempt) * 1000)
+          );
         }
       }
     }
-    
+
     throw lastError;
   });
-  
-  const fallback = FallbackComponent 
-    ? <FallbackComponent message={fallbackMessage} />
-    : <div>{fallbackMessage}</div>;
-  
+
+  const fallback = FallbackComponent ? (
+    <FallbackComponent message={fallbackMessage} />
+  ) : (
+    <div>{fallbackMessage}</div>
+  );
+
   return ((props: any) => (
     <Suspense fallback={fallback}>
       <LazyComponent {...props} />
@@ -48,7 +52,10 @@ export const createUIComponentLazyLoader = (
   fallbackMessage?: string
 ) => {
   return createLazyComponent(
-    () => import(/* @vite-ignore */ componentImportPath).then(m => ({ default: m[componentName] })),
+    () =>
+      import(/* @vite-ignore */ componentImportPath).then(m => ({
+        default: m[componentName],
+      })),
     null,
     fallbackMessage || `Loading ${componentName.toLowerCase()}...`
   );
@@ -69,12 +76,15 @@ export const createThirdPartyLazyLoader = (
 // Preload strategy for components
 export class ComponentPreloader {
   private static preloaded = new Set<string>();
-  
-  static preload(componentName: string, importFunc: () => Promise<unknown>): void {
+
+  static preload(
+    componentName: string,
+    importFunc: () => Promise<unknown>
+  ): void {
     if (this.preloaded.has(componentName)) return;
-    
+
     this.preloaded.add(componentName);
-    
+
     // Use requestIdleCallback for non-blocking preload
     if ('requestIdleCallback' in window) {
       window.requestIdleCallback(async () => {
@@ -86,40 +96,47 @@ export class ComponentPreloader {
       });
     }
   }
-  
+
   // Preload based on user interaction patterns
-  static preloadOnHover(element: HTMLElement, importFunc: () => Promise<unknown>): void {
+  static preloadOnHover(
+    element: HTMLElement,
+    importFunc: () => Promise<unknown>
+  ): void {
     const handleHover = () => {
       importFunc().catch(console.warn);
       element.removeEventListener('mouseenter', handleHover);
     };
-    
+
     element.addEventListener('mouseenter', handleHover, { passive: true });
   }
-  
+
   // Preload based on scroll position
-  static preloadOnScroll(threshold: number, importFunc: () => Promise<unknown>): void {
+  static preloadOnScroll(
+    threshold: number,
+    importFunc: () => Promise<unknown>
+  ): void {
     const handleScroll = () => {
       if (window.scrollY > threshold) {
         importFunc().catch(console.warn);
         window.removeEventListener('scroll', handleScroll);
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
   }
 }
 
 // Initialize preloading based on user context
-export const initializeComponentPreloading = (
-  preloadConfig?: {
-    componentsToPreload?: Array<{ name: string; importFunc: () => Promise<any> }>;
-    preloadDelay?: number;
-    conditionalPreload?: Array<{ condition: () => boolean; components: Array<{ name: string; importFunc: () => Promise<any> }> }>;
-  }
-): void => {
+export const initializeComponentPreloading = (preloadConfig?: {
+  componentsToPreload?: Array<{ name: string; importFunc: () => Promise<any> }>;
+  preloadDelay?: number;
+  conditionalPreload?: Array<{
+    condition: () => boolean;
+    components: Array<{ name: string; importFunc: () => Promise<any> }>;
+  }>;
+}): void => {
   const delay = preloadConfig?.preloadDelay || 1500;
-  
+
   // Preload critical components after main bundle loads
   setTimeout(() => {
     // Preload configured components
@@ -128,7 +145,7 @@ export const initializeComponentPreloading = (
         ComponentPreloader.preload(name, importFunc);
       });
     }
-    
+
     // Conditional preloading based on application state
     if (preloadConfig?.conditionalPreload) {
       preloadConfig.conditionalPreload.forEach(({ condition, components }) => {
@@ -147,5 +164,5 @@ export default {
   createUIComponentLazyLoader,
   createThirdPartyLazyLoader,
   ComponentPreloader,
-  initializeComponentPreloading
+  initializeComponentPreloading,
 };

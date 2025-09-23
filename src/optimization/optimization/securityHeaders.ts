@@ -12,31 +12,22 @@ export const cspDirectives = {
     "'unsafe-eval'", // Required for some Web3 libraries
     'https://fonts.googleapis.com',
     'https://www.googletagmanager.com',
-    'https://www.google-analytics.com'
+    'https://www.google-analytics.com',
   ],
   'style-src': [
     "'self'",
     "'unsafe-inline'", // Required for CSS-in-JS and Tailwind
     'https://fonts.googleapis.com',
-    'https://fonts.gstatic.com'
-  ],
-  'font-src': [
-    "'self'",
     'https://fonts.gstatic.com',
-    'data:'
   ],
-  'img-src': [
-    "'self'",
-    'data:',
-    'https:',
-    'blob:'
-  ],
+  'font-src': ["'self'", 'https://fonts.gstatic.com', 'data:'],
+  'img-src': ["'self'", 'data:', 'https:', 'blob:'],
   'connect-src': [
     "'self'",
     // API endpoints
     'https://api.0xmail.box',
     'https://0xmail.box',
-    
+
     // WalletConnect
     'https://*.walletconnect.com',
     'https://*.walletconnect.org',
@@ -44,19 +35,19 @@ export const cspDirectives = {
     'https://relay.walletconnect.com',
     'wss://*.walletconnect.com',
     'wss://*.walletconnect.org',
-    
+
     // Coinbase Wallet
     'https://keys.coinbase.com',
     'https://api.coinbase.com',
     'https://www.walletlink.org',
-    
+
     // Ethereum RPC endpoints
     'https://mainnet.infura.io',
     'https://polygon-rpc.com',
     'https://rpc.ankr.com',
     'https://cloudflare-eth.com',
     'https://eth-mainnet.alchemyapi.io',
-    
+
     // Solana RPC endpoints
     'https://api.phantom.app',
     'https://solana-api.projectserum.com',
@@ -65,28 +56,22 @@ export const cspDirectives = {
     'wss://api.phantom.app',
     'wss://api.devnet.solana.com',
     'wss://api.mainnet-beta.solana.com',
-    
+
     // Additional wallet providers
     'https://bridge.arbitrum.io',
     'https://polygon-mainnet.infura.io',
-    'https://optimism-mainnet.infura.io'
+    'https://optimism-mainnet.infura.io',
   ],
   'frame-src': [
     "'self'",
     'https://verify.walletconnect.com',
-    'https://verify.walletconnect.org'
+    'https://verify.walletconnect.org',
   ],
-  'worker-src': [
-    "'self'",
-    'blob:'
-  ],
-  'child-src': [
-    "'self'",
-    'https://verify.walletconnect.com'
-  ],
+  'worker-src': ["'self'", 'blob:'],
+  'child-src': ["'self'", 'https://verify.walletconnect.com'],
   'object-src': ["'none'"],
   'base-uri': ["'self'"],
-  'form-action': ["'self'"]
+  'form-action': ["'self'"],
 };
 
 export const generateCSP = (): string => {
@@ -100,12 +85,13 @@ export const securityHeaders = {
   'X-Content-Type-Options': 'nosniff',
   'X-XSS-Protection': '1; mode=block',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+  'Permissions-Policy':
+    'camera=(), microphone=(), geolocation=(), interest-cohort=()',
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   'Cross-Origin-Embedder-Policy': 'credentialless',
   'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
   'Cross-Origin-Resource-Policy': 'cross-origin',
-  'Content-Security-Policy': generateCSP()
+  'Content-Security-Policy': generateCSP(),
 };
 
 export const cacheHeaders = {
@@ -115,7 +101,7 @@ export const cacheHeaders = {
   css: 'public, max-age=31536000, immutable',
   serviceWorker: 'public, max-age=0, must-revalidate',
   manifest: 'public, max-age=86400',
-  api: 'no-cache, no-store, must-revalidate'
+  api: 'no-cache, no-store, must-revalidate',
 };
 
 /**
@@ -124,15 +110,15 @@ export const cacheHeaders = {
 export const setupCSPReporting = () => {
   if (typeof window !== 'undefined') {
     // Listen for CSP violations
-    document.addEventListener('securitypolicyviolation', (event) => {
+    document.addEventListener('securitypolicyviolation', event => {
       console.warn('CSP Violation:', {
         blockedURI: event.blockedURI,
         violatedDirective: event.violatedDirective,
         originalPolicy: event.originalPolicy,
         sourceFile: event.sourceFile,
-        lineNumber: event.lineNumber
+        lineNumber: event.lineNumber,
       });
-      
+
       // Optionally send violations to an analytics service
       // Analytics.track('CSP Violation', { ... });
     });
@@ -143,10 +129,15 @@ export const setupCSPReporting = () => {
  * Web3-specific security considerations
  */
 export const web3SecurityNotes = {
-  walletConnections: 'Always verify wallet signatures and never trust client-side data',
+  walletConnections:
+    'Always verify wallet signatures and never trust client-side data',
   rpcEndpoints: 'Use reputable RPC providers and consider rate limiting',
-  contractInteractions: 'Validate all smart contract interactions on the backend',
-  userInput: 'Sanitize all user inputs, especially wallet addresses and transaction data',
-  privateKeys: 'Never log, store, or transmit private keys - they should remain in wallets only',
-  phishing: 'Implement strict CSP to prevent injection of malicious scripts that could steal wallet access'
+  contractInteractions:
+    'Validate all smart contract interactions on the backend',
+  userInput:
+    'Sanitize all user inputs, especially wallet addresses and transaction data',
+  privateKeys:
+    'Never log, store, or transmit private keys - they should remain in wallets only',
+  phishing:
+    'Implement strict CSP to prevent injection of malicious scripts that could steal wallet access',
 };

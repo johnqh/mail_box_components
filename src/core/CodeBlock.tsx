@@ -15,25 +15,25 @@ interface CodeBlockProps {
 
 /**
  * CodeBlock - A versatile code display component with syntax highlighting and copy functionality
- * 
+ *
  * Can work in two modes:
  * 1. File loading mode: Pass `filename` to load code from `/code/${filename}`
  * 2. Direct code mode: Pass `code` and optionally `language` directly
- * 
+ *
  * Features:
  * - Syntax highlighting support for multiple languages
  * - Copy to clipboard functionality
  * - Loading and error states (for file mode)
  * - Customizable styling and behavior
  */
-const CodeBlock: React.FC<CodeBlockProps> = ({ 
-  filename, 
+const CodeBlock: React.FC<CodeBlockProps> = ({
+  filename,
   code: directCode,
   language: directLanguage,
   title,
-  className = "",
+  className = '',
   showCopy = true,
-  showHeader = true
+  showHeader = true,
 }) => {
   const { t } = useTranslation('codeBlock');
   const { code: loadedCode, loading, error } = useCodeLoader(filename || '');
@@ -88,7 +88,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   };
 
   // Determine language for syntax highlighting
-  const language = directLanguage || (filename ? getLanguageFromFilename(filename) : 'text');
+  const language =
+    directLanguage || (filename ? getLanguageFromFilename(filename) : 'text');
 
   const handleCopy = async () => {
     if (code) {
@@ -105,8 +106,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   // Loading state (only for file loading mode)
   if (filename && loading) {
     return (
-      <div className={`bg-gray-900 text-green-400 rounded-lg p-4 font-mono text-sm ${className}`}>
-        <div className="animate-pulse text-gray-500">
+      <div
+        className={`bg-gray-900 text-green-400 rounded-lg p-4 font-mono text-sm ${className}`}
+      >
+        <div className='animate-pulse text-gray-500'>
           {t('loadingCode', 'Loading code...')}
         </div>
       </div>
@@ -116,7 +119,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   // Error state (only for file loading mode)
   if (filename && error) {
     return (
-      <div className={`bg-gray-900 text-red-400 rounded-lg p-4 font-mono text-sm ${className}`}>
+      <div
+        className={`bg-gray-900 text-red-400 rounded-lg p-4 font-mono text-sm ${className}`}
+      >
         {t('error', 'Error')}: {error}
       </div>
     );
@@ -125,42 +130,44 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   // No code to display
   if (!code) {
     return (
-      <div className={`bg-gray-900 text-gray-400 rounded-lg p-4 font-mono text-sm ${className}`}>
+      <div
+        className={`bg-gray-900 text-gray-400 rounded-lg p-4 font-mono text-sm ${className}`}
+      >
         {t('noCode', 'No code to display')}
       </div>
     );
   }
 
   return (
-    <div className={`bg-gray-900 rounded-lg border border-green-500/20 shadow-lg shadow-green-500/10 ${className}`}>
+    <div
+      className={`bg-gray-900 rounded-lg border border-green-500/20 shadow-lg shadow-green-500/10 ${className}`}
+    >
       {/* Header with filename/title and copy button */}
       {showHeader && (
-        <div className="flex items-center justify-between px-4 py-2 border-b border-green-500/20 bg-gray-800/50">
-          <span className="text-sm text-green-400 font-mono">
+        <div className='flex items-center justify-between px-4 py-2 border-b border-green-500/20 bg-gray-800/50'>
+          <span className='text-sm text-green-400 font-mono'>
             {title || filename || `${language} code`}
           </span>
           {showCopy && (
             <button
               onClick={handleCopy}
-              className="p-2 text-gray-400 hover:text-green-400 hover:bg-gray-800 rounded-lg transition-all duration-200 group"
+              className='p-2 text-gray-400 hover:text-green-400 hover:bg-gray-800 rounded-lg transition-all duration-200 group'
               title={t('copyCode', 'Copy code')}
             >
               {copied ? (
-                <CheckIcon className="h-4 w-4 text-green-400" />
+                <CheckIcon className='h-4 w-4 text-green-400' />
               ) : (
-                <ClipboardDocumentIcon className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                <ClipboardDocumentIcon className='h-4 w-4 group-hover:scale-110 transition-transform' />
               )}
             </button>
           )}
         </div>
       )}
-      
+
       {/* Code content */}
-      <div className="p-4 overflow-x-auto">
+      <div className='p-4 overflow-x-auto'>
         <pre className={`text-sm language-${language}`}>
-          <code className="text-gray-100">
-            {code}
-          </code>
+          <code className='text-gray-100'>{code}</code>
         </pre>
       </div>
     </div>

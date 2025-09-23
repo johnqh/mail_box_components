@@ -3,11 +3,16 @@ import typescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import prettier from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
 
 export default [
   // Base configuration for all files
   js.configs.recommended,
-  
+
+  // Prettier configuration to disable conflicting rules
+  prettierConfig,
+
   // Configuration for TypeScript files
   {
     files: ['**/*.{ts,tsx}'],
@@ -82,6 +87,7 @@ export default [
       '@typescript-eslint': typescript,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      'prettier': prettier,
     },
     rules: {
       // Disable base rule and enable TypeScript version
@@ -96,6 +102,9 @@ export default [
       
       // React Refresh rules - more permissive for utility files
       'react-refresh/only-export-components': 'off',
+
+      // Prettier rules
+      'prettier/prettier': 'error',
     },
   },
   

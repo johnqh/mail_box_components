@@ -11,15 +11,15 @@ interface LogoProps {
   fontFamily?: string; // Allow customizing font family
 }
 
-const Logo: FC<LogoProps> = ({ 
-  size = 'md', 
-  className = '', 
-  showText = true, 
+const Logo: FC<LogoProps> = ({
+  size = 'md',
+  className = '',
+  showText = true,
   onClick,
   logoSrc = '/logo.png',
   logoAlt = 'Logo',
   logoText = '0xmail.box',
-  fontFamily = 'Dancing Script, cursive'
+  fontFamily = 'Dancing Script, cursive',
 }) => {
   const getSizeClasses = () => {
     switch (size) {
@@ -27,31 +27,31 @@ const Logo: FC<LogoProps> = ({
         return {
           container: 'space-x-2',
           image: 'h-6 w-6',
-          text: 'text-lg'
+          text: 'text-lg',
         };
       case 'md':
         return {
           container: 'space-x-2',
           image: 'h-8 w-8',
-          text: 'text-2xl'
+          text: 'text-2xl',
         };
       case 'lg':
         return {
           container: 'space-x-3',
           image: 'h-10 w-10',
-          text: 'text-3xl'
+          text: 'text-3xl',
         };
       case 'xl':
         return {
           container: 'space-x-4',
           image: 'h-12 w-12',
-          text: 'text-4xl'
+          text: 'text-4xl',
         };
       default:
         return {
           container: 'space-x-2',
           image: 'h-8 w-8',
-          text: 'text-2xl'
+          text: 'text-2xl',
         };
     }
   };
@@ -60,13 +60,9 @@ const Logo: FC<LogoProps> = ({
 
   const logoContent = (
     <>
-      <img 
-        src={logoSrc} 
-        alt={logoAlt} 
-        className={sizeClasses.image}
-      />
+      <img src={logoSrc} alt={logoAlt} className={sizeClasses.image} />
       {showText && (
-        <div 
+        <div
           className={`${sizeClasses.text} font-bold text-gray-900 dark:text-gray-100`}
           style={{ fontFamily, fontWeight: '700' }}
         >

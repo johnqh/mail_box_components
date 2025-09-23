@@ -11,26 +11,26 @@ describe('Spinner Component', () => {
   });
 
   it('renders with different sizes', () => {
-    const { rerender } = render(<Spinner size="sm" />);
+    const { rerender } = render(<Spinner size='sm' />);
     let spinner = document.querySelector('.animate-spin');
     expect(spinner).toBeInTheDocument();
 
-    rerender(<Spinner size="md" />);
+    rerender(<Spinner size='md' />);
     spinner = document.querySelector('.animate-spin');
     expect(spinner).toBeInTheDocument();
 
-    rerender(<Spinner size="lg" />);
+    rerender(<Spinner size='lg' />);
     spinner = document.querySelector('.animate-spin');
     expect(spinner).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
-    const { container } = render(<Spinner className="custom-spinner" />);
+    const { container } = render(<Spinner className='custom-spinner' />);
     expect(container.firstChild).toHaveClass('custom-spinner');
   });
 
   it('renders with custom color', () => {
-    const { container } = render(<Spinner color="blue" />);
+    const { container } = render(<Spinner color='blue' />);
     expect(container.firstChild).toBeInTheDocument();
   });
 });

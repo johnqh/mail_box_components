@@ -1,37 +1,50 @@
 /**
  * UI Components Export Index
- * 
+ *
  * Centralized exports for all UI components to provide a clean API
  * and enable better tree-shaking.
  */
 
 // Core Components
 export { Alert, AlertTitle, AlertDescription } from './alert';
-export { AnimatedSection, FadeInUp, FadeInScale, FloatingElement } from './animated-section';
+export {
+  AnimatedSection,
+  FadeInUp,
+  FadeInScale,
+  FloatingElement,
+} from './animated-section';
 export { Button, buttonVariants } from './button';
 export { Card, CardHeader, CardContent, CardFooter } from './card';
-export { ComparisonSection, createComparisonData, createEmailComparisonData } from './comparison-section';
+export {
+  ComparisonSection,
+  createComparisonData,
+  createEmailComparisonData,
+} from './comparison-section';
 export { ContentContainer } from './content-container';
 export { Dropdown } from './dropdown';
 export { FeatureCard } from './feature-card';
-export { FeatureGrid, createFeature, createSecurityFeatures } from './feature-grid';
+export {
+  FeatureGrid,
+  createFeature,
+  createSecurityFeatures,
+} from './feature-grid';
 export { GradientButton } from './gradient-button';
 export { HeroBannerWithBadge } from './hero-banner-with-badge';
 export { Input } from './input';
 export { Label } from './label';
 export { MetricsGrid } from './metrics-grid';
 export { ProcessSteps } from './process-steps';
-export { 
-  Select, 
-  SelectGroup, 
-  SelectValue, 
-  SelectTrigger, 
-  SelectContent, 
-  SelectLabel, 
-  SelectItem, 
-  SelectSeparator, 
-  SelectScrollUpButton, 
-  SelectScrollDownButton 
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
 } from './select';
 export { Spinner } from './spinner';
 export { Switch } from './switch';
@@ -51,8 +64,17 @@ export { LoadingState } from './loading-state';
 export { NoContent } from './no-content';
 
 // Form Components
-export { EmailInputGroup, EmailInputField, CollapsibleEmailField } from './email-input-group';
-export { FormFieldGroup, TextField, TextAreaField, SelectField } from './form-field-group';
+export {
+  EmailInputGroup,
+  EmailInputField,
+  CollapsibleEmailField,
+} from './email-input-group';
+export {
+  FormFieldGroup,
+  TextField,
+  TextAreaField,
+  SelectField,
+} from './form-field-group';
 
 // Status & Feedback Components
 export { StatusBadge, ChainBadge } from './status-badge';
@@ -63,14 +85,24 @@ export { SectionBadge } from './section-badge';
 export { PageTitle, SectionTitle, BodyText, TextLink } from './typography';
 
 // Navigation & Interactive Components
-export { SmartLink, SmartContent, useSmartLinks, smartLinkVariants } from './smart-link';
+export {
+  SmartLink,
+  SmartContent,
+  useSmartLinks,
+  smartLinkVariants,
+} from './smart-link';
 export { Modal, ModalHeader, ModalContent, ModalFooter } from './modal';
 export { ConfirmationDialog } from './confirmation-dialog';
 
 // Utility Components
 export { IconContainer } from './icon-container';
 export { FreeEmailBanner } from './free-email-banner';
-export { InfoPanel, StatCard, FormSection, FeatureBlock } from './design-system-components';
+export {
+  InfoPanel,
+  StatCard,
+  FormSection,
+  FeatureBlock,
+} from './design-system-components';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -82,7 +114,12 @@ export { default as InternalLinkClusters } from './internal-link-clusters';
 export type { ButtonProps } from './button';
 export type { StatusType, ChainType } from './status-badge';
 export type { InputProps } from './input';
-export type { ModalProps, ModalHeaderProps, ModalContentProps, ModalFooterProps } from './modal';
+export type {
+  ModalProps,
+  ModalHeaderProps,
+  ModalContentProps,
+  ModalFooterProps,
+} from './modal';
 export type { ConfirmationDialogProps } from './confirmation-dialog';
 export type { SmartLinkProps, SmartContentProps } from './smart-link';
 export type { Feature } from './feature-grid';

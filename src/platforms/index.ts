@@ -1,6 +1,6 @@
 /**
  * Platform Integrations for mail_box_components
- * 
+ *
  * This module provides platform-specific style generators and utilities
  * for component development.
  */
@@ -38,12 +38,12 @@ export function detectPlatform(): string {
   if (typeof window !== 'undefined') {
     return 'web';
   }
-  
+
   // React Native detection
   if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
     return 'react-native';
   }
-  
+
   // Default to web for SSR environments
   return 'web';
 }
@@ -52,10 +52,10 @@ export function detectPlatform(): string {
 export function getCurrentPlatformGenerator() {
   const platform = detectPlatform();
   const generator = platformRegistry.get(platform);
-  
+
   if (!generator) {
     throw new Error(`No style generator registered for platform: ${platform}`);
   }
-  
+
   return generator;
 }

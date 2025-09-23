@@ -4,7 +4,9 @@ interface OptimizedRoutePreloaderProps {
   children: React.ReactNode;
 }
 
-const OptimizedRoutePreloader: React.FC<OptimizedRoutePreloaderProps> = ({ children }) => {
+const OptimizedRoutePreloader: React.FC<OptimizedRoutePreloaderProps> = ({
+  children,
+}) => {
   return <>{children}</>;
 };
 

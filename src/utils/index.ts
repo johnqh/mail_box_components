@@ -6,12 +6,12 @@
 // Note: These utilities have been moved to ../seo/ for better organization
 
 // Re-export specific utilities from design system (avoiding type conflicts)
-export { 
-  GRADIENTS, 
-  GRADIENT_CLASSES, 
-  getGradient, 
+export {
+  GRADIENTS,
+  GRADIENT_CLASSES,
+  getGradient,
   combineGradient,
-  UI_CONSTANTS, 
+  UI_CONSTANTS,
   UI_PATTERNS,
   BASE_KEYWORDS,
   USER_FOCUSED_KEYWORDS,
@@ -29,7 +29,7 @@ export {
   getDeveloperPageKeywords,
   getWeb3ProjectsKeywords,
   getSubscriptionKeywords,
-  getContactKeywords
+  getContactKeywords,
 } from '@johnqh/design_system';
 
 // Performance utilities (some moved to ../optimization/ folder)

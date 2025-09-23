@@ -1,11 +1,11 @@
 import React from 'react';
-import { cn } from "../lib/utils";
-import { variants as v } from "@johnqh/design_system";
-import { 
+import { cn } from '../lib/utils';
+import { variants as v } from '@johnqh/design_system';
+import {
   CheckCircleIcon,
   ExclamationTriangleIcon,
   InformationCircleIcon,
-  XCircleIcon
+  XCircleIcon,
 } from '@heroicons/react/24/outline';
 
 interface AlertProps {
@@ -17,19 +17,24 @@ interface AlertProps {
   className?: string;
 }
 
-
 const defaultIcons = {
   info: InformationCircleIcon,
   success: CheckCircleIcon,
   warning: ExclamationTriangleIcon,
-  error: XCircleIcon
+  error: XCircleIcon,
 };
 
-export const AlertTitle: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+export const AlertTitle: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+}> = ({ children, className }) => (
   <div className={cn('font-medium mb-1', className)}>{children}</div>
 );
 
-export const AlertDescription: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+export const AlertDescription: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+}> = ({ children, className }) => (
   <div className={cn('text-sm', className)}>{children}</div>
 );
 
@@ -39,32 +44,21 @@ export const Alert: React.FC<AlertProps> = ({
   description,
   icon,
   children,
-  className
+  className,
 }) => {
   const DefaultIcon = defaultIcons[variant];
-  const IconComponent = icon || <DefaultIcon className="h-5 w-5" />;
-  
+  const IconComponent = icon || <DefaultIcon className='h-5 w-5' />;
+
   // ✨ SIMPLE: Get variant classes using the new system
-  const alertClass = typeof v.alert[variant] === 'function' ? v.alert[variant]() : '';
+  const alertClass =
+    typeof v.alert[variant] === 'function' ? v.alert[variant]() : '';
 
   return (
-    <div role="alert" className={cn(alertClass, className)}>
-      {IconComponent && (
-        <div className="flex-shrink-0">
-          {IconComponent}
-        </div>
-      )}
-      <div className="flex-1">
-        {title && (
-          <div className="font-medium mb-1">
-            {title}
-          </div>
-        )}
-        {description && (
-          <div className="text-sm">
-            {description}
-          </div>
-        )}
+    <div role='alert' className={cn(alertClass, className)}>
+      {IconComponent && <div className='flex-shrink-0'>{IconComponent}</div>}
+      <div className='flex-1'>
+        {title && <div className='font-medium mb-1'>{title}</div>}
+        {description && <div className='text-sm'>{description}</div>}
         {children}
       </div>
     </div>

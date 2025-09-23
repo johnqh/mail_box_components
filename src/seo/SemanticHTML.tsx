@@ -14,21 +14,33 @@ interface SemanticSectionProps {
 }
 
 // Main content section
-const Main: React.FC<SemanticSectionProps> = ({ children, className, ...props }) => (
-  <main className={className} {...props} role="main">
+const Main: React.FC<SemanticSectionProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <main className={className} {...props} role='main'>
     {children}
   </main>
 );
 
 // Article content
-const Article: React.FC<SemanticSectionProps> = ({ children, className, ...props }) => (
+const Article: React.FC<SemanticSectionProps> = ({
+  children,
+  className,
+  ...props
+}) => (
   <article className={className} {...props}>
     {children}
   </article>
 );
 
 // Section within content
-const Section: React.FC<SemanticSectionProps> = ({ children, className, ...props }) => (
+const Section: React.FC<SemanticSectionProps> = ({
+  children,
+  className,
+  ...props
+}) => (
   <section className={className} {...props}>
     {children}
   </section>
@@ -40,28 +52,40 @@ interface NavProps extends SemanticSectionProps {
 }
 
 const Nav: React.FC<NavProps> = ({ children, className, ...props }) => (
-  <nav className={className} {...props} role="navigation">
+  <nav className={className} {...props} role='navigation'>
     {children}
   </nav>
 );
 
 // Header component
-const Header: React.FC<SemanticSectionProps> = ({ children, className, ...props }) => (
-  <header className={className} {...props} role="banner">
+const Header: React.FC<SemanticSectionProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <header className={className} {...props} role='banner'>
     {children}
   </header>
 );
 
 // Footer component
-const Footer: React.FC<SemanticSectionProps> = ({ children, className, ...props }) => (
-  <footer className={className} {...props} role="contentinfo">
+const Footer: React.FC<SemanticSectionProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <footer className={className} {...props} role='contentinfo'>
     {children}
   </footer>
 );
 
 // Aside content (sidebars, related content)
-const Aside: React.FC<SemanticSectionProps> = ({ children, className, ...props }) => (
-  <aside className={className} {...props} role="complementary">
+const Aside: React.FC<SemanticSectionProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <aside className={className} {...props} role='complementary'>
     {children}
   </aside>
 );
@@ -74,7 +98,12 @@ interface FigureProps {
   id?: string;
 }
 
-const Figure: React.FC<FigureProps> = ({ children, caption, className, ...props }) => (
+const Figure: React.FC<FigureProps> = ({
+  children,
+  caption,
+  className,
+  ...props
+}) => (
   <figure className={className} {...props}>
     {children}
     {caption && <figcaption>{caption}</figcaption>}
@@ -120,13 +149,21 @@ interface ListProps {
   'aria-label'?: string;
 }
 
-const OrderedList: React.FC<ListProps> = ({ children, className, ...props }) => (
+const OrderedList: React.FC<ListProps> = ({
+  children,
+  className,
+  ...props
+}) => (
   <ol className={className} {...props}>
     {children}
   </ol>
 );
 
-const UnorderedList: React.FC<ListProps> = ({ children, className, ...props }) => (
+const UnorderedList: React.FC<ListProps> = ({
+  children,
+  className,
+  ...props
+}) => (
   <ul className={className} {...props}>
     {children}
   </ul>
@@ -138,20 +175,22 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   'aria-describedby'?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ 
-  children, 
-  className = '', 
+const Button: React.FC<ButtonProps> = ({
+  children,
+  className = '',
   variant = 'primary',
   disabled,
-  ...props 
+  ...props
 }) => {
-  const baseClasses = 'font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseClasses =
+    'font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2';
   const variantClasses = {
     primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-    secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
-    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500'
+    secondary:
+      'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
+    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   };
-  
+
   return (
     <button
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
@@ -169,19 +208,21 @@ interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   'aria-describedby'?: string;
 }
 
-const Link: React.FC<LinkProps> = ({ 
-  children, 
-  external, 
+const Link: React.FC<LinkProps> = ({
+  children,
+  external,
   className = '',
   href,
-  ...props 
+  ...props
 }) => {
-  const linkProps = external ? {
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    'aria-describedby': 'external-link-desc'
-  } : {};
-  
+  const linkProps = external
+    ? {
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        'aria-describedby': 'external-link-desc',
+      }
+    : {};
+
   return (
     <>
       <a
@@ -191,10 +232,10 @@ const Link: React.FC<LinkProps> = ({
         {...props}
       >
         {children}
-        {external && <span className="sr-only"> (opens in new tab)</span>}
+        {external && <span className='sr-only'> (opens in new tab)</span>}
       </a>
       {external && (
-        <span id="external-link-desc" className="sr-only">
+        <span id='external-link-desc' className='sr-only'>
           External links open in a new tab
         </span>
       )}
@@ -206,7 +247,7 @@ const Link: React.FC<LinkProps> = ({
 const SkipLink: React.FC<{ href: string }> = ({ href }) => (
   <a
     href={href}
-    className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50"
+    className='sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50'
   >
     Skip to main content
   </a>
@@ -219,20 +260,32 @@ interface LandmarkProps {
   'aria-label'?: string;
 }
 
-const SearchRegion: React.FC<LandmarkProps> = ({ children, className, ...props }) => (
-  <div role="search" className={className} {...props}>
+const SearchRegion: React.FC<LandmarkProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <div role='search' className={className} {...props}>
     {children}
   </div>
 );
 
-const BannerRegion: React.FC<LandmarkProps> = ({ children, className, ...props }) => (
-  <div role="banner" className={className} {...props}>
+const BannerRegion: React.FC<LandmarkProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <div role='banner' className={className} {...props}>
     {children}
   </div>
 );
 
-const ComplementaryRegion: React.FC<LandmarkProps> = ({ children, className, ...props }) => (
-  <div role="complementary" className={className} {...props}>
+const ComplementaryRegion: React.FC<LandmarkProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <div role='complementary' className={className} {...props}>
     {children}
   </div>
 );
@@ -255,21 +308,21 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   helpText?: string;
 }
 
-const Input: React.FC<InputProps> = ({ 
-  label, 
-  error, 
-  helpText, 
-  id, 
+const Input: React.FC<InputProps> = ({
+  label,
+  error,
+  helpText,
+  id,
   className = '',
-  ...props 
+  ...props
 }) => {
   const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
   const errorId = error ? `${inputId}-error` : undefined;
   const helpId = helpText ? `${inputId}-help` : undefined;
-  
+
   return (
-    <div className="mb-4">
-      <label htmlFor={inputId} className="block text-sm font-medium mb-2">
+    <div className='mb-4'>
+      <label htmlFor={inputId} className='block text-sm font-medium mb-2'>
         {label}
       </label>
       <input
@@ -277,17 +330,19 @@ const Input: React.FC<InputProps> = ({
         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
           error ? 'border-red-500' : 'border-gray-300'
         } ${className}`}
-        aria-describedby={[helpId, errorId].filter(Boolean).join(' ') || undefined}
+        aria-describedby={
+          [helpId, errorId].filter(Boolean).join(' ') || undefined
+        }
         aria-invalid={error ? 'true' : 'false'}
         {...props}
       />
       {helpText && (
-        <p id={helpId} className="mt-1 text-sm text-gray-600">
+        <p id={helpId} className='mt-1 text-sm text-gray-600'>
           {helpText}
         </p>
       )}
       {error && (
-        <p id={errorId} className="mt-1 text-sm text-red-600" role="alert">
+        <p id={errorId} className='mt-1 text-sm text-red-600' role='alert'>
           {error}
         </p>
       )}
@@ -296,9 +351,9 @@ const Input: React.FC<InputProps> = ({
 };
 
 // Screen reader only text
-const ScreenReaderOnly: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <span className="sr-only">{children}</span>
-);
+const ScreenReaderOnly: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => <span className='sr-only'>{children}</span>;
 
 // Loading indicator with proper semantics
 interface LoadingProps {
@@ -306,35 +361,66 @@ interface LoadingProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const Loading: React.FC<LoadingProps> = ({ 
-  message = 'Loading...', 
-  size = 'md' 
+const Loading: React.FC<LoadingProps> = ({
+  message = 'Loading...',
+  size = 'md',
 }) => {
   const sizeClasses = {
     sm: 'w-4 h-4',
-    md: 'w-8 h-8', 
-    lg: 'w-12 h-12'
+    md: 'w-8 h-8',
+    lg: 'w-12 h-12',
   };
-  
+
   return (
-    <div role="status" aria-live="polite" className="flex items-center justify-center space-x-2">
-      <div 
+    <div
+      role='status'
+      aria-live='polite'
+      className='flex items-center justify-center space-x-2'
+    >
+      <div
         className={`animate-spin rounded-full border-2 border-gray-300 border-t-blue-600 ${sizeClasses[size]}`}
-        aria-hidden="true"
+        aria-hidden='true'
       />
-      <span className="sr-only">{message}</span>
+      <span className='sr-only'>{message}</span>
     </div>
   );
 };
 
-
-export { 
-  Main, Article, Section, Nav, Header, Footer, Aside, Figure,
-  H1, H2, H3, H4, OrderedList, UnorderedList, Button, Link, SkipLink,
-  SearchRegion, BannerRegion, ComplementaryRegion, Form, Input,
-  ScreenReaderOnly, Loading,
-  type SemanticSectionProps, type NavProps, type FigureProps,
-  type HeadingProps, type ListProps, type ButtonProps, type LinkProps,
-  type LandmarkProps, type FormProps, type InputProps, type LoadingProps
+export {
+  Main,
+  Article,
+  Section,
+  Nav,
+  Header,
+  Footer,
+  Aside,
+  Figure,
+  H1,
+  H2,
+  H3,
+  H4,
+  OrderedList,
+  UnorderedList,
+  Button,
+  Link,
+  SkipLink,
+  SearchRegion,
+  BannerRegion,
+  ComplementaryRegion,
+  Form,
+  Input,
+  ScreenReaderOnly,
+  Loading,
+  type SemanticSectionProps,
+  type NavProps,
+  type FigureProps,
+  type HeadingProps,
+  type ListProps,
+  type ButtonProps,
+  type LinkProps,
+  type LandmarkProps,
+  type FormProps,
+  type InputProps,
+  type LoadingProps,
 };
 export default Main;

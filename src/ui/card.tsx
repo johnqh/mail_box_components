@@ -2,7 +2,6 @@ import React from 'react';
 import { cn } from '../lib/utils';
 import { textVariants } from '@johnqh/design_system';
 
-
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'bordered' | 'elevated';
   padding?: 'none' | 'sm' | 'md' | 'lg';
@@ -10,15 +9,16 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const variantStyles = {
   default: 'bg-white dark:bg-gray-800',
-  bordered: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
-  elevated: 'bg-white dark:bg-gray-800 shadow-md'
+  bordered:
+    'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
+  elevated: 'bg-white dark:bg-gray-800 shadow-md',
 };
 
 const paddingStyles = {
   none: '',
   sm: 'p-3',
   md: 'p-6',
-  lg: 'p-8'
+  lg: 'p-8',
 };
 
 export const Card: React.FC<CardProps> = ({
@@ -57,16 +57,8 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 }) => {
   return (
     <div className={cn('space-y-1.5', className)} {...props}>
-      {title && (
-        <h3 className={textVariants.heading.h4()}>
-          {title}
-        </h3>
-      )}
-      {description && (
-        <p className={textVariants.body.sm()}>
-          {description}
-        </p>
-      )}
+      {title && <h3 className={textVariants.heading.h4()}>{title}</h3>}
+      {description && <p className={textVariants.body.sm()}>{description}</p>}
       {children}
     </div>
   );

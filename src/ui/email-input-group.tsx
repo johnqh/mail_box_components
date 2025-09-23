@@ -19,31 +19,35 @@ export const EmailInputField: React.FC<EmailInputFieldProps> = ({
   placeholder,
   required = false,
   error,
-  className = ''
+  className = '',
 }) => {
   return (
     <div className={className}>
-      <Label htmlFor={label.toLowerCase()} className="text-sm font-medium text-gray-700 dark:text-gray-300">
-        {label} {required && <span className="text-red-500">*</span>}
+      <Label
+        htmlFor={label.toLowerCase()}
+        className='text-sm font-medium text-gray-700 dark:text-gray-300'
+      >
+        {label} {required && <span className='text-red-500'>*</span>}
       </Label>
       <input
         id={label.toLowerCase()}
-        type="email"
+        type='email'
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
         className={`
           mt-1 block w-full px-3 py-2 border rounded-md shadow-sm 
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
           dark:bg-gray-800 dark:border-gray-600 dark:text-white
-          ${error 
-            ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-            : 'border-gray-300 dark:border-gray-600'
+          ${
+            error
+              ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+              : 'border-gray-300 dark:border-gray-600'
           }
         `}
       />
       {error && (
-        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>
+        <p className='mt-1 text-sm text-red-600 dark:text-red-400'>{error}</p>
       )}
     </div>
   );
@@ -64,25 +68,23 @@ export const CollapsibleEmailField: React.FC<CollapsibleEmailFieldProps> = ({
   ...fieldProps
 }) => {
   const toggleLabel = isVisible ? hideLabel : showLabel;
-  
+
   return (
     <div>
       <button
-        type="button"
+        type='button'
         onClick={onToggle}
-        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-2"
+        className='flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-2'
       >
         {isVisible ? (
-          <ChevronUpIcon className="h-4 w-4 mr-1" />
+          <ChevronUpIcon className='h-4 w-4 mr-1' />
         ) : (
-          <ChevronDownIcon className="h-4 w-4 mr-1" />
+          <ChevronDownIcon className='h-4 w-4 mr-1' />
         )}
         {toggleLabel}
       </button>
-      
-      {isVisible && (
-        <EmailInputField {...fieldProps} />
-      )}
+
+      {isVisible && <EmailInputField {...fieldProps} />}
     </div>
   );
 };
@@ -134,7 +136,7 @@ export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
   errors = {},
   className = '',
   labels = {},
-  placeholders = {}
+  placeholders = {},
 }) => {
   const defaultLabels = {
     to: 'To',
@@ -143,13 +145,13 @@ export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
     addCc: 'Add CC',
     removeCc: 'Remove CC',
     addBcc: 'Add BCC',
-    removeBcc: 'Remove BCC'
+    removeBcc: 'Remove BCC',
   };
 
   const defaultPlaceholders = {
     to: 'recipient@example.com',
     cc: 'cc@example.com',
-    bcc: 'bcc@example.com'
+    bcc: 'bcc@example.com',
   };
 
   const finalLabels = { ...defaultLabels, ...labels };

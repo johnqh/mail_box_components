@@ -60,21 +60,27 @@ let navigationService: UINavigationService;
 /**
  * Get platform-appropriate navigation service
  */
-function createUINavigationService(_config?: Partial<UINavigationConfig>): UINavigationService {
+function createUINavigationService(
+  _config?: Partial<UINavigationConfig>
+): UINavigationService {
   // Platform detection - web vs React Native
   if (typeof window !== 'undefined') {
     // Web environment - dynamic import for web navigation
     throw new Error('Web navigation service not implemented in shared library');
   } else {
-    // React Native environment - dynamic import for RN navigation  
-    throw new Error('React Native navigation service not implemented in shared library');
+    // React Native environment - dynamic import for RN navigation
+    throw new Error(
+      'React Native navigation service not implemented in shared library'
+    );
   }
 }
 
 /**
  * Get the default navigation service instance (singleton pattern)
  */
-export function getUINavigationService(config?: Partial<UINavigationConfig>): UINavigationService {
+export function getUINavigationService(
+  config?: Partial<UINavigationConfig>
+): UINavigationService {
   if (!navigationService) {
     navigationService = createUINavigationService(config);
   }
@@ -103,7 +109,7 @@ export function useNavigation(): UINavigationHook {
     searchParams: currentState.searchParams,
     params: currentState.params,
     canGoBack: service.canGoBack(),
-    isSupported: service.isSupported()
+    isSupported: service.isSupported(),
   };
 }
 
@@ -116,9 +122,10 @@ export function useLocation(): UILocationHook {
   const currentState = service.getCurrentState();
 
   // Build search string from searchParams
-  const searchString = Object.keys(currentState.searchParams).length > 0 
-    ? '?' + new URLSearchParams(currentState.searchParams).toString()
-    : '';
+  const searchString =
+    Object.keys(currentState.searchParams).length > 0
+      ? '?' + new URLSearchParams(currentState.searchParams).toString()
+      : '';
 
   return {
     pathname: currentState.currentPath,
@@ -126,7 +133,7 @@ export function useLocation(): UILocationHook {
     searchParams: currentState.searchParams,
     hash: '', // Not commonly used in mobile apps
     state: {} as Record<string, any>, // Would need to be tracked separately
-    key: currentState.currentPath // Simplified key generation
+    key: currentState.currentPath, // Simplified key generation
   };
 }
 
@@ -134,20 +141,27 @@ export function useLocation(): UILocationHook {
  * Platform-agnostic search params hook
  * Drop-in replacement for React Router's useSearchParams
  */
-export function useSearchParams(): [URLSearchParams, (params: URLSearchParams | Record<string, string>) => void] {
+export function useSearchParams(): [
+  URLSearchParams,
+  (params: URLSearchParams | Record<string, string>) => void,
+] {
   const service = getUINavigationService();
   const currentState = service.getCurrentState();
-  
+
   const searchParams = new URLSearchParams(currentState.searchParams);
-  
-  const setSearchParams = (params: URLSearchParams | Record<string, string>) => {
-    const newSearchParams = params instanceof URLSearchParams 
-      ? Object.fromEntries(params.entries())
-      : params;
-    
+
+  const setSearchParams = (
+    params: URLSearchParams | Record<string, string>
+  ) => {
+    const newSearchParams =
+      params instanceof URLSearchParams
+        ? Object.fromEntries(params.entries())
+        : params;
+
     const newSearch = new URLSearchParams(newSearchParams).toString();
-    const newPath = currentState.currentPath + (newSearch ? `?${newSearch}` : '');
-    
+    const newPath =
+      currentState.currentPath + (newSearch ? `?${newSearch}` : '');
+
     service.replace(newPath);
   };
 
@@ -261,7 +275,7 @@ export const navigationHelper = {
   canGoBack: () => {
     const service = getUINavigationService();
     return service.canGoBack();
-  }
+  },
 };
 
 // Export locally defined navigation types
@@ -271,5 +285,5 @@ export type {
   UILocationHook,
   UINavigationConfig,
   UINavigationOptions,
-  UINavigationState
+  UINavigationState,
 };

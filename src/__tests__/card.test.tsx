@@ -10,39 +10,37 @@ describe('Card Components', () => {
           <div>Card content</div>
         </Card>
       );
-      
+
       expect(screen.getByText('Card content')).toBeInTheDocument();
     });
 
     it('renders with different variants', () => {
-      const { rerender } = render(<Card variant="default">Default</Card>);
+      const { rerender } = render(<Card variant='default'>Default</Card>);
       expect(screen.getByText('Default')).toBeInTheDocument();
 
-      rerender(<Card variant="bordered">Bordered</Card>);
+      rerender(<Card variant='bordered'>Bordered</Card>);
       expect(screen.getByText('Bordered')).toBeInTheDocument();
 
-      rerender(<Card variant="elevated">Elevated</Card>);
+      rerender(<Card variant='elevated'>Elevated</Card>);
       expect(screen.getByText('Elevated')).toBeInTheDocument();
     });
 
     it('renders with different padding', () => {
-      const { rerender } = render(<Card padding="sm">Small padding</Card>);
+      const { rerender } = render(<Card padding='sm'>Small padding</Card>);
       expect(screen.getByText('Small padding')).toBeInTheDocument();
 
-      rerender(<Card padding="md">Medium padding</Card>);
+      rerender(<Card padding='md'>Medium padding</Card>);
       expect(screen.getByText('Medium padding')).toBeInTheDocument();
 
-      rerender(<Card padding="lg">Large padding</Card>);
+      rerender(<Card padding='lg'>Large padding</Card>);
       expect(screen.getByText('Large padding')).toBeInTheDocument();
     });
   });
 
   describe('CardHeader', () => {
     it('renders with title and description', () => {
-      render(
-        <CardHeader title="Card Title" description="Card description" />
-      );
-      
+      render(<CardHeader title='Card Title' description='Card description' />);
+
       expect(screen.getByText('Card Title')).toBeInTheDocument();
       expect(screen.getByText('Card description')).toBeInTheDocument();
     });
@@ -53,7 +51,7 @@ describe('Card Components', () => {
           <div>Custom header content</div>
         </CardHeader>
       );
-      
+
       expect(screen.getByText('Custom header content')).toBeInTheDocument();
     });
   });
@@ -65,7 +63,7 @@ describe('Card Components', () => {
           <div>Card body content</div>
         </CardContent>
       );
-      
+
       expect(screen.getByText('Card body content')).toBeInTheDocument();
     });
   });
@@ -77,7 +75,7 @@ describe('Card Components', () => {
           <div>Footer content</div>
         </CardFooter>
       );
-      
+
       expect(screen.getByText('Footer content')).toBeInTheDocument();
     });
   });

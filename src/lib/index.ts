@@ -7,22 +7,22 @@ export { cn } from './utils';
 
 // === DESIGN SYSTEM UTILITIES ===
 // Import all utilities from design system
-export { 
-  withOpacity, 
-  responsive, 
+export {
+  withOpacity,
+  responsive,
   themeColor,
   getSizeClasses,
   buttonVariant,
   inputVariant,
   cardVariant,
-  textVariant
+  textVariant,
 } from '@johnqh/design_system';
 
-export type { 
-  ThemeMode, 
+export type {
+  ThemeMode,
   ResponsiveBreakpoint,
-  ComponentSize, 
-  ComponentVariant 
+  ComponentSize,
+  ComponentVariant,
 } from '@johnqh/design_system';
 
 // === LEGACY WILDCARD EXPORTS ===

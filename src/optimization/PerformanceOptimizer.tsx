@@ -4,16 +4,27 @@ interface PerformanceOptimizerProps {
   children: React.ReactNode;
 }
 
-const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children }) => {
+const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
+  children,
+}) => {
   useEffect(() => {
     // Critical performance optimizations for Core Web Vitals
 
     // 1. Preload critical resources
     const preloadCriticalResources = () => {
       const criticalResources = [
-        { href: '/fonts/inter-var.woff2', as: 'font', type: 'font/woff2', crossorigin: true },
-        { href: '/images/hero-background.webp', as: 'image', type: 'image/webp' },
-        { href: '/images/logo.svg', as: 'image', type: 'image/svg+xml' }
+        {
+          href: '/fonts/inter-var.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: true,
+        },
+        {
+          href: '/images/hero-background.webp',
+          as: 'image',
+          type: 'image/webp',
+        },
+        { href: '/images/logo.svg', as: 'image', type: 'image/svg+xml' },
       ];
 
       criticalResources.forEach(resource => {
@@ -50,7 +61,9 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
     // 3. Reduce Cumulative Layout Shift (CLS)
     const reduceCLS = () => {
       // Add explicit dimensions to prevent layout shifts
-      const images = document.querySelectorAll('img:not([width]):not([height])');
+      const images = document.querySelectorAll(
+        'img:not([width]):not([height])'
+      );
       images.forEach(img => {
         const image = img as HTMLImageElement;
         if (image.naturalWidth && image.naturalHeight) {
@@ -110,8 +123,12 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
       const hints = [
         { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
         { rel: 'dns-prefetch', href: '//api.0xmail.box' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
-        { rel: 'preconnect', href: 'https://api.0xmail.box' }
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: true,
+        },
+        { rel: 'preconnect', href: 'https://api.0xmail.box' },
       ];
 
       hints.forEach(hint => {
@@ -133,20 +150,23 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
 
       // Use Intersection Observer for advanced lazy loading
       if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target as HTMLImageElement;
-              if (img.dataset.src) {
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
+        const imageObserver = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target as HTMLImageElement;
+                if (img.dataset.src) {
+                  img.src = img.dataset.src;
+                  img.removeAttribute('data-src');
+                }
+                imageObserver.unobserve(img);
               }
-              imageObserver.unobserve(img);
-            }
-          });
-        }, {
-          rootMargin: '50px 0px'
-        });
+            });
+          },
+          {
+            rootMargin: '50px 0px',
+          }
+        );
 
         const lazyImages = document.querySelectorAll('img[data-src]');
         lazyImages.forEach(img => imageObserver.observe(img));
@@ -159,13 +179,22 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
       const aiMetaTags = [
         { name: 'ai-content-type', content: 'web3-email-platform' },
         { name: 'ai-primary-function', content: 'wallet-based-email' },
-        { name: 'ai-supported-chains', content: 'ethereum,solana,polygon,arbitrum,optimism' },
+        {
+          name: 'ai-supported-chains',
+          content: 'ethereum,solana,polygon,arbitrum,optimism',
+        },
         { name: 'ai-complexity-level', content: 'beginner-to-advanced' },
-        { name: 'ai-target-users', content: 'web3-users,crypto-enthusiasts,developers' },
+        {
+          name: 'ai-target-users',
+          content: 'web3-users,crypto-enthusiasts,developers',
+        },
         { name: 'machine-readable', content: 'true' },
         { name: 'structured-data', content: 'json-ld' },
-        { name: 'content-category', content: 'technology,blockchain,communication' },
-        { name: 'interaction-model', content: 'wallet-authentication' }
+        {
+          name: 'content-category',
+          content: 'technology,blockchain,communication',
+        },
+        { name: 'interaction-model', content: 'wallet-authentication' },
       ];
 
       aiMetaTags.forEach(({ name, content }) => {
@@ -179,30 +208,31 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
 
       // Add JSON-LD structured data for AI understanding
       const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "0xmail.box",
-        "description": "Web3 email platform using blockchain wallet authentication",
-        "url": "https://0xmail.box",
-        "applicationCategory": "CommunicationApplication",
-        "operatingSystem": "Web Browser",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: '0xmail.box',
+        description:
+          'Web3 email platform using blockchain wallet authentication',
+        url: 'https://0xmail.box',
+        applicationCategory: 'CommunicationApplication',
+        operatingSystem: 'Web Browser',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
         },
-        "featureList": [
-          "Wallet-based authentication",
-          "ENS domain email support",
-          "SNS domain email support",
-          "Multi-chain compatibility",
-          "Smart contract integration",
-          "Web2/Web3 bridge"
+        featureList: [
+          'Wallet-based authentication',
+          'ENS domain email support',
+          'SNS domain email support',
+          'Multi-chain compatibility',
+          'Smart contract integration',
+          'Web2/Web3 bridge',
         ],
-        "audience": {
-          "@type": "Audience",
-          "audienceType": "Web3 Users"
-        }
+        audience: {
+          '@type': 'Audience',
+          audienceType: 'Web3 Users',
+        },
       };
 
       const script = document.createElement('script');
@@ -214,7 +244,9 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
     // 9. Critical CSS inlining (already done in index.html, but ensure it's optimized)
     const optimizeCriticalCSS = () => {
       // Mark non-critical CSS for later loading
-      const nonCriticalCSS = document.querySelectorAll('link[rel="stylesheet"][data-non-critical]');
+      const nonCriticalCSS = document.querySelectorAll(
+        'link[rel="stylesheet"][data-non-critical]'
+      );
       nonCriticalCSS.forEach(link => {
         const newLink = link.cloneNode(true) as HTMLLinkElement;
         newLink.rel = 'preload';

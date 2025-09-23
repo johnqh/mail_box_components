@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { GRADIENTS, GRADIENT_CLASSES, getGradient, combineGradient } from '../utils/index';
+import {
+  GRADIENTS,
+  GRADIENT_CLASSES,
+  getGradient,
+  combineGradient,
+} from '../utils/index';
 
 describe('Gradients Utils', () => {
   describe('GRADIENTS constant', () => {
@@ -16,9 +21,9 @@ describe('Gradients Utils', () => {
     });
 
     it('should have proper gradient structure', () => {
-      Object.values(GRADIENTS).forEach((gradientCategory) => {
+      Object.values(GRADIENTS).forEach(gradientCategory => {
         expect(typeof gradientCategory).toBe('object');
-        Object.values(gradientCategory).forEach((gradientClass) => {
+        Object.values(gradientCategory).forEach(gradientClass => {
           expect(typeof gradientClass).toBe('string');
           expect(gradientClass.length).toBeGreaterThan(0);
           // Should contain gradient-related CSS classes
@@ -35,7 +40,7 @@ describe('Gradients Utils', () => {
     });
 
     it('should map to valid CSS classes', () => {
-      Object.values(GRADIENT_CLASSES).forEach((className) => {
+      Object.values(GRADIENT_CLASSES).forEach(className => {
         expect(typeof className).toBe('string');
         expect(className.length).toBeGreaterThan(0);
         // Should contain gradient-related CSS classes
@@ -79,25 +84,25 @@ describe('Gradients Utils', () => {
     it('should combine gradient with additional classes', () => {
       const gradient = 'bg-gradient-to-r from-blue-500 to-purple-500';
       const additional = 'hover:scale-105 transition-transform';
-      
+
       const result = combineGradient(gradient, additional);
-      
+
       expect(result).toBe(`${gradient} ${additional}`);
     });
 
     it('should handle empty additional classes', () => {
       const gradient = 'bg-gradient-to-r from-blue-500 to-purple-500';
       const result = combineGradient(gradient);
-      
+
       expect(result).toBe(gradient);
     });
 
     it('should trim outer whitespace', () => {
       const gradient = 'bg-gradient-to-r from-blue-500 to-purple-500';
       const additional = '  hover:scale-105  ';
-      
+
       const result = combineGradient(gradient, additional);
-      
+
       // The function only trims outer whitespace, not internal spaces
       expect(result).toBe(`${gradient} ${additional}`.trim());
     });
@@ -106,7 +111,7 @@ describe('Gradients Utils', () => {
   describe('Integration tests', () => {
     it('should work with Tailwind CSS classes', () => {
       // Test that gradient classes contain expected Tailwind patterns
-      Object.values(GRADIENT_CLASSES).forEach((className) => {
+      Object.values(GRADIENT_CLASSES).forEach(className => {
         expect(className).toMatch(/bg-gradient/);
         expect(typeof className).toBe('string');
         expect(className.length).toBeGreaterThan(0);
@@ -116,7 +121,7 @@ describe('Gradients Utils', () => {
     it('should provide consistent theming', () => {
       // All gradient categories should be properly structured
       const categories = Object.keys(GRADIENTS);
-      categories.forEach((category) => {
+      categories.forEach(category => {
         expect(category).toMatch(/^[a-z]+$/); // lowercase names
         expect(GRADIENTS[category as keyof typeof GRADIENTS]).toBeDefined();
       });
@@ -126,7 +131,7 @@ describe('Gradients Utils', () => {
       // Test integration between constants and functions
       const buttonGradient = getGradient('buttons', 'primary');
       const combined = combineGradient(buttonGradient, 'rounded-lg');
-      
+
       expect(combined).toContain(GRADIENTS.buttons.primary);
       expect(combined).toContain('rounded-lg');
     });

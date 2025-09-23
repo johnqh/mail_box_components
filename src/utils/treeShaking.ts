@@ -6,26 +6,31 @@
 // Dead code elimination utilities
 export const deadCodeElimination = {
   // Mark functions as pure for better tree-shaking
-  /*#__PURE__*/ createPureFunction: <T extends (...args: unknown[]) => any>(fn: T): T => fn,
-  
+  /*#__PURE__*/ createPureFunction: <T extends (...args: unknown[]) => any>(
+    fn: T
+  ): T => fn,
+
   // Environment-based code elimination
   isDevelopment: process.env.NODE_ENV === 'development',
   isProduction: process.env.NODE_ENV === 'production',
   isTest: process.env.NODE_ENV === 'test',
-  
+
   // Generic feature flags for conditional imports
   createFeatureFlags: (customFlags: Record<string, boolean | string> = {}) => ({
     enableAnalytics: process.env.VITE_ENABLE_ANALYTICS === 'true',
     enableDebugTools: process.env.NODE_ENV === 'development',
-    enablePerformanceMonitoring: process.env.VITE_ENABLE_PERF_MONITORING !== 'false',
-    ...customFlags
-  })
+    enablePerformanceMonitoring:
+      process.env.VITE_ENABLE_PERF_MONITORING !== 'false',
+    ...customFlags,
+  }),
 };
 
 // Generic conditional imports utility
-export const createConditionalImports = (imports: Record<string, () => Promise<any>>) => {
+export const createConditionalImports = (
+  imports: Record<string, () => Promise<any>>
+) => {
   const conditionalImports: Record<string, () => Promise<any>> = {};
-  
+
   Object.entries(imports).forEach(([key, importFn]) => {
     conditionalImports[key] = () => {
       try {
@@ -36,7 +41,7 @@ export const createConditionalImports = (imports: Record<string, () => Promise<a
       }
     };
   });
-  
+
   return conditionalImports;
 };
 
@@ -52,7 +57,7 @@ export const utils = {
       }) as T;
     };
   },
-  
+
   // Lightweight memoization (instead of heavy libraries)
   memoize: <T extends (...args: unknown[]) => any>(fn: T): T => {
     const cache = new Map();
@@ -66,23 +71,23 @@ export const utils = {
       return result;
     }) as T;
   },
-  
+
   // Lightweight deep equality check
   isDeepEqual: (a: any, b: any): boolean => {
     if (a === b) return true;
     if (a == null || b == null) return false;
     if (typeof a !== 'object' || typeof b !== 'object') return false;
-    
+
     const keysA = Object.keys(a);
     const keysB = Object.keys(b);
-    
+
     if (keysA.length !== keysB.length) return false;
-    
+
     for (const key of keysA) {
       if (!keysB.includes(key)) return false;
       if (!utils.isDeepEqual(a[key], b[key])) return false;
     }
-    
+
     return true;
   },
 
@@ -98,21 +103,28 @@ export const utils = {
         }
       }) as T;
     };
-  }
+  },
 };
 
 // Generic selective re-exports factory
-export const createSelectiveExports = (modules: Record<string, Record<string, string>>) => {
-  const selectiveExports: Record<string, Record<string, () => Promise<any>>> = {};
-  
+export const createSelectiveExports = (
+  modules: Record<string, Record<string, string>>
+) => {
+  const selectiveExports: Record<
+    string,
+    Record<string, () => Promise<any>>
+  > = {};
+
   Object.entries(modules).forEach(([moduleName, exports]) => {
     selectiveExports[moduleName] = {};
     Object.entries(exports).forEach(([exportName, importPath]) => {
-      selectiveExports[moduleName][exportName] = () => 
-        import(/* @vite-ignore */ importPath).then(m => ({ [exportName]: m[exportName] }));
+      selectiveExports[moduleName][exportName] = () =>
+        import(/* @vite-ignore */ importPath).then(m => ({
+          [exportName]: m[exportName],
+        }));
     });
   });
-  
+
   return selectiveExports;
 };
 
@@ -120,27 +132,31 @@ export const createSelectiveExports = (modules: Record<string, Record<string, st
 export const bundleAnalysis = {
   // Calculate approximate module size
   getModuleSize: (moduleName: string): Promise<number> => {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       if (typeof window !== 'undefined' && 'performance' in window) {
-        const entries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
-        const moduleEntry = entries.find(entry => entry.name.includes(moduleName));
+        const entries = performance.getEntriesByType(
+          'resource'
+        ) as PerformanceResourceTiming[];
+        const moduleEntry = entries.find(entry =>
+          entry.name.includes(moduleName)
+        );
         resolve(moduleEntry?.transferSize || 0);
       } else {
         resolve(0);
       }
     });
   },
-  
+
   // Track which modules are actually used
   usageTracker: new Set<string>(),
-  
+
   trackUsage: (moduleName: string) => {
     if (deadCodeElimination.isDevelopment) {
       bundleAnalysis.usageTracker.add(moduleName);
       // Module usage tracking (development only)
     }
   },
-  
+
   getUsageReport: () => {
     if (deadCodeElimination.isDevelopment) {
       return Array.from(bundleAnalysis.usageTracker).sort();
@@ -149,23 +165,25 @@ export const bundleAnalysis = {
   },
 
   // Estimate bundle impact
-  estimateImpact: (moduleNames: string[]): Promise<{ total: number; modules: Record<string, number> }> => {
-    const promises = moduleNames.map(name => 
+  estimateImpact: (
+    moduleNames: string[]
+  ): Promise<{ total: number; modules: Record<string, number> }> => {
+    const promises = moduleNames.map(name =>
       bundleAnalysis.getModuleSize(name).then(size => [name, size] as const)
     );
-    
+
     return Promise.all(promises).then(results => {
       const modules: Record<string, number> = {};
       let total = 0;
-      
+
       results.forEach(([name, size]) => {
         modules[name] = size;
         total += size;
       });
-      
+
       return { total, modules };
     });
-  }
+  },
 };
 
 // Optimize CSS imports
@@ -178,7 +196,7 @@ export const cssOptimization = {
       document.head.appendChild(style);
     }
   },
-  
+
   // Load non-critical CSS asynchronously
   loadAsyncCSS: (href: string) => {
     if (typeof document !== 'undefined') {
@@ -196,9 +214,9 @@ export const cssOptimization = {
   // Remove unused CSS (basic implementation)
   removeUnusedCSS: (selectors: string[]) => {
     if (typeof document === 'undefined') return;
-    
+
     const usedSelectors = new Set<string>();
-    
+
     // Find selectors that match elements in DOM
     selectors.forEach(selector => {
       try {
@@ -209,36 +227,38 @@ export const cssOptimization = {
         // Invalid selector, skip
       }
     });
-    
+
     return {
       used: Array.from(usedSelectors),
-      unused: selectors.filter(s => !usedSelectors.has(s))
+      unused: selectors.filter(s => !usedSelectors.has(s)),
     };
-  }
+  },
 };
 
 // Generic tree-shaking initialization
-export const createTreeShakingConfig = (options: {
-  features?: Record<string, boolean | string>;
-  criticalCSS?: string;
-  enableUsageTracking?: boolean;
-} = {}) => {
+export const createTreeShakingConfig = (
+  options: {
+    features?: Record<string, boolean | string>;
+    criticalCSS?: string;
+    enableUsageTracking?: boolean;
+  } = {}
+) => {
   const {
     features = {},
     criticalCSS = '',
-    enableUsageTracking = deadCodeElimination.isDevelopment
+    enableUsageTracking = deadCodeElimination.isDevelopment,
   } = options;
 
   return {
     features: deadCodeElimination.createFeatureFlags(features),
-    
+
     initialize: () => {
       // Track module usage in development
       if (enableUsageTracking) {
         // Tree-shaking optimizations initialized (development only)
         // Feature flags tracked (development only)
       }
-      
+
       // Preload critical CSS
       if (criticalCSS && typeof document !== 'undefined') {
         cssOptimization.inlineCriticalCSS(criticalCSS);
@@ -251,8 +271,8 @@ export const createTreeShakingConfig = (options: {
 
     getReport: () => ({
       usage: bundleAnalysis.getUsageReport(),
-      features: deadCodeElimination.createFeatureFlags(features)
-    })
+      features: deadCodeElimination.createFeatureFlags(features),
+    }),
   };
 };
 
@@ -263,5 +283,5 @@ export default {
   createSelectiveExports,
   bundleAnalysis,
   cssOptimization,
-  createTreeShakingConfig
+  createTreeShakingConfig,
 };

@@ -25,7 +25,13 @@ const CollapsibleSubsections: React.FC<{
   selectedSubsection?: string | null;
   parentSectionId: string;
   onSubsectionSelect?: (subsectionId: string, parentSectionId: string) => void;
-}> = ({ subsections, isExpanded, selectedSubsection, parentSectionId, onSubsectionSelect }) => {
+}> = ({
+  subsections,
+  isExpanded,
+  selectedSubsection,
+  parentSectionId,
+  onSubsectionSelect,
+}) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
 
@@ -39,11 +45,11 @@ const CollapsibleSubsections: React.FC<{
 
   return (
     <div
-      className="overflow-hidden transition-all duration-300 ease-in-out"
+      className='overflow-hidden transition-all duration-300 ease-in-out'
       style={{ height: height !== undefined ? `${height}px` : 'auto' }}
     >
-      <div ref={contentRef} className="ml-6 mt-2 space-y-1">
-        {subsections.map((subsection) => (
+      <div ref={contentRef} className='ml-6 mt-2 space-y-1'>
+        {subsections.map(subsection => (
           <button
             key={subsection.id}
             onClick={() => onSubsectionSelect?.(subsection.id, parentSectionId)}
@@ -63,14 +69,14 @@ const CollapsibleSubsections: React.FC<{
 
 /**
  * CollapsibleDocumentationTopic - A collapsible documentation section component
- * 
+ *
  * Features:
  * - Smooth collapsible animations with height transitions
  * - Support for nested subsections
  * - Selection states for both sections and subsections
  * - Responsive design with hover effects
  * - Dark mode support
- * 
+ *
  * @param id - Unique identifier for the section
  * @param title - Display title for the section
  * @param content - React content to display (not used in current implementation)
@@ -81,7 +87,9 @@ const CollapsibleSubsections: React.FC<{
  * @param onSubsectionSelect - Callback when subsection is selected
  * @param className - Additional CSS classes
  */
-const CollapsibleDocumentationTopic: React.FC<CollapsibleDocumentationTopicProps> = ({
+const CollapsibleDocumentationTopic: React.FC<
+  CollapsibleDocumentationTopicProps
+> = ({
   id,
   title,
   content: _content,
@@ -90,7 +98,7 @@ const CollapsibleDocumentationTopic: React.FC<CollapsibleDocumentationTopicProps
   selectedSubsection = null,
   onSectionSelect,
   onSubsectionSelect,
-  className = ''
+  className = '',
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -106,7 +114,7 @@ const CollapsibleDocumentationTopic: React.FC<CollapsibleDocumentationTopicProps
 
   return (
     <div className={className}>
-      <div className="flex items-center">
+      <div className='flex items-center'>
         <button
           onClick={handleSectionClick}
           className={`flex-1 text-left px-3 py-4 text-base font-medium transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800 ${
@@ -120,18 +128,18 @@ const CollapsibleDocumentationTopic: React.FC<CollapsibleDocumentationTopicProps
         {hasSubsections && (
           <button
             onClick={handleToggle}
-            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200"
+            className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
             aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
           >
-            <ChevronRightIcon 
+            <ChevronRightIcon
               className={`h-5 w-5 text-gray-500 transition-transform duration-300 ease-in-out ${
                 isExpanded ? 'rotate-90' : 'rotate-0'
-              }`} 
+              }`}
             />
           </button>
         )}
       </div>
-      
+
       {hasSubsections && (
         <CollapsibleSubsections
           subsections={subsections}

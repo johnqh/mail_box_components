@@ -78,9 +78,12 @@ export class RoutePreloadingService {
    */
   preloadOnIdle(): void {
     if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(() => {
-        this.preloadRoutesByStrategy('idle');
-      }, { timeout: 5000 });
+      window.requestIdleCallback(
+        () => {
+          this.preloadRoutesByStrategy('idle');
+        },
+        { timeout: 5000 }
+      );
     } else {
       setTimeout(() => {
         this.preloadRoutesByStrategy('idle');
@@ -104,7 +107,11 @@ export class RoutePreloadingService {
       const href = target?.getAttribute('href');
       if (href && this.config.routeImports[href]) {
         const config = this.config.preloadConfigs.find(c => c.route === href);
-        if (config && config.preloadOn === 'hover' && (!config.condition || config.condition())) {
+        if (
+          config &&
+          config.preloadOn === 'hover' &&
+          (!config.condition || config.condition())
+        ) {
           this.preloadRoute(href);
         }
       }
@@ -121,21 +128,30 @@ export class RoutePreloadingService {
       return () => {};
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const link = entry.target as HTMLAnchorElement;
-          const href = link.getAttribute('href');
-          if (href && this.config.routeImports[href]) {
-            const config = this.config.preloadConfigs.find(c => c.route === href);
-            if (config && config.preloadOn === 'visible' && (!config.condition || config.condition())) {
-              this.preloadRoute(href);
-              observer.unobserve(link);
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const link = entry.target as HTMLAnchorElement;
+            const href = link.getAttribute('href');
+            if (href && this.config.routeImports[href]) {
+              const config = this.config.preloadConfigs.find(
+                c => c.route === href
+              );
+              if (
+                config &&
+                config.preloadOn === 'visible' &&
+                (!config.condition || config.condition())
+              ) {
+                this.preloadRoute(href);
+                observer.unobserve(link);
+              }
             }
           }
-        }
-      });
-    }, { threshold: 0.5 });
+        });
+      },
+      { threshold: 0.5 }
+    );
 
     // Observe all links on the page
     const observeLinks = () => {
@@ -160,7 +176,15 @@ export class RoutePreloadingService {
   /**
    * Add resource hints for critical dependencies
    */
-  addResourceHints(hints?: Array<{ rel: string; href: string; crossorigin?: boolean; as?: string; type?: string }>): void {
+  addResourceHints(
+    hints?: Array<{
+      rel: string;
+      href: string;
+      crossorigin?: boolean;
+      as?: string;
+      type?: string;
+    }>
+  ): void {
     if (typeof document === 'undefined') return;
 
     const defaultHints = [
@@ -169,8 +193,16 @@ export class RoutePreloadingService {
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
 
       // Preconnect to critical origins
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossorigin: true },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+        crossorigin: true,
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: true,
+      },
     ];
 
     const allHints = hints ? [...defaultHints, ...hints] : defaultHints;
@@ -186,7 +218,13 @@ export class RoutePreloadingService {
    * Initialize performance optimizations
    */
   initializePerformanceOptimizations(options?: {
-    resourceHints?: Array<{ rel: string; href: string; crossorigin?: boolean; as?: string; type?: string }>;
+    resourceHints?: Array<{
+      rel: string;
+      href: string;
+      crossorigin?: boolean;
+      as?: string;
+      type?: string;
+    }>;
     customPreloadLogic?: () => void;
   }): () => void {
     // Add resource hints
@@ -223,7 +261,7 @@ export class RoutePreloadingService {
     return {
       preloaded: Array.from(this.preloadedRoutes),
       preloading: Array.from(this.preloadingRoutes),
-      total: Object.keys(this.config.routeImports).length
+      total: Object.keys(this.config.routeImports).length,
     };
   }
 }

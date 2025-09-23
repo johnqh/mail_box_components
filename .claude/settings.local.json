@@ -45,7 +45,11 @@
       "Bash(npx tsc:*)",
       "Bash(npm version:*)",
       "Bash(xargs sed:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npm run format:check:*)",
+      "Bash(npm run format:*)",
+      "Bash(prettier:*)",
+      "Bash(npx prettier:*)"
     ],
     "deny": [],
     "ask": []

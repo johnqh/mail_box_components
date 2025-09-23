@@ -12,16 +12,14 @@ export interface StandardPageLayoutProps {
  * A simple page layout wrapper component that applies background and content classes
  * to create consistent page structure across applications.
  */
-export const StandardPageLayout: React.FC<StandardPageLayoutProps> = ({ 
-  children, 
+export const StandardPageLayout: React.FC<StandardPageLayoutProps> = ({
+  children,
   backgroundClassName = '',
-  contentClassName = ''
+  contentClassName = '',
 }) => {
   return (
     <div className={backgroundClassName}>
-      <div className={contentClassName}>
-        {children}
-      </div>
+      <div className={contentClassName}>{children}</div>
     </div>
   );
 };

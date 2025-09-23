@@ -10,7 +10,7 @@ describe('InfoCard Component', () => {
   });
 
   it('renders with title', () => {
-    render(<InfoCard title="Important Information">Content</InfoCard>);
+    render(<InfoCard title='Important Information'>Content</InfoCard>);
     expect(screen.getByText('Important Information')).toBeInTheDocument();
     expect(screen.getByText('Content')).toBeInTheDocument();
   });
@@ -23,28 +23,28 @@ describe('InfoCard Component', () => {
   });
 
   it('applies success variant styles', () => {
-    render(<InfoCard variant="success">Content</InfoCard>);
+    render(<InfoCard variant='success'>Content</InfoCard>);
     const card = screen.getByTestId('info-card');
     expect(card).toHaveClass('bg-green-50');
     expect(card).toHaveClass('border-green-200');
   });
 
   it('applies warning variant styles', () => {
-    render(<InfoCard variant="warning">Content</InfoCard>);
+    render(<InfoCard variant='warning'>Content</InfoCard>);
     const card = screen.getByTestId('info-card');
     expect(card).toHaveClass('bg-yellow-50');
     expect(card).toHaveClass('border-yellow-200');
   });
 
   it('applies error variant styles', () => {
-    render(<InfoCard variant="error">Content</InfoCard>);
+    render(<InfoCard variant='error'>Content</InfoCard>);
     const card = screen.getByTestId('info-card');
     expect(card).toHaveClass('bg-red-50');
     expect(card).toHaveClass('border-red-200');
   });
 
   it('applies neutral variant styles', () => {
-    render(<InfoCard variant="neutral">Content</InfoCard>);
+    render(<InfoCard variant='neutral'>Content</InfoCard>);
     const card = screen.getByTestId('info-card');
     expect(card).toHaveClass('bg-gray-50');
     expect(card).toHaveClass('border-gray-200');
@@ -57,48 +57,64 @@ describe('InfoCard Component', () => {
   });
 
   it('applies small size styles', () => {
-    render(<InfoCard size="sm">Content</InfoCard>);
+    render(<InfoCard size='sm'>Content</InfoCard>);
     const card = screen.getByTestId('info-card');
     expect(card).toHaveClass('p-4');
     expect(card).toHaveClass('text-sm');
   });
 
   it('applies large size styles', () => {
-    render(<InfoCard size="lg">Content</InfoCard>);
+    render(<InfoCard size='lg'>Content</InfoCard>);
     const card = screen.getByTestId('info-card');
     expect(card).toHaveClass('p-8');
     expect(card).toHaveClass('text-lg');
   });
 
   it('applies custom className', () => {
-    render(<InfoCard className="custom-class">Content</InfoCard>);
+    render(<InfoCard className='custom-class'>Content</InfoCard>);
     const card = screen.getByTestId('info-card');
     expect(card).toHaveClass('custom-class');
   });
 
   it('applies correct title styles based on variant', () => {
-    render(<InfoCard title="Title" variant="error">Content</InfoCard>);
+    render(
+      <InfoCard title='Title' variant='error'>
+        Content
+      </InfoCard>
+    );
     const title = screen.getByText('Title');
     expect(title).toHaveClass('text-red-900');
     expect(title).toHaveClass('dark:text-red-300');
   });
 
   it('applies correct title size based on size prop', () => {
-    const { rerender } = render(<InfoCard title="Title" size="sm">Content</InfoCard>);
+    const { rerender } = render(
+      <InfoCard title='Title' size='sm'>
+        Content
+      </InfoCard>
+    );
     let title = screen.getByText('Title');
     expect(title).toHaveClass('text-base');
 
-    rerender(<InfoCard title="Title" size="default">Content</InfoCard>);
+    rerender(
+      <InfoCard title='Title' size='default'>
+        Content
+      </InfoCard>
+    );
     title = screen.getByText('Title');
     expect(title).toHaveClass('text-lg');
 
-    rerender(<InfoCard title="Title" size="lg">Content</InfoCard>);
+    rerender(
+      <InfoCard title='Title' size='lg'>
+        Content
+      </InfoCard>
+    );
     title = screen.getByText('Title');
     expect(title).toHaveClass('text-xl');
   });
 
   it('applies correct content color based on variant', () => {
-    render(<InfoCard variant="success">Content</InfoCard>);
+    render(<InfoCard variant='success'>Content</InfoCard>);
     const content = screen.getByText('Content');
     expect(content).toHaveClass('text-green-800');
     expect(content).toHaveClass('dark:text-green-400');

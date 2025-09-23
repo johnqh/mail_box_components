@@ -25,22 +25,22 @@ const CHUNK_PRELOAD_MAP: ChunkInfo[] = [
     name: 'react-router',
     path: '/assets/react-router-*.js',
     size: 12,
-    config: { priority: 'critical', condition: () => true }
+    config: { priority: 'critical', condition: () => true },
   },
-  
+
   // High Priority: Preload on user activity
   {
     name: 'app-core',
     path: '/assets/app-core-*.js',
     size: 25,
-    config: { 
-      priority: 'high', 
+    config: {
+      priority: 'high',
       condition: () => window.location.pathname === '/',
       delay: 1000,
-      onIdle: true
-    }
+      onIdle: true,
+    },
   },
-  
+
   // Web3 chunks - preload when wallet detected
   {
     name: 'wagmi',
@@ -48,11 +48,12 @@ const CHUNK_PRELOAD_MAP: ChunkInfo[] = [
     size: 15,
     config: {
       priority: 'high',
-      condition: () => !!((window as any).ethereum || localStorage.getItem('walletconnect')),
-      onIdle: true
-    }
+      condition: () =>
+        !!((window as any).ethereum || localStorage.getItem('walletconnect')),
+      onIdle: true,
+    },
   },
-  
+
   {
     name: 'wc-ethereum',
     path: '/assets/wc-ethereum-*.js',
@@ -61,10 +62,10 @@ const CHUNK_PRELOAD_MAP: ChunkInfo[] = [
       priority: 'medium',
       condition: () => !!(window as any).ethereum,
       delay: 2000,
-      onHover: true
-    }
+      onHover: true,
+    },
   },
-  
+
   // Solana chunks - preload when Solana detected
   {
     name: 'solana-core',
@@ -73,10 +74,10 @@ const CHUNK_PRELOAD_MAP: ChunkInfo[] = [
     config: {
       priority: 'medium',
       condition: () => !!((window as any).solana || (window as any).phantom),
-      delay: 1500
-    }
+      delay: 1500,
+    },
   },
-  
+
   // UI chunks - preload based on route hints
   {
     name: 'mail-features',
@@ -84,12 +85,13 @@ const CHUNK_PRELOAD_MAP: ChunkInfo[] = [
     size: 10,
     config: {
       priority: 'medium',
-      condition: () => window.location.pathname.includes('/connect') || 
-                       localStorage.getItem('wallet-connected') === 'true',
-      onScroll: 20
-    }
+      condition: () =>
+        window.location.pathname.includes('/connect') ||
+        localStorage.getItem('wallet-connected') === 'true',
+      onScroll: 20,
+    },
   },
-  
+
   // Large vendor chunks - lazy preload
   {
     name: 'coinbase',
@@ -99,10 +101,10 @@ const CHUNK_PRELOAD_MAP: ChunkInfo[] = [
       priority: 'low',
       condition: () => !!(window as any).ethereum,
       delay: 5000,
-      onIdle: true
-    }
+      onIdle: true,
+    },
   },
-  
+
   {
     name: 'design-system',
     path: '/assets/design-system-*.js',
@@ -110,9 +112,9 @@ const CHUNK_PRELOAD_MAP: ChunkInfo[] = [
     config: {
       priority: 'low',
       condition: () => window.location.pathname.includes('/internal'),
-      delay: 3000
-    }
-  }
+      delay: 3000,
+    },
+  },
 ];
 
 class AdvancedPreloader {
@@ -129,7 +131,9 @@ class AdvancedPreloader {
 
   private detectNetworkSpeed(): void {
     if ('connection' in navigator) {
-      const connection = (navigator as {connection?: {effectiveType?: string}}).connection;
+      const connection = (
+        navigator as { connection?: { effectiveType?: string } }
+      ).connection;
       if (connection) {
         const effectiveType = connection.effectiveType;
         if (effectiveType === '4g') {
@@ -162,30 +166,32 @@ class AdvancedPreloader {
 
   private detectDeviceCapability(): void {
     // Check for low-end device indicators
-    const memory = (navigator as {deviceMemory?: number}).deviceMemory;
+    const memory = (navigator as { deviceMemory?: number }).deviceMemory;
     const cores = navigator.hardwareConcurrency;
-    
+
     if (memory && memory < 4) {
       this.isLowEndDevice = true;
     }
-    
+
     if (cores && cores < 4) {
       this.isLowEndDevice = true;
     }
 
     // Check for battery API
     if ('getBattery' in navigator) {
-      (navigator as {getBattery?: () => Promise<{level?: number}>}).getBattery?.().then((battery) => {
-        if (battery.level && battery.level < 0.2) {
-          this.isLowEndDevice = true;
-        }
-      });
+      (navigator as { getBattery?: () => Promise<{ level?: number }> })
+        .getBattery?.()
+        .then(battery => {
+          if (battery.level && battery.level < 0.2) {
+            this.isLowEndDevice = true;
+          }
+        });
     }
   }
 
   private startUserActivityTracking(): void {
     let activityTimer: ReturnType<typeof setTimeout>;
-    
+
     const updateActivity = () => {
       this.userActivityScore = Math.min(this.userActivityScore + 1, 100);
       clearTimeout(activityTimer);
@@ -220,10 +226,14 @@ class AdvancedPreloader {
 
     try {
       // Find the actual chunk file
-      const scripts = document.querySelectorAll('script[src*="' + chunk.name + '"]');
+      const scripts = document.querySelectorAll(
+        'script[src*="' + chunk.name + '"]'
+      );
       if (scripts.length === 0) {
         // Try to find in link preload hints
-        const links = document.querySelectorAll('link[href*="' + chunk.name + '"]');
+        const links = document.querySelectorAll(
+          'link[href*="' + chunk.name + '"]'
+        );
         if (links.length > 0) {
           return; // Already preloading
         }
@@ -234,10 +244,11 @@ class AdvancedPreloader {
       link.rel = 'modulepreload';
       link.href = chunk.path.replace('*', this.getChunkHash(chunk.name));
       link.crossOrigin = '';
-      
+
       // Add priority hint if supported
       if ('fetchPriority' in link) {
-        (link as {fetchPriority?: string}).fetchPriority = chunk.config.priority === 'critical' ? 'high' : 'low';
+        (link as { fetchPriority?: string }).fetchPriority =
+          chunk.config.priority === 'critical' ? 'high' : 'low';
       }
 
       document.head.appendChild(link);
@@ -255,7 +266,9 @@ class AdvancedPreloader {
     for (const script of scripts) {
       const src = (script as HTMLScriptElement).src;
       if (src.includes(chunkName)) {
-        const match = src.match(new RegExp(`${chunkName}-([A-Za-z0-9_-]+)\\.js`));
+        const match = src.match(
+          new RegExp(`${chunkName}-([A-Za-z0-9_-]+)\\.js`)
+        );
         if (match) {
           return match[1];
         }
@@ -286,7 +299,9 @@ class AdvancedPreloader {
     // Process chunks by priority
     const sortedChunks = CHUNK_PRELOAD_MAP.sort((a, b) => {
       const priorityOrder = { critical: 0, high: 1, medium: 2, low: 3 };
-      return priorityOrder[a.config.priority] - priorityOrder[b.config.priority];
+      return (
+        priorityOrder[a.config.priority] - priorityOrder[b.config.priority]
+      );
     });
 
     sortedChunks.forEach(chunk => {
@@ -318,12 +333,16 @@ class AdvancedPreloader {
     const connectButtons = document.querySelectorAll('[data-preload-on-hover]');
     connectButtons.forEach(button => {
       let preloaded = false;
-      button.addEventListener('mouseenter', () => {
-        if (!preloaded && this.userActivityScore > 30) {
-          this.preloadChunk(chunk);
-          preloaded = true;
-        }
-      }, { passive: true });
+      button.addEventListener(
+        'mouseenter',
+        () => {
+          if (!preloaded && this.userActivityScore > 30) {
+            this.preloadChunk(chunk);
+            preloaded = true;
+          }
+        },
+        { passive: true }
+      );
     });
   }
 
@@ -331,8 +350,10 @@ class AdvancedPreloader {
     let triggered = false;
     const handleScroll = () => {
       if (triggered) return;
-      
-      const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+
+      const scrolled =
+        (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+        100;
       if (scrolled >= percentage) {
         this.preloadChunk(chunk);
         triggered = true;
@@ -349,11 +370,13 @@ class AdvancedPreloader {
       if (this.userActivityScore > 50 && this.networkSpeedEstimate !== 'slow') {
         // User is engaged, preload more chunks
         const mediumPriorityChunks = CHUNK_PRELOAD_MAP.filter(
-          chunk => chunk.config.priority === 'medium' && this.shouldPreload(chunk)
+          chunk =>
+            chunk.config.priority === 'medium' && this.shouldPreload(chunk)
         );
-        
+
         mediumPriorityChunks.forEach(chunk => {
-          if (Math.random() > 0.5) { // Probabilistic loading
+          if (Math.random() > 0.5) {
+            // Probabilistic loading
             this.schedulePreload(chunk);
           }
         });
@@ -371,7 +394,7 @@ class AdvancedPreloader {
       preloadedCount: this.preloaded.size,
       networkSpeed: this.networkSpeedEstimate,
       isLowEndDevice: this.isLowEndDevice,
-      userActivity: this.userActivityScore
+      userActivity: this.userActivityScore,
     };
   }
 }
@@ -381,9 +404,9 @@ let preloaderInstance: AdvancedPreloader | null = null;
 
 export function initializeAdvancedPreloading(): void {
   if (preloaderInstance) return;
-  
+
   preloaderInstance = new AdvancedPreloader();
-  
+
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {

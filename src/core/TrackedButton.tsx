@@ -1,5 +1,5 @@
-import React from "react";
-import { Button } from "../ui";
+import React from 'react';
+import { Button } from '../ui';
 
 // Type for tracking button click events
 export interface ButtonClickTrackingParams {
@@ -16,17 +16,17 @@ interface TrackedButtonProps {
   children?: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   variant?:
-    | "default"
-    | "primary"
-    | "secondary"
-    | "outline"
-    | "ghost"
-    | "destructive"
-    | "link";
-  size?: "default" | "sm" | "lg" | "icon";
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'outline'
+    | 'ghost'
+    | 'destructive'
+    | 'link';
+  size?: 'default' | 'sm' | 'lg' | 'icon';
   disabled?: boolean;
   className?: string;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   trackingLabel?: string;
   actionType?: string;
   componentName?: string;
@@ -36,14 +36,14 @@ interface TrackedButtonProps {
 
 /**
  * TrackedButton - Enhanced Button component with automatic analytics tracking
- * 
+ *
  * Features:
  * - Automatically tracks button clicks with customizable parameters
  * - Supports all Button variants and props
  * - Flexible tracking function injection for different analytics providers
  * - Extracts button text automatically for tracking labels
  * - Type-safe tracking parameter interface
- * 
+ *
  * @param onTrack - Optional function to handle tracking events
  * @param trackingLabel - Custom label for tracking (defaults to button text)
  * @param actionType - Type of action being performed
@@ -71,24 +71,24 @@ export const TrackedButton: React.FC<TrackedButtonProps> = ({
       // Extract button text for tracking
       const buttonText =
         trackingLabel ||
-        (typeof children === "string" ? children : "") ||
-        "Unknown Button";
+        (typeof children === 'string' ? children : '') ||
+        'Unknown Button';
 
       // Validate and normalize button variant
       const validVariants = [
-        "default",
-        "primary",
-        "secondary",
-        "outline",
-        "ghost",
-        "destructive",
-        "link",
+        'default',
+        'primary',
+        'secondary',
+        'outline',
+        'ghost',
+        'destructive',
+        'link',
       ] as const;
       type ValidVariant = (typeof validVariants)[number];
       const buttonType =
         variant && validVariants.includes(variant as ValidVariant)
           ? variant
-          : "default";
+          : 'default';
 
       // Call tracking function with comprehensive parameters
       onTrack({

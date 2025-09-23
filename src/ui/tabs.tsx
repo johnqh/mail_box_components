@@ -1,9 +1,9 @@
-import * as React from "react"
-import { Root, List, Trigger, Content } from "@radix-ui/react-tabs"
-import { cn } from "../lib/utils"
-import { variants } from "@johnqh/design_system"
+import * as React from 'react';
+import { Root, List, Trigger, Content } from '@radix-ui/react-tabs';
+import { cn } from '../lib/utils';
+import { variants } from '@johnqh/design_system';
 
-const Tabs = Root
+const Tabs = Root;
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof List>,
@@ -14,8 +14,8 @@ const TabsList = React.forwardRef<
     className={cn(variants.navigation.tabs.list(), className)}
     {...props}
   />
-))
-TabsList.displayName = List.displayName
+));
+TabsList.displayName = List.displayName;
 
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof Trigger>,
@@ -26,8 +26,8 @@ const TabsTrigger = React.forwardRef<
     className={cn(variants.navigation.tabs.trigger(), className)}
     {...props}
   />
-))
-TabsTrigger.displayName = Trigger.displayName
+));
+TabsTrigger.displayName = Trigger.displayName;
 
 const TabsContent = React.forwardRef<
   React.ElementRef<typeof Content>,
@@ -38,7 +38,7 @@ const TabsContent = React.forwardRef<
     className={cn(variants.navigation.tabs.content(), className)}
     {...props}
   />
-))
-TabsContent.displayName = Content.displayName
+));
+TabsContent.displayName = Content.displayName;
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+export { Tabs, TabsList, TabsTrigger, TabsContent };

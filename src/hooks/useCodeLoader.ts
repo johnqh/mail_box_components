@@ -16,13 +16,13 @@ export const useCodeLoader = (filename: string): UseCodeLoaderReturn => {
       try {
         setLoading(true);
         setError(null);
-        
+
         const response = await fetch(`/code/${filename}`);
-        
+
         if (!response.ok) {
           throw new Error(`Failed to load code file: ${filename}`);
         }
-        
+
         const codeContent = await response.text();
         setCode(codeContent);
       } catch (err) {

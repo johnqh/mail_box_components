@@ -15,7 +15,7 @@ export function lazyWithRetry<T extends ComponentType<any>>(
       const attempt = (retriesLeft: number) => {
         importFn()
           .then(resolve)
-          .catch((error) => {
+          .catch(error => {
             if (retriesLeft > 0) {
               setTimeout(() => {
                 // Retry import silently
@@ -80,24 +80,24 @@ export function createProgressiveComponent<T extends ComponentType<any>>(
 
   const LazyComponent = lazy(async () => {
     const startTime = Date.now();
-    
+
     try {
       const module = await importFn();
-      
+
       // Ensure minimum loading time for smooth UX
       const elapsedTime = Date.now() - startTime;
       if (elapsedTime < minimumLoadingTime) {
-        await new Promise(resolve => 
+        await new Promise(resolve =>
           setTimeout(resolve, minimumLoadingTime - elapsedTime)
         );
       }
-      
+
       return module;
     } catch (error) {
       console.error('Failed to load component:', error);
       // Return a component that renders the error fallback
       return {
-        default: (() => errorFallback) as any
+        default: (() => errorFallback) as any,
       };
     }
   });
@@ -151,7 +151,7 @@ export function useLazyLoad(
       {
         rootMargin: '50px',
         threshold: 0.01,
-        ...options
+        ...options,
       }
     );
 
@@ -179,16 +179,15 @@ export const LazyWrapper: React.FC<LazyWrapperProps> = ({
   fallback = <div>Loading...</div>,
   threshold = 0.01,
   rootMargin = '50px',
-  placeholder
+  placeholder,
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
-  const isVisible = useLazyLoad(ref as React.RefObject<HTMLElement>, { threshold, rootMargin });
+  const isVisible = useLazyLoad(ref as React.RefObject<HTMLElement>, {
+    threshold,
+    rootMargin,
+  });
 
-  return (
-    <div ref={ref}>
-      {isVisible ? children : (placeholder || fallback)}
-    </div>
-  );
+  return <div ref={ref}>{isVisible ? children : placeholder || fallback}</div>;
 };
 
 // Route-based lazy loading with prefetching
@@ -207,7 +206,7 @@ export function createLazyRoute<T extends ComponentType<any>>(
     importFn,
     preloadOnHover = true,
     preloadOnFocus = true,
-    prefetchDelay = 50
+    prefetchDelay = 50,
   } = config;
 
   let preloadTimer: ReturnType<typeof setTimeout> | null = null;
@@ -246,12 +245,12 @@ export function createLazyRoute<T extends ComponentType<any>>(
           if (preloadTimer) {
             clearTimeout(preloadTimer);
           }
-        }
+        },
       }),
       ...(preloadOnFocus && {
-        onFocus: handleInteraction
-      })
-    }
+        onFocus: handleInteraction,
+      }),
+    },
   };
 }
 
@@ -266,18 +265,18 @@ export function useDynamicImport<T>(
 
   React.useEffect(() => {
     let mounted = true;
-    
+
     setLoading(true);
     setError(null);
-    
+
     importFn()
-      .then((mod) => {
+      .then(mod => {
         if (mounted) {
           setModule(mod);
           setLoading(false);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         if (mounted) {
           setError(err);
           setLoading(false);
@@ -287,7 +286,7 @@ export function useDynamicImport<T>(
     return () => {
       mounted = false;
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [importFn, ...deps]);
 
   return { module, loading, error };
@@ -314,18 +313,18 @@ export class LazyLoadQueue {
     if (this.isProcessing || this.queue.size === 0) return;
 
     this.isProcessing = true;
-    
+
     const batch = Array.from(this.queue).slice(0, this.batchSize);
     batch.forEach(fn => this.queue.delete(fn));
 
     await Promise.all(batch.map(fn => fn().catch(console.error)));
-    
+
     if (this.queue.size > 0) {
       await new Promise(resolve => setTimeout(resolve, this.delay));
     }
 
     this.isProcessing = false;
-    
+
     if (this.queue.size > 0) {
       this.process();
     }
@@ -343,11 +342,11 @@ export function addResourceHint(
   const link = document.createElement('link');
   link.rel = type;
   link.href = url;
-  
+
   if (as && (type === 'preload' || type === 'prefetch')) {
     link.as = as;
   }
-  
+
   document.head.appendChild(link);
 }
 
@@ -356,7 +355,7 @@ export enum LoadPriority {
   HIGH = 0,
   MEDIUM = 1,
   LOW = 2,
-  IDLE = 3
+  IDLE = 3,
 }
 
 export class PriorityLoader {
@@ -390,10 +389,13 @@ export class PriorityLoader {
           try {
             await fn();
           } catch (error) {
-            console.error(`Failed to load resource with priority ${priority}:`, error);
+            console.error(
+              `Failed to load resource with priority ${priority}:`,
+              error
+            );
           }
         }
-        
+
         // Add delay for lower priority items
         if (priority >= LoadPriority.LOW) {
           await new Promise(resolve => setTimeout(resolve, 50));
@@ -422,5 +424,5 @@ export default {
   PriorityLoader,
   LoadPriority,
   lazyLoadQueue,
-  priorityLoader
+  priorityLoader,
 };

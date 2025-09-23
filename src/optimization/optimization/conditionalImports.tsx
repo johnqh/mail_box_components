@@ -3,12 +3,12 @@
  * Only loads code when specific conditions are met
  */
 
-import React, { ComponentType, Suspense } from "react";
+import React, { ComponentType, Suspense } from 'react';
 // Simple loading component replacement
 const LoadingState: React.FC<{ message: string }> = ({ message }) => (
-  <div className="flex items-center justify-center p-4">
-    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-    <span className="ml-2 text-sm text-gray-600">{message}</span>
+  <div className='flex items-center justify-center p-4'>
+    <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500'></div>
+    <span className='ml-2 text-sm text-gray-600'>{message}</span>
   </div>
 );
 
@@ -17,7 +17,7 @@ interface ConditionalImportConfig {
   fallback?: React.ReactNode;
   retries?: number;
   timeout?: number;
-  priority?: "high" | "medium" | "low";
+  priority?: 'high' | 'medium' | 'low';
   cacheKey?: string;
 }
 
@@ -36,7 +36,7 @@ const conditionalCache = new Map<
  * Create a lazily loaded component that only imports when conditions are met
  */
 export function createConditionalLazyComponent<
-  T extends ComponentType<Record<string, unknown>>
+  T extends ComponentType<Record<string, unknown>>,
 >(
   importFn: () => Promise<{ default: T }>,
   config: ConditionalImportConfig
@@ -46,7 +46,7 @@ export function createConditionalLazyComponent<
     fallback,
     retries = 3,
     timeout = 10000,
-    priority = "medium",
+    priority = 'medium',
     cacheKey = `conditional-${Math.random()}`,
   } = config;
 
@@ -74,7 +74,7 @@ export function createConditionalLazyComponent<
               return;
             }
           } catch (error) {
-            console.warn("Cached condition check failed:", error);
+            console.warn('Cached condition check failed:', error);
           }
         }
 
@@ -98,19 +98,19 @@ export function createConditionalLazyComponent<
             setComponentReady(true);
           }
         } catch (error) {
-          console.error("Failed to load conditional component:", error);
+          console.error('Failed to load conditional component:', error);
         }
       };
 
       // Add delay based on priority
-      const delay = priority === "high" ? 0 : priority === "medium" ? 100 : 500;
+      const delay = priority === 'high' ? 0 : priority === 'medium' ? 100 : 500;
       const timer = setTimeout(checkAndLoad, delay);
 
       return () => clearTimeout(timer);
     }, []);
 
     if (!componentReady) {
-      return fallback || <LoadingState message="Checking conditions..." />;
+      return fallback || <LoadingState message='Checking conditions...' />;
     }
 
     if (!LazyComponent) {
@@ -119,7 +119,7 @@ export function createConditionalLazyComponent<
 
     return (
       <Suspense
-        fallback={fallback || <LoadingState message="Loading component..." />}
+        fallback={fallback || <LoadingState message='Loading component...' />}
       >
         <LazyComponent {...props} />
       </Suspense>
@@ -170,7 +170,7 @@ async function loadWithRetry<T>(
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
       const timeoutPromise = new Promise<never>((_, reject) => {
-        setTimeout(() => reject(new Error("Import timeout")), timeout);
+        setTimeout(() => reject(new Error('Import timeout')), timeout);
       });
 
       return await Promise.race([importFn(), timeoutPromise]);
@@ -179,7 +179,7 @@ async function loadWithRetry<T>(
 
       if (attempt < retries - 1) {
         const delay = Math.pow(2, attempt) * 1000;
-        await new Promise((resolve) => setTimeout(resolve, delay));
+        await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
   }

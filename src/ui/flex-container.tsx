@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from "../lib/utils";
+import { cn } from '../lib/utils';
 
 interface FlexContainerProps {
   children: React.ReactNode;
@@ -12,33 +12,33 @@ interface FlexContainerProps {
 }
 
 const directionClasses = {
-  'row': 'flex-row',
+  row: 'flex-row',
   'row-reverse': 'flex-row-reverse',
-  'col': 'flex-col',
-  'col-reverse': 'flex-col-reverse'
+  col: 'flex-col',
+  'col-reverse': 'flex-col-reverse',
 };
 
 const alignClasses = {
-  'start': 'items-start',
-  'center': 'items-center',
-  'end': 'items-end',
-  'stretch': 'items-stretch',
-  'baseline': 'items-baseline'
+  start: 'items-start',
+  center: 'items-center',
+  end: 'items-end',
+  stretch: 'items-stretch',
+  baseline: 'items-baseline',
 };
 
 const justifyClasses = {
-  'start': 'justify-start',
-  'center': 'justify-center',
-  'end': 'justify-end',
-  'between': 'justify-between',
-  'around': 'justify-around',
-  'evenly': 'justify-evenly'
+  start: 'justify-start',
+  center: 'justify-center',
+  end: 'justify-end',
+  between: 'justify-between',
+  around: 'justify-around',
+  evenly: 'justify-evenly',
 };
 
 const wrapClasses = {
-  'wrap': 'flex-wrap',
+  wrap: 'flex-wrap',
   'wrap-reverse': 'flex-wrap-reverse',
-  'nowrap': 'flex-nowrap'
+  nowrap: 'flex-nowrap',
 };
 
 const gapClasses = {
@@ -51,7 +51,7 @@ const gapClasses = {
   '6': 'gap-6',
   '8': 'gap-8',
   '10': 'gap-10',
-  '12': 'gap-12'
+  '12': 'gap-12',
 };
 
 export const FlexContainer: React.FC<FlexContainerProps> = ({
@@ -61,18 +61,20 @@ export const FlexContainer: React.FC<FlexContainerProps> = ({
   justify = 'start',
   wrap = 'nowrap',
   gap = '0',
-  className
+  className,
 }) => {
   return (
-    <div className={cn(
-      'flex',
-      directionClasses[direction],
-      alignClasses[align],
-      justifyClasses[justify],
-      wrapClasses[wrap],
-      gapClasses[gap],
-      className
-    )}>
+    <div
+      className={cn(
+        'flex',
+        directionClasses[direction],
+        alignClasses[align],
+        justifyClasses[justify],
+        wrapClasses[wrap],
+        gapClasses[gap],
+        className
+      )}
+    >
       {children}
     </div>
   );

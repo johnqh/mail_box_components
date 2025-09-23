@@ -1,6 +1,6 @@
 import React from 'react';
-import { cn } from "../lib/utils";
-import { variants as v } from "@johnqh/design_system";
+import { cn } from '../lib/utils';
+import { variants as v } from '@johnqh/design_system';
 
 interface GradientButtonProps {
   children: React.ReactNode;
@@ -15,13 +15,15 @@ interface GradientButtonProps {
 }
 
 // ✨ SIMPLE: Get variant classes using the new system
-const getVariantClass = (variant: 'primary' | 'secondary' | 'success' | 'warning' | 'error') => {
+const getVariantClass = (
+  variant: 'primary' | 'secondary' | 'success' | 'warning' | 'error'
+) => {
   const variantMap = {
     primary: v.button.gradient.primary,
     secondary: v.button.gradient.secondary,
     success: v.button.gradient.success,
     warning: v.button.gradient.primary, // fallback to primary
-    error: v.button.gradient.primary,   // fallback to primary
+    error: v.button.gradient.primary, // fallback to primary
   };
   return variantMap[variant]();
 };
@@ -30,7 +32,7 @@ const getVariantClass = (variant: 'primary' | 'secondary' | 'success' | 'warning
 const sizeClasses = {
   sm: 'h-8', // Small size override
   md: '', // Default from design system
-  lg: 'h-12' // Large size override
+  lg: 'h-12', // Large size override
 };
 
 export const GradientButton: React.FC<GradientButtonProps> = ({
@@ -42,7 +44,7 @@ export const GradientButton: React.FC<GradientButtonProps> = ({
   fullWidth = false,
   onClick,
   type = 'button',
-  className
+  className,
 }) => {
   return (
     <button
@@ -59,13 +61,11 @@ export const GradientButton: React.FC<GradientButtonProps> = ({
       )}
     >
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+        <div className='absolute inset-0 flex items-center justify-center'>
+          <div className='w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin' />
         </div>
       )}
-      <span className={cn(loading && 'opacity-0')}>
-        {children}
-      </span>
+      <span className={cn(loading && 'opacity-0')}>{children}</span>
     </button>
   );
 };

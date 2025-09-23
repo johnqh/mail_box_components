@@ -1,9 +1,14 @@
 import React from 'react';
-import { ExclamationTriangleIcon, InformationCircleIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import {
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  CheckCircleIcon,
+  XCircleIcon,
+} from '@heroicons/react/24/outline';
 import { Modal, ModalContent, ModalFooter } from './modal';
 import { Button } from './button';
-import { variants } from "@johnqh/design_system";
-import { textVariants } from "@johnqh/design_system";
+import { variants } from '@johnqh/design_system';
+import { textVariants } from '@johnqh/design_system';
 
 export interface ConfirmationDialogProps {
   isOpen: boolean;
@@ -62,27 +67,37 @@ export const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      size="small"
-      variant="web3confirmation"
-      aria-labelledby="confirmation-dialog-title"
-      aria-describedby="confirmation-dialog-description"
+      size='small'
+      variant='web3confirmation'
+      aria-labelledby='confirmation-dialog-title'
+      aria-describedby='confirmation-dialog-description'
     >
-      <ModalContent variant="padded">
-        <div className="flex items-center gap-3 mb-4">
+      <ModalContent variant='padded'>
+        <div className='flex items-center gap-3 mb-4'>
           <Icon className={iconVariant()} />
-          <h3 id="confirmation-dialog-title" className={textVariants.heading.h4()}>
+          <h3
+            id='confirmation-dialog-title'
+            className={textVariants.heading.h4()}
+          >
             {title}
           </h3>
         </div>
-        <p id="confirmation-dialog-description" className={textVariants.body.md()}>
+        <p
+          id='confirmation-dialog-description'
+          className={textVariants.body.md()}
+        >
           {message}
         </p>
       </ModalContent>
       <ModalFooter>
-        <Button variant="outline" onClick={onClose} disabled={isLoading}>
+        <Button variant='outline' onClick={onClose} disabled={isLoading}>
           {cancelText}
         </Button>
-        <Button variant={buttonVariant} onClick={onConfirm} disabled={isLoading}>
+        <Button
+          variant={buttonVariant}
+          onClick={onConfirm}
+          disabled={isLoading}
+        >
           {isLoading ? loadingText : confirmText}
         </Button>
       </ModalFooter>

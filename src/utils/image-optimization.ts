@@ -99,7 +99,7 @@ export const setupLazyLoading = (
   }
 
   const images = document.querySelectorAll<HTMLImageElement>(selector);
-  
+
   if ('loading' in HTMLImageElement.prototype) {
     // Native lazy loading is supported
     images.forEach(img => {
@@ -111,25 +111,28 @@ export const setupLazyLoading = (
   }
 
   // Fallback to Intersection Observer
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target as HTMLImageElement;
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
+  const imageObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+          }
+          if (img.dataset.srcset) {
+            img.srcset = img.dataset.srcset;
+            img.removeAttribute('data-srcset');
+          }
+          imageObserver.unobserve(img);
         }
-        if (img.dataset.srcset) {
-          img.srcset = img.dataset.srcset;
-          img.removeAttribute('data-srcset');
-        }
-        imageObserver.unobserve(img);
-      }
-    });
-  }, {
-    rootMargin: '50px 0px',
-    threshold: 0.01
-  });
+      });
+    },
+    {
+      rootMargin: '50px 0px',
+      threshold: 0.01,
+    }
+  );
 
   images.forEach(img => imageObserver.observe(img));
 
@@ -145,12 +148,13 @@ export const supportsWebP = (): Promise<boolean> => {
     return Promise.resolve(false);
   }
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const webP = new Image();
     webP.onload = webP.onerror = function () {
       resolve(webP.height === 2);
     };
-    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    webP.src =
+      'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
   });
 };
 
@@ -160,11 +164,12 @@ export const supportsAVIF = (): Promise<boolean> => {
     return Promise.resolve(false);
   }
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const avif = new Image();
     avif.onload = () => resolve(true);
     avif.onerror = () => resolve(false);
-    avif.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
+    avif.src =
+      'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
   });
 };
 
@@ -174,7 +179,7 @@ export const getOptimalImageFormat = async (
 ): Promise<string> => {
   const [webpSupported, avifSupported] = await Promise.all([
     supportsWebP(),
-    supportsAVIF()
+    supportsAVIF(),
   ]);
 
   if (avifSupported) return 'avif';
@@ -221,14 +226,14 @@ export const preloadImage = (src: string, as: 'image' = 'image'): void => {
   link.rel = 'preload';
   link.as = as;
   link.href = src;
-  
+
   // Add specific attributes for images
   if (src.includes('.webp')) {
     link.type = 'image/webp';
   } else if (src.includes('.avif')) {
     link.type = 'image/avif';
   }
-  
+
   document.head.appendChild(link);
 };
 
@@ -244,7 +249,7 @@ export const setupProgressiveLoading = (
   const lowQualityImg = new Image();
   lowQualityImg.src = lowQualitySrc;
   lowQualityImg.classList.add('progressive-image-placeholder');
-  
+
   container.appendChild(lowQualityImg);
 
   // Load high quality image
@@ -252,15 +257,15 @@ export const setupProgressiveLoading = (
   highQualityImg.src = highQualitySrc;
   highQualityImg.classList.add('progressive-image-main');
   highQualityImg.style.opacity = '0';
-  
+
   highQualityImg.onload = () => {
     container.appendChild(highQualityImg);
-    
+
     // Fade in high quality image
     requestAnimationFrame(() => {
       highQualityImg.style.transition = 'opacity 0.3s';
       highQualityImg.style.opacity = '1';
-      
+
       // Remove low quality image after transition
       setTimeout(() => {
         lowQualityImg.remove();
@@ -282,9 +287,9 @@ export interface ImagePerformanceMetrics {
 export const measureImagePerformance = (
   img: HTMLImageElement
 ): Promise<ImagePerformanceMetrics> => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const startTime = performance.now();
-    
+
     if (img.complete) {
       // Image already loaded
       resolve({
@@ -293,25 +298,25 @@ export const measureImagePerformance = (
         format: img.src.split('.').pop() || 'unknown',
         dimensions: {
           width: img.naturalWidth,
-          height: img.naturalHeight
+          height: img.naturalHeight,
         },
         isLazyLoaded: img.loading === 'lazy',
-        isOptimized: img.srcset !== '' || img.sizes !== ''
+        isOptimized: img.srcset !== '' || img.sizes !== '',
       });
     } else {
       img.addEventListener('load', () => {
         const loadTime = performance.now() - startTime;
-        
+
         resolve({
           loadTime,
           size: 0, // Can't determine size from client-side
           format: img.src.split('.').pop() || 'unknown',
           dimensions: {
             width: img.naturalWidth,
-            height: img.naturalHeight
+            height: img.naturalHeight,
           },
           isLazyLoaded: img.loading === 'lazy',
-          isOptimized: img.srcset !== '' || img.sizes !== ''
+          isOptimized: img.srcset !== '' || img.sizes !== '',
         });
       });
     }
@@ -329,7 +334,7 @@ export const generatePlaceholder = (
       <rect width="100%" height="100%" fill="${color}"/>
     </svg>
   `;
-  
+
   return `data:image/svg+xml;base64,${btoa(svg)}`;
 };
 
@@ -341,7 +346,7 @@ export const preserveAspectRatio = (
   const paddingTop = (1 / aspectRatio) * 100;
   container.style.position = 'relative';
   container.style.paddingTop = `${paddingTop}%`;
-  
+
   const img = container.querySelector('img');
   if (img) {
     img.style.position = 'absolute';
@@ -367,5 +372,5 @@ export default {
   setupProgressiveLoading,
   measureImagePerformance,
   generatePlaceholder,
-  preserveAspectRatio
+  preserveAspectRatio,
 };

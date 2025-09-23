@@ -25,7 +25,13 @@ const CollapsibleSubsections: React.FC<{
   selectedSubsection?: string | null;
   parentSectionId: string;
   onSubsectionSelect?: (subsectionId: string, parentSectionId: string) => void;
-}> = ({ subsections, isExpanded, selectedSubsection, parentSectionId, onSubsectionSelect }) => {
+}> = ({
+  subsections,
+  isExpanded,
+  selectedSubsection,
+  parentSectionId,
+  onSubsectionSelect,
+}) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
 
@@ -39,11 +45,11 @@ const CollapsibleSubsections: React.FC<{
 
   return (
     <div
-      className="overflow-hidden transition-all duration-300 ease-in-out"
+      className='overflow-hidden transition-all duration-300 ease-in-out'
       style={{ height: height !== undefined ? `${height}px` : 'auto' }}
     >
-      <div ref={contentRef} className="ml-6 mt-2 space-y-1">
-        {subsections.map((subsection) => (
+      <div ref={contentRef} className='ml-6 mt-2 space-y-1'>
+        {subsections.map(subsection => (
           <button
             key={subsection.id}
             onClick={() => onSubsectionSelect?.(subsection.id, parentSectionId)}
@@ -69,13 +75,13 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   onSectionSelect,
   onSubsectionSelect,
   onToggleSection,
-  className = ""
+  className = '',
 }) => {
   return (
     <nav className={`space-y-2 ${className}`}>
-      {sections.map((section) => (
+      {sections.map(section => (
         <div key={section.id}>
-          <div className="flex items-center">
+          <div className='flex items-center'>
             <button
               onClick={() => onSectionSelect(section.id)}
               className={`flex-1 text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:scale-[1.02] ${
@@ -89,17 +95,19 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             {section.subsections && section.subsections.length > 0 && (
               <button
                 onClick={() => onToggleSection(section.id)}
-                className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200"
+                className='p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
               >
-                <ChevronRightIcon 
+                <ChevronRightIcon
                   className={`h-4 w-4 text-gray-500 transition-transform duration-300 ease-in-out ${
-                    expandedSections.includes(section.id) ? 'rotate-90' : 'rotate-0'
-                  }`} 
+                    expandedSections.includes(section.id)
+                      ? 'rotate-90'
+                      : 'rotate-0'
+                  }`}
                 />
               </button>
             )}
           </div>
-          
+
           {section.subsections && (
             <CollapsibleSubsections
               subsections={section.subsections}

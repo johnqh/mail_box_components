@@ -5,42 +5,48 @@ import { GradientButton } from '../ui/gradient-button';
 describe('GradientButton Component', () => {
   it('renders gradient button with text', () => {
     render(<GradientButton>Gradient Button</GradientButton>);
-    expect(screen.getByRole('button', { name: 'Gradient Button' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Gradient Button' })
+    ).toBeInTheDocument();
   });
 
   it('handles click events', () => {
     const handleClick = vi.fn();
     render(<GradientButton onClick={handleClick}>Click me</GradientButton>);
-    
+
     fireEvent.click(screen.getByRole('button'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   it('renders with different variants', () => {
-    const { rerender } = render(<GradientButton variant="primary">Primary</GradientButton>);
+    const { rerender } = render(
+      <GradientButton variant='primary'>Primary</GradientButton>
+    );
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<GradientButton variant="secondary">Secondary</GradientButton>);
+    rerender(<GradientButton variant='secondary'>Secondary</GradientButton>);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<GradientButton variant="success">Success</GradientButton>);
+    rerender(<GradientButton variant='success'>Success</GradientButton>);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<GradientButton variant="warning">Warning</GradientButton>);
+    rerender(<GradientButton variant='warning'>Warning</GradientButton>);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<GradientButton variant="error">Error</GradientButton>);
+    rerender(<GradientButton variant='error'>Error</GradientButton>);
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('renders with different sizes', () => {
-    const { rerender } = render(<GradientButton size="sm">Small</GradientButton>);
+    const { rerender } = render(
+      <GradientButton size='sm'>Small</GradientButton>
+    );
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<GradientButton size="md">Medium</GradientButton>);
+    rerender(<GradientButton size='md'>Medium</GradientButton>);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<GradientButton size="lg">Large</GradientButton>);
+    rerender(<GradientButton size='lg'>Large</GradientButton>);
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
@@ -63,18 +69,20 @@ describe('GradientButton Component', () => {
   });
 
   it('applies custom className', () => {
-    render(<GradientButton className="custom-class">Test</GradientButton>);
+    render(<GradientButton className='custom-class'>Test</GradientButton>);
     expect(screen.getByRole('button')).toHaveClass('custom-class');
   });
 
   it('handles different button types', () => {
-    const { rerender } = render(<GradientButton type="button">Button</GradientButton>);
+    const { rerender } = render(
+      <GradientButton type='button'>Button</GradientButton>
+    );
     expect(screen.getByRole('button')).toHaveAttribute('type', 'button');
 
-    rerender(<GradientButton type="submit">Submit</GradientButton>);
+    rerender(<GradientButton type='submit'>Submit</GradientButton>);
     expect(screen.getByRole('button')).toHaveAttribute('type', 'submit');
 
-    rerender(<GradientButton type="reset">Reset</GradientButton>);
+    rerender(<GradientButton type='reset'>Reset</GradientButton>);
     expect(screen.getByRole('button')).toHaveAttribute('type', 'reset');
   });
 });

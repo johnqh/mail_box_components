@@ -5,10 +5,13 @@
 
 import React, { lazy, Suspense } from 'react';
 // Simple loading component replacement
-const LoadingState: React.FC<{ message: string; className?: string }> = ({ message, className }) => (
+const LoadingState: React.FC<{ message: string; className?: string }> = ({
+  message,
+  className,
+}) => (
   <div className={`flex items-center justify-center p-4 ${className || ''}`}>
-    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-    <span className="ml-2 text-sm text-gray-600">{message}</span>
+    <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500'></div>
+    <span className='ml-2 text-sm text-gray-600'>{message}</span>
   </div>
 );
 
@@ -37,7 +40,7 @@ export function detectAvailableWallets(): WalletProviderInfo[] {
     wallets.push({
       name: 'MetaMask',
       detected: true,
-      priority: 1
+      priority: 1,
     });
   }
 
@@ -48,7 +51,7 @@ export function detectAvailableWallets(): WalletProviderInfo[] {
     wallets.push({
       name: 'Coinbase Wallet',
       detected: true,
-      priority: 2
+      priority: 2,
     });
   }
 
@@ -59,7 +62,7 @@ export function detectAvailableWallets(): WalletProviderInfo[] {
     wallets.push({
       name: 'Phantom',
       detected: true,
-      priority: 3
+      priority: 3,
     });
   }
 
@@ -67,7 +70,7 @@ export function detectAvailableWallets(): WalletProviderInfo[] {
   wallets.push({
     name: 'WalletConnect',
     detected: true,
-    priority: 4
+    priority: 4,
   });
 
   return wallets.sort((a, b) => a.priority - b.priority);
@@ -78,25 +81,27 @@ export function detectAvailableWallets(): WalletProviderInfo[] {
  */
 export function createLazyWalletProvider(walletName: string) {
   const cacheKey = `wallet-${walletName.toLowerCase()}`;
-  
+
   if (walletComponentCache.has(cacheKey)) {
     return walletComponentCache.get(cacheKey);
   }
 
   // For now, return a placeholder component since wallet providers are configured elsewhere
   // This is a template for future wallet-specific lazy loading implementation
-  const importFn = () => Promise.resolve({ 
-    default: () => React.createElement('div', {}, `${walletName} Provider Placeholder`)
-  });
+  const importFn = () =>
+    Promise.resolve({
+      default: () =>
+        React.createElement('div', {}, `${walletName} Provider Placeholder`),
+    });
 
   const LazyProvider = lazy(importFn);
-  
+
   const WrappedProvider = (props: any) => (
     <Suspense
       fallback={
-        <LoadingState 
+        <LoadingState
           message={`Loading ${walletName} wallet...`}
-          className="wallet-loading"
+          className='wallet-loading'
         />
       }
     >
@@ -106,16 +111,20 @@ export function createLazyWalletProvider(walletName: string) {
 
   WrappedProvider.displayName = `Lazy${walletName}Provider`;
   walletComponentCache.set(cacheKey, WrappedProvider);
-  
+
   return WrappedProvider;
 }
 
 /**
  * Smart wallet provider that loads only detected wallets
  */
-export function SmartWalletProviders({ children }: { children: React.ReactNode }) {
+export function SmartWalletProviders({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const availableWallets = detectAvailableWallets();
-  
+
   // Preload high-priority detected wallets
   availableWallets
     .filter(wallet => wallet.priority <= 2 && wallet.detected)
@@ -141,32 +150,32 @@ export function SmartWalletProviders({ children }: { children: React.ReactNode }
  */
 export class WalletPreloader {
   private static preloadedWallets = new Set<string>();
-  
+
   static preloadWallet(walletName: string) {
     const normalizedName = walletName.toLowerCase();
-    
+
     if (this.preloadedWallets.has(normalizedName)) {
       return;
     }
-    
+
     this.preloadedWallets.add(normalizedName);
-    
+
     // Preload with delay to avoid blocking initial render
     setTimeout(() => {
       createLazyWalletProvider(walletName);
     }, 500);
   }
-  
+
   static preloadCommonWallets() {
     const commonWallets = ['metamask', 'walletconnect', 'coinbase'];
-    
+
     commonWallets.forEach((wallet, index) => {
       setTimeout(() => {
         this.preloadWallet(wallet);
       }, index * 1000); // Stagger preloading
     });
   }
-  
+
   static getPreloadedWallets() {
     return Array.from(this.preloadedWallets);
   }
@@ -177,30 +186,31 @@ export class WalletPreloader {
  */
 export function useOptimizedWallets() {
   const availableWallets = detectAvailableWallets();
-  
+
   const preloadWallet = (walletName: string) => {
     WalletPreloader.preloadWallet(walletName);
   };
-  
+
   const getDetectedWallets = () => {
     return Array.from(detectedWallets);
   };
-  
+
   return {
     availableWallets,
     preloadWallet,
     getDetectedWallets,
-    hasWallet: (walletName: string) => detectedWallets.has(walletName.toLowerCase())
+    hasWallet: (walletName: string) =>
+      detectedWallets.has(walletName.toLowerCase()),
   };
 }
 
 /**
  * Wallet connection button with lazy loading
  */
-export function LazyWalletButton({ 
-  walletName, 
+export function LazyWalletButton({
+  walletName,
   onConnect,
-  disabled = false 
+  disabled = false,
 }: {
   walletName: string;
   onConnect: () => void;
@@ -209,7 +219,7 @@ export function LazyWalletButton({
   const handleClick = () => {
     // Preload the wallet provider before connecting
     WalletPreloader.preloadWallet(walletName);
-    
+
     // Small delay to allow preloading to start
     setTimeout(onConnect, 100);
   };
@@ -218,7 +228,7 @@ export function LazyWalletButton({
     <button
       onClick={handleClick}
       disabled={disabled}
-      className="wallet-connect-btn"
+      className='wallet-connect-btn'
       data-wallet={walletName.toLowerCase()}
     >
       Connect {walletName}
@@ -232,5 +242,5 @@ export default {
   SmartWalletProviders,
   WalletPreloader,
   useOptimizedWallets,
-  LazyWalletButton
+  LazyWalletButton,
 };

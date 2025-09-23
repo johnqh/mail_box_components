@@ -4,7 +4,7 @@ import {
   OptimizedAPIClient,
   withRetry,
   CancellableRequest,
-  cacheUtils
+  cacheUtils,
 } from '../optimization/optimization/apiOptimization';
 
 // Import the CACHE_CONFIGS constant from the default export
@@ -18,9 +18,9 @@ global.fetch = mockFetch;
 // Mock performance.now
 Object.defineProperty(global, 'performance', {
   value: {
-    now: vi.fn(() => Date.now())
+    now: vi.fn(() => Date.now()),
   },
-  writable: true
+  writable: true,
 });
 
 describe('API Optimization Utils', () => {
@@ -30,7 +30,7 @@ describe('API Optimization Utils', () => {
     cacheUtils.clear(); // Clear cache before each test
     mockFetch.mockResolvedValue({
       ok: true,
-      json: vi.fn().mockResolvedValue({ success: true })
+      json: vi.fn().mockResolvedValue({ success: true }),
     });
   });
 
@@ -42,7 +42,7 @@ describe('API Optimization Utils', () => {
     it('should have predefined cache configurations', () => {
       expect(CACHE_CONFIGS).toBeDefined();
       expect(typeof CACHE_CONFIGS).toBe('object');
-      
+
       // Check that it has expected cache types
       expect(CACHE_CONFIGS.user).toBeDefined();
       expect(CACHE_CONFIGS.messages).toBeDefined();
@@ -53,7 +53,7 @@ describe('API Optimization Utils', () => {
     });
 
     it('should have proper cache configuration structure', () => {
-      Object.values(CACHE_CONFIGS).forEach((config) => {
+      Object.values(CACHE_CONFIGS).forEach(config => {
         expect(config).toHaveProperty('duration');
         expect(config).toHaveProperty('maxSize');
         expect(config).toHaveProperty('staleWhileRevalidate');
@@ -73,7 +73,7 @@ describe('API Optimization Utils', () => {
       const fetcher = vi.fn().mockResolvedValue(mockData);
 
       const result = await optimizedFetch(key, fetcher, 'user');
-      
+
       expect(result).toEqual(mockData);
       expect(fetcher).toHaveBeenCalledTimes(1);
     });
@@ -99,18 +99,24 @@ describe('API Optimization Utils', () => {
       const error = new Error('Fetch failed');
       const fetcher = vi.fn().mockRejectedValue(error);
 
-      await expect(optimizedFetch(key, fetcher, 'user')).rejects.toThrow('Fetch failed');
+      await expect(optimizedFetch(key, fetcher, 'user')).rejects.toThrow(
+        'Fetch failed'
+      );
     });
 
     it('should respect different cache types', async () => {
       const userData = { type: 'user' };
       const messageData = { type: 'message' };
-      
+
       const userFetcher = vi.fn().mockResolvedValue(userData);
       const messageFetcher = vi.fn().mockResolvedValue(messageData);
 
       const result1 = await optimizedFetch('user-1', userFetcher, 'user');
-      const result2 = await optimizedFetch('message-1', messageFetcher, 'messages');
+      const result2 = await optimizedFetch(
+        'message-1',
+        messageFetcher,
+        'messages'
+      );
 
       expect(result1).toEqual(userData);
       expect(result2).toEqual(messageData);
@@ -133,56 +139,56 @@ describe('API Optimization Utils', () => {
     it('should make GET requests', async () => {
       mockFetch.mockResolvedValue({
         ok: true,
-        json: vi.fn().mockResolvedValue({ id: 1, name: 'Test' })
+        json: vi.fn().mockResolvedValue({ id: 1, name: 'Test' }),
       });
 
       const result = await apiClient.get('/users/1');
-      
+
       expect(result).toEqual({ id: 1, name: 'Test' });
       expect(mockFetch).toHaveBeenCalledWith(
         'https://api.example.com/users/1',
         expect.objectContaining({
-          method: 'GET'
+          method: 'GET',
         })
       );
     });
 
     it('should make POST requests', async () => {
       const postData = { name: 'New User', email: 'user@example.com' };
-      
+
       mockFetch.mockResolvedValue({
         ok: true,
-        json: vi.fn().mockResolvedValue({ id: 2, ...postData })
+        json: vi.fn().mockResolvedValue({ id: 2, ...postData }),
       });
 
       const result = await apiClient.post('/users', postData);
-      
+
       expect(result).toEqual({ id: 2, ...postData });
       expect(mockFetch).toHaveBeenCalledWith(
         'https://api.example.com/users',
         expect.objectContaining({
           method: 'POST',
-          body: JSON.stringify(postData)
+          body: JSON.stringify(postData),
         })
       );
     });
 
     it('should make PUT requests', async () => {
       const putData = { id: 1, name: 'Updated User' };
-      
+
       mockFetch.mockResolvedValue({
         ok: true,
-        json: vi.fn().mockResolvedValue(putData)
+        json: vi.fn().mockResolvedValue(putData),
       });
 
       const result = await apiClient.put('/users/1', putData);
-      
+
       expect(result).toEqual(putData);
       expect(mockFetch).toHaveBeenCalledWith(
         'https://api.example.com/users/1',
         expect.objectContaining({
           method: 'PUT',
-          body: JSON.stringify(putData)
+          body: JSON.stringify(putData),
         })
       );
     });
@@ -190,16 +196,16 @@ describe('API Optimization Utils', () => {
     it('should make DELETE requests', async () => {
       mockFetch.mockResolvedValue({
         ok: true,
-        json: vi.fn().mockResolvedValue({ deleted: true })
+        json: vi.fn().mockResolvedValue({ deleted: true }),
       });
 
       const result = await apiClient.delete('/users/1');
-      
+
       expect(result).toEqual({ deleted: true });
       expect(mockFetch).toHaveBeenCalledWith(
         'https://api.example.com/users/1',
         expect.objectContaining({
-          method: 'DELETE'
+          method: 'DELETE',
         })
       );
     });
@@ -208,29 +214,31 @@ describe('API Optimization Utils', () => {
       mockFetch.mockResolvedValue({
         ok: false,
         status: 404,
-        statusText: 'Not Found'
+        statusText: 'Not Found',
       });
 
-      await expect(apiClient.get('/users/999')).rejects.toThrow('API Error: 404 Not Found');
+      await expect(apiClient.get('/users/999')).rejects.toThrow(
+        'API Error: 404 Not Found'
+      );
     });
 
     it('should add request interceptors', () => {
-      const interceptor = vi.fn().mockImplementation((config) => ({
+      const interceptor = vi.fn().mockImplementation(config => ({
         ...config,
-        headers: { ...config.headers, 'X-Custom': 'test' }
+        headers: { ...config.headers, 'X-Custom': 'test' },
       }));
 
       apiClient.addRequestInterceptor(interceptor);
-      
+
       // Verify interceptor was added (we can't directly test execution without making a request)
       expect(interceptor).toBeDefined();
     });
 
     it('should add response interceptors', () => {
-      const interceptor = vi.fn().mockImplementation((response) => response);
-      
+      const interceptor = vi.fn().mockImplementation(response => response);
+
       apiClient.addResponseInterceptor(interceptor);
-      
+
       // Verify interceptor was added
       expect(interceptor).toBeDefined();
     });
@@ -246,17 +254,18 @@ describe('API Optimization Utils', () => {
     });
 
     it('should retry on failure and eventually succeed', async () => {
-      const partiallyFailingFn = vi.fn()
+      const partiallyFailingFn = vi
+        .fn()
         .mockRejectedValueOnce(new Error('First failure'))
         .mockRejectedValueOnce(new Error('Second failure'))
         .mockResolvedValue('success');
 
       const resultPromise = withRetry(partiallyFailingFn, 3, 10);
-      
+
       // Fast-forward past retry delays
       vi.advanceTimersByTime(100);
       await vi.runAllTimersAsync();
-      
+
       const result = await resultPromise;
       expect(result).toBe('success');
       expect(partiallyFailingFn).toHaveBeenCalledTimes(3);
@@ -264,17 +273,17 @@ describe('API Optimization Utils', () => {
 
     it('should throw after all retries exhausted', async () => {
       const alwaysFailingFn = vi.fn();
-      
+
       // Set up the mock to fail on each call
       alwaysFailingFn.mockRejectedValue(new Error('Always fails'));
-      
+
       // Start the retry operation and immediately catch it to prevent unhandled rejection
       const failPromise = withRetry(alwaysFailingFn, 2, 10).catch(e => e);
-      
+
       // Advance timers to allow all retries to complete
       vi.advanceTimersByTime(1000);
       await vi.runAllTimersAsync();
-      
+
       // Now check the result
       const result = await failPromise;
       expect(result).toBeInstanceOf(Error);
@@ -284,22 +293,22 @@ describe('API Optimization Utils', () => {
 
     it('should respect custom retry delay', async () => {
       const failingFn = vi.fn();
-      
+
       // Set up the mock to fail on each call
       failingFn.mockRejectedValue(new Error('Fails'));
-      
+
       // Start the retry operation and immediately catch it to prevent unhandled rejection
       const failPromise = withRetry(failingFn, 2, 50).catch(e => e);
-      
+
       // Advance timers to allow all retries to complete with custom delay
       vi.advanceTimersByTime(1000);
       await vi.runAllTimersAsync();
-      
+
       // Now check the result
       const result = await failPromise;
       expect(result).toBeInstanceOf(Error);
       expect((result as Error).message).toBe('Fails');
-      
+
       // Should have made retries
       expect(failingFn).toHaveBeenCalledTimes(3); // maxRetries 2 = 3 total attempts (0, 1, 2)
     });
@@ -313,10 +322,10 @@ describe('API Optimization Utils', () => {
 
     it('should execute request successfully', async () => {
       const mockData = { id: 1, name: 'Test' };
-      
+
       mockFetch.mockResolvedValue({
         ok: true,
-        json: vi.fn().mockResolvedValue(mockData)
+        json: vi.fn().mockResolvedValue(mockData),
       });
 
       const request = new CancellableRequest();
@@ -327,10 +336,10 @@ describe('API Optimization Utils', () => {
 
     it('should handle request cancellation', async () => {
       const request = new CancellableRequest();
-      
+
       // Cancel immediately before making request
       request.cancel();
-      
+
       // This test is simplified since mocking AbortController is complex
       expect(request).toBeInstanceOf(CancellableRequest);
     });
@@ -339,12 +348,14 @@ describe('API Optimization Utils', () => {
       mockFetch.mockResolvedValue({
         ok: false,
         status: 500,
-        statusText: 'Internal Server Error'
+        statusText: 'Internal Server Error',
       });
 
       const request = new CancellableRequest();
-      
-      await expect(request.request('https://api.example.com/data')).rejects.toThrow('HTTP 500: Internal Server Error');
+
+      await expect(
+        request.request('https://api.example.com/data')
+      ).rejects.toThrow('HTTP 500: Internal Server Error');
     });
   });
 
@@ -376,11 +387,11 @@ describe('API Optimization Utils', () => {
     it('should warm up cache', async () => {
       const warmUpFunctions = [
         vi.fn().mockResolvedValue('data1'),
-        vi.fn().mockResolvedValue('data2')
+        vi.fn().mockResolvedValue('data2'),
       ];
 
       await cacheUtils.warmUp(warmUpFunctions);
-      
+
       expect(warmUpFunctions[0]).toHaveBeenCalled();
       expect(warmUpFunctions[1]).toHaveBeenCalled();
     });
@@ -388,17 +399,17 @@ describe('API Optimization Utils', () => {
     it('should prefetch data', async () => {
       // Mock requestIdleCallback
       Object.defineProperty(window, 'requestIdleCallback', {
-        value: vi.fn().mockImplementation((callback) => callback()),
-        writable: true
+        value: vi.fn().mockImplementation(callback => callback()),
+        writable: true,
       });
 
       const prefetchFunctions = [
         vi.fn().mockResolvedValue('prefetch1'),
-        vi.fn().mockResolvedValue('prefetch2')
+        vi.fn().mockResolvedValue('prefetch2'),
       ];
 
       await cacheUtils.prefetch(prefetchFunctions);
-      
+
       // Should use requestIdleCallback when available
       expect(window.requestIdleCallback).toHaveBeenCalled();
     });
@@ -407,17 +418,17 @@ describe('API Optimization Utils', () => {
   describe('Integration tests', () => {
     it('should work end-to-end with real API client', async () => {
       const mockData = { users: [{ id: 1, name: 'John' }] };
-      
+
       mockFetch.mockResolvedValue({
         ok: true,
-        json: vi.fn().mockResolvedValue(mockData)
+        json: vi.fn().mockResolvedValue(mockData),
       });
 
       const apiClient = new OptimizedAPIClient('https://api.example.com');
       const result = await apiClient.get('/users', 'user'); // Use user cache type
-      
+
       expect(result).toEqual(mockData);
-      
+
       // Second request should use cache
       const cachedResult = await apiClient.get('/users', 'user');
       expect(cachedResult).toEqual(mockData);
@@ -426,23 +437,23 @@ describe('API Optimization Utils', () => {
 
     it('should handle concurrent requests with deduplication', async () => {
       const mockData = { message: 'concurrent-test' };
-      
+
       mockFetch.mockResolvedValue({
         ok: true,
-        json: vi.fn().mockResolvedValue(mockData)
+        json: vi.fn().mockResolvedValue(mockData),
       });
 
       const apiClient = new OptimizedAPIClient('https://api.example.com');
-      
+
       // Make multiple concurrent requests
       const promises = [
         apiClient.get('/data'),
         apiClient.get('/data'),
-        apiClient.get('/data')
+        apiClient.get('/data'),
       ];
 
       const results = await Promise.all(promises);
-      
+
       // All should return the same data
       results.forEach(result => {
         expect(result).toEqual(mockData);
@@ -455,24 +466,24 @@ describe('API Optimization Utils', () => {
       mockFetch.mockRejectedValue(new Error('Network error'));
 
       const apiClient = new OptimizedAPIClient('https://api.example.com');
-      
+
       await expect(apiClient.get('/users')).rejects.toThrow('Network error');
     });
 
     it('should handle malformed JSON responses', async () => {
       mockFetch.mockResolvedValue({
         ok: true,
-        json: vi.fn().mockRejectedValue(new Error('Invalid JSON'))
+        json: vi.fn().mockRejectedValue(new Error('Invalid JSON')),
       });
 
       const apiClient = new OptimizedAPIClient('https://api.example.com');
-      
+
       await expect(apiClient.get('/users')).rejects.toThrow('Invalid JSON');
     });
 
     it('should handle undefined cache types gracefully', async () => {
       const fetcher = vi.fn().mockResolvedValue({ data: 'test' });
-      
+
       // Should not throw even with undefined cache type
       const result = await optimizedFetch('test-key', fetcher);
       expect(result).toEqual({ data: 'test' });

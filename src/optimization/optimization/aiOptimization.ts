@@ -2,12 +2,21 @@
 // Provides advanced semantic markup, content analysis, and AI-readable metadata
 
 export interface AIContentConfig {
-  contentType: 'article' | 'landing-page' | 'product-page' | 'governance-page' | 'documentation';
+  contentType:
+    | 'article'
+    | 'landing-page'
+    | 'product-page'
+    | 'governance-page'
+    | 'documentation';
   primaryTopic: string;
   semanticKeywords: string[];
   targetAudience: string[];
   complexityLevel: 'beginner' | 'intermediate' | 'advanced';
-  contentPurpose: 'informational' | 'transactional' | 'navigational' | 'commercial';
+  contentPurpose:
+    | 'informational'
+    | 'transactional'
+    | 'navigational'
+    | 'commercial';
   industryVertical: string;
   technicalTags: string[];
   userIntent: string[];
@@ -19,13 +28,19 @@ export interface AIStructuredData {
   semanticMarkup: Record<string, unknown>;
   entityRecognition: string[];
   topicClustering: string[];
-  contentRelationships: Array<{ type: string; target: string; strength: number }>;
+  contentRelationships: Array<{
+    type: string;
+    target: string;
+    strength: number;
+  }>;
 }
 
 /**
  * Generates AI-optimized meta tags for enhanced machine learning comprehension
  */
-export function generateAIMetaTags(config: AIContentConfig): Record<string, string> {
+export function generateAIMetaTags(
+  config: AIContentConfig
+): Record<string, string> {
   const metaTags: Record<string, string> = {
     // Core AI Classification
     'ai-content-type': config.contentType,
@@ -33,101 +48,107 @@ export function generateAIMetaTags(config: AIContentConfig): Record<string, stri
     'ai-complexity-level': config.complexityLevel,
     'ai-content-purpose': config.contentPurpose,
     'ai-industry-vertical': config.industryVertical,
-    
+
     // Semantic Understanding
     'ai-semantic-keywords': config.semanticKeywords.join(','),
     'ai-target-audience': config.targetAudience.join(','),
     'ai-technical-tags': config.technicalTags.join(','),
     'ai-user-intent': config.userIntent.join(','),
     'ai-conversion-goals': config.conversionGoals.join(','),
-    
+
     // Content Quality Indicators
     'ai-content-authority': 'expert-level',
     'ai-content-freshness': 'high',
     'ai-content-completeness': 'comprehensive',
     'ai-content-accuracy': 'verified',
-    
+
     // Machine Learning Optimization
     'ai-indexable': 'true',
     'ai-crawl-priority': 'high',
     'ai-content-language': 'en',
     'ai-content-region': 'global',
     'ai-content-novelty': 'innovative',
-    
+
     // Engagement Prediction
     'ai-engagement-score': '90',
     'ai-shareability-index': 'high',
     'ai-conversion-likelihood': '85%',
-    'ai-user-satisfaction-prediction': 'high'
+    'ai-user-satisfaction-prediction': 'high',
   };
-  
+
   // Add governance-specific tags for DAO pages
   if (config.contentType === 'governance-page') {
-    metaTags['ai-governance-features'] = 'voting-notifications,multi-sig-coordination,proposal-tracking';
+    metaTags['ai-governance-features'] =
+      'voting-notifications,multi-sig-coordination,proposal-tracking';
     metaTags['ai-dao-platforms'] = 'snapshot,tally,aragon,safe,decentdao';
     metaTags['ai-participation-boost'] = '85%';
     metaTags['ai-treasury-management'] = 'enabled';
   }
-  
+
   return metaTags;
 }
 
 /**
  * Creates semantic HTML markup for AI comprehension
  */
-export function generateSemanticMarkup(config: AIContentConfig): Record<string, unknown> {
+export function generateSemanticMarkup(
+  config: AIContentConfig
+): Record<string, unknown> {
   const baseMarkup = {
     '@context': 'https://schema.org',
     '@type': getSchemaType(config.contentType),
-    'name': config.primaryTopic,
-    'description': `Comprehensive ${config.primaryTopic} resource for ${config.targetAudience.join(', ')}`,
-    'about': config.semanticKeywords.map(keyword => ({
+    name: config.primaryTopic,
+    description: `Comprehensive ${config.primaryTopic} resource for ${config.targetAudience.join(', ')}`,
+    about: config.semanticKeywords.map(keyword => ({
       '@type': 'Thing',
-      'name': keyword
+      name: keyword,
     })),
-    'audience': {
+    audience: {
       '@type': 'Audience',
-      'audienceType': config.targetAudience.join(', ')
+      audienceType: config.targetAudience.join(', '),
     },
-    'educationalLevel': config.complexityLevel,
-    'inLanguage': 'en',
-    'isAccessibleForFree': true
+    educationalLevel: config.complexityLevel,
+    inLanguage: 'en',
+    isAccessibleForFree: true,
   };
-  
+
   // Add governance-specific markup
   if (config.contentType === 'governance-page') {
     return {
       ...baseMarkup,
       '@type': 'SoftwareApplication',
-      'applicationCategory': 'GovernanceApplication',
-      'operatingSystem': 'Web Browser',
-      'featureList': [
+      applicationCategory: 'GovernanceApplication',
+      operatingSystem: 'Web Browser',
+      featureList: [
         'Smart voting notifications',
         'Multi-signature wallet coordination',
         'Automated proposal tracking',
         'Cross-platform DAO integration',
-        'Treasury management tools'
+        'Treasury management tools',
       ],
-      'isRelatedTo': [
-        { '@type': 'SoftwareApplication', 'name': 'Snapshot' },
-        { '@type': 'SoftwareApplication', 'name': 'Tally' },
-        { '@type': 'SoftwareApplication', 'name': 'Aragon' },
-        { '@type': 'SoftwareApplication', 'name': 'Safe' }
-      ]
+      isRelatedTo: [
+        { '@type': 'SoftwareApplication', name: 'Snapshot' },
+        { '@type': 'SoftwareApplication', name: 'Tally' },
+        { '@type': 'SoftwareApplication', name: 'Aragon' },
+        { '@type': 'SoftwareApplication', name: 'Safe' },
+      ],
     };
   }
-  
+
   return baseMarkup;
 }
 
 /**
  * Generates content relationship mapping for AI understanding
  */
-export function generateContentRelationships(_primaryUrl: string, relatedPages: Array<{ url: string; topic: string; relevance: number }>): Array<{ type: string; target: string; strength: number }> {
+export function generateContentRelationships(
+  _primaryUrl: string,
+  relatedPages: Array<{ url: string; topic: string; relevance: number }>
+): Array<{ type: string; target: string; strength: number }> {
   return relatedPages.map(page => ({
     type: 'related-content',
     target: page.url,
-    strength: page.relevance
+    strength: page.relevance,
   }));
 }
 
@@ -141,9 +162,9 @@ export function generateEntityRecognition(config: AIContentConfig): string[] {
     'blockchain',
     'email',
     'wallet',
-    'cryptocurrency'
+    'cryptocurrency',
   ];
-  
+
   const governanceEntities = [
     'DAO',
     'governance',
@@ -154,13 +175,13 @@ export function generateEntityRecognition(config: AIContentConfig): string[] {
     'Aragon',
     'Safe',
     'proposal',
-    'community'
+    'community',
   ];
-  
+
   if (config.contentType === 'governance-page') {
     return [...baseEntities, ...governanceEntities];
   }
-  
+
   return baseEntities;
 }
 
@@ -171,28 +192,31 @@ export function generateTopicClustering(config: AIContentConfig): string[] {
   const baseClusters = [
     'web3-infrastructure',
     'email-technology',
-    'blockchain-applications'
+    'blockchain-applications',
   ];
-  
+
   const governanceClusters = [
     'dao-governance-tools',
     'voting-notification-systems',
     'community-management-platforms',
     'multi-signature-coordination',
-    'treasury-management-solutions'
+    'treasury-management-solutions',
   ];
-  
+
   if (config.contentType === 'governance-page') {
     return [...baseClusters, ...governanceClusters];
   }
-  
+
   return baseClusters;
 }
 
 /**
  * Creates comprehensive AI-optimized structured data
  */
-export function generateAIStructuredData(config: AIContentConfig, additionalData?: Partial<AIStructuredData>): AIStructuredData {
+export function generateAIStructuredData(
+  config: AIContentConfig,
+  additionalData?: Partial<AIStructuredData>
+): AIStructuredData {
   return {
     contentClassification: {
       type: config.contentType,
@@ -200,13 +224,13 @@ export function generateAIStructuredData(config: AIContentConfig, additionalData
       audience: config.targetAudience.join(','),
       complexity: config.complexityLevel,
       purpose: config.contentPurpose,
-      vertical: config.industryVertical
+      vertical: config.industryVertical,
     },
     semanticMarkup: generateSemanticMarkup(config),
     entityRecognition: generateEntityRecognition(config),
     topicClustering: generateTopicClustering(config),
     contentRelationships: additionalData?.contentRelationships || [],
-    ...additionalData
+    ...additionalData,
   };
 }
 
@@ -215,13 +239,13 @@ export function generateAIStructuredData(config: AIContentConfig, additionalData
  */
 function getSchemaType(contentType: string): string {
   const typeMap: Record<string, string> = {
-    'article': 'Article',
+    article: 'Article',
     'landing-page': 'WebPage',
     'product-page': 'Product',
     'governance-page': 'SoftwareApplication',
-    'documentation': 'TechArticle'
+    documentation: 'TechArticle',
   };
-  
+
   return typeMap[contentType] || 'WebPage';
 }
 
@@ -232,22 +256,22 @@ export function generatePerformanceTrackingSchema(pageName: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'MonitorAction',
-    'name': `AI Performance Tracking - ${pageName}`,
-    'instrument': {
+    name: `AI Performance Tracking - ${pageName}`,
+    instrument: {
       '@type': 'SoftwareApplication',
-      'name': 'AI Analytics Platform'
+      name: 'AI Analytics Platform',
     },
-    'measurementTechnique': [
+    measurementTechnique: [
       'User Engagement Metrics',
       'AI Content Understanding Score',
       'Semantic Relevance Analysis',
-      'Conversion Optimization Tracking'
+      'Conversion Optimization Tracking',
     ],
-    'result': {
+    result: {
       '@type': 'Dataset',
-      'name': `${pageName} Performance Data`,
-      'description': 'AI-optimized performance metrics and user interaction data'
-    }
+      name: `${pageName} Performance Data`,
+      description: 'AI-optimized performance metrics and user interaction data',
+    },
   };
 }
 
@@ -264,43 +288,43 @@ export const aiOptimizationPresets = {
       'multi-sig coordination',
       'proposal tracking',
       'community engagement',
-      'treasury management'
+      'treasury management',
     ],
     targetAudience: [
       'DAO members',
-      'governance participants', 
+      'governance participants',
       'multi-sig signers',
       'protocol teams',
-      'community managers'
+      'community managers',
     ],
     complexityLevel: 'intermediate' as const,
     contentPurpose: 'commercial' as const,
     industryVertical: 'blockchain-governance',
     technicalTags: [
       'snapshot',
-      'tally', 
+      'tally',
       'aragon',
       'safe',
       'multi-sig',
       'voting',
       'proposals',
-      'treasury'
+      'treasury',
     ],
     userIntent: [
       'improve-governance',
       'increase-participation',
       'coordinate-multi-sig',
       'track-proposals',
-      'engage-community'
+      'engage-community',
     ],
     conversionGoals: [
       'dao-integration',
       'governance-setup',
       'multi-sig-connection',
-      'notification-activation'
-    ]
+      'notification-activation',
+    ],
   },
-  
+
   landingPage: {
     contentType: 'landing-page' as const,
     primaryTopic: 'Web3 Email Platform',
@@ -308,15 +332,15 @@ export const aiOptimizationPresets = {
       'Web3 email',
       'wallet authentication',
       'ENS email',
-      'SNS email', 
+      'SNS email',
       'blockchain email',
-      'decentralized communication'
+      'decentralized communication',
     ],
     targetAudience: [
       'Web3 users',
       'crypto enthusiasts',
       'blockchain developers',
-      'DeFi users'
+      'DeFi users',
     ],
     complexityLevel: 'beginner' as const,
     contentPurpose: 'commercial' as const,
@@ -328,21 +352,21 @@ export const aiOptimizationPresets = {
       'sns',
       'wallet-connect',
       'metamask',
-      'phantom'
+      'phantom',
     ],
     userIntent: [
       'create-web3-email',
       'connect-wallet',
       'secure-communication',
-      'eliminate-passwords'
+      'eliminate-passwords',
     ],
     conversionGoals: [
       'wallet-connection',
       'email-creation',
       'first-email-sent',
-      'premium-upgrade'
-    ]
-  }
+      'premium-upgrade',
+    ],
+  },
 };
 
 export default {
@@ -353,5 +377,5 @@ export default {
   generateTopicClustering,
   generateAIStructuredData,
   generatePerformanceTrackingSchema,
-  aiOptimizationPresets
+  aiOptimizationPresets,
 };

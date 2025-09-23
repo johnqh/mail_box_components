@@ -1,5 +1,8 @@
 import React from 'react';
-import { ExclamationCircleIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
+import {
+  ExclamationCircleIcon,
+  InformationCircleIcon,
+} from '@heroicons/react/24/outline';
 
 interface FormFieldGroupProps {
   label: string;
@@ -22,37 +25,43 @@ export const FormFieldGroup: React.FC<FormFieldGroupProps> = ({
   layout = 'vertical',
   className = '',
   labelClassName = '',
-  contentClassName = ''
+  contentClassName = '',
 }) => {
   const isHorizontal = layout === 'horizontal';
 
   return (
-    <div className={`${isHorizontal ? 'grid grid-cols-1 md:grid-cols-3 gap-4 items-start' : 'space-y-2'} ${className}`}>
+    <div
+      className={`${isHorizontal ? 'grid grid-cols-1 md:grid-cols-3 gap-4 items-start' : 'space-y-2'} ${className}`}
+    >
       {/* Label */}
       <div className={isHorizontal ? 'md:col-span-1' : ''}>
-        <label className={`block text-sm font-medium text-gray-700 dark:text-gray-300 ${labelClassName}`}>
+        <label
+          className={`block text-sm font-medium text-gray-700 dark:text-gray-300 ${labelClassName}`}
+        >
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && <span className='text-red-500 ml-1'>*</span>}
         </label>
         {helpText && !error && (
-          <div className="mt-1 flex items-start">
-            <InformationCircleIcon className="h-4 w-4 text-gray-400 mr-1 mt-0.5 flex-shrink-0" />
-            <p className="text-xs text-gray-500 dark:text-gray-400">{helpText}</p>
+          <div className='mt-1 flex items-start'>
+            <InformationCircleIcon className='h-4 w-4 text-gray-400 mr-1 mt-0.5 flex-shrink-0' />
+            <p className='text-xs text-gray-500 dark:text-gray-400'>
+              {helpText}
+            </p>
           </div>
         )}
       </div>
 
       {/* Content */}
-      <div className={`${isHorizontal ? 'md:col-span-2' : ''} ${contentClassName}`}>
-        <div className={error ? 'relative' : ''}>
-          {children}
-        </div>
+      <div
+        className={`${isHorizontal ? 'md:col-span-2' : ''} ${contentClassName}`}
+      >
+        <div className={error ? 'relative' : ''}>{children}</div>
 
         {/* Error Message */}
         {error && (
-          <div className="mt-1 flex items-start">
-            <ExclamationCircleIcon className="h-4 w-4 text-red-500 mr-1 mt-0.5 flex-shrink-0" />
-            <p className="text-xs text-red-600 dark:text-red-400">{error}</p>
+          <div className='mt-1 flex items-start'>
+            <ExclamationCircleIcon className='h-4 w-4 text-red-500 mr-1 mt-0.5 flex-shrink-0' />
+            <p className='text-xs text-red-600 dark:text-red-400'>{error}</p>
           </div>
         )}
       </div>
@@ -84,7 +93,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   helpText,
   type = 'text',
   layout = 'vertical',
-  className = ''
+  className = '',
 }) => {
   return (
     <FormFieldGroup
@@ -98,16 +107,17 @@ export const TextField: React.FC<TextFieldProps> = ({
       <input
         type={type}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
         className={`
           block w-full px-3 py-2 border rounded-md shadow-sm
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
           dark:bg-gray-800 dark:border-gray-600 dark:text-white
           transition-colors duration-200
-          ${error 
-            ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-            : 'border-gray-300 dark:border-gray-600'
+          ${
+            error
+              ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+              : 'border-gray-300 dark:border-gray-600'
           }
         `}
       />
@@ -138,7 +148,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   helpText,
   rows = 4,
   layout = 'vertical',
-  className = ''
+  className = '',
 }) => {
   return (
     <FormFieldGroup
@@ -151,7 +161,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
     >
       <textarea
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
         rows={rows}
         className={`
@@ -159,9 +169,10 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
           dark:bg-gray-800 dark:border-gray-600 dark:text-white
           transition-colors duration-200 resize-vertical
-          ${error 
-            ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-            : 'border-gray-300 dark:border-gray-600'
+          ${
+            error
+              ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+              : 'border-gray-300 dark:border-gray-600'
           }
         `}
       />
@@ -192,7 +203,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   helpText,
   placeholder = 'Select an option',
   layout = 'vertical',
-  className = ''
+  className = '',
 }) => {
   return (
     <FormFieldGroup
@@ -205,26 +216,27 @@ export const SelectField: React.FC<SelectFieldProps> = ({
     >
       <select
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         className={`
           block w-full px-3 py-2 border rounded-md shadow-sm
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
           dark:bg-gray-800 dark:border-gray-600 dark:text-white
           transition-colors duration-200
-          ${error 
-            ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-            : 'border-gray-300 dark:border-gray-600'
+          ${
+            error
+              ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+              : 'border-gray-300 dark:border-gray-600'
           }
         `}
       >
         {placeholder && (
-          <option value="" disabled>
+          <option value='' disabled>
             {placeholder}
           </option>
         )}
-        {options.map((option) => (
-          <option 
-            key={option.value} 
+        {options.map(option => (
+          <option
+            key={option.value}
             value={option.value}
             disabled={option.disabled}
           >

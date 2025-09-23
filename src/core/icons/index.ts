@@ -4,7 +4,7 @@
  */
 
 // Most frequently used icons (15+ usages)
-export { 
+export {
   StarIcon,
   CheckIcon,
   CheckCircleIcon,
@@ -41,15 +41,15 @@ export {
   KeyIcon,
   MegaphoneIcon,
   EyeSlashIcon,
-  PaperClipIcon
+  PaperClipIcon,
 } from '@heroicons/react/24/outline';
 
 // Solid versions of commonly used icons
-export { 
+export {
   StarIcon as StarIconSolid,
   CheckIcon as CheckIconSolid,
   CheckCircleIcon as CheckCircleIconSolid,
-  ExclamationTriangleIcon as ExclamationTriangleIconSolid
+  ExclamationTriangleIcon as ExclamationTriangleIconSolid,
 } from '@heroicons/react/24/solid';
 
 // Re-export for backward compatibility

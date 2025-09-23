@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 export default defineConfig({
   test: {
@@ -18,34 +18,28 @@ export default defineConfig({
         'coverage/',
         'vite.config.ts',
         'vitest.config.ts',
-        'tailwind.config.js'
+        'tailwind.config.js',
       ],
       thresholds: {
         global: {
           branches: 80,
           functions: 80,
           lines: 80,
-          statements: 80
-        }
-      }
+          statements: 80,
+        },
+      },
     },
-    include: [
-      'src/**/*.{test,spec}.{ts,tsx}'
-    ],
-    exclude: [
-      'node_modules/',
-      'dist/',
-      '.git/'
-    ],
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    exclude: ['node_modules/', 'dist/', '.git/'],
     server: {
       deps: {
-        inline: ['@testing-library/jest-dom']
-      }
-    }
+        inline: ['@testing-library/jest-dom'],
+      },
+    },
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
-    }
-  }
-})
+      '@': resolve(__dirname, 'src'),
+    },
+  },
+});

@@ -4,7 +4,15 @@
 
 export interface WalletBrowserInfo {
   isWalletBrowser: boolean;
-  walletType: 'metamask' | 'trustwallet' | 'coinbase' | 'rainbow' | 'phantom' | 'solflare' | 'exodus' | 'unknown';
+  walletType:
+    | 'metamask'
+    | 'trustwallet'
+    | 'coinbase'
+    | 'rainbow'
+    | 'phantom'
+    | 'solflare'
+    | 'exodus'
+    | 'unknown';
   hasEthereum: boolean;
   hasSolana: boolean;
   provider: any;
@@ -16,14 +24,14 @@ export function detectWalletBrowser(): WalletBrowserInfo {
     walletType: 'unknown',
     hasEthereum: false,
     hasSolana: false,
-    provider: null
+    provider: null,
   };
 
   if (typeof window === 'undefined') return defaultInfo;
 
   try {
     const userAgent = navigator.userAgent.toLowerCase();
-    
+
     // Check for specific wallet browsers
     let walletType: WalletBrowserInfo['walletType'] = 'unknown';
     let isWalletBrowser = false;
@@ -53,27 +61,33 @@ export function detectWalletBrowser(): WalletBrowserInfo {
 
     // Check for injected providers even if user agent doesn't match
     const hasEthereum = !!(window as any).ethereum;
-    const hasSolana = !!(window as any).solana || !!(window as any).phantom?.solana;
-    
+    const hasSolana =
+      !!(window as any).solana || !!(window as any).phantom?.solana;
+
     // If we have providers but didn't detect from user agent, still consider it a wallet browser
     if ((hasEthereum || hasSolana) && !isWalletBrowser) {
       isWalletBrowser = true;
       // Try to identify wallet type from provider
       if ((window as any).ethereum?.isMetaMask) walletType = 'metamask';
-      else if ((window as any).ethereum?.isCoinbaseWallet) walletType = 'coinbase';
+      else if ((window as any).ethereum?.isCoinbaseWallet)
+        walletType = 'coinbase';
       else if ((window as any).ethereum?.isRainbow) walletType = 'rainbow';
       else if ((window as any).phantom) walletType = 'phantom';
       else if ((window as any).solflare) walletType = 'solflare';
     }
 
-    const provider = hasEthereum ? (window as any).ethereum : hasSolana ? ((window as any).solana || (window as any).phantom?.solana) : null;
+    const provider = hasEthereum
+      ? (window as any).ethereum
+      : hasSolana
+        ? (window as any).solana || (window as any).phantom?.solana
+        : null;
 
     return {
       isWalletBrowser,
       walletType,
       hasEthereum,
       hasSolana,
-      provider
+      provider,
     };
   } catch (error) {
     console.warn('Error detecting wallet browser:', error);
@@ -81,9 +95,13 @@ export function detectWalletBrowser(): WalletBrowserInfo {
   }
 }
 
-export async function autoConnectWalletBrowser(): Promise<{ success: boolean; address?: string; error?: string }> {
+export async function autoConnectWalletBrowser(): Promise<{
+  success: boolean;
+  address?: string;
+  error?: string;
+}> {
   const walletInfo = detectWalletBrowser();
-  
+
   if (!walletInfo.isWalletBrowser) {
     return { success: false, error: 'Not running in a wallet browser' };
   }
@@ -95,9 +113,9 @@ export async function autoConnectWalletBrowser(): Promise<{ success: boolean; ad
     if (walletInfo.hasEthereum && walletInfo.provider) {
       try {
         const accounts = await walletInfo.provider.request({
-          method: 'eth_requestAccounts'
+          method: 'eth_requestAccounts',
         });
-        
+
         if (accounts && accounts.length > 0) {
           // Connected to Ethereum wallet
           return { success: true, address: accounts[0] };
@@ -124,6 +142,10 @@ export async function autoConnectWalletBrowser(): Promise<{ success: boolean; ad
     return { success: false, error: 'Failed to connect to wallet provider' };
   } catch (error) {
     console.error('Auto-connect failed:', error);
-    return { success: false, error: error instanceof Error ? error.message : 'Unknown connection error' };
+    return {
+      success: false,
+      error:
+        error instanceof Error ? error.message : 'Unknown connection error',
+    };
   }
 }

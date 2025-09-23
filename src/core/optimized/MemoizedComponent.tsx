@@ -11,11 +11,11 @@ export const createMemoComponent = <P extends Record<string, unknown>>(
   displayName?: string
 ) => {
   const MemoizedComponent = memo(Component, areEqual);
-  
+
   if (displayName) {
     MemoizedComponent.displayName = `Memo(${displayName})`;
   }
-  
+
   // Add development debugging
   if (process.env.NODE_ENV === 'development') {
     return (props: P) => {
@@ -23,17 +23,17 @@ export const createMemoComponent = <P extends Record<string, unknown>>(
         let count = 0;
         return () => ++count;
       }, []);
-      
+
       const currentRender = renderCount();
-      
+
       if (currentRender > 1) {
         // Component re-rendered multiple times - could indicate optimization opportunities
       }
-      
+
       return <MemoizedComponent {...(props as any)} />;
     };
   }
-  
+
   return MemoizedComponent;
 };
 
@@ -55,41 +55,40 @@ export interface ExpensiveComponentProps {
   fallback?: React.ReactNode;
 }
 
-export const ExpensiveComponent: React.FC<ExpensiveComponentProps> = memo(({
-  children,
-  compute,
-  deps,
-}) => {
-  const prevDeps = React.useRef(deps);
-  const prevCompute = React.useRef(compute);
-  const prevResult = React.useRef<unknown>(undefined);
-  
-  const result = useMemo(() => {
-    const depsChanged = deps.length !== prevDeps.current.length || 
-      deps.some((dep, index) => dep !== prevDeps.current[index]);
-    const computeChanged = compute !== prevCompute.current;
-    
-    if (depsChanged || computeChanged || prevResult.current === undefined) {
-      const start = performance.now();
-      const computedResult = compute();
-      const end = performance.now();
-      
-      if (process.env.NODE_ENV === 'development' && end - start > 16) {
-        console.warn(`Expensive computation took ${end - start}ms`);
+export const ExpensiveComponent: React.FC<ExpensiveComponentProps> = memo(
+  ({ children, compute, deps }) => {
+    const prevDeps = React.useRef(deps);
+    const prevCompute = React.useRef(compute);
+    const prevResult = React.useRef<unknown>(undefined);
+
+    const result = useMemo(() => {
+      const depsChanged =
+        deps.length !== prevDeps.current.length ||
+        deps.some((dep, index) => dep !== prevDeps.current[index]);
+      const computeChanged = compute !== prevCompute.current;
+
+      if (depsChanged || computeChanged || prevResult.current === undefined) {
+        const start = performance.now();
+        const computedResult = compute();
+        const end = performance.now();
+
+        if (process.env.NODE_ENV === 'development' && end - start > 16) {
+          console.warn(`Expensive computation took ${end - start}ms`);
+        }
+
+        prevDeps.current = deps;
+        prevCompute.current = compute;
+        prevResult.current = computedResult;
+
+        return computedResult;
       }
-      
-      prevDeps.current = deps;
-      prevCompute.current = compute;
-      prevResult.current = computedResult;
-      
-      return computedResult;
-    }
-    
-    return prevResult.current;
-  }, [compute, deps]);
-  
-  return <>{children(result)}</>;
-});
+
+      return prevResult.current;
+    }, [compute, deps]);
+
+    return <>{children(result)}</>;
+  }
+);
 
 // Virtual list item for large lists
 export interface VirtualListItemProps<T> {
@@ -99,25 +98,19 @@ export interface VirtualListItemProps<T> {
   renderItem: (item: T, index: number) => React.ReactNode;
 }
 
-export const VirtualListItem = memo(<T,>({
-  item,
-  index,
-  style,
-  renderItem
-}: VirtualListItemProps<T>) => {
-  return (
-    <div style={style}>
-      {renderItem(item, index)}
-    </div>
-  );
-}, (prevProps, nextProps) => {
-  return (
-    prevProps.index === nextProps.index &&
-    prevProps.item === nextProps.item &&
-    prevProps.style.height === nextProps.style.height &&
-    prevProps.style.top === nextProps.style.top
-  );
-}) as <T>(props: VirtualListItemProps<T>) => React.JSX.Element;
+export const VirtualListItem = memo(
+  <T,>({ item, index, style, renderItem }: VirtualListItemProps<T>) => {
+    return <div style={style}>{renderItem(item, index)}</div>;
+  },
+  (prevProps, nextProps) => {
+    return (
+      prevProps.index === nextProps.index &&
+      prevProps.item === nextProps.item &&
+      prevProps.style.height === nextProps.style.height &&
+      prevProps.style.top === nextProps.style.top
+    );
+  }
+) as <T>(props: VirtualListItemProps<T>) => React.JSX.Element;
 
 // Conditional render component that avoids creating DOM nodes
 export interface ConditionalRenderProps {
@@ -126,13 +119,11 @@ export interface ConditionalRenderProps {
   fallback?: React.ReactNode;
 }
 
-export const ConditionalRender: React.FC<ConditionalRenderProps> = memo(({
-  condition,
-  children,
-  fallback = null
-}) => {
-  return condition ? <>{children}</> : <>{fallback}</>;
-});
+export const ConditionalRender: React.FC<ConditionalRenderProps> = memo(
+  ({ condition, children, fallback = null }) => {
+    return condition ? <>{children}</> : <>{fallback}</>;
+  }
+);
 
 // Lazy component with intersection observer
 export interface LazyComponentProps {
@@ -146,11 +137,11 @@ export const LazyComponent: React.FC<LazyComponentProps> = ({
   children,
   threshold = 0.1,
   rootMargin = '50px',
-  fallback = null
+  fallback = null,
 }) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const elementRef = React.useRef<HTMLDivElement>(null);
-  
+
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -161,19 +152,15 @@ export const LazyComponent: React.FC<LazyComponentProps> = ({
       },
       { threshold, rootMargin }
     );
-    
+
     if (elementRef.current) {
       observer.observe(elementRef.current);
     }
-    
+
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
-  
-  return (
-    <div ref={elementRef}>
-      {isVisible ? children : fallback}
-    </div>
-  );
+
+  return <div ref={elementRef}>{isVisible ? children : fallback}</div>;
 };
 
 // Performance boundary component
@@ -186,24 +173,26 @@ export interface PerformanceBoundaryProps {
 export const PerformanceBoundary: React.FC<PerformanceBoundaryProps> = ({
   children,
   maxRenderTime = 16, // 16ms = 60fps
-  onSlowRender
+  onSlowRender,
 }) => {
   const renderStart = React.useRef<number>(0);
-  
+
   React.useLayoutEffect(() => {
     renderStart.current = performance.now();
   });
-  
+
   React.useEffect(() => {
     const renderTime = performance.now() - renderStart.current;
     if (renderTime > maxRenderTime) {
       onSlowRender?.(renderTime);
       if (process.env.NODE_ENV === 'development') {
-        console.warn(`Slow render detected: ${renderTime}ms (threshold: ${maxRenderTime}ms)`);
+        console.warn(
+          `Slow render detected: ${renderTime}ms (threshold: ${maxRenderTime}ms)`
+        );
       }
     }
   });
-  
+
   return <>{children}</>;
 };
 
@@ -217,20 +206,20 @@ export interface BatchRenderProps {
 export const BatchRender: React.FC<BatchRenderProps> = ({
   children,
   batchSize = 5,
-  delay = 0
+  delay = 0,
 }) => {
   const [renderIndex, setRenderIndex] = React.useState(batchSize);
-  
+
   React.useEffect(() => {
     if (renderIndex < children.length) {
       const timer = setTimeout(() => {
         setRenderIndex(prev => Math.min(prev + batchSize, children.length));
       }, delay);
-      
+
       return () => clearTimeout(timer);
     }
   }, [renderIndex, children.length, batchSize, delay]);
-  
+
   return <>{children.slice(0, renderIndex)}</>;
 };
 
@@ -242,5 +231,5 @@ export default {
   ConditionalRender,
   LazyComponent,
   PerformanceBoundary,
-  BatchRender
+  BatchRender,
 };

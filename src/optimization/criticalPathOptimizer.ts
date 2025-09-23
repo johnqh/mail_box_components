@@ -18,7 +18,7 @@ class CriticalPathOptimizer {
     lcp: 0,
     fid: 0,
     cls: 0,
-    ttfb: 0
+    ttfb: 0,
   };
 
   constructor() {
@@ -33,39 +33,39 @@ class CriticalPathOptimizer {
         url: '/assets/index-*.css',
         type: 'style',
         priority: 'critical',
-        preload: true
+        preload: true,
       },
-      
+
       // Critical JavaScript (main bundle)
       {
         url: '/assets/index-*.js',
         type: 'script',
-        priority: 'critical'
+        priority: 'critical',
       },
-      
+
       // High priority JavaScript (React core)
       {
         url: '/assets/react-core-*.js',
         type: 'script',
         priority: 'high',
-        preload: true
+        preload: true,
       },
-      
+
       // Critical fonts
       {
         url: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2',
         type: 'font',
         priority: 'critical',
-        preload: true
+        preload: true,
       },
-      
+
       // Logo and critical images
       {
         url: '/logo.png',
         type: 'image',
         priority: 'high',
-        preload: true
-      }
+        preload: true,
+      },
     ];
   }
 
@@ -74,7 +74,7 @@ class CriticalPathOptimizer {
     if ('PerformanceObserver' in window) {
       try {
         // First Contentful Paint
-        const fcpObserver = new PerformanceObserver((list) => {
+        const fcpObserver = new PerformanceObserver(list => {
           for (const entry of list.getEntries()) {
             if (entry.name === 'first-contentful-paint') {
               this.observedMetrics.fcp = entry.startTime;
@@ -85,7 +85,7 @@ class CriticalPathOptimizer {
         fcpObserver.observe({ entryTypes: ['paint'] });
 
         // Largest Contentful Paint
-        const lcpObserver = new PerformanceObserver((list) => {
+        const lcpObserver = new PerformanceObserver(list => {
           for (const entry of list.getEntries()) {
             this.observedMetrics.lcp = entry.startTime;
             this.optimizeBasedOnLCP(entry.startTime);
@@ -95,7 +95,7 @@ class CriticalPathOptimizer {
 
         // Cumulative Layout Shift
         let clsValue = 0;
-        const clsObserver = new PerformanceObserver((list) => {
+        const clsObserver = new PerformanceObserver(list => {
           for (const entry of list.getEntries()) {
             if (!(entry as any).hadRecentInput) {
               clsValue += (entry as any).value;
@@ -104,7 +104,6 @@ class CriticalPathOptimizer {
           this.observedMetrics.cls = clsValue;
         });
         clsObserver.observe({ entryTypes: ['layout-shift'] });
-
       } catch (error) {
         console.warn('Performance observation setup failed:', error);
       }
@@ -113,9 +112,12 @@ class CriticalPathOptimizer {
     // Navigation timing
     window.addEventListener('load', () => {
       setTimeout(() => {
-        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+        const navigation = performance.getEntriesByType(
+          'navigation'
+        )[0] as PerformanceNavigationTiming;
         if (navigation) {
-          this.observedMetrics.ttfb = navigation.responseStart - navigation.requestStart;
+          this.observedMetrics.ttfb =
+            navigation.responseStart - navigation.requestStart;
           this.optimizeBasedOnTTFB(this.observedMetrics.ttfb);
         }
       }, 0);
@@ -124,7 +126,7 @@ class CriticalPathOptimizer {
 
   private optimizeBasedOnFCP(fcp: number): void {
     // FCP optimization based on timing
-    
+
     if (fcp > 2000) {
       // Slow FCP detected, applying optimizations
       this.applyEmergencyOptimizations();
@@ -135,7 +137,7 @@ class CriticalPathOptimizer {
 
   private optimizeBasedOnLCP(lcp: number): void {
     // LCP optimization based on timing
-    
+
     if (lcp > 2500) {
       this.optimizeLCPElements();
     }
@@ -143,7 +145,7 @@ class CriticalPathOptimizer {
 
   private optimizeBasedOnTTFB(ttfb: number): void {
     // TTFB optimization based on timing
-    
+
     if (ttfb > 600) {
       console.warn('Slow server response, enabling aggressive caching');
       this.enableAggressiveCaching();
@@ -152,7 +154,9 @@ class CriticalPathOptimizer {
 
   private applyEmergencyOptimizations(): void {
     // Remove non-critical resources
-    const nonCriticalImages = document.querySelectorAll('img[data-priority="low"]');
+    const nonCriticalImages = document.querySelectorAll(
+      'img[data-priority="low"]'
+    );
     nonCriticalImages.forEach(img => {
       (img as HTMLImageElement).loading = 'lazy';
       (img as HTMLImageElement).style.display = 'none';
@@ -162,7 +166,9 @@ class CriticalPathOptimizer {
     });
 
     // Defer non-critical scripts
-    const nonCriticalScripts = document.querySelectorAll('script[data-priority="low"]');
+    const nonCriticalScripts = document.querySelectorAll(
+      'script[data-priority="low"]'
+    );
     nonCriticalScripts.forEach(script => {
       script.setAttribute('defer', '');
     });
@@ -172,7 +178,7 @@ class CriticalPathOptimizer {
     // Preload next likely resources
     const nextResources = [
       '/assets/app-core-*.js',
-      '/assets/react-router-*.js'
+      '/assets/react-router-*.js',
     ];
 
     nextResources.forEach(resource => {
@@ -182,7 +188,9 @@ class CriticalPathOptimizer {
 
   private optimizeLCPElements(): void {
     // Find and optimize LCP element
-    const heroImages = document.querySelectorAll('img[data-hero], [data-lcp-element]');
+    const heroImages = document.querySelectorAll(
+      'img[data-hero], [data-lcp-element]'
+    );
     heroImages.forEach(img => {
       if (img instanceof HTMLImageElement) {
         img.fetchPriority = 'high';
@@ -191,7 +199,9 @@ class CriticalPathOptimizer {
     });
 
     // Preload hero images
-    const heroSrc = document.querySelector('img[data-hero]')?.getAttribute('src');
+    const heroSrc = document
+      .querySelector('img[data-hero]')
+      ?.getAttribute('src');
     if (heroSrc) {
       this.preloadResource(heroSrc, 'image');
     }
@@ -213,7 +223,7 @@ class CriticalPathOptimizer {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.href = url;
-    
+
     switch (type) {
       case 'script':
         link.as = 'script';
@@ -257,12 +267,18 @@ class CriticalPathOptimizer {
 
   private inlineCriticalCSS(): void {
     // For very small critical CSS, inline it
-    const criticalCSS = document.querySelector('link[rel="stylesheet"][data-critical]');
-    if (criticalCSS && this.isSmallResource(criticalCSS.getAttribute('href') || '')) {
+    const criticalCSS = document.querySelector(
+      'link[rel="stylesheet"][data-critical]'
+    );
+    if (
+      criticalCSS &&
+      this.isSmallResource(criticalCSS.getAttribute('href') || '')
+    ) {
       fetch(criticalCSS.getAttribute('href') || '')
         .then(response => response.text())
         .then(css => {
-          if (css.length < 10000) { // Only inline if < 10KB
+          if (css.length < 10000) {
+            // Only inline if < 10KB
             const style = document.createElement('style');
             style.textContent = css;
             document.head.appendChild(style);
@@ -275,7 +291,9 @@ class CriticalPathOptimizer {
 
   private optimizeFontLoading(): void {
     // Add font-display: swap to font faces
-    const fontLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
+    const fontLinks = document.querySelectorAll(
+      'link[href*="fonts.googleapis.com"]'
+    );
     fontLinks.forEach(link => {
       const href = link.getAttribute('href') || '';
       if (!href.includes('display=swap')) {
@@ -287,7 +305,9 @@ class CriticalPathOptimizer {
 
   private removeRenderBlocking(): void {
     // Make non-critical stylesheets non-render-blocking
-    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]:not([data-critical])');
+    const stylesheets = document.querySelectorAll(
+      'link[rel="stylesheet"]:not([data-critical])'
+    );
     stylesheets.forEach(link => {
       const newLink = link.cloneNode(true) as HTMLLinkElement;
       newLink.rel = 'preload';
@@ -296,12 +316,12 @@ class CriticalPathOptimizer {
         newLink.onload = null;
         newLink.rel = 'stylesheet';
       };
-      
+
       // Add noscript fallback
       const noscript = document.createElement('noscript');
       const fallbackLink = link.cloneNode(true) as HTMLLinkElement;
       noscript.appendChild(fallbackLink);
-      
+
       document.head.appendChild(newLink);
       document.head.appendChild(noscript);
       link.remove();
@@ -312,19 +332,22 @@ class CriticalPathOptimizer {
     // Progressive enhancement for images
     const images = document.querySelectorAll('img[data-src]');
     if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target as HTMLImageElement;
-            img.src = img.dataset.src || '';
-            img.removeAttribute('data-src');
-            imageObserver.unobserve(img);
-          }
-        });
-      }, {
-        rootMargin: '50px 0px',
-        threshold: 0.01
-      });
+      const imageObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target as HTMLImageElement;
+              img.src = img.dataset.src || '';
+              img.removeAttribute('data-src');
+              imageObserver.unobserve(img);
+            }
+          });
+        },
+        {
+          rootMargin: '50px 0px',
+          threshold: 0.01,
+        }
+      );
 
       images.forEach(img => imageObserver.observe(img));
     } else {
@@ -345,26 +368,26 @@ class CriticalPathOptimizer {
   public getPerformanceMetrics() {
     return {
       ...this.observedMetrics,
-      score: this.calculatePerformanceScore()
+      score: this.calculatePerformanceScore(),
     };
   }
 
   private calculatePerformanceScore(): number {
     let score = 100;
-    
+
     // Penalize slow metrics
     if (this.observedMetrics.fcp > 2000) score -= 20;
     else if (this.observedMetrics.fcp > 1500) score -= 10;
-    
+
     if (this.observedMetrics.lcp > 2500) score -= 25;
     else if (this.observedMetrics.lcp > 2000) score -= 15;
-    
+
     if (this.observedMetrics.cls > 0.1) score -= 15;
     else if (this.observedMetrics.cls > 0.05) score -= 8;
-    
+
     if (this.observedMetrics.ttfb > 600) score -= 10;
     else if (this.observedMetrics.ttfb > 400) score -= 5;
-    
+
     return Math.max(score, 0);
   }
 }
@@ -373,9 +396,9 @@ let optimizerInstance: CriticalPathOptimizer | null = null;
 
 export function initializeCriticalPathOptimization(): void {
   if (optimizerInstance) return;
-  
+
   optimizerInstance = new CriticalPathOptimizer();
-  
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       optimizerInstance?.optimizeCriticalPath();

@@ -15,7 +15,7 @@ export const EthereumUtils = {
       return null;
     }
   },
-  
+
   parseEther: async () => {
     try {
       const { parseEther } = await import('viem/utils');
@@ -25,7 +25,7 @@ export const EthereumUtils = {
       return null;
     }
   },
-  
+
   formatEther: async () => {
     try {
       const { formatEther } = await import('viem/utils');
@@ -35,21 +35,21 @@ export const EthereumUtils = {
       return null;
     }
   },
-  
+
   // Create public client on demand
   createPublicClient: async (config: any) => {
     try {
       const { createPublicClient, http } = await import('viem');
       return createPublicClient({
         ...config,
-        transport: http()
+        transport: http(),
       });
     } catch (error) {
       console.warn('viem not available:', error);
       return null;
     }
   },
-  
+
   // ENS utilities
   resolveENS: async (name: string) => {
     try {
@@ -59,7 +59,7 @@ export const EthereumUtils = {
       console.warn('viem/ens not available:', error);
       return null;
     }
-  }
+  },
 };
 
 // Selective imports for Solana libraries (existing dependencies)
@@ -74,7 +74,7 @@ export const SolanaUtils = {
       return null;
     }
   },
-  
+
   // PublicKey utilities
   createPublicKey: async (address: string) => {
     try {
@@ -85,7 +85,7 @@ export const SolanaUtils = {
       return null;
     }
   },
-  
+
   // Transaction utilities
   createTransaction: async () => {
     try {
@@ -96,12 +96,12 @@ export const SolanaUtils = {
       return null;
     }
   },
-  
+
   // Wallet adapter (load on demand)
   getWalletAdapter: async (walletName: string) => {
     try {
       const wallets = await import('@solana/wallet-adapter-wallets');
-      
+
       switch (walletName) {
         case 'phantom':
           return new wallets.PhantomWalletAdapter();
@@ -116,7 +116,7 @@ export const SolanaUtils = {
       console.warn('@solana/wallet-adapter-wallets not available:', error);
       return null;
     }
-  }
+  },
 };
 
 // Optimized wagmi configuration loader
@@ -128,32 +128,39 @@ export const createWagmiConfig = async () => {
       { mainnet, polygon, arbitrum, optimism },
       { injected },
       { walletConnect },
-      { coinbaseWallet }
+      { coinbaseWallet },
     ] = await Promise.all([
       import('wagmi'),
       import('wagmi/chains'),
       import('wagmi/connectors').then(m => ({ injected: m.injected })),
-      import('wagmi/connectors').then(m => ({ walletConnect: m.walletConnect })),
-      import('wagmi/connectors').then(m => ({ coinbaseWallet: m.coinbaseWallet }))
+      import('wagmi/connectors').then(m => ({
+        walletConnect: m.walletConnect,
+      })),
+      import('wagmi/connectors').then(m => ({
+        coinbaseWallet: m.coinbaseWallet,
+      })),
     ]);
-    
+
     return createConfig({
       chains: [mainnet, polygon, arbitrum, optimism],
       connectors: [
         injected(),
-        walletConnect({ 
-          projectId: (typeof window !== 'undefined' && (window as any).VITE_WALLETCONNECT_PROJECT_ID) || 'test'
+        walletConnect({
+          projectId:
+            (typeof window !== 'undefined' &&
+              (window as any).VITE_WALLETCONNECT_PROJECT_ID) ||
+            'test',
         }),
         coinbaseWallet({
-          appName: '0xmail.box'
-        })
+          appName: '0xmail.box',
+        }),
       ],
       transports: {
         [mainnet.id]: http(),
         [polygon.id]: http(),
         [arbitrum.id]: http(),
-        [optimism.id]: http()
-      }
+        [optimism.id]: http(),
+      },
     });
   } catch (error) {
     console.warn('wagmi not available:', error);
@@ -165,27 +172,32 @@ export const createWagmiConfig = async () => {
 const providerCache = new Map<string, any>();
 
 // Get or create provider with caching
-export const getCachedProvider = async (type: string, config?: any): Promise<unknown> => {
+export const getCachedProvider = async (
+  type: string,
+  config?: any
+): Promise<unknown> => {
   const cacheKey = `${type}-${JSON.stringify(config)}`;
-  
+
   if (providerCache.has(cacheKey)) {
     return providerCache.get(cacheKey);
   }
-  
+
   let provider: any;
-  
+
   try {
     switch (type) {
       case 'solana': {
         const { Connection } = await import('@solana/web3.js');
-        provider = new Connection(config?.endpoint || 'https://api.mainnet-beta.solana.com');
+        provider = new Connection(
+          config?.endpoint || 'https://api.mainnet-beta.solana.com'
+        );
         break;
       }
-        
+
       default:
         throw new Error(`Unknown provider type: ${type}`);
     }
-    
+
     providerCache.set(cacheKey, provider);
     return provider;
   } catch (error) {
@@ -202,14 +214,11 @@ export const cleanupProviders = (): void => {
 // Tree-shakeable exports for common utilities (loaded dynamically)
 export const getTreeShakeableExports = async () => {
   try {
-    const [
-      { getAddress },
-      { PublicKey }
-    ] = await Promise.all([
+    const [{ getAddress }, { PublicKey }] = await Promise.all([
       import('viem/utils').then(m => ({ getAddress: m.getAddress })),
-      import('@solana/web3.js').then(m => ({ PublicKey: m.PublicKey }))
+      import('@solana/web3.js').then(m => ({ PublicKey: m.PublicKey })),
     ]);
-    
+
     return { getAddress, PublicKey };
   } catch (error) {
     console.warn('Tree-shakeable exports not available:', error);
@@ -226,7 +235,7 @@ export const initializeWeb3Optimizations = (): void => {
       import('@solana/web3.js');
     }
   }
-  
+
   // Clean up providers on page unload
   if (typeof window !== 'undefined') {
     window.addEventListener('beforeunload', cleanupProviders);
@@ -239,5 +248,5 @@ export default {
   createWagmiConfig,
   getCachedProvider,
   cleanupProviders,
-  initializeWeb3Optimizations
+  initializeWeb3Optimizations,
 };

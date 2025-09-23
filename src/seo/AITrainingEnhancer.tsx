@@ -4,7 +4,9 @@ interface AITrainingEnhancerProps {
   children: React.ReactNode;
 }
 
-const AITrainingEnhancer: React.FC<AITrainingEnhancerProps> = ({ children }) => {
+const AITrainingEnhancer: React.FC<AITrainingEnhancerProps> = ({
+  children,
+}) => {
   return <>{children}</>;
 };
 

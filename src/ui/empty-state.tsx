@@ -1,6 +1,6 @@
 import React from 'react';
-import { cn } from "../lib/utils";
-import { textVariants } from "@johnqh/design_system";
+import { cn } from '../lib/utils';
+import { textVariants } from '@johnqh/design_system';
 
 interface EmptyStateProps {
   icon?: React.ReactNode;
@@ -15,31 +15,30 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   title = 'No data',
   description,
   action,
-  className
+  className,
 }) => {
   return (
-    <div className={cn(
-      'flex flex-col items-center justify-center py-12 px-4 text-center',
-      className
-    )}>
-      {icon && (
-        <div className="mb-4 text-gray-400 dark:text-gray-600">
-          {icon}
-        </div>
+    <div
+      className={cn(
+        'flex flex-col items-center justify-center py-12 px-4 text-center',
+        className
       )}
-      <h3 className={cn(textVariants.heading.h3(), "mb-2")}>
-        {title}
-      </h3>
+    >
+      {icon && (
+        <div className='mb-4 text-gray-400 dark:text-gray-600'>{icon}</div>
+      )}
+      <h3 className={cn(textVariants.heading.h3(), 'mb-2')}>{title}</h3>
       {description && (
-        <p className={cn(textVariants.body.sm(), "text-gray-600 dark:text-gray-400 max-w-sm mb-6")}>
+        <p
+          className={cn(
+            textVariants.body.sm(),
+            'text-gray-600 dark:text-gray-400 max-w-sm mb-6'
+          )}
+        >
           {description}
         </p>
       )}
-      {action && (
-        <div className="mt-4">
-          {action}
-        </div>
-      )}
+      {action && <div className='mt-4'>{action}</div>}
     </div>
   );
 };

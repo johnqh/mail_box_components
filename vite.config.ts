@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
-import dts from 'vite-plugin-dts'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   plugins: [
@@ -15,7 +15,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'MailBoxComponents',
       formats: ['es', 'umd'],
-      fileName: (format) => `index.${format === 'es' ? 'esm' : format}.js`,
+      fileName: format => `index.${format === 'es' ? 'esm' : format}.js`,
     },
     rollupOptions: {
       external: [
@@ -32,15 +32,15 @@ export default defineConfig({
         '@radix-ui/react-switch',
         '@radix-ui/react-tabs',
         'clsx',
-        'tailwind-merge'
+        'tailwind-merge',
       ],
       output: {
         exports: 'named',
         globals: {
-          'react': 'React',
+          react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'ReactJSXRuntime',
-          'clsx': 'clsx',
+          clsx: 'clsx',
           'tailwind-merge': 'tailwindMerge',
           '@heroicons/react/24/outline': 'HeroiconsOutline',
           '@heroicons/react/24/solid': 'HeroiconsSolid',
@@ -57,4 +57,4 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-})
+});

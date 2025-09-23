@@ -4,10 +4,10 @@
 
 export function isWalletBrowser(): boolean {
   if (typeof window === 'undefined') return false;
-  
+
   // Check for common wallet browser user agents
   const userAgent = window.navigator.userAgent.toLowerCase();
-  
+
   // Common wallet browser patterns
   const walletBrowsers = [
     'metamask',
@@ -19,15 +19,18 @@ export function isWalletBrowser(): boolean {
     'exodus',
     'ledger',
     'binance',
-    'okx'
+    'okx',
   ];
-  
+
   return walletBrowsers.some(wallet => userAgent.includes(wallet));
 }
 
 export function isLocalhost(): boolean {
   if (typeof window === 'undefined') return false;
-  return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  return (
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1'
+  );
 }
 
 export function isNetworkAccess(): boolean {
@@ -37,7 +40,11 @@ export function isNetworkAccess(): boolean {
   return /^\d+\.\d+\.\d+\.\d+$/.test(hostname);
 }
 
-export function getEnvironmentType(): 'localhost' | 'network' | 'wallet-browser' | 'production' {
+export function getEnvironmentType():
+  | 'localhost'
+  | 'network'
+  | 'wallet-browser'
+  | 'production' {
   if (isLocalhost()) return 'localhost';
   if (isWalletBrowser()) return 'wallet-browser';
   if (isNetworkAccess()) return 'network';

@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { ChevronRightIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
+import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 import { ChainBadge } from './status-badge';
+import { textVariants } from '@johnqh/design_system';
 
 interface EmailAccount {
   address: string;
@@ -82,7 +83,13 @@ const CollapsibleDomainEmails: React.FC<{
   selectedAccount?: string;
   onAccountSelect: (address: string) => void;
   onAccountSettings?: (address: string) => void;
-}> = ({ domainEmails, isExpanded, selectedAccount, onAccountSelect, onAccountSettings }) => {
+}> = ({
+  domainEmails,
+  isExpanded,
+  selectedAccount,
+  onAccountSelect,
+  onAccountSettings: _onAccountSettings,
+}) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
 
@@ -104,10 +111,11 @@ const CollapsibleDomainEmails: React.FC<{
             key={email.address}
             onClick={() => onAccountSelect(email.address)}
             className={cn(
-              'flex items-center justify-between w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 hover:scale-[1.02]',
+              'w-full flex items-center justify-between text-left px-3 py-2 rounded-lg transition-colors h-[44px]',
+              textVariants.body.sm(),
               selectedAccount === email.address
-                ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 shadow-sm'
-                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-200'
+                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-700'
             )}
           >
             <span className='truncate flex-1'>{email.name}</span>
@@ -129,25 +137,26 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
   className = '',
 }) => {
   return (
-    <nav className={cn('space-y-2', className)}>
+    <nav className={cn('space-y-1', className)}>
       {walletGroups.map(group => (
         <div key={group.walletAddress}>
-          <div className='flex items-center gap-2'>
-            <button
-              onClick={() => onAccountSelect(group.primaryEmail.address)}
-              className={cn(
-                'flex-1 flex items-center justify-between text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:scale-[1.02]',
-                selectedAccount === group.primaryEmail.address &&
-                  group.domainEmails.length === 0
-                  ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 shadow-sm'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100'
-              )}
-              style={
-                group.customColor
-                  ? { backgroundColor: group.customColor }
-                  : undefined
-              }
-            >
+          <button
+            onClick={() => onAccountSelect(group.primaryEmail.address)}
+            className={cn(
+              'w-full flex items-center justify-between text-left px-3 py-2 rounded-lg transition-colors h-[44px]',
+              textVariants.body.sm(),
+              selectedAccount === group.primaryEmail.address &&
+                group.domainEmails.length === 0
+                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+            )}
+            style={
+              group.customColor
+                ? { backgroundColor: group.customColor }
+                : undefined
+            }
+          >
+            <div className='flex items-center flex-1 min-w-0'>
               <span className='truncate flex-1'>
                 {formatWalletAddress(group.walletAddress)}
               </span>
@@ -155,11 +164,14 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
                 type={group.primaryEmail.type}
                 addressType={group.addressType}
               />
-            </button>
+            </div>
             {group.domainEmails.length > 0 && (
               <button
-                onClick={() => onToggleWallet(group.walletAddress)}
-                className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
+                onClick={e => {
+                  e.stopPropagation();
+                  onToggleWallet(group.walletAddress);
+                }}
+                className='p-1 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors'
               >
                 <ChevronRightIcon
                   className={cn(
@@ -171,7 +183,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
                 />
               </button>
             )}
-          </div>
+          </button>
 
           {group.domainEmails.length > 0 && (
             <CollapsibleDomainEmails

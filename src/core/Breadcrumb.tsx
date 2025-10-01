@@ -40,13 +40,22 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
 
   // Prepare share URL when dropdown opens (silently in background)
   React.useEffect(() => {
-    if (isOpen && !shareUrl && !isPreparingShare && shareConfig.onBeforeShare && !preparationStartedRef.current) {
+    if (
+      isOpen &&
+      !shareUrl &&
+      !isPreparingShare &&
+      shareConfig.onBeforeShare &&
+      !preparationStartedRef.current
+    ) {
       preparationStartedRef.current = true;
       const prepareUrl = async () => {
         setIsPreparingShare(true);
         try {
-          const baseUrl = typeof window !== 'undefined' ? window.location.href : '';
-          console.log('[ShareDropdown] Silently preparing share URL in background...');
+          const baseUrl =
+            typeof window !== 'undefined' ? window.location.href : '';
+          console.log(
+            '[ShareDropdown] Silently preparing share URL in background...'
+          );
           // Double-check callback exists (TypeScript safety)
           if (shareConfig.onBeforeShare) {
             const modifiedUrl = await shareConfig.onBeforeShare(baseUrl);
@@ -56,7 +65,8 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
         } catch (error) {
           console.error('[ShareDropdown] Failed to prepare share URL:', error);
           // Fallback to base URL on error
-          const baseUrl = typeof window !== 'undefined' ? window.location.href : '';
+          const baseUrl =
+            typeof window !== 'undefined' ? window.location.href : '';
           setShareUrl(baseUrl);
         } finally {
           setIsPreparingShare(false);
@@ -66,7 +76,8 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
     }
   }, [isOpen, shareUrl, isPreparingShare, shareConfig]);
 
-  const url = shareUrl || (typeof window !== 'undefined' ? window.location.href : '');
+  const url =
+    shareUrl || (typeof window !== 'undefined' ? window.location.href : '');
 
   const shareButtons = [
     {
@@ -167,24 +178,24 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
             ) : (
               <>
                 {shareButtons.map((button, index) => {
-              const ShareComponent = button.component;
-              const IconComponent = button.icon;
+                  const ShareComponent = button.component;
+                  const IconComponent = button.icon;
 
-              return (
-                <ShareComponent
-                  key={index}
-                  {...button.props}
-                  className='w-full'
-                >
-                  <div className='flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer'>
-                    <IconComponent size={16} round className='mr-2' />
-                    <span className='text-sm text-gray-700 dark:text-gray-300'>
-                      {button.label}
-                    </span>
-                  </div>
-                </ShareComponent>
-              );
-            })}
+                  return (
+                    <ShareComponent
+                      key={index}
+                      {...button.props}
+                      className='w-full'
+                    >
+                      <div className='flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer'>
+                        <IconComponent size={16} round className='mr-2' />
+                        <span className='text-sm text-gray-700 dark:text-gray-300'>
+                          {button.label}
+                        </span>
+                      </div>
+                    </ShareComponent>
+                  );
+                })}
                 <button
                   onClick={copyToClipboard}
                   className='w-full flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer'

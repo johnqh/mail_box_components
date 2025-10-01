@@ -100,32 +100,19 @@ const CollapsibleDomainEmails: React.FC<{
     >
       <div ref={contentRef} className='ml-6 mt-2 space-y-1'>
         {domainEmails.map(email => (
-          <div key={email.address} className='flex items-center gap-2'>
-            <button
-              onClick={() => onAccountSelect(email.address)}
-              className={cn(
-                'flex items-center justify-between flex-1 text-left px-3 py-2 rounded-md text-sm transition-all duration-200 hover:scale-[1.02]',
-                selectedAccount === email.address
-                  ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-200'
-              )}
-            >
-              <span className='truncate flex-1'>{email.name}</span>
-              <ChainPill type={email.type} addressType={email.addressType} />
-            </button>
-            {onAccountSettings && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAccountSettings(email.address);
-                }}
-                className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
-                title='Account Settings'
-              >
-                <Cog6ToothIcon className='h-4 w-4 text-gray-500 dark:text-gray-400' />
-              </button>
+          <button
+            key={email.address}
+            onClick={() => onAccountSelect(email.address)}
+            className={cn(
+              'flex items-center justify-between w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 hover:scale-[1.02]',
+              selectedAccount === email.address
+                ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 shadow-sm'
+                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-200'
             )}
-          </div>
+          >
+            <span className='truncate flex-1'>{email.name}</span>
+            <ChainPill type={email.type} addressType={email.addressType} />
+          </button>
         ))}
       </div>
     </div>
@@ -169,18 +156,6 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
                 addressType={group.addressType}
               />
             </button>
-            {onAccountSettings && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAccountSettings(group.primaryEmail.address);
-                }}
-                className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
-                title='Account Settings'
-              >
-                <Cog6ToothIcon className='h-4 w-4 text-gray-500 dark:text-gray-400' />
-              </button>
-            )}
             {group.domainEmails.length > 0 && (
               <button
                 onClick={() => onToggleWallet(group.walletAddress)}

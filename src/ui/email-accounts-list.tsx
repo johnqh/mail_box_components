@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { ChevronRightIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 import { ChainBadge } from './status-badge';
 
@@ -25,6 +25,7 @@ interface EmailAccountsListProps {
   expandedWallets: string[];
   onAccountSelect: (address: string) => void;
   onToggleWallet: (walletAddress: string) => void;
+  onAccountSettings?: (address: string) => void;
   className?: string;
 }
 
@@ -80,7 +81,8 @@ const CollapsibleDomainEmails: React.FC<{
   isExpanded: boolean;
   selectedAccount?: string;
   onAccountSelect: (address: string) => void;
-}> = ({ domainEmails, isExpanded, selectedAccount, onAccountSelect }) => {
+  onAccountSettings?: (address: string) => void;
+}> = ({ domainEmails, isExpanded, selectedAccount, onAccountSelect, onAccountSettings }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
 
@@ -98,19 +100,32 @@ const CollapsibleDomainEmails: React.FC<{
     >
       <div ref={contentRef} className='ml-6 mt-2 space-y-1'>
         {domainEmails.map(email => (
-          <button
-            key={email.address}
-            onClick={() => onAccountSelect(email.address)}
-            className={cn(
-              'flex items-center justify-between w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 hover:scale-[1.02]',
-              selectedAccount === email.address
-                ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 shadow-sm'
-                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-200'
+          <div key={email.address} className='flex items-center gap-2'>
+            <button
+              onClick={() => onAccountSelect(email.address)}
+              className={cn(
+                'flex items-center justify-between flex-1 text-left px-3 py-2 rounded-md text-sm transition-all duration-200 hover:scale-[1.02]',
+                selectedAccount === email.address
+                  ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 shadow-sm'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-200'
+              )}
+            >
+              <span className='truncate flex-1'>{email.name}</span>
+              <ChainPill type={email.type} addressType={email.addressType} />
+            </button>
+            {onAccountSettings && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onAccountSettings(email.address);
+                }}
+                className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
+                title='Account Settings'
+              >
+                <Cog6ToothIcon className='h-4 w-4 text-gray-500 dark:text-gray-400' />
+              </button>
             )}
-          >
-            <span className='truncate flex-1'>{email.name}</span>
-            <ChainPill type={email.type} addressType={email.addressType} />
-          </button>
+          </div>
         ))}
       </div>
     </div>
@@ -123,13 +138,14 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
   expandedWallets,
   onAccountSelect,
   onToggleWallet,
+  onAccountSettings,
   className = '',
 }) => {
   return (
     <nav className={cn('space-y-2', className)}>
       {walletGroups.map(group => (
         <div key={group.walletAddress}>
-          <div className='flex items-center'>
+          <div className='flex items-center gap-2'>
             <button
               onClick={() => onAccountSelect(group.primaryEmail.address)}
               className={cn(
@@ -153,10 +169,22 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
                 addressType={group.addressType}
               />
             </button>
+            {onAccountSettings && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onAccountSettings(group.primaryEmail.address);
+                }}
+                className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
+                title='Account Settings'
+              >
+                <Cog6ToothIcon className='h-4 w-4 text-gray-500 dark:text-gray-400' />
+              </button>
+            )}
             {group.domainEmails.length > 0 && (
               <button
                 onClick={() => onToggleWallet(group.walletAddress)}
-                className='p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
+                className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
               >
                 <ChevronRightIcon
                   className={cn(
@@ -176,6 +204,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
               isExpanded={expandedWallets.includes(group.walletAddress)}
               selectedAccount={selectedAccount}
               onAccountSelect={onAccountSelect}
+              onAccountSettings={onAccountSettings}
             />
           )}
         </div>

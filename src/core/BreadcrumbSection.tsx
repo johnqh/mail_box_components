@@ -8,6 +8,7 @@ interface BreadcrumbSectionProps {
     title: string;
     description: string;
     hashtags: string[];
+    onBeforeShare?: (baseUrl: string) => Promise<string>;
   };
 }
 

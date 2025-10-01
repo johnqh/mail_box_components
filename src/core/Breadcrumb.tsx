@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FacebookShareButton,
@@ -7,6 +7,12 @@ import {
   RedditShareButton,
   TelegramShareButton,
   WhatsappShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  RedditIcon,
+  TelegramIcon,
+  WhatsappIcon,
 } from 'react-share';
 import { BreadcrumbItem } from '../utils/navigationHelpers';
 
@@ -14,6 +20,7 @@ interface ShareConfig {
   title: string;
   description: string;
   hashtags: string[];
+  onBeforeShare?: (baseUrl: string) => Promise<string>;
 }
 
 interface BreadcrumbProps {
@@ -27,59 +34,94 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
   shareConfig,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const url = typeof window !== 'undefined' ? window.location.href : '';
+  const [shareUrl, setShareUrl] = useState<string>('');
+  const [isPreparingShare, setIsPreparingShare] = useState(false);
+  const preparationStartedRef = useRef(false);
+
+  // Prepare share URL when dropdown opens (silently in background)
+  React.useEffect(() => {
+    if (isOpen && !shareUrl && !isPreparingShare && shareConfig.onBeforeShare && !preparationStartedRef.current) {
+      preparationStartedRef.current = true;
+      const prepareUrl = async () => {
+        setIsPreparingShare(true);
+        try {
+          const baseUrl = typeof window !== 'undefined' ? window.location.href : '';
+          console.log('[ShareDropdown] Silently preparing share URL in background...');
+          // Double-check callback exists (TypeScript safety)
+          if (shareConfig.onBeforeShare) {
+            const modifiedUrl = await shareConfig.onBeforeShare(baseUrl);
+            console.log('[ShareDropdown] URL prepared:', modifiedUrl);
+            setShareUrl(modifiedUrl);
+          }
+        } catch (error) {
+          console.error('[ShareDropdown] Failed to prepare share URL:', error);
+          // Fallback to base URL on error
+          const baseUrl = typeof window !== 'undefined' ? window.location.href : '';
+          setShareUrl(baseUrl);
+        } finally {
+          setIsPreparingShare(false);
+        }
+      };
+      prepareUrl();
+    }
+  }, [isOpen, shareUrl, isPreparingShare, shareConfig]);
+
+  const url = shareUrl || (typeof window !== 'undefined' ? window.location.href : '');
 
   const shareButtons = [
     {
       component: TwitterShareButton,
+      icon: TwitterIcon,
       props: { url, title: shareConfig.title, hashtags: shareConfig.hashtags },
       label: 'Twitter',
-      color: '#1DA1F2',
     },
     {
       component: FacebookShareButton,
+      icon: FacebookIcon,
       props: {
         url,
         quote: `${shareConfig.title}\n\n${shareConfig.description}`,
       },
       label: 'Facebook',
-      color: '#4267B2',
     },
     {
       component: LinkedinShareButton,
+      icon: LinkedinIcon,
       props: {
         url,
         title: shareConfig.title,
         summary: shareConfig.description,
       },
       label: 'LinkedIn',
-      color: '#0077B5',
     },
     {
       component: RedditShareButton,
+      icon: RedditIcon,
       props: { url, title: shareConfig.title },
       label: 'Reddit',
-      color: '#FF4500',
     },
     {
       component: TelegramShareButton,
+      icon: TelegramIcon,
       props: { url, title: shareConfig.title },
       label: 'Telegram',
-      color: '#0088CC',
     },
     {
       component: WhatsappShareButton,
+      icon: WhatsappIcon,
       props: { url, title: shareConfig.title, separator: '\n\n' },
       label: 'WhatsApp',
-      color: '#25D366',
     },
   ];
 
   const copyToClipboard = async () => {
-    const shareText = `${shareConfig.title}\n\n${shareConfig.description}\n\n${shareConfig.hashtags.map(tag => `#${tag}`).join(' ')}\n\n${url}`;
+    if (isPreparingShare) return; // Don't copy while preparing
+
     try {
-      await navigator.clipboard.writeText(shareText);
+      await navigator.clipboard.writeText(url);
       setIsOpen(false);
+      setShareUrl(''); // Reset for next time
+      preparationStartedRef.current = false; // Reset ref
     } catch (error) {
       console.error('Failed to copy:', error);
     }
@@ -111,11 +153,23 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
         <>
           <div
             className='fixed inset-0 z-[999998]'
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              setIsOpen(false);
+              setShareUrl(''); // Reset for next time
+              preparationStartedRef.current = false; // Reset ref
+            }}
           />
           <div className='absolute right-0 top-10 z-[999999] w-32 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-1'>
-            {shareButtons.map((button, index) => {
+            {isPreparingShare ? (
+              <div className='flex items-center justify-center px-3 py-2'>
+                <div className='w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin' />
+              </div>
+            ) : (
+              <>
+                {shareButtons.map((button, index) => {
               const ShareComponent = button.component;
+              const IconComponent = button.icon;
+
               return (
                 <ShareComponent
                   key={index}
@@ -123,10 +177,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
                   className='w-full'
                 >
                   <div className='flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer'>
-                    <div
-                      className='w-3 h-3 rounded mr-2'
-                      style={{ backgroundColor: button.color }}
-                    />
+                    <IconComponent size={16} round className='mr-2' />
                     <span className='text-sm text-gray-700 dark:text-gray-300'>
                       {button.label}
                     </span>
@@ -134,15 +185,29 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
                 </ShareComponent>
               );
             })}
-            <button
-              onClick={copyToClipboard}
-              className='w-full flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer'
-            >
-              <div className='w-3 h-3 rounded mr-2 bg-gray-500' />
-              <span className='text-sm text-gray-700 dark:text-gray-300'>
-                Copy Link
-              </span>
-            </button>
+                <button
+                  onClick={copyToClipboard}
+                  className='w-full flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer'
+                >
+                  <svg
+                    className='w-4 h-4 mr-2 text-gray-600 dark:text-gray-400'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1'
+                    />
+                  </svg>
+                  <span className='text-sm text-gray-700 dark:text-gray-300'>
+                    Copy Link
+                  </span>
+                </button>
+              </>
+            )}
           </div>
         </>
       )}

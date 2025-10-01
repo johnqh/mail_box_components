@@ -20,7 +20,7 @@ export const NoContent: React.FC<NoContentProps> = ({
     <div
       className={cn(
         'flex flex-col items-center justify-center h-full w-full',
-        'text-center space-y-4 p-8',
+        'text-center space-y-1 p-8',
         className
       )}
     >

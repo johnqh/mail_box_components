@@ -48,6 +48,7 @@ export {
 } from './select';
 export { Spinner } from './spinner';
 export { Switch } from './switch';
+export { SectionHeader } from './section-header';
 export { TableOfContents } from './table-of-contents';
 export { EmailAccountsList } from './email-accounts-list';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';

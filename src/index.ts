@@ -123,7 +123,7 @@ export {
 } from './ui';
 
 // Layout Components
-export { FlexContainer, PageContainer, Section } from './ui';
+export { FlexContainer, PageContainer, Section, SectionHeader } from './ui';
 
 // === ORGANIZED COMPONENTS ===
 // Core Components (essential functionality)

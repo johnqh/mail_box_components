@@ -53,13 +53,9 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
         try {
           const baseUrl =
             typeof window !== 'undefined' ? window.location.href : '';
-          console.log(
-            '[ShareDropdown] Silently preparing share URL in background...'
-          );
           // Double-check callback exists (TypeScript safety)
           if (shareConfig.onBeforeShare) {
             const modifiedUrl = await shareConfig.onBeforeShare(baseUrl);
-            console.log('[ShareDropdown] URL prepared:', modifiedUrl);
             setShareUrl(modifiedUrl);
           }
         } catch (error) {

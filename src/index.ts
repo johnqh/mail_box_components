@@ -42,6 +42,15 @@ export {
   type CopyToClipboardResult,
 } from './hooks/useCopyToClipboard';
 
+// === KYC COMPONENTS ===
+export {
+  KYCStatusBadge,
+  SumsubWebSDK,
+  KYCLevelCard,
+  type KYCStatus,
+  type KYCLevel,
+} from './kyc';
+
 // Enhanced utilities
 export {
   withOpacity,

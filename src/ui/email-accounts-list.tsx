@@ -166,12 +166,21 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
               />
             </div>
             {group.domainEmails.length > 0 && (
-              <button
+              <div
                 onClick={e => {
                   e.stopPropagation();
                   onToggleWallet(group.walletAddress);
                 }}
-                className='p-1 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors'
+                className='p-1 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer'
+                role='button'
+                tabIndex={0}
+                onKeyDown={e => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onToggleWallet(group.walletAddress);
+                  }
+                }}
               >
                 <ChevronRightIcon
                   className={cn(
@@ -181,7 +190,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
                       : 'rotate-0'
                   )}
                 />
-              </button>
+              </div>
             )}
           </button>
 

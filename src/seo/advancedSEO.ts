@@ -6,9 +6,9 @@
 export interface AdvancedSEOConfig {
   title: string;
   description: string;
-  keywords: string[];
+  keywords: string[] | string;
   category: string;
-  audience: string[];
+  audience: string[] | string;
   complexity: 'beginner' | 'intermediate' | 'advanced';
   contentType: 'guide' | 'reference' | 'tutorial' | 'overview' | 'feature';
   readingTime?: number;
@@ -16,8 +16,18 @@ export interface AdvancedSEOConfig {
   relatedTopics?: string[];
 }
 
+// Helper function to ensure array format
+const ensureArray = (value: string[] | string | undefined): string[] => {
+  if (Array.isArray(value)) return value;
+  if (typeof value === 'string') return value.split(',').map(v => v.trim()).filter(Boolean);
+  return [];
+};
+
 // Enhanced Web3-specific structured data
-export const createWeb3ProductSchema = (config: AdvancedSEOConfig) => ({
+export const createWeb3ProductSchema = (config: AdvancedSEOConfig) => {
+  const audienceArray = ensureArray(config.audience);
+
+  return {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: '0xmail.box',
@@ -70,7 +80,7 @@ export const createWeb3ProductSchema = (config: AdvancedSEOConfig) => ({
   applicationSubCategory: 'Web3 Email Platform',
   audience: {
     '@type': 'Audience',
-    audienceType: config.audience.join(', '),
+    audienceType: audienceArray.join(', '),
     geographicArea: 'Worldwide',
   },
   creator: {
@@ -102,10 +112,15 @@ export const createWeb3ProductSchema = (config: AdvancedSEOConfig) => ({
     ensCompatible: true,
     snsCompatible: true,
   },
-});
+  };
+};
 
 // Advanced Article Schema for guides and documentation
-export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => ({
+export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => {
+  const keywordsArray = ensureArray(config.keywords);
+  const audienceArray = ensureArray(config.audience);
+
+  return {
   '@context': 'https://schema.org',
   '@type': 'TechnicalArticle',
   headline: config.title,
@@ -141,7 +156,7 @@ export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => ({
     width: 1200,
     height: 630,
   },
-  keywords: config.keywords.join(', '),
+  keywords: keywordsArray.join(', '),
   about: [
     {
       '@type': 'Thing',
@@ -158,7 +173,7 @@ export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => ({
   ],
   audience: {
     '@type': 'Audience',
-    audienceType: config.audience.join(', '),
+    audienceType: audienceArray.join(', '),
     educationalLevel: config.complexity,
   },
   educationalLevel: config.complexity,
@@ -174,7 +189,8 @@ export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => ({
     'Blockchain authentication',
     'Smart contract integration',
   ],
-});
+  };
+};
 
 // Enhanced FAQ Schema with AI-optimized answers
 export const createEnhancedFAQSchema = (
@@ -271,7 +287,10 @@ export const createAIOptimizedSchema = (config: AdvancedSEOConfig) => ({
 });
 
 // OpenGraph optimization for social sharing and AI crawlers
-export const createEnhancedOpenGraph = (config: AdvancedSEOConfig) => ({
+export const createEnhancedOpenGraph = (config: AdvancedSEOConfig) => {
+  const keywordsArray = ensureArray(config.keywords);
+
+  return {
   'og:title': config.title,
   'og:description': config.description,
   'og:type': 'website',
@@ -284,11 +303,12 @@ export const createEnhancedOpenGraph = (config: AdvancedSEOConfig) => ({
   'og:locale': 'en_US',
   'article:author': 'https://0xmail.box/about',
   'article:section': config.category,
-  'article:tag': config.keywords.join(','),
+  'article:tag': keywordsArray.join(','),
   'article:published_time': '2024-01-01T00:00:00Z',
   'article:modified_time':
     config.lastUpdated?.toISOString() || new Date().toISOString(),
-});
+  };
+};
 
 // Twitter Card optimization with enhanced metadata
 export const createEnhancedTwitterCard = (config: AdvancedSEOConfig) => ({
@@ -306,14 +326,18 @@ export const createEnhancedTwitterCard = (config: AdvancedSEOConfig) => ({
 });
 
 // AI-specific meta tags for enhanced understanding
-export const createAIMetaTags = (config: AdvancedSEOConfig) => ({
-  // General AI optimization
-  'ai:content-type': config.contentType,
-  'ai:complexity': config.complexity,
-  'ai:category': config.category,
-  'ai:audience': config.audience.join(','),
-  'ai:keywords': config.keywords.join(','),
-  'ai:reading-time': config.readingTime?.toString() || '5',
+export const createAIMetaTags = (config: AdvancedSEOConfig) => {
+  const keywordsArray = ensureArray(config.keywords);
+  const audienceArray = ensureArray(config.audience);
+
+  return {
+    // General AI optimization
+    'ai:content-type': config.contentType,
+    'ai:complexity': config.complexity,
+    'ai:category': config.category,
+    'ai:audience': audienceArray.join(','),
+    'ai:keywords': keywordsArray.join(','),
+    'ai:reading-time': config.readingTime?.toString() || '5',
 
   // Web3 specific
   'web3:platform': 'Email',
@@ -337,7 +361,8 @@ export const createAIMetaTags = (config: AdvancedSEOConfig) => ({
   'content:authority': 'high',
   'content:expertise': 'technical',
   'content:trustworthiness': 'verified',
-});
+  };
+};
 
 // Comprehensive SEO helper function
 export const generateAdvancedSEO = (config: AdvancedSEOConfig) => ({

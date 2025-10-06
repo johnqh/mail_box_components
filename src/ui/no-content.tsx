@@ -1,9 +1,11 @@
 /**
- * NoContent component for displaying empty states
+ * NoContent component - Backward compatibility wrapper for EmptyState
+ *
+ * @deprecated Use EmptyState instead. This component is maintained for backward compatibility.
  */
 
 import React from 'react';
-import { cn } from '../lib/utils';
+import { EmptyState } from './empty-state';
 
 interface NoContentProps {
   title: string;
@@ -17,20 +19,11 @@ export const NoContent: React.FC<NoContentProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={cn(
-        'flex flex-col items-center justify-center h-full w-full',
-        'text-center space-y-1 p-8',
-        className
-      )}
-    >
-      <h3 className='text-xl font-semibold text-gray-900 dark:text-gray-100'>
-        {title}
-      </h3>
-      <p className='text-gray-600 dark:text-gray-400 max-w-md leading-relaxed'>
-        {subtext}
-      </p>
-    </div>
+    <EmptyState
+      title={title}
+      description={subtext}
+      className={className}
+    />
   );
 };
 

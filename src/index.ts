@@ -185,7 +185,10 @@ export { AITrainingEnhancer } from './seo/AITrainingEnhancer';
 // Layout components
 export { PageHeader } from './layout/PageHeader';
 export { default as StandardPageLayout } from './layout/StandardPageLayout';
-export { default as MasterDetailLayout, type MasterDetailLayoutProps } from './layout/MasterDetailLayout';
+export {
+  default as MasterDetailLayout,
+  type MasterDetailLayoutProps,
+} from './layout/MasterDetailLayout';
 
 // Feature components
 export { default as CTASection } from './features/CTASection';

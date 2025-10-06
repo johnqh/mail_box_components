@@ -3,6 +3,8 @@ import React, { ReactNode, useEffect, useState, useRef } from 'react';
 export interface MasterDetailLayoutProps {
   /** Title shown above the master panel (navigation/sidebar) */
   masterTitle?: string;
+  /** Subtitle shown below master title, above the content list (e.g., wallet address) */
+  masterSubtitle?: string;
   /** Text shown in the back button on mobile (e.g., page name like "Documentation") */
   backButtonText?: string;
   /** Content for the master panel (left side on desktop, navigation view on mobile) */
@@ -67,6 +69,7 @@ export interface MasterDetailLayoutProps {
  */
 const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   masterTitle,
+  masterSubtitle,
   backButtonText,
   masterContent,
   detailContent,
@@ -198,9 +201,14 @@ const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         >
           {masterTitle && (
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-              <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-6'>
+              <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>
                 {masterTitle}
               </h2>
+              {masterSubtitle && (
+                <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all'>
+                  {masterSubtitle}
+                </p>
+              )}
             </div>
           )}
           <div className={masterClassName}>{masterContent}</div>
@@ -259,6 +267,11 @@ const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
                 <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
                   {masterTitle}
                 </h2>
+              )}
+              {masterSubtitle && (
+                <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all'>
+                  {masterSubtitle}
+                </p>
               )}
               <div
                 className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 ${

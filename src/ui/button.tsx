@@ -67,6 +67,17 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const sizeName =
       size && size !== 'default' && size !== 'icon' ? size : undefined;
 
+    // Map size abbreviations to full names for design system
+    const mapSizeToVariantKey = (size: string | undefined): string => {
+      if (!size) return 'default';
+      const sizeMap: Record<string, string> = {
+        sm: 'small',
+        lg: 'large',
+        default: 'default',
+      };
+      return sizeMap[size] || size;
+    };
+
     // Handle nested variants for gradients and web3
     const getButtonClass = () => {
       if (variantName.startsWith('gradient')) {
@@ -79,7 +90,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       } else if (['wallet', 'connect', 'disconnect'].includes(variantName)) {
         return v.button.web3[variantName]?.() || v.button.primary.default();
       } else {
-        const sizeType = sizeName || 'default';
+        const sizeType = mapSizeToVariantKey(sizeName);
         return (
           v.button[variantName]?.[sizeType]?.() || v.button.primary.default()
         );

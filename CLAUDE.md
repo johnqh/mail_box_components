@@ -67,6 +67,11 @@ The design system is imported as a local file dependency and re-exported for bac
 - SEO: AIMeta, SemanticHTML
 - Security: SafeAppWrapper, SecurityProvider, ErrorBoundary
 
+**Layout Components** (`src/layout/`):
+- MasterDetailLayout: Responsive master-detail container with mobile toggle
+- StandardPageLayout: Standard page wrapper with header/footer
+- PageHeader: Reusable page header component
+
 ### Build Configuration
 - **Vite** - Library bundling with ES modules and UMD formats
 - **TypeScript** - Strict compilation with declaration files

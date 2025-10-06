@@ -34,8 +34,6 @@ export const SumsubWebSDK: React.FC<SumsubWebSDKProps> = ({
       return;
     }
 
-    console.log('SumsubWebSDK: Initializing with token:', accessToken.substring(0, 20) + '...');
-
     // Load Sumsub Web SDK script
     const script = document.createElement('script');
     script.src =
@@ -43,14 +41,8 @@ export const SumsubWebSDK: React.FC<SumsubWebSDKProps> = ({
     script.async = true;
 
     script.onload = () => {
-      console.log('SumsubWebSDK: Script loaded successfully');
-      console.log('SumsubWebSDK: window.snsWebSdk available:', !!window.snsWebSdk);
-      console.log('SumsubWebSDK: containerRef.current exists:', !!containerRef.current);
-
       if (containerRef.current && window.snsWebSdk) {
         try {
-          console.log('SumsubWebSDK: Initializing SDK with WebSDK 2.0 API...');
-
           // Use WebSDK 2.0 API
           const snsWebSdkInstance = window.snsWebSdk
             .init(accessToken, () => accessToken) // Token refresh callback
@@ -61,11 +53,10 @@ export const SumsubWebSDK: React.FC<SumsubWebSDKProps> = ({
               addViewportTag: false,
               adaptIframeHeight: true,
             })
-            .on('idCheck.onStepCompleted', (payload: any) => {
-              console.log('SumsubWebSDK: Step completed', payload);
+            .on('idCheck.onStepCompleted', (_payload: any) => {
+              // Step completed
             })
-            .on('idCheck.onApplicantSubmitted', (payload: any) => {
-              console.log('SumsubWebSDK: Applicant submitted', payload);
+            .on('idCheck.onApplicantSubmitted', (_payload: any) => {
               onComplete?.();
             })
             .on('idCheck.onError', (error: any) => {
@@ -76,15 +67,18 @@ export const SumsubWebSDK: React.FC<SumsubWebSDKProps> = ({
 
           sdkInstanceRef.current = snsWebSdkInstance;
 
-          console.log('SumsubWebSDK: Launching SDK...');
           snsWebSdkInstance.launch('#sumsub-websdk-container');
-          console.log('SumsubWebSDK: SDK launched successfully!');
         } catch (error) {
           console.error('Failed to initialize Sumsub SDK:', error);
           onError?.(error);
         }
       } else {
-        console.error('SumsubWebSDK: Missing requirements - containerRef:', !!containerRef.current, 'snsWebSdk:', !!window.snsWebSdk);
+        console.error(
+          'SumsubWebSDK: Missing requirements - containerRef:',
+          !!containerRef.current,
+          'snsWebSdk:',
+          !!window.snsWebSdk
+        );
       }
     };
 

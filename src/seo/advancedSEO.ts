@@ -19,7 +19,11 @@ export interface AdvancedSEOConfig {
 // Helper function to ensure array format
 const ensureArray = (value: string[] | string | undefined): string[] => {
   if (Array.isArray(value)) return value;
-  if (typeof value === 'string') return value.split(',').map(v => v.trim()).filter(Boolean);
+  if (typeof value === 'string')
+    return value
+      .split(',')
+      .map(v => v.trim())
+      .filter(Boolean);
   return [];
 };
 
@@ -28,90 +32,90 @@ export const createWeb3ProductSchema = (config: AdvancedSEOConfig) => {
   const audienceArray = ensureArray(config.audience);
 
   return {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: '0xmail.box',
-  applicationCategory: 'CommunicationApplication',
-  operatingSystem: 'Web Browser',
-  description: config.description,
-  url: 'https://0xmail.box',
-  downloadUrl: 'https://0xmail.box/connect',
-  installUrl: 'https://0xmail.box/connect',
-  screenshot: 'https://0xmail.box/screenshots/app-preview.jpg',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    reviewCount: '2500',
-    bestRating: '5',
-    worstRating: '1',
-  },
-  offers: [
-    {
-      '@type': 'Offer',
-      name: 'Free Web3 Email',
-      description: 'Basic wallet-based email with unlimited sending',
-      price: '0',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Premium Web3 Email',
-      description:
-        'Advanced features with ENS/SNS domains and priority support',
-      price: '2.00',
-      priceCurrency: 'USD',
-      billingIncrement: 'month',
-      availability: 'https://schema.org/InStock',
-    },
-  ],
-  featureList: [
-    'Passwordless wallet authentication',
-    'ENS domain email support (.eth)',
-    'Solana Name Service support (.sol)',
-    'Smart contract email integration',
-    'Multi-chain wallet compatibility',
-    'Cross-chain email addresses',
-    'DAO email delegation',
-    'Encrypted communication',
-    'Web2/Web3 bridge functionality',
-    'Point-based reward system',
-  ],
-  applicationSubCategory: 'Web3 Email Platform',
-  audience: {
-    '@type': 'Audience',
-    audienceType: audienceArray.join(', '),
-    geographicArea: 'Worldwide',
-  },
-  creator: {
-    '@type': 'Organization',
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
     name: '0xmail.box',
+    applicationCategory: 'CommunicationApplication',
+    operatingSystem: 'Web Browser',
+    description: config.description,
     url: 'https://0xmail.box',
-  },
-  datePublished: '2024-01-01',
-  dateModified: config.lastUpdated?.toISOString() || new Date().toISOString(),
-  version: '1.0',
-  softwareRequirements: 'Web3 Wallet (MetaMask, Phantom, etc.)',
-  storageRequirements: '5MB',
-  memoryRequirements: '512MB RAM',
-  supportingData: {
-    blockchainNetworks: [
-      'Ethereum',
-      'Solana',
-      'Polygon',
-      'Arbitrum',
-      'Optimism',
+    downloadUrl: 'https://0xmail.box/connect',
+    installUrl: 'https://0xmail.box/connect',
+    screenshot: 'https://0xmail.box/screenshots/app-preview.jpg',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '2500',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'Free Web3 Email',
+        description: 'Basic wallet-based email with unlimited sending',
+        price: '0',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Premium Web3 Email',
+        description:
+          'Advanced features with ENS/SNS domains and priority support',
+        price: '2.00',
+        priceCurrency: 'USD',
+        billingIncrement: 'month',
+        availability: 'https://schema.org/InStock',
+      },
     ],
-    supportedWallets: [
-      'MetaMask',
-      'Phantom',
-      'WalletConnect',
-      'Coinbase Wallet',
+    featureList: [
+      'Passwordless wallet authentication',
+      'ENS domain email support (.eth)',
+      'Solana Name Service support (.sol)',
+      'Smart contract email integration',
+      'Multi-chain wallet compatibility',
+      'Cross-chain email addresses',
+      'DAO email delegation',
+      'Encrypted communication',
+      'Web2/Web3 bridge functionality',
+      'Point-based reward system',
     ],
-    smartContractSupport: true,
-    ensCompatible: true,
-    snsCompatible: true,
-  },
+    applicationSubCategory: 'Web3 Email Platform',
+    audience: {
+      '@type': 'Audience',
+      audienceType: audienceArray.join(', '),
+      geographicArea: 'Worldwide',
+    },
+    creator: {
+      '@type': 'Organization',
+      name: '0xmail.box',
+      url: 'https://0xmail.box',
+    },
+    datePublished: '2024-01-01',
+    dateModified: config.lastUpdated?.toISOString() || new Date().toISOString(),
+    version: '1.0',
+    softwareRequirements: 'Web3 Wallet (MetaMask, Phantom, etc.)',
+    storageRequirements: '5MB',
+    memoryRequirements: '512MB RAM',
+    supportingData: {
+      blockchainNetworks: [
+        'Ethereum',
+        'Solana',
+        'Polygon',
+        'Arbitrum',
+        'Optimism',
+      ],
+      supportedWallets: [
+        'MetaMask',
+        'Phantom',
+        'WalletConnect',
+        'Coinbase Wallet',
+      ],
+      smartContractSupport: true,
+      ensCompatible: true,
+      snsCompatible: true,
+    },
   };
 };
 
@@ -121,74 +125,74 @@ export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => {
   const audienceArray = ensureArray(config.audience);
 
   return {
-  '@context': 'https://schema.org',
-  '@type': 'TechnicalArticle',
-  headline: config.title,
-  description: config.description,
-  author: {
-    '@type': 'Organization',
-    name: '0xmail.box',
-    url: 'https://0xmail.box',
-    logo: {
+    '@context': 'https://schema.org',
+    '@type': 'TechnicalArticle',
+    headline: config.title,
+    description: config.description,
+    author: {
+      '@type': 'Organization',
+      name: '0xmail.box',
+      url: 'https://0xmail.box',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://0xmail.box/logo.png',
+      },
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: '0xmail.box',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://0xmail.box/logo.png',
+        width: 600,
+        height: 600,
+      },
+    },
+    datePublished: '2024-01-01T00:00:00Z',
+    dateModified: config.lastUpdated?.toISOString() || new Date().toISOString(),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://0xmail.box${location.pathname}`,
+    },
+    image: {
       '@type': 'ImageObject',
-      url: 'https://0xmail.box/logo.png',
+      url: 'https://0xmail.box/og-images/technical-guide.jpg',
+      width: 1200,
+      height: 630,
     },
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: '0xmail.box',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://0xmail.box/logo.png',
-      width: 600,
-      height: 600,
+    keywords: keywordsArray.join(', '),
+    about: [
+      {
+        '@type': 'Thing',
+        name: 'Web3 Email Platform',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Blockchain Technology',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Decentralized Communication',
+      },
+    ],
+    audience: {
+      '@type': 'Audience',
+      audienceType: audienceArray.join(', '),
+      educationalLevel: config.complexity,
     },
-  },
-  datePublished: '2024-01-01T00:00:00Z',
-  dateModified: config.lastUpdated?.toISOString() || new Date().toISOString(),
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': `https://0xmail.box${location.pathname}`,
-  },
-  image: {
-    '@type': 'ImageObject',
-    url: 'https://0xmail.box/og-images/technical-guide.jpg',
-    width: 1200,
-    height: 630,
-  },
-  keywords: keywordsArray.join(', '),
-  about: [
-    {
-      '@type': 'Thing',
-      name: 'Web3 Email Platform',
-    },
-    {
-      '@type': 'Thing',
-      name: 'Blockchain Technology',
-    },
-    {
-      '@type': 'Thing',
-      name: 'Decentralized Communication',
-    },
-  ],
-  audience: {
-    '@type': 'Audience',
-    audienceType: audienceArray.join(', '),
     educationalLevel: config.complexity,
-  },
-  educationalLevel: config.complexity,
-  proficiencyLevel: config.complexity,
-  learningResourceType: config.contentType,
-  timeRequired: config.readingTime ? `PT${config.readingTime}M` : 'PT5M',
-  inLanguage: 'en',
-  isAccessibleForFree: true,
-  license: 'https://creativecommons.org/licenses/by/4.0/',
-  teaches: config.relatedTopics || [
-    'Web3 email setup',
-    'Wallet connection process',
-    'Blockchain authentication',
-    'Smart contract integration',
-  ],
+    proficiencyLevel: config.complexity,
+    learningResourceType: config.contentType,
+    timeRequired: config.readingTime ? `PT${config.readingTime}M` : 'PT5M',
+    inLanguage: 'en',
+    isAccessibleForFree: true,
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    teaches: config.relatedTopics || [
+      'Web3 email setup',
+      'Wallet connection process',
+      'Blockchain authentication',
+      'Smart contract integration',
+    ],
   };
 };
 
@@ -291,22 +295,22 @@ export const createEnhancedOpenGraph = (config: AdvancedSEOConfig) => {
   const keywordsArray = ensureArray(config.keywords);
 
   return {
-  'og:title': config.title,
-  'og:description': config.description,
-  'og:type': 'website',
-  'og:url': `https://0xmail.box${location.pathname}`,
-  'og:image': `https://0xmail.box/og-images/${config.category}.jpg`,
-  'og:image:width': '1200',
-  'og:image:height': '630',
-  'og:image:alt': `${config.title} - Web3 Email Platform`,
-  'og:site_name': '0xmail.box',
-  'og:locale': 'en_US',
-  'article:author': 'https://0xmail.box/about',
-  'article:section': config.category,
-  'article:tag': keywordsArray.join(','),
-  'article:published_time': '2024-01-01T00:00:00Z',
-  'article:modified_time':
-    config.lastUpdated?.toISOString() || new Date().toISOString(),
+    'og:title': config.title,
+    'og:description': config.description,
+    'og:type': 'website',
+    'og:url': `https://0xmail.box${location.pathname}`,
+    'og:image': `https://0xmail.box/og-images/${config.category}.jpg`,
+    'og:image:width': '1200',
+    'og:image:height': '630',
+    'og:image:alt': `${config.title} - Web3 Email Platform`,
+    'og:site_name': '0xmail.box',
+    'og:locale': 'en_US',
+    'article:author': 'https://0xmail.box/about',
+    'article:section': config.category,
+    'article:tag': keywordsArray.join(','),
+    'article:published_time': '2024-01-01T00:00:00Z',
+    'article:modified_time':
+      config.lastUpdated?.toISOString() || new Date().toISOString(),
   };
 };
 
@@ -339,28 +343,28 @@ export const createAIMetaTags = (config: AdvancedSEOConfig) => {
     'ai:keywords': keywordsArray.join(','),
     'ai:reading-time': config.readingTime?.toString() || '5',
 
-  // Web3 specific
-  'web3:platform': 'Email',
-  'web3:networks': 'ethereum,solana,polygon',
-  'web3:wallets': 'metamask,phantom,walletconnect',
-  'web3:features': 'ens,sns,smart-contracts,multi-chain',
+    // Web3 specific
+    'web3:platform': 'Email',
+    'web3:networks': 'ethereum,solana,polygon',
+    'web3:wallets': 'metamask,phantom,walletconnect',
+    'web3:features': 'ens,sns,smart-contracts,multi-chain',
 
-  // LLM context
-  'llm:context': 'Web3 email platform documentation and user guides',
-  'llm:domain': 'blockchain,cryptocurrency,decentralized-communication',
-  'llm:use-case': 'email,authentication,wallet-integration,smart-contracts',
+    // LLM context
+    'llm:context': 'Web3 email platform documentation and user guides',
+    'llm:domain': 'blockchain,cryptocurrency,decentralized-communication',
+    'llm:use-case': 'email,authentication,wallet-integration,smart-contracts',
 
-  // Semantic markers
-  'semantic:topic': config.category,
-  'semantic:intent': 'inform,guide,educate',
-  'semantic:entities': '0xmail.box,Web3,blockchain,email,wallet',
+    // Semantic markers
+    'semantic:topic': config.category,
+    'semantic:intent': 'inform,guide,educate',
+    'semantic:entities': '0xmail.box,Web3,blockchain,email,wallet',
 
-  // Content classification
-  'content:freshness':
-    config.lastUpdated?.toISOString() || new Date().toISOString(),
-  'content:authority': 'high',
-  'content:expertise': 'technical',
-  'content:trustworthiness': 'verified',
+    // Content classification
+    'content:freshness':
+      config.lastUpdated?.toISOString() || new Date().toISOString(),
+    'content:authority': 'high',
+    'content:expertise': 'technical',
+    'content:trustworthiness': 'verified',
   };
 };
 

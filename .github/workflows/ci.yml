@@ -30,6 +30,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
 
     - name: Install dependencies
+      shell: bash
       run: |
         rm -f package-lock.json
         npm install
@@ -54,6 +55,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
 
     - name: Install dependencies
+      shell: bash
       run: |
         rm -f package-lock.json
         npm install
@@ -76,6 +78,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
 
     - name: Install dependencies
+      shell: bash
       run: |
         rm -f package-lock.json
         npm install
@@ -115,6 +118,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
+      shell: bash
       run: |
         rm -f package-lock.json
         npm install
@@ -139,6 +143,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
 
     - name: Install dependencies
+      shell: bash
       run: |
         rm -f package-lock.json
         npm install

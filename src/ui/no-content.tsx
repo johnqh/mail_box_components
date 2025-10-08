@@ -19,11 +19,7 @@ export const NoContent: React.FC<NoContentProps> = ({
   className,
 }) => {
   return (
-    <EmptyState
-      title={title}
-      description={subtext}
-      className={className}
-    />
+    <EmptyState title={title} description={subtext} className={className} />
   );
 };
 

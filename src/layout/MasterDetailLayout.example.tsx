@@ -12,11 +12,17 @@ import MasterDetailLayout from './MasterDetailLayout';
  * Similar to the DocumentationPage pattern
  */
 export const DocumentationExample = () => {
-  const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
+  const [mobileView, setMobileView] = useState<'navigation' | 'content'>(
+    'navigation'
+  );
   const [selectedSection, setSelectedSection] = useState('getting-started');
 
   const sections = [
-    { id: 'getting-started', title: 'Getting Started', content: 'Introduction...' },
+    {
+      id: 'getting-started',
+      title: 'Getting Started',
+      content: 'Introduction...',
+    },
     { id: 'api', title: 'API Reference', content: 'API documentation...' },
     { id: 'guides', title: 'Guides', content: 'Step-by-step guides...' },
   ];
@@ -27,8 +33,8 @@ export const DocumentationExample = () => {
   };
 
   const masterContent = (
-    <div className="space-y-0">
-      {sections.map((section) => (
+    <div className='space-y-0'>
+      {sections.map(section => (
         <button
           key={section.id}
           onClick={() => handleSectionSelect(section.id)}
@@ -44,22 +50,22 @@ export const DocumentationExample = () => {
     </div>
   );
 
-  const currentSection = sections.find((s) => s.id === selectedSection);
+  const currentSection = sections.find(s => s.id === selectedSection);
   const detailContent = (
     <div>
-      <h1 className="text-4xl font-bold mb-6">{currentSection?.title}</h1>
-      <div className="prose">{currentSection?.content}</div>
+      <h1 className='text-4xl font-bold mb-6'>{currentSection?.title}</h1>
+      <div className='prose'>{currentSection?.content}</div>
     </div>
   );
 
   return (
     <MasterDetailLayout
-      masterTitle="Table of Contents"
+      masterTitle='Table of Contents'
       masterContent={masterContent}
       detailContent={detailContent}
       mobileView={mobileView}
       onBackToNavigation={() => setMobileView('navigation')}
-      backButtonAriaLabel="Back to navigation"
+      backButtonAriaLabel='Back to navigation'
     />
   );
 };
@@ -69,7 +75,9 @@ export const DocumentationExample = () => {
  * Simpler layout without subsections
  */
 export const SettingsExample = () => {
-  const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
+  const [mobileView, setMobileView] = useState<'navigation' | 'content'>(
+    'navigation'
+  );
   const [currentTab, setCurrentTab] = useState('appearance');
 
   const tabs = [
@@ -84,8 +92,8 @@ export const SettingsExample = () => {
   };
 
   const masterContent = (
-    <nav className="space-y-1">
-      {tabs.map((tab) => (
+    <nav className='space-y-1'>
+      {tabs.map(tab => (
         <button
           key={tab.id}
           onClick={() => handleTabSelect(tab.id)}
@@ -103,8 +111,8 @@ export const SettingsExample = () => {
 
   const detailContent = (
     <div>
-      <h2 className="text-2xl font-bold mb-4">
-        {tabs.find((t) => t.id === currentTab)?.label}
+      <h2 className='text-2xl font-bold mb-4'>
+        {tabs.find(t => t.id === currentTab)?.label}
       </h2>
       <div>{/* Settings form content */}</div>
     </div>
@@ -112,7 +120,7 @@ export const SettingsExample = () => {
 
   return (
     <MasterDetailLayout
-      masterTitle="Settings"
+      masterTitle='Settings'
       masterContent={masterContent}
       detailContent={detailContent}
       mobileView={mobileView}
@@ -127,7 +135,9 @@ export const SettingsExample = () => {
  * Shows advanced usage with custom transitions
  */
 export const AnimatedExample = () => {
-  const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
+  const [mobileView, setMobileView] = useState<'navigation' | 'content'>(
+    'navigation'
+  );
   const [contentHeight, setContentHeight] = useState<number | 'auto'>('auto');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const detailRef = React.useRef<HTMLDivElement>(null);
@@ -157,7 +167,7 @@ export const AnimatedExample = () => {
 
   return (
     <MasterDetailLayout
-      masterTitle="Animated Layout"
+      masterTitle='Animated Layout'
       masterContent={masterContent}
       detailContent={detailContent}
       detailRef={detailRef}
@@ -176,11 +186,13 @@ export const AnimatedExample = () => {
  * For pages where the master panel should scroll with content
  */
 export const NonStickyExample = () => {
-  const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
+  const [mobileView, setMobileView] = useState<'navigation' | 'content'>(
+    'navigation'
+  );
 
   return (
     <MasterDetailLayout
-      masterTitle="Scrollable Navigation"
+      masterTitle='Scrollable Navigation'
       masterContent={<div>Long navigation list...</div>}
       detailContent={<div>Page content...</div>}
       mobileView={mobileView}
@@ -195,7 +207,9 @@ export const NonStickyExample = () => {
  * Cleaner mobile appearance
  */
 export const CleanMobileExample = () => {
-  const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
+  const [mobileView, setMobileView] = useState<'navigation' | 'content'>(
+    'navigation'
+  );
 
   return (
     <MasterDetailLayout

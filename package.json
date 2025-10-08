@@ -61,6 +61,7 @@
     "@typescript-eslint/eslint-plugin": "^8.44.1",
     "@typescript-eslint/parser": "^8.44.1",
     "@vitejs/plugin-react": "^5.0.3",
+    "ajv": "^8.17.1",
     "autoprefixer": "^10.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -94,7 +95,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@johnqh/design_system": "^1.0.21",
+    "@johnqh/design_system": "^1.0.23",
     "i18next": "^25.5.2",
     "react-helmet-async": "^2.0.5",
     "react-i18next": "^15.7.3",

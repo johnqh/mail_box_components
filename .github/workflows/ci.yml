@@ -58,14 +58,6 @@ jobs:
       
     - name: Run tests
       run: npm test -- --run
-      
-    - name: Upload coverage reports
-      uses: codecov/codecov-action@v4
-      if: success()
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage/lcov.info
-        fail_ci_if_error: false
 
   build:
     name: Build Package

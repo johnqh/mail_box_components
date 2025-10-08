@@ -25,8 +25,6 @@
       "Bash(git init:*)",
       "Read(//Users/qianghuang/mail_box_lib/.github/workflows/**)",
       "Bash(chmod:*)",
-      "Bash(USE_LOCAL_LIB=false node scripts/setup-dependencies.js)",
-      "Bash(USE_LOCAL_LIB=true node scripts/setup-dependencies.js)",
       "Bash(node:*)",
       "Bash(npm view:*)",
       "Bash(npm run setup:local:*)",
@@ -49,7 +47,8 @@
       "Bash(npm run format:check:*)",
       "Bash(npm run format:*)",
       "Bash(prettier:*)",
-      "Bash(npx prettier:*)"
+      "Bash(npx prettier:*)",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

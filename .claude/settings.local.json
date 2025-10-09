@@ -48,7 +48,8 @@
       "Bash(npm run format:*)",
       "Bash(prettier:*)",
       "Bash(npx prettier:*)",
-      "WebSearch"
+      "WebSearch",
+      "Read(//Users/johnhuang/0xmail/design_system/**)"
     ],
     "deny": [],
     "ask": []

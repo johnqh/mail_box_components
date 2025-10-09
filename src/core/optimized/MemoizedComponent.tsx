@@ -68,12 +68,18 @@ export const ExpensiveComponent: React.FC<ExpensiveComponentProps> = memo(
       const computeChanged = compute !== prevCompute.current;
 
       if (depsChanged || computeChanged || prevResult.current === undefined) {
-        const start = performance.now();
-        const computedResult = compute();
-        const end = performance.now();
+        let computedResult: unknown;
 
-        if (process.env.NODE_ENV === 'development' && end - start > 16) {
-          console.warn(`Expensive computation took ${end - start}ms`);
+        if (process.env.NODE_ENV === 'development') {
+          const start = performance.now();
+          computedResult = compute();
+          const end = performance.now();
+
+          if (end - start > 16) {
+            console.warn(`Expensive computation took ${end - start}ms`);
+          }
+        } else {
+          computedResult = compute();
         }
 
         prevDeps.current = deps;

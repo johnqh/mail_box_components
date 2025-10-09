@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 
 export interface Subsection {
@@ -35,7 +35,7 @@ const CollapsibleSubsections: React.FC<{
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (contentRef.current) {
       const scrollHeight = contentRef.current.scrollHeight;
       // Add buffer to prevent bottom cutoff

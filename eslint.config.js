@@ -97,8 +97,12 @@ export default [
       'prefer-const': 'error',
       'no-constant-binary-expression': 'off', // Allow constant expressions in tests
       
-      // React Hooks rules
+      // React Hooks rules - disable overly strict v7 rules
       ...reactHooks.configs.recommended.rules,
+      'react-hooks/set-state-in-effect': 'off', // Allow setState in effects for DOM measurements
+      'react-hooks/purity': 'off', // Allow performance.now() and other impure functions when needed
+      'react-hooks/static-components': 'off', // Allow components created during render for flexibility
+      'react-hooks/refs': 'off', // Allow ref access patterns for performance optimization
       
       // React Refresh rules - more permissive for utility files
       'react-refresh/only-export-components': 'off',

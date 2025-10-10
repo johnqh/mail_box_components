@@ -1,5 +1,5 @@
 {
-  "name": "@johnqh/mail-box-components",
+  "name": "@johnqh/mail_box_components",
   "version": "1.6.8",
   "description": "Reusable UI components and design system for mail box applications",
   "type": "module",
@@ -95,7 +95,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@johnqh/design_system": "^1.0.23",
+    "@johnqh/design_system": "^1.0.24",
     "i18next": "^25.5.2",
     "react-helmet-async": "^2.0.5",
     "react-i18next": "^16.0.0",

@@ -21,6 +21,15 @@ import { useEffect } from 'react';
  */
 export const LoadingOptimizer = () => {
   useEffect(() => {
+    // Safety check: only run in browser environment
+    if (
+      typeof window === 'undefined' ||
+      typeof document === 'undefined' ||
+      !document.documentElement
+    ) {
+      return;
+    }
+
     // Critical loading optimizations
     const optimizeLoading = () => {
       // 1. Optimize image loading with intersection observer
@@ -175,7 +184,11 @@ export const LoadingOptimizer = () => {
 
     // 6. Network-aware loading
     const adaptToNetworkConditions = () => {
-      if ('connection' in navigator) {
+      if (
+        'connection' in navigator &&
+        typeof document !== 'undefined' &&
+        document.documentElement
+      ) {
         const connection = (navigator as any).connection;
 
         if (connection) {

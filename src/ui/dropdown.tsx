@@ -8,6 +8,7 @@ interface DropdownItem {
   icon?: React.ComponentType<{ className?: string }>;
   onClick: () => void;
   disabled?: boolean;
+  separator?: boolean;
 }
 
 interface DropdownProps {
@@ -59,23 +60,31 @@ export const Dropdown: React.FC<DropdownProps> = ({
         >
           <div className={variants.overlays.dropdown.itemContainer()}>
             {items.map(item => (
-              <button
-                key={item.id}
-                onClick={() => handleItemClick(item)}
-                disabled={item.disabled}
-                className={
-                  item.disabled
-                    ? variants.overlays.dropdown.itemDisabled()
-                    : variants.overlays.dropdown.item()
-                }
-              >
-                {item.icon && (
-                  <item.icon
-                    className={variants.overlays.dropdown.itemIcon()}
-                  />
-                )}
-                <span>{item.label}</span>
-              </button>
+              item.separator ? (
+                <div
+                  key={item.id}
+                  className="my-1 h-px bg-gray-200 dark:bg-gray-700"
+                  role="separator"
+                />
+              ) : (
+                <button
+                  key={item.id}
+                  onClick={() => handleItemClick(item)}
+                  disabled={item.disabled}
+                  className={
+                    item.disabled
+                      ? variants.overlays.dropdown.itemDisabled()
+                      : variants.overlays.dropdown.item()
+                  }
+                >
+                  {item.icon && (
+                    <item.icon
+                      className={variants.overlays.dropdown.itemIcon()}
+                    />
+                  )}
+                  <span>{item.label}</span>
+                </button>
+              )
             ))}
           </div>
         </div>

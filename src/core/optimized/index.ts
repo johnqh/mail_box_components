@@ -3,3 +3,4 @@
  */
 
 export * from './MemoizedComponent';
+export { OptimizedImage } from '../OptimizedImage';

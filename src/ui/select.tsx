@@ -17,8 +17,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      variants.overlays.dropdown.trigger(),
-      'flex h-9 w-full items-center justify-between rounded-md px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
+      'flex h-9 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:ring-offset-gray-950 transition-colors disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
       className
     )}
     {...props}
@@ -105,11 +104,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn(
-      variants.overlays.dropdown.header(),
-      'py-1.5',
-      className
-    )}
+    className={cn(variants.overlays.dropdown.header(), 'py-1.5', className)}
     {...props}
   />
 ));
@@ -145,10 +140,7 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
-    className={cn(
-      variants.overlays.dropdown.separator(),
-      className
-    )}
+    className={cn('my-1 h-px bg-gray-200 dark:bg-gray-700', className)}
     {...props}
   />
 ));

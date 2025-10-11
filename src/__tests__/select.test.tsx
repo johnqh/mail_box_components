@@ -143,7 +143,7 @@ describe('Select Component', () => {
 
     const option = screen.getByRole('option', { name: 'Option 1' });
     expect(option).toHaveClass('hover:bg-blue-50');
-    expect(option).toHaveClass('dark:hover:bg-slate-700');
+    expect(option).toHaveClass('dark:hover:bg-blue-900/20');
   });
 
   it('shows checkmark for selected item', () => {

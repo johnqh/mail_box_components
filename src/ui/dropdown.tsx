@@ -59,12 +59,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
           className={`${variants.overlays.dropdown.menu()} ${alignmentClasses} ${variants.overlays.dropdown.menuBottom()}`}
         >
           <div className={variants.overlays.dropdown.itemContainer()}>
-            {items.map(item => (
+            {items.map(item =>
               item.separator ? (
                 <div
                   key={item.id}
-                  className="my-1 h-px bg-gray-200 dark:bg-gray-700"
-                  role="separator"
+                  className='my-1 h-px bg-gray-200 dark:bg-gray-700'
+                  role='separator'
                 />
               ) : (
                 <button
@@ -85,7 +85,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
                   <span>{item.label}</span>
                 </button>
               )
-            ))}
+            )}
           </div>
         </div>
       )}

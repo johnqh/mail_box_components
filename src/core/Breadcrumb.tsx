@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FacebookShareButton,
@@ -36,28 +36,18 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [shareUrl, setShareUrl] = useState<string>('');
   const [isPreparingShare, setIsPreparingShare] = useState(false);
-  const preparationStartedRef = useRef(false);
 
-  // Prepare share URL when dropdown opens (silently in background)
+  // Prepare share URL when component mounts (not when dropdown opens)
   React.useEffect(() => {
-    if (
-      isOpen &&
-      !shareUrl &&
-      !isPreparingShare &&
-      shareConfig.onBeforeShare &&
-      !preparationStartedRef.current
-    ) {
-      preparationStartedRef.current = true;
+    const onBeforeShare = shareConfig.onBeforeShare;
+    if (onBeforeShare && !shareUrl) {
       const prepareUrl = async () => {
         setIsPreparingShare(true);
         try {
           const baseUrl =
             typeof window !== 'undefined' ? window.location.href : '';
-          // Double-check callback exists (TypeScript safety)
-          if (shareConfig.onBeforeShare) {
-            const modifiedUrl = await shareConfig.onBeforeShare(baseUrl);
-            setShareUrl(modifiedUrl);
-          }
+          const modifiedUrl = await onBeforeShare(baseUrl);
+          setShareUrl(modifiedUrl);
         } catch (error) {
           console.error('[ShareDropdown] Failed to prepare share URL:', error);
           // Fallback to base URL on error
@@ -70,7 +60,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
       };
       prepareUrl();
     }
-  }, [isOpen, shareUrl, isPreparingShare, shareConfig]);
+  }, [shareConfig, shareUrl]);
 
   const url =
     shareUrl || (typeof window !== 'undefined' ? window.location.href : '');
@@ -122,13 +112,9 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
   ];
 
   const copyToClipboard = async () => {
-    if (isPreparingShare) return; // Don't copy while preparing
-
     try {
       await navigator.clipboard.writeText(url);
       setIsOpen(false);
-      setShareUrl(''); // Reset for next time
-      preparationStartedRef.current = false; // Reset ref
     } catch (error) {
       console.error('Failed to copy:', error);
     }
@@ -160,11 +146,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
         <>
           <div
             className='fixed inset-0 z-[999998]'
-            onClick={() => {
-              setIsOpen(false);
-              setShareUrl(''); // Reset for next time
-              preparationStartedRef.current = false; // Reset ref
-            }}
+            onClick={() => setIsOpen(false)}
           />
           <div className='absolute right-0 top-10 z-[999999] w-32 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-1'>
             {isPreparingShare ? (

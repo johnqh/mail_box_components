@@ -1,6 +1,6 @@
 {
   "name": "@johnqh/mail_box_components",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Reusable UI components and design system for mail box applications",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -50,7 +50,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "i18next": "^25.0.0",
-    "lucide-react": "^0.400.0",
+    "lucide-react": "^0.400.0 || ^0.500.0 || ^0.545.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
     "react-helmet-async": "^2.0.0",

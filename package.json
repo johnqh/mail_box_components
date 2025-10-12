@@ -62,6 +62,9 @@
     "web-vitals": "^5.0.0"
   },
   "peerDependenciesMeta": {
+    "@sudobility/design": {
+      "optional": true
+    },
     "react-helmet-async": {
       "optional": true
     },

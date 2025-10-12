@@ -168,7 +168,7 @@ jobs:
       id: version-check
       run: |
         CURRENT_VERSION=$(node -p "require('./package.json').version")
-        PUBLISHED_VERSION=$(npm view @0xmail/components version 2>/dev/null || echo "0.0.0")
+        PUBLISHED_VERSION=$(npm view @sudobility/components version 2>/dev/null || echo "0.0.0")
         echo "current-version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
         echo "published-version=$PUBLISHED_VERSION" >> $GITHUB_OUTPUT
         if [ "$CURRENT_VERSION" != "$PUBLISHED_VERSION" ]; then
@@ -199,7 +199,7 @@ jobs:
           ## Installation
 
           ```bash
-          npm install @0xmail/components@${{ steps.version-check.outputs.current-version }}
+          npm install @sudobility/components@${{ steps.version-check.outputs.current-version }}
           ```
         generate_release_notes: true
 
@@ -215,6 +215,6 @@ jobs:
       if: always()
       with:
         status: ${{ job.status }}
-        text: 'CI/CD Pipeline failed for @0xmail/components'
+        text: 'CI/CD Pipeline failed for @sudobility/components'
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

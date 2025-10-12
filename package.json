@@ -1,5 +1,5 @@
 {
-  "name": "@0xmail/components",
+  "name": "@sudobility/components",
   "version": "2.0.3",
   "description": "Reusable UI components and design system for mail box applications",
   "type": "module",
@@ -137,12 +137,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/0xmail/components.git"
+    "url": "https://github.com/sudobility/components.git"
   },
   "bugs": {
-    "url": "https://github.com/0xmail/components/issues"
+    "url": "https://github.com/sudobility/components/issues"
   },
-  "homepage": "https://github.com/0xmail/components#readme",
+  "homepage": "https://github.com/sudobility/components#readme",
   "publishConfig": {
     "access": "public"
   }

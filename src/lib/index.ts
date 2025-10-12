@@ -16,14 +16,14 @@ export {
   inputVariant,
   cardVariant,
   textVariant,
-} from '@johnqh/design_system';
+} from '@sudobility/design';
 
 export type {
   ThemeMode,
   ResponsiveBreakpoint,
   ComponentSize,
   ComponentVariant,
-} from '@johnqh/design_system';
+} from '@sudobility/design';
 
 // === LEGACY WILDCARD EXPORTS ===
 // For backward compatibility

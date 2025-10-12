@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Root } from '@radix-ui/react-label';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { textVariants } from '@johnqh/design_system';
+import { textVariants } from '@sudobility/design';
 
 const labelVariants = cva(
   `${textVariants.label.default()} peer-disabled:cursor-not-allowed peer-disabled:opacity-70`

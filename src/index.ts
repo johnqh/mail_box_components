@@ -30,7 +30,7 @@ export {
 } from './utils/formatFileSize';
 
 // Structured data re-exported from design system
-export { createTechArticleData } from '@johnqh/design_system';
+export { createTechArticleData } from '@sudobility/design';
 
 // Hooks
 export { useClickOutside } from './hooks/useClickOutside';
@@ -75,7 +75,7 @@ export {
   ui,
   textVariants,
   variants,
-} from '@johnqh/design_system';
+} from '@sudobility/design';
 
 // === UI COMPONENTS ===
 // Core Components
@@ -279,7 +279,7 @@ export {
   colors as colorsLegacy,
   designTokens as designTokensLegacy,
   ui as uiLegacy,
-} from '@johnqh/design_system';
+} from '@sudobility/design';
 
 // === DEFAULT EXPORT ===
 // Grouped exports for convenience
@@ -294,8 +294,8 @@ import {
   cardVariant,
   textVariant,
 } from './lib';
-import { colors, designTokens, textVariants } from '@johnqh/design_system';
-import { variants } from '@johnqh/design_system';
+import { colors, designTokens, textVariants } from '@sudobility/design';
+import { variants } from '@sudobility/design';
 
 export default {
   utils: {

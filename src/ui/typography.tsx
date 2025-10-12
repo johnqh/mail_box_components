@@ -1,7 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { textVariants } from '@johnqh/design_system';
+import { textVariants } from '@sudobility/design';
 
 // Page Title Component
 const pageTitleVariants = cva('', {

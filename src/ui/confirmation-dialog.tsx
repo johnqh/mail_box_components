@@ -7,8 +7,8 @@ import {
 } from '@heroicons/react/24/outline';
 import { Modal, ModalContent, ModalFooter } from './modal';
 import { Button } from './button';
-import { variants } from '@johnqh/design_system';
-import { textVariants } from '@johnqh/design_system';
+import { variants } from '@sudobility/design';
+import { textVariants } from '@sudobility/design';
 
 export interface ConfirmationDialogProps {
   isOpen: boolean;

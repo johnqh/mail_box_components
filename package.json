@@ -1,5 +1,5 @@
 {
-  "name": "@johnqh/mail_box_components",
+  "name": "@0xmail/components",
   "version": "2.0.3",
   "description": "Reusable UI components and design system for mail box applications",
   "type": "module",
@@ -132,16 +132,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnqh/mail-box-components.git"
+    "url": "https://github.com/0xmail/components.git"
   },
   "bugs": {
-    "url": "https://github.com/johnqh/mail-box-components/issues"
+    "url": "https://github.com/0xmail/components/issues"
   },
-  "homepage": "https://github.com/johnqh/mail-box-components#readme",
+  "homepage": "https://github.com/0xmail/components#readme",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@johnqh/design_system": "^1.0.25"
+    "@sudobility/design": "^1.0.0"
   }
 }

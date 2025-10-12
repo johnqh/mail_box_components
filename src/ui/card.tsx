@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { textVariants } from '@johnqh/design_system';
+import { textVariants } from '@sudobility/design';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?:

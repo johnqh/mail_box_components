@@ -1,5 +1,5 @@
 import React from 'react';
-import { variants } from '@johnqh/design_system';
+import { variants } from '@sudobility/design';
 
 export type StatusType =
   | 'verified'

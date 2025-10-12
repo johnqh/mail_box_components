@@ -30,7 +30,7 @@ export {
   getWeb3ProjectsKeywords,
   getSubscriptionKeywords,
   getContactKeywords,
-} from '@johnqh/design_system';
+} from '@sudobility/design';
 
 // Performance utilities (some moved to ../optimization/ folder)
 export * from './css-optimization';

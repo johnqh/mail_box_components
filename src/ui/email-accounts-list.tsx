@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 import { ChainBadge } from './status-badge';
-import { textVariants } from '@johnqh/design_system';
+import { textVariants } from '@sudobility/design';
 
 interface EmailAccount {
   address: string;

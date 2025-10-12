@@ -144,6 +144,6 @@
   },
   "homepage": "https://github.com/sudobility/components#readme",
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   }
 }

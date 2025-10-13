@@ -16,6 +16,7 @@ interface DropdownProps {
   items: DropdownItem[];
   align?: 'left' | 'right';
   className?: string;
+  variant?: 'default' | 'bordered';
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -23,6 +24,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   items,
   align = 'right',
   className = '',
+  variant = 'default',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,13 +44,18 @@ export const Dropdown: React.FC<DropdownProps> = ({
       ? variants.overlays.dropdown.menuRight()
       : variants.overlays.dropdown.menuLeft();
 
+  const triggerClasses =
+    variant === 'bordered'
+      ? variants.overlays.dropdown.triggerBordered()
+      : variants.overlays.dropdown.trigger();
+
   return (
     <div
       className={`${variants.overlays.dropdown.container()} ${className}`}
       ref={ref}
     >
       <div
-        className={variants.overlays.dropdown.trigger()}
+        className={triggerClasses}
         onClick={() => setIsOpen(!isOpen)}
       >
         {trigger}

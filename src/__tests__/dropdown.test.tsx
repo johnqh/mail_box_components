@@ -87,4 +87,29 @@ describe('Dropdown Component', () => {
 
     expect(container.firstChild).toHaveClass('custom-dropdown');
   });
+
+  it('renders with default borderless variant', () => {
+    const { container } = render(
+      <Dropdown trigger={<button>Menu</button>} items={mockItems} />
+    );
+
+    const triggerWrapper = container.querySelector('.inline-flex');
+    expect(triggerWrapper).toHaveClass('border-0');
+    expect(triggerWrapper).toHaveClass('bg-transparent');
+  });
+
+  it('renders with bordered variant', () => {
+    const { container } = render(
+      <Dropdown
+        trigger={<button>Menu</button>}
+        items={mockItems}
+        variant='bordered'
+      />
+    );
+
+    const triggerWrapper = container.querySelector('.inline-flex');
+    expect(triggerWrapper).toHaveClass('border');
+    expect(triggerWrapper).toHaveClass('border-gray-300');
+    expect(triggerWrapper).toHaveClass('bg-white');
+  });
 });

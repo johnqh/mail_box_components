@@ -61,32 +61,6 @@
     "tailwind-merge": "^3.0.0",
     "web-vitals": "^5.0.0"
   },
-  "peerDependenciesMeta": {
-    "@sudobility/design": {
-      "optional": true
-    },
-    "react-helmet-async": {
-      "optional": true
-    },
-    "react-i18next": {
-      "optional": true
-    },
-    "i18next": {
-      "optional": true
-    },
-    "react-router-dom": {
-      "optional": true
-    },
-    "react-share": {
-      "optional": true
-    },
-    "web-vitals": {
-      "optional": true
-    },
-    "lucide-react": {
-      "optional": true
-    }
-  },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
     "@heroicons/react": "^2.0.0",

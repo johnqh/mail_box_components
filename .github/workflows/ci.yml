@@ -33,10 +33,12 @@ jobs:
 
     - name: Configure npm authentication
       run: |
-        echo "@sudobility:registry=https://registry.npmjs.org/" > .npmrc
+        echo "legacy-peer-deps=true" > .npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> .npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
         echo "always-auth=true" >> .npmrc
-        echo "@sudobility:registry=https://registry.npmjs.org/" > ~/.npmrc
+        echo "legacy-peer-deps=true" > ~/.npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> ~/.npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
         echo "always-auth=true" >> ~/.npmrc
       env:
@@ -70,10 +72,12 @@ jobs:
 
     - name: Configure npm authentication
       run: |
-        echo "@sudobility:registry=https://registry.npmjs.org/" > .npmrc
+        echo "legacy-peer-deps=true" > .npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> .npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
         echo "always-auth=true" >> .npmrc
-        echo "@sudobility:registry=https://registry.npmjs.org/" > ~/.npmrc
+        echo "legacy-peer-deps=true" > ~/.npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> ~/.npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
         echo "always-auth=true" >> ~/.npmrc
       env:
@@ -105,10 +109,12 @@ jobs:
 
     - name: Configure npm authentication
       run: |
-        echo "@sudobility:registry=https://registry.npmjs.org/" > .npmrc
+        echo "legacy-peer-deps=true" > .npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> .npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
         echo "always-auth=true" >> .npmrc
-        echo "@sudobility:registry=https://registry.npmjs.org/" > ~/.npmrc
+        echo "legacy-peer-deps=true" > ~/.npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> ~/.npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
         echo "always-auth=true" >> ~/.npmrc
       env:
@@ -152,10 +158,12 @@ jobs:
 
     - name: Configure npm authentication
       run: |
-        echo "@sudobility:registry=https://registry.npmjs.org/" > .npmrc
+        echo "legacy-peer-deps=true" > .npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> .npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
         echo "always-auth=true" >> .npmrc
-        echo "@sudobility:registry=https://registry.npmjs.org/" > ~/.npmrc
+        echo "legacy-peer-deps=true" > ~/.npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> ~/.npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
         echo "always-auth=true" >> ~/.npmrc
       env:
@@ -189,10 +197,12 @@ jobs:
 
     - name: Configure npm authentication
       run: |
-        echo "@sudobility:registry=https://registry.npmjs.org/" > .npmrc
+        echo "legacy-peer-deps=true" > .npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> .npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
         echo "always-auth=true" >> .npmrc
-        echo "@sudobility:registry=https://registry.npmjs.org/" > ~/.npmrc
+        echo "legacy-peer-deps=true" > ~/.npmrc
+        echo "@sudobility:registry=https://registry.npmjs.org/" >> ~/.npmrc
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
         echo "always-auth=true" >> ~/.npmrc
       env:

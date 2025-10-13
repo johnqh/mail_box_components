@@ -54,10 +54,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       className={`${variants.overlays.dropdown.container()} ${className}`}
       ref={ref}
     >
-      <div
-        className={triggerClasses}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <div className={triggerClasses} onClick={() => setIsOpen(!isOpen)}>
         {trigger}
       </div>
 

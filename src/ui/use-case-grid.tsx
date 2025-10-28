@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { ui } from '@sudobility/design';
 
 export interface UseCase {
   icon: React.ReactNode;
@@ -40,7 +41,7 @@ export const UseCaseGrid: React.FC<UseCaseGridProps> = ({
   };
 
   return (
-    <section className={cn('py-16', className)}>
+    <section className={cn(ui.section.gradient, className)}>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {(title || description) && (
           <div className='text-center mb-12'>

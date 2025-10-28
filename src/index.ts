@@ -29,9 +29,6 @@ export {
   parseFileSize,
 } from './utils/formatFileSize';
 
-// Structured data re-exported from design system
-export { createTechArticleData } from '@sudobility/design';
-
 // Hooks
 export { useClickOutside } from './hooks/useClickOutside';
 export { useCodeLoader } from './hooks/useCodeLoader';
@@ -51,31 +48,9 @@ export {
   type KYCLevel,
 } from './kyc';
 
-// Enhanced utilities
-export {
-  withOpacity,
-  responsive,
-  themeColor,
-  getSizeClasses,
-  buttonVariant,
-  inputVariant,
-  cardVariant,
-  textVariant,
-} from './lib';
-
 // === TYPE DECLARATIONS ===
 // Global types and interfaces from design system
 // Note: Navigation types removed - not available in current design system version
-
-// === DESIGN SYSTEM ===
-// Design tokens and variants from external package
-export {
-  colors,
-  designTokens,
-  ui,
-  textVariants,
-  variants,
-} from '@sudobility/design';
 
 // === UI COMPONENTS ===
 // Core Components
@@ -99,6 +74,7 @@ export {
   ContentContainer,
   Dropdown,
   FeatureCard,
+  FeatureTile,
   FeatureGrid,
   createFeature,
   createSecurityFeatures,
@@ -272,47 +248,13 @@ export type {
 // === LEGACY NAMED EXPORTS ===
 // For backward compatibility - specific named exports
 export { cn as combineClassNames } from './lib';
-export {
-  GRADIENTS as GRADIENTSLegacy,
-  GRADIENT_CLASSES as GRADIENT_CLASSESLegacy,
-  UI_CONSTANTS as UI_CONSTANTSLegacy,
-  colors as colorsLegacy,
-  designTokens as designTokensLegacy,
-  ui as uiLegacy,
-} from '@sudobility/design';
 
 // === DEFAULT EXPORT ===
 // Grouped exports for convenience
 import { cn } from './lib/utils';
-import {
-  withOpacity,
-  responsive,
-  themeColor,
-  getSizeClasses,
-  buttonVariant,
-  inputVariant,
-  cardVariant,
-  textVariant,
-} from './lib';
-import { colors, designTokens, textVariants } from '@sudobility/design';
-import { variants } from '@sudobility/design';
 
 export default {
   utils: {
     cn,
-    withOpacity,
-    responsive,
-    themeColor,
-    getSizeClasses,
-    buttonVariant,
-    inputVariant,
-    cardVariant,
-    textVariant,
-  },
-  design: {
-    colors,
-    tokens: designTokens,
-    typography: textVariants,
-    variants,
   },
 };

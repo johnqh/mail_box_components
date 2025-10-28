@@ -1,6 +1,20 @@
+/**
+ * @deprecated FlexContainer is deprecated. Use standard Tailwind flex utilities instead.
+ *
+ * Migration guide:
+ * - `<FlexContainer align="center" gap="3">` → `<div className="flex items-center gap-3">`
+ * - `<FlexContainer justify="between" align="center">` → `<div className="flex justify-between items-center">`
+ * - `<FlexContainer direction="col" gap="4">` → `<div className="flex flex-col gap-4">`
+ *
+ * This component will be removed in v2.0. Please migrate to Tailwind flex classes.
+ */
+
 import React from 'react';
 import { cn } from '../lib/utils';
 
+/**
+ * @deprecated Use Tailwind flex utilities instead. This component will be removed in v2.0.
+ */
 interface FlexContainerProps {
   children: React.ReactNode;
   direction?: 'row' | 'row-reverse' | 'col' | 'col-reverse';
@@ -54,6 +68,10 @@ const gapClasses = {
   '12': 'gap-12',
 };
 
+/**
+ * @deprecated Use Tailwind flex utilities instead. This component will be removed in v2.0.
+ * See migration guide in file header.
+ */
 export const FlexContainer: React.FC<FlexContainerProps> = ({
   children,
   direction = 'row',

@@ -30,12 +30,15 @@ const sectionVariants = cva('', {
       default: 'bg-gray-50 dark:bg-gray-900',
       surface: 'bg-white dark:bg-gray-800',
       gradient:
-        'bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20',
+        'bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/50 dark:to-purple-900/50',
       'gradient-primary':
-        'bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20',
+        'bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/50 dark:to-indigo-900/50',
       'gradient-secondary':
-        'bg-gradient-to-br from-green-50 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20',
-      'gradient-vibrant': 'bg-gradient-to-br from-blue-600 to-purple-600',
+        'bg-gradient-to-br from-green-50 to-blue-100 dark:from-green-900/50 dark:to-blue-900/50',
+      'gradient-tertiary':
+        'bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-gray-800 dark:to-gray-900',
+      'gradient-vibrant':
+        'bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700',
     },
   },
   defaultVariants: {

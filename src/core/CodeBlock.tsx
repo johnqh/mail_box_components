@@ -165,7 +165,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       )}
 
       {/* Code content */}
-      <div className='p-4 overflow-x-auto'>
+      <div className='p-4 overflow-x-auto text-left'>
         <pre className={`text-sm language-${language}`}>
           <code className='text-gray-100'>{code}</code>
         </pre>

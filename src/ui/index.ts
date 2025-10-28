@@ -23,13 +23,11 @@ export {
 export { ContentContainer } from './content-container';
 export { Dropdown } from './dropdown';
 export { FeatureCard } from './feature-card';
-export { FeatureTile } from './feature-tile';
 export {
   FeatureGrid,
   createFeature,
   createSecurityFeatures,
 } from './feature-grid';
-export { GradientButton } from './gradient-button';
 export { HeroBannerWithBadge } from './hero-banner-with-badge';
 export { Input } from './input';
 export { Label } from './label';
@@ -125,8 +123,7 @@ export type {
 export type { ConfirmationDialogProps } from './confirmation-dialog';
 export type { SmartLinkProps, SmartContentProps } from './smart-link';
 export type { Feature } from './feature-grid';
-export type { FeatureCardProps } from './feature-card';
-export type { FeatureTileProps } from './feature-tile';
+export type { FeatureCardProps, FeatureCardColor } from './feature-card';
 export type { HeroBannerWithBadgeProps } from './hero-banner-with-badge';
 export type { MetricsGridProps, MetricItem } from './metrics-grid';
 export type { ProcessStepsProps, ProcessStep } from './process-steps';
@@ -143,9 +140,7 @@ export * from './comparison-section';
 export * from './content-container';
 export * from './dropdown';
 export * from './feature-card';
-export * from './feature-tile';
 export * from './feature-grid';
-export * from './gradient-button';
 export * from './hero-banner-with-badge';
 export * from './input';
 export * from './label';

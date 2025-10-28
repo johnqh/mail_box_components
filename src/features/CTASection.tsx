@@ -34,11 +34,33 @@ export const CTASection: React.FC<CTASectionProps> = ({
   className = '',
   size = 'lg',
 }) => {
-  const gradientClass = gradient.via
-    ? `bg-gradient-to-r from-${gradient.from} via-${gradient.via} to-${gradient.to}`
-    : `bg-gradient-to-r from-${gradient.from} to-${gradient.to}`;
+  // Map gradient props to safe Tailwind classes with dark mode support
+  const getGradientClass = () => {
+    const key = gradient.via
+      ? `${gradient.from}-${gradient.via}-${gradient.to}`
+      : `${gradient.from}-${gradient.to}`;
 
-  const textColorClass = textColor === 'light' ? 'text-white' : 'text-gray-900';
+    // Predefined gradient classes that work with Tailwind JIT
+    const gradientMap: Record<string, string> = {
+      'blue-600-purple-600':
+        'bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700',
+      'orange-900-red-900':
+        'bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-700 dark:to-red-700',
+      'green-600-blue-600':
+        'bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-700 dark:to-blue-700',
+      'purple-600-pink-600':
+        'bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-700 dark:to-pink-700',
+    };
+
+    return (
+      gradientMap[key] ||
+      'bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700'
+    );
+  };
+
+  const gradientClass = getGradientClass();
+  const textColorClass =
+    textColor === 'light' ? 'text-white' : 'text-gray-900 dark:text-gray-100';
 
   const sizeClasses = {
     sm: 'py-12',

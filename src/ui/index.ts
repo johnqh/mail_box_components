@@ -80,6 +80,7 @@ export {
 // Status & Feedback Components
 export { StatusBadge, ChainBadge } from './status-badge';
 export { StatusIndicator } from './status-indicator';
+export { SystemStatusIndicator } from './system-status-indicator';
 export { SectionBadge } from './section-badge';
 
 // Typography Components
@@ -163,6 +164,7 @@ export * from './email-input-group';
 export * from './form-field-group';
 export * from './status-badge';
 export * from './status-indicator';
+export * from './system-status-indicator';
 export * from './section-badge';
 export * from './typography';
 export * from './smart-link';

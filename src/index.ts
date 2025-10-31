@@ -184,7 +184,13 @@ export {
 } from './ui';
 
 // Status & Feedback Components
-export { StatusBadge, ChainBadge, StatusIndicator, SectionBadge } from './ui';
+export {
+  StatusBadge,
+  ChainBadge,
+  StatusIndicator,
+  SystemStatusIndicator,
+  SectionBadge,
+} from './ui';
 
 // Typography Components
 export { PageTitle, SectionTitle, BodyText, TextLink } from './ui';

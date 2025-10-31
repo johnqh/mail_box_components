@@ -75,11 +75,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
                   key={item.id}
                   onClick={() => handleItemClick(item)}
                   disabled={item.disabled}
-                  className={
+                  className={`${
                     item.disabled
                       ? variants.overlays.dropdown.itemDisabled()
                       : variants.overlays.dropdown.item()
-                  }
+                  } flex items-center gap-2`}
                 >
                   {item.icon && (
                     <item.icon

@@ -52,6 +52,7 @@ export { Switch } from './switch';
 export { SectionHeader } from './section-header';
 export { TableOfContents } from './table-of-contents';
 export { EmailAccountsList } from './email-accounts-list';
+export { SettingsList } from './settings-list';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 export { UseCaseGrid } from './use-case-grid';
 
@@ -134,6 +135,7 @@ export type { ProcessStepsProps, ProcessStep } from './process-steps';
 export type { UseCaseGridProps, UseCase } from './use-case-grid';
 export type { TOCSection } from './table-of-contents';
 export type { EmailAccount, WalletEmailGroup } from './email-accounts-list';
+export type { SettingItem, SettingsListProps } from './settings-list';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-link';
@@ -181,3 +183,4 @@ export * from './wallet-selection';
 export * from './logo';
 export * from './internal-link-clusters';
 export * from './email-accounts-list';
+export * from './settings-list';

@@ -100,6 +100,7 @@ export {
   Switch,
   TableOfContents,
   EmailAccountsList,
+  SettingsList,
   Tabs,
   TabsList,
   TabsTrigger,

@@ -71,8 +71,29 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
         const response = await fetch(apiEndpoint);
         if (response.ok) {
           const data = await response.json();
-          setStatusData(data);
-          onStatusChange?.(data);
+
+          // Transform StatusPage.io format if needed
+          let transformedData: SystemStatusData;
+          if (data.status?.indicator) {
+            // StatusPage.io format
+            const indicatorMap: Record<string, SystemStatus> = {
+              none: 'operational',
+              minor: 'degraded',
+              major: 'major-outage',
+              critical: 'major-outage',
+            };
+            transformedData = {
+              status: indicatorMap[data.status.indicator] || 'operational',
+              version: version,
+              message: data.status.description,
+            };
+          } else {
+            // Native format
+            transformedData = data;
+          }
+
+          setStatusData(transformedData);
+          onStatusChange?.(transformedData);
         }
       } catch (error) {
         console.error('Failed to fetch system status:', error);
@@ -89,7 +110,7 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
       const interval = setInterval(fetchStatus, refreshInterval);
       return () => clearInterval(interval);
     }
-  }, [apiEndpoint, refreshInterval, onStatusChange]);
+  }, [apiEndpoint, refreshInterval, onStatusChange, version]);
 
   const config = statusConfig[statusData.status];
 
@@ -99,15 +120,15 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
   };
 
   const tooltipContent = (
-    <div className="text-xs">
+    <div className='text-xs'>
       {statusData.version && (
-        <div className="font-semibold mb-1">Version {statusData.version}</div>
+        <div className='font-semibold mb-1'>Version {statusData.version}</div>
       )}
       <div>{statusData.message || config.label}</div>
       {statusData.incidents && statusData.incidents.length > 0 && (
-        <div className="mt-2 text-[10px] opacity-90">
-          <div className="font-medium">Current incidents:</div>
-          <ul className="list-disc list-inside">
+        <div className='mt-2 text-[10px] opacity-90'>
+          <div className='font-medium'>Current incidents:</div>
+          <ul className='list-disc list-inside'>
             {statusData.incidents.map((incident, idx) => (
               <li key={idx}>{incident}</li>
             ))}
@@ -137,11 +158,11 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="z-50 overflow-hidden rounded-md bg-gray-900 dark:bg-gray-800 px-3 py-2 text-white shadow-md animate-in fade-in-0 zoom-in-95"
+            className='z-50 overflow-hidden rounded-md bg-gray-900 dark:bg-gray-800 px-3 py-2 text-white shadow-md animate-in fade-in-0 zoom-in-95'
             sideOffset={5}
           >
             {tooltipContent}
-            <Tooltip.Arrow className="fill-gray-900 dark:fill-gray-800" />
+            <Tooltip.Arrow className='fill-gray-900 dark:fill-gray-800' />
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>

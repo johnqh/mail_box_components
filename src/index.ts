@@ -55,6 +55,7 @@ export {
 // === UI COMPONENTS ===
 // Core Components
 export {
+  AddressLink,
   Alert,
   AlertTitle,
   AlertDescription,

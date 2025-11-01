@@ -6,6 +6,7 @@
  */
 
 // Core Components
+export { AddressLink } from './address-link';
 export { Alert, AlertTitle, AlertDescription } from './alert';
 export {
   AnimatedSection,
@@ -113,6 +114,7 @@ export { Logo } from './logo';
 export { default as InternalLinkClusters } from './internal-link-clusters';
 
 // Re-export component types for convenience
+export type { AddressLinkProps } from './address-link';
 export type { ButtonProps } from './button';
 export type { StatusType, ChainType } from './status-badge';
 export type { InputProps } from './input';
@@ -134,6 +136,7 @@ export type { TOCSection } from './table-of-contents';
 export type { EmailAccount, WalletEmailGroup } from './email-accounts-list';
 
 // Legacy wildcard exports for backward compatibility
+export * from './address-link';
 export * from './alert';
 export * from './animated-section';
 export * from './button';

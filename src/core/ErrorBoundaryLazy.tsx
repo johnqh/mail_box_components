@@ -137,8 +137,8 @@ export class LazyErrorBoundary extends Component<Props, State> {
           },
         });
       }
-    } catch (monitoringError) {
-      console.warn('Failed to send error to monitoring:', monitoringError);
+    } catch {
+      // Silently fail monitoring errors
     }
   };
 
@@ -147,9 +147,6 @@ export class LazyErrorBoundary extends Component<Props, State> {
     const { retryCount } = this.state;
 
     if (retryCount >= maxRetries) {
-      console.warn(
-        `Max retries (${maxRetries}) exceeded for ${this.props.componentName}`
-      );
       return;
     }
 

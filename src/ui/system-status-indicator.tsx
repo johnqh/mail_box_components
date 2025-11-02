@@ -95,8 +95,8 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
           setStatusData(transformedData);
           onStatusChange?.(transformedData);
         }
-      } catch (error) {
-        console.error('Failed to fetch system status:', error);
+      } catch {
+        // Status fetch failed
       } finally {
         setIsLoading(false);
       }

@@ -429,22 +429,11 @@ export class OptimizedAPIClient {
         config = interceptor(config);
       }
 
-      const startTime = performance.now();
       let response = await fetch(url, config);
 
       // Apply response interceptors
       for (const interceptor of this.responseInterceptors) {
         response = await interceptor(response);
-      }
-
-      const endTime = performance.now();
-
-      // Log slow requests in development
-      if (
-        process.env.NODE_ENV === 'development' &&
-        endTime - startTime > 1000
-      ) {
-        console.warn(`Slow API request: ${url} took ${endTime - startTime}ms`);
       }
 
       if (!response.ok) {

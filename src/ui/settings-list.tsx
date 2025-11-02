@@ -85,7 +85,6 @@ const getIconForSetting = (
  *     { id: 'forwarding', title: 'Forwarding', icon: 'arrow-right' },
  *   ]}
  *   selectedSetting="general"
- *   onSettingSelect={(id) => console.log('Selected:', id)}
  * />
  * ```
  */

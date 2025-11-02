@@ -90,8 +90,8 @@ export class ComponentPreloader {
       window.requestIdleCallback(async () => {
         try {
           await importFunc();
-        } catch (error) {
-          console.warn(`Failed to preload ${componentName}:`, error);
+        } catch {
+          // Preload failed, will be loaded on demand
         }
       });
     }
@@ -103,7 +103,7 @@ export class ComponentPreloader {
     importFunc: () => Promise<unknown>
   ): void {
     const handleHover = () => {
-      importFunc().catch(console.warn);
+      importFunc().catch(() => {});
       element.removeEventListener('mouseenter', handleHover);
     };
 
@@ -117,7 +117,7 @@ export class ComponentPreloader {
   ): void {
     const handleScroll = () => {
       if (window.scrollY > threshold) {
-        importFunc().catch(console.warn);
+        importFunc().catch(() => {});
         window.removeEventListener('scroll', handleScroll);
       }
     };

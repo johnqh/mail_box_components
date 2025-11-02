@@ -12,20 +12,14 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
 
     // 1. Preload critical resources
     const preloadCriticalResources = () => {
-      const criticalResources = [
-        {
-          href: '/fonts/inter-var.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossorigin: true,
-        },
-        {
-          href: '/images/hero-background.webp',
-          as: 'image',
-          type: 'image/webp',
-        },
-        { href: '/images/logo.svg', as: 'image', type: 'image/svg+xml' },
-      ];
+      // Note: Only preload resources that actually exist to avoid 404 warnings
+      // Applications should provide their own critical resource preloading
+      const criticalResources: Array<{
+        href: string;
+        as: string;
+        type?: string;
+        crossorigin?: boolean;
+      }> = [];
 
       criticalResources.forEach(resource => {
         const link = document.createElement('link');
@@ -46,15 +40,17 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
         (img as HTMLImageElement).fetchPriority = 'high';
       });
 
-      // Preload hero background image
+      // Preload hero background image if it exists and is marked
       const heroSection = document.querySelector('[data-hero]');
       if (heroSection) {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = '/images/hero-background.webp';
-        link.as = 'image';
-        link.type = 'image/webp';
-        document.head.appendChild(link);
+        const bgImage = heroSection.getAttribute('data-bg-image');
+        if (bgImage) {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.href = bgImage;
+          link.as = 'image';
+          document.head.appendChild(link);
+        }
       }
     };
 

@@ -45,8 +45,7 @@ export const loadRadixComponents = async () => {
       DropdownMenuItem: DropdownMenu.Item,
       DropdownMenuTrigger: DropdownMenu.Trigger,
     };
-  } catch (error) {
-    console.warn('Radix UI components not available:', error);
+  } catch {
     return {};
   }
 };
@@ -117,8 +116,7 @@ export const loadCryptoUtils = async () => {
     const { sha3_256 } = await import('@noble/hashes/sha3');
 
     return { sha3_256, secp256k1 };
-  } catch (error) {
-    console.warn('Crypto utilities not available:', error);
+  } catch {
     return { sha3_256: null, secp256k1: null };
   }
 };
@@ -140,8 +138,7 @@ export const loadFirebaseComponents = async () => {
       getAuth,
       getAnalytics,
     };
-  } catch (error) {
-    console.warn('Firebase not available:', error);
+  } catch {
     return {
       getApps: null,
       initializeApp: null,

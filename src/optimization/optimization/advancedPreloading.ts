@@ -255,8 +255,8 @@ class AdvancedPreloader {
       this.preloaded.add(chunk.name);
 
       // Chunk preloaded successfully
-    } catch (error) {
-      console.warn(`Failed to preload chunk ${chunk.name}:`, error);
+    } catch {
+      // Preload failed, will be loaded on demand
     }
   }
 

@@ -89,8 +89,7 @@ export function detectWalletBrowser(): WalletBrowserInfo {
       hasSolana,
       provider,
     };
-  } catch (error) {
-    console.warn('Error detecting wallet browser:', error);
+  } catch {
     return defaultInfo;
   }
 }
@@ -120,8 +119,8 @@ export async function autoConnectWalletBrowser(): Promise<{
           // Connected to Ethereum wallet
           return { success: true, address: accounts[0] };
         }
-      } catch (ethError) {
-        console.warn('Ethereum connection failed:', ethError);
+      } catch {
+        // Ethereum connection failed
       }
     }
 
@@ -134,14 +133,13 @@ export async function autoConnectWalletBrowser(): Promise<{
           // Connected to Solana wallet
           return { success: true, address };
         }
-      } catch (solError) {
-        console.warn('Solana connection failed:', solError);
+      } catch {
+        // Solana connection failed
       }
     }
 
     return { success: false, error: 'Failed to connect to wallet provider' };
   } catch (error) {
-    console.error('Auto-connect failed:', error);
     return {
       success: false,
       error:

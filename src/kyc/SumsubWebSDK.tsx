@@ -30,7 +30,6 @@ export const SumsubWebSDK: React.FC<SumsubWebSDKProps> = ({
 
   useEffect(() => {
     if (!accessToken) {
-      console.warn('No access token provided to SumsubWebSDK');
       return;
     }
 

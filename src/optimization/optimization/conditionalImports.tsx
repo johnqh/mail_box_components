@@ -73,8 +73,8 @@ export function createConditionalLazyComponent<
               setComponentReady(true);
               return;
             }
-          } catch (error) {
-            console.warn('Cached condition check failed:', error);
+          } catch {
+            // Cached component check failed
           }
         }
 
@@ -97,8 +97,8 @@ export function createConditionalLazyComponent<
             setLazyComponent(() => component.default);
             setComponentReady(true);
           }
-        } catch (error) {
-          console.error('Failed to load conditional component:', error);
+        } catch {
+          // Failed to load component
         }
       };
 

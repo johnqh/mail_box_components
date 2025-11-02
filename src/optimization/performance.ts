@@ -27,8 +27,7 @@ export const performanceUtils = {
         performance.measure(name, startMark, endMark);
         const entries = performance.getEntriesByName(name);
         return entries[entries.length - 1]?.duration || 0;
-      } catch (error) {
-        console.warn('Performance measurement failed:', error);
+      } catch {
         return 0;
       }
     }

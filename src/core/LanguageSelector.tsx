@@ -96,8 +96,8 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           window.dispatchEvent(new Event('languagechange'));
         }, 100);
       })
-      .catch((error: any) => {
-        console.error('Failed to change language:', error);
+      .catch(() => {
+        // Language change failed
       });
   };
 

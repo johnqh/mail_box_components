@@ -110,15 +110,7 @@ export const cacheHeaders = {
 export const setupCSPReporting = () => {
   if (typeof window !== 'undefined') {
     // Listen for CSP violations
-    document.addEventListener('securitypolicyviolation', event => {
-      console.warn('CSP Violation:', {
-        blockedURI: event.blockedURI,
-        violatedDirective: event.violatedDirective,
-        originalPolicy: event.originalPolicy,
-        sourceFile: event.sourceFile,
-        lineNumber: event.lineNumber,
-      });
-
+    document.addEventListener('securitypolicyviolation', () => {
       // Optionally send violations to an analytics service
       // Analytics.track('CSP Violation', { ... });
     });

@@ -129,9 +129,6 @@ export const LoadingOptimizer = () => {
 
           if (lastEntry && lastEntry.startTime > 2500) {
             // LCP is poor, implement aggressive optimizations
-            console.warn(
-              'Poor LCP detected, implementing aggressive optimizations'
-            );
 
             // Disable non-critical animations
             document.documentElement.style.setProperty(
@@ -162,8 +159,6 @@ export const LoadingOptimizer = () => {
           }
 
           if (clsValue > 0.1) {
-            console.warn('High CLS detected:', clsValue);
-
             // Add explicit dimensions to problematic elements
             document
               .querySelectorAll('img:not([width]):not([height])')

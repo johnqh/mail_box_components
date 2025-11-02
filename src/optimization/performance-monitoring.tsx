@@ -90,7 +90,7 @@ class PerformanceMonitor {
         navigationObserver.observe({ entryTypes: ['navigation'] });
         this.observers.push(navigationObserver);
       } catch {
-        console.warn('Navigation timing observer not supported');
+        // Navigation observer not supported
       }
 
       // Resource timing for bundle analysis
@@ -107,7 +107,7 @@ class PerformanceMonitor {
         resourceObserver.observe({ entryTypes: ['resource'] });
         this.observers.push(resourceObserver);
       } catch {
-        console.warn('Resource timing observer not supported');
+        // Resource observer not supported
       }
     }
   }
@@ -305,24 +305,15 @@ export const measureAsyncOperation = async <T extends any>(
   operationName: string
 ): Promise<T> => {
   const startTime = performance.now();
+  const result = await operation();
+  const duration = performance.now() - startTime;
 
-  try {
-    const result = await operation();
-    const duration = performance.now() - startTime;
-
-    const monitor = getPerformanceMonitor();
-    if (monitor) {
-      monitor.measureAPICall(operationName, duration);
-    }
-
-    return result;
-  } catch (error) {
-    const duration = performance.now() - startTime;
-    console.error(
-      `[Performance] ${operationName} failed after ${duration.toFixed(2)}ms`
-    );
-    throw error;
+  const monitor = getPerformanceMonitor();
+  if (monitor) {
+    monitor.measureAPICall(operationName, duration);
   }
+
+  return result;
 };
 
 // Performance budgets

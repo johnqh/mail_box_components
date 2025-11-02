@@ -126,8 +126,8 @@ export const AddressLink: React.FC<AddressLinkProps> = ({
       await navigator.clipboard.writeText(address);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy address:', err);
+    } catch {
+      // Copy failed
     }
   };
 

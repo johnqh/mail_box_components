@@ -29,7 +29,6 @@ export interface CopyToClipboardResult {
  * @example
  * const { copyToClipboard, isCopied } = useCopyToClipboard({
  *   successDuration: 2000,
- *   onSuccess: (text) => console.log('Copied:', text)
  * });
  *
  * // In component

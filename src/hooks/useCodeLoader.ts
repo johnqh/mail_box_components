@@ -26,7 +26,6 @@ export const useCodeLoader = (filename: string): UseCodeLoaderReturn => {
         const codeContent = await response.text();
         setCode(codeContent);
       } catch (err) {
-        console.error('Error loading code:', err);
         setError(err instanceof Error ? err.message : 'Unknown error');
         setCode('// Error loading code file');
       } finally {

@@ -76,8 +76,8 @@ export const PullToRefresh: React.FC<PullToRefreshProps> = ({
         setIsRefreshing(true);
         try {
           await onRefresh();
-        } catch (error) {
-          console.error('Refresh error:', error);
+        } catch {
+          // Refresh failed
         } finally {
           setIsRefreshing(false);
           setPullDistance(0);

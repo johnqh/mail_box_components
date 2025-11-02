@@ -48,8 +48,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
             typeof window !== 'undefined' ? window.location.href : '';
           const modifiedUrl = await onBeforeShare(baseUrl);
           setShareUrl(modifiedUrl);
-        } catch (error) {
-          console.error('[ShareDropdown] Failed to prepare share URL:', error);
+        } catch {
           // Fallback to base URL on error
           const baseUrl =
             typeof window !== 'undefined' ? window.location.href : '';
@@ -115,8 +114,8 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
     try {
       await navigator.clipboard.writeText(url);
       setIsOpen(false);
-    } catch (error) {
-      console.error('Failed to copy:', error);
+    } catch {
+      // Copy failed
     }
   };
 

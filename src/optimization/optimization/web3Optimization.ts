@@ -10,8 +10,7 @@ export const EthereumUtils = {
     try {
       const { getAddress } = await import('viem/utils');
       return getAddress;
-    } catch (error) {
-      console.warn('viem/utils not available:', error);
+    } catch {
       return null;
     }
   },
@@ -20,8 +19,7 @@ export const EthereumUtils = {
     try {
       const { parseEther } = await import('viem/utils');
       return parseEther;
-    } catch (error) {
-      console.warn('viem/utils not available:', error);
+    } catch {
       return null;
     }
   },
@@ -30,8 +28,7 @@ export const EthereumUtils = {
     try {
       const { formatEther } = await import('viem/utils');
       return formatEther;
-    } catch (error) {
-      console.warn('viem/utils not available:', error);
+    } catch {
       return null;
     }
   },
@@ -44,8 +41,7 @@ export const EthereumUtils = {
         ...config,
         transport: http(),
       });
-    } catch (error) {
-      console.warn('viem not available:', error);
+    } catch {
       return null;
     }
   },
@@ -55,8 +51,7 @@ export const EthereumUtils = {
     try {
       const { normalize } = await import('viem/ens');
       return normalize(name);
-    } catch (error) {
-      console.warn('viem/ens not available:', error);
+    } catch {
       return null;
     }
   },
@@ -69,8 +64,7 @@ export const SolanaUtils = {
     try {
       const { Connection } = await import('@solana/web3.js');
       return new Connection(endpoint);
-    } catch (error) {
-      console.warn('@solana/web3.js not available:', error);
+    } catch {
       return null;
     }
   },
@@ -80,8 +74,7 @@ export const SolanaUtils = {
     try {
       const { PublicKey } = await import('@solana/web3.js');
       return new PublicKey(address);
-    } catch (error) {
-      console.warn('@solana/web3.js not available:', error);
+    } catch {
       return null;
     }
   },
@@ -91,8 +84,7 @@ export const SolanaUtils = {
     try {
       const { Transaction } = await import('@solana/web3.js');
       return new Transaction();
-    } catch (error) {
-      console.warn('@solana/web3.js not available:', error);
+    } catch {
       return null;
     }
   },
@@ -112,8 +104,7 @@ export const SolanaUtils = {
         default:
           throw new Error(`Unknown Solana wallet: ${walletName}`);
       }
-    } catch (error) {
-      console.warn('@solana/wallet-adapter-wallets not available:', error);
+    } catch {
       return null;
     }
   },
@@ -162,8 +153,7 @@ export const createWagmiConfig = async () => {
         [optimism.id]: http(),
       },
     });
-  } catch (error) {
-    console.warn('wagmi not available:', error);
+  } catch {
     return null;
   }
 };
@@ -200,8 +190,7 @@ export const getCachedProvider = async (
 
     providerCache.set(cacheKey, provider);
     return provider;
-  } catch (error) {
-    console.warn(`Failed to create ${type} provider:`, error);
+  } catch {
     return null;
   }
 };
@@ -220,8 +209,7 @@ export const getTreeShakeableExports = async () => {
     ]);
 
     return { getAddress, PublicKey };
-  } catch (error) {
-    console.warn('Tree-shakeable exports not available:', error);
+  } catch {
     return { getAddress: null, PublicKey: null };
   }
 };

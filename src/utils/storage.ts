@@ -16,7 +16,6 @@
  * // Retrieve cached data
  * const userData = walletStorage.get('0x742d35cc...');
  * if (userData) {
- *   console.log(`Welcome back ${userData.username}!`);
  * }
  *
  * // Store theme preference permanently
@@ -191,8 +190,8 @@ class StorageManager {
         ttl: ttl || this.defaultTTL,
       };
       this.platformStorage.setItem(this.getKey(key), JSON.stringify(item));
-    } catch (error) {
-      console.error(`Failed to store item ${key}:`, error);
+    } catch {
+      // Storage failed
     }
   }
 
@@ -215,7 +214,6 @@ class StorageManager {
    * // Get with undefined fallback
    * const user = storage.get<User>('user-123');
    * if (user) {
-   *   console.log(`Hello ${user.name}!`);
    * }
    *
    * // Get with default value
@@ -240,8 +238,7 @@ class StorageManager {
       }
 
       return item.value;
-    } catch (error) {
-      console.error(`Failed to retrieve item ${key}:`, error);
+    } catch {
       return defaultValue;
     }
   }
@@ -249,8 +246,8 @@ class StorageManager {
   remove(key: string): void {
     try {
       this.platformStorage.removeItem(this.getKey(key));
-    } catch (error) {
-      console.error(`Failed to remove item ${key}:`, error);
+    } catch {
+      // Removal failed
     }
   }
 
@@ -377,9 +374,7 @@ export const themeStorage = new StorageManager({ prefix: 'mailbox-theme' });
  * // Retrieve user data (automatically expires after 7 days)
  * const user = walletStorage.get<WalletUserData>('0x742d35cc...');
  * if (user) {
- *   console.log(`Welcome back ${user.username}!`);
  * } else {
- *   console.log('Please authenticate again');
  * }
  * ```
  */
@@ -397,23 +392,22 @@ export const createSimpleStorage = (platformStorage?: PlatformStorage) => {
     setItem: (key: string, value: string) => {
       try {
         platformStorage.setItem(key, value);
-      } catch (error) {
-        console.error(`Failed to store ${key}:`, error);
+      } catch {
+        // Storage failed
       }
     },
     getItem: (key: string): string | null => {
       try {
         return platformStorage.getItem(key) as string | null;
-      } catch (error) {
-        console.error(`Failed to retrieve ${key}:`, error);
+      } catch {
         return null;
       }
     },
     removeItem: (key: string) => {
       try {
         platformStorage.removeItem(key);
-      } catch (error) {
-        console.error(`Failed to remove ${key}:`, error);
+      } catch {
+        // Removal failed
       }
     },
   };

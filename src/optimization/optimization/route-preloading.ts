@@ -39,7 +39,6 @@ export class RoutePreloadingService {
 
     const routeImport = this.config.routeImports[route];
     if (!routeImport) {
-      console.warn(`No import function found for route: ${route}`);
       return;
     }
 
@@ -49,8 +48,8 @@ export class RoutePreloadingService {
       await routeImport();
       this.preloadedRoutes.add(route);
       // Route preloaded successfully
-    } catch (error) {
-      console.warn(`Failed to preload route ${route}:`, error);
+    } catch {
+      // Preload failed, will be loaded on demand
     } finally {
       this.preloadingRoutes.delete(route);
     }

@@ -76,7 +76,6 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
   const handleError = () => {
     setHasError(true);
-    console.warn(`Failed to load image: ${src}`);
   };
 
   return (

@@ -13,8 +13,8 @@ const getDocumentElementById = (id: string): Element | null => {
   if (typeof document !== 'undefined' && document.getElementById) {
     try {
       return document.getElementById(id);
-    } catch (error) {
-      console.warn('Failed to get element by ID:', error);
+    } catch {
+      // DOM access failed
     }
   }
   return null;
@@ -24,8 +24,8 @@ const createDocumentElement = (tagName: string): HTMLElement | null => {
   if (typeof document !== 'undefined' && document.createElement) {
     try {
       return document.createElement(tagName);
-    } catch (error) {
-      console.warn('Failed to create element:', error);
+    } catch {
+      // DOM access failed
     }
   }
   return null;
@@ -37,8 +37,8 @@ const appendToDocumentHead = (element: Node): boolean => {
     try {
       head.appendChild(element);
       return true;
-    } catch (error) {
-      console.warn('Failed to append to document head:', error);
+    } catch {
+      // DOM access failed
     }
   }
   return false;

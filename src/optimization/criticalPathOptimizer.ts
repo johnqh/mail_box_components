@@ -104,8 +104,8 @@ class CriticalPathOptimizer {
           this.observedMetrics.cls = clsValue;
         });
         clsObserver.observe({ entryTypes: ['layout-shift'] });
-      } catch (error) {
-        console.warn('Performance observation setup failed:', error);
+      } catch {
+        // CLS monitoring not supported
       }
     }
 
@@ -147,7 +147,6 @@ class CriticalPathOptimizer {
     // TTFB optimization based on timing
 
     if (ttfb > 600) {
-      console.warn('Slow server response, enabling aggressive caching');
       this.enableAggressiveCaching();
     }
   }
@@ -285,7 +284,7 @@ class CriticalPathOptimizer {
             criticalCSS.remove();
           }
         })
-        .catch(console.warn);
+        .catch(() => {});
     }
   }
 

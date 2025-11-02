@@ -63,10 +63,6 @@ export const createLazyComponent = <
         return await importFunc();
       } catch (error) {
         lastError = error as Error;
-        console.warn(
-          `Failed to load component (attempt ${attempt + 1}/${retryAttempts}):`,
-          error
-        );
 
         // Wait before retrying with exponential backoff
         if (attempt < retryAttempts - 1) {
@@ -98,8 +94,8 @@ export const preloadComponent = async <
 ): Promise<void> => {
   try {
     await importFunc();
-  } catch (error) {
-    console.warn('Failed to preload component:', error);
+  } catch {
+    // Preload failed, will be loaded on demand
   }
 };
 
@@ -163,8 +159,8 @@ export class ComponentPreloader {
           try {
             await item.loader();
             this.preloadedComponents.add(item.name);
-          } catch (error) {
-            console.warn(`Failed to preload ${item.name}:`, error);
+          } catch {
+            // Preload failed, will be loaded on demand
           }
         }
         this.isPreloading = false;
@@ -178,8 +174,8 @@ export class ComponentPreloader {
           try {
             await item.loader();
             this.preloadedComponents.add(item.name);
-          } catch (error) {
-            console.warn(`Failed to preload ${item.name}:`, error);
+          } catch {
+            // Preload failed, will be loaded on demand
           }
         }
         this.isPreloading = false;

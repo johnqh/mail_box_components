@@ -93,8 +93,7 @@ export function createProgressiveComponent<T extends ComponentType<any>>(
       }
 
       return module;
-    } catch (error) {
-      console.error('Failed to load component:', error);
+    } catch {
       // Return a component that renders the error fallback
       return {
         default: (() => errorFallback) as any,
@@ -317,7 +316,7 @@ export class LazyLoadQueue {
     const batch = Array.from(this.queue).slice(0, this.batchSize);
     batch.forEach(fn => this.queue.delete(fn));
 
-    await Promise.all(batch.map(fn => fn().catch(console.error)));
+    await Promise.all(batch.map(fn => fn().catch(() => {})));
 
     if (this.queue.size > 0) {
       await new Promise(resolve => setTimeout(resolve, this.delay));
@@ -388,11 +387,8 @@ export class PriorityLoader {
         if (fn) {
           try {
             await fn();
-          } catch (error) {
-            console.error(
-              `Failed to load resource with priority ${priority}:`,
-              error
-            );
+          } catch {
+            // Resource load failed
           }
         }
 

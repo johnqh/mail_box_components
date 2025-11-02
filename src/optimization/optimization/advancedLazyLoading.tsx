@@ -133,7 +133,7 @@ export function createAdvancedLazyComponent<
               })
             );
           } catch {
-            console.warn('Session storage failed for lazy component cache');
+            // Session storage not available
           }
         }
       }
@@ -165,7 +165,7 @@ export function createAdvancedLazyComponent<
           // Delay preload based on priority and network speed
           const delay = calculatePreloadDelay(priority, networkSpeed);
           setTimeout(() => {
-            importFunc().catch(console.warn);
+            importFunc().catch(() => {});
           }, delay);
         }
       }
@@ -230,11 +230,6 @@ async function loadWithRetry<T>(
         const baseDelay = Math.pow(2, attempt) * 1000;
         const jitter = Math.random() * 1000;
         await new Promise(resolve => setTimeout(resolve, baseDelay + jitter));
-
-        console.warn(
-          `Retry ${attempt + 1}/${retries} for component load:`,
-          error
-        );
       }
     }
   }

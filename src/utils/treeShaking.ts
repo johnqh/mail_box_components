@@ -35,8 +35,7 @@ export const createConditionalImports = (
     conditionalImports[key] = () => {
       try {
         return importFn();
-      } catch (error) {
-        console.warn(`Failed to load ${key}:`, error);
+      } catch {
         return Promise.resolve({ default: null });
       }
     };

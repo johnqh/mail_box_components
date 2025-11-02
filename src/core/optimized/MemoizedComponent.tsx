@@ -76,7 +76,7 @@ export const ExpensiveComponent: React.FC<ExpensiveComponentProps> = memo(
           const end = performance.now();
 
           if (end - start > 16) {
-            console.warn(`Expensive computation took ${end - start}ms`);
+            // Expensive computation detected
           }
         } else {
           computedResult = compute();
@@ -191,11 +191,6 @@ export const PerformanceBoundary: React.FC<PerformanceBoundaryProps> = ({
     const renderTime = performance.now() - renderStart.current;
     if (renderTime > maxRenderTime) {
       onSlowRender?.(renderTime);
-      if (process.env.NODE_ENV === 'development') {
-        console.warn(
-          `Slow render detected: ${renderTime}ms (threshold: ${maxRenderTime}ms)`
-        );
-      }
     }
   });
 

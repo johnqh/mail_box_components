@@ -19,6 +19,8 @@ export interface SystemStatusIndicatorProps {
   className?: string;
   version?: string;
   onStatusChange?: (status: SystemStatusData) => void;
+  /** Network online status - when false, overrides system status */
+  isNetworkOnline?: boolean;
 }
 
 const statusConfig = {
@@ -54,6 +56,7 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
   className,
   version,
   onStatusChange,
+  isNetworkOnline = true,
 }) => {
   const [statusData, setStatusData] = useState<SystemStatusData>({
     status: 'operational',
@@ -112,28 +115,49 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
     }
   }, [apiEndpoint, refreshInterval, onStatusChange, version]);
 
-  const config = statusConfig[statusData.status];
+  // Override status if network is offline
+  const displayStatus = !isNetworkOnline ? 'major-outage' : statusData.status;
+  const config = statusConfig[displayStatus];
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    // Show alert when network is offline
+    if (!isNetworkOnline) {
+      window.alert(
+        'Network is not available. Please check your internet connection and try again later.'
+      );
+      return;
+    }
+
     window.open(statusPageUrl, '_blank', 'noopener,noreferrer');
   };
 
   const tooltipContent = (
     <div className='text-xs'>
-      {statusData.version && (
-        <div className='font-semibold mb-1'>Version {statusData.version}</div>
-      )}
-      <div>{statusData.message || config.label}</div>
-      {statusData.incidents && statusData.incidents.length > 0 && (
-        <div className='mt-2 text-[10px] opacity-90'>
-          <div className='font-medium'>Current incidents:</div>
-          <ul className='list-disc list-inside'>
-            {statusData.incidents.map((incident, idx) => (
-              <li key={idx}>{incident}</li>
-            ))}
-          </ul>
-        </div>
+      {!isNetworkOnline ? (
+        // Network offline message
+        <div>Network unavailable</div>
+      ) : (
+        // Normal system status
+        <>
+          {statusData.version && (
+            <div className='font-semibold mb-1'>
+              Version {statusData.version}
+            </div>
+          )}
+          <div>{statusData.message || config.label}</div>
+          {statusData.incidents && statusData.incidents.length > 0 && (
+            <div className='mt-2 text-[10px] opacity-90'>
+              <div className='font-medium'>Current incidents:</div>
+              <ul className='list-disc list-inside'>
+                {statusData.incidents.map((incident, idx) => (
+                  <li key={idx}>{incident}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
@@ -150,7 +174,7 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
               config.color,
               config.hoverColor,
               sizeClasses[size],
-              isLoading && 'animate-pulse',
+              (isLoading || !isNetworkOnline) && 'animate-pulse',
               className
             )}
             aria-label={`System status: ${config.label}`}

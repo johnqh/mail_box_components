@@ -1,5 +1,81 @@
 import React, { ReactNode, useEffect, useState, useRef } from 'react';
 
+/**
+ * MasterListItem - Standardized list item with rounded selection overlay
+ *
+ * Provides consistent selection styling across all master-detail layouts
+ */
+export interface MasterListItemProps {
+  /** Whether this item is currently selected */
+  isSelected: boolean;
+  /** Click handler */
+  onClick: () => void;
+  /** Icon component to display (optional) */
+  icon?: React.ComponentType<{ className?: string }>;
+  /** Main label text */
+  label: string;
+  /** Description text (optional) */
+  description?: string;
+  /** Custom className for additional styling */
+  className?: string;
+}
+
+export const MasterListItem: React.FC<MasterListItemProps> = ({
+  isSelected,
+  onClick,
+  icon: Icon,
+  label,
+  description,
+  className = '',
+}) => {
+  return (
+    <div
+      onClick={onClick}
+      className={`relative flex items-start p-4 cursor-pointer transition-all border-b border-gray-200 dark:border-gray-700 last:border-b-0 group ${className}`}
+    >
+      {/* Rounded selection overlay - positioned absolutely to create overlay effect */}
+      {isSelected && (
+        <div className='absolute inset-1 bg-blue-500/10 dark:bg-blue-400/10 rounded-lg pointer-events-none' />
+      )}
+
+      {/* Content wrapper with z-index to sit above overlay */}
+      <div className='relative z-10 flex items-start w-full'>
+        {Icon && (
+          <Icon
+            className={`h-5 w-5 mt-0.5 mr-3 flex-shrink-0 transition-colors ${
+              isSelected
+                ? 'text-blue-600 dark:text-blue-400'
+                : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300'
+            }`}
+          />
+        )}
+        <div className='flex-1 min-w-0'>
+          <div
+            className={`font-medium transition-colors ${
+              isSelected
+                ? 'text-blue-600 dark:text-blue-400'
+                : 'text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-300'
+            }`}
+          >
+            {label}
+          </div>
+          {description && (
+            <div
+              className={`text-xs mt-0.5 transition-colors ${
+                isSelected
+                  ? 'text-blue-500 dark:text-blue-300'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`}
+            >
+              {description}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export interface MasterDetailLayoutProps {
   /** Title shown above the master panel (navigation/sidebar) */
   masterTitle?: string;

@@ -7,4 +7,6 @@ export { PageHeader } from './PageHeader';
 export {
   default as MasterDetailLayout,
   type MasterDetailLayoutProps,
+  MasterListItem,
+  type MasterListItemProps,
 } from './MasterDetailLayout';

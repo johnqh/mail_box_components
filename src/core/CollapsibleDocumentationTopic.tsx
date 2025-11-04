@@ -50,17 +50,24 @@ const CollapsibleSubsections: React.FC<{
     >
       <div ref={contentRef} className='ml-6 mt-2 space-y-1'>
         {subsections.map(subsection => (
-          <button
-            key={subsection.id}
-            onClick={() => onSubsectionSelect?.(subsection.id, parentSectionId)}
-            className={`block w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 hover:scale-[1.02] ${
-              selectedSubsection === subsection.id
-                ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 shadow-sm'
-                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-200'
-            }`}
-          >
-            {subsection.title}
-          </button>
+          <div key={subsection.id} className='relative'>
+            {/* Rounded selection overlay */}
+            {selectedSubsection === subsection.id && (
+              <div className='absolute top-0 bottom-0 left-0 right-4 bg-blue-500/20 dark:bg-blue-400/20 rounded-lg pointer-events-none border-2 border-blue-500/30 dark:border-blue-400/30' />
+            )}
+            <button
+              onClick={() =>
+                onSubsectionSelect?.(subsection.id, parentSectionId)
+              }
+              className={`relative z-10 block w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 hover:scale-[1.02] ${
+                selectedSubsection === subsection.id
+                  ? 'text-blue-700 dark:text-blue-300'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
+              }`}
+            >
+              {subsection.title}
+            </button>
+          </div>
         ))}
       </div>
     </div>
@@ -114,12 +121,16 @@ const CollapsibleDocumentationTopic: React.FC<
 
   return (
     <div className={className}>
-      <div className='flex items-center'>
+      <div className='relative flex items-center'>
+        {/* Rounded selection overlay */}
+        {isSelected && !selectedSubsection && (
+          <div className='absolute top-1 bottom-1 left-3 right-4 bg-blue-500/20 dark:bg-blue-400/20 rounded-lg pointer-events-none border-2 border-blue-500/30 dark:border-blue-400/30' />
+        )}
         <button
           onClick={handleSectionClick}
-          className={`flex-1 text-left px-3 py-4 text-base font-medium transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800 ${
+          className={`relative z-10 flex-1 text-left px-3 py-4 text-base font-medium transition-all duration-200 ${
             isSelected && !selectedSubsection
-              ? 'bg-blue-50 dark:bg-blue-900/10 text-blue-700 dark:text-blue-300'
+              ? 'text-blue-700 dark:text-blue-300'
               : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100'
           }`}
         >

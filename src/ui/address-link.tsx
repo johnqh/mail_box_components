@@ -135,7 +135,13 @@ export const AddressLink: React.FC<AddressLinkProps> = ({
     <div className={cn('flex items-center gap-2', className)}>
       {label && <span className={textVariants.label.default()}>{label}:</span>}
 
-      <span className={cn('font-mono text-sm', textClassName)}>
+      <span
+        className={cn(
+          'font-mono text-sm',
+          format === 'full' && 'break-all',
+          textClassName
+        )}
+      >
         {formattedAddress}
       </span>
 

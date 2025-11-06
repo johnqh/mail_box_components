@@ -35,7 +35,7 @@ export const AlertDescription: React.FC<{
   children: React.ReactNode;
   className?: string;
 }> = ({ children, className }) => (
-  <div className={cn('text-sm', className)}>{children}</div>
+  <div className={cn('text-sm break-words', className)}>{children}</div>
 );
 
 export const Alert: React.FC<AlertProps> = ({
@@ -56,9 +56,9 @@ export const Alert: React.FC<AlertProps> = ({
   return (
     <div role='alert' className={cn(alertClass, className)}>
       {IconComponent && <div className='flex-shrink-0'>{IconComponent}</div>}
-      <div className='flex-1'>
-        {title && <div className='font-medium mb-1'>{title}</div>}
-        {description && <div className='text-sm'>{description}</div>}
+      <div className='flex-1 min-w-0'>
+        {title && <div className='font-medium mb-1 break-words'>{title}</div>}
+        {description && <div className='text-sm break-words'>{description}</div>}
         {children}
       </div>
     </div>

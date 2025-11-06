@@ -48,18 +48,22 @@ const CollapsibleSubsections: React.FC<{
       className='overflow-hidden transition-all duration-300 ease-in-out'
       style={{ height: height !== undefined ? `${height}px` : 'auto' }}
     >
-      <div ref={contentRef} className='ml-6 mt-2 space-y-1'>
+      <div ref={contentRef} className='ml-6 mt-1 mb-1 space-y-1'>
         {subsections.map(subsection => (
-          <div key={subsection.id} className='relative'>
+          <div key={subsection.id} className='relative group'>
             {/* Rounded selection overlay */}
             {selectedSubsection === subsection.id && (
-              <div className='absolute top-0 bottom-0 left-0 right-4 bg-blue-500/20 dark:bg-blue-400/20 rounded-lg pointer-events-none border-2 border-blue-500/30 dark:border-blue-400/30' />
+              <div className='absolute top-0.5 bottom-0.5 left-1 right-12 bg-blue-500/20 dark:bg-blue-400/20 rounded-lg pointer-events-none' />
+            )}
+            {/* Hover overlay */}
+            {selectedSubsection !== subsection.id && (
+              <div className='absolute top-0.5 bottom-0.5 left-1 right-12 bg-blue-500/0 group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10 rounded-lg pointer-events-none transition-colors duration-200' />
             )}
             <button
               onClick={() =>
                 onSubsectionSelect?.(subsection.id, parentSectionId)
               }
-              className={`relative z-10 block w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 hover:scale-[1.02] ${
+              className={`relative z-10 block w-full text-left pl-4 pr-3 py-2 rounded-md text-sm transition-all duration-200 ${
                 selectedSubsection === subsection.id
                   ? 'text-blue-700 dark:text-blue-300'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
@@ -121,14 +125,18 @@ const CollapsibleDocumentationTopic: React.FC<
 
   return (
     <div className={className}>
-      <div className='relative flex items-center'>
+      <div className='relative flex items-center group'>
         {/* Rounded selection overlay */}
         {isSelected && !selectedSubsection && (
-          <div className='absolute top-1 bottom-1 left-3 right-4 bg-blue-500/20 dark:bg-blue-400/20 rounded-lg pointer-events-none border-2 border-blue-500/30 dark:border-blue-400/30' />
+          <div className='absolute top-2 bottom-2 left-2 right-12 bg-blue-500/20 dark:bg-blue-400/20 rounded-lg pointer-events-none' />
+        )}
+        {/* Hover overlay */}
+        {!(isSelected && !selectedSubsection) && (
+          <div className='absolute top-2 bottom-2 left-2 right-12 bg-blue-500/0 group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10 rounded-lg pointer-events-none transition-colors duration-200' />
         )}
         <button
           onClick={handleSectionClick}
-          className={`relative z-10 flex-1 text-left px-3 py-4 text-base font-medium transition-all duration-200 ${
+          className={`relative z-10 flex-1 text-left pl-5 pr-3 py-4 text-base font-medium transition-all duration-200 ${
             isSelected && !selectedSubsection
               ? 'text-blue-700 dark:text-blue-300'
               : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100'

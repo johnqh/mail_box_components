@@ -1,87 +1,71 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-// Removed ui import - using hardcoded styles for compatibility
+import { cardVariantColors } from '@sudobility/design';
+import {
+  CheckCircleIcon,
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  BellAlertIcon,
+} from '@heroicons/react/24/outline';
 
-// Info Panel Component
-const infoPanelVariants = cva(`rounded-lg border p-4 flex items-start gap-3`, {
-  variants: {
-    variant: {
-      info: 'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800/50 dark:text-blue-200',
-      success:
-        'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800/50 dark:text-green-200',
-      warning:
-        'bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-900/20 dark:border-amber-800/50 dark:text-amber-200',
-      error:
-        'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800/50 dark:text-red-200',
-      neutral: `bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700`,
-    },
-    size: {
-      sm: 'p-3 text-sm',
-      md: 'p-4',
-      lg: 'p-6 text-lg',
-    },
-  },
-  defaultVariants: {
-    variant: 'info',
-    size: 'md',
-  },
-});
+// Info Panel Component with Design System Colors
+type InfoPanelType = 'error' | 'warning' | 'attention' | 'info' | 'success';
 
-interface InfoPanelProps extends VariantProps<typeof infoPanelVariants> {
-  title?: string;
-  icon?: React.ReactNode;
-  children: React.ReactNode;
+interface InfoPanelProps {
+  type: InfoPanelType;
+  title: string;
+  text: string;
   className?: string;
-  onClose?: () => void;
 }
 
+const infoPanelConfig: Record<
+  InfoPanelType,
+  { icon: React.ComponentType<{ className?: string }> }
+> = {
+  error: {
+    icon: ExclamationCircleIcon,
+  },
+  warning: {
+    icon: ExclamationTriangleIcon,
+  },
+  attention: {
+    icon: BellAlertIcon,
+  },
+  info: {
+    icon: InformationCircleIcon,
+  },
+  success: {
+    icon: CheckCircleIcon,
+  },
+};
+
 export const InfoPanel: React.FC<InfoPanelProps> = ({
+  type,
   title,
-  icon,
-  children,
-  variant = 'info',
-  size = 'md',
+  text,
   className,
-  onClose,
 }) => {
-  const defaultIcons = {
-    info: '🛈',
-    success: '✓',
-    warning: '⚠',
-    error: '✗',
-    neutral: '💡',
-  };
+  const config = infoPanelConfig[type];
+  const Icon = config.icon;
+
+  // Get color classes from design system
+  const colorClasses = cardVariantColors[type];
 
   return (
-    <div className={cn(infoPanelVariants({ variant, size }), className)}>
-      <div className='flex-shrink-0 text-lg'>
-        {icon || defaultIcons[variant || 'info']}
-      </div>
-      <div className='flex-1 min-w-0'>
-        {title && <h4 className='font-semibold mb-2'>{title}</h4>}
-        <div>{children}</div>
-      </div>
-      {onClose && (
-        <button
-          onClick={onClose}
-          className='flex-shrink-0 text-current hover:opacity-70 transition-opacity'
-        >
-          <svg
-            className='w-5 h-5'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M6 18L18 6M6 6l12 12'
-            />
-          </svg>
-        </button>
+    <div
+      className={cn(
+        'rounded-lg p-4 flex items-start gap-3',
+        colorClasses,
+        className
       )}
+    >
+      <Icon className='h-5 w-5 flex-shrink-0 mt-0.5' />
+      <div className='flex-1 min-w-0'>
+        <h4 className='font-semibold mb-1'>{title}</h4>
+        <div className='text-sm font-normal break-words'>{text}</div>
+      </div>
     </div>
   );
 };

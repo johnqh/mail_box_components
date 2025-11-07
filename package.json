@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/components",
-  "version": "2.0.18",
+  "version": "2.0.19",
   "description": "Reusable UI components and design system for mail box applications",
   "type": "module",
   "main": "dist/index.umd.js",

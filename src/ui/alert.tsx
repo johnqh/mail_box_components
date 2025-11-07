@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '../lib/utils';
 import { variants as v } from '@sudobility/design';
 import {
+  BellAlertIcon,
   CheckCircleIcon,
   ExclamationTriangleIcon,
   InformationCircleIcon,
@@ -9,7 +10,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 interface AlertProps {
-  variant?: 'info' | 'success' | 'warning' | 'error';
+  variant?: 'info' | 'success' | 'warning' | 'attention' | 'error';
   title?: string;
   description?: string;
   icon?: React.ReactNode;
@@ -21,6 +22,7 @@ const defaultIcons = {
   info: InformationCircleIcon,
   success: CheckCircleIcon,
   warning: ExclamationTriangleIcon,
+  attention: BellAlertIcon,
   error: XCircleIcon,
 };
 

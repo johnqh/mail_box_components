@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { getSectionBadgeColors } from '@sudobility/design';
 
 interface SectionBadgeProps {
   icon: React.ReactNode;
@@ -8,28 +9,6 @@ interface SectionBadgeProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
-
-const variantStyles = {
-  default: {
-    container:
-      'bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-200 text-blue-600 backdrop-blur-sm',
-    icon: 'text-blue-600',
-  },
-  premium: {
-    container:
-      'bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-200 text-blue-600 backdrop-blur-sm',
-    icon: 'text-blue-600',
-  },
-  primary: {
-    container:
-      'bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-200 text-blue-600 backdrop-blur-sm',
-    icon: 'text-blue-600',
-  },
-  light: {
-    container: 'bg-white/20 border border-white/30 text-white backdrop-blur-sm',
-    icon: 'text-white',
-  },
-};
 
 const sizeStyles = {
   sm: {
@@ -56,21 +35,19 @@ export const SectionBadge: React.FC<SectionBadgeProps> = ({
   size = 'md',
   className,
 }) => {
-  const variantStyle = variantStyles[variant];
+  const { container, icon: iconColor } = getSectionBadgeColors(variant);
   const sizeStyle = sizeStyles[size];
 
   return (
     <div
       className={cn(
         'inline-flex items-center rounded-full mb-6',
-        variantStyle.container,
+        container,
         sizeStyle.container,
         className
       )}
     >
-      <div
-        className={cn('animate-float-icon', variantStyle.icon, sizeStyle.icon)}
-      >
+      <div className={cn('animate-float-icon', iconColor, sizeStyle.icon)}>
         {icon}
       </div>
       <span className={sizeStyle.text}>{text}</span>

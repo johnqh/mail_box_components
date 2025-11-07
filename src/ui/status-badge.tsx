@@ -1,5 +1,5 @@
 import React from 'react';
-import { variants } from '@sudobility/design';
+import { variants, getStatusIndicatorColor } from '@sudobility/design';
 
 export type StatusType =
   | 'verified'
@@ -25,22 +25,22 @@ interface ChainBadgeProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-// Status styles are now handled by design system badge variants
+// Map StatusType to design system status indicator types
 const getStatusDotColor = (status: StatusType) => {
   switch (status) {
     case 'verified':
     case 'success':
-      return 'bg-green-500';
+      return getStatusIndicatorColor('success');
     case 'connected':
     case 'warning':
-      return 'bg-amber-500';
+      return getStatusIndicatorColor('warning');
     case 'disconnected':
     case 'error':
-      return 'bg-red-500';
+      return getStatusIndicatorColor('error');
     case 'pending':
-      return 'bg-blue-500';
+      return getStatusIndicatorColor('info');
     default:
-      return 'bg-gray-500';
+      return getStatusIndicatorColor('neutral');
   }
 };
 

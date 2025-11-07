@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { textVariants } from '@sudobility/design';
+import { textVariants, getCardVariantColors } from '@sudobility/design';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?:
@@ -21,23 +21,9 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: () => void;
 }
 
-const variantStyles = {
-  default: 'bg-white dark:bg-gray-800',
-  bordered:
-    'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
-  elevated: 'bg-white dark:bg-gray-800 shadow-md',
-  // Info variants (consolidates InfoCard + InfoPanel)
-  info: 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-300',
-  success:
-    'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-900 dark:text-green-300',
-  warning:
-    'bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 text-yellow-900 dark:text-yellow-300',
-  error:
-    'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-900 dark:text-red-300',
-  // Callout variant (consolidates CalloutBox)
-  callout:
-    'bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800',
-};
+// Special handling for callout variant which is not in cardVariantColors
+const calloutStyle =
+  'bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800';
 
 const paddingStyles = {
   none: '',
@@ -60,11 +46,19 @@ export const Card: React.FC<CardProps> = ({
   );
   const showIconOrClose = isInfoVariant && (icon || onClose);
 
+  // Get variant styles from design system, with special handling for 'callout'
+  const variantClasses =
+    variant === 'callout'
+      ? calloutStyle
+      : getCardVariantColors(
+          variant as Parameters<typeof getCardVariantColors>[0]
+        );
+
   return (
     <div
       className={cn(
         'rounded-lg',
-        variantStyles[variant],
+        variantClasses,
         paddingStyles[padding],
         className
       )}

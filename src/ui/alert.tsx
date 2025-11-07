@@ -58,7 +58,9 @@ export const Alert: React.FC<AlertProps> = ({
       {IconComponent && <div className='flex-shrink-0'>{IconComponent}</div>}
       <div className='flex-1 min-w-0'>
         {title && <div className='font-medium mb-1 break-words'>{title}</div>}
-        {description && <div className='text-sm break-words'>{description}</div>}
+        {description && (
+          <div className='text-sm break-words'>{description}</div>
+        )}
         {children}
       </div>
     </div>

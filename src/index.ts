@@ -214,7 +214,6 @@ export {
 export {
   IconContainer,
   FreeEmailBanner,
-  InfoPanel,
   StatCard,
   FormSection,
   FeatureBlock,

@@ -102,7 +102,6 @@ export { ConfirmationDialog } from './confirmation-dialog';
 export { IconContainer } from './icon-container';
 export { FreeEmailBanner } from './free-email-banner';
 export {
-  InfoPanel,
   StatCard,
   FormSection,
   FeatureBlock,

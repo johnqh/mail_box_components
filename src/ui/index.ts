@@ -6,6 +6,7 @@
  */
 
 // Core Components
+export { AddressLabel, type AddressLabelProps } from './address-label';
 export { AddressLink } from './address-link';
 export { Alert, AlertTitle, AlertDescription } from './alert';
 export {
@@ -22,6 +23,7 @@ export {
   createEmailComparisonData,
 } from './comparison-section';
 export { ContentContainer } from './content-container';
+export { DataTable, type DataTableProps } from './data-table';
 export { Dropdown } from './dropdown';
 export { FeatureCard } from './feature-card';
 export {
@@ -137,6 +139,7 @@ export type { EmailAccount, WalletEmailGroup } from './email-accounts-list';
 export type { SettingItem, SettingsListProps } from './settings-list';
 
 // Legacy wildcard exports for backward compatibility
+export * from './address-label';
 export * from './address-link';
 export * from './alert';
 export * from './animated-section';

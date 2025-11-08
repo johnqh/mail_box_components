@@ -55,6 +55,8 @@ export {
 // === UI COMPONENTS ===
 // Core Components
 export {
+  AddressLabel,
+  type AddressLabelProps,
   AddressLink,
   Alert,
   AlertTitle,
@@ -73,6 +75,8 @@ export {
   createComparisonData,
   createEmailComparisonData,
   ContentContainer,
+  DataTable,
+  type DataTableProps,
   Dropdown,
   FeatureCard,
   FeatureGrid,

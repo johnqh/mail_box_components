@@ -42,7 +42,10 @@ export interface DataTableProps<T = any> {
    * @param columnIndex - The index of the column (0-based)
    * @returns String, React component, or null/undefined for empty cell
    */
-  renderCell: (item: T, columnIndex: number) => React.ReactNode | string | null | undefined;
+  renderCell: (
+    item: T,
+    columnIndex: number
+  ) => React.ReactNode | string | null | undefined;
 
   /**
    * Callback to render action button(s) for each row
@@ -90,8 +93,12 @@ export const DataTable = <T,>({
   // Show empty state if no data
   if (!data || data.length === 0) {
     return (
-      <div className={`text-center py-8 bg-gray-50 dark:bg-gray-800 rounded-lg ${className}`}>
-        <p className={`${textVariants.body.sm()} text-gray-500 dark:text-gray-400`}>
+      <div
+        className={`text-center py-8 bg-gray-50 dark:bg-gray-800 rounded-lg ${className}`}
+      >
+        <p
+          className={`${textVariants.body.sm()} text-gray-500 dark:text-gray-400`}
+        >
           {emptyMessage}
         </p>
       </div>
@@ -100,10 +107,10 @@ export const DataTable = <T,>({
 
   return (
     <div className={`relative ${className}`}>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
+      <div className='overflow-x-auto'>
+        <table className='w-full border-collapse'>
           <thead>
-            <tr className="border-b border-gray-200 dark:border-gray-700">
+            <tr className='border-b border-gray-200 dark:border-gray-700'>
               {columns.map((columnTitle, index) => (
                 <th
                   key={index}
@@ -113,7 +120,9 @@ export const DataTable = <T,>({
                 </th>
               ))}
               {hasActions && (
-                <th className={`${textVariants.label.default()} text-right py-3 px-4 sticky right-0 bg-white dark:bg-gray-900 whitespace-nowrap`}>
+                <th
+                  className={`${textVariants.label.default()} text-right py-3 px-4 sticky right-0 bg-white dark:bg-gray-900 whitespace-nowrap`}
+                >
                   {/* Empty header for actions column */}
                 </th>
               )}
@@ -123,14 +132,16 @@ export const DataTable = <T,>({
             {data.map((item, rowIndex) => (
               <tr
                 key={getRowKey(item, rowIndex)}
-                className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                className='border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50'
               >
                 {columns.map((_, columnIndex) => {
                   const cellContent = renderCell(item, columnIndex);
                   return (
-                    <td key={columnIndex} className="py-3 px-4">
+                    <td key={columnIndex} className='py-3 px-4'>
                       {typeof cellContent === 'string' ? (
-                        <span className={textVariants.body.sm()}>{cellContent}</span>
+                        <span className={textVariants.body.sm()}>
+                          {cellContent}
+                        </span>
                       ) : (
                         cellContent
                       )}
@@ -138,7 +149,7 @@ export const DataTable = <T,>({
                   );
                 })}
                 {hasActions && (
-                  <td className="py-3 px-4 text-right sticky right-0 bg-white dark:bg-gray-900">
+                  <td className='py-3 px-4 text-right sticky right-0 bg-white dark:bg-gray-900'>
                     {renderAction?.(item)}
                   </td>
                 )}

@@ -36,7 +36,11 @@ export interface AddressLabelProps {
  * @param prefixLength - Characters to show at start
  * @param suffixLength - Characters to show at end
  */
-const shortenAddress = (address: string, prefixLength: number, suffixLength: number): string => {
+const shortenAddress = (
+  address: string,
+  prefixLength: number,
+  suffixLength: number
+): string => {
   if (!address) return '';
   if (address.length <= prefixLength + suffixLength) return address;
   return `${address.slice(0, prefixLength)}...${address.slice(-suffixLength)}`;
@@ -89,7 +93,7 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
   };
 
   return (
-    <div className="relative inline-block">
+    <div className='relative inline-block'>
       <code
         className={`
           font-mono text-sm text-gray-900 dark:text-gray-100
@@ -107,16 +111,16 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
       {/* Tooltip */}
       {showTooltip && (
         <div
-          className="absolute z-50 left-1/2 transform -translate-x-1/2 -top-12 px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded shadow-lg whitespace-nowrap"
+          className='absolute z-50 left-1/2 transform -translate-x-1/2 -top-12 px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded shadow-lg whitespace-nowrap'
           style={{ minWidth: 'max-content' }}
         >
           {copied ? (
-            <span className="text-green-300">✓ Copied!</span>
+            <span className='text-green-300'>✓ Copied!</span>
           ) : (
-            <span className="font-mono">{address}</span>
+            <span className='font-mono'>{address}</span>
           )}
           {/* Arrow */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-700" />
+          <div className='absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-700' />
         </div>
       )}
     </div>

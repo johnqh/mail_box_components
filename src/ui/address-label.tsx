@@ -11,7 +11,8 @@
  * ```
  */
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface AddressLabelProps {
   /** Blockchain address (EVM or Solana) */
@@ -65,8 +66,21 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+  const elementRef = useRef<HTMLElement>(null);
 
   const shortAddress = shortenAddress(address, prefixLength, suffixLength);
+
+  // Calculate tooltip position when it becomes visible
+  useEffect(() => {
+    if (showTooltip && elementRef.current) {
+      const rect = elementRef.current.getBoundingClientRect();
+      setTooltipPosition({
+        top: rect.top + window.scrollY - 48, // 48px above the element
+        left: rect.left + window.scrollX + rect.width / 2, // Centered horizontally
+      });
+    }
+  }, [showTooltip]);
 
   const handleClick = async () => {
     if (showCopy) {
@@ -92,9 +106,31 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
     }
   };
 
+  // Render tooltip content using portal
+  const tooltipContent = showTooltip && (
+    <div
+      className='fixed z-[9999] px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded shadow-lg whitespace-nowrap pointer-events-none'
+      style={{
+        top: `${tooltipPosition.top}px`,
+        left: `${tooltipPosition.left}px`,
+        transform: 'translateX(-50%)',
+        minWidth: 'max-content',
+      }}
+    >
+      {copied ? (
+        <span className='text-green-300'>✓ Copied!</span>
+      ) : (
+        <span className='font-mono'>{address}</span>
+      )}
+      {/* Arrow */}
+      <div className='absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-700' />
+    </div>
+  );
+
   return (
-    <div className='relative inline-block'>
+    <>
       <code
+        ref={elementRef}
         className={`
           font-mono text-sm text-gray-900 dark:text-gray-100
           ${showCopy ? 'cursor-pointer hover:text-blue-600 dark:hover:text-blue-400' : ''}
@@ -108,22 +144,9 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
         {shortAddress}
       </code>
 
-      {/* Tooltip */}
-      {showTooltip && (
-        <div
-          className='absolute z-50 left-1/2 transform -translate-x-1/2 -top-12 px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded shadow-lg whitespace-nowrap'
-          style={{ minWidth: 'max-content' }}
-        >
-          {copied ? (
-            <span className='text-green-300'>✓ Copied!</span>
-          ) : (
-            <span className='font-mono'>{address}</span>
-          )}
-          {/* Arrow */}
-          <div className='absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-700' />
-        </div>
-      )}
-    </div>
+      {/* Tooltip rendered via portal to prevent clipping by parent containers */}
+      {tooltipContent && typeof document !== 'undefined' && createPortal(tooltipContent, document.body)}
+    </>
   );
 };
 

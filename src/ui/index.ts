@@ -80,6 +80,9 @@ export {
   TextAreaField,
   SelectField,
 } from './form-field-group';
+export { FormField } from './form-field';
+export { FormAlerts } from './form-alerts';
+export { ActionButton } from './action-button';
 
 // Status & Feedback Components
 export { StatusBadge, ChainBadge } from './status-badge';
@@ -139,6 +142,9 @@ export type { UseCaseGridProps, UseCase } from './use-case-grid';
 export type { TOCSection } from './table-of-contents';
 export type { EmailAccount, WalletEmailGroup } from './email-accounts-list';
 export type { SettingItem, SettingsListProps } from './settings-list';
+export type { FormFieldProps } from './form-field';
+export type { FormAlertsProps } from './form-alerts';
+export type { ActionButtonProps } from './action-button';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -171,6 +177,9 @@ export * from './loading-state';
 export * from './no-content';
 export * from './email-input-group';
 export * from './form-field-group';
+export * from './form-field';
+export * from './form-alerts';
+export * from './action-button';
 export * from './status-badge';
 export * from './status-indicator';
 export * from './system-status-indicator';

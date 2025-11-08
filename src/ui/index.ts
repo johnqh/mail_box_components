@@ -99,6 +99,7 @@ export {
 } from './smart-link';
 export { Modal, ModalHeader, ModalContent, ModalFooter } from './modal';
 export { ConfirmationDialog } from './confirmation-dialog';
+export { TextInputModal } from './text-input-modal';
 
 // Utility Components
 export { IconContainer } from './icon-container';
@@ -127,6 +128,7 @@ export type {
   ModalFooterProps,
 } from './modal';
 export type { ConfirmationDialogProps } from './confirmation-dialog';
+export type { TextInputModalProps } from './text-input-modal';
 export type { SmartLinkProps, SmartContentProps } from './smart-link';
 export type { Feature } from './feature-grid';
 export type { FeatureCardProps, FeatureCardColor } from './feature-card';
@@ -177,6 +179,7 @@ export * from './typography';
 export * from './smart-link';
 export * from './modal';
 export * from './confirmation-dialog';
+export * from './text-input-modal';
 export * from './icon-container';
 export * from './free-email-banner';
 export * from './design-system-components';

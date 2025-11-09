@@ -229,6 +229,10 @@ export { Gauge } from './gauge';
 export { Sparkline } from './sparkline';
 export { TypingIndicator } from './typing-indicator';
 export { WaveForm } from './wave-form';
+export { Masonry } from './masonry';
+export { Kanban } from './kanban';
+export { TimelineVertical } from './timeline-vertical';
+export { FloatingPanel } from './floating-panel';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -382,6 +386,10 @@ export type { GaugeProps } from './gauge';
 export type { SparklineProps } from './sparkline';
 export type { TypingIndicatorProps } from './typing-indicator';
 export type { WaveFormProps } from './wave-form';
+export type { MasonryProps } from './masonry';
+export type { KanbanProps, KanbanColumn, KanbanCard } from './kanban';
+export type { TimelineVerticalProps, TimelineEvent } from './timeline-vertical';
+export type { FloatingPanelProps } from './floating-panel';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -552,3 +560,7 @@ export * from './gauge';
 export * from './sparkline';
 export * from './typing-indicator';
 export * from './wave-form';
+export * from './masonry';
+export * from './kanban';
+export * from './timeline-vertical';
+export * from './floating-panel';

@@ -181,6 +181,10 @@ export { Drawer } from './drawer';
 export { Popover } from './popover';
 export { Toast, ToastProvider, useToast } from './toast';
 export { Breadcrumb } from './breadcrumb';
+export { AlertDialog } from './alert-dialog';
+export { Dialog } from './dialog';
+export { HoverCard } from './hover-card';
+export { ContextMenu } from './context-menu';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -283,6 +287,10 @@ export type { DrawerProps } from './drawer';
 export type { PopoverProps } from './popover';
 export type { ToastProps, ToastMessage, ToastContextValue } from './toast';
 export type { BreadcrumbProps, BreadcrumbItem } from './breadcrumb';
+export type { AlertDialogProps } from './alert-dialog';
+export type { DialogProps } from './dialog';
+export type { HoverCardProps } from './hover-card';
+export type { ContextMenuProps, ContextMenuItem } from './context-menu';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -405,3 +413,7 @@ export * from './drawer';
 export * from './popover';
 export * from './toast';
 export * from './breadcrumb';
+export * from './alert-dialog';
+export * from './dialog';
+export * from './hover-card';
+export * from './context-menu';

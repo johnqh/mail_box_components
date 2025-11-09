@@ -83,6 +83,10 @@ export {
 export { FormField } from './form-field';
 export { FormAlerts } from './form-alerts';
 export { ActionButton } from './action-button';
+export { Checkbox } from './checkbox';
+export { ListItemWithAction } from './list-item-with-action';
+export { NavigationList } from './navigation-list';
+export { FeatureListItem } from './feature-list-item';
 
 // Status & Feedback Components
 export { StatusBadge, ChainBadge } from './status-badge';
@@ -145,6 +149,10 @@ export type { SettingItem, SettingsListProps } from './settings-list';
 export type { FormFieldProps } from './form-field';
 export type { FormAlertsProps } from './form-alerts';
 export type { ActionButtonProps } from './action-button';
+export type { CheckboxProps } from './checkbox';
+export type { ListItemWithActionProps } from './list-item-with-action';
+export type { NavigationListProps, NavigationItem } from './navigation-list';
+export type { FeatureListItemProps } from './feature-list-item';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -180,6 +188,10 @@ export * from './form-field-group';
 export * from './form-field';
 export * from './form-alerts';
 export * from './action-button';
+export * from './checkbox';
+export * from './list-item-with-action';
+export * from './navigation-list';
+export * from './feature-list-item';
 export * from './status-badge';
 export * from './status-indicator';
 export * from './system-status-indicator';

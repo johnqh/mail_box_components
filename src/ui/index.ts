@@ -249,6 +249,10 @@ export { ProductCard } from './product-card';
 export { PriceDisplay } from './price-display';
 export { CartSummary } from './cart-summary';
 export { RatingStars } from './rating-stars';
+export { DashboardStatCard } from './dashboard-stat-card';
+export { ActivityFeed } from './activity-feed';
+export { QuickActions } from './quick-actions';
+export { TrendIndicator } from './trend-indicator';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -422,6 +426,10 @@ export type { ProductCardProps } from './product-card';
 export type { PriceDisplayProps } from './price-display';
 export type { CartSummaryProps, CartItem } from './cart-summary';
 export type { RatingStarsProps } from './rating-stars';
+export type { DashboardStatCardProps } from './dashboard-stat-card';
+export type { ActivityFeedProps, ActivityItem } from './activity-feed';
+export type { QuickActionsProps, QuickAction } from './quick-actions';
+export type { TrendIndicatorProps } from './trend-indicator';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -612,3 +620,7 @@ export * from './product-card';
 export * from './price-display';
 export * from './cart-summary';
 export * from './rating-stars';
+export * from './dashboard-stat-card';
+export * from './activity-feed';
+export * from './quick-actions';
+export * from './trend-indicator';

@@ -169,6 +169,10 @@ export { Heading } from './heading';
 export { HelperText } from './helper-text';
 export { VisuallyHidden } from './visually-hidden';
 export { AspectRatio } from './aspect-ratio';
+export { Kbd } from './kbd';
+export { Code } from './code';
+export { Blockquote } from './blockquote';
+export { List, ListItem } from './list';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -259,6 +263,10 @@ export type { HeadingProps } from './heading';
 export type { HelperTextProps } from './helper-text';
 export type { VisuallyHiddenProps } from './visually-hidden';
 export type { AspectRatioProps } from './aspect-ratio';
+export type { KbdProps } from './kbd';
+export type { CodeProps } from './code';
+export type { BlockquoteProps } from './blockquote';
+export type { ListProps, ListItemProps } from './list';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -369,3 +377,7 @@ export * from './heading';
 export * from './helper-text';
 export * from './visually-hidden';
 export * from './aspect-ratio';
+export * from './kbd';
+export * from './code';
+export * from './blockquote';
+export * from './list';

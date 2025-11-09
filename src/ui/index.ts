@@ -684,3 +684,17 @@ export * from './user-table';
 export * from './role-manager';
 export * from './audit-log';
 export * from './system-status';
+
+// Batch 44 - Advanced Forms
+export { SignaturePad } from './signature-pad';
+export { SliderInput } from './slider-input';
+export { ColorPickerAdvanced } from './color-picker-advanced';
+export { WysiwygEditor } from './wysiwyg-editor';
+export type { SignaturePadProps } from './signature-pad';
+export type { SliderInputProps } from './slider-input';
+export type { ColorPickerAdvancedProps } from './color-picker-advanced';
+export type { WysiwygEditorProps } from './wysiwyg-editor';
+export * from './signature-pad';
+export * from './slider-input';
+export * from './color-picker-advanced';
+export * from './wysiwyg-editor';

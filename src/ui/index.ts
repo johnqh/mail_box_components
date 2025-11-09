@@ -185,6 +185,10 @@ export { AlertDialog } from './alert-dialog';
 export { Dialog } from './dialog';
 export { HoverCard } from './hover-card';
 export { ContextMenu } from './context-menu';
+export { ToggleGroup } from './toggle-group';
+export { Combobox } from './combobox';
+export { Command } from './command';
+export { NavigationMenu } from './navigation-menu';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -291,6 +295,10 @@ export type { AlertDialogProps } from './alert-dialog';
 export type { DialogProps } from './dialog';
 export type { HoverCardProps } from './hover-card';
 export type { ContextMenuProps, ContextMenuItem } from './context-menu';
+export type { ToggleGroupProps, ToggleGroupOption } from './toggle-group';
+export type { ComboboxProps, ComboboxOption } from './combobox';
+export type { CommandProps, CommandItem } from './command';
+export type { NavigationMenuProps, NavigationMenuItem } from './navigation-menu';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -417,3 +425,7 @@ export * from './alert-dialog';
 export * from './dialog';
 export * from './hover-card';
 export * from './context-menu';
+export * from './toggle-group';
+export * from './combobox';
+export * from './command';
+export * from './navigation-menu';

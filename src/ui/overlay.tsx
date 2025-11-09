@@ -90,12 +90,12 @@ export const Overlay: React.FC<OverlayProps> = ({
         )}
         style={{ zIndex }}
         onClick={onClose}
-        aria-hidden="true"
+        aria-hidden='true'
       >
         {children && (
           <div
-            className="relative h-full w-full"
-            onClick={(e) => e.stopPropagation()}
+            className='relative h-full w-full'
+            onClick={e => e.stopPropagation()}
           >
             {children}
           </div>

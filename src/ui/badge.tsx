@@ -5,7 +5,14 @@ export interface BadgeProps {
   /** Badge content */
   children: React.ReactNode;
   /** Color variant */
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'purple';
+  variant?:
+    | 'default'
+    | 'primary'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'info'
+    | 'purple';
   /** Size variant */
   size?: 'xs' | 'sm' | 'md' | 'lg';
   /** Shape variant */
@@ -59,11 +66,14 @@ export const Badge: React.FC<BadgeProps> = ({
   const variantClasses = {
     default: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
     primary: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
-    success: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
-    warning: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
+    success:
+      'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+    warning:
+      'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
     danger: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
     info: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400',
-    purple: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+    purple:
+      'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
   };
 
   // Size configurations
@@ -111,7 +121,10 @@ export const Badge: React.FC<BadgeProps> = ({
     >
       {dot && dotPosition === 'left' && (
         <span
-          className={cn('h-1.5 w-1.5 rounded-full mr-1.5', dotColorClasses[variant])}
+          className={cn(
+            'h-1.5 w-1.5 rounded-full mr-1.5',
+            dotColorClasses[variant]
+          )}
         />
       )}
       {Icon && iconPosition === 'left' && (
@@ -123,7 +136,10 @@ export const Badge: React.FC<BadgeProps> = ({
       )}
       {dot && dotPosition === 'right' && (
         <span
-          className={cn('h-1.5 w-1.5 rounded-full ml-1.5', dotColorClasses[variant])}
+          className={cn(
+            'h-1.5 w-1.5 rounded-full ml-1.5',
+            dotColorClasses[variant]
+          )}
         />
       )}
     </span>

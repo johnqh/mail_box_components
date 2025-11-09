@@ -5,7 +5,15 @@ export interface BorderAccentProps {
   /** Content to display */
   children: React.ReactNode;
   /** Color variant for the border */
-  variant?: 'blue' | 'green' | 'purple' | 'indigo' | 'emerald' | 'orange' | 'red' | 'gray';
+  variant?:
+    | 'blue'
+    | 'green'
+    | 'purple'
+    | 'indigo'
+    | 'emerald'
+    | 'orange'
+    | 'red'
+    | 'gray';
   /** Border position */
   position?: 'left' | 'right' | 'top' | 'bottom';
   /** Border width */

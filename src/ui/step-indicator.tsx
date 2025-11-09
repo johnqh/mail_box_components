@@ -95,21 +95,24 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
     primary: {
       active: 'bg-blue-500 text-white border-blue-500',
       completed: 'bg-blue-500 text-white border-blue-500',
-      pending: 'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
+      pending:
+        'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
       connector: 'bg-blue-500',
       connectorPending: 'bg-gray-300 dark:bg-gray-600',
     },
     success: {
       active: 'bg-green-500 text-white border-green-500',
       completed: 'bg-green-500 text-white border-green-500',
-      pending: 'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
+      pending:
+        'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
       connector: 'bg-green-500',
       connectorPending: 'bg-gray-300 dark:bg-gray-600',
     },
     purple: {
       active: 'bg-purple-500 text-white border-purple-500',
       completed: 'bg-purple-500 text-white border-purple-500',
-      pending: 'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
+      pending:
+        'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
       connector: 'bg-purple-500',
       connectorPending: 'bg-gray-300 dark:bg-gray-600',
     },
@@ -119,7 +122,9 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
   const variantConfig = variantClasses[variant];
 
   // Determine step status
-  const getStepStatus = (index: number): 'pending' | 'current' | 'completed' => {
+  const getStepStatus = (
+    index: number
+  ): 'pending' | 'current' | 'completed' => {
     const step = steps[index];
     if (step.status) return step.status;
     if (index < currentStep) return 'completed';
@@ -150,7 +155,9 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
       >
         <div
           className={cn(
-            orientation === 'horizontal' ? 'flex flex-col items-center' : 'flex items-start gap-3'
+            orientation === 'horizontal'
+              ? 'flex flex-col items-center'
+              : 'flex items-start gap-3'
           )}
         >
           <div
@@ -160,7 +167,15 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
             tabIndex={isClickable ? 0 : undefined}
           >
             {status === 'completed' ? (
-              <CheckIcon className={cn(size === 'sm' ? 'h-3 w-3' : size === 'md' ? 'h-4 w-4' : 'h-5 w-5')} />
+              <CheckIcon
+                className={cn(
+                  size === 'sm'
+                    ? 'h-3 w-3'
+                    : size === 'md'
+                      ? 'h-4 w-4'
+                      : 'h-5 w-5'
+                )}
+              />
             ) : (
               <span>{index + 1}</span>
             )}
@@ -198,7 +213,9 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
             className={cn(
               orientation === 'vertical' ? 'w-0.5 ml-3.5' : 'flex-1 mx-2',
               sizeConfig.connector,
-              status === 'completed' ? variantConfig.connector : variantConfig.connectorPending
+              status === 'completed'
+                ? variantConfig.connector
+                : variantConfig.connectorPending
             )}
           />
         )}

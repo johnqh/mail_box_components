@@ -135,7 +135,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     ariaLabel: string;
   }) => (
     <button
-      type="button"
+      type='button'
       onClick={onClick}
       disabled={disabled || buttonDisabled}
       aria-label={ariaLabel}
@@ -163,10 +163,10 @@ export const NumberInput: React.FC<NumberInputProps> = ({
           onClick={decrement}
           disabled={!canDecrement}
           icon={<MinusIcon className={sizeConfig.icon} />}
-          ariaLabel="Decrement"
+          ariaLabel='Decrement'
         />
         <input
-          type="number"
+          type='number'
           value={value}
           onChange={handleChange}
           min={min}
@@ -194,7 +194,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
           onClick={increment}
           disabled={!canIncrement}
           icon={<PlusIcon className={sizeConfig.icon} />}
-          ariaLabel="Increment"
+          ariaLabel='Increment'
         />
       </div>
     );
@@ -205,7 +205,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     return (
       <div className={cn('inline-flex items-stretch gap-2', className)}>
         <input
-          type="number"
+          type='number'
           value={value}
           onChange={handleChange}
           min={min}
@@ -230,12 +230,12 @@ export const NumberInput: React.FC<NumberInputProps> = ({
           )}
           {...inputProps}
         />
-        <div className="inline-flex flex-col gap-0.5">
+        <div className='inline-flex flex-col gap-0.5'>
           <button
-            type="button"
+            type='button'
             onClick={increment}
             disabled={disabled || !canIncrement}
-            aria-label="Increment"
+            aria-label='Increment'
             className={cn(
               'inline-flex items-center justify-center',
               'rounded border border-gray-300 dark:border-gray-600',
@@ -252,10 +252,10 @@ export const NumberInput: React.FC<NumberInputProps> = ({
             <PlusIcon className={cn(sizeConfig.icon, 'w-3 h-3')} />
           </button>
           <button
-            type="button"
+            type='button'
             onClick={decrement}
             disabled={disabled || !canDecrement}
-            aria-label="Decrement"
+            aria-label='Decrement'
             className={cn(
               'inline-flex items-center justify-center',
               'rounded border border-gray-300 dark:border-gray-600',
@@ -279,7 +279,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   // No steppers: just the input
   return (
     <input
-      type="number"
+      type='number'
       value={value}
       onChange={handleChange}
       min={min}

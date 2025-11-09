@@ -77,7 +77,9 @@ export const FileIcon: React.FC<FileIconProps> = ({
     // Videos
     if (
       lowerType.startsWith('video/') ||
-      ['.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm'].some(ext => lowerType.endsWith(ext))
+      ['.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm'].some(ext =>
+        lowerType.endsWith(ext)
+      )
     ) {
       return {
         Icon: FilmIcon,
@@ -88,7 +90,9 @@ export const FileIcon: React.FC<FileIconProps> = ({
     // Audio
     if (
       lowerType.startsWith('audio/') ||
-      ['.mp3', '.wav', '.ogg', '.m4a', '.flac'].some(ext => lowerType.endsWith(ext))
+      ['.mp3', '.wav', '.ogg', '.m4a', '.flac'].some(ext =>
+        lowerType.endsWith(ext)
+      )
     ) {
       return {
         Icon: MusicalNoteIcon,
@@ -162,7 +166,9 @@ export const FileIcon: React.FC<FileIconProps> = ({
       lowerType.includes('zip') ||
       lowerType.includes('compressed') ||
       lowerType.includes('archive') ||
-      ['.zip', '.rar', '.7z', '.tar', '.gz', '.bz2'].some(ext => lowerType.endsWith(ext))
+      ['.zip', '.rar', '.7z', '.tar', '.gz', '.bz2'].some(ext =>
+        lowerType.endsWith(ext)
+      )
     ) {
       return {
         Icon: ArchiveBoxIcon,

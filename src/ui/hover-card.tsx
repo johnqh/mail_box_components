@@ -145,7 +145,7 @@ export const HoverCard: React.FC<HoverCardProps> = ({
         ref={triggerRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="inline-block"
+        className='inline-block'
       >
         {trigger}
       </div>

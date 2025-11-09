@@ -76,7 +76,9 @@ export const NavigationList: React.FC<NavigationListProps> = ({
 
         const baseClass = cn(
           'flex items-start cursor-pointer transition-colors',
-          variant === 'compact' ? 'p-3 rounded-lg' : 'p-4 border-b border-gray-200 dark:border-gray-700 last:border-b-0',
+          variant === 'compact'
+            ? 'p-3 rounded-lg'
+            : 'p-4 border-b border-gray-200 dark:border-gray-700 last:border-b-0',
           isDisabled && 'opacity-50 cursor-not-allowed'
         );
 
@@ -89,7 +91,7 @@ export const NavigationList: React.FC<NavigationListProps> = ({
             key={item.id}
             onClick={() => !isDisabled && onSelect(item.path)}
             className={cn(baseClass, !isDisabled && stateClass)}
-            role="button"
+            role='button'
             tabIndex={isDisabled ? -1 : 0}
             aria-current={isSelected ? 'page' : undefined}
             aria-disabled={isDisabled}
@@ -100,18 +102,22 @@ export const NavigationList: React.FC<NavigationListProps> = ({
               }
             }}
           >
-            <Icon className="h-5 w-5 mt-0.5 mr-3 flex-shrink-0" />
-            <div className="flex-1 min-w-0">
+            <Icon className='h-5 w-5 mt-0.5 mr-3 flex-shrink-0' />
+            <div className='flex-1 min-w-0'>
               <div className={cn('font-medium', textVariants.body.md())}>
                 {item.label}
                 {item.badge !== undefined && item.badge > 0 && (
-                  <span className="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">
+                  <span className='ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full'>
                     {item.badge}
                   </span>
                 )}
               </div>
               {item.description && (
-                <div className={cn('text-xs text-gray-500 dark:text-gray-400 mt-0.5')}>
+                <div
+                  className={cn(
+                    'text-xs text-gray-500 dark:text-gray-400 mt-0.5'
+                  )}
+                >
                   {item.description}
                 </div>
               )}

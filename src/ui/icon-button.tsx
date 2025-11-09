@@ -13,7 +13,13 @@ export interface IconButtonProps {
   /** Button shape */
   shape?: 'circle' | 'square' | 'rounded';
   /** Color variant */
-  variant?: 'default' | 'primary' | 'secondary' | 'danger' | 'ghost' | 'outline';
+  variant?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'danger'
+    | 'ghost'
+    | 'outline';
   /** Disabled state */
   disabled?: boolean;
   /** Button type */

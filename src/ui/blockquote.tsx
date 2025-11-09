@@ -56,9 +56,12 @@ export const Blockquote: React.FC<BlockquoteProps> = ({
 
   // Variant configurations
   const variantClasses = {
-    default: 'border-l-4 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50',
-    bordered: 'border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800',
-    accent: 'border-l-4 border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20',
+    default:
+      'border-l-4 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50',
+    bordered:
+      'border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800',
+    accent:
+      'border-l-4 border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20',
   };
 
   return (
@@ -70,12 +73,15 @@ export const Blockquote: React.FC<BlockquoteProps> = ({
         className
       )}
     >
-      <p className="text-gray-800 dark:text-gray-200 italic">
-        {children}
-      </p>
+      <p className='text-gray-800 dark:text-gray-200 italic'>{children}</p>
       {cite && (
-        <footer className={cn('mt-2 text-gray-600 dark:text-gray-400', citeSize[size])}>
-          — <cite className="not-italic font-medium">{cite}</cite>
+        <footer
+          className={cn(
+            'mt-2 text-gray-600 dark:text-gray-400',
+            citeSize[size]
+          )}
+        >
+          — <cite className='not-italic font-medium'>{cite}</cite>
         </footer>
       )}
     </blockquote>

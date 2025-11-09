@@ -45,7 +45,9 @@ export const Tooltip: React.FC<TooltipProps> = ({
   disabled = false,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     return () => {
@@ -89,7 +91,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <div
-      className="relative inline-block"
+      className='relative inline-block'
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -101,14 +103,11 @@ export const Tooltip: React.FC<TooltipProps> = ({
             positionClasses[position],
             className
           )}
-          role="tooltip"
+          role='tooltip'
         >
           {content}
           <div
-            className={cn(
-              'absolute w-0 h-0 border-4',
-              arrowClasses[position]
-            )}
+            className={cn('absolute w-0 h-0 border-4', arrowClasses[position])}
           />
         </div>
       )}

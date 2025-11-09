@@ -145,7 +145,9 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
       </code>
 
       {/* Tooltip rendered via portal to prevent clipping by parent containers */}
-      {tooltipContent && typeof document !== 'undefined' && createPortal(tooltipContent, document.body)}
+      {tooltipContent &&
+        typeof document !== 'undefined' &&
+        createPortal(tooltipContent, document.body)}
     </>
   );
 };

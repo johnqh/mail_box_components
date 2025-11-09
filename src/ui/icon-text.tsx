@@ -116,7 +116,13 @@ export const IconText: React.FC<IconTextProps> = ({
         className
       )}
     >
-      <Icon className={cn(iconSizeClasses[iconSize], 'flex-shrink-0', iconClassName)} />
+      <Icon
+        className={cn(
+          iconSizeClasses[iconSize],
+          'flex-shrink-0',
+          iconClassName
+        )}
+      />
       <span className={cn(textClassName)}>{children}</span>
     </div>
   );

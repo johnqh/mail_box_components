@@ -77,7 +77,7 @@ export const FormField: React.FC<FormFieldProps> = ({
     <div className={cn('space-y-2', className)}>
       <Label htmlFor={id}>
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className='text-red-500 ml-1'>*</span>}
       </Label>
       <Input
         type={type}

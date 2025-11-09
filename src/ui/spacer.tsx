@@ -63,25 +63,20 @@ export const Spacer: React.FC<SpacerProps> = ({
   };
 
   // Custom size (number)
-  const customSizeStyle = typeof size === 'number'
-    ? axis === 'vertical'
-      ? { height: `${size}px` }
-      : { width: `${size}px` }
-    : undefined;
+  const customSizeStyle =
+    typeof size === 'number'
+      ? axis === 'vertical'
+        ? { height: `${size}px` }
+        : { width: `${size}px` }
+      : undefined;
 
-  const sizeClass = typeof size === 'string'
-    ? sizeClasses[axis][size]
-    : '';
+  const sizeClass = typeof size === 'string' ? sizeClasses[axis][size] : '';
 
   return (
     <div
-      className={cn(
-        flex && 'flex-1',
-        !flex && sizeClass,
-        className
-      )}
+      className={cn(flex && 'flex-1', !flex && sizeClass, className)}
       style={customSizeStyle}
-      aria-hidden="true"
+      aria-hidden='true'
     />
   );
 };

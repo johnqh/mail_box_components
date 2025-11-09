@@ -8,7 +8,15 @@ export interface PopoverProps {
   /** Popover content */
   children: React.ReactNode;
   /** Placement relative to trigger */
-  placement?: 'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end';
+  placement?:
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom-start'
+    | 'bottom-end';
   /** Open state (controlled) */
   isOpen?: boolean;
   /** Open state change handler (controlled) */
@@ -57,7 +65,8 @@ export const Popover: React.FC<PopoverProps> = ({
   className,
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = (open: boolean) => {
     if (controlledIsOpen === undefined) {
       setInternalIsOpen(open);
@@ -210,7 +219,7 @@ export const Popover: React.FC<PopoverProps> = ({
         onClick={handleTriggerClick}
         onMouseEnter={handleTriggerMouseEnter}
         onMouseLeave={handleTriggerMouseLeave}
-        className="inline-block"
+        className='inline-block'
       >
         {trigger}
       </div>
@@ -234,20 +243,28 @@ export const Popover: React.FC<PopoverProps> = ({
               top: position.top + 'px',
               left: position.left + 'px',
             }}
-            onMouseEnter={trigger_action === 'hover' ? () => setIsOpen(true) : undefined}
-            onMouseLeave={trigger_action === 'hover' ? () => setIsOpen(false) : undefined}
+            onMouseEnter={
+              trigger_action === 'hover' ? () => setIsOpen(true) : undefined
+            }
+            onMouseLeave={
+              trigger_action === 'hover' ? () => setIsOpen(false) : undefined
+            }
           >
             {children}
             {showArrow && (
               <div
                 className={cn(
                   'absolute w-2 h-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transform rotate-45',
-                  placement.startsWith('top') && 'bottom-[-5px] border-t-0 border-l-0',
-                  placement.startsWith('bottom') && 'top-[-5px] border-b-0 border-r-0',
+                  placement.startsWith('top') &&
+                    'bottom-[-5px] border-t-0 border-l-0',
+                  placement.startsWith('bottom') &&
+                    'top-[-5px] border-b-0 border-r-0',
                   placement === 'left' && 'right-[-5px] border-l-0 border-b-0',
                   placement === 'right' && 'left-[-5px] border-r-0 border-t-0',
-                  (placement === 'top' || placement === 'bottom') && 'left-1/2 -translate-x-1/2',
-                  (placement === 'left' || placement === 'right') && 'top-1/2 -translate-y-1/2'
+                  (placement === 'top' || placement === 'bottom') &&
+                    'left-1/2 -translate-x-1/2',
+                  (placement === 'left' || placement === 'right') &&
+                    'top-1/2 -translate-y-1/2'
                 )}
               />
             )}

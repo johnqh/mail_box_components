@@ -79,7 +79,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 
   return (
     <div
-      role="menuitem"
+      role='menuitem'
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -95,7 +95,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           !danger &&
           selected &&
           'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
-        !disabled && danger && 'hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400',
+        !disabled &&
+          danger &&
+          'hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400',
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
@@ -116,7 +118,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       )}
 
       {/* Content */}
-      <div className="flex-1 min-w-0">
+      <div className='flex-1 min-w-0'>
         <div
           className={cn(
             textVariants.body.md(),
@@ -128,7 +130,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           {children}
         </div>
         {description && (
-          <div className={cn(textVariants.caption.default(), 'text-gray-600 dark:text-gray-400 mt-0.5')}>
+          <div
+            className={cn(
+              textVariants.caption.default(),
+              'text-gray-600 dark:text-gray-400 mt-0.5'
+            )}
+          >
             {description}
           </div>
         )}

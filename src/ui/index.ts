@@ -624,3 +624,18 @@ export * from './dashboard-stat-card';
 export * from './activity-feed';
 export * from './quick-actions';
 export * from './trend-indicator';
+
+
+// Batch 35 - Navigation Components
+export { BreadcrumbNav } from './breadcrumb-nav';
+export { PaginationNav } from './pagination-nav';
+export { SideNav } from './side-nav';
+export { StepperNav } from './stepper-nav';
+export type { BreadcrumbNavProps, BreadcrumbNavItem } from './breadcrumb-nav';
+export type { PaginationNavProps } from './pagination-nav';
+export type { SideNavProps, NavItem } from './side-nav';
+export type { StepperNavProps, NavStep } from './stepper-nav';
+export * from './breadcrumb-nav';
+export * from './pagination-nav';
+export * from './side-nav';
+export * from './stepper-nav';

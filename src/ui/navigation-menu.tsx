@@ -56,7 +56,7 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
   const [openMenus, setOpenMenus] = useState<Set<number>>(new Set());
 
   const toggleMenu = (index: number) => {
-    setOpenMenus((prev) => {
+    setOpenMenus(prev => {
       const newSet = new Set(prev);
       if (newSet.has(index)) {
         newSet.delete(index);
@@ -74,9 +74,9 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
     const ItemContent = (
       <>
         {item.icon && (
-          <span className="flex-shrink-0 w-4 h-4">{item.icon}</span>
+          <span className='flex-shrink-0 w-4 h-4'>{item.icon}</span>
         )}
-        <span className="flex-1">{item.label}</span>
+        <span className='flex-1'>{item.label}</span>
         {hasChildren && (
           <svg
             className={cn(
@@ -84,15 +84,15 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
               orientation === 'horizontal' && !isOpen && '-rotate-90',
               isOpen && 'rotate-180'
             )}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M19 9l-7 7-7-7"
+              d='M19 9l-7 7-7-7'
             />
           </svg>
         )}
@@ -131,7 +131,9 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
           <div
             className={cn(
               'bg-gray-50 dark:bg-gray-800/50',
-              orientation === 'horizontal' ? 'pl-4' : 'border-l-2 border-gray-200 dark:border-gray-700 ml-4'
+              orientation === 'horizontal'
+                ? 'pl-4'
+                : 'border-l-2 border-gray-200 dark:border-gray-700 ml-4'
             )}
           >
             {item.children!.map((child, childIndex) => (
@@ -149,7 +151,9 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
                     )}
                   >
                     {child.icon && (
-                      <span className="flex-shrink-0 w-4 h-4">{child.icon}</span>
+                      <span className='flex-shrink-0 w-4 h-4'>
+                        {child.icon}
+                      </span>
                     )}
                     {child.label}
                   </a>
@@ -165,7 +169,9 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
                     )}
                   >
                     {child.icon && (
-                      <span className="flex-shrink-0 w-4 h-4">{child.icon}</span>
+                      <span className='flex-shrink-0 w-4 h-4'>
+                        {child.icon}
+                      </span>
                     )}
                     {child.label}
                   </button>

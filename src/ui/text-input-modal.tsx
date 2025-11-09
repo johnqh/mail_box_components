@@ -90,28 +90,25 @@ export const TextInputModal: React.FC<TextInputModalProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={handleCancel}
-      size="small"
-      aria-labelledby="text-input-modal-title"
-      aria-describedby="text-input-modal-description"
+      size='small'
+      aria-labelledby='text-input-modal-title'
+      aria-describedby='text-input-modal-description'
       closeOnEscape={!isLoading}
       closeOnOverlayClick={!isLoading}
     >
       <form onSubmit={handleSubmit}>
-        <ModalContent variant="padded">
-          <h3
-            id="text-input-modal-title"
-            className={textVariants.heading.h4()}
-          >
+        <ModalContent variant='padded'>
+          <h3 id='text-input-modal-title' className={textVariants.heading.h4()}>
             {title}
           </h3>
           <p
-            id="text-input-modal-description"
+            id='text-input-modal-description'
             className={`${textVariants.body.md()} mt-2 mb-4`}
           >
             {description}
           </p>
           <Input
-            type="text"
+            type='text'
             value={value}
             onChange={e => setValue(e.target.value)}
             placeholder={placeholder}
@@ -123,9 +120,9 @@ export const TextInputModal: React.FC<TextInputModalProps> = ({
           />
           {error && (
             <p
-              id="text-input-error"
+              id='text-input-error'
               className={`${textVariants.body.sm()} text-red-600 dark:text-red-400 mt-2`}
-              role="alert"
+              role='alert'
             >
               {error}
             </p>
@@ -133,16 +130,16 @@ export const TextInputModal: React.FC<TextInputModalProps> = ({
         </ModalContent>
         <ModalFooter>
           <Button
-            type="button"
-            variant="outline"
+            type='button'
+            variant='outline'
             onClick={handleCancel}
             disabled={isLoading}
           >
             {cancelText}
           </Button>
           <Button
-            type="submit"
-            variant="default"
+            type='submit'
+            variant='default'
             disabled={!canSubmit || isLoading}
           >
             {isLoading ? loadingText : confirmText}

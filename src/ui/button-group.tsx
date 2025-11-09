@@ -91,7 +91,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
           alignClasses[orientation][align],
           className
         )}
-        role="group"
+        role='group'
       >
         {React.Children.map(children, (child, index) => {
           if (!React.isValidElement(child)) return child;
@@ -131,7 +131,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
         alignClasses[orientation][align],
         className
       )}
-      role="group"
+      role='group'
     >
       {children}
     </div>

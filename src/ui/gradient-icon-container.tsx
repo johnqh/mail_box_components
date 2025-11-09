@@ -77,8 +77,8 @@ export const GradientIconContainer: React.FC<GradientIconContainerProps> = ({
     'blue-purple': 'bg-gradient-to-r from-blue-600 to-purple-600',
     'green-blue': 'bg-gradient-to-r from-green-600 to-blue-600',
     'orange-red': 'bg-gradient-to-r from-orange-600 to-red-600',
-    'gray': 'bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-700 dark:to-gray-900',
-    'custom': gradientClasses || 'bg-gradient-to-r from-blue-600 to-purple-600',
+    gray: 'bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-700 dark:to-gray-900',
+    custom: gradientClasses || 'bg-gradient-to-r from-blue-600 to-purple-600',
   };
 
   const sizeConfig = sizeClasses[size];

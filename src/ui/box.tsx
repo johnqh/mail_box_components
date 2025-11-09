@@ -5,7 +5,15 @@ export interface BoxProps {
   /** Box content */
   children: React.ReactNode;
   /** HTML element to render */
-  as?: 'div' | 'section' | 'article' | 'aside' | 'main' | 'header' | 'footer' | 'nav';
+  as?:
+    | 'div'
+    | 'section'
+    | 'article'
+    | 'aside'
+    | 'main'
+    | 'header'
+    | 'footer'
+    | 'nav';
   /** Padding */
   p?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   /** Padding X-axis */
@@ -19,7 +27,14 @@ export interface BoxProps {
   /** Margin Y-axis */
   my?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'auto';
   /** Background color */
-  bg?: 'transparent' | 'white' | 'gray' | 'primary' | 'success' | 'warning' | 'danger';
+  bg?:
+    | 'transparent'
+    | 'white'
+    | 'gray'
+    | 'primary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /** Border */
   border?: boolean;
   /** Border radius */

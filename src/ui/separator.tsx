@@ -76,7 +76,7 @@ export const Separator: React.FC<SeparatorProps> = ({
 
   return (
     <div
-      role="separator"
+      role='separator'
       aria-orientation={orientation}
       className={cn(
         'bg-gray-200 dark:bg-gray-700',

@@ -127,8 +127,7 @@ export const KeyValuePair: React.FC<KeyValuePairProps> = ({
         orientation === 'horizontal' ? 'flex items-center' : 'flex flex-col',
         orientation === 'horizontal' && alignClasses[align],
         sizeConfig.gap,
-        separator &&
-          'pb-3 mb-3 border-b border-gray-200 dark:border-gray-700',
+        separator && 'pb-3 mb-3 border-b border-gray-200 dark:border-gray-700',
         className
       )}
     >

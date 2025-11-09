@@ -113,7 +113,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
           className
         )}
         title={title || (copied ? 'Copied!' : 'Copy to clipboard')}
-        type="button"
+        type='button'
       >
         <Icon className={sizeConfig.icon} />
       </button>
@@ -147,7 +147,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
       onClick={handleClick}
       className={cn(baseTextClasses, variantClasses[variant], className)}
       title={title || (copied ? 'Copied!' : 'Copy to clipboard')}
-      type="button"
+      type='button'
     >
       {iconPosition === 'left' && <Icon className={sizeConfig.icon} />}
       <span>{displayLabel}</span>

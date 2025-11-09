@@ -85,7 +85,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
   return (
     <div className={cn('w-full', className)}>
-      <div className="flex items-center gap-3">
+      <div className='flex items-center gap-3'>
         <div
           className={cn(
             'flex-1 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden',
@@ -103,20 +103,20 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
               barClassName
             )}
             style={{ width: `${percentage}%` }}
-            role="progressbar"
+            role='progressbar'
             aria-valuenow={value}
             aria-valuemin={0}
             aria-valuemax={max}
           >
             {showLabel && labelPosition === 'inside' && size === 'lg' && (
-              <span className="flex items-center justify-center h-full text-xs font-medium text-white px-2">
+              <span className='flex items-center justify-center h-full text-xs font-medium text-white px-2'>
                 {displayLabel}
               </span>
             )}
           </div>
         </div>
         {showLabel && labelPosition === 'outside' && (
-          <span className="text-sm font-medium text-gray-600 dark:text-gray-400 whitespace-nowrap">
+          <span className='text-sm font-medium text-gray-600 dark:text-gray-400 whitespace-nowrap'>
             {displayLabel}
           </span>
         )}

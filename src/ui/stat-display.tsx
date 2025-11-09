@@ -133,17 +133,42 @@ export const StatDisplay: React.FC<StatDisplayProps> = ({
   return (
     <div className={cn(alignClasses[align], className)}>
       {Icon && iconPosition === 'top' && (
-        <Icon className={cn(sizeConfig.icon, variantConfig.icon, 'mb-2', align === 'center' && 'mx-auto')} />
+        <Icon
+          className={cn(
+            sizeConfig.icon,
+            variantConfig.icon,
+            'mb-2',
+            align === 'center' && 'mx-auto'
+          )}
+        />
       )}
-      <div className={cn(iconPosition === 'left' && Icon && 'flex items-center gap-3', align === 'center' && iconPosition === 'left' && 'justify-center')}>
+      <div
+        className={cn(
+          iconPosition === 'left' && Icon && 'flex items-center gap-3',
+          align === 'center' && iconPosition === 'left' && 'justify-center'
+        )}
+      >
         {Icon && iconPosition === 'left' && (
           <Icon className={cn(sizeConfig.icon, variantConfig.icon)} />
         )}
         <div>
-          <div className={cn('font-bold', sizeConfig.value, variantConfig.value, valueClassName)}>
+          <div
+            className={cn(
+              'font-bold',
+              sizeConfig.value,
+              variantConfig.value,
+              valueClassName
+            )}
+          >
             {value}
           </div>
-          <div className={cn(sizeConfig.label, variantConfig.label, labelClassName)}>
+          <div
+            className={cn(
+              sizeConfig.label,
+              variantConfig.label,
+              labelClassName
+            )}
+          >
             {label}
           </div>
         </div>

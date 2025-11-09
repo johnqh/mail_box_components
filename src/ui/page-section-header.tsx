@@ -83,9 +83,11 @@ export const PageSectionHeader: React.FC<PageSectionHeaderProps> = ({
 
   return (
     <div className={cn('flex items-start justify-between gap-4', className)}>
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-3 flex-wrap">
-          <h2 className={cn(sizeConfig.title, 'text-gray-900 dark:text-gray-100')}>
+      <div className='flex-1 min-w-0'>
+        <div className='flex items-center gap-3 flex-wrap'>
+          <h2
+            className={cn(sizeConfig.title, 'text-gray-900 dark:text-gray-100')}
+          >
             {title}
           </h2>
           {count !== undefined && (
@@ -106,7 +108,7 @@ export const PageSectionHeader: React.FC<PageSectionHeaderProps> = ({
                 'text-gray-500 dark:text-gray-400 flex items-center gap-2'
               )}
             >
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600" />
+              <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600' />
               {loadingText}
             </span>
           )}
@@ -122,7 +124,7 @@ export const PageSectionHeader: React.FC<PageSectionHeaderProps> = ({
           </p>
         )}
       </div>
-      {action && <div className="flex-shrink-0">{action}</div>}
+      {action && <div className='flex-shrink-0'>{action}</div>}
     </div>
   );
 };

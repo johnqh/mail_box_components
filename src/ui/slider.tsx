@@ -73,7 +73,7 @@ export const Slider: React.FC<SliderProps> = ({
   step = 1,
   disabled = false,
   showValue = false,
-  formatValue = (v) => String(v),
+  formatValue = v => String(v),
   showMinMax = false,
   minLabel,
   maxLabel,
@@ -106,12 +106,12 @@ export const Slider: React.FC<SliderProps> = ({
     <div className={cn('w-full', className)}>
       {/* Value display */}
       {showValue && (
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <div className='flex justify-between items-center mb-2'>
+          <span className='text-sm font-medium text-gray-700 dark:text-gray-300'>
             {formatValue(value)}
           </span>
           {showMinMax && (
-            <span className="text-xs text-gray-500 dark:text-gray-400">
+            <span className='text-xs text-gray-500 dark:text-gray-400'>
               {minLabel || min} - {maxLabel || max}
             </span>
           )}
@@ -119,7 +119,7 @@ export const Slider: React.FC<SliderProps> = ({
       )}
 
       {/* Slider container */}
-      <div className="relative">
+      <div className='relative'>
         {/* Track background */}
         <div
           className={cn(
@@ -142,7 +142,7 @@ export const Slider: React.FC<SliderProps> = ({
 
         {/* Range input */}
         <input
-          type="range"
+          type='range'
           min={min}
           max={max}
           step={step}
@@ -182,11 +182,11 @@ export const Slider: React.FC<SliderProps> = ({
 
       {/* Min/Max labels below */}
       {showMinMax && !showValue && (
-        <div className="flex justify-between mt-1">
-          <span className="text-xs text-gray-500 dark:text-gray-400">
+        <div className='flex justify-between mt-1'>
+          <span className='text-xs text-gray-500 dark:text-gray-400'>
             {minLabel || min}
           </span>
-          <span className="text-xs text-gray-500 dark:text-gray-400">
+          <span className='text-xs text-gray-500 dark:text-gray-400'>
             {maxLabel || max}
           </span>
         </div>

@@ -28,10 +28,7 @@ export interface PortalProps {
  * </Portal>
  * ```
  */
-export const Portal: React.FC<PortalProps> = ({
-  children,
-  container,
-}) => {
+export const Portal: React.FC<PortalProps> = ({ children, container }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

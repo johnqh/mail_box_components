@@ -77,9 +77,12 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({
 
   // Color variant configurations
   const variantClasses = {
-    default: 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300',
-    primary: 'text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 font-semibold',
-    muted: 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200',
+    default:
+      'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300',
+    primary:
+      'text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 font-semibold',
+    muted:
+      'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200',
   };
 
   const sizeConfig = sizeClasses[size];
@@ -87,8 +90,8 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target='_blank'
+      rel='noopener noreferrer'
       onClick={onClick}
       className={cn(
         'inline-flex items-center',
@@ -102,11 +105,15 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({
       )}
     >
       {showIcon && iconPosition === 'left' && (
-        <ArrowTopRightOnSquareIcon className={cn(sizeConfig.icon, 'flex-shrink-0')} />
+        <ArrowTopRightOnSquareIcon
+          className={cn(sizeConfig.icon, 'flex-shrink-0')}
+        />
       )}
       <span>{children}</span>
       {showIcon && iconPosition === 'right' && (
-        <ArrowTopRightOnSquareIcon className={cn(sizeConfig.icon, 'flex-shrink-0')} />
+        <ArrowTopRightOnSquareIcon
+          className={cn(sizeConfig.icon, 'flex-shrink-0')}
+        />
       )}
     </a>
   );

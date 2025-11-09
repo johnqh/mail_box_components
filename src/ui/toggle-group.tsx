@@ -78,7 +78,7 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
 
     if (multiple) {
       const newValues = values.includes(optionValue)
-        ? values.filter((v) => v !== optionValue)
+        ? values.filter(v => v !== optionValue)
         : [...values, optionValue];
       onValuesChange?.(newValues);
     } else {
@@ -107,7 +107,8 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
     outline: {
       base: 'border border-gray-200 dark:border-gray-700',
       button: 'hover:bg-gray-50 dark:hover:bg-gray-800',
-      selected: 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600',
+      selected:
+        'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600',
     },
   };
 
@@ -118,9 +119,9 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
         variantClasses[variant].base,
         className
       )}
-      role="group"
+      role='group'
     >
-      {options.map((option) => {
+      {options.map(option => {
         const selected = isSelected(option.value);
 
         return (
@@ -144,9 +145,7 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
             aria-pressed={selected}
           >
             {option.icon && (
-              <span className="flex-shrink-0 w-4 h-4">
-                {option.icon}
-              </span>
+              <span className='flex-shrink-0 w-4 h-4'>{option.icon}</span>
             )}
             {option.label}
           </button>

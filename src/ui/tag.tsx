@@ -6,7 +6,14 @@ export interface TagProps {
   /** Tag label */
   children: React.ReactNode;
   /** Color variant */
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'purple';
+  variant?:
+    | 'default'
+    | 'primary'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'info'
+    | 'purple';
   /** Size variant */
   size?: 'sm' | 'md' | 'lg';
   /** Show close button */
@@ -114,7 +121,7 @@ export const Tag: React.FC<TagProps> = ({
       <span>{children}</span>
       {onRemove && (
         <button
-          type="button"
+          type='button'
           onClick={handleRemove}
           disabled={disabled}
           className={cn(
@@ -123,7 +130,7 @@ export const Tag: React.FC<TagProps> = ({
             'transition-colors',
             disabled ? 'cursor-not-allowed' : 'cursor-pointer'
           )}
-          aria-label="Remove"
+          aria-label='Remove'
         >
           <XMarkIcon className={sizeConfig.icon} />
         </button>

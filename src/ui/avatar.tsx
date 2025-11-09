@@ -17,7 +17,14 @@ export interface AvatarProps {
   /** Shape variant */
   shape?: 'circle' | 'square' | 'rounded';
   /** Color variant */
-  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'purple' | 'gray' | 'gradient';
+  variant?:
+    | 'primary'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'purple'
+    | 'gray'
+    | 'gradient';
   /** Show status indicator */
   status?: 'online' | 'offline' | 'away' | 'busy' | null;
   /** Status indicator position */
@@ -134,7 +141,7 @@ export const Avatar: React.FC<AvatarProps> = ({
         <img
           src={src}
           alt={alt || 'Avatar'}
-          className="w-full h-full object-cover"
+          className='w-full h-full object-cover'
         />
       );
     }
@@ -144,14 +151,14 @@ export const Avatar: React.FC<AvatarProps> = ({
     }
 
     if (type === 'number' || type === 'text' || type === 'initials') {
-      return <span className="font-bold">{content}</span>;
+      return <span className='font-bold'>{content}</span>;
     }
 
     return null;
   };
 
   return (
-    <div className="relative inline-block flex-shrink-0">
+    <div className='relative inline-block flex-shrink-0'>
       <div
         className={cn(
           'flex items-center justify-center overflow-hidden',

@@ -115,7 +115,8 @@ export const useFormSubmission = (
         }
       } catch (err) {
         // Set error message
-        const errorMsg = err instanceof Error ? err.message : 'An error occurred';
+        const errorMsg =
+          err instanceof Error ? err.message : 'An error occurred';
         setErrorMessage(errorPrefix ? `${errorPrefix}: ${errorMsg}` : errorMsg);
 
         // Call error callback
@@ -129,7 +130,14 @@ export const useFormSubmission = (
         setIsSubmitting(false);
       }
     },
-    [defaultSuccessMessage, successDuration, errorPrefix, onSuccess, onError, clearMessages]
+    [
+      defaultSuccessMessage,
+      successDuration,
+      errorPrefix,
+      onSuccess,
+      onError,
+      clearMessages,
+    ]
   );
 
   return {

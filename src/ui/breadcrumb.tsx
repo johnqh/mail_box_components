@@ -63,14 +63,17 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   };
 
   return (
-    <nav aria-label="Breadcrumb" className={cn('flex items-center', sizeClasses[size], className)}>
-      <ol className="flex items-center gap-2">
+    <nav
+      aria-label='Breadcrumb'
+      className={cn('flex items-center', sizeClasses[size], className)}
+    >
+      <ol className='flex items-center gap-2'>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           const isCurrent = item.isCurrent || isLast;
 
           return (
-            <li key={index} className="flex items-center gap-2">
+            <li key={index} className='flex items-center gap-2'>
               {item.href ? (
                 <a
                   href={item.href}
@@ -112,8 +115,8 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
               {!isLast && (
                 <span
-                  className="text-gray-400 dark:text-gray-600 select-none"
-                  aria-hidden="true"
+                  className='text-gray-400 dark:text-gray-600 select-none'
+                  aria-hidden='true'
                 >
                   {separator}
                 </span>

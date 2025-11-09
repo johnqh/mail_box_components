@@ -106,16 +106,16 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       )}
     >
       <input
-        type="checkbox"
+        type='checkbox'
         checked={checked}
         onChange={e => onChange(e.target.checked)}
         disabled={disabled}
         id={id}
         name={name}
-        className="sr-only"
+        className='sr-only'
       />
       <div
-        role="checkbox"
+        role='checkbox'
         aria-checked={checked}
         aria-disabled={disabled}
         tabIndex={disabled ? -1 : 0}

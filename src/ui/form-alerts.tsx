@@ -65,15 +65,11 @@ export const FormAlerts: React.FC<FormAlertsProps> = ({
   return (
     <div className={`space-y-3 ${className}`}>
       {errorMessage && (
-        <Alert
-          variant="error"
-          title={errorTitle}
-          description={errorMessage}
-        />
+        <Alert variant='error' title={errorTitle} description={errorMessage} />
       )}
       {successMessage && (
         <Alert
-          variant="success"
+          variant='success'
           title={successTitle}
           description={successMessage}
         />

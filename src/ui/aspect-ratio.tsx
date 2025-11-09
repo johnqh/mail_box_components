@@ -49,9 +49,7 @@ export const AspectRatio: React.FC<AspectRatioProps> = ({
 
   return (
     <div className={cn('relative w-full', className)} style={{ paddingBottom }}>
-      <div className="absolute inset-0">
-        {children}
-      </div>
+      <div className='absolute inset-0'>{children}</div>
     </div>
   );
 };

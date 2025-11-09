@@ -76,19 +76,22 @@ export const Combobox: React.FC<ComboboxProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Filter options based on search query
-  const filteredOptions = options.filter((option) =>
+  const filteredOptions = options.filter(option =>
     option.label.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Get selected option label
-  const selectedOption = options.find((opt) => opt.value === value);
+  const selectedOption = options.find(opt => opt.value === value);
 
   // Click outside to close
   useEffect(() => {
     if (!isOpen) return;
 
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
         setIsOpen(false);
         setSearchQuery('');
       }
@@ -122,17 +125,20 @@ export const Combobox: React.FC<ComboboxProps> = ({
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
-        setHighlightedIndex((prev) =>
+        setHighlightedIndex(prev =>
           prev < filteredOptions.length - 1 ? prev + 1 : prev
         );
         break;
       case 'ArrowUp':
         e.preventDefault();
-        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+        setHighlightedIndex(prev => (prev > 0 ? prev - 1 : prev));
         break;
       case 'Enter':
         e.preventDefault();
-        if (filteredOptions[highlightedIndex] && !filteredOptions[highlightedIndex].disabled) {
+        if (
+          filteredOptions[highlightedIndex] &&
+          !filteredOptions[highlightedIndex].disabled
+        ) {
           onChange(filteredOptions[highlightedIndex].value);
           setIsOpen(false);
           setSearchQuery('');
@@ -157,7 +163,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     <div ref={containerRef} className={cn('relative w-full', className)}>
       {/* Trigger Button */}
       <button
-        type="button"
+        type='button'
         onClick={() => !disabled && setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
         disabled={disabled}
@@ -173,10 +179,12 @@ export const Combobox: React.FC<ComboboxProps> = ({
           isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
         )}
       >
-        <span className={cn(
-          'truncate',
-          !selectedOption && 'text-gray-500 dark:text-gray-400'
-        )}>
+        <span
+          className={cn(
+            'truncate',
+            !selectedOption && 'text-gray-500 dark:text-gray-400'
+          )}
+        >
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <svg
@@ -184,39 +192,39 @@ export const Combobox: React.FC<ComboboxProps> = ({
             'w-4 h-4 ml-2 transition-transform',
             isOpen && 'rotate-180'
           )}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            strokeLinecap='round'
+            strokeLinejoin='round'
             strokeWidth={2}
-            d="M19 9l-7 7-7-7"
+            d='M19 9l-7 7-7-7'
           />
         </svg>
       </button>
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute z-50 w-full mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg">
+        <div className='absolute z-50 w-full mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg'>
           {/* Search Input */}
-          <div className="p-2 border-b border-gray-200 dark:border-gray-700">
+          <div className='p-2 border-b border-gray-200 dark:border-gray-700'>
             <input
               ref={inputRef}
-              type="text"
+              type='text'
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={searchPlaceholder}
-              className="w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+              className='w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
             />
           </div>
 
           {/* Options List */}
-          <div className="max-h-60 overflow-y-auto py-1">
+          <div className='max-h-60 overflow-y-auto py-1'>
             {filteredOptions.length === 0 ? (
-              <div className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+              <div className='px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center'>
                 {emptyMessage}
               </div>
             ) : (
@@ -232,8 +240,8 @@ export const Combobox: React.FC<ComboboxProps> = ({
                     option.value === value
                       ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
                       : index === highlightedIndex
-                      ? 'bg-gray-100 dark:bg-gray-800'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-800'
+                        ? 'bg-gray-100 dark:bg-gray-800'
+                        : 'hover:bg-gray-50 dark:hover:bg-gray-800'
                   )}
                 >
                   {option.label}

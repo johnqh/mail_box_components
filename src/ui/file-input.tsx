@@ -1,5 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { DocumentIcon, XMarkIcon, CloudArrowUpIcon } from '@heroicons/react/24/outline';
+import {
+  DocumentIcon,
+  XMarkIcon,
+  CloudArrowUpIcon,
+} from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 
 export interface FileInputProps {
@@ -88,9 +92,11 @@ export const FileInput: React.FC<FileInputProps> = ({
     }
 
     // Filter by size
-    const validFiles = newFiles.filter((file) => {
+    const validFiles = newFiles.filter(file => {
       if (maxSize && file.size > maxSize) {
-        setError(`File "${file.name}" exceeds maximum size of ${formatFileSize(maxSize)}`);
+        setError(
+          `File "${file.name}" exceeds maximum size of ${formatFileSize(maxSize)}`
+        );
         return false;
       }
       return true;
@@ -163,12 +169,12 @@ export const FileInput: React.FC<FileInputProps> = ({
       <div className={cn('w-full', className)}>
         <input
           ref={fileInputRef}
-          type="file"
+          type='file'
           onChange={handleFileChange}
           accept={accept}
           multiple={multiple}
           disabled={disabled}
-          className="hidden"
+          className='hidden'
         />
 
         <div
@@ -187,13 +193,13 @@ export const FileInput: React.FC<FileInputProps> = ({
             disabled && 'opacity-50 cursor-not-allowed'
           )}
         >
-          <div className="flex flex-col items-center justify-center space-y-3">
-            <CloudArrowUpIcon className="h-12 w-12 text-gray-400 dark:text-gray-500" />
-            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+          <div className='flex flex-col items-center justify-center space-y-3'>
+            <CloudArrowUpIcon className='h-12 w-12 text-gray-400 dark:text-gray-500' />
+            <p className='text-sm text-gray-600 dark:text-gray-400 text-center'>
               {dropZoneText}
             </p>
             {maxSize && (
-              <p className="text-xs text-gray-500 dark:text-gray-500">
+              <p className='text-xs text-gray-500 dark:text-gray-500'>
                 Max file size: {formatFileSize(maxSize)}
               </p>
             )}
@@ -201,7 +207,7 @@ export const FileInput: React.FC<FileInputProps> = ({
         </div>
 
         {error && (
-          <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>
+          <p className='mt-2 text-sm text-red-600 dark:text-red-400'>{error}</p>
         )}
 
         {showFileList && files.length > 0 && (
@@ -216,16 +222,16 @@ export const FileInput: React.FC<FileInputProps> = ({
     <div className={cn('w-full', className)}>
       <input
         ref={fileInputRef}
-        type="file"
+        type='file'
         onChange={handleFileChange}
         accept={accept}
         multiple={multiple}
         disabled={disabled}
-        className="hidden"
+        className='hidden'
       />
 
       <button
-        type="button"
+        type='button'
         onClick={handleClick}
         disabled={disabled}
         className={cn(
@@ -239,12 +245,12 @@ export const FileInput: React.FC<FileInputProps> = ({
           disabled && 'opacity-50 cursor-not-allowed'
         )}
       >
-        <DocumentIcon className="h-5 w-5 mr-2" />
+        <DocumentIcon className='h-5 w-5 mr-2' />
         {buttonText}
       </button>
 
       {error && (
-        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>
+        <p className='mt-2 text-sm text-red-600 dark:text-red-400'>{error}</p>
       )}
 
       {showFileList && files.length > 0 && (
@@ -262,30 +268,30 @@ const FileList: React.FC<{
   onRemove: (index: number) => void;
 }> = ({ files, onRemove }) => {
   return (
-    <div className="mt-3 space-y-2">
+    <div className='mt-3 space-y-2'>
       {files.map((file, index) => (
         <div
           key={`${file.name}-${index}`}
-          className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"
+          className='flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700'
         >
-          <div className="flex items-center space-x-2 flex-1 min-w-0">
-            <DocumentIcon className="h-5 w-5 text-gray-400 flex-shrink-0" />
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+          <div className='flex items-center space-x-2 flex-1 min-w-0'>
+            <DocumentIcon className='h-5 w-5 text-gray-400 flex-shrink-0' />
+            <div className='flex-1 min-w-0'>
+              <p className='text-sm font-medium text-gray-900 dark:text-gray-100 truncate'>
                 {file.name}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className='text-xs text-gray-500 dark:text-gray-400'>
                 {formatFileSize(file.size)}
               </p>
             </div>
           </div>
           <button
-            type="button"
+            type='button'
             onClick={() => onRemove(index)}
-            className="flex-shrink-0 p-1 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
-            aria-label="Remove file"
+            className='flex-shrink-0 p-1 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors'
+            aria-label='Remove file'
           >
-            <XMarkIcon className="h-5 w-5" />
+            <XMarkIcon className='h-5 w-5' />
           </button>
         </div>
       ))}

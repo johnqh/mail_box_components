@@ -104,8 +104,8 @@ export const Divider: React.FC<DividerProps> = ({
           spacingClasses.vertical[spacing],
           className
         )}
-        role="separator"
-        aria-orientation="vertical"
+        role='separator'
+        aria-orientation='vertical'
       />
     );
   }
@@ -121,8 +121,8 @@ export const Divider: React.FC<DividerProps> = ({
           lineClassName,
           className
         )}
-        role="separator"
-        aria-orientation="horizontal"
+        role='separator'
+        aria-orientation='horizontal'
       />
     );
   }
@@ -142,8 +142,8 @@ export const Divider: React.FC<DividerProps> = ({
         labelPositionClasses[labelPosition],
         className
       )}
-      role="separator"
-      aria-orientation="horizontal"
+      role='separator'
+      aria-orientation='horizontal'
     >
       {labelPosition !== 'left' && (
         <div

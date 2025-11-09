@@ -74,8 +74,8 @@ export const Backdrop: React.FC<BackdropProps> = ({
         className
       )}
       style={{ zIndex }}
-      role="presentation"
-      aria-hidden="true"
+      role='presentation'
+      aria-hidden='true'
     >
       {children}
     </div>

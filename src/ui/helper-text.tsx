@@ -1,5 +1,9 @@
 import React from 'react';
-import { ExclamationCircleIcon, CheckCircleIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
+import {
+  ExclamationCircleIcon,
+  CheckCircleIcon,
+  InformationCircleIcon,
+} from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 
 export interface HelperTextProps {
@@ -79,7 +83,9 @@ export const HelperText: React.FC<HelperTextProps> = ({
   return (
     <div className={cn('flex items-start gap-1.5', className)}>
       {showIcon && (
-        <Icon className={cn(iconSize[size], config.text, 'flex-shrink-0 mt-0.5')} />
+        <Icon
+          className={cn(iconSize[size], config.text, 'flex-shrink-0 mt-0.5')}
+        />
       )}
       <p className={cn(sizeClasses[size], config.text)}>{children}</p>
     </div>

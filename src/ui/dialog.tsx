@@ -96,10 +96,10 @@ export const Dialog: React.FC<DialogProps> = ({
       <Overlay
         isOpen={isOpen}
         onClose={handleOverlayClick}
-        opacity="dark"
+        opacity='dark'
         blur
       />
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className='fixed inset-0 z-50 flex items-center justify-center p-4'>
         <div
           className={cn(
             'relative w-full',
@@ -109,26 +109,26 @@ export const Dialog: React.FC<DialogProps> = ({
             'animate-in fade-in zoom-in-95 duration-200',
             className
           )}
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
         >
           {/* Close button */}
           {showCloseButton && onClose && (
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
-              aria-label="Close dialog"
+              className='absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors'
+              aria-label='Close dialog'
             >
               <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                className='w-6 h-6'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
+                  d='M6 18L18 6M6 6l12 12'
                 />
               </svg>
             </button>

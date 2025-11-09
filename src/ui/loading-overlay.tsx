@@ -64,9 +64,9 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
         blur && 'backdrop-blur-sm',
         className
       )}
-      role="alert"
-      aria-live="polite"
-      aria-busy="true"
+      role='alert'
+      aria-live='polite'
+      aria-busy='true'
     >
       <Spinner size={spinnerSize} />
       {message && (

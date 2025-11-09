@@ -139,17 +139,17 @@ export const Image: React.FC<ImageProps> = ({
     >
       {/* Loading state */}
       {showLoader && isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="animate-pulse">
-            <PhotoIcon className="h-8 w-8 text-gray-400" />
+        <div className='absolute inset-0 flex items-center justify-center'>
+          <div className='animate-pulse'>
+            <PhotoIcon className='h-8 w-8 text-gray-400' />
           </div>
         </div>
       )}
 
       {/* Error state */}
       {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <PhotoIcon className="h-8 w-8 text-gray-400" />
+        <div className='absolute inset-0 flex items-center justify-center'>
+          <PhotoIcon className='h-8 w-8 text-gray-400' />
         </div>
       )}
 

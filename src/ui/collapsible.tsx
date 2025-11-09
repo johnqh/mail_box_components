@@ -88,7 +88,7 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
     <div className={cn('w-full', className)}>
       {/* Trigger */}
       <button
-        type="button"
+        type='button'
         onClick={handleToggle}
         disabled={disabled}
         className={cn(
@@ -101,20 +101,16 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
         aria-expanded={isOpen}
       >
         {iconPosition === 'left' && showIcon && (
-          <Icon className="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2 flex-shrink-0" />
+          <Icon className='h-5 w-5 text-gray-500 dark:text-gray-400 mr-2 flex-shrink-0' />
         )}
-        <div className="flex-1 min-w-0">{trigger}</div>
+        <div className='flex-1 min-w-0'>{trigger}</div>
         {iconPosition === 'right' && showIcon && (
-          <Icon className="h-5 w-5 text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0" />
+          <Icon className='h-5 w-5 text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0' />
         )}
       </button>
 
       {/* Content */}
-      {isOpen && (
-        <div className={cn('mt-2', contentClassName)}>
-          {children}
-        </div>
-      )}
+      {isOpen && <div className={cn('mt-2', contentClassName)}>{children}</div>}
     </div>
   );
 };

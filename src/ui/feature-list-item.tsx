@@ -86,10 +86,15 @@ export const FeatureListItem: React.FC<FeatureListItemProps> = ({
       >
         <Icon className={sizeConfig.iconSize} />
       </div>
-      <div className="flex-1 min-w-0">
+      <div className='flex-1 min-w-0'>
         <h4 className={sizeConfig.title}>{title}</h4>
         {description && (
-          <p className={cn(sizeConfig.description, 'mt-1 text-gray-600 dark:text-gray-300')}>
+          <p
+            className={cn(
+              sizeConfig.description,
+              'mt-1 text-gray-600 dark:text-gray-300'
+            )}
+          >
             {description}
           </p>
         )}

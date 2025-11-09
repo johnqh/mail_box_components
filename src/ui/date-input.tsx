@@ -91,9 +91,8 @@ export const DateInput: React.FC<DateInputProps> = ({
   const sizeConfig = sizeClasses[size];
 
   // Convert Date object to string if needed
-  const stringValue = value instanceof Date
-    ? formatDateForInput(value, type)
-    : value;
+  const stringValue =
+    value instanceof Date ? formatDateForInput(value, type) : value;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
@@ -110,10 +109,7 @@ export const DateInput: React.FC<DateInputProps> = ({
           )}
         >
           <CalendarIcon
-            className={cn(
-              sizeConfig.icon,
-              'text-gray-400 dark:text-gray-500'
-            )}
+            className={cn(sizeConfig.icon, 'text-gray-400 dark:text-gray-500')}
           />
         </div>
       )}
@@ -176,7 +172,9 @@ function formatDateForInput(date: Date, type: DateInputProps['type']): string {
       const daysSinceFirstDay = Math.floor(
         (date.getTime() - firstDayOfYear.getTime()) / (24 * 60 * 60 * 1000)
       );
-      const weekNumber = Math.ceil((daysSinceFirstDay + firstDayOfYear.getDay() + 1) / 7);
+      const weekNumber = Math.ceil(
+        (daysSinceFirstDay + firstDayOfYear.getDay() + 1) / 7
+      );
       return `${year}-W${pad(weekNumber)}`;
     }
     default:

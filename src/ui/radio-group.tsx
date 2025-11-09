@@ -112,9 +112,9 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
         orientation === 'horizontal' && 'flex flex-wrap gap-4',
         className
       )}
-      role="radiogroup"
+      role='radiogroup'
     >
-      {options.map((option) => {
+      {options.map(option => {
         const isDisabled = disabled || option.disabled;
         const isChecked = value === option.value;
 
@@ -128,7 +128,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
             )}
           >
             <input
-              type="radio"
+              type='radio'
               name={name}
               value={option.value}
               checked={isChecked}
@@ -144,7 +144,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                 isDisabled && 'cursor-not-allowed'
               )}
             />
-            <div className="flex-1 min-w-0">
+            <div className='flex-1 min-w-0'>
               <span
                 className={cn(
                   'font-medium text-gray-700 dark:text-gray-300',

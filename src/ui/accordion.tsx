@@ -68,10 +68,12 @@ export const Accordion: React.FC<AccordionProps> = ({
   size = 'md',
   className,
 }) => {
-  const [internalOpenIds, setInternalOpenIds] = useState<string[]>(defaultOpenIds);
+  const [internalOpenIds, setInternalOpenIds] =
+    useState<string[]>(defaultOpenIds);
 
   // Use controlled value if provided, otherwise use internal state
-  const openIds = controlledOpenIds !== undefined ? controlledOpenIds : internalOpenIds;
+  const openIds =
+    controlledOpenIds !== undefined ? controlledOpenIds : internalOpenIds;
   const isControlled = controlledOpenIds !== undefined;
 
   // Size configurations
@@ -151,32 +153,37 @@ export const Accordion: React.FC<AccordionProps> = ({
           <div key={item.id} className={getItemClasses(index)}>
             {/* Title/Trigger */}
             <button
-              type="button"
+              type='button'
               onClick={() => handleToggle(item.id)}
               disabled={item.disabled}
               className={cn(
                 'flex items-center justify-between w-full text-left',
                 'font-medium text-gray-900 dark:text-gray-100',
                 'transition-colors',
-                !item.disabled && 'hover:text-blue-600 dark:hover:text-blue-400',
+                !item.disabled &&
+                  'hover:text-blue-600 dark:hover:text-blue-400',
                 item.disabled && 'opacity-50 cursor-not-allowed',
                 sizeConfig.title
               )}
               aria-expanded={isOpen}
             >
-              <span className="flex-1">{item.title}</span>
-              <Icon className={cn(
-                sizeConfig.icon,
-                'text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0'
-              )} />
+              <span className='flex-1'>{item.title}</span>
+              <Icon
+                className={cn(
+                  sizeConfig.icon,
+                  'text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0'
+                )}
+              />
             </button>
 
             {/* Content */}
             {isOpen && (
-              <div className={cn(
-                'text-gray-600 dark:text-gray-400',
-                sizeConfig.content
-              )}>
+              <div
+                className={cn(
+                  'text-gray-600 dark:text-gray-400',
+                  sizeConfig.content
+                )}
+              >
                 {item.content}
               </div>
             )}

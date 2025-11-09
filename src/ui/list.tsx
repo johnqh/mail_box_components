@@ -9,7 +9,14 @@ export interface ListProps {
   /** Spacing between items */
   spacing?: 'none' | 'sm' | 'md' | 'lg';
   /** Marker/bullet style */
-  marker?: 'disc' | 'circle' | 'square' | 'decimal' | 'alpha' | 'roman' | 'none';
+  marker?:
+    | 'disc'
+    | 'circle'
+    | 'square'
+    | 'decimal'
+    | 'alpha'
+    | 'roman'
+    | 'none';
   /** Size variant */
   size?: 'sm' | 'md' | 'lg';
   /** Additional className */
@@ -121,15 +128,8 @@ export const List: React.FC<ListProps> = ({
  *
  * Individual list item to be used within List component.
  */
-export const ListItem: React.FC<ListItemProps> = ({
-  children,
-  className,
-}) => {
-  return (
-    <li className={cn('leading-relaxed', className)}>
-      {children}
-    </li>
-  );
+export const ListItem: React.FC<ListItemProps> = ({ children, className }) => {
+  return <li className={cn('leading-relaxed', className)}>{children}</li>;
 };
 
 export default List;

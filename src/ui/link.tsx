@@ -2,7 +2,8 @@ import React from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 
-export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Link URL */
   href: string;
   /** Link content */
@@ -54,15 +55,21 @@ export const Link: React.FC<LinkProps> = ({
   ...props
 }) => {
   // Auto-detect external links
-  const isExternal = external || href.startsWith('http://') || href.startsWith('https://');
+  const isExternal =
+    external || href.startsWith('http://') || href.startsWith('https://');
 
   // Variant configurations
   const variantClasses = {
-    default: 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300',
-    primary: 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium',
-    secondary: 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100',
-    muted: 'text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300',
-    underline: 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline',
+    default:
+      'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300',
+    primary:
+      'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium',
+    secondary:
+      'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100',
+    muted:
+      'text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300',
+    underline:
+      'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline',
   };
 
   // External link attributes
@@ -84,7 +91,7 @@ export const Link: React.FC<LinkProps> = ({
       >
         {children}
         {showExternalIcon && isExternal && (
-          <ArrowTopRightOnSquareIcon className="inline-block h-4 w-4 ml-1" />
+          <ArrowTopRightOnSquareIcon className='inline-block h-4 w-4 ml-1' />
         )}
       </span>
     );
@@ -103,7 +110,7 @@ export const Link: React.FC<LinkProps> = ({
     >
       {children}
       {showExternalIcon && isExternal && (
-        <ArrowTopRightOnSquareIcon className="inline-block h-4 w-4 ml-1 flex-shrink-0" />
+        <ArrowTopRightOnSquareIcon className='inline-block h-4 w-4 ml-1 flex-shrink-0' />
       )}
     </a>
   );

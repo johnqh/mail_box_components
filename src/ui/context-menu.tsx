@@ -139,7 +139,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
       <div
         ref={triggerRef}
         onContextMenu={handleContextMenu}
-        className="inline-block"
+        className='inline-block'
       >
         {children}
       </div>
@@ -168,14 +168,16 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
                 return (
                   <hr
                     key={index}
-                    className="my-1 border-gray-200 dark:border-gray-700"
+                    className='my-1 border-gray-200 dark:border-gray-700'
                   />
                 );
               }
 
               const variantClasses = {
-                default: 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700',
-                danger: 'text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20',
+                default:
+                  'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700',
+                danger:
+                  'text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20',
               };
 
               return (
@@ -193,13 +195,11 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
                   )}
                 >
                   {item.icon && (
-                    <span className="flex-shrink-0 w-4 h-4">
-                      {item.icon}
-                    </span>
+                    <span className='flex-shrink-0 w-4 h-4'>{item.icon}</span>
                   )}
-                  <span className="flex-1">{item.label}</span>
+                  <span className='flex-1'>{item.label}</span>
                   {item.shortcut && (
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                    <span className='text-xs text-gray-500 dark:text-gray-400'>
                       {item.shortcut}
                     </span>
                   )}

@@ -96,7 +96,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
   };
 
   const characterCount = value.length;
-  const showCountInfo = showCount || (maxLength !== undefined);
+  const showCountInfo = showCount || maxLength !== undefined;
 
   return (
     <div className={cn('w-full', className)}>
@@ -126,14 +126,16 @@ export const TextArea: React.FC<TextAreaProps> = ({
 
       {/* Character count */}
       {showCountInfo && (
-        <div className="flex justify-end mt-1">
+        <div className='flex justify-end mt-1'>
           <span
             className={cn(
               'text-xs',
               maxLength && characterCount > maxLength * 0.9
                 ? 'text-yellow-600 dark:text-yellow-400'
                 : 'text-gray-500 dark:text-gray-400',
-              maxLength && characterCount >= maxLength && 'text-red-600 dark:text-red-400'
+              maxLength &&
+                characterCount >= maxLength &&
+                'text-red-600 dark:text-red-400'
             )}
           >
             {characterCount}

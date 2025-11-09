@@ -114,16 +114,24 @@ export const InfoBox: React.FC<InfoBoxProps> = ({
       )}
     >
       {(title || Icon) && (
-        <div className="flex items-start gap-3 mb-2">
+        <div className='flex items-start gap-3 mb-2'>
           {Icon && (
-            <Icon className={cn('h-5 w-5 flex-shrink-0 mt-0.5', variantConfig.icon)} />
+            <Icon
+              className={cn('h-5 w-5 flex-shrink-0 mt-0.5', variantConfig.icon)}
+            />
           )}
           {title && (
-            <h3 className={cn(textVariants.body.strong.md(), variantConfig.title)}>{title}</h3>
+            <h3
+              className={cn(textVariants.body.strong.md(), variantConfig.title)}
+            >
+              {title}
+            </h3>
           )}
         </div>
       )}
-      <div className={cn(!title && !Icon && variantConfig.text)}>{children}</div>
+      <div className={cn(!title && !Icon && variantConfig.text)}>
+        {children}
+      </div>
     </div>
   );
 };

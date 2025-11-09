@@ -131,7 +131,9 @@ export const Stack: React.FC<StackProps> = ({
       className={cn(
         'flex',
         isVertical ? 'flex-col' : 'flex-row',
-        divider ? gapClasses[direction][spacing] : spacingClasses[direction][spacing],
+        divider
+          ? gapClasses[direction][spacing]
+          : spacingClasses[direction][spacing],
         alignClasses[align],
         justifyClasses[justify],
         wrap && 'flex-wrap',
@@ -139,23 +141,21 @@ export const Stack: React.FC<StackProps> = ({
         className
       )}
     >
-      {divider ? (
-        React.Children.map(children, (child, index) => (
-          <React.Fragment key={index}>
-            {child}
-            {index < React.Children.count(children) - 1 && (
-              <div
-                className={cn(
-                  'bg-gray-200 dark:bg-gray-700',
-                  isVertical ? 'h-px w-full' : 'w-px h-full'
-                )}
-              />
-            )}
-          </React.Fragment>
-        ))
-      ) : (
-        children
-      )}
+      {divider
+        ? React.Children.map(children, (child, index) => (
+            <React.Fragment key={index}>
+              {child}
+              {index < React.Children.count(children) - 1 && (
+                <div
+                  className={cn(
+                    'bg-gray-200 dark:bg-gray-700',
+                    isVertical ? 'h-px w-full' : 'w-px h-full'
+                  )}
+                />
+              )}
+            </React.Fragment>
+          ))
+        : children}
     </div>
   );
 };
@@ -163,15 +163,15 @@ export const Stack: React.FC<StackProps> = ({
 /**
  * VStack - Vertical Stack (alias for Stack with direction="vertical")
  */
-export const VStack: React.FC<Omit<StackProps, 'direction'>> = (props) => (
-  <Stack direction="vertical" {...props} />
+export const VStack: React.FC<Omit<StackProps, 'direction'>> = props => (
+  <Stack direction='vertical' {...props} />
 );
 
 /**
  * HStack - Horizontal Stack (alias for Stack with direction="horizontal")
  */
-export const HStack: React.FC<Omit<StackProps, 'direction'>> = (props) => (
-  <Stack direction="horizontal" {...props} />
+export const HStack: React.FC<Omit<StackProps, 'direction'>> = props => (
+  <Stack direction='horizontal' {...props} />
 );
 
 export default Stack;

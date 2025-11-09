@@ -86,7 +86,10 @@ export const Pagination: React.FC<PaginationProps> = ({
 
     // Calculate range around current page
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 2);
-    const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages - 1);
+    const rightSiblingIndex = Math.min(
+      currentPage + siblingCount,
+      totalPages - 1
+    );
 
     // Add left ellipsis if needed
     if (leftSiblingIndex > 2) {
@@ -159,14 +162,17 @@ export const Pagination: React.FC<PaginationProps> = ({
   );
 
   return (
-    <nav className={cn('flex items-center gap-1', className)} aria-label="Pagination">
+    <nav
+      className={cn('flex items-center gap-1', className)}
+      aria-label='Pagination'
+    >
       {/* First button */}
       {showFirstLast && (
         <button
           onClick={handleFirst}
           disabled={currentPage === 1}
           className={navButtonClasses}
-          aria-label="Go to first page"
+          aria-label='Go to first page'
         >
           <span className={sizeConfig.text}>First</span>
         </button>
@@ -177,7 +183,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         onClick={handlePrevious}
         disabled={currentPage === 1}
         className={navButtonClasses}
-        aria-label="Go to previous page"
+        aria-label='Go to previous page'
       >
         <ChevronLeftIcon className={sizeConfig.icon} />
       </button>
@@ -217,7 +223,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         onClick={handleNext}
         disabled={currentPage === totalPages}
         className={navButtonClasses}
-        aria-label="Go to next page"
+        aria-label='Go to next page'
       >
         <ChevronRightIcon className={sizeConfig.icon} />
       </button>
@@ -228,7 +234,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           onClick={handleLast}
           disabled={currentPage === totalPages}
           className={navButtonClasses}
-          aria-label="Go to last page"
+          aria-label='Go to last page'
         >
           <span className={sizeConfig.text}>Last</span>
         </button>

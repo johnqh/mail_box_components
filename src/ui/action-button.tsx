@@ -47,8 +47,8 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       className={buttonProps.className}
     >
       {isLoading ? (
-        <span className="flex items-center gap-2">
-          {showSpinner && <Spinner size="small" />}
+        <span className='flex items-center gap-2'>
+          {showSpinner && <Spinner size='small' />}
           <span>{loadingText}</span>
         </span>
       ) : (

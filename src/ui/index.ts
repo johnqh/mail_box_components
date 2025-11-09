@@ -241,6 +241,10 @@ export { VideoPlayer } from './video-player';
 export { AudioPlayer } from './audio-player';
 export { ImageGallery } from './image-gallery';
 export { MediaUploader } from './media-uploader';
+export { ShareButtons } from './share-buttons';
+export { CommentThread } from './comment-thread';
+export { UserMention } from './user-mention';
+export { Reaction } from './reaction';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -406,6 +410,10 @@ export type { VideoPlayerProps } from './video-player';
 export type { AudioPlayerProps } from './audio-player';
 export type { ImageGalleryProps, GalleryImage } from './image-gallery';
 export type { MediaUploaderProps, UploadedFile } from './media-uploader';
+export type { ShareButtonsProps, SharePlatform } from './share-buttons';
+export type { CommentThreadProps, Comment } from './comment-thread';
+export type { UserMentionProps, User } from './user-mention';
+export type { ReactionProps, EmojiReaction } from './reaction';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -588,3 +596,7 @@ export * from './video-player';
 export * from './audio-player';
 export * from './image-gallery';
 export * from './media-uploader';
+export * from './share-buttons';
+export * from './comment-thread';
+export * from './user-mention';
+export * from './reaction';

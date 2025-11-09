@@ -225,6 +225,10 @@ export { LoadingDots } from './loading-dots';
 export { QRCodeDisplay } from './qr-code-display';
 export { ColorSwatch } from './color-swatch';
 export { ImageCropper } from './image-cropper';
+export { Gauge } from './gauge';
+export { Sparkline } from './sparkline';
+export { TypingIndicator } from './typing-indicator';
+export { WaveForm } from './wave-form';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -374,6 +378,10 @@ export type { LoadingDotsProps } from './loading-dots';
 export type { QRCodeDisplayProps } from './qr-code-display';
 export type { ColorSwatchProps, Color } from './color-swatch';
 export type { ImageCropperProps, CropArea } from './image-cropper';
+export type { GaugeProps } from './gauge';
+export type { SparklineProps } from './sparkline';
+export type { TypingIndicatorProps } from './typing-indicator';
+export type { WaveFormProps } from './wave-form';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -540,3 +548,7 @@ export * from './loading-dots';
 export * from './qr-code-display';
 export * from './color-swatch';
 export * from './image-cropper';
+export * from './gauge';
+export * from './sparkline';
+export * from './typing-indicator';
+export * from './wave-form';

@@ -239,6 +239,11 @@ export {
   Avatar,
   StepIndicator,
   KeyValuePair,
+  Tooltip,
+  ExternalLink,
+  IconButton,
+  FileIcon,
+  Pagination,
 } from './ui';
 
 // Development & Documentation Components (now in core/)
@@ -289,6 +294,11 @@ export type {
   StepIndicatorProps,
   Step,
   KeyValuePairProps,
+  TooltipProps,
+  ExternalLinkProps,
+  IconButtonProps,
+  FileIconProps,
+  PaginationProps,
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

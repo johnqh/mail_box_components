@@ -132,6 +132,11 @@ export { Badge } from './badge';
 export { Avatar } from './avatar';
 export { StepIndicator, type Step } from './step-indicator';
 export { KeyValuePair } from './key-value-pair';
+export { Tooltip } from './tooltip';
+export { ExternalLink } from './external-link';
+export { IconButton } from './icon-button';
+export { FileIcon } from './file-icon';
+export { Pagination } from './pagination';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -185,6 +190,11 @@ export type { BadgeProps } from './badge';
 export type { AvatarProps } from './avatar';
 export type { StepIndicatorProps } from './step-indicator';
 export type { KeyValuePairProps } from './key-value-pair';
+export type { TooltipProps } from './tooltip';
+export type { ExternalLinkProps } from './external-link';
+export type { IconButtonProps } from './icon-button';
+export type { FileIconProps } from './file-icon';
+export type { PaginationProps } from './pagination';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -258,3 +268,8 @@ export * from './badge';
 export * from './avatar';
 export * from './step-indicator';
 export * from './key-value-pair';
+export * from './tooltip';
+export * from './external-link';
+export * from './icon-button';
+export * from './file-icon';
+export * from './pagination';

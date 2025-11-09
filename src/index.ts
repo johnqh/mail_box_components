@@ -236,6 +236,9 @@ export {
   CopyButton,
   PageSectionHeader,
   Badge,
+  Avatar,
+  StepIndicator,
+  KeyValuePair,
 } from './ui';
 
 // Development & Documentation Components (now in core/)
@@ -282,6 +285,10 @@ export type {
   CopyButtonProps,
   PageSectionHeaderProps,
   BadgeProps,
+  AvatarProps,
+  StepIndicatorProps,
+  Step,
+  KeyValuePairProps,
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

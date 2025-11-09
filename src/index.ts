@@ -225,6 +225,9 @@ export {
   FeatureBlock,
   GradientIconContainer,
   GradientBanner,
+  InfoBox,
+  BorderAccent,
+  CodeDisplay,
 } from './ui';
 
 // Development & Documentation Components (now in core/)
@@ -260,6 +263,9 @@ export type {
   WalletEmailGroup,
   GradientIconContainerProps,
   GradientBannerProps,
+  InfoBoxProps,
+  BorderAccentProps,
+  CodeDisplayProps,
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

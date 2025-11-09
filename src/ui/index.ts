@@ -118,6 +118,9 @@ export {
 } from './design-system-components';
 export { GradientIconContainer } from './gradient-icon-container';
 export { GradientBanner } from './gradient-banner';
+export { InfoBox } from './info-box';
+export { BorderAccent } from './border-accent';
+export { CodeDisplay } from './code-display';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -157,6 +160,9 @@ export type { NavigationListProps, NavigationItem } from './navigation-list';
 export type { FeatureListItemProps } from './feature-list-item';
 export type { GradientIconContainerProps } from './gradient-icon-container';
 export type { GradientBannerProps } from './gradient-banner';
+export type { InfoBoxProps } from './info-box';
+export type { BorderAccentProps } from './border-accent';
+export type { CodeDisplayProps } from './code-display';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -216,3 +222,6 @@ export * from './email-accounts-list';
 export * from './settings-list';
 export * from './gradient-icon-container';
 export * from './gradient-banner';
+export * from './info-box';
+export * from './border-accent';
+export * from './code-display';

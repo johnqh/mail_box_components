@@ -189,6 +189,10 @@ export { ToggleGroup } from './toggle-group';
 export { Combobox } from './combobox';
 export { Command } from './command';
 export { NavigationMenu } from './navigation-menu';
+export { Sheet } from './sheet';
+export { Calendar } from './calendar';
+export { Progress } from './progress';
+export { Stepper } from './stepper';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -298,7 +302,14 @@ export type { ContextMenuProps, ContextMenuItem } from './context-menu';
 export type { ToggleGroupProps, ToggleGroupOption } from './toggle-group';
 export type { ComboboxProps, ComboboxOption } from './combobox';
 export type { CommandProps, CommandItem } from './command';
-export type { NavigationMenuProps, NavigationMenuItem } from './navigation-menu';
+export type {
+  NavigationMenuProps,
+  NavigationMenuItem,
+} from './navigation-menu';
+export type { SheetProps } from './sheet';
+export type { CalendarProps } from './calendar';
+export type { ProgressProps } from './progress';
+export type { StepperProps, StepperStep } from './stepper';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -429,3 +440,7 @@ export * from './toggle-group';
 export * from './combobox';
 export * from './command';
 export * from './navigation-menu';
+export * from './sheet';
+export * from './calendar';
+export * from './progress';
+export * from './stepper';

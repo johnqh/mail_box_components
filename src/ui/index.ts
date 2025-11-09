@@ -237,6 +237,10 @@ export { BarChart } from './bar-chart';
 export { LineChart } from './line-chart';
 export { PieChart } from './pie-chart';
 export { AreaChart } from './area-chart';
+export { VideoPlayer } from './video-player';
+export { AudioPlayer } from './audio-player';
+export { ImageGallery } from './image-gallery';
+export { MediaUploader } from './media-uploader';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -398,6 +402,10 @@ export type { BarChartProps, BarChartDataPoint } from './bar-chart';
 export type { LineChartProps, LineChartSeries, LineChartDataPoint } from './line-chart';
 export type { PieChartProps, PieChartDataPoint } from './pie-chart';
 export type { AreaChartProps, AreaChartSeries, AreaChartDataPoint } from './area-chart';
+export type { VideoPlayerProps } from './video-player';
+export type { AudioPlayerProps } from './audio-player';
+export type { ImageGalleryProps, GalleryImage } from './image-gallery';
+export type { MediaUploaderProps, UploadedFile } from './media-uploader';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -576,3 +584,7 @@ export * from './bar-chart';
 export * from './line-chart';
 export * from './pie-chart';
 export * from './area-chart';
+export * from './video-player';
+export * from './audio-player';
+export * from './image-gallery';
+export * from './media-uploader';

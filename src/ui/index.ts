@@ -193,6 +193,10 @@ export { Sheet } from './sheet';
 export { Calendar } from './calendar';
 export { Progress } from './progress';
 export { Stepper } from './stepper';
+export { Rating } from './rating';
+export { Timeline } from './timeline';
+export { Carousel } from './carousel';
+export { Table } from './table';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -310,6 +314,10 @@ export type { SheetProps } from './sheet';
 export type { CalendarProps } from './calendar';
 export type { ProgressProps } from './progress';
 export type { StepperProps, StepperStep } from './stepper';
+export type { RatingProps } from './rating';
+export type { TimelineProps, TimelineItem } from './timeline';
+export type { CarouselProps } from './carousel';
+export type { TableProps, TableColumn } from './table';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -444,3 +452,7 @@ export * from './sheet';
 export * from './calendar';
 export * from './progress';
 export * from './stepper';
+export * from './rating';
+export * from './timeline';
+export * from './carousel';
+export * from './table';

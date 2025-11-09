@@ -116,6 +116,8 @@ export {
   FormSection,
   FeatureBlock,
 } from './design-system-components';
+export { GradientIconContainer } from './gradient-icon-container';
+export { GradientBanner } from './gradient-banner';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -153,6 +155,8 @@ export type { CheckboxProps } from './checkbox';
 export type { ListItemWithActionProps } from './list-item-with-action';
 export type { NavigationListProps, NavigationItem } from './navigation-list';
 export type { FeatureListItemProps } from './feature-list-item';
+export type { GradientIconContainerProps } from './gradient-icon-container';
+export type { GradientBannerProps } from './gradient-banner';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -210,3 +214,5 @@ export * from './logo';
 export * from './internal-link-clusters';
 export * from './email-accounts-list';
 export * from './settings-list';
+export * from './gradient-icon-container';
+export * from './gradient-banner';

@@ -223,6 +223,8 @@ export {
   StatCard,
   FormSection,
   FeatureBlock,
+  GradientIconContainer,
+  GradientBanner,
 } from './ui';
 
 // Development & Documentation Components (now in core/)
@@ -256,6 +258,8 @@ export type {
   TOCSection,
   EmailAccount,
   WalletEmailGroup,
+  GradientIconContainerProps,
+  GradientBannerProps,
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

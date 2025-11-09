@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UleadUscorer Component
+ * LeadScorer Component
  * 
  * CRM component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UleadUscorer className="custom-class" />
+ * <LeadScorer className="custom-class" />
  * ```
  */
 export interface LeadScorerProps {
@@ -17,7 +17,7 @@ export interface LeadScorerProps {
   disabled?: boolean;
 }
 
-export const UleadUscorer = ({ className, children, disabled }: LeadScorerProps) => {
+export const LeadScorer = ({ className, children, disabled }: LeadScorerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UleadUscorer = ({ className, children, disabled }: LeadScorerProps)
         className
       )}
       role="region"
-      aria-label="UleadUscorer"
+      aria-label="LeadScorer"
     >
-      {children || 'UleadUscorer Component'}
+      {children || 'LeadScorer Component'}
     </div>
   );
 };
 
-export default UleadUscorer;
+export default LeadScorer;

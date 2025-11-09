@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UlogisticsUmap Component
+ * LogisticsMap Component
  * 
  * Supply chain component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UlogisticsUmap className="custom-class" />
+ * <LogisticsMap className="custom-class" />
  * ```
  */
 export interface LogisticsMapProps {
@@ -17,7 +17,7 @@ export interface LogisticsMapProps {
   disabled?: boolean;
 }
 
-export const UlogisticsUmap = ({ className, children, disabled }: LogisticsMapProps) => {
+export const LogisticsMap = ({ className, children, disabled }: LogisticsMapProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UlogisticsUmap = ({ className, children, disabled }: LogisticsMapPr
         className
       )}
       role="region"
-      aria-label="UlogisticsUmap"
+      aria-label="LogisticsMap"
     >
-      {children || 'UlogisticsUmap Component'}
+      {children || 'LogisticsMap Component'}
     </div>
   );
 };
 
-export default UlogisticsUmap;
+export default LogisticsMap;

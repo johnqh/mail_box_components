@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UtideUchart Component
+ * TideChart Component
  * 
  * Maritime component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UtideUchart className="custom-class" />
+ * <TideChart className="custom-class" />
  * ```
  */
 export interface TideChartProps {
@@ -17,7 +17,7 @@ export interface TideChartProps {
   disabled?: boolean;
 }
 
-export const UtideUchart = ({ className, children, disabled }: TideChartProps) => {
+export const TideChart = ({ className, children, disabled }: TideChartProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UtideUchart = ({ className, children, disabled }: TideChartProps) =
         className
       )}
       role="region"
-      aria-label="UtideUchart"
+      aria-label="TideChart"
     >
-      {children || 'UtideUchart Component'}
+      {children || 'TideChart Component'}
     </div>
   );
 };
 
-export default UtideUchart;
+export default TideChart;

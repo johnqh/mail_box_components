@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UreorderUpoint Component
+ * ReorderPoint Component
  * 
  * Inventory management component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UreorderUpoint className="custom-class" />
+ * <ReorderPoint className="custom-class" />
  * ```
  */
 export interface ReorderPointProps {
@@ -17,7 +17,7 @@ export interface ReorderPointProps {
   disabled?: boolean;
 }
 
-export const UreorderUpoint = ({ className, children, disabled }: ReorderPointProps) => {
+export const ReorderPoint = ({ className, children, disabled }: ReorderPointProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UreorderUpoint = ({ className, children, disabled }: ReorderPointPr
         className
       )}
       role="region"
-      aria-label="UreorderUpoint"
+      aria-label="ReorderPoint"
     >
-      {children || 'UreorderUpoint Component'}
+      {children || 'ReorderPoint Component'}
     </div>
   );
 };
 
-export default UreorderUpoint;
+export default ReorderPoint;

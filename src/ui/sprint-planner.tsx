@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UsprintUplanner Component
+ * SprintPlanner Component
  * 
  * Project management component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UsprintUplanner className="custom-class" />
+ * <SprintPlanner className="custom-class" />
  * ```
  */
 export interface SprintPlannerProps {
@@ -17,7 +17,7 @@ export interface SprintPlannerProps {
   disabled?: boolean;
 }
 
-export const UsprintUplanner = ({ className, children, disabled }: SprintPlannerProps) => {
+export const SprintPlanner = ({ className, children, disabled }: SprintPlannerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UsprintUplanner = ({ className, children, disabled }: SprintPlanner
         className
       )}
       role="region"
-      aria-label="UsprintUplanner"
+      aria-label="SprintPlanner"
     >
-      {children || 'UsprintUplanner Component'}
+      {children || 'SprintPlanner Component'}
     </div>
   );
 };
 
-export default UsprintUplanner;
+export default SprintPlanner;

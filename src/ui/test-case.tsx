@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UtestUcase Component
+ * TestCase Component
  * 
  * Quality assurance component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UtestUcase className="custom-class" />
+ * <TestCase className="custom-class" />
  * ```
  */
 export interface TestCaseProps {
@@ -17,7 +17,7 @@ export interface TestCaseProps {
   disabled?: boolean;
 }
 
-export const UtestUcase = ({ className, children, disabled }: TestCaseProps) => {
+export const TestCase = ({ className, children, disabled }: TestCaseProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UtestUcase = ({ className, children, disabled }: TestCaseProps) => 
         className
       )}
       role="region"
-      aria-label="UtestUcase"
+      aria-label="TestCase"
     >
-      {children || 'UtestUcase Component'}
+      {children || 'TestCase Component'}
     </div>
   );
 };
 
-export default UtestUcase;
+export default TestCase;

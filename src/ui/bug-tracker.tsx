@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UbugUtracker Component
+ * BugTracker Component
  * 
  * Quality assurance component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UbugUtracker className="custom-class" />
+ * <BugTracker className="custom-class" />
  * ```
  */
 export interface BugTrackerProps {
@@ -17,7 +17,7 @@ export interface BugTrackerProps {
   disabled?: boolean;
 }
 
-export const UbugUtracker = ({ className, children, disabled }: BugTrackerProps) => {
+export const BugTracker = ({ className, children, disabled }: BugTrackerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UbugUtracker = ({ className, children, disabled }: BugTrackerProps)
         className
       )}
       role="region"
-      aria-label="UbugUtracker"
+      aria-label="BugTracker"
     >
-      {children || 'UbugUtracker Component'}
+      {children || 'BugTracker Component'}
     </div>
   );
 };
 
-export default UbugUtracker;
+export default BugTracker;

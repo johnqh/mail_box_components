@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UportUschedule Component
+ * PortSchedule Component
  * 
  * Maritime component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UportUschedule className="custom-class" />
+ * <PortSchedule className="custom-class" />
  * ```
  */
 export interface PortScheduleProps {
@@ -17,7 +17,7 @@ export interface PortScheduleProps {
   disabled?: boolean;
 }
 
-export const UportUschedule = ({ className, children, disabled }: PortScheduleProps) => {
+export const PortSchedule = ({ className, children, disabled }: PortScheduleProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UportUschedule = ({ className, children, disabled }: PortSchedulePr
         className
       )}
       role="region"
-      aria-label="UportUschedule"
+      aria-label="PortSchedule"
     >
-      {children || 'UportUschedule Component'}
+      {children || 'PortSchedule Component'}
     </div>
   );
 };
 
-export default UportUschedule;
+export default PortSchedule;

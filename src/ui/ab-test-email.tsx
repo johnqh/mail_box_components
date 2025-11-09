@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UabUtestUemail Component
+ * AbTestEmail Component
  * 
  * Email marketing component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UabUtestUemail className="custom-class" />
+ * <AbTestEmail className="custom-class" />
  * ```
  */
 export interface AbTestEmailProps {
@@ -17,7 +17,7 @@ export interface AbTestEmailProps {
   disabled?: boolean;
 }
 
-export const UabUtestUemail = ({ className, children, disabled }: AbTestEmailProps) => {
+export const AbTestEmail = ({ className, children, disabled }: AbTestEmailProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UabUtestUemail = ({ className, children, disabled }: AbTestEmailPro
         className
       )}
       role="region"
-      aria-label="UabUtestUemail"
+      aria-label="AbTestEmail"
     >
-      {children || 'UabUtestUemail Component'}
+      {children || 'AbTestEmail Component'}
     </div>
   );
 };
 
-export default UabUtestUemail;
+export default AbTestEmail;

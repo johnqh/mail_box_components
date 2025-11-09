@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UprocurementUform Component
+ * ProcurementForm Component
  * 
  * Supply chain component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UprocurementUform className="custom-class" />
+ * <ProcurementForm className="custom-class" />
  * ```
  */
 export interface ProcurementFormProps {
@@ -17,7 +17,7 @@ export interface ProcurementFormProps {
   disabled?: boolean;
 }
 
-export const UprocurementUform = ({ className, children, disabled }: ProcurementFormProps) => {
+export const ProcurementForm = ({ className, children, disabled }: ProcurementFormProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UprocurementUform = ({ className, children, disabled }: Procurement
         className
       )}
       role="region"
-      aria-label="UprocurementUform"
+      aria-label="ProcurementForm"
     >
-      {children || 'UprocurementUform Component'}
+      {children || 'ProcurementForm Component'}
     </div>
   );
 };
 
-export default UprocurementUform;
+export default ProcurementForm;

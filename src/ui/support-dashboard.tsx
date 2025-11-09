@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UsupportUdashboard Component
+ * SupportDashboard Component
  * 
  * Customer support component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UsupportUdashboard className="custom-class" />
+ * <SupportDashboard className="custom-class" />
  * ```
  */
 export interface SupportDashboardProps {
@@ -17,7 +17,7 @@ export interface SupportDashboardProps {
   disabled?: boolean;
 }
 
-export const UsupportUdashboard = ({ className, children, disabled }: SupportDashboardProps) => {
+export const SupportDashboard = ({ className, children, disabled }: SupportDashboardProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UsupportUdashboard = ({ className, children, disabled }: SupportDas
         className
       )}
       role="region"
-      aria-label="UsupportUdashboard"
+      aria-label="SupportDashboard"
     >
-      {children || 'UsupportUdashboard Component'}
+      {children || 'SupportDashboard Component'}
     </div>
   );
 };
 
-export default UsupportUdashboard;
+export default SupportDashboard;

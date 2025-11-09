@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UtripUmeter Component
+ * TripMeter Component
  * 
  * Automotive component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UtripUmeter className="custom-class" />
+ * <TripMeter className="custom-class" />
  * ```
  */
 export interface TripMeterProps {
@@ -17,7 +17,7 @@ export interface TripMeterProps {
   disabled?: boolean;
 }
 
-export const UtripUmeter = ({ className, children, disabled }: TripMeterProps) => {
+export const TripMeter = ({ className, children, disabled }: TripMeterProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UtripUmeter = ({ className, children, disabled }: TripMeterProps) =
         className
       )}
       role="region"
-      aria-label="UtripUmeter"
+      aria-label="TripMeter"
     >
-      {children || 'UtripUmeter Component'}
+      {children || 'TripMeter Component'}
     </div>
   );
 };
 
-export default UtripUmeter;
+export default TripMeter;

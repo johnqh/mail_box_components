@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UcontactUcard Component
+ * ContactCard Component
  * 
  * CRM component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UcontactUcard className="custom-class" />
+ * <ContactCard className="custom-class" />
  * ```
  */
 export interface ContactCardProps {
@@ -17,7 +17,7 @@ export interface ContactCardProps {
   disabled?: boolean;
 }
 
-export const UcontactUcard = ({ className, children, disabled }: ContactCardProps) => {
+export const ContactCard = ({ className, children, disabled }: ContactCardProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UcontactUcard = ({ className, children, disabled }: ContactCardProp
         className
       )}
       role="region"
-      aria-label="UcontactUcard"
+      aria-label="ContactCard"
     >
-      {children || 'UcontactUcard Component'}
+      {children || 'ContactCard Component'}
     </div>
   );
 };
 
-export default UcontactUcard;
+export default ContactCard;

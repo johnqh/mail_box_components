@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UinventoryUalert Component
+ * InventoryAlert Component
  * 
  * Inventory management component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UinventoryUalert className="custom-class" />
+ * <InventoryAlert className="custom-class" />
  * ```
  */
 export interface InventoryAlertProps {
@@ -17,7 +17,7 @@ export interface InventoryAlertProps {
   disabled?: boolean;
 }
 
-export const UinventoryUalert = ({ className, children, disabled }: InventoryAlertProps) => {
+export const InventoryAlert = ({ className, children, disabled }: InventoryAlertProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UinventoryUalert = ({ className, children, disabled }: InventoryAle
         className
       )}
       role="region"
-      aria-label="UinventoryUalert"
+      aria-label="InventoryAlert"
     >
-      {children || 'UinventoryUalert Component'}
+      {children || 'InventoryAlert Component'}
     </div>
   );
 };
 
-export default UinventoryUalert;
+export default InventoryAlert;

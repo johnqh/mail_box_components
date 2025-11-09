@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UsocialUfeed Component
+ * SocialFeed Component
  * 
  * Social media integration component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UsocialUfeed className="custom-class" />
+ * <SocialFeed className="custom-class" />
  * ```
  */
 export interface SocialFeedProps {
@@ -17,7 +17,7 @@ export interface SocialFeedProps {
   disabled?: boolean;
 }
 
-export const UsocialUfeed = ({ className, children, disabled }: SocialFeedProps) => {
+export const SocialFeed = ({ className, children, disabled }: SocialFeedProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UsocialUfeed = ({ className, children, disabled }: SocialFeedProps)
         className
       )}
       role="region"
-      aria-label="UsocialUfeed"
+      aria-label="SocialFeed"
     >
-      {children || 'UsocialUfeed Component'}
+      {children || 'SocialFeed Component'}
     </div>
   );
 };
 
-export default UsocialUfeed;
+export default SocialFeed;

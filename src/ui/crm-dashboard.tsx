@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UcrmUdashboard Component
+ * CrmDashboard Component
  * 
  * CRM component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UcrmUdashboard className="custom-class" />
+ * <CrmDashboard className="custom-class" />
  * ```
  */
 export interface CrmDashboardProps {
@@ -17,7 +17,7 @@ export interface CrmDashboardProps {
   disabled?: boolean;
 }
 
-export const UcrmUdashboard = ({ className, children, disabled }: CrmDashboardProps) => {
+export const CrmDashboard = ({ className, children, disabled }: CrmDashboardProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UcrmUdashboard = ({ className, children, disabled }: CrmDashboardPr
         className
       )}
       role="region"
-      aria-label="UcrmUdashboard"
+      aria-label="CrmDashboard"
     >
-      {children || 'UcrmUdashboard Component'}
+      {children || 'CrmDashboard Component'}
     </div>
   );
 };
 
-export default UcrmUdashboard;
+export default CrmDashboard;

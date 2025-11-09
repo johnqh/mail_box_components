@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UdealUpipeline Component
+ * DealPipeline Component
  * 
  * CRM component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UdealUpipeline className="custom-class" />
+ * <DealPipeline className="custom-class" />
  * ```
  */
 export interface DealPipelineProps {
@@ -17,7 +17,7 @@ export interface DealPipelineProps {
   disabled?: boolean;
 }
 
-export const UdealUpipeline = ({ className, children, disabled }: DealPipelineProps) => {
+export const DealPipeline = ({ className, children, disabled }: DealPipelineProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UdealUpipeline = ({ className, children, disabled }: DealPipelinePr
         className
       )}
       role="region"
-      aria-label="UdealUpipeline"
+      aria-label="DealPipeline"
     >
-      {children || 'UdealUpipeline Component'}
+      {children || 'DealPipeline Component'}
     </div>
   );
 };
 
-export default UdealUpipeline;
+export default DealPipeline;

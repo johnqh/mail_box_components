@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UdefectUtracker Component
+ * DefectTracker Component
  * 
  * Manufacturing component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UdefectUtracker className="custom-class" />
+ * <DefectTracker className="custom-class" />
  * ```
  */
 export interface DefectTrackerProps {
@@ -17,7 +17,7 @@ export interface DefectTrackerProps {
   disabled?: boolean;
 }
 
-export const UdefectUtracker = ({ className, children, disabled }: DefectTrackerProps) => {
+export const DefectTracker = ({ className, children, disabled }: DefectTrackerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UdefectUtracker = ({ className, children, disabled }: DefectTracker
         className
       )}
       role="region"
-      aria-label="UdefectUtracker"
+      aria-label="DefectTracker"
     >
-      {children || 'UdefectUtracker Component'}
+      {children || 'DefectTracker Component'}
     </div>
   );
 };
 
-export default UdefectUtracker;
+export default DefectTracker;

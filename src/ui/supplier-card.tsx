@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UsupplierUcard Component
+ * SupplierCard Component
  * 
  * Supply chain component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UsupplierUcard className="custom-class" />
+ * <SupplierCard className="custom-class" />
  * ```
  */
 export interface SupplierCardProps {
@@ -17,7 +17,7 @@ export interface SupplierCardProps {
   disabled?: boolean;
 }
 
-export const UsupplierUcard = ({ className, children, disabled }: SupplierCardProps) => {
+export const SupplierCard = ({ className, children, disabled }: SupplierCardProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UsupplierUcard = ({ className, children, disabled }: SupplierCardPr
         className
       )}
       role="region"
-      aria-label="UsupplierUcard"
+      aria-label="SupplierCard"
     >
-      {children || 'UsupplierUcard Component'}
+      {children || 'SupplierCard Component'}
     </div>
   );
 };
 
-export default UsupplierUcard;
+export default SupplierCard;

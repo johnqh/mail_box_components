@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UliveUchat Component
+ * LiveChat Component
  * 
  * Customer support component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UliveUchat className="custom-class" />
+ * <LiveChat className="custom-class" />
  * ```
  */
 export interface LiveChatProps {
@@ -17,7 +17,7 @@ export interface LiveChatProps {
   disabled?: boolean;
 }
 
-export const UliveUchat = ({ className, children, disabled }: LiveChatProps) => {
+export const LiveChat = ({ className, children, disabled }: LiveChatProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UliveUchat = ({ className, children, disabled }: LiveChatProps) => 
         className
       )}
       role="region"
-      aria-label="UliveUchat"
+      aria-label="LiveChat"
     >
-      {children || 'UliveUchat Component'}
+      {children || 'LiveChat Component'}
     </div>
   );
 };
 
-export default UliveUchat;
+export default LiveChat;

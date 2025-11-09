@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UproductionUline Component
+ * ProductionLine Component
  * 
  * Manufacturing component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UproductionUline className="custom-class" />
+ * <ProductionLine className="custom-class" />
  * ```
  */
 export interface ProductionLineProps {
@@ -17,7 +17,7 @@ export interface ProductionLineProps {
   disabled?: boolean;
 }
 
-export const UproductionUline = ({ className, children, disabled }: ProductionLineProps) => {
+export const ProductionLine = ({ className, children, disabled }: ProductionLineProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UproductionUline = ({ className, children, disabled }: ProductionLi
         className
       )}
       role="region"
-      aria-label="UproductionUline"
+      aria-label="ProductionLine"
     >
-      {children || 'UproductionUline Component'}
+      {children || 'ProductionLine Component'}
     </div>
   );
 };
 
-export default UproductionUline;
+export default ProductionLine;

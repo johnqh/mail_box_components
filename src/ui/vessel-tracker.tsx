@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UvesselUtracker Component
+ * VesselTracker Component
  * 
  * Maritime component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UvesselUtracker className="custom-class" />
+ * <VesselTracker className="custom-class" />
  * ```
  */
 export interface VesselTrackerProps {
@@ -17,7 +17,7 @@ export interface VesselTrackerProps {
   disabled?: boolean;
 }
 
-export const UvesselUtracker = ({ className, children, disabled }: VesselTrackerProps) => {
+export const VesselTracker = ({ className, children, disabled }: VesselTrackerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UvesselUtracker = ({ className, children, disabled }: VesselTracker
         className
       )}
       role="region"
-      aria-label="UvesselUtracker"
+      aria-label="VesselTracker"
     >
-      {children || 'UvesselUtracker Component'}
+      {children || 'VesselTracker Component'}
     </div>
   );
 };
 
-export default UvesselUtracker;
+export default VesselTracker;

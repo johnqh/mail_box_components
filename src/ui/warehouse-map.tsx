@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UwarehouseUmap Component
+ * WarehouseMap Component
  * 
  * Inventory management component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UwarehouseUmap className="custom-class" />
+ * <WarehouseMap className="custom-class" />
  * ```
  */
 export interface WarehouseMapProps {
@@ -17,7 +17,7 @@ export interface WarehouseMapProps {
   disabled?: boolean;
 }
 
-export const UwarehouseUmap = ({ className, children, disabled }: WarehouseMapProps) => {
+export const WarehouseMap = ({ className, children, disabled }: WarehouseMapProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UwarehouseUmap = ({ className, children, disabled }: WarehouseMapPr
         className
       )}
       role="region"
-      aria-label="UwarehouseUmap"
+      aria-label="WarehouseMap"
     >
-      {children || 'UwarehouseUmap Component'}
+      {children || 'WarehouseMap Component'}
     </div>
   );
 };
 
-export default UwarehouseUmap;
+export default WarehouseMap;

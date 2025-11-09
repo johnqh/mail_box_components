@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UonboardingUchecklist Component
+ * OnboardingChecklist Component
  * 
  * HR & recruiting component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UonboardingUchecklist className="custom-class" />
+ * <OnboardingChecklist className="custom-class" />
  * ```
  */
 export interface OnboardingChecklistProps {
@@ -17,7 +17,7 @@ export interface OnboardingChecklistProps {
   disabled?: boolean;
 }
 
-export const UonboardingUchecklist = ({ className, children, disabled }: OnboardingChecklistProps) => {
+export const OnboardingChecklist = ({ className, children, disabled }: OnboardingChecklistProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UonboardingUchecklist = ({ className, children, disabled }: Onboard
         className
       )}
       role="region"
-      aria-label="UonboardingUchecklist"
+      aria-label="OnboardingChecklist"
     >
-      {children || 'UonboardingUchecklist Component'}
+      {children || 'OnboardingChecklist Component'}
     </div>
   );
 };
 
-export default UonboardingUchecklist;
+export default OnboardingChecklist;

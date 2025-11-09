@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UflightUtracker Component
+ * FlightTracker Component
  * 
  * Aviation component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UflightUtracker className="custom-class" />
+ * <FlightTracker className="custom-class" />
  * ```
  */
 export interface FlightTrackerProps {
@@ -17,7 +17,7 @@ export interface FlightTrackerProps {
   disabled?: boolean;
 }
 
-export const UflightUtracker = ({ className, children, disabled }: FlightTrackerProps) => {
+export const FlightTracker = ({ className, children, disabled }: FlightTrackerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UflightUtracker = ({ className, children, disabled }: FlightTracker
         className
       )}
       role="region"
-      aria-label="UflightUtracker"
+      aria-label="FlightTracker"
     >
-      {children || 'UflightUtracker Component'}
+      {children || 'FlightTracker Component'}
     </div>
   );
 };
 
-export default UflightUtracker;
+export default FlightTracker;

@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UcargoUmanifest Component
+ * CargoManifest Component
  * 
  * Maritime component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UcargoUmanifest className="custom-class" />
+ * <CargoManifest className="custom-class" />
  * ```
  */
 export interface CargoManifestProps {
@@ -17,7 +17,7 @@ export interface CargoManifestProps {
   disabled?: boolean;
 }
 
-export const UcargoUmanifest = ({ className, children, disabled }: CargoManifestProps) => {
+export const CargoManifest = ({ className, children, disabled }: CargoManifestProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UcargoUmanifest = ({ className, children, disabled }: CargoManifest
         className
       )}
       role="region"
-      aria-label="UcargoUmanifest"
+      aria-label="CargoManifest"
     >
-      {children || 'UcargoUmanifest Component'}
+      {children || 'CargoManifest Component'}
     </div>
   );
 };
 
-export default UcargoUmanifest;
+export default CargoManifest;

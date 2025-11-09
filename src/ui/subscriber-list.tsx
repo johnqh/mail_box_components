@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UsubscriberUlist Component
+ * SubscriberList Component
  * 
  * Email marketing component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UsubscriberUlist className="custom-class" />
+ * <SubscriberList className="custom-class" />
  * ```
  */
 export interface SubscriberListProps {
@@ -17,7 +17,7 @@ export interface SubscriberListProps {
   disabled?: boolean;
 }
 
-export const UsubscriberUlist = ({ className, children, disabled }: SubscriberListProps) => {
+export const SubscriberList = ({ className, children, disabled }: SubscriberListProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UsubscriberUlist = ({ className, children, disabled }: SubscriberLi
         className
       )}
       role="region"
-      aria-label="UsubscriberUlist"
+      aria-label="SubscriberList"
     >
-      {children || 'UsubscriberUlist Component'}
+      {children || 'SubscriberList Component'}
     </div>
   );
 };
 
-export default UsubscriberUlist;
+export default SubscriberList;

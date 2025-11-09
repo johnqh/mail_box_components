@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UmachineUmonitor Component
+ * MachineMonitor Component
  * 
  * Manufacturing component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UmachineUmonitor className="custom-class" />
+ * <MachineMonitor className="custom-class" />
  * ```
  */
 export interface MachineMonitorProps {
@@ -17,7 +17,7 @@ export interface MachineMonitorProps {
   disabled?: boolean;
 }
 
-export const UmachineUmonitor = ({ className, children, disabled }: MachineMonitorProps) => {
+export const MachineMonitor = ({ className, children, disabled }: MachineMonitorProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UmachineUmonitor = ({ className, children, disabled }: MachineMonit
         className
       )}
       role="region"
-      aria-label="UmachineUmonitor"
+      aria-label="MachineMonitor"
     >
-      {children || 'UmachineUmonitor Component'}
+      {children || 'MachineMonitor Component'}
     </div>
   );
 };
 
-export default UmachineUmonitor;
+export default MachineMonitor;

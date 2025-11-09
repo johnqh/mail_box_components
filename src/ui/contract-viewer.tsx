@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UcontractUviewer Component
+ * ContractViewer Component
  * 
  * Legal & compliance component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UcontractUviewer className="custom-class" />
+ * <ContractViewer className="custom-class" />
  * ```
  */
 export interface ContractViewerProps {
@@ -17,7 +17,7 @@ export interface ContractViewerProps {
   disabled?: boolean;
 }
 
-export const UcontractUviewer = ({ className, children, disabled }: ContractViewerProps) => {
+export const ContractViewer = ({ className, children, disabled }: ContractViewerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UcontractUviewer = ({ className, children, disabled }: ContractView
         className
       )}
       role="region"
-      aria-label="UcontractUviewer"
+      aria-label="ContractViewer"
     >
-      {children || 'UcontractUviewer Component'}
+      {children || 'ContractViewer Component'}
     </div>
   );
 };
 
-export default UcontractUviewer;
+export default ContractViewer;

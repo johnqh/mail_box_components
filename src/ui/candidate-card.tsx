@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UcandidateUcard Component
+ * CandidateCard Component
  * 
  * HR & recruiting component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UcandidateUcard className="custom-class" />
+ * <CandidateCard className="custom-class" />
  * ```
  */
 export interface CandidateCardProps {
@@ -17,7 +17,7 @@ export interface CandidateCardProps {
   disabled?: boolean;
 }
 
-export const UcandidateUcard = ({ className, children, disabled }: CandidateCardProps) => {
+export const CandidateCard = ({ className, children, disabled }: CandidateCardProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UcandidateUcard = ({ className, children, disabled }: CandidateCard
         className
       )}
       role="region"
-      aria-label="UcandidateUcard"
+      aria-label="CandidateCard"
     >
-      {children || 'UcandidateUcard Component'}
+      {children || 'CandidateCard Component'}
     </div>
   );
 };
 
-export default UcandidateUcard;
+export default CandidateCard;

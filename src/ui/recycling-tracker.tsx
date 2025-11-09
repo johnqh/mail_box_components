@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UrecyclingUtracker Component
+ * RecyclingTracker Component
  * 
  * Environmental/sustainability component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UrecyclingUtracker className="custom-class" />
+ * <RecyclingTracker className="custom-class" />
  * ```
  */
 export interface RecyclingTrackerProps {
@@ -17,7 +17,7 @@ export interface RecyclingTrackerProps {
   disabled?: boolean;
 }
 
-export const UrecyclingUtracker = ({ className, children, disabled }: RecyclingTrackerProps) => {
+export const RecyclingTracker = ({ className, children, disabled }: RecyclingTrackerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UrecyclingUtracker = ({ className, children, disabled }: RecyclingT
         className
       )}
       role="region"
-      aria-label="UrecyclingUtracker"
+      aria-label="RecyclingTracker"
     >
-      {children || 'UrecyclingUtracker Component'}
+      {children || 'RecyclingTracker Component'}
     </div>
   );
 };
 
-export default UrecyclingUtracker;
+export default RecyclingTracker;

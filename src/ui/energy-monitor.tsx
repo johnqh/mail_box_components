@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UenergyUmonitor Component
+ * EnergyMonitor Component
  * 
  * Environmental/sustainability component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UenergyUmonitor className="custom-class" />
+ * <EnergyMonitor className="custom-class" />
  * ```
  */
 export interface EnergyMonitorProps {
@@ -17,7 +17,7 @@ export interface EnergyMonitorProps {
   disabled?: boolean;
 }
 
-export const UenergyUmonitor = ({ className, children, disabled }: EnergyMonitorProps) => {
+export const EnergyMonitor = ({ className, children, disabled }: EnergyMonitorProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UenergyUmonitor = ({ className, children, disabled }: EnergyMonitor
         className
       )}
       role="region"
-      aria-label="UenergyUmonitor"
+      aria-label="EnergyMonitor"
     >
-      {children || 'UenergyUmonitor Component'}
+      {children || 'EnergyMonitor Component'}
     </div>
   );
 };
 
-export default UenergyUmonitor;
+export default EnergyMonitor;

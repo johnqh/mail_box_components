@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UburndownUchart Component
+ * BurndownChart Component
  * 
  * Project management component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UburndownUchart className="custom-class" />
+ * <BurndownChart className="custom-class" />
  * ```
  */
 export interface BurndownChartProps {
@@ -17,7 +17,7 @@ export interface BurndownChartProps {
   disabled?: boolean;
 }
 
-export const UburndownUchart = ({ className, children, disabled }: BurndownChartProps) => {
+export const BurndownChart = ({ className, children, disabled }: BurndownChartProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UburndownUchart = ({ className, children, disabled }: BurndownChart
         className
       )}
       role="region"
-      aria-label="UburndownUchart"
+      aria-label="BurndownChart"
     >
-      {children || 'UburndownUchart Component'}
+      {children || 'BurndownChart Component'}
     </div>
   );
 };
 
-export default UburndownUchart;
+export default BurndownChart;

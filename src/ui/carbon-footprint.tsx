@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UcarbonUfootprint Component
+ * CarbonFootprint Component
  * 
  * Environmental/sustainability component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UcarbonUfootprint className="custom-class" />
+ * <CarbonFootprint className="custom-class" />
  * ```
  */
 export interface CarbonFootprintProps {
@@ -17,7 +17,7 @@ export interface CarbonFootprintProps {
   disabled?: boolean;
 }
 
-export const UcarbonUfootprint = ({ className, children, disabled }: CarbonFootprintProps) => {
+export const CarbonFootprint = ({ className, children, disabled }: CarbonFootprintProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UcarbonUfootprint = ({ className, children, disabled }: CarbonFootp
         className
       )}
       role="region"
-      aria-label="UcarbonUfootprint"
+      aria-label="CarbonFootprint"
     >
-      {children || 'UcarbonUfootprint Component'}
+      {children || 'CarbonFootprint Component'}
     </div>
   );
 };
 
-export default UcarbonUfootprint;
+export default CarbonFootprint;

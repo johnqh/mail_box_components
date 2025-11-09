@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UfacebookUshare Component
+ * FacebookShare Component
  * 
  * Social media integration component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UfacebookUshare className="custom-class" />
+ * <FacebookShare className="custom-class" />
  * ```
  */
 export interface FacebookShareProps {
@@ -17,7 +17,7 @@ export interface FacebookShareProps {
   disabled?: boolean;
 }
 
-export const UfacebookUshare = ({ className, children, disabled }: FacebookShareProps) => {
+export const FacebookShare = ({ className, children, disabled }: FacebookShareProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UfacebookUshare = ({ className, children, disabled }: FacebookShare
         className
       )}
       role="region"
-      aria-label="UfacebookUshare"
+      aria-label="FacebookShare"
     >
-      {children || 'UfacebookUshare Component'}
+      {children || 'FacebookShare Component'}
     </div>
   );
 };
 
-export default UfacebookUshare;
+export default FacebookShare;

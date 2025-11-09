@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UqaUreport Component
+ * QaReport Component
  * 
  * Quality assurance component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UqaUreport className="custom-class" />
+ * <QaReport className="custom-class" />
  * ```
  */
 export interface QaReportProps {
@@ -17,7 +17,7 @@ export interface QaReportProps {
   disabled?: boolean;
 }
 
-export const UqaUreport = ({ className, children, disabled }: QaReportProps) => {
+export const QaReport = ({ className, children, disabled }: QaReportProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UqaUreport = ({ className, children, disabled }: QaReportProps) => 
         className
       )}
       role="region"
-      aria-label="UqaUreport"
+      aria-label="QaReport"
     >
-      {children || 'UqaUreport Component'}
+      {children || 'QaReport Component'}
     </div>
   );
 };
 
-export default UqaUreport;
+export default QaReport;

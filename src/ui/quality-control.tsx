@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UqualityUcontrol Component
+ * QualityControl Component
  * 
  * Manufacturing component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UqualityUcontrol className="custom-class" />
+ * <QualityControl className="custom-class" />
  * ```
  */
 export interface QualityControlProps {
@@ -17,7 +17,7 @@ export interface QualityControlProps {
   disabled?: boolean;
 }
 
-export const UqualityUcontrol = ({ className, children, disabled }: QualityControlProps) => {
+export const QualityControl = ({ className, children, disabled }: QualityControlProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UqualityUcontrol = ({ className, children, disabled }: QualityContr
         className
       )}
       role="region"
-      aria-label="UqualityUcontrol"
+      aria-label="QualityControl"
     >
-      {children || 'UqualityUcontrol Component'}
+      {children || 'QualityControl Component'}
     </div>
   );
 };
 
-export default UqualityUcontrol;
+export default QualityControl;

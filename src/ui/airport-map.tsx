@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UairportUmap Component
+ * AirportMap Component
  * 
  * Aviation component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UairportUmap className="custom-class" />
+ * <AirportMap className="custom-class" />
  * ```
  */
 export interface AirportMapProps {
@@ -17,7 +17,7 @@ export interface AirportMapProps {
   disabled?: boolean;
 }
 
-export const UairportUmap = ({ className, children, disabled }: AirportMapProps) => {
+export const AirportMap = ({ className, children, disabled }: AirportMapProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UairportUmap = ({ className, children, disabled }: AirportMapProps)
         className
       )}
       role="region"
-      aria-label="UairportUmap"
+      aria-label="AirportMap"
     >
-      {children || 'UairportUmap Component'}
+      {children || 'AirportMap Component'}
     </div>
   );
 };
 
-export default UairportUmap;
+export default AirportMap;

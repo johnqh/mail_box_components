@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UcomplianceUchecker Component
+ * ComplianceChecker Component
  * 
  * Legal & compliance component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UcomplianceUchecker className="custom-class" />
+ * <ComplianceChecker className="custom-class" />
  * ```
  */
 export interface ComplianceCheckerProps {
@@ -17,7 +17,7 @@ export interface ComplianceCheckerProps {
   disabled?: boolean;
 }
 
-export const UcomplianceUchecker = ({ className, children, disabled }: ComplianceCheckerProps) => {
+export const ComplianceChecker = ({ className, children, disabled }: ComplianceCheckerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UcomplianceUchecker = ({ className, children, disabled }: Complianc
         className
       )}
       role="region"
-      aria-label="UcomplianceUchecker"
+      aria-label="ComplianceChecker"
     >
-      {children || 'UcomplianceUchecker Component'}
+      {children || 'ComplianceChecker Component'}
     </div>
   );
 };
 
-export default UcomplianceUchecker;
+export default ComplianceChecker;

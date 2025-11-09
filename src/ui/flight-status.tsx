@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UflightUstatus Component
+ * FlightStatus Component
  * 
  * Aviation component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UflightUstatus className="custom-class" />
+ * <FlightStatus className="custom-class" />
  * ```
  */
 export interface FlightStatusProps {
@@ -17,7 +17,7 @@ export interface FlightStatusProps {
   disabled?: boolean;
 }
 
-export const UflightUstatus = ({ className, children, disabled }: FlightStatusProps) => {
+export const FlightStatus = ({ className, children, disabled }: FlightStatusProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UflightUstatus = ({ className, children, disabled }: FlightStatusPr
         className
       )}
       role="region"
-      aria-label="UflightUstatus"
+      aria-label="FlightStatus"
     >
-      {children || 'UflightUstatus Component'}
+      {children || 'FlightStatus Component'}
     </div>
   );
 };
 
-export default UflightUstatus;
+export default FlightStatus;

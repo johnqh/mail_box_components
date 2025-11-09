@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UauditUtrail Component
+ * AuditTrail Component
  * 
  * Legal & compliance component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UauditUtrail className="custom-class" />
+ * <AuditTrail className="custom-class" />
  * ```
  */
 export interface AuditTrailProps {
@@ -17,7 +17,7 @@ export interface AuditTrailProps {
   disabled?: boolean;
 }
 
-export const UauditUtrail = ({ className, children, disabled }: AuditTrailProps) => {
+export const AuditTrail = ({ className, children, disabled }: AuditTrailProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UauditUtrail = ({ className, children, disabled }: AuditTrailProps)
         className
       )}
       role="region"
-      aria-label="UauditUtrail"
+      aria-label="AuditTrail"
     >
-      {children || 'UauditUtrail Component'}
+      {children || 'AuditTrail Component'}
     </div>
   );
 };
 
-export default UauditUtrail;
+export default AuditTrail;

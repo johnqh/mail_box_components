@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UinterviewUscheduler Component
+ * InterviewScheduler Component
  * 
  * HR & recruiting component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UinterviewUscheduler className="custom-class" />
+ * <InterviewScheduler className="custom-class" />
  * ```
  */
 export interface InterviewSchedulerProps {
@@ -17,7 +17,7 @@ export interface InterviewSchedulerProps {
   disabled?: boolean;
 }
 
-export const UinterviewUscheduler = ({ className, children, disabled }: InterviewSchedulerProps) => {
+export const InterviewScheduler = ({ className, children, disabled }: InterviewSchedulerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UinterviewUscheduler = ({ className, children, disabled }: Intervie
         className
       )}
       role="region"
-      aria-label="UinterviewUscheduler"
+      aria-label="InterviewScheduler"
     >
-      {children || 'UinterviewUscheduler Component'}
+      {children || 'InterviewScheduler Component'}
     </div>
   );
 };
 
-export default UinterviewUscheduler;
+export default InterviewScheduler;

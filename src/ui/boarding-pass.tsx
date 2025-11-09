@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UboardingUpass Component
+ * BoardingPass Component
  * 
  * Aviation component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UboardingUpass className="custom-class" />
+ * <BoardingPass className="custom-class" />
  * ```
  */
 export interface BoardingPassProps {
@@ -17,7 +17,7 @@ export interface BoardingPassProps {
   disabled?: boolean;
 }
 
-export const UboardingUpass = ({ className, children, disabled }: BoardingPassProps) => {
+export const BoardingPass = ({ className, children, disabled }: BoardingPassProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UboardingUpass = ({ className, children, disabled }: BoardingPassPr
         className
       )}
       role="region"
-      aria-label="UboardingUpass"
+      aria-label="BoardingPass"
     >
-      {children || 'UboardingUpass Component'}
+      {children || 'BoardingPass Component'}
     </div>
   );
 };
 
-export default UboardingUpass;
+export default BoardingPass;

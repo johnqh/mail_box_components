@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UticketUsystem Component
+ * TicketSystem Component
  * 
  * Customer support component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UticketUsystem className="custom-class" />
+ * <TicketSystem className="custom-class" />
  * ```
  */
 export interface TicketSystemProps {
@@ -17,7 +17,7 @@ export interface TicketSystemProps {
   disabled?: boolean;
 }
 
-export const UticketUsystem = ({ className, children, disabled }: TicketSystemProps) => {
+export const TicketSystem = ({ className, children, disabled }: TicketSystemProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UticketUsystem = ({ className, children, disabled }: TicketSystemPr
         className
       )}
       role="region"
-      aria-label="UticketUsystem"
+      aria-label="TicketSystem"
     >
-      {children || 'UticketUsystem Component'}
+      {children || 'TicketSystem Component'}
     </div>
   );
 };
 
-export default UticketUsystem;
+export default TicketSystem;

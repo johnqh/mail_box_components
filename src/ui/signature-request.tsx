@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UsignatureUrequest Component
+ * SignatureRequest Component
  * 
  * Legal & compliance component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UsignatureUrequest className="custom-class" />
+ * <SignatureRequest className="custom-class" />
  * ```
  */
 export interface SignatureRequestProps {
@@ -17,7 +17,7 @@ export interface SignatureRequestProps {
   disabled?: boolean;
 }
 
-export const UsignatureUrequest = ({ className, children, disabled }: SignatureRequestProps) => {
+export const SignatureRequest = ({ className, children, disabled }: SignatureRequestProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UsignatureUrequest = ({ className, children, disabled }: SignatureR
         className
       )}
       role="region"
-      aria-label="UsignatureUrequest"
+      aria-label="SignatureRequest"
     >
-      {children || 'UsignatureUrequest Component'}
+      {children || 'SignatureRequest Component'}
     </div>
   );
 };
 
-export default UsignatureUrequest;
+export default SignatureRequest;

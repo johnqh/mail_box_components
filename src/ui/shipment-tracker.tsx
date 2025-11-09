@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UshipmentUtracker Component
+ * ShipmentTracker Component
  * 
  * Supply chain component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UshipmentUtracker className="custom-class" />
+ * <ShipmentTracker className="custom-class" />
  * ```
  */
 export interface ShipmentTrackerProps {
@@ -17,7 +17,7 @@ export interface ShipmentTrackerProps {
   disabled?: boolean;
 }
 
-export const UshipmentUtracker = ({ className, children, disabled }: ShipmentTrackerProps) => {
+export const ShipmentTracker = ({ className, children, disabled }: ShipmentTrackerProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UshipmentUtracker = ({ className, children, disabled }: ShipmentTra
         className
       )}
       role="region"
-      aria-label="UshipmentUtracker"
+      aria-label="ShipmentTracker"
     >
-      {children || 'UshipmentUtracker Component'}
+      {children || 'ShipmentTracker Component'}
     </div>
   );
 };
 
-export default UshipmentUtracker;
+export default ShipmentTracker;

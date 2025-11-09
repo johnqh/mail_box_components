@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UregressionUtest Component
+ * RegressionTest Component
  * 
  * Quality assurance component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UregressionUtest className="custom-class" />
+ * <RegressionTest className="custom-class" />
  * ```
  */
 export interface RegressionTestProps {
@@ -17,7 +17,7 @@ export interface RegressionTestProps {
   disabled?: boolean;
 }
 
-export const UregressionUtest = ({ className, children, disabled }: RegressionTestProps) => {
+export const RegressionTest = ({ className, children, disabled }: RegressionTestProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UregressionUtest = ({ className, children, disabled }: RegressionTe
         className
       )}
       role="region"
-      aria-label="UregressionUtest"
+      aria-label="RegressionTest"
     >
-      {children || 'UregressionUtest Component'}
+      {children || 'RegressionTest Component'}
     </div>
   );
 };
 
-export default UregressionUtest;
+export default RegressionTest;

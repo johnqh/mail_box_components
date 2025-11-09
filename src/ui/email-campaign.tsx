@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UemailUcampaign Component
+ * EmailCampaign Component
  * 
  * Email marketing component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UemailUcampaign className="custom-class" />
+ * <EmailCampaign className="custom-class" />
  * ```
  */
 export interface EmailCampaignProps {
@@ -17,7 +17,7 @@ export interface EmailCampaignProps {
   disabled?: boolean;
 }
 
-export const UemailUcampaign = ({ className, children, disabled }: EmailCampaignProps) => {
+export const EmailCampaign = ({ className, children, disabled }: EmailCampaignProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UemailUcampaign = ({ className, children, disabled }: EmailCampaign
         className
       )}
       role="region"
-      aria-label="UemailUcampaign"
+      aria-label="EmailCampaign"
     >
-      {children || 'UemailUcampaign Component'}
+      {children || 'EmailCampaign Component'}
     </div>
   );
 };
 
-export default UemailUcampaign;
+export default EmailCampaign;

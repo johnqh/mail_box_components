@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UinstagramUwidget Component
+ * InstagramWidget Component
  * 
  * Social media integration component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UinstagramUwidget className="custom-class" />
+ * <InstagramWidget className="custom-class" />
  * ```
  */
 export interface InstagramWidgetProps {
@@ -17,7 +17,7 @@ export interface InstagramWidgetProps {
   disabled?: boolean;
 }
 
-export const UinstagramUwidget = ({ className, children, disabled }: InstagramWidgetProps) => {
+export const InstagramWidget = ({ className, children, disabled }: InstagramWidgetProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UinstagramUwidget = ({ className, children, disabled }: InstagramWi
         className
       )}
       role="region"
-      aria-label="UinstagramUwidget"
+      aria-label="InstagramWidget"
     >
-      {children || 'UinstagramUwidget Component'}
+      {children || 'InstagramWidget Component'}
     </div>
   );
 };
 
-export default UinstagramUwidget;
+export default InstagramWidget;

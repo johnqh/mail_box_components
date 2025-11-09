@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UsustainabilityUscore Component
+ * SustainabilityScore Component
  * 
  * Environmental/sustainability component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UsustainabilityUscore className="custom-class" />
+ * <SustainabilityScore className="custom-class" />
  * ```
  */
 export interface SustainabilityScoreProps {
@@ -17,7 +17,7 @@ export interface SustainabilityScoreProps {
   disabled?: boolean;
 }
 
-export const UsustainabilityUscore = ({ className, children, disabled }: SustainabilityScoreProps) => {
+export const SustainabilityScore = ({ className, children, disabled }: SustainabilityScoreProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UsustainabilityUscore = ({ className, children, disabled }: Sustain
         className
       )}
       role="region"
-      aria-label="UsustainabilityUscore"
+      aria-label="SustainabilityScore"
     >
-      {children || 'UsustainabilityUscore Component'}
+      {children || 'SustainabilityScore Component'}
     </div>
   );
 };
 
-export default UsustainabilityUscore;
+export default SustainabilityScore;

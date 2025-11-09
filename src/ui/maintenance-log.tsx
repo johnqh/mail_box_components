@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UmaintenanceUlog Component
+ * MaintenanceLog Component
  * 
  * Automotive component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UmaintenanceUlog className="custom-class" />
+ * <MaintenanceLog className="custom-class" />
  * ```
  */
 export interface MaintenanceLogProps {
@@ -17,7 +17,7 @@ export interface MaintenanceLogProps {
   disabled?: boolean;
 }
 
-export const UmaintenanceUlog = ({ className, children, disabled }: MaintenanceLogProps) => {
+export const MaintenanceLog = ({ className, children, disabled }: MaintenanceLogProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UmaintenanceUlog = ({ className, children, disabled }: MaintenanceL
         className
       )}
       role="region"
-      aria-label="UmaintenanceUlog"
+      aria-label="MaintenanceLog"
     >
-      {children || 'UmaintenanceUlog Component'}
+      {children || 'MaintenanceLog Component'}
     </div>
   );
 };
 
-export default UmaintenanceUlog;
+export default MaintenanceLog;

@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UtaskUboard Component
+ * TaskBoard Component
  * 
  * Project management component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UtaskUboard className="custom-class" />
+ * <TaskBoard className="custom-class" />
  * ```
  */
 export interface TaskBoardProps {
@@ -17,7 +17,7 @@ export interface TaskBoardProps {
   disabled?: boolean;
 }
 
-export const UtaskUboard = ({ className, children, disabled }: TaskBoardProps) => {
+export const TaskBoard = ({ className, children, disabled }: TaskBoardProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UtaskUboard = ({ className, children, disabled }: TaskBoardProps) =
         className
       )}
       role="region"
-      aria-label="UtaskUboard"
+      aria-label="TaskBoard"
     >
-      {children || 'UtaskUboard Component'}
+      {children || 'TaskBoard Component'}
     </div>
   );
 };
 
-export default UtaskUboard;
+export default TaskBoard;

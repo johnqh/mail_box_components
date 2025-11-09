@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UtwitterUembed Component
+ * TwitterEmbed Component
  * 
  * Social media integration component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UtwitterUembed className="custom-class" />
+ * <TwitterEmbed className="custom-class" />
  * ```
  */
 export interface TwitterEmbedProps {
@@ -17,7 +17,7 @@ export interface TwitterEmbedProps {
   disabled?: boolean;
 }
 
-export const UtwitterUembed = ({ className, children, disabled }: TwitterEmbedProps) => {
+export const TwitterEmbed = ({ className, children, disabled }: TwitterEmbedProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UtwitterUembed = ({ className, children, disabled }: TwitterEmbedPr
         className
       )}
       role="region"
-      aria-label="UtwitterUembed"
+      aria-label="TwitterEmbed"
     >
-      {children || 'UtwitterUembed Component'}
+      {children || 'TwitterEmbed Component'}
     </div>
   );
 };
 
-export default UtwitterUembed;
+export default TwitterEmbed;

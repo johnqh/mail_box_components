@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UvehicleUstatus Component
+ * VehicleStatus Component
  * 
  * Automotive component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UvehicleUstatus className="custom-class" />
+ * <VehicleStatus className="custom-class" />
  * ```
  */
 export interface VehicleStatusProps {
@@ -17,7 +17,7 @@ export interface VehicleStatusProps {
   disabled?: boolean;
 }
 
-export const UvehicleUstatus = ({ className, children, disabled }: VehicleStatusProps) => {
+export const VehicleStatus = ({ className, children, disabled }: VehicleStatusProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UvehicleUstatus = ({ className, children, disabled }: VehicleStatus
         className
       )}
       role="region"
-      aria-label="UvehicleUstatus"
+      aria-label="VehicleStatus"
     >
-      {children || 'UvehicleUstatus Component'}
+      {children || 'VehicleStatus Component'}
     </div>
   );
 };
 
-export default UvehicleUstatus;
+export default VehicleStatus;

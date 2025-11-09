@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UprojectUboard Component
+ * ProjectBoard Component
  * 
  * Project management component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UprojectUboard className="custom-class" />
+ * <ProjectBoard className="custom-class" />
  * ```
  */
 export interface ProjectBoardProps {
@@ -17,7 +17,7 @@ export interface ProjectBoardProps {
   disabled?: boolean;
 }
 
-export const UprojectUboard = ({ className, children, disabled }: ProjectBoardProps) => {
+export const ProjectBoard = ({ className, children, disabled }: ProjectBoardProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UprojectUboard = ({ className, children, disabled }: ProjectBoardPr
         className
       )}
       role="region"
-      aria-label="UprojectUboard"
+      aria-label="ProjectBoard"
     >
-      {children || 'UprojectUboard Component'}
+      {children || 'ProjectBoard Component'}
     </div>
   );
 };
 
-export default UprojectUboard;
+export default ProjectBoard;

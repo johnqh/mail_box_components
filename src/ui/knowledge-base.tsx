@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UknowledgeUbase Component
+ * KnowledgeBase Component
  * 
  * Customer support component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UknowledgeUbase className="custom-class" />
+ * <KnowledgeBase className="custom-class" />
  * ```
  */
 export interface KnowledgeBaseProps {
@@ -17,7 +17,7 @@ export interface KnowledgeBaseProps {
   disabled?: boolean;
 }
 
-export const UknowledgeUbase = ({ className, children, disabled }: KnowledgeBaseProps) => {
+export const KnowledgeBase = ({ className, children, disabled }: KnowledgeBaseProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UknowledgeUbase = ({ className, children, disabled }: KnowledgeBase
         className
       )}
       role="region"
-      aria-label="UknowledgeUbase"
+      aria-label="KnowledgeBase"
     >
-      {children || 'UknowledgeUbase Component'}
+      {children || 'KnowledgeBase Component'}
     </div>
   );
 };
 
-export default UknowledgeUbase;
+export default KnowledgeBase;

@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UfuelUgauge Component
+ * FuelGauge Component
  * 
  * Automotive component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UfuelUgauge className="custom-class" />
+ * <FuelGauge className="custom-class" />
  * ```
  */
 export interface FuelGaugeProps {
@@ -17,7 +17,7 @@ export interface FuelGaugeProps {
   disabled?: boolean;
 }
 
-export const UfuelUgauge = ({ className, children, disabled }: FuelGaugeProps) => {
+export const FuelGauge = ({ className, children, disabled }: FuelGaugeProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UfuelUgauge = ({ className, children, disabled }: FuelGaugeProps) =
         className
       )}
       role="region"
-      aria-label="UfuelUgauge"
+      aria-label="FuelGauge"
     >
-      {children || 'UfuelUgauge Component'}
+      {children || 'FuelGauge Component'}
     </div>
   );
 };
 
-export default UfuelUgauge;
+export default FuelGauge;

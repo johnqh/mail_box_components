@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UstockUlevel Component
+ * StockLevel Component
  * 
  * Inventory management component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UstockUlevel className="custom-class" />
+ * <StockLevel className="custom-class" />
  * ```
  */
 export interface StockLevelProps {
@@ -17,7 +17,7 @@ export interface StockLevelProps {
   disabled?: boolean;
 }
 
-export const UstockUlevel = ({ className, children, disabled }: StockLevelProps) => {
+export const StockLevel = ({ className, children, disabled }: StockLevelProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UstockUlevel = ({ className, children, disabled }: StockLevelProps)
         className
       )}
       role="region"
-      aria-label="UstockUlevel"
+      aria-label="StockLevel"
     >
-      {children || 'UstockUlevel Component'}
+      {children || 'StockLevel Component'}
     </div>
   );
 };
 
-export default UstockUlevel;
+export default StockLevel;

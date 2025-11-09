@@ -1,14 +1,14 @@
 import { cn } from '../lib/utils';
 
 /**
- * UjobUposting Component
+ * JobPosting Component
  * 
  * HR & recruiting component with full dark mode support.
  * 
  * @component
  * @example
  * ```tsx
- * <UjobUposting className="custom-class" />
+ * <JobPosting className="custom-class" />
  * ```
  */
 export interface JobPostingProps {
@@ -17,7 +17,7 @@ export interface JobPostingProps {
   disabled?: boolean;
 }
 
-export const UjobUposting = ({ className, children, disabled }: JobPostingProps) => {
+export const JobPosting = ({ className, children, disabled }: JobPostingProps) => {
   return (
     <div 
       className={cn(
@@ -29,11 +29,11 @@ export const UjobUposting = ({ className, children, disabled }: JobPostingProps)
         className
       )}
       role="region"
-      aria-label="UjobUposting"
+      aria-label="JobPosting"
     >
-      {children || 'UjobUposting Component'}
+      {children || 'JobPosting Component'}
     </div>
   );
 };
 
-export default UjobUposting;
+export default JobPosting;

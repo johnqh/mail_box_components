@@ -197,6 +197,10 @@ export { Rating } from './rating';
 export { Timeline } from './timeline';
 export { Carousel } from './carousel';
 export { Table } from './table';
+export { DateRangePicker } from './date-range-picker';
+export { ColorPicker } from './color-picker';
+export { TreeView } from './tree-view';
+export { VirtualList } from './virtual-list';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -318,6 +322,10 @@ export type { RatingProps } from './rating';
 export type { TimelineProps, TimelineItem } from './timeline';
 export type { CarouselProps } from './carousel';
 export type { TableProps, TableColumn } from './table';
+export type { DateRangePickerProps, DateRange } from './date-range-picker';
+export type { ColorPickerProps } from './color-picker';
+export type { TreeViewProps, TreeNode } from './tree-view';
+export type { VirtualListProps } from './virtual-list';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -456,3 +464,7 @@ export * from './rating';
 export * from './timeline';
 export * from './carousel';
 export * from './table';
+export * from './date-range-picker';
+export * from './color-picker';
+export * from './tree-view';
+export * from './virtual-list';

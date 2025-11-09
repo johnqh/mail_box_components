@@ -165,6 +165,10 @@ export { Text } from './text';
 export { Box } from './box';
 export { Flex } from './flex';
 export { Container } from './container';
+export { Heading } from './heading';
+export { HelperText } from './helper-text';
+export { VisuallyHidden } from './visually-hidden';
+export { AspectRatio } from './aspect-ratio';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -251,6 +255,10 @@ export type { TextProps } from './text';
 export type { BoxProps } from './box';
 export type { FlexProps } from './flex';
 export type { ContainerProps } from './container';
+export type { HeadingProps } from './heading';
+export type { HelperTextProps } from './helper-text';
+export type { VisuallyHiddenProps } from './visually-hidden';
+export type { AspectRatioProps } from './aspect-ratio';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -357,3 +365,7 @@ export * from './text';
 export * from './box';
 export * from './flex';
 export * from './container';
+export * from './heading';
+export * from './helper-text';
+export * from './visually-hidden';
+export * from './aspect-ratio';

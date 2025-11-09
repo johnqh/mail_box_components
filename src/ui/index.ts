@@ -213,6 +213,10 @@ export { PasswordInput } from './password-input';
 export { PhoneInput } from './phone-input';
 export { CreditCardInput } from './credit-card-input';
 export { CurrencyInput } from './currency-input';
+export { TimePicker } from './time-picker';
+export { DateTimePicker } from './date-time-picker';
+export { CountdownTimer } from './countdown-timer';
+export { ProgressCircle } from './progress-circle';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -350,6 +354,10 @@ export type { PasswordInputProps, PasswordStrength } from './password-input';
 export type { PhoneInputProps, Country } from './phone-input';
 export type { CreditCardInputProps, CardType } from './credit-card-input';
 export type { CurrencyInputProps, Currency } from './currency-input';
+export type { TimePickerProps } from './time-picker';
+export type { DateTimePickerProps } from './date-time-picker';
+export type { CountdownTimerProps } from './countdown-timer';
+export type { ProgressCircleProps } from './progress-circle';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -504,3 +512,7 @@ export * from './password-input';
 export * from './phone-input';
 export * from './credit-card-input';
 export * from './currency-input';
+export * from './time-picker';
+export * from './date-time-picker';
+export * from './countdown-timer';
+export * from './progress-circle';

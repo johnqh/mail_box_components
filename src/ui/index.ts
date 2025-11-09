@@ -221,6 +221,10 @@ export { DragDrop } from './drag-drop';
 export { Resizable } from './resizable';
 export { FocusTrap } from './focus-trap';
 export { ScrollSpy } from './scroll-spy';
+export { LoadingDots } from './loading-dots';
+export { QRCodeDisplay } from './qr-code-display';
+export { ColorSwatch } from './color-swatch';
+export { ImageCropper } from './image-cropper';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -366,6 +370,10 @@ export type { DragDropProps } from './drag-drop';
 export type { ResizableProps, ResizeDirection } from './resizable';
 export type { FocusTrapProps } from './focus-trap';
 export type { ScrollSpyProps, ScrollSpySection } from './scroll-spy';
+export type { LoadingDotsProps } from './loading-dots';
+export type { QRCodeDisplayProps } from './qr-code-display';
+export type { ColorSwatchProps, Color } from './color-swatch';
+export type { ImageCropperProps, CropArea } from './image-cropper';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -528,3 +536,7 @@ export * from './drag-drop';
 export * from './resizable';
 export * from './focus-trap';
 export * from './scroll-spy';
+export * from './loading-dots';
+export * from './qr-code-display';
+export * from './color-swatch';
+export * from './image-cropper';

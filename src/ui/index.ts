@@ -153,6 +153,10 @@ export { DateInput } from './date-input';
 export { RadioGroup, type RadioOption } from './radio-group';
 export { TextArea } from './text-area';
 export { FileInput } from './file-input';
+export { Collapsible } from './collapsible';
+export { Accordion, type AccordionItem } from './accordion';
+export { Image } from './image';
+export { Link } from './link';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -227,6 +231,10 @@ export type { DateInputProps } from './date-input';
 export type { RadioGroupProps } from './radio-group';
 export type { TextAreaProps } from './text-area';
 export type { FileInputProps } from './file-input';
+export type { CollapsibleProps } from './collapsible';
+export type { AccordionProps } from './accordion';
+export type { ImageProps } from './image';
+export type { LinkProps } from './link';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -321,3 +329,7 @@ export * from './date-input';
 export * from './radio-group';
 export * from './text-area';
 export * from './file-input';
+export * from './collapsible';
+export * from './accordion';
+export * from './image';
+export * from './link';

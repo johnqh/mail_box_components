@@ -173,6 +173,10 @@ export { Kbd } from './kbd';
 export { Code } from './code';
 export { Blockquote } from './blockquote';
 export { List, ListItem } from './list';
+export { ScrollArea } from './scroll-area';
+export { Show } from './show';
+export { Portal } from './portal';
+export { Overlay } from './overlay';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -267,6 +271,10 @@ export type { KbdProps } from './kbd';
 export type { CodeProps } from './code';
 export type { BlockquoteProps } from './blockquote';
 export type { ListProps, ListItemProps } from './list';
+export type { ScrollAreaProps } from './scroll-area';
+export type { ShowProps } from './show';
+export type { PortalProps } from './portal';
+export type { OverlayProps } from './overlay';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -381,3 +389,7 @@ export * from './kbd';
 export * from './code';
 export * from './blockquote';
 export * from './list';
+export * from './scroll-area';
+export * from './show';
+export * from './portal';
+export * from './overlay';

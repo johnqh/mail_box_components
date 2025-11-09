@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfileUtree Component
- * 
+ *
  * A reusable UfileUtree component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfileUtree className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/file-tree}
  */
 
@@ -33,14 +33,14 @@ export interface UfileUtreeProps {
   onClick?: () => void;
 }
 
-export const UfileUtree = ({ 
-  className, 
+export const UfileUtree = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfileUtreeProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfileUtree = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfileUtree"
+      role='region'
+      aria-label='UfileUtree'
     >
       {children || 'UfileUtree Component'}
     </div>

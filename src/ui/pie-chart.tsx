@@ -54,7 +54,14 @@ export const PieChart: React.FC<PieChartProps> = ({
   className,
 }) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
-  const defaultColors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
+  const defaultColors = [
+    '#3b82f6',
+    '#10b981',
+    '#f59e0b',
+    '#ef4444',
+    '#8b5cf6',
+    '#ec4899',
+  ];
 
   let currentAngle = -90; // Start from top
   const slices = data.map((item, index) => {
@@ -73,7 +80,12 @@ export const PieChart: React.FC<PieChartProps> = ({
     };
   });
 
-  const polarToCartesian = (centerX: number, centerY: number, radius: number, angleInDegrees: number) => {
+  const polarToCartesian = (
+    centerX: number,
+    centerY: number,
+    radius: number,
+    angleInDegrees: number
+  ) => {
     const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
     return {
       x: centerX + radius * Math.cos(angleInRadians),
@@ -81,7 +93,13 @@ export const PieChart: React.FC<PieChartProps> = ({
     };
   };
 
-  const describeArc = (x: number, y: number, radius: number, startAngle: number, endAngle: number) => {
+  const describeArc = (
+    x: number,
+    y: number,
+    radius: number,
+    startAngle: number,
+    endAngle: number
+  ) => {
     const start = polarToCartesian(x, y, radius, endAngle);
     const end = polarToCartesian(x, y, radius, startAngle);
     const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
@@ -92,52 +110,87 @@ export const PieChart: React.FC<PieChartProps> = ({
       const innerEnd = polarToCartesian(x, y, innerRadius, startAngle);
 
       return [
-        'M', start.x, start.y,
-        'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y,
-        'L', innerEnd.x, innerEnd.y,
-        'A', innerRadius, innerRadius, 0, largeArcFlag, 1, innerStart.x, innerStart.y,
+        'M',
+        start.x,
+        start.y,
+        'A',
+        radius,
+        radius,
+        0,
+        largeArcFlag,
+        0,
+        end.x,
+        end.y,
+        'L',
+        innerEnd.x,
+        innerEnd.y,
+        'A',
+        innerRadius,
+        innerRadius,
+        0,
+        largeArcFlag,
+        1,
+        innerStart.x,
+        innerStart.y,
         'Z',
       ].join(' ');
     }
 
     return [
-      'M', x, y,
-      'L', start.x, start.y,
-      'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y,
+      'M',
+      x,
+      y,
+      'L',
+      start.x,
+      start.y,
+      'A',
+      radius,
+      radius,
+      0,
+      largeArcFlag,
+      0,
+      end.x,
+      end.y,
       'Z',
     ].join(' ');
   };
 
   const center = size / 2;
-  const radius = (size / 2) - 10;
+  const radius = size / 2 - 10;
 
   return (
     <div className={cn('flex flex-col items-center gap-4', className)}>
       {/* Chart */}
-      <svg width={size} height={size} className="transform rotate-0">
+      <svg width={size} height={size} className='transform rotate-0'>
         {slices.map((slice, index) => (
           <path
             key={index}
-            d={describeArc(center, center, radius, slice.startAngle, slice.endAngle)}
+            d={describeArc(
+              center,
+              center,
+              radius,
+              slice.startAngle,
+              slice.endAngle
+            )}
             fill={slice.color}
-            className="transition-opacity hover:opacity-80"
+            className='transition-opacity hover:opacity-80'
           />
         ))}
       </svg>
 
       {/* Legend */}
       {showLegend && (
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           {slices.map((slice, index) => (
-            <div key={index} className="flex items-center gap-2">
+            <div key={index} className='flex items-center gap-2'>
               <div
-                className="w-3 h-3 rounded-sm"
+                className='w-3 h-3 rounded-sm'
                 style={{ backgroundColor: slice.color }}
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">
+              <span className='text-sm text-gray-700 dark:text-gray-300'>
                 {slice.label}
                 {showPercentages && (
-                  <span className="text-gray-500 dark:text-gray-400 ml-1">
+                  <span className='text-gray-500 dark:text-gray-400 ml-1'>
                     ({slice.percentage.toFixed(1)}%)
                   </span>
                 )}

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UagentUcard Component
- * 
+ *
  * A reusable UagentUcard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UagentUcard className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/agent-card}
  */
 
@@ -33,14 +33,14 @@ export interface UagentUcardProps {
   onClick?: () => void;
 }
 
-export const UagentUcard = ({ 
-  className, 
+export const UagentUcard = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UagentUcardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UagentUcard = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UagentUcard"
+      role='region'
+      aria-label='UagentUcard'
     >
       {children || 'UagentUcard Component'}
     </div>

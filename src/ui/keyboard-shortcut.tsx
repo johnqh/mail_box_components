@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UkeyboardUshortcut Component
- * 
+ *
  * A reusable UkeyboardUshortcut component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UkeyboardUshortcut className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/keyboard-shortcut}
  */
 
@@ -33,14 +33,14 @@ export interface UkeyboardUshortcutProps {
   onClick?: () => void;
 }
 
-export const UkeyboardUshortcut = ({ 
-  className, 
+export const UkeyboardUshortcut = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UkeyboardUshortcutProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UkeyboardUshortcut = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UkeyboardUshortcut"
+      role='region'
+      aria-label='UkeyboardUshortcut'
     >
       {children || 'UkeyboardUshortcut Component'}
     </div>

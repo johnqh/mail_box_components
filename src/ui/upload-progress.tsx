@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UuploadUprogress Component
- * 
+ *
  * A reusable UuploadUprogress component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UuploadUprogress className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/upload-progress}
  */
 
@@ -33,14 +33,14 @@ export interface UuploadUprogressProps {
   onClick?: () => void;
 }
 
-export const UuploadUprogress = ({ 
-  className, 
+export const UuploadUprogress = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UuploadUprogressProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UuploadUprogress = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UuploadUprogress"
+      role='region'
+      aria-label='UuploadUprogress'
     >
       {children || 'UuploadUprogress Component'}
     </div>

@@ -93,7 +93,9 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
       }
 
       const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
@@ -118,12 +120,12 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
     if (compact) {
       return (
-        <span className="inline-flex items-baseline">
-          <span className="text-2xl font-bold text-gray-900 dark:text-white tabular-nums">
+        <span className='inline-flex items-baseline'>
+          <span className='text-2xl font-bold text-gray-900 dark:text-white tabular-nums'>
             {value.toString().padStart(2, '0')}
           </span>
           {showLabels && (
-            <span className="text-xs text-gray-600 dark:text-gray-400 ml-0.5">
+            <span className='text-xs text-gray-600 dark:text-gray-400 ml-0.5'>
               {label[0].toLowerCase()}
             </span>
           )}
@@ -132,7 +134,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     }
 
     return (
-      <div className="flex flex-col items-center">
+      <div className='flex flex-col items-center'>
         <div
           className={cn(
             'min-w-[60px] px-4 py-3 rounded-lg',
@@ -140,12 +142,12 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
             'shadow-lg'
           )}
         >
-          <span className="text-3xl font-bold text-white tabular-nums">
+          <span className='text-3xl font-bold text-white tabular-nums'>
             {value.toString().padStart(2, '0')}
           </span>
         </div>
         {showLabels && (
-          <span className="text-xs font-medium text-gray-600 dark:text-gray-400 mt-2 uppercase tracking-wider">
+          <span className='text-xs font-medium text-gray-600 dark:text-gray-400 mt-2 uppercase tracking-wider'>
             {label}
           </span>
         )}
@@ -156,10 +158,10 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
   if (timeLeft.isExpired) {
     return (
       <div className={cn('text-center', className)}>
-        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+        <div className='text-2xl font-bold text-gray-900 dark:text-white'>
           Time's Up!
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+        <p className='text-sm text-gray-600 dark:text-gray-400 mt-2'>
           The countdown has ended
         </p>
       </div>
@@ -176,15 +178,21 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
       >
         {renderTimeUnit(timeLeft.days, 'Days', showDays)}
         {!compact && showDays && showHours && (
-          <div className="text-3xl font-bold text-gray-400 dark:text-gray-600">:</div>
+          <div className='text-3xl font-bold text-gray-400 dark:text-gray-600'>
+            :
+          </div>
         )}
         {renderTimeUnit(timeLeft.hours, 'Hours', showHours)}
         {!compact && showHours && showMinutes && (
-          <div className="text-3xl font-bold text-gray-400 dark:text-gray-600">:</div>
+          <div className='text-3xl font-bold text-gray-400 dark:text-gray-600'>
+            :
+          </div>
         )}
         {renderTimeUnit(timeLeft.minutes, 'Minutes', showMinutes)}
         {!compact && showMinutes && showSeconds && (
-          <div className="text-3xl font-bold text-gray-400 dark:text-gray-600">:</div>
+          <div className='text-3xl font-bold text-gray-400 dark:text-gray-600'>
+            :
+          </div>
         )}
         {renderTimeUnit(timeLeft.seconds, 'Seconds', showSeconds)}
       </div>

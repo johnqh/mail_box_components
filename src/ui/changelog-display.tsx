@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UchangelogUdisplay Component
- * 
+ *
  * A reusable UchangelogUdisplay component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UchangelogUdisplay className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/changelog-display}
  */
 
@@ -33,14 +33,14 @@ export interface UchangelogUdisplayProps {
   onClick?: () => void;
 }
 
-export const UchangelogUdisplay = ({ 
-  className, 
+export const UchangelogUdisplay = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UchangelogUdisplayProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UchangelogUdisplay = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UchangelogUdisplay"
+      role='region'
+      aria-label='UchangelogUdisplay'
     >
       {children || 'UchangelogUdisplay Component'}
     </div>

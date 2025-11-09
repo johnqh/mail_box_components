@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UroleUmanager Component
- * 
+ *
  * A reusable UroleUmanager component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UroleUmanager className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/role-manager}
  */
 
@@ -33,14 +33,14 @@ export interface UroleUmanagerProps {
   onClick?: () => void;
 }
 
-export const UroleUmanager = ({ 
-  className, 
+export const UroleUmanager = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UroleUmanagerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UroleUmanager = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UroleUmanager"
+      role='region'
+      aria-label='UroleUmanager'
     >
       {children || 'UroleUmanager Component'}
     </div>

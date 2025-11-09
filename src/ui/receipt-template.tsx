@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UreceiptUtemplate Component
- * 
+ *
  * A reusable UreceiptUtemplate component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UreceiptUtemplate className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/receipt-template}
  */
 
@@ -33,14 +33,14 @@ export interface UreceiptUtemplateProps {
   onClick?: () => void;
 }
 
-export const UreceiptUtemplate = ({ 
-  className, 
+export const UreceiptUtemplate = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UreceiptUtemplateProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UreceiptUtemplate = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UreceiptUtemplate"
+      role='region'
+      aria-label='UreceiptUtemplate'
     >
       {children || 'UreceiptUtemplate Component'}
     </div>

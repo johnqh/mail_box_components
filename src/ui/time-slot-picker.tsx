@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtimeUslotUpicker Component
- * 
+ *
  * A reusable UtimeUslotUpicker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtimeUslotUpicker className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/time-slot-picker}
  */
 
@@ -33,14 +33,14 @@ export interface UtimeUslotUpickerProps {
   onClick?: () => void;
 }
 
-export const UtimeUslotUpicker = ({ 
-  className, 
+export const UtimeUslotUpicker = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtimeUslotUpickerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtimeUslotUpicker = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtimeUslotUpicker"
+      role='region'
+      aria-label='UtimeUslotUpicker'
     >
       {children || 'UtimeUslotUpicker Component'}
     </div>

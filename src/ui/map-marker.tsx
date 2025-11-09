@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UmapUmarker Component
- * 
+ *
  * A reusable UmapUmarker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UmapUmarker className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/map-marker}
  */
 
@@ -33,14 +33,14 @@ export interface UmapUmarkerProps {
   onClick?: () => void;
 }
 
-export const UmapUmarker = ({ 
-  className, 
+export const UmapUmarker = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UmapUmarkerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UmapUmarker = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UmapUmarker"
+      role='region'
+      aria-label='UmapUmarker'
     >
       {children || 'UmapUmarker Component'}
     </div>

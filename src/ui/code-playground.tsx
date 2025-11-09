@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UcodeUplayground Component
- * 
+ *
  * A reusable UcodeUplayground component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UcodeUplayground className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/code-playground}
  */
 
@@ -33,14 +33,14 @@ export interface UcodeUplaygroundProps {
   onClick?: () => void;
 }
 
-export const UcodeUplayground = ({ 
-  className, 
+export const UcodeUplayground = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UcodeUplaygroundProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UcodeUplayground = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UcodeUplayground"
+      role='region'
+      aria-label='UcodeUplayground'
     >
       {children || 'UcodeUplayground Component'}
     </div>

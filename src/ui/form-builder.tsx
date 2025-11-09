@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UformUbuilder Component
- * 
+ *
  * A reusable UformUbuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UformUbuilder className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/form-builder}
  */
 
@@ -33,14 +33,14 @@ export interface UformUbuilderProps {
   onClick?: () => void;
 }
 
-export const UformUbuilder = ({ 
-  className, 
+export const UformUbuilder = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UformUbuilderProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UformUbuilder = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UformUbuilder"
+      role='region'
+      aria-label='UformUbuilder'
     >
       {children || 'UformUbuilder Component'}
     </div>

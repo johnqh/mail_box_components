@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UconfidenceUmeter Component
- * 
+ *
  * A reusable UconfidenceUmeter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UconfidenceUmeter className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/confidence-meter}
  */
 
@@ -33,14 +33,14 @@ export interface UconfidenceUmeterProps {
   onClick?: () => void;
 }
 
-export const UconfidenceUmeter = ({ 
-  className, 
+export const UconfidenceUmeter = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UconfidenceUmeterProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UconfidenceUmeter = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UconfidenceUmeter"
+      role='region'
+      aria-label='UconfidenceUmeter'
     >
       {children || 'UconfidenceUmeter Component'}
     </div>

@@ -1,7 +1,13 @@
 import React from 'react';
 import { cn } from '../lib/utils';
 
-export type SharePlatform = 'twitter' | 'facebook' | 'linkedin' | 'reddit' | 'email' | 'copy';
+export type SharePlatform =
+  | 'twitter'
+  | 'facebook'
+  | 'linkedin'
+  | 'reddit'
+  | 'email'
+  | 'copy';
 
 export interface ShareButtonsProps {
   /** URL to share */
@@ -83,17 +89,41 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
   };
 
   const platformConfig = {
-    twitter: { name: 'Twitter', color: 'bg-[#1DA1F2] hover:bg-[#1a8cd8]', icon: '𝕏' },
-    facebook: { name: 'Facebook', color: 'bg-[#1877F2] hover:bg-[#165ed0]', icon: 'f' },
-    linkedin: { name: 'LinkedIn', color: 'bg-[#0A66C2] hover:bg-[#084d92]', icon: 'in' },
-    reddit: { name: 'Reddit', color: 'bg-[#FF4500] hover:bg-[#e03d00]', icon: 'r' },
-    email: { name: 'Email', color: 'bg-gray-600 hover:bg-gray-700', icon: '✉' },
-    copy: { name: copied ? 'Copied!' : 'Copy Link', color: 'bg-gray-700 hover:bg-gray-800', icon: '🔗' },
+    twitter: {
+      name: 'Twitter',
+      color: 'bg-[#1DA1F2] hover:bg-[#1a8cd8]',
+      icon: '𝕏',
+    },
+    facebook: {
+      name: 'Facebook',
+      color: 'bg-[#1877F2] hover:bg-[#165ed0]',
+      icon: 'f',
+    },
+    linkedin: {
+      name: 'LinkedIn',
+      color: 'bg-[#0A66C2] hover:bg-[#084d92]',
+      icon: 'in',
+    },
+    reddit: {
+      name: 'Reddit',
+      color: 'bg-[#FF4500] hover:bg-[#e03d00]',
+      icon: 'r',
+    },
+    email: {
+      name: 'Email',
+      color: 'bg-gray-600 hover:bg-gray-700',
+      icon: '✉',
+    },
+    copy: {
+      name: copied ? 'Copied!' : 'Copy Link',
+      color: 'bg-gray-700 hover:bg-gray-800',
+      icon: '🔗',
+    },
   };
 
   return (
     <div className={cn('flex flex-wrap gap-2', className)}>
-      {platforms.map((platform) => {
+      {platforms.map(platform => {
         const config = platformConfig[platform];
 
         if (variant === 'icons') {

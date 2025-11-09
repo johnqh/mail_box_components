@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UallergenUfilter Component
- * 
+ *
  * A reusable UallergenUfilter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UallergenUfilter className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/allergen-filter}
  */
 
@@ -33,14 +33,14 @@ export interface UallergenUfilterProps {
   onClick?: () => void;
 }
 
-export const UallergenUfilter = ({ 
-  className, 
+export const UallergenUfilter = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UallergenUfilterProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UallergenUfilter = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UallergenUfilter"
+      role='region'
+      aria-label='UallergenUfilter'
     >
       {children || 'UallergenUfilter Component'}
     </div>

@@ -113,11 +113,11 @@ export const TagInput: React.FC<TagInputProps> = ({
     const newValue = e.target.value;
 
     // Check for separators
-    const hasSeparator = separators.some((sep) => newValue.includes(sep));
+    const hasSeparator = separators.some(sep => newValue.includes(sep));
 
     if (hasSeparator) {
       const parts = newValue.split(new RegExp(`[${separators.join('')}]`));
-      parts.forEach((part) => {
+      parts.forEach(part => {
         if (part.trim()) {
           addTag(part);
         }
@@ -171,7 +171,8 @@ export const TagInput: React.FC<TagInputProps> = ({
           'rounded-md',
           'focus-within:ring-2 focus-within:ring-blue-500 dark:focus-within:ring-blue-400',
           'transition-all',
-          disabled && 'opacity-50 cursor-not-allowed bg-gray-50 dark:bg-gray-800',
+          disabled &&
+            'opacity-50 cursor-not-allowed bg-gray-50 dark:bg-gray-800',
           error && 'border-red-500 dark:border-red-400'
         )}
         onClick={() => !disabled && inputRef.current?.focus()}
@@ -189,10 +190,10 @@ export const TagInput: React.FC<TagInputProps> = ({
               'transition-colors'
             )}
           >
-            <span className="truncate max-w-[200px]">{tag}</span>
+            <span className='truncate max-w-[200px]'>{tag}</span>
             <button
-              type="button"
-              onClick={(e) => {
+              type='button'
+              onClick={e => {
                 e.stopPropagation();
                 removeTag(index);
               }}
@@ -205,16 +206,16 @@ export const TagInput: React.FC<TagInputProps> = ({
               aria-label={`Remove ${tag}`}
             >
               <svg
-                className="w-3.5 h-3.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                className='w-3.5 h-3.5'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
+                  d='M6 18L18 6M6 6l12 12'
                 />
               </svg>
             </button>
@@ -225,7 +226,7 @@ export const TagInput: React.FC<TagInputProps> = ({
         {!isMaxReached && (
           <input
             ref={inputRef}
-            type="text"
+            type='text'
             value={inputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
@@ -244,12 +245,12 @@ export const TagInput: React.FC<TagInputProps> = ({
 
       {/* Error message */}
       {error && (
-        <p className="mt-1.5 text-xs text-red-600 dark:text-red-400">{error}</p>
+        <p className='mt-1.5 text-xs text-red-600 dark:text-red-400'>{error}</p>
       )}
 
       {/* Helper text */}
       {maxTags && (
-        <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">
+        <p className='mt-1.5 text-xs text-gray-600 dark:text-gray-400'>
           {value.length} / {maxTags} tags
         </p>
       )}

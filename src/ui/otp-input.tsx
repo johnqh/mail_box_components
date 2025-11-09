@@ -115,13 +115,11 @@ export const OtpInput: React.FC<OtpInputProps> = ({
 
       if (getDigit(index)) {
         // Clear current digit
-        const newValue =
-          value.substring(0, index) + value.substring(index + 1);
+        const newValue = value.substring(0, index) + value.substring(index + 1);
         onChange(newValue);
       } else if (index > 0) {
         // Focus previous input and clear it
-        const newValue =
-          value.substring(0, index - 1) + value.substring(index);
+        const newValue = value.substring(0, index - 1) + value.substring(index);
         onChange(newValue);
         inputRefs.current[index - 1]?.focus();
       }
@@ -187,15 +185,15 @@ export const OtpInput: React.FC<OtpInputProps> = ({
         return (
           <input
             key={index}
-            ref={(el) => {
+            ref={el => {
               inputRefs.current[index] = el;
             }}
             type={type}
-            inputMode="numeric"
+            inputMode='numeric'
             maxLength={1}
             value={digit}
-            onChange={(e) => handleChange(index, e.target.value)}
-            onKeyDown={(e) => handleKeyDown(index, e)}
+            onChange={e => handleChange(index, e.target.value)}
+            onKeyDown={e => handleKeyDown(index, e)}
             onPaste={handlePaste}
             onFocus={() => handleFocus(index)}
             onBlur={handleBlur}

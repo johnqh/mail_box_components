@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UseatingUchart Component
- * 
+ *
  * A reusable UseatingUchart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UseatingUchart className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/seating-chart}
  */
 
@@ -33,14 +33,14 @@ export interface UseatingUchartProps {
   onClick?: () => void;
 }
 
-export const UseatingUchart = ({ 
-  className, 
+export const UseatingUchart = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UseatingUchartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UseatingUchart = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UseatingUchart"
+      role='region'
+      aria-label='UseatingUchart'
     >
       {children || 'UseatingUchart Component'}
     </div>

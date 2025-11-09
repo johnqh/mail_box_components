@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UpropertyUgallery Component
- * 
+ *
  * A reusable UpropertyUgallery component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UpropertyUgallery className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/property-gallery}
  */
 
@@ -33,14 +33,14 @@ export interface UpropertyUgalleryProps {
   onClick?: () => void;
 }
 
-export const UpropertyUgallery = ({ 
-  className, 
+export const UpropertyUgallery = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UpropertyUgalleryProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UpropertyUgallery = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UpropertyUgallery"
+      role='region'
+      aria-label='UpropertyUgallery'
     >
       {children || 'UpropertyUgallery Component'}
     </div>

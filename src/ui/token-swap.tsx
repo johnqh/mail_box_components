@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtokenUswap Component
- * 
+ *
  * A reusable UtokenUswap component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtokenUswap className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/token-swap}
  */
 
@@ -33,14 +33,14 @@ export interface UtokenUswapProps {
   onClick?: () => void;
 }
 
-export const UtokenUswap = ({ 
-  className, 
+export const UtokenUswap = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtokenUswapProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtokenUswap = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtokenUswap"
+      role='region'
+      aria-label='UtokenUswap'
     >
       {children || 'UtokenUswap Component'}
     </div>

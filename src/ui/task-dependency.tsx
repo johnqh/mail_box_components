@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtaskUdependency Component
- * 
+ *
  * A reusable UtaskUdependency component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtaskUdependency className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/task-dependency}
  */
 
@@ -33,14 +33,14 @@ export interface UtaskUdependencyProps {
   onClick?: () => void;
 }
 
-export const UtaskUdependency = ({ 
-  className, 
+export const UtaskUdependency = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtaskUdependencyProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtaskUdependency = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtaskUdependency"
+      role='region'
+      aria-label='UtaskUdependency'
     >
       {children || 'UtaskUdependency Component'}
     </div>

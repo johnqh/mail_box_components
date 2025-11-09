@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UbookingUconfirmation Component
- * 
+ *
  * A reusable UbookingUconfirmation component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UbookingUconfirmation className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/booking-confirmation}
  */
 
@@ -33,14 +33,14 @@ export interface UbookingUconfirmationProps {
   onClick?: () => void;
 }
 
-export const UbookingUconfirmation = ({ 
-  className, 
+export const UbookingUconfirmation = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UbookingUconfirmationProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UbookingUconfirmation = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UbookingUconfirmation"
+      role='region'
+      aria-label='UbookingUconfirmation'
     >
       {children || 'UbookingUconfirmation Component'}
     </div>

@@ -63,42 +63,48 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
             {/* Connector line */}
             {showConnectors && !isLast && (
               <div
-                className="absolute left-4 top-8 w-0.5 h-full bg-gray-300 dark:bg-gray-600"
-                style={align === 'center' ? { left: '50%' } : align === 'right' ? { right: '2rem' } : undefined}
+                className='absolute left-4 top-8 w-0.5 h-full bg-gray-300 dark:bg-gray-600'
+                style={
+                  align === 'center'
+                    ? { left: '50%' }
+                    : align === 'right'
+                      ? { right: '2rem' }
+                      : undefined
+                }
               />
             )}
 
             {/* Icon/Dot */}
-            <div className="relative z-10 flex-shrink-0">
+            <div className='relative z-10 flex-shrink-0'>
               {event.icon ? (
                 <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white"
+                  className='w-8 h-8 rounded-full flex items-center justify-center text-white'
                   style={{ backgroundColor: color }}
                 >
                   {event.icon}
                 </div>
               ) : (
                 <div
-                  className="w-4 h-4 rounded-full border-4 border-white dark:border-gray-900"
+                  className='w-4 h-4 rounded-full border-4 border-white dark:border-gray-900'
                   style={{ backgroundColor: color }}
                 />
               )}
             </div>
 
             {/* Content */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-1">
-                <h4 className="font-semibold text-gray-900 dark:text-white">
+            <div className='flex-1 min-w-0'>
+              <div className='flex items-center gap-3 mb-1'>
+                <h4 className='font-semibold text-gray-900 dark:text-white'>
                   {event.title}
                 </h4>
                 {event.timestamp && (
-                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                  <span className='text-xs text-gray-600 dark:text-gray-400'>
                     {event.timestamp}
                   </span>
                 )}
               </div>
               {event.description && (
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className='text-sm text-gray-600 dark:text-gray-400'>
                   {event.description}
                 </p>
               )}

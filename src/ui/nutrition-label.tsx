@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UnutritionUlabel Component
- * 
+ *
  * A reusable UnutritionUlabel component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UnutritionUlabel className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/nutrition-label}
  */
 
@@ -33,14 +33,14 @@ export interface UnutritionUlabelProps {
   onClick?: () => void;
 }
 
-export const UnutritionUlabel = ({ 
-  className, 
+export const UnutritionUlabel = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UnutritionUlabelProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UnutritionUlabel = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UnutritionUlabel"
+      role='region'
+      aria-label='UnutritionUlabel'
     >
       {children || 'UnutritionUlabel Component'}
     </div>

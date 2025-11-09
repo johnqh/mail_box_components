@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UavatarUgroup Component
- * 
+ *
  * A reusable UavatarUgroup component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UavatarUgroup className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/avatar-group}
  */
 
@@ -33,14 +33,14 @@ export interface UavatarUgroupProps {
   onClick?: () => void;
 }
 
-export const UavatarUgroup = ({ 
-  className, 
+export const UavatarUgroup = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UavatarUgroupProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UavatarUgroup = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UavatarUgroup"
+      role='region'
+      aria-label='UavatarUgroup'
     >
       {children || 'UavatarUgroup Component'}
     </div>

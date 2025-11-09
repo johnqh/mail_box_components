@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UconnectionUstatus Component
- * 
+ *
  * A reusable UconnectionUstatus component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UconnectionUstatus className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/connection-status}
  */
 
@@ -33,14 +33,14 @@ export interface UconnectionUstatusProps {
   onClick?: () => void;
 }
 
-export const UconnectionUstatus = ({ 
-  className, 
+export const UconnectionUstatus = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UconnectionUstatusProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UconnectionUstatus = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UconnectionUstatus"
+      role='region'
+      aria-label='UconnectionUstatus'
     >
       {children || 'UconnectionUstatus Component'}
     </div>

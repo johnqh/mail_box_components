@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UthemeUswitcher Component
- * 
+ *
  * A reusable UthemeUswitcher component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UthemeUswitcher className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/theme-switcher}
  */
 
@@ -33,14 +33,14 @@ export interface UthemeUswitcherProps {
   onClick?: () => void;
 }
 
-export const UthemeUswitcher = ({ 
-  className, 
+export const UthemeUswitcher = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UthemeUswitcherProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UthemeUswitcher = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UthemeUswitcher"
+      role='region'
+      aria-label='UthemeUswitcher'
     >
       {children || 'UthemeUswitcher Component'}
     </div>

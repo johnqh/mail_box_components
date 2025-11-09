@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfunnelUchart Component
- * 
+ *
  * A reusable UfunnelUchart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfunnelUchart className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/funnel-chart}
  */
 
@@ -33,14 +33,14 @@ export interface UfunnelUchartProps {
   onClick?: () => void;
 }
 
-export const UfunnelUchart = ({ 
-  className, 
+export const UfunnelUchart = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfunnelUchartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfunnelUchart = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfunnelUchart"
+      role='region'
+      aria-label='UfunnelUchart'
     >
       {children || 'UfunnelUchart Component'}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UpresenceUindicator Component
- * 
+ *
  * A reusable UpresenceUindicator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UpresenceUindicator className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/presence-indicator}
  */
 
@@ -33,14 +33,14 @@ export interface UpresenceUindicatorProps {
   onClick?: () => void;
 }
 
-export const UpresenceUindicator = ({ 
-  className, 
+export const UpresenceUindicator = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UpresenceUindicatorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UpresenceUindicator = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UpresenceUindicator"
+      role='region'
+      aria-label='UpresenceUindicator'
     >
       {children || 'UpresenceUindicator Component'}
     </div>

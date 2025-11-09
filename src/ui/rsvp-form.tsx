@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UrsvpUform Component
- * 
+ *
  * A reusable UrsvpUform component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UrsvpUform className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/rsvp-form}
  */
 
@@ -33,14 +33,14 @@ export interface UrsvpUformProps {
   onClick?: () => void;
 }
 
-export const UrsvpUform = ({ 
-  className, 
+export const UrsvpUform = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UrsvpUformProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UrsvpUform = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UrsvpUform"
+      role='region'
+      aria-label='UrsvpUform'
     >
       {children || 'UrsvpUform Component'}
     </div>

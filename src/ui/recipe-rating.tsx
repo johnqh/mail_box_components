@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UrecipeUrating Component
- * 
+ *
  * A reusable UrecipeUrating component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UrecipeUrating className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/recipe-rating}
  */
 
@@ -33,14 +33,14 @@ export interface UrecipeUratingProps {
   onClick?: () => void;
 }
 
-export const UrecipeUrating = ({ 
-  className, 
+export const UrecipeUrating = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UrecipeUratingProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UrecipeUrating = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UrecipeUrating"
+      role='region'
+      aria-label='UrecipeUrating'
     >
       {children || 'UrecipeUrating Component'}
     </div>

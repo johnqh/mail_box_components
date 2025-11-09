@@ -84,18 +84,18 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
 
   return (
     <div className={cn('inline-flex flex-col gap-4', className)}>
-      <div className="relative inline-block">
+      <div className='relative inline-block'>
         <img
           ref={imgRef}
           src={src}
-          alt="Crop preview"
-          className="max-w-full h-auto"
-          crossOrigin="anonymous"
+          alt='Crop preview'
+          className='max-w-full h-auto'
+          crossOrigin='anonymous'
         />
 
         {/* Crop overlay */}
         <div
-          className="absolute border-2 border-blue-500 bg-blue-500/20"
+          className='absolute border-2 border-blue-500 bg-blue-500/20'
           style={{
             left: `${cropArea.x}px`,
             top: `${cropArea.y}px`,
@@ -104,14 +104,14 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
             cursor: 'move',
           }}
         >
-          <div className="absolute -top-1 -left-1 w-3 h-3 bg-blue-500 rounded-full cursor-nw-resize" />
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full cursor-ne-resize" />
-          <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-blue-500 rounded-full cursor-sw-resize" />
-          <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-blue-500 rounded-full cursor-se-resize" />
+          <div className='absolute -top-1 -left-1 w-3 h-3 bg-blue-500 rounded-full cursor-nw-resize' />
+          <div className='absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full cursor-ne-resize' />
+          <div className='absolute -bottom-1 -left-1 w-3 h-3 bg-blue-500 rounded-full cursor-sw-resize' />
+          <div className='absolute -bottom-1 -right-1 w-3 h-3 bg-blue-500 rounded-full cursor-se-resize' />
         </div>
       </div>
 
-      <div className="flex gap-2">
+      <div className='flex gap-2'>
         <button
           onClick={handleCrop}
           className={cn(
@@ -126,7 +126,11 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
         </button>
 
         <button
-          onClick={() => setCropArea(initialCrop || { x: 50, y: 50, width: 200, height: 200 })}
+          onClick={() =>
+            setCropArea(
+              initialCrop || { x: 50, y: 50, width: 200, height: 200 }
+            )
+          }
           className={cn(
             'px-4 py-2 text-sm font-medium',
             'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white',
@@ -139,7 +143,7 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
         </button>
       </div>
 
-      <p className="text-xs text-gray-600 dark:text-gray-400">
+      <p className='text-xs text-gray-600 dark:text-gray-400'>
         Drag to adjust crop area. Click "Crop Image" to export.
       </p>
     </div>

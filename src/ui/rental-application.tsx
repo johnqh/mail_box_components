@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UrentalUapplication Component
- * 
+ *
  * A reusable UrentalUapplication component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UrentalUapplication className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/rental-application}
  */
 
@@ -33,14 +33,14 @@ export interface UrentalUapplicationProps {
   onClick?: () => void;
 }
 
-export const UrentalUapplication = ({ 
-  className, 
+export const UrentalUapplication = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UrentalUapplicationProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UrentalUapplication = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UrentalUapplication"
+      role='region'
+      aria-label='UrentalUapplication'
     >
       {children || 'UrentalUapplication Component'}
     </div>

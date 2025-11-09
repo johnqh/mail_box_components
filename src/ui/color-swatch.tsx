@@ -59,7 +59,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
   };
 
   const normalizeColors = (): Color[] => {
-    return colors.map((color) =>
+    return colors.map(color =>
       typeof color === 'string' ? { hex: color } : color
     );
   };
@@ -80,13 +80,14 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
         const isCopied = copiedColor === color.hex;
 
         return (
-          <div key={index} className="flex flex-col items-center gap-2">
+          <div key={index} className='flex flex-col items-center gap-2'>
             <button
               onClick={() => onColorSelect?.(color.hex)}
               className={cn(
                 'rounded-lg transition-all relative group',
                 sizeClasses[size],
-                isSelected && 'ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900',
+                isSelected &&
+                  'ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900',
                 !isSelected && 'hover:scale-110'
               )}
               style={{ backgroundColor: color.hex }}
@@ -94,16 +95,36 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
             >
               {showCopy && (
                 <div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 rounded-lg"
-                  onClick={(e) => handleCopy(color.hex, e)}
+                  className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 rounded-lg'
+                  onClick={e => handleCopy(color.hex, e)}
                 >
                   {isCopied ? (
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg
+                      className='w-4 h-4 text-white'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M5 13l4 4L19 7'
+                      />
                     </svg>
                   ) : (
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    <svg
+                      className='w-4 h-4 text-white'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z'
+                      />
                     </svg>
                   )}
                 </div>
@@ -111,13 +132,13 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
             </button>
 
             {showNames && (
-              <div className="text-center">
+              <div className='text-center'>
                 {color.name && (
-                  <p className="text-xs font-medium text-gray-900 dark:text-white">
+                  <p className='text-xs font-medium text-gray-900 dark:text-white'>
                     {color.name}
                   </p>
                 )}
-                <p className="text-xs text-gray-600 dark:text-gray-400 font-mono">
+                <p className='text-xs text-gray-600 dark:text-gray-400 font-mono'>
                   {color.hex}
                 </p>
               </div>

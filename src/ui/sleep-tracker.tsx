@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UsleepUtracker Component
- * 
+ *
  * A reusable UsleepUtracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UsleepUtracker className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/sleep-tracker}
  */
 
@@ -33,14 +33,14 @@ export interface UsleepUtrackerProps {
   onClick?: () => void;
 }
 
-export const UsleepUtracker = ({ 
-  className, 
+export const UsleepUtracker = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UsleepUtrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UsleepUtracker = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UsleepUtracker"
+      role='region'
+      aria-label='UsleepUtracker'
     >
       {children || 'UsleepUtracker Component'}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UformUtemplate Component
- * 
+ *
  * A reusable UformUtemplate component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UformUtemplate className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/form-template}
  */
 
@@ -33,14 +33,14 @@ export interface UformUtemplateProps {
   onClick?: () => void;
 }
 
-export const UformUtemplate = ({ 
-  className, 
+export const UformUtemplate = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UformUtemplateProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UformUtemplate = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UformUtemplate"
+      role='region'
+      aria-label='UformUtemplate'
     >
       {children || 'UformUtemplate Component'}
     </div>

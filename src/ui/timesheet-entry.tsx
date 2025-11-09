@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtimesheetUentry Component
- * 
+ *
  * A reusable UtimesheetUentry component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtimesheetUentry className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/timesheet-entry}
  */
 
@@ -33,14 +33,14 @@ export interface UtimesheetUentryProps {
   onClick?: () => void;
 }
 
-export const UtimesheetUentry = ({ 
-  className, 
+export const UtimesheetUentry = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtimesheetUentryProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtimesheetUentry = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtimesheetUentry"
+      role='region'
+      aria-label='UtimesheetUentry'
     >
       {children || 'UtimesheetUentry Component'}
     </div>

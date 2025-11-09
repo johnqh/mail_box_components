@@ -71,11 +71,18 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
     xl: 'text-4xl',
   };
 
-  const discount = originalPrice ? Math.round(((originalPrice - amount) / originalPrice) * 100) : 0;
+  const discount = originalPrice
+    ? Math.round(((originalPrice - amount) / originalPrice) * 100)
+    : 0;
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      <span className={cn('font-bold text-gray-900 dark:text-white', sizeStyles[size])}>
+      <span
+        className={cn(
+          'font-bold text-gray-900 dark:text-white',
+          sizeStyles[size]
+        )}
+      >
         {showCurrency && symbol}
         {formatPrice(amount)}
       </span>
@@ -85,7 +92,11 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
           <span
             className={cn(
               'line-through text-gray-500 dark:text-gray-400',
-              size === 'xl' ? 'text-xl' : size === 'lg' ? 'text-base' : 'text-sm'
+              size === 'xl'
+                ? 'text-xl'
+                : size === 'lg'
+                  ? 'text-base'
+                  : 'text-sm'
             )}
           >
             {showCurrency && symbol}
@@ -96,7 +107,11 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
             <span
               className={cn(
                 'px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded font-semibold',
-                size === 'xl' ? 'text-base' : size === 'lg' ? 'text-sm' : 'text-xs'
+                size === 'xl'
+                  ? 'text-base'
+                  : size === 'lg'
+                    ? 'text-sm'
+                    : 'text-xs'
               )}
             >
               -{discount}%

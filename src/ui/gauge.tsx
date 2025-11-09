@@ -61,31 +61,33 @@ export const Gauge: React.FC<GaugeProps> = ({
 
   return (
     <div className={cn('inline-flex flex-col items-center gap-2', className)}>
-      <svg width={size} height={size * 0.65} className="transform rotate-180">
+      <svg width={size} height={size * 0.65} className='transform rotate-180'>
         <path
           d={`M ${strokeWidth / 2} ${center} A ${radius} ${radius} 0 0 1 ${size - strokeWidth / 2} ${center}`}
-          fill="none"
-          className="stroke-gray-200 dark:stroke-gray-700"
+          fill='none'
+          className='stroke-gray-200 dark:stroke-gray-700'
           strokeWidth={strokeWidth}
-          strokeLinecap="round"
+          strokeLinecap='round'
         />
         <path
           d={`M ${strokeWidth / 2} ${center} A ${radius} ${radius} 0 0 1 ${size - strokeWidth / 2} ${center}`}
-          fill="none"
+          fill='none'
           className={cn(colors[variant], 'transition-all duration-500')}
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          strokeLinecap="round"
+          strokeLinecap='round'
         />
       </svg>
       {showValue && (
-        <div className="text-center -mt-8">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">
+        <div className='text-center -mt-8'>
+          <div className='text-2xl font-bold text-gray-900 dark:text-white'>
             {Math.round(normalizedValue)}
           </div>
           {label && (
-            <div className="text-xs text-gray-600 dark:text-gray-400">{label}</div>
+            <div className='text-xs text-gray-600 dark:text-gray-400'>
+              {label}
+            </div>
           )}
         </div>
       )}

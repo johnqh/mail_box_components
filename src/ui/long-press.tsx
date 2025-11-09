@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UlongUpress Component
- * 
+ *
  * A reusable UlongUpress component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UlongUpress className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/long-press}
  */
 
@@ -33,14 +33,14 @@ export interface UlongUpressProps {
   onClick?: () => void;
 }
 
-export const UlongUpress = ({ 
-  className, 
+export const UlongUpress = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UlongUpressProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UlongUpress = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UlongUpress"
+      role='region'
+      aria-label='UlongUpress'
     >
       {children || 'UlongUpress Component'}
     </div>

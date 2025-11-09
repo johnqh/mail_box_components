@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UmessageUlist Component
- * 
+ *
  * A reusable UmessageUlist component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UmessageUlist className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/message-list}
  */
 
@@ -33,14 +33,14 @@ export interface UmessageUlistProps {
   onClick?: () => void;
 }
 
-export const UmessageUlist = ({ 
-  className, 
+export const UmessageUlist = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UmessageUlistProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UmessageUlist = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UmessageUlist"
+      role='region'
+      aria-label='UmessageUlist'
     >
       {children || 'UmessageUlist Component'}
     </div>

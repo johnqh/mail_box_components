@@ -70,7 +70,7 @@ export const TreeView: React.FC<TreeViewProps> = ({
   className,
 }) => {
   const [internalExpandedIds, setInternalExpandedIds] = useState<Set<string>>(
-    new Set(defaultExpanded ? data.map((node) => node.id) : [])
+    new Set(defaultExpanded ? data.map(node => node.id) : [])
   );
 
   const expandedIds =
@@ -82,7 +82,7 @@ export const TreeView: React.FC<TreeViewProps> = ({
     if (controlledExpandedIds !== undefined && onExpand) {
       onExpand(nodeId);
     } else {
-      setInternalExpandedIds((prev) => {
+      setInternalExpandedIds(prev => {
         const newSet = new Set(prev);
         if (newSet.has(nodeId)) {
           newSet.delete(nodeId);
@@ -122,36 +122,36 @@ export const TreeView: React.FC<TreeViewProps> = ({
           {/* Expand/collapse button */}
           {hasChildren ? (
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 toggleExpand(node.id);
               }}
-              className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors"
+              className='flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors'
             >
               <svg
                 className={cn(
                   'w-3 h-3 transition-transform',
                   isExpanded && 'rotate-90'
                 )}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M9 5l7 7-7 7"
+                  d='M9 5l7 7-7 7'
                 />
               </svg>
             </button>
           ) : (
-            <div className="w-4 h-4 flex-shrink-0" />
+            <div className='w-4 h-4 flex-shrink-0' />
           )}
 
           {/* Icon */}
           {node.icon && (
-            <span className="flex-shrink-0 w-4 h-4 text-gray-600 dark:text-gray-400">
+            <span className='flex-shrink-0 w-4 h-4 text-gray-600 dark:text-gray-400'>
               {node.icon}
             </span>
           )}
@@ -171,10 +171,13 @@ export const TreeView: React.FC<TreeViewProps> = ({
 
         {/* Children */}
         {hasChildren && isExpanded && (
-          <div className={cn(showLines && 'border-l-2 border-gray-200 dark:border-gray-700 ml-2')}>
-            {node.children!.map((child) =>
-              renderNode(child, level + 1)
+          <div
+            className={cn(
+              showLines &&
+                'border-l-2 border-gray-200 dark:border-gray-700 ml-2'
             )}
+          >
+            {node.children!.map(child => renderNode(child, level + 1))}
           </div>
         )}
       </div>
@@ -183,7 +186,7 @@ export const TreeView: React.FC<TreeViewProps> = ({
 
   return (
     <div className={cn('w-full', className)}>
-      {data.map((node) => renderNode(node, 0))}
+      {data.map(node => renderNode(node, 0))}
     </div>
   );
 };

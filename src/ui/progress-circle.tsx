@@ -75,18 +75,13 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
     danger: 'stroke-red-600 dark:stroke-red-500',
   };
 
-  const trackColorClass =
-    trackColor || 'stroke-gray-200 dark:stroke-gray-700';
+  const trackColorClass = trackColor || 'stroke-gray-200 dark:stroke-gray-700';
 
   return (
     <div className={cn('inline-flex items-center justify-center', className)}>
-      <div className="relative" style={{ width: size, height: size }}>
+      <div className='relative' style={{ width: size, height: size }}>
         {/* SVG Circle */}
-        <svg
-          width={size}
-          height={size}
-          className="transform -rotate-90"
-        >
+        <svg width={size} height={size} className='transform -rotate-90'>
           {/* Background track */}
           <circle
             cx={center}
@@ -94,7 +89,7 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
             r={radius}
             className={trackColorClass}
             strokeWidth={strokeWidth}
-            fill="none"
+            fill='none'
           />
 
           {/* Progress arc */}
@@ -110,22 +105,25 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
             strokeDashoffset={offset}
-            strokeLinecap="round"
-            fill="none"
+            strokeLinecap='round'
+            fill='none'
           />
         </svg>
 
         {/* Center text */}
         {(showValue || label) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <div className='absolute inset-0 flex flex-col items-center justify-center'>
             {showValue && !label && (
-              <span className="text-gray-900 dark:text-white font-bold" style={{ fontSize: size * 0.2 }}>
+              <span
+                className='text-gray-900 dark:text-white font-bold'
+                style={{ fontSize: size * 0.2 }}
+              >
                 {Math.round(progress)}%
               </span>
             )}
             {label && (
               <span
-                className="text-gray-900 dark:text-white font-medium text-center px-2"
+                className='text-gray-900 dark:text-white font-medium text-center px-2'
                 style={{ fontSize: size * 0.15 }}
               >
                 {label}

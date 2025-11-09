@@ -100,8 +100,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   const getCurrency = (): Currency => {
     if (typeof currencyProp === 'string') {
       return (
-        currencies.find((c) => c.code === currencyProp) ||
-        DEFAULT_CURRENCIES[0]
+        currencies.find(c => c.code === currencyProp) || DEFAULT_CURRENCIES[0]
       );
     }
     return currencyProp;
@@ -172,12 +171,12 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
   return (
     <div className={cn('relative w-full', className)}>
-      <div className="flex gap-2">
+      <div className='flex gap-2'>
         {/* Currency selector */}
         {showCurrencySelector && (
-          <div className="relative">
+          <div className='relative'>
             <button
-              type="button"
+              type='button'
               onClick={() => !disabled && setIsOpen(!isOpen)}
               disabled={disabled}
               className={cn(
@@ -191,7 +190,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
                 isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
               )}
             >
-              <span className="text-sm font-medium text-gray-900 dark:text-white">
+              <span className='text-sm font-medium text-gray-900 dark:text-white'>
                 {currentCurrency.code}
               </span>
               <svg
@@ -199,24 +198,24 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
                   'w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform',
                   isOpen && 'rotate-180'
                 )}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
+                  d='M19 9l-7 7-7-7'
                 />
               </svg>
             </button>
 
             {/* Currency dropdown */}
             {isOpen && (
-              <div className="absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50">
-                <div className="max-h-60 overflow-y-auto py-1">
-                  {currencies.map((curr) => (
+              <div className='absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50'>
+                <div className='max-h-60 overflow-y-auto py-1'>
+                  {currencies.map(curr => (
                     <button
                       key={curr.code}
                       onClick={() => handleCurrencyChange(curr.code)}
@@ -228,14 +227,14 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
                           'bg-blue-50 dark:bg-blue-900/30'
                       )}
                     >
-                      <span className="text-lg font-semibold w-8">
+                      <span className='text-lg font-semibold w-8'>
                         {curr.symbol}
                       </span>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                      <div className='flex-1'>
+                        <p className='text-sm font-medium text-gray-900 dark:text-white'>
                           {curr.code}
                         </p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                        <p className='text-xs text-gray-600 dark:text-gray-400'>
                           {curr.name}
                         </p>
                       </div>
@@ -248,12 +247,12 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
         )}
 
         {/* Amount input */}
-        <div className="relative flex-1">
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 text-sm font-medium">
+        <div className='relative flex-1'>
+          <div className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 text-sm font-medium'>
             {currentCurrency.symbol}
           </div>
           <input
-            type="text"
+            type='text'
             value={displayValue}
             onChange={handleInputChange}
             onFocus={handleFocus}
@@ -274,7 +273,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
       {/* Helper text */}
       {(min !== undefined || max !== undefined) && (
-        <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">
+        <p className='mt-1.5 text-xs text-gray-600 dark:text-gray-400'>
           {min !== undefined && max !== undefined
             ? `Range: ${currentCurrency.symbol}${formatDisplay(min)} - ${currentCurrency.symbol}${formatDisplay(max)}`
             : min !== undefined
@@ -285,7 +284,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
       {/* Click outside to close */}
       {isOpen && (
-        <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+        <div className='fixed inset-0 z-40' onClick={() => setIsOpen(false)} />
       )}
     </div>
   );

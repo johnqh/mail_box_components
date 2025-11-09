@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UworkoutUlog Component
- * 
+ *
  * A reusable UworkoutUlog component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UworkoutUlog className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/workout-log}
  */
 
@@ -33,14 +33,14 @@ export interface UworkoutUlogProps {
   onClick?: () => void;
 }
 
-export const UworkoutUlog = ({ 
-  className, 
+export const UworkoutUlog = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UworkoutUlogProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UworkoutUlog = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UworkoutUlog"
+      role='region'
+      aria-label='UworkoutUlog'
     >
       {children || 'UworkoutUlog Component'}
     </div>

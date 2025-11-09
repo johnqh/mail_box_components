@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UxmlUparser Component
- * 
+ *
  * A reusable UxmlUparser component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UxmlUparser className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/xml-parser}
  */
 
@@ -33,14 +33,14 @@ export interface UxmlUparserProps {
   onClick?: () => void;
 }
 
-export const UxmlUparser = ({ 
-  className, 
+export const UxmlUparser = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UxmlUparserProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UxmlUparser = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UxmlUparser"
+      role='region'
+      aria-label='UxmlUparser'
     >
       {children || 'UxmlUparser Component'}
     </div>

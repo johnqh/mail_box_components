@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UpipelineUview Component
- * 
+ *
  * A reusable UpipelineUview component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UpipelineUview className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/pipeline-view}
  */
 
@@ -33,14 +33,14 @@ export interface UpipelineUviewProps {
   onClick?: () => void;
 }
 
-export const UpipelineUview = ({ 
-  className, 
+export const UpipelineUview = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UpipelineUviewProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UpipelineUview = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UpipelineUview"
+      role='region'
+      aria-label='UpipelineUview'
     >
       {children || 'UpipelineUview Component'}
     </div>

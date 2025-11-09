@@ -153,49 +153,49 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
     switch (cardType) {
       case 'visa':
         return (
-          <svg className="w-8 h-5" viewBox="0 0 48 32" fill="none">
-            <rect width="48" height="32" rx="4" fill="#1434CB" />
+          <svg className='w-8 h-5' viewBox='0 0 48 32' fill='none'>
+            <rect width='48' height='32' rx='4' fill='#1434CB' />
             <path
-              d="M20 11l-2 10h2l2-10h-2zm8 0l-3.5 7-1.5-7h-2l2.5 10h2l5.5-10h-3zm-12 0c-1.5 0-2.5.5-2.5 1.5 0 1.5 3 1.5 3 3.5s-2.5 2-4 2l-.5-2c1 0 2-.5 2-1.5s-3-1.5-3-3.5 2.5-2 4-2l.5 2z"
-              fill="white"
+              d='M20 11l-2 10h2l2-10h-2zm8 0l-3.5 7-1.5-7h-2l2.5 10h2l5.5-10h-3zm-12 0c-1.5 0-2.5.5-2.5 1.5 0 1.5 3 1.5 3 3.5s-2.5 2-4 2l-.5-2c1 0 2-.5 2-1.5s-3-1.5-3-3.5 2.5-2 4-2l.5 2z'
+              fill='white'
             />
           </svg>
         );
       case 'mastercard':
         return (
-          <svg className="w-8 h-5" viewBox="0 0 48 32" fill="none">
-            <rect width="48" height="32" rx="4" fill="#EB001B" />
-            <circle cx="18" cy="16" r="8" fill="#F79E1B" />
-            <circle cx="30" cy="16" r="8" fill="#FF5F00" />
+          <svg className='w-8 h-5' viewBox='0 0 48 32' fill='none'>
+            <rect width='48' height='32' rx='4' fill='#EB001B' />
+            <circle cx='18' cy='16' r='8' fill='#F79E1B' />
+            <circle cx='30' cy='16' r='8' fill='#FF5F00' />
           </svg>
         );
       case 'amex':
         return (
-          <svg className="w-8 h-5" viewBox="0 0 48 32" fill="none">
-            <rect width="48" height="32" rx="4" fill="#006FCF" />
-            <path d="M10 12h8l2 8-2 8h-8l-2-8 2-8z" fill="white" />
+          <svg className='w-8 h-5' viewBox='0 0 48 32' fill='none'>
+            <rect width='48' height='32' rx='4' fill='#006FCF' />
+            <path d='M10 12h8l2 8-2 8h-8l-2-8 2-8z' fill='white' />
           </svg>
         );
       case 'discover':
         return (
-          <svg className="w-8 h-5" viewBox="0 0 48 32" fill="none">
-            <rect width="48" height="32" rx="4" fill="#FF6000" />
-            <circle cx="38" cy="16" r="6" fill="#FFA500" />
+          <svg className='w-8 h-5' viewBox='0 0 48 32' fill='none'>
+            <rect width='48' height='32' rx='4' fill='#FF6000' />
+            <circle cx='38' cy='16' r='6' fill='#FFA500' />
           </svg>
         );
       default:
         return (
           <svg
-            className="w-5 h-5 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            className='w-5 h-5 text-gray-400'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+              d='M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'
             />
           </svg>
         );
@@ -206,15 +206,15 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
     <div className={cn('w-full space-y-3', className)}>
       {/* Card number */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'>
           Card number
         </label>
-        <div className="relative">
+        <div className='relative'>
           <input
-            type="text"
+            type='text'
             value={cardNumber}
             onChange={handleCardNumberChange}
-            placeholder="1234 5678 9012 3456"
+            placeholder='1234 5678 9012 3456'
             disabled={disabled}
             className={cn(
               'w-full px-3 py-2 pr-12 text-sm',
@@ -225,7 +225,7 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
               'disabled:opacity-50 disabled:cursor-not-allowed'
             )}
           />
-          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+          <div className='absolute right-3 top-1/2 -translate-y-1/2'>
             {getCardIcon()}
           </div>
         </div>
@@ -233,16 +233,16 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
 
       {/* Expiry and CVV */}
       {showAllFields && (
-        <div className="grid grid-cols-2 gap-3">
+        <div className='grid grid-cols-2 gap-3'>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'>
               Expiry date
             </label>
             <input
-              type="text"
+              type='text'
               value={expiryDate}
               onChange={handleExpiryDateChange}
-              placeholder="MM/YY"
+              placeholder='MM/YY'
               disabled={disabled}
               className={cn(
                 'w-full px-3 py-2 text-sm',
@@ -256,11 +256,11 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'>
               CVV
             </label>
             <input
-              type="text"
+              type='text'
               value={cvv}
               onChange={handleCVVChange}
               placeholder={cardType === 'amex' ? '1234' : '123'}
@@ -281,14 +281,14 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
       {/* Cardholder name */}
       {showAllFields && (
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'>
             Cardholder name
           </label>
           <input
-            type="text"
+            type='text'
             value={cardholderName}
-            onChange={(e) => onCardholderNameChange?.(e.target.value)}
-            placeholder="John Doe"
+            onChange={e => onCardholderNameChange?.(e.target.value)}
+            placeholder='John Doe'
             disabled={disabled}
             className={cn(
               'w-full px-3 py-2 text-sm',

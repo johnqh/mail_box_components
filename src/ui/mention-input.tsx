@@ -88,7 +88,7 @@ export const MentionInput: React.FC<MentionInputProps> = ({
       const query = lastWord.substring(trigger.length);
 
       // Filter mentions
-      const filtered = mentions.filter((m) =>
+      const filtered = mentions.filter(m =>
         m.label.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredMentions(filtered);
@@ -122,7 +122,8 @@ export const MentionInput: React.FC<MentionInputProps> = ({
 
     // Focus input
     if (inputRef.current) {
-      const newCursor = mentionStart + trigger.length + mention.label.length + 1;
+      const newCursor =
+        mentionStart + trigger.length + mention.label.length + 1;
       setTimeout(() => {
         inputRef.current?.focus();
         inputRef.current?.setSelectionRange(newCursor, newCursor);
@@ -137,13 +138,13 @@ export const MentionInput: React.FC<MentionInputProps> = ({
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
-        setSelectedIndex((prev) =>
+        setSelectedIndex(prev =>
           prev < filteredMentions.length - 1 ? prev + 1 : prev
         );
         break;
       case 'ArrowUp':
         e.preventDefault();
-        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+        setSelectedIndex(prev => (prev > 0 ? prev - 1 : prev));
         break;
       case 'Enter':
         e.preventDefault();
@@ -200,7 +201,7 @@ export const MentionInput: React.FC<MentionInputProps> = ({
       {showSuggestions && (
         <div
           ref={suggestionsRef}
-          className="absolute z-50 w-full mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto"
+          className='absolute z-50 w-full mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto'
         >
           {filteredMentions.map((mention, index) => (
             <button
@@ -217,15 +218,15 @@ export const MentionInput: React.FC<MentionInputProps> = ({
                 <img
                   src={mention.avatar}
                   alt={mention.label}
-                  className="w-8 h-8 rounded-full"
+                  className='w-8 h-8 rounded-full'
                 />
               )}
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+              <div className='flex-1 min-w-0'>
+                <p className='text-sm font-medium text-gray-900 dark:text-white truncate'>
                   {mention.label}
                 </p>
                 {mention.metadata && (
-                  <p className="text-xs text-gray-600 dark:text-gray-400 truncate">
+                  <p className='text-xs text-gray-600 dark:text-gray-400 truncate'>
                     {mention.metadata}
                   </p>
                 )}

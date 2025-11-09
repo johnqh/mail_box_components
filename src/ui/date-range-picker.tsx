@@ -74,7 +74,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const isDateDisabled = (date: Date) => {
     if (minDate && date < minDate) return true;
     if (maxDate && date > maxDate) return true;
-    return disabledDates.some((disabledDate) => isSameDay(date, disabledDate));
+    return disabledDates.some(disabledDate => isSameDay(date, disabledDate));
   };
 
   const isInRange = (date: Date) => {
@@ -144,15 +144,25 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       days.push(new Date(year, month, day));
     }
 
-    return { days, monthName: targetDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) };
+    return {
+      days,
+      monthName: targetDate.toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric',
+      }),
+    };
   };
 
   const goToPreviousMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1));
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1)
+    );
   };
 
   const goToNextMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1));
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1)
+    );
   };
 
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -160,46 +170,69 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   return (
     <div className={cn('bg-white dark:bg-gray-900 rounded-lg p-4', className)}>
       {/* Navigation */}
-      <div className="flex items-center justify-between mb-4">
+      <div className='flex items-center justify-between mb-4'>
         <button
           onClick={goToPreviousMonth}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
-          aria-label="Previous month"
+          className='p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors'
+          aria-label='Previous month'
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <svg
+            className='w-5 h-5'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M15 19l-7-7 7-7'
+            />
           </svg>
         </button>
 
         <button
           onClick={goToNextMonth}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
-          aria-label="Next month"
+          className='p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors'
+          aria-label='Next month'
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <svg
+            className='w-5 h-5'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M9 5l7 7-7 7'
+            />
           </svg>
         </button>
       </div>
 
       {/* Months */}
-      <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${months}, 1fr)` }}>
+      <div
+        className='grid gap-4'
+        style={{ gridTemplateColumns: `repeat(${months}, 1fr)` }}
+      >
         {Array.from({ length: months }, (_, i) => {
           const { days, monthName } = generateCalendarDays(i);
 
           return (
             <div key={i}>
               {/* Month header */}
-              <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4 text-center">
+              <h3 className='text-base font-semibold text-gray-900 dark:text-white mb-4 text-center'>
                 {monthName}
               </h3>
 
               {/* Week days */}
-              <div className="grid grid-cols-7 gap-1 mb-2">
-                {weekDays.map((day) => (
+              <div className='grid grid-cols-7 gap-1 mb-2'>
+                {weekDays.map(day => (
                   <div
                     key={day}
-                    className="text-center text-xs font-medium text-gray-600 dark:text-gray-400 py-2"
+                    className='text-center text-xs font-medium text-gray-600 dark:text-gray-400 py-2'
                   >
                     {day}
                   </div>
@@ -207,10 +240,10 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
               </div>
 
               {/* Calendar days */}
-              <div className="grid grid-cols-7 gap-1">
+              <div className='grid grid-cols-7 gap-1'>
                 {days.map((date, index) => {
                   if (!date) {
-                    return <div key={index} className="aspect-square" />;
+                    return <div key={index} className='aspect-square' />;
                   }
 
                   const isDisabled = isDateDisabled(date);
@@ -232,8 +265,14 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
                         inRange && 'bg-blue-100 dark:bg-blue-900/30',
                         (isStart || isEnd) &&
                           'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600',
-                        !isStart && !isEnd && !inRange && 'hover:bg-gray-100 dark:hover:bg-gray-800',
-                        isToday && !isStart && !isEnd && 'border-2 border-blue-600 dark:border-blue-400'
+                        !isStart &&
+                          !isEnd &&
+                          !inRange &&
+                          'hover:bg-gray-100 dark:hover:bg-gray-800',
+                        isToday &&
+                          !isStart &&
+                          !isEnd &&
+                          'border-2 border-blue-600 dark:border-blue-400'
                       )}
                     >
                       {date.getDate()}
@@ -248,17 +287,17 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
       {/* Selected range display */}
       {(value.start || value.end) && (
-        <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-between text-sm">
+        <div className='mt-4 pt-4 border-t border-gray-200 dark:border-gray-700'>
+          <div className='flex items-center justify-between text-sm'>
             <div>
-              <span className="text-gray-600 dark:text-gray-400">Start: </span>
-              <span className="font-medium text-gray-900 dark:text-white">
+              <span className='text-gray-600 dark:text-gray-400'>Start: </span>
+              <span className='font-medium text-gray-900 dark:text-white'>
                 {value.start?.toLocaleDateString() || 'Not selected'}
               </span>
             </div>
             <div>
-              <span className="text-gray-600 dark:text-gray-400">End: </span>
-              <span className="font-medium text-gray-900 dark:text-white">
+              <span className='text-gray-600 dark:text-gray-400'>End: </span>
+              <span className='font-medium text-gray-900 dark:text-white'>
                 {value.end?.toLocaleDateString() || 'Not selected'}
               </span>
             </div>

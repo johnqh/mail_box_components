@@ -64,17 +64,17 @@ export const AreaChart: React.FC<AreaChartProps> = ({
   xLabels,
   className,
 }) => {
-  const allPoints = series.flatMap((s) => s.data);
-  const maxY = Math.max(...allPoints.map((p) => p.y));
-  const minY = Math.min(...allPoints.map((p) => p.y));
-  const maxX = Math.max(...allPoints.map((p) => p.x));
+  const allPoints = series.flatMap(s => s.data);
+  const maxY = Math.max(...allPoints.map(p => p.y));
+  const minY = Math.min(...allPoints.map(p => p.y));
+  const maxX = Math.max(...allPoints.map(p => p.x));
 
   const defaultColors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
 
   const getAreaPath = (data: AreaChartDataPoint[]): string => {
     if (data.length === 0) return '';
 
-    const linePoints = data.map((point) => {
+    const linePoints = data.map(point => {
       const x = (point.x / maxX) * 100;
       const y = 100 - ((point.y - minY) / (maxY - minY)) * 100;
       return `${x},${y}`;
@@ -89,7 +89,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
   const getLinePath = (data: AreaChartDataPoint[]): string => {
     if (data.length === 0) return '';
 
-    const points = data.map((point) => {
+    const points = data.map(point => {
       const x = (point.x / maxX) * 100;
       const y = 100 - ((point.y - minY) / (maxY - minY)) * 100;
       return `${x},${y}`;
@@ -102,14 +102,17 @@ export const AreaChart: React.FC<AreaChartProps> = ({
     <div className={cn('w-full', className)}>
       {/* Legend */}
       {showLegend && (
-        <div className="flex flex-wrap gap-4 mb-4">
+        <div className='flex flex-wrap gap-4 mb-4'>
           {series.map((s, i) => (
-            <div key={i} className="flex items-center gap-2">
+            <div key={i} className='flex items-center gap-2'>
               <div
-                className="w-3 h-3 rounded-full"
-                style={{ backgroundColor: s.color || defaultColors[i % defaultColors.length] }}
+                className='w-3 h-3 rounded-full'
+                style={{
+                  backgroundColor:
+                    s.color || defaultColors[i % defaultColors.length],
+                }}
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">
+              <span className='text-sm text-gray-700 dark:text-gray-300'>
                 {s.name}
               </span>
             </div>
@@ -118,15 +121,15 @@ export const AreaChart: React.FC<AreaChartProps> = ({
       )}
 
       {/* Chart */}
-      <div className="bg-white dark:bg-gray-900 rounded-lg p-6">
-        <div className="relative" style={{ height: `${height}px` }}>
+      <div className='bg-white dark:bg-gray-900 rounded-lg p-6'>
+        <div className='relative' style={{ height: `${height}px` }}>
           {/* Grid */}
           {showGrid && (
-            <div className="absolute inset-0">
+            <div className='absolute inset-0'>
               {[...Array(5)].map((_, i) => (
                 <div
                   key={i}
-                  className="absolute w-full border-t border-gray-200 dark:border-gray-700"
+                  className='absolute w-full border-t border-gray-200 dark:border-gray-700'
                   style={{ top: `${i * 25}%` }}
                 />
               ))}
@@ -135,9 +138,9 @@ export const AreaChart: React.FC<AreaChartProps> = ({
 
           {/* SVG Chart */}
           <svg
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            className="absolute inset-0 w-full h-full"
+            viewBox='0 0 100 100'
+            preserveAspectRatio='none'
+            className='absolute inset-0 w-full h-full'
           >
             {series.map((s, i) => {
               const color = s.color || defaultColors[i % defaultColors.length];
@@ -153,10 +156,10 @@ export const AreaChart: React.FC<AreaChartProps> = ({
                   {/* Line */}
                   <path
                     d={getLinePath(s.data)}
-                    fill="none"
+                    fill='none'
                     stroke={color}
-                    strokeWidth="0.5"
-                    vectorEffect="non-scaling-stroke"
+                    strokeWidth='0.5'
+                    vectorEffect='non-scaling-stroke'
                   />
                 </g>
               );
@@ -166,9 +169,12 @@ export const AreaChart: React.FC<AreaChartProps> = ({
 
         {/* X-axis labels */}
         {xLabels && (
-          <div className="flex justify-between mt-2">
+          <div className='flex justify-between mt-2'>
             {xLabels.map((label, i) => (
-              <span key={i} className="text-xs text-gray-600 dark:text-gray-400">
+              <span
+                key={i}
+                className='text-xs text-gray-600 dark:text-gray-400'
+              >
                 {label}
               </span>
             ))}

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UnutritionUfacts Component
- * 
+ *
  * A reusable UnutritionUfacts component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UnutritionUfacts className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/nutrition-facts}
  */
 
@@ -33,14 +33,14 @@ export interface UnutritionUfactsProps {
   onClick?: () => void;
 }
 
-export const UnutritionUfacts = ({ 
-  className, 
+export const UnutritionUfacts = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UnutritionUfactsProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UnutritionUfacts = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UnutritionUfacts"
+      role='region'
+      aria-label='UnutritionUfacts'
     >
       {children || 'UnutritionUfacts Component'}
     </div>

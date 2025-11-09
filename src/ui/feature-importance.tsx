@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfeatureUimportance Component
- * 
+ *
  * A reusable UfeatureUimportance component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfeatureUimportance className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/feature-importance}
  */
 
@@ -33,14 +33,14 @@ export interface UfeatureUimportanceProps {
   onClick?: () => void;
 }
 
-export const UfeatureUimportance = ({ 
-  className, 
+export const UfeatureUimportance = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfeatureUimportanceProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfeatureUimportance = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfeatureUimportance"
+      role='region'
+      aria-label='UfeatureUimportance'
     >
       {children || 'UfeatureUimportance Component'}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UbubbleUchart Component
- * 
+ *
  * A reusable UbubbleUchart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UbubbleUchart className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/bubble-chart}
  */
 
@@ -33,14 +33,14 @@ export interface UbubbleUchartProps {
   onClick?: () => void;
 }
 
-export const UbubbleUchart = ({ 
-  className, 
+export const UbubbleUchart = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UbubbleUchartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UbubbleUchart = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UbubbleUchart"
+      role='region'
+      aria-label='UbubbleUchart'
     >
       {children || 'UbubbleUchart Component'}
     </div>

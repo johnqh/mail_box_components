@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UnestedUdrag Component
- * 
+ *
  * A reusable UnestedUdrag component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UnestedUdrag className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/nested-drag}
  */
 
@@ -33,14 +33,14 @@ export interface UnestedUdragProps {
   onClick?: () => void;
 }
 
-export const UnestedUdrag = ({ 
-  className, 
+export const UnestedUdrag = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UnestedUdragProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UnestedUdrag = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UnestedUdrag"
+      role='region'
+      aria-label='UnestedUdrag'
     >
       {children || 'UnestedUdrag Component'}
     </div>

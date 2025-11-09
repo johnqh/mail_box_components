@@ -69,18 +69,18 @@ export const FloatingPanel: React.FC<FloatingPanelProps> = ({
     >
       {/* Header */}
       {(title || collapsible || closeable) && (
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className='flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700'>
           {title && (
-            <h3 className="font-semibold text-gray-900 dark:text-white">
+            <h3 className='font-semibold text-gray-900 dark:text-white'>
               {title}
             </h3>
           )}
 
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             {collapsible && (
               <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors"
+                className='p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors'
                 aria-label={isCollapsed ? 'Expand' : 'Collapse'}
               >
                 <svg
@@ -88,15 +88,15 @@ export const FloatingPanel: React.FC<FloatingPanelProps> = ({
                     'w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform',
                     isCollapsed && 'rotate-180'
                   )}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                     strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
+                    d='M19 9l-7 7-7-7'
                   />
                 </svg>
               </button>
@@ -105,20 +105,20 @@ export const FloatingPanel: React.FC<FloatingPanelProps> = ({
             {closeable && (
               <button
                 onClick={onClose}
-                className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors"
-                aria-label="Close"
+                className='p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors'
+                aria-label='Close'
               >
                 <svg
-                  className="w-4 h-4 text-gray-600 dark:text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  className='w-4 h-4 text-gray-600 dark:text-gray-400'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                     strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
+                    d='M6 18L18 6M6 6l12 12'
                   />
                 </svg>
               </button>
@@ -128,7 +128,7 @@ export const FloatingPanel: React.FC<FloatingPanelProps> = ({
       )}
 
       {/* Content */}
-      {!isCollapsed && <div className="p-4">{children}</div>}
+      {!isCollapsed && <div className='p-4'>{children}</div>}
     </div>
   );
 };

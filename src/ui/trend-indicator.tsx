@@ -55,7 +55,8 @@ export const TrendIndicator: React.FC<TrendIndicatorProps> = ({
   className,
 }) => {
   const change = value - previousValue;
-  const percentChange = previousValue !== 0 ? (change / previousValue) * 100 : 0;
+  const percentChange =
+    previousValue !== 0 ? (change / previousValue) * 100 : 0;
   const isPositive = change >= 0;
 
   const formatValue = (): string => {
@@ -87,7 +88,9 @@ export const TrendIndicator: React.FC<TrendIndicatorProps> = ({
     <div
       className={cn(
         'inline-flex items-center gap-1 font-semibold',
-        isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400',
+        isPositive
+          ? 'text-green-600 dark:text-green-400'
+          : 'text-red-600 dark:text-red-400',
         sizeStyles[size],
         className
       )}
@@ -95,14 +98,24 @@ export const TrendIndicator: React.FC<TrendIndicatorProps> = ({
       {showArrow && (
         <svg
           className={cn(iconSizes[size])}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
         >
           {isPositive ? (
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M5 10l7-7m0 0l7 7m-7-7v18'
+            />
           ) : (
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M19 14l-7 7m0 0l-7-7m7 7V3'
+            />
           )}
         </svg>
       )}

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UstepUcounter Component
- * 
+ *
  * A reusable UstepUcounter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UstepUcounter className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/step-counter}
  */
 
@@ -33,14 +33,14 @@ export interface UstepUcounterProps {
   onClick?: () => void;
 }
 
-export const UstepUcounter = ({ 
-  className, 
+export const UstepUcounter = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UstepUcounterProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UstepUcounter = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UstepUcounter"
+      role='region'
+      aria-label='UstepUcounter'
     >
       {children || 'UstepUcounter Component'}
     </div>

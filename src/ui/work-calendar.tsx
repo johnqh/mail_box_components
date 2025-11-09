@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UworkUcalendar Component
- * 
+ *
  * A reusable UworkUcalendar component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UworkUcalendar className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/work-calendar}
  */
 
@@ -33,14 +33,14 @@ export interface UworkUcalendarProps {
   onClick?: () => void;
 }
 
-export const UworkUcalendar = ({ 
-  className, 
+export const UworkUcalendar = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UworkUcalendarProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UworkUcalendar = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UworkUcalendar"
+      role='region'
+      aria-label='UworkUcalendar'
     >
       {children || 'UworkUcalendar Component'}
     </div>

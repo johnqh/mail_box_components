@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UhotelUbooking Component
- * 
+ *
  * A reusable UhotelUbooking component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UhotelUbooking className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/hotel-booking}
  */
 
@@ -33,14 +33,14 @@ export interface UhotelUbookingProps {
   onClick?: () => void;
 }
 
-export const UhotelUbooking = ({ 
-  className, 
+export const UhotelUbooking = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UhotelUbookingProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UhotelUbooking = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UhotelUbooking"
+      role='region'
+      aria-label='UhotelUbooking'
     >
       {children || 'UhotelUbooking Component'}
     </div>

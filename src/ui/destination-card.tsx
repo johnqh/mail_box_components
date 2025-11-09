@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UdestinationUcard Component
- * 
+ *
  * A reusable UdestinationUcard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UdestinationUcard className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/destination-card}
  */
 
@@ -33,14 +33,14 @@ export interface UdestinationUcardProps {
   onClick?: () => void;
 }
 
-export const UdestinationUcard = ({ 
-  className, 
+export const UdestinationUcard = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UdestinationUcardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UdestinationUcard = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UdestinationUcard"
+      role='region'
+      aria-label='UdestinationUcard'
     >
       {children || 'UdestinationUcard Component'}
     </div>

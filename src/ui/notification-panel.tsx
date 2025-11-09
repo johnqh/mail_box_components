@@ -21,16 +21,30 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
   className,
 }) => {
   return (
-    <div className={cn('bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-4 max-h-96 overflow-y-auto', className)}>
-      {notifications.map((notif) => (
+    <div
+      className={cn(
+        'bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-4 max-h-96 overflow-y-auto',
+        className
+      )}
+    >
+      {notifications.map(notif => (
         <div
           key={notif.id}
-          className={cn('p-3 rounded mb-2', notif.read ? 'bg-transparent' : 'bg-blue-50 dark:bg-blue-900/20')}
+          className={cn(
+            'p-3 rounded mb-2',
+            notif.read ? 'bg-transparent' : 'bg-blue-50 dark:bg-blue-900/20'
+          )}
           onClick={() => onMarkAsRead?.(notif.id)}
         >
-          <h4 className="font-semibold text-gray-900 dark:text-white">{notif.title}</h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{notif.message}</p>
-          <span className="text-xs text-gray-500 dark:text-gray-500">{notif.timestamp}</span>
+          <h4 className='font-semibold text-gray-900 dark:text-white'>
+            {notif.title}
+          </h4>
+          <p className='text-sm text-gray-600 dark:text-gray-400'>
+            {notif.message}
+          </p>
+          <span className='text-xs text-gray-500 dark:text-gray-500'>
+            {notif.timestamp}
+          </span>
         </div>
       ))}
     </div>

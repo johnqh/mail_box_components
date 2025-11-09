@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UlanguageUselector Component
- * 
+ *
  * A reusable UlanguageUselector component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UlanguageUselector className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/language-selector}
  */
 
@@ -33,14 +33,14 @@ export interface UlanguageUselectorProps {
   onClick?: () => void;
 }
 
-export const UlanguageUselector = ({ 
-  className, 
+export const UlanguageUselector = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UlanguageUselectorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UlanguageUselector = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UlanguageUselector"
+      role='region'
+      aria-label='UlanguageUselector'
     >
       {children || 'UlanguageUselector Component'}
     </div>

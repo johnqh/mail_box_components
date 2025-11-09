@@ -57,9 +57,11 @@ export const Reaction: React.FC<ReactionProps> = ({
   };
 
   return (
-    <div className={cn('relative flex flex-wrap items-center gap-2', className)}>
+    <div
+      className={cn('relative flex flex-wrap items-center gap-2', className)}
+    >
       {/* Existing reactions */}
-      {reactions.map((reaction) => (
+      {reactions.map(reaction => (
         <button
           key={reaction.emoji}
           onClick={() => handleReactionClick(reaction.emoji)}
@@ -71,7 +73,7 @@ export const Reaction: React.FC<ReactionProps> = ({
               : 'bg-gray-100 dark:bg-gray-800 border-transparent hover:border-gray-300 dark:hover:border-gray-600'
           )}
         >
-          <span className="text-lg leading-none">{reaction.emoji}</span>
+          <span className='text-lg leading-none'>{reaction.emoji}</span>
           <span
             className={cn(
               'text-sm font-medium',
@@ -87,22 +89,22 @@ export const Reaction: React.FC<ReactionProps> = ({
 
       {/* Add reaction button */}
       {showPicker && (
-        <div className="relative">
+        <div className='relative'>
           <button
             onClick={() => setIsPickerOpen(!isPickerOpen)}
-            className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            className='inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'
           >
             <svg
-              className="w-5 h-5 text-gray-600 dark:text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              className='w-5 h-5 text-gray-600 dark:text-gray-400'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth={2}
-                d="M12 4v16m8-8H4"
+                d='M12 4v16m8-8H4'
               />
             </svg>
           </button>
@@ -112,21 +114,21 @@ export const Reaction: React.FC<ReactionProps> = ({
             <>
               {/* Backdrop */}
               <div
-                className="fixed inset-0 z-10"
+                className='fixed inset-0 z-10'
                 onClick={() => setIsPickerOpen(false)}
               />
 
               {/* Picker */}
-              <div className="absolute z-20 bottom-full mb-2 right-0 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg p-2">
-                <div className="grid grid-cols-4 gap-1">
-                  {availableEmojis.map((emoji) => (
+              <div className='absolute z-20 bottom-full mb-2 right-0 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg p-2'>
+                <div className='grid grid-cols-4 gap-1'>
+                  {availableEmojis.map(emoji => (
                     <button
                       key={emoji}
                       onClick={() => {
                         handleReactionClick(emoji);
                         setIsPickerOpen(false);
                       }}
-                      className="w-10 h-10 flex items-center justify-center text-2xl hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+                      className='w-10 h-10 flex items-center justify-center text-2xl hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors'
                     >
                       {emoji}
                     </button>

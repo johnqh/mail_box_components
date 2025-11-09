@@ -110,7 +110,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
     <div className={cn('relative w-full', className)}>
       {/* Input trigger */}
       <button
-        type="button"
+        type='button'
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
         className={cn(
@@ -124,31 +124,31 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
           isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
         )}
       >
-        <span className="text-gray-900 dark:text-white">
+        <span className='text-gray-900 dark:text-white'>
           {formatDisplay(value)}
         </span>
         <svg
-          className="w-5 h-5 text-gray-600 dark:text-gray-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          className='w-5 h-5 text-gray-600 dark:text-gray-400'
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            strokeLinecap='round'
+            strokeLinejoin='round'
             strokeWidth={2}
-            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
           />
         </svg>
       </button>
 
       {/* Picker dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50 p-3">
-          <div className="space-y-3">
+        <div className='absolute top-full left-0 mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50 p-3'>
+          <div className='space-y-3'>
             {/* Calendar */}
             <div>
-              <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className='block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2'>
                 Select Date
               </label>
               <Calendar
@@ -160,11 +160,11 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gray-200 dark:bg-gray-700" />
+            <div className='h-px bg-gray-200 dark:bg-gray-700' />
 
             {/* Time picker */}
             <div>
-              <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className='block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2'>
                 Select Time
               </label>
               <TimePicker
@@ -176,7 +176,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
             </div>
 
             {/* Actions */}
-            <div className="flex gap-2 pt-2">
+            <div className='flex gap-2 pt-2'>
               <button
                 onClick={() => setIsOpen(false)}
                 className={cn(
@@ -213,10 +213,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
 
       {/* Backdrop */}
       {isOpen && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setIsOpen(false)}
-        />
+        <div className='fixed inset-0 z-40' onClick={() => setIsOpen(false)} />
       )}
     </div>
   );

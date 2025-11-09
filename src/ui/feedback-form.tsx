@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfeedbackUform Component
- * 
+ *
  * A reusable UfeedbackUform component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfeedbackUform className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/feedback-form}
  */
 
@@ -33,14 +33,14 @@ export interface UfeedbackUformProps {
   onClick?: () => void;
 }
 
-export const UfeedbackUform = ({ 
-  className, 
+export const UfeedbackUform = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfeedbackUformProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfeedbackUform = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfeedbackUform"
+      role='region'
+      aria-label='UfeedbackUform'
     >
       {children || 'UfeedbackUform Component'}
     </div>

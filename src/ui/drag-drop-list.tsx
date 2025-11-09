@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UdragUdropUlist Component
- * 
+ *
  * A reusable UdragUdropUlist component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UdragUdropUlist className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/drag-drop-list}
  */
 
@@ -33,14 +33,14 @@ export interface UdragUdropUlistProps {
   onClick?: () => void;
 }
 
-export const UdragUdropUlist = ({ 
-  className, 
+export const UdragUdropUlist = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UdragUdropUlistProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UdragUdropUlist = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UdragUdropUlist"
+      role='region'
+      aria-label='UdragUdropUlist'
     >
       {children || 'UdragUdropUlist Component'}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UmemoryUusage Component
- * 
+ *
  * A reusable UmemoryUusage component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UmemoryUusage className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/memory-usage}
  */
 
@@ -33,14 +33,14 @@ export interface UmemoryUusageProps {
   onClick?: () => void;
 }
 
-export const UmemoryUusage = ({ 
-  className, 
+export const UmemoryUusage = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UmemoryUusageProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UmemoryUusage = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UmemoryUusage"
+      role='region'
+      aria-label='UmemoryUusage'
     >
       {children || 'UmemoryUusage Component'}
     </div>

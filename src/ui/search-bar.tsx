@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UsearchUbar Component
- * 
+ *
  * A reusable UsearchUbar component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UsearchUbar className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/search-bar}
  */
 
@@ -33,14 +33,14 @@ export interface UsearchUbarProps {
   onClick?: () => void;
 }
 
-export const UsearchUbar = ({ 
-  className, 
+export const UsearchUbar = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UsearchUbarProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UsearchUbar = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UsearchUbar"
+      role='region'
+      aria-label='UsearchUbar'
     >
       {children || 'UsearchUbar Component'}
     </div>

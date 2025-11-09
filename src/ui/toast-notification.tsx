@@ -22,10 +22,18 @@ export const ToastNotification: React.FC<ToastNotificationProps> = ({
   };
 
   return (
-    <div className={cn('fixed bottom-4 right-4 p-4 rounded-lg text-white shadow-lg flex items-center gap-3', variants[variant], className)}>
+    <div
+      className={cn(
+        'fixed bottom-4 right-4 p-4 rounded-lg text-white shadow-lg flex items-center gap-3',
+        variants[variant],
+        className
+      )}
+    >
       <span>{message}</span>
       {onClose && (
-        <button onClick={onClose} className="ml-4">×</button>
+        <button onClick={onClose} className='ml-4'>
+          ×
+        </button>
       )}
     </div>
   );

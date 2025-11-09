@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UdeviceUcontrol Component
- * 
+ *
  * A reusable UdeviceUcontrol component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UdeviceUcontrol className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/device-control}
  */
 
@@ -33,14 +33,14 @@ export interface UdeviceUcontrolProps {
   onClick?: () => void;
 }
 
-export const UdeviceUcontrol = ({ 
-  className, 
+export const UdeviceUcontrol = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UdeviceUcontrolProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UdeviceUcontrol = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UdeviceUcontrol"
+      role='region'
+      aria-label='UdeviceUcontrol'
     >
       {children || 'UdeviceUcontrol Component'}
     </div>

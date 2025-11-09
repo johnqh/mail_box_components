@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UcalorieUtracker Component
- * 
+ *
  * A reusable UcalorieUtracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UcalorieUtracker className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/calorie-tracker}
  */
 
@@ -33,14 +33,14 @@ export interface UcalorieUtrackerProps {
   onClick?: () => void;
 }
 
-export const UcalorieUtracker = ({ 
-  className, 
+export const UcalorieUtracker = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UcalorieUtrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UcalorieUtracker = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UcalorieUtracker"
+      role='region'
+      aria-label='UcalorieUtracker'
     >
       {children || 'UcalorieUtracker Component'}
     </div>

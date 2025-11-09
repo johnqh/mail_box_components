@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UwaterUintake Component
- * 
+ *
  * A reusable UwaterUintake component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UwaterUintake className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/water-intake}
  */
 
@@ -33,14 +33,14 @@ export interface UwaterUintakeProps {
   onClick?: () => void;
 }
 
-export const UwaterUintake = ({ 
-  className, 
+export const UwaterUintake = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UwaterUintakeProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UwaterUintake = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UwaterUintake"
+      role='region'
+      aria-label='UwaterUintake'
     >
       {children || 'UwaterUintake Component'}
     </div>

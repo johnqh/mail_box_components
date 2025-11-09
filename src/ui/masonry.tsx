@@ -74,7 +74,10 @@ export const Masonry: React.FC<MasonryProps> = ({
 
   // Distribute items into columns
   const childArray = React.Children.toArray(children);
-  const columnArrays: React.ReactNode[][] = Array.from({ length: columns }, () => []);
+  const columnArrays: React.ReactNode[][] = Array.from(
+    { length: columns },
+    () => []
+  );
 
   childArray.forEach((child, index) => {
     columnArrays[index % columns].push(child);
@@ -89,7 +92,7 @@ export const Masonry: React.FC<MasonryProps> = ({
       {columnArrays.map((column, columnIndex) => (
         <div
           key={columnIndex}
-          className="flex-1 flex flex-col"
+          className='flex-1 flex flex-col'
           style={{ gap: `${gap}px` }}
         >
           {column}

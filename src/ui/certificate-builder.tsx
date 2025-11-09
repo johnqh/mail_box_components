@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UcertificateUbuilder Component
- * 
+ *
  * A reusable UcertificateUbuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UcertificateUbuilder className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/certificate-builder}
  */
 
@@ -33,14 +33,14 @@ export interface UcertificateUbuilderProps {
   onClick?: () => void;
 }
 
-export const UcertificateUbuilder = ({ 
-  className, 
+export const UcertificateUbuilder = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UcertificateUbuilderProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UcertificateUbuilder = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UcertificateUbuilder"
+      role='region'
+      aria-label='UcertificateUbuilder'
     >
       {children || 'UcertificateUbuilder Component'}
     </div>

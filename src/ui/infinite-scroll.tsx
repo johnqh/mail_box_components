@@ -79,8 +79,14 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
     if (!container || loading || !hasMore) return;
 
     const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight, scrollLeft, scrollWidth, clientWidth } =
-        container;
+      const {
+        scrollTop,
+        scrollHeight,
+        clientHeight,
+        scrollLeft,
+        scrollWidth,
+        clientWidth,
+      } = container;
 
       // Show scroll to top button (only for vertical)
       if (scrollDirection === 'vertical') {
@@ -124,9 +130,9 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
 
   // Default loader
   const defaultLoader = (
-    <div className="flex justify-center items-center py-4">
-      <div className="w-6 h-6 border-2 border-blue-600 dark:border-blue-400 border-t-transparent rounded-full animate-spin" />
-      <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+    <div className='flex justify-center items-center py-4'>
+      <div className='w-6 h-6 border-2 border-blue-600 dark:border-blue-400 border-t-transparent rounded-full animate-spin' />
+      <span className='ml-2 text-sm text-gray-600 dark:text-gray-400'>
         Loading...
       </span>
     </div>
@@ -134,8 +140,8 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
 
   // Default end message
   const defaultEndMessage = (
-    <div className="flex justify-center items-center py-4">
-      <span className="text-sm text-gray-600 dark:text-gray-400">
+    <div className='flex justify-center items-center py-4'>
+      <span className='text-sm text-gray-600 dark:text-gray-400'>
         No more items to load
       </span>
     </div>
@@ -147,14 +153,19 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
       <div
         ref={containerRef}
         className={cn(
-          scrollDirection === 'vertical' ? 'overflow-y-auto' : 'overflow-x-auto',
+          scrollDirection === 'vertical'
+            ? 'overflow-y-auto'
+            : 'overflow-x-auto',
           'overflow-auto'
         )}
         style={{
           height: scrollDirection === 'vertical' ? height : undefined,
           width: scrollDirection === 'horizontal' ? '100%' : undefined,
           display: scrollDirection === 'horizontal' ? 'flex' : undefined,
-          flexDirection: reverse && scrollDirection === 'vertical' ? 'column-reverse' : undefined,
+          flexDirection:
+            reverse && scrollDirection === 'vertical'
+              ? 'column-reverse'
+              : undefined,
         }}
       >
         {/* Reverse mode: loader at top */}
@@ -190,19 +201,19 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
             'transition-colors',
             'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
           )}
-          aria-label="Scroll to top"
+          aria-label='Scroll to top'
         >
           <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            className='w-5 h-5'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
+              d='M5 10l7-7m0 0l7 7m-7-7v18'
             />
           </svg>
         </button>

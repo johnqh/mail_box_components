@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UbreakUtimer Component
- * 
+ *
  * A reusable UbreakUtimer component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UbreakUtimer className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/break-timer}
  */
 
@@ -33,14 +33,14 @@ export interface UbreakUtimerProps {
   onClick?: () => void;
 }
 
-export const UbreakUtimer = ({ 
-  className, 
+export const UbreakUtimer = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UbreakUtimerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UbreakUtimer = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UbreakUtimer"
+      role='region'
+      aria-label='UbreakUtimer'
     >
       {children || 'UbreakUtimer Component'}
     </div>

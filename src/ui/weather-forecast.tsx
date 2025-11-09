@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UweatherUforecast Component
- * 
+ *
  * A reusable UweatherUforecast component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UweatherUforecast className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/weather-forecast}
  */
 
@@ -33,14 +33,14 @@ export interface UweatherUforecastProps {
   onClick?: () => void;
 }
 
-export const UweatherUforecast = ({ 
-  className, 
+export const UweatherUforecast = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UweatherUforecastProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UweatherUforecast = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UweatherUforecast"
+      role='region'
+      aria-label='UweatherUforecast'
     >
       {children || 'UweatherUforecast Component'}
     </div>

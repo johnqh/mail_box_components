@@ -53,29 +53,38 @@ export const DashboardStatCard: React.FC<DashboardStatCardProps> = ({
   };
 
   return (
-    <div className={cn('rounded-lg border border-gray-200 dark:border-gray-700 p-6', variantStyles[variant], className)}>
-      <div className="flex items-start justify-between mb-2">
-        <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
+    <div
+      className={cn(
+        'rounded-lg border border-gray-200 dark:border-gray-700 p-6',
+        variantStyles[variant],
+        className
+      )}
+    >
+      <div className='flex items-start justify-between mb-2'>
+        <h3 className='text-sm font-medium text-gray-600 dark:text-gray-400'>
           {title}
         </h3>
-        {icon && (
-          <div className="text-gray-400 dark:text-gray-600">
-            {icon}
-          </div>
-        )}
+        {icon && <div className='text-gray-400 dark:text-gray-600'>{icon}</div>}
       </div>
 
-      <div className="flex items-end justify-between">
+      <div className='flex items-end justify-between'>
         <div>
-          <p className="text-3xl font-bold text-gray-900 dark:text-white">
+          <p className='text-3xl font-bold text-gray-900 dark:text-white'>
             {value}
           </p>
           {change !== undefined && (
-            <div className="flex items-center gap-1 mt-2">
-              <span className={cn('text-sm font-medium', change >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400')}>
+            <div className='flex items-center gap-1 mt-2'>
+              <span
+                className={cn(
+                  'text-sm font-medium',
+                  change >= 0
+                    ? 'text-green-600 dark:text-green-400'
+                    : 'text-red-600 dark:text-red-400'
+                )}
+              >
                 {change >= 0 ? '↑' : '↓'} {Math.abs(change)}%
               </span>
-              <span className="text-xs text-gray-500 dark:text-gray-400">
+              <span className='text-xs text-gray-500 dark:text-gray-400'>
                 {changePeriod}
               </span>
             </div>

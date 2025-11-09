@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UexcelUuploader Component
- * 
+ *
  * A reusable UexcelUuploader component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UexcelUuploader className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/excel-uploader}
  */
 
@@ -33,14 +33,14 @@ export interface UexcelUuploaderProps {
   onClick?: () => void;
 }
 
-export const UexcelUuploader = ({ 
-  className, 
+export const UexcelUuploader = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UexcelUuploaderProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UexcelUuploader = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UexcelUuploader"
+      role='region'
+      aria-label='UexcelUuploader'
     >
       {children || 'UexcelUuploader Component'}
     </div>

@@ -64,48 +64,54 @@ export const CommentThread: React.FC<CommentThreadProps> = ({
     }
   };
 
-  const CommentItem = ({ comment, depth = 0 }: { comment: Comment; depth?: number }) => {
+  const CommentItem = ({
+    comment,
+    depth = 0,
+  }: {
+    comment: Comment;
+    depth?: number;
+  }) => {
     const canNest = depth < maxDepth;
 
     return (
       <div className={cn('flex gap-3', depth > 0 && 'ml-8 mt-4')}>
         {/* Avatar */}
-        <div className="flex-shrink-0">
+        <div className='flex-shrink-0'>
           {comment.avatar ? (
             <img
               src={comment.avatar}
               alt={comment.author}
-              className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700"
+              className='w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700'
             />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-white font-semibold">
+            <div className='w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-white font-semibold'>
               {comment.author.charAt(0).toUpperCase()}
             </div>
           )}
         </div>
 
-        <div className="flex-1 min-w-0">
+        <div className='flex-1 min-w-0'>
           {/* Header */}
-          <div className="flex items-center gap-2 mb-1">
-            <span className="font-semibold text-gray-900 dark:text-white">
+          <div className='flex items-center gap-2 mb-1'>
+            <span className='font-semibold text-gray-900 dark:text-white'>
               {comment.author}
             </span>
-            <span className="text-sm text-gray-600 dark:text-gray-400">
+            <span className='text-sm text-gray-600 dark:text-gray-400'>
               {comment.timestamp}
             </span>
           </div>
 
           {/* Content */}
-          <p className="text-gray-700 dark:text-gray-300 mb-2">
+          <p className='text-gray-700 dark:text-gray-300 mb-2'>
             {comment.content}
           </p>
 
           {/* Actions */}
-          <div className="flex items-center gap-4 text-sm">
+          <div className='flex items-center gap-4 text-sm'>
             {onReply && canNest && (
               <button
                 onClick={() => setReplyingTo(comment.id)}
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className='text-blue-600 dark:text-blue-400 hover:underline'
               >
                 Reply
               </button>
@@ -113,7 +119,7 @@ export const CommentThread: React.FC<CommentThreadProps> = ({
             {onDelete && (
               <button
                 onClick={() => onDelete(comment.id)}
-                className="text-red-600 dark:text-red-400 hover:underline"
+                className='text-red-600 dark:text-red-400 hover:underline'
               >
                 Delete
               </button>
@@ -122,17 +128,17 @@ export const CommentThread: React.FC<CommentThreadProps> = ({
 
           {/* Reply form */}
           {replyingTo === comment.id && (
-            <div className="mt-3 flex gap-2">
+            <div className='mt-3 flex gap-2'>
               <input
-                type="text"
+                type='text'
                 value={replyContent}
-                onChange={(e) => setReplyContent(e.target.value)}
-                placeholder="Write a reply..."
-                className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                onChange={e => setReplyContent(e.target.value)}
+                placeholder='Write a reply...'
+                className='flex-1 px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white'
               />
               <button
                 onClick={() => handleSubmitReply(comment.id)}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                className='px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors'
               >
                 Post
               </button>
@@ -141,7 +147,7 @@ export const CommentThread: React.FC<CommentThreadProps> = ({
                   setReplyingTo(null);
                   setReplyContent('');
                 }}
-                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                className='px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors'
               >
                 Cancel
               </button>
@@ -150,8 +156,8 @@ export const CommentThread: React.FC<CommentThreadProps> = ({
 
           {/* Nested replies */}
           {comment.replies && comment.replies.length > 0 && (
-            <div className="mt-4">
-              {comment.replies.map((reply) => (
+            <div className='mt-4'>
+              {comment.replies.map(reply => (
                 <CommentItem key={reply.id} comment={reply} depth={depth + 1} />
               ))}
             </div>
@@ -163,7 +169,7 @@ export const CommentThread: React.FC<CommentThreadProps> = ({
 
   return (
     <div className={cn('space-y-6', className)}>
-      {comments.map((comment) => (
+      {comments.map(comment => (
         <CommentItem key={comment.id} comment={comment} />
       ))}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfitnessUgoal Component
- * 
+ *
  * A reusable UfitnessUgoal component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfitnessUgoal className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/fitness-goal}
  */
 
@@ -33,14 +33,14 @@ export interface UfitnessUgoalProps {
   onClick?: () => void;
 }
 
-export const UfitnessUgoal = ({ 
-  className, 
+export const UfitnessUgoal = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfitnessUgoalProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfitnessUgoal = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfitnessUgoal"
+      role='region'
+      aria-label='UfitnessUgoal'
     >
       {children || 'UfitnessUgoal Component'}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UperformanceUchart Component
- * 
+ *
  * A reusable UperformanceUchart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UperformanceUchart className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/performance-chart}
  */
 
@@ -33,14 +33,14 @@ export interface UperformanceUchartProps {
   onClick?: () => void;
 }
 
-export const UperformanceUchart = ({ 
-  className, 
+export const UperformanceUchart = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UperformanceUchartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UperformanceUchart = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UperformanceUchart"
+      role='region'
+      aria-label='UperformanceUchart'
     >
       {children || 'UperformanceUchart Component'}
     </div>

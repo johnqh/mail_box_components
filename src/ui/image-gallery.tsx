@@ -61,14 +61,15 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
 
   const handlePrevious = () => {
     if (!selectedImage) return;
-    const currentIndex = images.findIndex((img) => img.id === selectedImage.id);
-    const previousIndex = currentIndex > 0 ? currentIndex - 1 : images.length - 1;
+    const currentIndex = images.findIndex(img => img.id === selectedImage.id);
+    const previousIndex =
+      currentIndex > 0 ? currentIndex - 1 : images.length - 1;
     setSelectedImage(images[previousIndex]);
   };
 
   const handleNext = () => {
     if (!selectedImage) return;
-    const currentIndex = images.findIndex((img) => img.id === selectedImage.id);
+    const currentIndex = images.findIndex(img => img.id === selectedImage.id);
     const nextIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
     setSelectedImage(images[nextIndex]);
   };
@@ -82,7 +83,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
           gap: `${gap}px`,
         }}
       >
-        {images.map((image) => (
+        {images.map(image => (
           <div
             key={image.id}
             className={cn(
@@ -94,10 +95,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
             <img
               src={image.thumbnail || image.src}
               alt={image.alt || ''}
-              className="w-full h-full object-cover"
+              className='w-full h-full object-cover'
             />
             {image.caption && (
-              <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-sm p-2">
+              <div className='absolute bottom-0 left-0 right-0 bg-black/50 text-white text-sm p-2'>
                 {image.caption}
               </div>
             )}
@@ -108,50 +109,85 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
       {/* Lightbox */}
       {lightbox && selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          className='fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4'
           onClick={handleClose}
         >
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+            className='absolute top-4 right-4 text-white hover:text-gray-300 transition-colors'
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className='w-8 h-8'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M6 18L18 6M6 6l12 12'
+              />
             </svg>
           </button>
 
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               handlePrevious();
             }}
-            className="absolute left-4 text-white hover:text-gray-300 transition-colors"
+            className='absolute left-4 text-white hover:text-gray-300 transition-colors'
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg
+              className='w-8 h-8'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M15 19l-7-7 7-7'
+              />
             </svg>
           </button>
 
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               handleNext();
             }}
-            className="absolute right-4 text-white hover:text-gray-300 transition-colors"
+            className='absolute right-4 text-white hover:text-gray-300 transition-colors'
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              className='w-8 h-8'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M9 5l7 7-7 7'
+              />
             </svg>
           </button>
 
-          <div className="max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
+          <div
+            className='max-w-4xl max-h-full'
+            onClick={e => e.stopPropagation()}
+          >
             <img
               src={selectedImage.src}
               alt={selectedImage.alt || ''}
-              className="max-w-full max-h-[80vh] object-contain"
+              className='max-w-full max-h-[80vh] object-contain'
             />
             {selectedImage.caption && (
-              <p className="text-white text-center mt-4">{selectedImage.caption}</p>
+              <p className='text-white text-center mt-4'>
+                {selectedImage.caption}
+              </p>
             )}
           </div>
         </div>

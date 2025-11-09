@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UquizUcard Component
- * 
+ *
  * A reusable UquizUcard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UquizUcard className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/quiz-card}
  */
 
@@ -33,14 +33,14 @@ export interface UquizUcardProps {
   onClick?: () => void;
 }
 
-export const UquizUcard = ({ 
-  className, 
+export const UquizUcard = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UquizUcardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UquizUcard = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UquizUcard"
+      role='region'
+      aria-label='UquizUcard'
     >
       {children || 'UquizUcard Component'}
     </div>

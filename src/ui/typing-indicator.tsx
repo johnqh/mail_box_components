@@ -49,7 +49,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
         className
       )}
     >
-      {[0, 1, 2].map((i) => (
+      {[0, 1, 2].map(i => (
         <div
           key={i}
           className={cn(

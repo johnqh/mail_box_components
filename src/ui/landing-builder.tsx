@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UlandingUbuilder Component
- * 
+ *
  * A reusable UlandingUbuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UlandingUbuilder className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/landing-builder}
  */
 
@@ -33,14 +33,14 @@ export interface UlandingUbuilderProps {
   onClick?: () => void;
 }
 
-export const UlandingUbuilder = ({ 
-  className, 
+export const UlandingUbuilder = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UlandingUbuilderProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UlandingUbuilder = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UlandingUbuilder"
+      role='region'
+      aria-label='UlandingUbuilder'
     >
       {children || 'UlandingUbuilder Component'}
     </div>

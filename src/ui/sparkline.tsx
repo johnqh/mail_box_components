@@ -41,28 +41,34 @@ export const Sparkline: React.FC<SparklineProps> = ({
   const min = Math.min(...data);
   const range = max - min || 1;
 
-  const points = data.map((value, index) => {
-    const x = (index / (data.length - 1)) * width;
-    const y = height - ((value - min) / range) * height;
-    return `${x},${y}`;
-  }).join(' ');
+  const points = data
+    .map((value, index) => {
+      const x = (index / (data.length - 1)) * width;
+      const y = height - ((value - min) / range) * height;
+      return `${x},${y}`;
+    })
+    .join(' ');
 
   return (
-    <svg width={width} height={height} className={cn('inline-block', className)}>
+    <svg
+      width={width}
+      height={height}
+      className={cn('inline-block', className)}
+    >
       {fill && (
         <polygon
           points={`0,${height} ${points} ${width},${height}`}
           fill={color}
-          opacity="0.2"
+          opacity='0.2'
         />
       )}
       <polyline
         points={points}
-        fill="none"
+        fill='none'
         stroke={color}
-        strokeWidth="2"
-        strokeLinejoin="round"
-        strokeLinecap="round"
+        strokeWidth='2'
+        strokeLinejoin='round'
+        strokeLinecap='round'
       />
     </svg>
   );

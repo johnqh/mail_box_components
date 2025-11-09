@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UgameUcontrols Component
- * 
+ *
  * A reusable UgameUcontrols component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UgameUcontrols className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/game-controls}
  */
 
@@ -33,14 +33,14 @@ export interface UgameUcontrolsProps {
   onClick?: () => void;
 }
 
-export const UgameUcontrols = ({ 
-  className, 
+export const UgameUcontrols = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UgameUcontrolsProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UgameUcontrols = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UgameUcontrols"
+      role='region'
+      aria-label='UgameUcontrols'
     >
       {children || 'UgameUcontrols Component'}
     </div>

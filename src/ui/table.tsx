@@ -97,40 +97,54 @@ export function Table<T extends Record<string, any>>({
 
   return (
     <div className={cn('w-full overflow-x-auto', className)}>
-      <table className="w-full">
+      <table className='w-full'>
         {/* Header */}
-        <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <thead className='bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700'>
           <tr>
-            {columns.map((column) => (
+            {columns.map(column => (
               <th
                 key={column.key}
                 className={cn(
                   compact ? 'px-3 py-2' : 'px-6 py-3',
                   'text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider',
                   alignClasses[column.align || 'left'],
-                  column.sortable && 'cursor-pointer select-none hover:bg-gray-100 dark:hover:bg-gray-700',
-                  bordered && 'border-r border-gray-200 dark:border-gray-700 last:border-r-0'
+                  column.sortable &&
+                    'cursor-pointer select-none hover:bg-gray-100 dark:hover:bg-gray-700',
+                  bordered &&
+                    'border-r border-gray-200 dark:border-gray-700 last:border-r-0'
                 )}
                 style={{ width: column.width }}
                 onClick={() => column.sortable && handleSort(column)}
               >
-                <div className="flex items-center gap-2">
+                <div className='flex items-center gap-2'>
                   {column.label}
                   {column.sortable && (
-                    <span className="flex flex-col">
+                    <span className='flex flex-col'>
                       {sort?.column === column.key ? (
                         sort.direction === 'asc' ? (
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M5 10l5-5 5 5H5z" />
+                          <svg
+                            className='w-4 h-4'
+                            fill='currentColor'
+                            viewBox='0 0 20 20'
+                          >
+                            <path d='M5 10l5-5 5 5H5z' />
                           </svg>
                         ) : (
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M15 10l-5 5-5-5h10z" />
+                          <svg
+                            className='w-4 h-4'
+                            fill='currentColor'
+                            viewBox='0 0 20 20'
+                          >
+                            <path d='M15 10l-5 5-5-5h10z' />
                           </svg>
                         )
                       ) : (
-                        <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M5 10l5-5 5 5H5z" />
+                        <svg
+                          className='w-4 h-4 text-gray-400'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                        >
+                          <path d='M5 10l5-5 5 5H5z' />
                         </svg>
                       )}
                     </span>
@@ -142,12 +156,12 @@ export function Table<T extends Record<string, any>>({
         </thead>
 
         {/* Body */}
-        <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+        <tbody className='bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700'>
           {data.length === 0 ? (
             <tr>
               <td
                 colSpan={columns.length}
-                className="px-6 py-8 text-center text-sm text-gray-500 dark:text-gray-400"
+                className='px-6 py-8 text-center text-sm text-gray-500 dark:text-gray-400'
               >
                 {emptyMessage}
               </td>
@@ -157,20 +171,24 @@ export function Table<T extends Record<string, any>>({
               <tr
                 key={keyExtractor(row, rowIndex)}
                 className={cn(
-                  striped && rowIndex % 2 === 1 && 'bg-gray-50 dark:bg-gray-800/50',
-                  hoverable && 'hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors',
+                  striped &&
+                    rowIndex % 2 === 1 &&
+                    'bg-gray-50 dark:bg-gray-800/50',
+                  hoverable &&
+                    'hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors',
                   onRowClick && 'cursor-pointer'
                 )}
                 onClick={() => onRowClick?.(row, rowIndex)}
               >
-                {columns.map((column) => (
+                {columns.map(column => (
                   <td
                     key={column.key}
                     className={cn(
                       compact ? 'px-3 py-2' : 'px-6 py-4',
                       'text-sm text-gray-900 dark:text-white',
                       alignClasses[column.align || 'left'],
-                      bordered && 'border-r border-gray-200 dark:border-gray-700 last:border-r-0'
+                      bordered &&
+                        'border-r border-gray-200 dark:border-gray-700 last:border-r-0'
                     )}
                   >
                     {column.render

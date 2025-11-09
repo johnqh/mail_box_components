@@ -179,7 +179,7 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
     >
       {/* Left/Top panel */}
       <div
-        className="overflow-auto"
+        className='overflow-auto'
         style={{
           [isHorizontal ? 'width' : 'height']: `${split * 100}%`,
         }}
@@ -214,30 +214,22 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
             )}
           >
             {isHorizontal ? (
-              <svg
-                className="w-4 h-4"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <circle cx="10" cy="6" r="1.5" />
-                <circle cx="10" cy="12" r="1.5" />
-                <circle cx="10" cy="18" r="1.5" />
-                <circle cx="14" cy="6" r="1.5" />
-                <circle cx="14" cy="12" r="1.5" />
-                <circle cx="14" cy="18" r="1.5" />
+              <svg className='w-4 h-4' fill='currentColor' viewBox='0 0 24 24'>
+                <circle cx='10' cy='6' r='1.5' />
+                <circle cx='10' cy='12' r='1.5' />
+                <circle cx='10' cy='18' r='1.5' />
+                <circle cx='14' cy='6' r='1.5' />
+                <circle cx='14' cy='12' r='1.5' />
+                <circle cx='14' cy='18' r='1.5' />
               </svg>
             ) : (
-              <svg
-                className="w-4 h-4"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <circle cx="6" cy="10" r="1.5" />
-                <circle cx="12" cy="10" r="1.5" />
-                <circle cx="18" cy="10" r="1.5" />
-                <circle cx="6" cy="14" r="1.5" />
-                <circle cx="12" cy="14" r="1.5" />
-                <circle cx="18" cy="14" r="1.5" />
+              <svg className='w-4 h-4' fill='currentColor' viewBox='0 0 24 24'>
+                <circle cx='6' cy='10' r='1.5' />
+                <circle cx='12' cy='10' r='1.5' />
+                <circle cx='18' cy='10' r='1.5' />
+                <circle cx='6' cy='14' r='1.5' />
+                <circle cx='12' cy='14' r='1.5' />
+                <circle cx='18' cy='14' r='1.5' />
               </svg>
             )}
           </div>
@@ -246,7 +238,7 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
 
       {/* Right/Bottom panel */}
       <div
-        className="overflow-auto flex-1"
+        className='overflow-auto flex-1'
         style={{
           [isHorizontal ? 'width' : 'height']: `${(1 - split) * 100}%`,
         }}

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UsubscriptionUplan Component
- * 
+ *
  * A reusable UsubscriptionUplan component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UsubscriptionUplan className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/subscription-plan}
  */
 
@@ -33,14 +33,14 @@ export interface UsubscriptionUplanProps {
   onClick?: () => void;
 }
 
-export const UsubscriptionUplan = ({ 
-  className, 
+export const UsubscriptionUplan = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UsubscriptionUplanProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UsubscriptionUplan = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UsubscriptionUplan"
+      role='region'
+      aria-label='UsubscriptionUplan'
     >
       {children || 'UsubscriptionUplan Component'}
     </div>

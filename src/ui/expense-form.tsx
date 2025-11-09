@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UexpenseUform Component
- * 
+ *
  * A reusable UexpenseUform component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UexpenseUform className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/expense-form}
  */
 
@@ -33,14 +33,14 @@ export interface UexpenseUformProps {
   onClick?: () => void;
 }
 
-export const UexpenseUform = ({ 
-  className, 
+export const UexpenseUform = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UexpenseUformProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UexpenseUform = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UexpenseUform"
+      role='region'
+      aria-label='UexpenseUform'
     >
       {children || 'UexpenseUform Component'}
     </div>

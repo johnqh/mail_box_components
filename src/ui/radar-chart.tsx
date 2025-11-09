@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UradarUchart Component
- * 
+ *
  * A reusable UradarUchart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UradarUchart className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/radar-chart}
  */
 
@@ -33,14 +33,14 @@ export interface UradarUchartProps {
   onClick?: () => void;
 }
 
-export const UradarUchart = ({ 
-  className, 
+export const UradarUchart = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UradarUchartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UradarUchart = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UradarUchart"
+      role='region'
+      aria-label='UradarUchart'
     >
       {children || 'UradarUchart Component'}
     </div>

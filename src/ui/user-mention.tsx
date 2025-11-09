@@ -75,7 +75,7 @@ export const UserMention: React.FC<UserMentionProps> = ({
     if (atPos !== -1) {
       const query = text.slice(atPos + 1, cursorPos).toLowerCase();
       const filtered = users.filter(
-        (user) =>
+        user =>
           user.name.toLowerCase().includes(query) ||
           user.username.toLowerCase().includes(query)
       );
@@ -118,10 +118,12 @@ export const UserMention: React.FC<UserMentionProps> = ({
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setSelectedIndex((prev) => (prev + 1) % filteredUsers.length);
+      setSelectedIndex(prev => (prev + 1) % filteredUsers.length);
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setSelectedIndex((prev) => (prev - 1 + filteredUsers.length) % filteredUsers.length);
+      setSelectedIndex(
+        prev => (prev - 1 + filteredUsers.length) % filteredUsers.length
+      );
     } else if (e.key === 'Enter') {
       e.preventDefault();
       insertMention(filteredUsers[selectedIndex]);
@@ -135,16 +137,16 @@ export const UserMention: React.FC<UserMentionProps> = ({
       <textarea
         ref={inputRef}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className='w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white resize-none focus:outline-none focus:ring-2 focus:ring-blue-500'
         rows={4}
       />
 
       {/* Suggestions dropdown */}
       {showSuggestions && (
-        <div className="absolute z-10 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+        <div className='absolute z-10 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg max-h-60 overflow-y-auto'>
           {filteredUsers.map((user, index) => (
             <button
               key={user.id}
@@ -160,18 +162,18 @@ export const UserMention: React.FC<UserMentionProps> = ({
                 <img
                   src={user.avatar}
                   alt={user.name}
-                  className="w-8 h-8 rounded-full"
+                  className='w-8 h-8 rounded-full'
                 />
               ) : (
-                <div className="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-white font-semibold text-sm">
+                <div className='w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-white font-semibold text-sm'>
                   {user.name.charAt(0).toUpperCase()}
                 </div>
               )}
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-gray-900 dark:text-white truncate">
+              <div className='flex-1 min-w-0'>
+                <p className='font-medium text-gray-900 dark:text-white truncate'>
                   {user.name}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                <p className='text-sm text-gray-600 dark:text-gray-400 truncate'>
                   @{user.username}
                 </p>
               </div>

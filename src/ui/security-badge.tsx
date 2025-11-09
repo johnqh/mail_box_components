@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UsecurityUbadge Component
- * 
+ *
  * A reusable UsecurityUbadge component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UsecurityUbadge className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/security-badge}
  */
 
@@ -33,14 +33,14 @@ export interface UsecurityUbadgeProps {
   onClick?: () => void;
 }
 
-export const UsecurityUbadge = ({ 
-  className, 
+export const UsecurityUbadge = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UsecurityUbadgeProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UsecurityUbadge = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UsecurityUbadge"
+      role='region'
+      aria-label='UsecurityUbadge'
     >
       {children || 'UsecurityUbadge Component'}
     </div>

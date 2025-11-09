@@ -73,28 +73,34 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
     const cellSize = size / gridSize;
 
     // Create a simple pattern based on value hash
-    const hash = value.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const hash = value
+      .split('')
+      .reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
     for (let row = 0; row < gridSize; row++) {
       for (let col = 0; col < gridSize; col++) {
-        const shouldFill = ((hash + row * gridSize + col) % 3) !== 0;
+        const shouldFill = (hash + row * gridSize + col) % 3 !== 0;
         if (shouldFill) {
-          ctx.fillRect(
-            col * cellSize,
-            row * cellSize,
-            cellSize,
-            cellSize
-          );
+          ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
         }
       }
     }
 
     // Draw corner squares (position markers)
     const markerSize = cellSize * 3;
-    [[0, 0], [size - markerSize, 0], [0, size - markerSize]].forEach(([x, y]) => {
+    [
+      [0, 0],
+      [size - markerSize, 0],
+      [0, size - markerSize],
+    ].forEach(([x, y]) => {
       ctx.strokeStyle = fgColor;
       ctx.lineWidth = cellSize;
-      ctx.strokeRect(x + cellSize / 2, y + cellSize / 2, markerSize - cellSize, markerSize - cellSize);
+      ctx.strokeRect(
+        x + cellSize / 2,
+        y + cellSize / 2,
+        markerSize - cellSize,
+        markerSize - cellSize
+      );
     });
   }, [value, size, fgColor, bgColor]);
 
@@ -115,7 +121,7 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
         ref={canvasRef}
         width={size}
         height={size}
-        className="border-2 border-gray-200 dark:border-gray-700 rounded-lg"
+        className='border-2 border-gray-200 dark:border-gray-700 rounded-lg'
       />
 
       {showDownload && (
@@ -133,7 +139,7 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
         </button>
       )}
 
-      <p className="text-xs text-gray-600 dark:text-gray-400 max-w-[200px] text-center break-all">
+      <p className='text-xs text-gray-600 dark:text-gray-400 max-w-[200px] text-center break-all'>
         {value}
       </p>
     </div>

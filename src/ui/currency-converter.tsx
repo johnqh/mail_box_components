@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UcurrencyUconverter Component
- * 
+ *
  * A reusable UcurrencyUconverter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UcurrencyUconverter className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/currency-converter}
  */
 
@@ -33,14 +33,14 @@ export interface UcurrencyUconverterProps {
   onClick?: () => void;
 }
 
-export const UcurrencyUconverter = ({ 
-  className, 
+export const UcurrencyUconverter = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UcurrencyUconverterProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UcurrencyUconverter = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UcurrencyUconverter"
+      role='region'
+      aria-label='UcurrencyUconverter'
     >
       {children || 'UcurrencyUconverter Component'}
     </div>

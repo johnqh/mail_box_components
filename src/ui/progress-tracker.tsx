@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UprogressUtracker Component
- * 
+ *
  * A reusable UprogressUtracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UprogressUtracker className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/progress-tracker}
  */
 
@@ -33,14 +33,14 @@ export interface UprogressUtrackerProps {
   onClick?: () => void;
 }
 
-export const UprogressUtracker = ({ 
-  className, 
+export const UprogressUtracker = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UprogressUtrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UprogressUtracker = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UprogressUtracker"
+      role='region'
+      aria-label='UprogressUtracker'
     >
       {children || 'UprogressUtracker Component'}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UmorphUtransition Component
- * 
+ *
  * A reusable UmorphUtransition component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UmorphUtransition className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/morph-transition}
  */
 
@@ -33,14 +33,14 @@ export interface UmorphUtransitionProps {
   onClick?: () => void;
 }
 
-export const UmorphUtransition = ({ 
-  className, 
+export const UmorphUtransition = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UmorphUtransitionProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UmorphUtransition = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UmorphUtransition"
+      role='region'
+      aria-label='UmorphUtransition'
     >
       {children || 'UmorphUtransition Component'}
     </div>

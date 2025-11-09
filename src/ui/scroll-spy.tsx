@@ -71,7 +71,8 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
   const [internalActiveId, setInternalActiveId] = useState<string>('');
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const activeId = controlledActiveId !== undefined ? controlledActiveId : internalActiveId;
+  const activeId =
+    controlledActiveId !== undefined ? controlledActiveId : internalActiveId;
 
   // Set up intersection observer
   useEffect(() => {
@@ -83,7 +84,7 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
 
     // Get all section IDs
     const getAllIds = (secs: ScrollSpySection[]): string[] => {
-      return secs.flatMap((section) => [
+      return secs.flatMap(section => [
         section.id,
         ...(section.subsections ? getAllIds(section.subsections) : []),
       ]);
@@ -91,15 +92,15 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
 
     const allIds = getAllIds(sections);
     const elements = allIds
-      .map((id) => document.getElementById(id))
+      .map(id => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
 
     if (elements.length === 0) return;
 
     // Create intersection observer
     observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             const newActiveId = entry.target.id;
 
@@ -112,14 +113,14 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
         });
       },
       {
-        root: container ? scrollContainer as Element : null,
+        root: container ? (scrollContainer as Element) : null,
         rootMargin: `-${offset}px 0px -50% 0px`,
         threshold: 0,
       }
     );
 
     // Observe all elements
-    elements.forEach((element) => {
+    elements.forEach(element => {
       observerRef.current?.observe(element);
     });
 
@@ -167,7 +168,7 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
   const renderSection = (section: ScrollSpySection, level: number = 0) => {
     const isActive = activeId === section.id;
     const hasActiveChild =
-      section.subsections?.some((sub) => activeId === sub.id) || false;
+      section.subsections?.some(sub => activeId === sub.id) || false;
 
     return (
       <div key={section.id}>
@@ -175,9 +176,7 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
           onClick={() => scrollToSection(section.id)}
           className={cn(
             'w-full text-left px-3 py-1.5 text-sm rounded-md transition-colors',
-            level === 0
-              ? 'font-medium'
-              : 'pl-6 text-sm',
+            level === 0 ? 'font-medium' : 'pl-6 text-sm',
             isActive
               ? 'text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30'
               : hasActiveChild
@@ -193,8 +192,8 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
         {showSubsections &&
           section.subsections &&
           section.subsections.length > 0 && (
-            <div className="ml-2 border-l-2 border-gray-200 dark:border-gray-700">
-              {section.subsections.map((subsection) =>
+            <div className='ml-2 border-l-2 border-gray-200 dark:border-gray-700'>
+              {section.subsections.map(subsection =>
                 renderSection(subsection, level + 1)
               )}
             </div>
@@ -205,7 +204,7 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
 
   return (
     <nav className={cn('space-y-1', className)}>
-      {sections.map((section) => renderSection(section, 0))}
+      {sections.map(section => renderSection(section, 0))}
     </nav>
   );
 };

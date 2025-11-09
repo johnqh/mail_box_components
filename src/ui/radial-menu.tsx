@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UradialUmenu Component
- * 
+ *
  * A reusable UradialUmenu component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UradialUmenu className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/radial-menu}
  */
 
@@ -33,14 +33,14 @@ export interface UradialUmenuProps {
   onClick?: () => void;
 }
 
-export const UradialUmenu = ({ 
-  className, 
+export const UradialUmenu = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UradialUmenuProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UradialUmenu = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UradialUmenu"
+      role='region'
+      aria-label='UradialUmenu'
     >
       {children || 'UradialUmenu Component'}
     </div>

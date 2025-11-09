@@ -51,10 +51,10 @@ export const Kanban: React.FC<KanbanProps> = ({
 }) => {
   return (
     <div className={cn('flex gap-4 overflow-x-auto pb-4', className)}>
-      {columns.map((column) => (
+      {columns.map(column => (
         <div
           key={column.id}
-          className="flex-shrink-0 w-80 bg-gray-100 dark:bg-gray-800 rounded-lg p-4"
+          className='flex-shrink-0 w-80 bg-gray-100 dark:bg-gray-800 rounded-lg p-4'
         >
           {/* Column header */}
           <div
@@ -64,37 +64,38 @@ export const Kanban: React.FC<KanbanProps> = ({
             )}
             onClick={() => onColumnClick?.(column)}
           >
-            <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+            <h3 className='font-semibold text-gray-900 dark:text-white flex items-center gap-2'>
               {column.color && (
                 <div
-                  className="w-3 h-3 rounded-full"
+                  className='w-3 h-3 rounded-full'
                   style={{ backgroundColor: column.color }}
                 />
               )}
               {column.title}
             </h3>
-            <span className="text-sm text-gray-600 dark:text-gray-400">
+            <span className='text-sm text-gray-600 dark:text-gray-400'>
               {column.cards.length}
             </span>
           </div>
 
           {/* Cards */}
-          <div className="space-y-3">
-            {column.cards.map((card) => (
+          <div className='space-y-3'>
+            {column.cards.map(card => (
               <div
                 key={card.id}
                 className={cn(
                   'bg-white dark:bg-gray-900 rounded-lg p-3 shadow-sm',
                   'border border-gray-200 dark:border-gray-700',
-                  onCardClick && 'cursor-pointer hover:shadow-md transition-shadow'
+                  onCardClick &&
+                    'cursor-pointer hover:shadow-md transition-shadow'
                 )}
                 onClick={() => onCardClick?.(card, column.id)}
               >
-                <h4 className="font-medium text-gray-900 dark:text-white text-sm mb-1">
+                <h4 className='font-medium text-gray-900 dark:text-white text-sm mb-1'>
                   {card.title}
                 </h4>
                 {card.content && (
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className='text-sm text-gray-600 dark:text-gray-400'>
                     {card.content}
                   </div>
                 )}

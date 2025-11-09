@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UcontainerUstats Component
- * 
+ *
  * A reusable UcontainerUstats component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UcontainerUstats className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/container-stats}
  */
 
@@ -33,14 +33,14 @@ export interface UcontainerUstatsProps {
   onClick?: () => void;
 }
 
-export const UcontainerUstats = ({ 
-  className, 
+export const UcontainerUstats = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UcontainerUstatsProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UcontainerUstats = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UcontainerUstats"
+      role='region'
+      aria-label='UcontainerUstats'
     >
       {children || 'UcontainerUstats Component'}
     </div>

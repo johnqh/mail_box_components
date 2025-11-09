@@ -83,9 +83,9 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
   };
 
   const processFiles = (files: File[]) => {
-    const validFiles = files.filter((file) => {
+    const validFiles = files.filter(file => {
       // Check file type
-      const isValidType = accept.some((type) => {
+      const isValidType = accept.some(type => {
         if (type.endsWith('/*')) {
           const category = type.split('/')[0];
           return file.type.startsWith(category);
@@ -103,14 +103,16 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
     const remainingSlots = maxFiles - uploadedFiles.length;
     const filesToAdd = validFiles.slice(0, remainingSlots);
 
-    const newFiles: UploadedFile[] = filesToAdd.map((file) => ({
+    const newFiles: UploadedFile[] = filesToAdd.map(file => ({
       id: `${Date.now()}-${Math.random()}`,
       file,
-      preview: file.type.startsWith('image/') ? URL.createObjectURL(file) : undefined,
+      preview: file.type.startsWith('image/')
+        ? URL.createObjectURL(file)
+        : undefined,
       status: 'pending',
     }));
 
-    setUploadedFiles((prev) => [...prev, ...newFiles]);
+    setUploadedFiles(prev => [...prev, ...newFiles]);
 
     if (onUpload) {
       onUpload(filesToAdd);
@@ -118,7 +120,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
   };
 
   const handleRemove = (fileId: string) => {
-    setUploadedFiles((prev) => prev.filter((f) => f.id !== fileId));
+    setUploadedFiles(prev => prev.filter(f => f.id !== fileId));
     if (onRemove) {
       onRemove(fileId);
     }
@@ -135,7 +137,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
       {/* Drop zone */}
       <div
         onDragEnter={handleDragEnter}
-        onDragOver={(e) => e.preventDefault()}
+        onDragOver={e => e.preventDefault()}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
@@ -147,69 +149,85 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
         )}
       >
         <svg
-          className="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-600"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          className='w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-600'
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            strokeLinecap='round'
+            strokeLinejoin='round'
             strokeWidth={2}
-            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+            d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'
           />
         </svg>
-        <p className="text-gray-700 dark:text-gray-300 mb-2">
+        <p className='text-gray-700 dark:text-gray-300 mb-2'>
           Drag and drop files here, or click to browse
         </p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className='text-sm text-gray-500 dark:text-gray-400'>
           Max {maxFiles} files, {formatFileSize(maxSize)} each
         </p>
 
         <input
           ref={fileInputRef}
-          type="file"
+          type='file'
           multiple={multiple}
           accept={accept.join(',')}
           onChange={handleFileSelect}
-          className="hidden"
+          className='hidden'
         />
       </div>
 
       {/* Uploaded files */}
       {uploadedFiles.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {uploadedFiles.map((uploadedFile) => (
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+          {uploadedFiles.map(uploadedFile => (
             <div
               key={uploadedFile.id}
-              className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800"
+              className='relative aspect-square rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800'
             >
               {uploadedFile.preview ? (
                 <img
                   src={uploadedFile.preview}
                   alt={uploadedFile.file.name}
-                  className="w-full h-full object-cover"
+                  className='w-full h-full object-cover'
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <svg className="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
+                <div className='w-full h-full flex items-center justify-center'>
+                  <svg
+                    className='w-12 h-12 text-gray-400'
+                    fill='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11z' />
                   </svg>
                 </div>
               )}
 
               <button
                 onClick={() => handleRemove(uploadedFile.id)}
-                className="absolute top-2 right-2 w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors"
+                className='absolute top-2 right-2 w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors'
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className='w-4 h-4'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M6 18L18 6M6 6l12 12'
+                  />
                 </svg>
               </button>
 
-              <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs p-2">
-                <p className="truncate">{uploadedFile.file.name}</p>
-                <p className="text-gray-300">{formatFileSize(uploadedFile.file.size)}</p>
+              <div className='absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs p-2'>
+                <p className='truncate'>{uploadedFile.file.name}</p>
+                <p className='text-gray-300'>
+                  {formatFileSize(uploadedFile.file.size)}
+                </p>
               </div>
             </div>
           ))}

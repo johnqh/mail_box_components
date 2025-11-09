@@ -95,14 +95,11 @@ export const Carousel: React.FC<CarouselProps> = ({
     <div className={cn('relative overflow-hidden rounded-lg', className)}>
       {/* Slides */}
       <div
-        className="flex transition-transform duration-500 ease-in-out"
+        className='flex transition-transform duration-500 ease-in-out'
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {slides.map((slide, index) => (
-          <div
-            key={index}
-            className="min-w-full flex-shrink-0"
-          >
+          <div key={index} className='min-w-full flex-shrink-0'>
             {slide}
           </div>
         ))}
@@ -124,19 +121,19 @@ export const Carousel: React.FC<CarouselProps> = ({
               'transition-all',
               'shadow-lg'
             )}
-            aria-label="Previous slide"
+            aria-label='Previous slide'
           >
             <svg
-              className="w-5 h-5 text-gray-900 dark:text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              className='w-5 h-5 text-gray-900 dark:text-white'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth={2}
-                d="M15 19l-7-7 7-7"
+                d='M15 19l-7-7 7-7'
               />
             </svg>
           </button>
@@ -154,19 +151,19 @@ export const Carousel: React.FC<CarouselProps> = ({
               'transition-all',
               'shadow-lg'
             )}
-            aria-label="Next slide"
+            aria-label='Next slide'
           >
             <svg
-              className="w-5 h-5 text-gray-900 dark:text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              className='w-5 h-5 text-gray-900 dark:text-white'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth={2}
-                d="M9 5l7 7-7 7"
+                d='M9 5l7 7-7 7'
               />
             </svg>
           </button>
@@ -175,7 +172,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 
       {/* Indicators */}
       {showIndicators && totalSlides > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className='absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2'>
           {slides.map((_, index) => (
             <button
               key={index}

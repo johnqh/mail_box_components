@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UbuildUlog Component
- * 
+ *
  * A reusable UbuildUlog component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UbuildUlog className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/build-log}
  */
 
@@ -33,14 +33,14 @@ export interface UbuildUlogProps {
   onClick?: () => void;
 }
 
-export const UbuildUlog = ({ 
-  className, 
+export const UbuildUlog = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UbuildUlogProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UbuildUlog = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UbuildUlog"
+      role='region'
+      aria-label='UbuildUlog'
     >
       {children || 'UbuildUlog Component'}
     </div>

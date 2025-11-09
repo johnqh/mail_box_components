@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UscratchUcard Component
- * 
+ *
  * A reusable UscratchUcard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UscratchUcard className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/scratch-card}
  */
 
@@ -33,14 +33,14 @@ export interface UscratchUcardProps {
   onClick?: () => void;
 }
 
-export const UscratchUcard = ({ 
-  className, 
+export const UscratchUcard = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UscratchUcardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UscratchUcard = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UscratchUcard"
+      role='region'
+      aria-label='UscratchUcard'
     >
       {children || 'UscratchUcard Component'}
     </div>

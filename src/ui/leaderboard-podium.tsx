@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UleaderboardUpodium Component
- * 
+ *
  * A reusable UleaderboardUpodium component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UleaderboardUpodium className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/leaderboard-podium}
  */
 
@@ -33,14 +33,14 @@ export interface UleaderboardUpodiumProps {
   onClick?: () => void;
 }
 
-export const UleaderboardUpodium = ({ 
-  className, 
+export const UleaderboardUpodium = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UleaderboardUpodiumProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UleaderboardUpodium = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UleaderboardUpodium"
+      role='region'
+      aria-label='UleaderboardUpodium'
     >
       {children || 'UleaderboardUpodium Component'}
     </div>

@@ -45,9 +45,24 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
   value,
   onChange,
   presets = [
-    '#000000', '#FFFFFF', '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A',
-    '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B500', '#52B788', '#E63946',
-    '#1D3557', '#457B9D', '#A8DADC', '#F4A261', '#264653', '#2A9D8F',
+    '#000000',
+    '#FFFFFF',
+    '#FF6B6B',
+    '#4ECDC4',
+    '#45B7D1',
+    '#FFA07A',
+    '#F7DC6F',
+    '#BB8FCE',
+    '#85C1E2',
+    '#F8B500',
+    '#52B788',
+    '#E63946',
+    '#1D3557',
+    '#457B9D',
+    '#A8DADC',
+    '#F4A261',
+    '#264653',
+    '#2A9D8F',
   ],
   showInput = true,
   showOpacity = false,
@@ -87,17 +102,17 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
   return (
     <div className={cn('bg-white dark:bg-gray-900 rounded-lg p-4', className)}>
       {/* Current color preview */}
-      <div className="mb-4">
-        <div className="flex items-center gap-3">
+      <div className='mb-4'>
+        <div className='flex items-center gap-3'>
           <div
-            className="w-16 h-16 rounded-lg border-2 border-gray-200 dark:border-gray-700 shadow-sm"
+            className='w-16 h-16 rounded-lg border-2 border-gray-200 dark:border-gray-700 shadow-sm'
             style={{ backgroundColor: displayColor }}
           />
-          <div className="flex-1">
-            <p className="text-sm font-medium text-gray-900 dark:text-white">
+          <div className='flex-1'>
+            <p className='text-sm font-medium text-gray-900 dark:text-white'>
               Selected Color
             </p>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-mono">
+            <p className='text-xs text-gray-600 dark:text-gray-400 mt-1 font-mono'>
               {value}
               {showOpacity && ` (${opacity}%)`}
             </p>
@@ -106,12 +121,12 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
       </div>
 
       {/* Preset colors */}
-      <div className="mb-4">
-        <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <div className='mb-4'>
+        <p className='text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
           Preset Colors
         </p>
-        <div className="grid grid-cols-6 gap-2">
-          {presets.map((preset) => (
+        <div className='grid grid-cols-6 gap-2'>
+          {presets.map(preset => (
             <button
               key={preset}
               onClick={() => handleColorClick(preset)}
@@ -130,23 +145,23 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
 
       {/* Custom color input */}
       {showInput && (
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
             Custom Color (Hex)
           </label>
-          <div className="flex gap-2">
+          <div className='flex gap-2'>
             <input
-              type="text"
+              type='text'
               value={inputValue}
               onChange={handleInputChange}
-              placeholder="#000000"
-              className="flex-1 px-3 py-2 text-sm font-mono bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+              placeholder='#000000'
+              className='flex-1 px-3 py-2 text-sm font-mono bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
             />
             <input
-              type="color"
+              type='color'
               value={value}
-              onChange={(e) => handleColorClick(e.target.value)}
-              className="w-12 h-10 rounded-md cursor-pointer"
+              onChange={e => handleColorClick(e.target.value)}
+              className='w-12 h-10 rounded-md cursor-pointer'
             />
           </div>
         </div>
@@ -155,16 +170,16 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
       {/* Opacity slider */}
       {showOpacity && (
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
             Opacity: {opacity}%
           </label>
           <input
-            type="range"
-            min="0"
-            max="100"
+            type='range'
+            min='0'
+            max='100'
             value={opacity}
             onChange={handleOpacityChange}
-            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
+            className='w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer'
           />
         </div>
       )}

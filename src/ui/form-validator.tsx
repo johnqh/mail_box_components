@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UformUvalidator Component
- * 
+ *
  * A reusable UformUvalidator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UformUvalidator className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/form-validator}
  */
 
@@ -33,14 +33,14 @@ export interface UformUvalidatorProps {
   onClick?: () => void;
 }
 
-export const UformUvalidator = ({ 
-  className, 
+export const UformUvalidator = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UformUvalidatorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UformUvalidator = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UformUvalidator"
+      role='region'
+      aria-label='UformUvalidator'
     >
       {children || 'UformUvalidator Component'}
     </div>

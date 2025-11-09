@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UwebhookUlogger Component
- * 
+ *
  * A reusable UwebhookUlogger component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UwebhookUlogger className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/webhook-logger}
  */
 
@@ -33,14 +33,14 @@ export interface UwebhookUloggerProps {
   onClick?: () => void;
 }
 
-export const UwebhookUlogger = ({ 
-  className, 
+export const UwebhookUlogger = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UwebhookUloggerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UwebhookUlogger = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UwebhookUlogger"
+      role='region'
+      aria-label='UwebhookUlogger'
     >
       {children || 'UwebhookUlogger Component'}
     </div>

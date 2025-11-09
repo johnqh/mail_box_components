@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtestimonialUslider Component
- * 
+ *
  * A reusable UtestimonialUslider component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtestimonialUslider className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/testimonial-slider}
  */
 
@@ -33,14 +33,14 @@ export interface UtestimonialUsliderProps {
   onClick?: () => void;
 }
 
-export const UtestimonialUslider = ({ 
-  className, 
+export const UtestimonialUslider = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtestimonialUsliderProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtestimonialUslider = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtestimonialUslider"
+      role='region'
+      aria-label='UtestimonialUslider'
     >
       {children || 'UtestimonialUslider Component'}
     </div>

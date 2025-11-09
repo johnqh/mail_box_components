@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UavailabilityUgrid Component
- * 
+ *
  * A reusable UavailabilityUgrid component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UavailabilityUgrid className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/availability-grid}
  */
 
@@ -33,14 +33,14 @@ export interface UavailabilityUgridProps {
   onClick?: () => void;
 }
 
-export const UavailabilityUgrid = ({ 
-  className, 
+export const UavailabilityUgrid = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UavailabilityUgridProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UavailabilityUgrid = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UavailabilityUgrid"
+      role='region'
+      aria-label='UavailabilityUgrid'
     >
       {children || 'UavailabilityUgrid Component'}
     </div>

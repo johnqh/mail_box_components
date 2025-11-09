@@ -45,7 +45,11 @@ export const WaveForm: React.FC<WaveFormProps> = ({
   const barWidth = (width - (data.length - 1) * gap) / data.length;
 
   return (
-    <svg width={width} height={height} className={cn('inline-block', className)}>
+    <svg
+      width={width}
+      height={height}
+      className={cn('inline-block', className)}
+    >
       {data.map((amplitude, index) => {
         const barHeight = Math.max(2, amplitude * height);
         const x = index * (barWidth + gap);

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UbookingUwidget Component
- * 
+ *
  * A reusable UbookingUwidget component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UbookingUwidget className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/booking-widget}
  */
 
@@ -33,14 +33,14 @@ export interface UbookingUwidgetProps {
   onClick?: () => void;
 }
 
-export const UbookingUwidget = ({ 
-  className, 
+export const UbookingUwidget = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UbookingUwidgetProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UbookingUwidget = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UbookingUwidget"
+      role='region'
+      aria-label='UbookingUwidget'
     >
       {children || 'UbookingUwidget Component'}
     </div>

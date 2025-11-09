@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UsankeyUdiagram Component
- * 
+ *
  * A reusable UsankeyUdiagram component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UsankeyUdiagram className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/sankey-diagram}
  */
 
@@ -33,14 +33,14 @@ export interface UsankeyUdiagramProps {
   onClick?: () => void;
 }
 
-export const UsankeyUdiagram = ({ 
-  className, 
+export const UsankeyUdiagram = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UsankeyUdiagramProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UsankeyUdiagram = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UsankeyUdiagram"
+      role='region'
+      aria-label='UsankeyUdiagram'
     >
       {children || 'UsankeyUdiagram Component'}
     </div>

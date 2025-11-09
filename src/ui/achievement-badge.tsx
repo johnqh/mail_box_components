@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UachievementUbadge Component
- * 
+ *
  * A reusable UachievementUbadge component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UachievementUbadge className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/achievement-badge}
  */
 
@@ -33,14 +33,14 @@ export interface UachievementUbadgeProps {
   onClick?: () => void;
 }
 
-export const UachievementUbadge = ({ 
-  className, 
+export const UachievementUbadge = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UachievementUbadgeProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UachievementUbadge = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UachievementUbadge"
+      role='region'
+      aria-label='UachievementUbadge'
     >
       {children || 'UachievementUbadge Component'}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UcashUflow Component
- * 
+ *
  * A reusable UcashUflow component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UcashUflow className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/cash-flow}
  */
 
@@ -33,14 +33,14 @@ export interface UcashUflowProps {
   onClick?: () => void;
 }
 
-export const UcashUflow = ({ 
-  className, 
+export const UcashUflow = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UcashUflowProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UcashUflow = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UcashUflow"
+      role='region'
+      aria-label='UcashUflow'
     >
       {children || 'UcashUflow Component'}
     </div>

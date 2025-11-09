@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UmeetingUscheduler Component
- * 
+ *
  * A reusable UmeetingUscheduler component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UmeetingUscheduler className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/meeting-scheduler}
  */
 
@@ -33,14 +33,14 @@ export interface UmeetingUschedulerProps {
   onClick?: () => void;
 }
 
-export const UmeetingUscheduler = ({ 
-  className, 
+export const UmeetingUscheduler = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UmeetingUschedulerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UmeetingUscheduler = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UmeetingUscheduler"
+      role='region'
+      aria-label='UmeetingUscheduler'
     >
       {children || 'UmeetingUscheduler Component'}
     </div>

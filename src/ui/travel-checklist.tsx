@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtravelUchecklist Component
- * 
+ *
  * A reusable UtravelUchecklist component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtravelUchecklist className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/travel-checklist}
  */
 
@@ -33,14 +33,14 @@ export interface UtravelUchecklistProps {
   onClick?: () => void;
 }
 
-export const UtravelUchecklist = ({ 
-  className, 
+export const UtravelUchecklist = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtravelUchecklistProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtravelUchecklist = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtravelUchecklist"
+      role='region'
+      aria-label='UtravelUchecklist'
     >
       {children || 'UtravelUchecklist Component'}
     </div>

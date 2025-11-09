@@ -101,12 +101,12 @@ export const Lightbox: React.FC<LightboxProps> = ({
 
   // Zoom in
   const handleZoomIn = () => {
-    setZoom((prev) => Math.min(prev + 0.5, 3));
+    setZoom(prev => Math.min(prev + 0.5, 3));
   };
 
   // Zoom out
   const handleZoomOut = () => {
-    setZoom((prev) => Math.max(prev - 0.5, 0.5));
+    setZoom(prev => Math.max(prev - 0.5, 0.5));
   };
 
   // Reset zoom
@@ -186,28 +186,28 @@ export const Lightbox: React.FC<LightboxProps> = ({
       >
         {/* Backdrop */}
         <div
-          className="absolute inset-0"
+          className='absolute inset-0'
           onClick={onClose}
-          aria-label="Close lightbox"
+          aria-label='Close lightbox'
         />
 
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 text-white hover:text-gray-300 transition-colors"
-          aria-label="Close"
+          className='absolute top-4 right-4 z-10 p-2 text-white hover:text-gray-300 transition-colors'
+          aria-label='Close'
         >
           <svg
-            className="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            className='w-8 h-8'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
+              d='M6 18L18 6M6 6l12 12'
             />
           </svg>
         </button>
@@ -216,20 +216,20 @@ export const Lightbox: React.FC<LightboxProps> = ({
         {hasPrev && (
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 text-white hover:text-gray-300 bg-black/50 hover:bg-black/70 rounded-full transition-all"
-            aria-label="Previous image"
+            className='absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 text-white hover:text-gray-300 bg-black/50 hover:bg-black/70 rounded-full transition-all'
+            aria-label='Previous image'
           >
             <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              className='w-6 h-6'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth={2}
-                d="M15 19l-7-7 7-7"
+                d='M15 19l-7-7 7-7'
               />
             </svg>
           </button>
@@ -239,77 +239,77 @@ export const Lightbox: React.FC<LightboxProps> = ({
         {hasNext && (
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 text-white hover:text-gray-300 bg-black/50 hover:bg-black/70 rounded-full transition-all"
-            aria-label="Next image"
+            className='absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 text-white hover:text-gray-300 bg-black/50 hover:bg-black/70 rounded-full transition-all'
+            aria-label='Next image'
           >
             <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              className='w-6 h-6'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth={2}
-                d="M9 5l7 7-7 7"
+                d='M9 5l7 7-7 7'
               />
             </svg>
           </button>
         )}
 
         {/* Controls */}
-        <div className="absolute top-4 left-4 z-10 flex gap-2">
+        <div className='absolute top-4 left-4 z-10 flex gap-2'>
           {/* Counter */}
-          <div className="px-3 py-1.5 bg-black/50 text-white text-sm rounded-md">
+          <div className='px-3 py-1.5 bg-black/50 text-white text-sm rounded-md'>
             {index + 1} / {images.length}
           </div>
 
           {/* Zoom controls */}
           {showZoom && (
-            <div className="flex gap-1 bg-black/50 rounded-md p-1">
+            <div className='flex gap-1 bg-black/50 rounded-md p-1'>
               <button
                 onClick={handleZoomOut}
-                className="p-1.5 text-white hover:text-gray-300 transition-colors"
-                aria-label="Zoom out"
+                className='p-1.5 text-white hover:text-gray-300 transition-colors'
+                aria-label='Zoom out'
               >
                 <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  className='w-5 h-5'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                     strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"
+                    d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7'
                   />
                 </svg>
               </button>
               <button
                 onClick={handleZoomReset}
-                className="px-2 text-white text-sm hover:text-gray-300 transition-colors"
-                aria-label="Reset zoom"
+                className='px-2 text-white text-sm hover:text-gray-300 transition-colors'
+                aria-label='Reset zoom'
               >
                 {Math.round(zoom * 100)}%
               </button>
               <button
                 onClick={handleZoomIn}
-                className="p-1.5 text-white hover:text-gray-300 transition-colors"
-                aria-label="Zoom in"
+                className='p-1.5 text-white hover:text-gray-300 transition-colors'
+                aria-label='Zoom in'
               >
                 <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  className='w-5 h-5'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                     strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                    d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7'
                   />
                 </svg>
               </button>
@@ -320,20 +320,20 @@ export const Lightbox: React.FC<LightboxProps> = ({
           {showDownload && (
             <button
               onClick={handleDownload}
-              className="p-1.5 bg-black/50 text-white hover:text-gray-300 rounded-md transition-colors"
-              aria-label="Download image"
+              className='p-1.5 bg-black/50 text-white hover:text-gray-300 rounded-md transition-colors'
+              aria-label='Download image'
             >
               <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                className='w-5 h-5'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4'
                 />
               </svg>
             </button>
@@ -341,11 +341,11 @@ export const Lightbox: React.FC<LightboxProps> = ({
         </div>
 
         {/* Main image */}
-        <div className="relative z-0 flex items-center justify-center max-w-7xl max-h-screen p-20">
+        <div className='relative z-0 flex items-center justify-center max-w-7xl max-h-screen p-20'>
           <img
             src={currentImage.src}
             alt={currentImage.alt || ''}
-            className="max-w-full max-h-full object-contain transition-transform"
+            className='max-w-full max-h-full object-contain transition-transform'
             style={{
               transform: `scale(${zoom})`,
             }}
@@ -354,8 +354,8 @@ export const Lightbox: React.FC<LightboxProps> = ({
 
         {/* Caption */}
         {currentImage.caption && (
-          <div className="absolute bottom-20 left-0 right-0 z-10 text-center">
-            <p className="px-4 py-2 bg-black/50 text-white text-sm inline-block rounded-md max-w-2xl">
+          <div className='absolute bottom-20 left-0 right-0 z-10 text-center'>
+            <p className='px-4 py-2 bg-black/50 text-white text-sm inline-block rounded-md max-w-2xl'>
               {currentImage.caption}
             </p>
           </div>
@@ -363,7 +363,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
 
         {/* Thumbnails */}
         {showThumbnails && images.length > 1 && (
-          <div className="absolute bottom-4 left-0 right-0 z-10 flex justify-center gap-2 px-4 overflow-x-auto">
+          <div className='absolute bottom-4 left-0 right-0 z-10 flex justify-center gap-2 px-4 overflow-x-auto'>
             {images.map((img, i) => (
               <button
                 key={i}
@@ -382,7 +382,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
                 <img
                   src={img.thumbnail || img.src}
                   alt={img.alt || ''}
-                  className="w-full h-full object-cover"
+                  className='w-full h-full object-cover'
                 />
               </button>
             ))}

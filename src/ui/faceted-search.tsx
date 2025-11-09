@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfacetedUsearch Component
- * 
+ *
  * A reusable UfacetedUsearch component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfacetedUsearch className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/faceted-search}
  */
 
@@ -33,14 +33,14 @@ export interface UfacetedUsearchProps {
   onClick?: () => void;
 }
 
-export const UfacetedUsearch = ({ 
-  className, 
+export const UfacetedUsearch = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfacetedUsearchProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfacetedUsearch = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfacetedUsearch"
+      role='region'
+      aria-label='UfacetedUsearch'
     >
       {children || 'UfacetedUsearch Component'}
     </div>

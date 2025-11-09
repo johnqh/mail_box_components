@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfeatureUcomparison Component
- * 
+ *
  * A reusable UfeatureUcomparison component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfeatureUcomparison className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/feature-comparison}
  */
 
@@ -33,14 +33,14 @@ export interface UfeatureUcomparisonProps {
   onClick?: () => void;
 }
 
-export const UfeatureUcomparison = ({ 
-  className, 
+export const UfeatureUcomparison = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfeatureUcomparisonProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfeatureUcomparison = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfeatureUcomparison"
+      role='region'
+      aria-label='UfeatureUcomparison'
     >
       {children || 'UfeatureUcomparison Component'}
     </div>

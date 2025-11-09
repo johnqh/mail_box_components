@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtelemetryUchart Component
- * 
+ *
  * A reusable UtelemetryUchart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtelemetryUchart className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/telemetry-chart}
  */
 
@@ -33,14 +33,14 @@ export interface UtelemetryUchartProps {
   onClick?: () => void;
 }
 
-export const UtelemetryUchart = ({ 
-  className, 
+export const UtelemetryUchart = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtelemetryUchartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtelemetryUchart = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtelemetryUchart"
+      role='region'
+      aria-label='UtelemetryUchart'
     >
       {children || 'UtelemetryUchart Component'}
     </div>

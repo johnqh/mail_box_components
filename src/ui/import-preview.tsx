@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UimportUpreview Component
- * 
+ *
  * A reusable UimportUpreview component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UimportUpreview className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/import-preview}
  */
 
@@ -33,14 +33,14 @@ export interface UimportUpreviewProps {
   onClick?: () => void;
 }
 
-export const UimportUpreview = ({ 
-  className, 
+export const UimportUpreview = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UimportUpreviewProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UimportUpreview = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UimportUpreview"
+      role='region'
+      aria-label='UimportUpreview'
     >
       {children || 'UimportUpreview Component'}
     </div>

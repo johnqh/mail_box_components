@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UbatchUprocessor Component
- * 
+ *
  * A reusable UbatchUprocessor component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UbatchUprocessor className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/batch-processor}
  */
 
@@ -33,14 +33,14 @@ export interface UbatchUprocessorProps {
   onClick?: () => void;
 }
 
-export const UbatchUprocessor = ({ 
-  className, 
+export const UbatchUprocessor = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UbatchUprocessorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UbatchUprocessor = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UbatchUprocessor"
+      role='region'
+      aria-label='UbatchUprocessor'
     >
       {children || 'UbatchUprocessor Component'}
     </div>

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UguidedUtour Component
- * 
+ *
  * A reusable UguidedUtour component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UguidedUtour className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/guided-tour}
  */
 
@@ -33,14 +33,14 @@ export interface UguidedUtourProps {
   onClick?: () => void;
 }
 
-export const UguidedUtour = ({ 
-  className, 
+export const UguidedUtour = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UguidedUtourProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UguidedUtour = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UguidedUtour"
+      role='region'
+      aria-label='UguidedUtour'
     >
       {children || 'UguidedUtour Component'}
     </div>

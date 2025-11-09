@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfileUbrowser Component
- * 
+ *
  * A reusable UfileUbrowser component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfileUbrowser className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/file-browser}
  */
 
@@ -33,14 +33,14 @@ export interface UfileUbrowserProps {
   onClick?: () => void;
 }
 
-export const UfileUbrowser = ({ 
-  className, 
+export const UfileUbrowser = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfileUbrowserProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfileUbrowser = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfileUbrowser"
+      role='region'
+      aria-label='UfileUbrowser'
     >
       {children || 'UfileUbrowser Component'}
     </div>

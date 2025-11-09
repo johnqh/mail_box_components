@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UorderUcart Component
- * 
+ *
  * A reusable UorderUcart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UorderUcart className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/order-cart}
  */
 
@@ -33,14 +33,14 @@ export interface UorderUcartProps {
   onClick?: () => void;
 }
 
-export const UorderUcart = ({ 
-  className, 
+export const UorderUcart = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UorderUcartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UorderUcart = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UorderUcart"
+      role='region'
+      aria-label='UorderUcart'
     >
       {children || 'UorderUcart Component'}
     </div>

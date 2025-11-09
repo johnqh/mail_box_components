@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UrestaurantUreview Component
- * 
+ *
  * A reusable UrestaurantUreview component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UrestaurantUreview className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/restaurant-review}
  */
 
@@ -33,14 +33,14 @@ export interface UrestaurantUreviewProps {
   onClick?: () => void;
 }
 
-export const UrestaurantUreview = ({ 
-  className, 
+export const UrestaurantUreview = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UrestaurantUreviewProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UrestaurantUreview = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UrestaurantUreview"
+      role='region'
+      aria-label='UrestaurantUreview'
     >
       {children || 'UrestaurantUreview Component'}
     </div>

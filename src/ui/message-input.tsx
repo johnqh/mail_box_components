@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UmessageUinput Component
- * 
+ *
  * A reusable UmessageUinput component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UmessageUinput className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/message-input}
  */
 
@@ -33,14 +33,14 @@ export interface UmessageUinputProps {
   onClick?: () => void;
 }
 
-export const UmessageUinput = ({ 
-  className, 
+export const UmessageUinput = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UmessageUinputProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UmessageUinput = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UmessageUinput"
+      role='region'
+      aria-label='UmessageUinput'
     >
       {children || 'UmessageUinput Component'}
     </div>

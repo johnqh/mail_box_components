@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UgeofenceUeditor Component
- * 
+ *
  * A reusable UgeofenceUeditor component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UgeofenceUeditor className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/geofence-editor}
  */
 
@@ -33,14 +33,14 @@ export interface UgeofenceUeditorProps {
   onClick?: () => void;
 }
 
-export const UgeofenceUeditor = ({ 
-  className, 
+export const UgeofenceUeditor = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UgeofenceUeditorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UgeofenceUeditor = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UgeofenceUeditor"
+      role='region'
+      aria-label='UgeofenceUeditor'
     >
       {children || 'UgeofenceUeditor Component'}
     </div>

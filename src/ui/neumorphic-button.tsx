@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UneumorphicUbutton Component
- * 
+ *
  * A reusable UneumorphicUbutton component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UneumorphicUbutton className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/neumorphic-button}
  */
 
@@ -33,14 +33,14 @@ export interface UneumorphicUbuttonProps {
   onClick?: () => void;
 }
 
-export const UneumorphicUbutton = ({ 
-  className, 
+export const UneumorphicUbutton = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UneumorphicUbuttonProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UneumorphicUbutton = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UneumorphicUbutton"
+      role='region'
+      aria-label='UneumorphicUbutton'
     >
       {children || 'UneumorphicUbutton Component'}
     </div>

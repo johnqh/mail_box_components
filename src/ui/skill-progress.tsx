@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UskillUprogress Component
- * 
+ *
  * A reusable UskillUprogress component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UskillUprogress className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/skill-progress}
  */
 
@@ -33,14 +33,14 @@ export interface UskillUprogressProps {
   onClick?: () => void;
 }
 
-export const UskillUprogress = ({ 
-  className, 
+export const UskillUprogress = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UskillUprogressProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UskillUprogress = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UskillUprogress"
+      role='region'
+      aria-label='UskillUprogress'
     >
       {children || 'UskillUprogress Component'}
     </div>

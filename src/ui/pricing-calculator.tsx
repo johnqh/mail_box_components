@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UpricingUcalculator Component
- * 
+ *
  * A reusable UpricingUcalculator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UpricingUcalculator className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/pricing-calculator}
  */
 
@@ -33,14 +33,14 @@ export interface UpricingUcalculatorProps {
   onClick?: () => void;
 }
 
-export const UpricingUcalculator = ({ 
-  className, 
+export const UpricingUcalculator = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UpricingUcalculatorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UpricingUcalculator = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UpricingUcalculator"
+      role='region'
+      aria-label='UpricingUcalculator'
     >
       {children || 'UpricingUcalculator Component'}
     </div>

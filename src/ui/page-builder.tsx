@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UpageUbuilder Component
- * 
+ *
  * A reusable UpageUbuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UpageUbuilder className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/page-builder}
  */
 
@@ -33,14 +33,14 @@ export interface UpageUbuilderProps {
   onClick?: () => void;
 }
 
-export const UpageUbuilder = ({ 
-  className, 
+export const UpageUbuilder = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UpageUbuilderProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UpageUbuilder = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UpageUbuilder"
+      role='region'
+      aria-label='UpageUbuilder'
     >
       {children || 'UpageUbuilder Component'}
     </div>

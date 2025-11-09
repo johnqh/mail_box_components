@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtripUplanner Component
- * 
+ *
  * A reusable UtripUplanner component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtripUplanner className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/trip-planner}
  */
 
@@ -33,14 +33,14 @@ export interface UtripUplannerProps {
   onClick?: () => void;
 }
 
-export const UtripUplanner = ({ 
-  className, 
+export const UtripUplanner = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtripUplannerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtripUplanner = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtripUplanner"
+      role='region'
+      aria-label='UtripUplanner'
     >
       {children || 'UtripUplanner Component'}
     </div>

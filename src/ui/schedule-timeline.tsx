@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UscheduleUtimeline Component
- * 
+ *
  * A reusable UscheduleUtimeline component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UscheduleUtimeline className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/schedule-timeline}
  */
 
@@ -33,14 +33,14 @@ export interface UscheduleUtimelineProps {
   onClick?: () => void;
 }
 
-export const UscheduleUtimeline = ({ 
-  className, 
+export const UscheduleUtimeline = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UscheduleUtimelineProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UscheduleUtimeline = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UscheduleUtimeline"
+      role='region'
+      aria-label='UscheduleUtimeline'
     >
       {children || 'UscheduleUtimeline Component'}
     </div>

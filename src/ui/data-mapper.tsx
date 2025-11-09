@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UdataUmapper Component
- * 
+ *
  * A reusable UdataUmapper component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UdataUmapper className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/data-mapper}
  */
 
@@ -33,14 +33,14 @@ export interface UdataUmapperProps {
   onClick?: () => void;
 }
 
-export const UdataUmapper = ({ 
-  className, 
+export const UdataUmapper = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UdataUmapperProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UdataUmapper = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UdataUmapper"
+      role='region'
+      aria-label='UdataUmapper'
     >
       {children || 'UdataUmapper Component'}
     </div>

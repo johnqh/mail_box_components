@@ -70,7 +70,9 @@ export const Stepper: React.FC<StepperProps> = ({
     }
   };
 
-  const getStepStatus = (index: number): 'completed' | 'active' | 'upcoming' => {
+  const getStepStatus = (
+    index: number
+  ): 'completed' | 'active' | 'upcoming' => {
     if (index < currentStep) return 'completed';
     if (index === currentStep) return 'active';
     return 'upcoming';
@@ -79,7 +81,7 @@ export const Stepper: React.FC<StepperProps> = ({
   if (orientation === 'horizontal') {
     return (
       <div className={cn('w-full', className)}>
-        <div className="flex items-center justify-between">
+        <div className='flex items-center justify-between'>
           {steps.map((step, index) => {
             const status = getStepStatus(index);
             const isLast = index === steps.length - 1;
@@ -87,7 +89,7 @@ export const Stepper: React.FC<StepperProps> = ({
             return (
               <React.Fragment key={step.id}>
                 {/* Step */}
-                <div className="flex flex-col items-center">
+                <div className='flex flex-col items-center'>
                   <button
                     onClick={() => handleStepClick(index)}
                     disabled={!clickable}
@@ -105,16 +107,16 @@ export const Stepper: React.FC<StepperProps> = ({
                   >
                     {status === 'completed' ? (
                       <svg
-                        className="w-5 h-5 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                        className='w-5 h-5 text-white'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
                       >
                         <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
                           strokeWidth={3}
-                          d="M5 13l4 4L19 7"
+                          d='M5 13l4 4L19 7'
                         />
                       </svg>
                     ) : step.icon ? (
@@ -142,21 +144,21 @@ export const Stepper: React.FC<StepperProps> = ({
                     )}
                   </button>
 
-                  <div className="mt-2 text-center">
+                  <div className='mt-2 text-center'>
                     <p
                       className={cn(
                         'text-sm font-medium',
                         status === 'active'
                           ? 'text-blue-600 dark:text-blue-500'
                           : status === 'completed'
-                          ? 'text-gray-900 dark:text-white'
-                          : 'text-gray-500 dark:text-gray-400'
+                            ? 'text-gray-900 dark:text-white'
+                            : 'text-gray-500 dark:text-gray-400'
                       )}
                     >
                       {step.label}
                     </p>
                     {step.description && (
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                      <p className='text-xs text-gray-500 dark:text-gray-400 mt-0.5'>
                         {step.description}
                       </p>
                     )}
@@ -165,7 +167,7 @@ export const Stepper: React.FC<StepperProps> = ({
 
                 {/* Connector Line */}
                 {!isLast && (
-                  <div className="flex-1 h-0.5 mx-2 bg-gray-300 dark:bg-gray-700 relative">
+                  <div className='flex-1 h-0.5 mx-2 bg-gray-300 dark:bg-gray-700 relative'>
                     <div
                       className={cn(
                         'absolute left-0 top-0 h-full bg-blue-600 dark:bg-blue-500 transition-all duration-300',
@@ -185,15 +187,15 @@ export const Stepper: React.FC<StepperProps> = ({
   // Vertical orientation
   return (
     <div className={cn('w-full', className)}>
-      <div className="space-y-4">
+      <div className='space-y-4'>
         {steps.map((step, index) => {
           const status = getStepStatus(index);
           const isLast = index === steps.length - 1;
 
           return (
-            <div key={step.id} className="flex gap-4">
+            <div key={step.id} className='flex gap-4'>
               {/* Step indicator column */}
-              <div className="flex flex-col items-center">
+              <div className='flex flex-col items-center'>
                 <button
                   onClick={() => handleStepClick(index)}
                   disabled={!clickable}
@@ -211,16 +213,16 @@ export const Stepper: React.FC<StepperProps> = ({
                 >
                   {status === 'completed' ? (
                     <svg
-                      className="w-5 h-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                      className='w-5 h-5 text-white'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
                     >
                       <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
                         strokeWidth={3}
-                        d="M5 13l4 4L19 7"
+                        d='M5 13l4 4L19 7'
                       />
                     </svg>
                   ) : step.icon ? (
@@ -250,7 +252,7 @@ export const Stepper: React.FC<StepperProps> = ({
 
                 {/* Connector Line */}
                 {!isLast && (
-                  <div className="w-0.5 flex-1 min-h-[32px] bg-gray-300 dark:bg-gray-700 relative mt-2">
+                  <div className='w-0.5 flex-1 min-h-[32px] bg-gray-300 dark:bg-gray-700 relative mt-2'>
                     <div
                       className={cn(
                         'absolute top-0 left-0 w-full bg-blue-600 dark:bg-blue-500 transition-all duration-300',
@@ -262,21 +264,21 @@ export const Stepper: React.FC<StepperProps> = ({
               </div>
 
               {/* Content column */}
-              <div className="flex-1 pb-4">
+              <div className='flex-1 pb-4'>
                 <p
                   className={cn(
                     'text-sm font-medium',
                     status === 'active'
                       ? 'text-blue-600 dark:text-blue-500'
                       : status === 'completed'
-                      ? 'text-gray-900 dark:text-white'
-                      : 'text-gray-500 dark:text-gray-400'
+                        ? 'text-gray-900 dark:text-white'
+                        : 'text-gray-500 dark:text-gray-400'
                   )}
                 >
                   {step.label}
                 </p>
                 {step.description && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
                     {step.description}
                   </p>
                 )}

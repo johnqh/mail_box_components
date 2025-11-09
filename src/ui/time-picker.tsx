@@ -105,7 +105,11 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   };
 
   // Handle time selection
-  const handleTimeChange = (newHour: string, newMinute: string, newPeriod?: 'AM' | 'PM') => {
+  const handleTimeChange = (
+    newHour: string,
+    newMinute: string,
+    newPeriod?: 'AM' | 'PM'
+  ) => {
     let hour = parseInt(newHour, 10);
     const minute = parseInt(newMinute, 10);
 
@@ -136,7 +140,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     <div ref={containerRef} className={cn('relative w-full', className)}>
       {/* Input trigger */}
       <button
-        type="button"
+        type='button'
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
         className={cn(
@@ -150,40 +154,50 @@ export const TimePicker: React.FC<TimePickerProps> = ({
           isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
         )}
       >
-        <span className={cn(value ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400')}>
+        <span
+          className={cn(
+            value
+              ? 'text-gray-900 dark:text-white'
+              : 'text-gray-500 dark:text-gray-400'
+          )}
+        >
           {value ? formatDisplay() : 'Select time'}
         </span>
         <svg
-          className="w-5 h-5 text-gray-600 dark:text-gray-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          className='w-5 h-5 text-gray-600 dark:text-gray-400'
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            strokeLinecap='round'
+            strokeLinejoin='round'
             strokeWidth={2}
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
           />
         </svg>
       </button>
 
       {/* Time picker dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50">
-          <div className="flex gap-1 p-2">
+        <div className='absolute top-full left-0 mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50'>
+          <div className='flex gap-1 p-2'>
             {/* Hours */}
-            <div className="flex flex-col">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2">
+            <div className='flex flex-col'>
+              <div className='text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2'>
                 Hour
               </div>
-              <div className="h-48 overflow-y-auto w-16 border border-gray-200 dark:border-gray-700 rounded">
-                {hourOptions.map((hour) => (
+              <div className='h-48 overflow-y-auto w-16 border border-gray-200 dark:border-gray-700 rounded'>
+                {hourOptions.map(hour => (
                   <button
                     key={hour}
                     onClick={() => {
                       setInternalHour(hour);
-                      handleTimeChange(hour, internalMinute, use12Hour ? period : undefined);
+                      handleTimeChange(
+                        hour,
+                        internalMinute,
+                        use12Hour ? period : undefined
+                      );
                     }}
                     className={cn(
                       'w-full px-3 py-1.5 text-sm text-center',
@@ -200,17 +214,21 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             </div>
 
             {/* Minutes */}
-            <div className="flex flex-col">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2">
+            <div className='flex flex-col'>
+              <div className='text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2'>
                 Min
               </div>
-              <div className="h-48 overflow-y-auto w-16 border border-gray-200 dark:border-gray-700 rounded">
-                {minuteOptions.map((minute) => (
+              <div className='h-48 overflow-y-auto w-16 border border-gray-200 dark:border-gray-700 rounded'>
+                {minuteOptions.map(minute => (
                   <button
                     key={minute}
                     onClick={() => {
                       setInternalMinute(minute);
-                      handleTimeChange(internalHour, minute, use12Hour ? period : undefined);
+                      handleTimeChange(
+                        internalHour,
+                        minute,
+                        use12Hour ? period : undefined
+                      );
                     }}
                     className={cn(
                       'w-full px-3 py-1.5 text-sm text-center',
@@ -228,11 +246,11 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
             {/* AM/PM */}
             {use12Hour && (
-              <div className="flex flex-col">
-                <div className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2">
+              <div className='flex flex-col'>
+                <div className='text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2'>
                   &nbsp;
                 </div>
-                <div className="h-48 flex flex-col justify-center gap-2 w-16">
+                <div className='h-48 flex flex-col justify-center gap-2 w-16'>
                   <button
                     onClick={() => {
                       setPeriod('AM');

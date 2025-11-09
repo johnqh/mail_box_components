@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UeventUcalendarUadv Component
- * 
+ *
  * A reusable UeventUcalendarUadv component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UeventUcalendarUadv className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/event-calendar-adv}
  */
 
@@ -33,14 +33,14 @@ export interface UeventUcalendarUadvProps {
   onClick?: () => void;
 }
 
-export const UeventUcalendarUadv = ({ 
-  className, 
+export const UeventUcalendarUadv = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UeventUcalendarUadvProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UeventUcalendarUadv = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UeventUcalendarUadv"
+      role='region'
+      aria-label='UeventUcalendarUadv'
     >
       {children || 'UeventUcalendarUadv Component'}
     </div>

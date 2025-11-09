@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtypingUindicatorUmsg Component
- * 
+ *
  * A reusable UtypingUindicatorUmsg component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtypingUindicatorUmsg className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/typing-indicator-msg}
  */
 
@@ -33,14 +33,14 @@ export interface UtypingUindicatorUmsgProps {
   onClick?: () => void;
 }
 
-export const UtypingUindicatorUmsg = ({ 
-  className, 
+export const UtypingUindicatorUmsg = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtypingUindicatorUmsgProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtypingUindicatorUmsg = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtypingUindicatorUmsg"
+      role='region'
+      aria-label='UtypingUindicatorUmsg'
     >
       {children || 'UtypingUindicatorUmsg Component'}
     </div>

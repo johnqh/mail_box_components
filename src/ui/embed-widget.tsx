@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UembedUwidget Component
- * 
+ *
  * A reusable UembedUwidget component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UembedUwidget className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/embed-widget}
  */
 
@@ -33,14 +33,14 @@ export interface UembedUwidgetProps {
   onClick?: () => void;
 }
 
-export const UembedUwidget = ({ 
-  className, 
+export const UembedUwidget = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UembedUwidgetProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UembedUwidget = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UembedUwidget"
+      role='region'
+      aria-label='UembedUwidget'
     >
       {children || 'UembedUwidget Component'}
     </div>

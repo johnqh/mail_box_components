@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UpropertyUsearch Component
- * 
+ *
  * A reusable UpropertyUsearch component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UpropertyUsearch className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/property-search}
  */
 
@@ -33,14 +33,14 @@ export interface UpropertyUsearchProps {
   onClick?: () => void;
 }
 
-export const UpropertyUsearch = ({ 
-  className, 
+export const UpropertyUsearch = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UpropertyUsearchProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UpropertyUsearch = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UpropertyUsearch"
+      role='region'
+      aria-label='UpropertyUsearch'
     >
       {children || 'UpropertyUsearch Component'}
     </div>

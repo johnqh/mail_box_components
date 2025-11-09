@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UpivotUtable Component
- * 
+ *
  * A reusable UpivotUtable component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UpivotUtable className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/pivot-table}
  */
 
@@ -33,14 +33,14 @@ export interface UpivotUtableProps {
   onClick?: () => void;
 }
 
-export const UpivotUtable = ({ 
-  className, 
+export const UpivotUtable = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UpivotUtableProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UpivotUtable = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UpivotUtable"
+      role='region'
+      aria-label='UpivotUtable'
     >
       {children || 'UpivotUtable Component'}
     </div>

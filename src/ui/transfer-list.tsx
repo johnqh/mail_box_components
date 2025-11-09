@@ -88,13 +88,13 @@ export const TransferList: React.FC<TransferListProps> = ({
 
   // Filter items based on search
   const filteredSource = searchable
-    ? source.filter((item) =>
+    ? source.filter(item =>
         item.label.toLowerCase().includes(sourceSearch.toLowerCase())
       )
     : source;
 
   const filteredTarget = searchable
-    ? target.filter((item) =>
+    ? target.filter(item =>
         item.label.toLowerCase().includes(targetSearch.toLowerCase())
       )
     : target;
@@ -122,8 +122,8 @@ export const TransferList: React.FC<TransferListProps> = ({
 
   // Move selected items to target
   const moveToTarget = () => {
-    const itemsToMove = source.filter((item) => sourceSelected.has(item.id));
-    const newSource = source.filter((item) => !sourceSelected.has(item.id));
+    const itemsToMove = source.filter(item => sourceSelected.has(item.id));
+    const newSource = source.filter(item => !sourceSelected.has(item.id));
     const newTarget = [...target, ...itemsToMove];
     onChange(newSource, newTarget);
     setSourceSelected(new Set());
@@ -131,8 +131,8 @@ export const TransferList: React.FC<TransferListProps> = ({
 
   // Move selected items to source
   const moveToSource = () => {
-    const itemsToMove = target.filter((item) => targetSelected.has(item.id));
-    const newTarget = target.filter((item) => !targetSelected.has(item.id));
+    const itemsToMove = target.filter(item => targetSelected.has(item.id));
+    const newTarget = target.filter(item => !targetSelected.has(item.id));
     const newSource = [...source, ...itemsToMove];
     onChange(newSource, newTarget);
     setTargetSelected(new Set());
@@ -162,41 +162,41 @@ export const TransferList: React.FC<TransferListProps> = ({
     onSearchChange: (value: string) => void,
     searchPlaceholder: string
   ) => (
-    <div className="flex flex-col flex-1 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900">
+    <div className='flex flex-col flex-1 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900'>
       {/* Header */}
-      <div className="px-3 py-2 border-b border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-        <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+      <div className='px-3 py-2 border-b border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800'>
+        <h3 className='text-sm font-semibold text-gray-900 dark:text-white'>
           {title}
         </h3>
-        <p className="text-xs text-gray-600 dark:text-gray-400">
+        <p className='text-xs text-gray-600 dark:text-gray-400'>
           {items.length} item{items.length !== 1 ? 's' : ''}
         </p>
       </div>
 
       {/* Search */}
       {searchable && (
-        <div className="p-2 border-b border-gray-200 dark:border-gray-700">
+        <div className='p-2 border-b border-gray-200 dark:border-gray-700'>
           <input
-            type="text"
+            type='text'
             value={searchValue}
-            onChange={(e) => onSearchChange(e.target.value)}
+            onChange={e => onSearchChange(e.target.value)}
             placeholder={searchPlaceholder}
-            className="w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+            className='w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
           />
         </div>
       )}
 
       {/* List */}
       <div
-        className="overflow-y-auto p-2 space-y-1"
+        className='overflow-y-auto p-2 space-y-1'
         style={{ height: searchable ? height - 120 : height - 60 }}
       >
         {items.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-sm text-gray-500 dark:text-gray-400">
+          <div className='flex items-center justify-center h-full text-sm text-gray-500 dark:text-gray-400'>
             No items
           </div>
         ) : (
-          items.map((item) => {
+          items.map(item => {
             const isSelected = selected.has(item.id);
 
             return (
@@ -208,10 +208,11 @@ export const TransferList: React.FC<TransferListProps> = ({
                   'w-full px-3 py-2 text-left rounded-md transition-colors',
                   'hover:bg-gray-100 dark:hover:bg-gray-800',
                   'disabled:opacity-50 disabled:cursor-not-allowed',
-                  isSelected && 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700'
+                  isSelected &&
+                    'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700'
                 )}
               >
-                <div className="flex items-start gap-2">
+                <div className='flex items-start gap-2'>
                   {/* Checkbox */}
                   <div
                     className={cn(
@@ -223,28 +224,28 @@ export const TransferList: React.FC<TransferListProps> = ({
                   >
                     {isSelected && (
                       <svg
-                        className="w-3 h-3 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                        className='w-3 h-3 text-white'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
                       >
                         <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
                           strokeWidth={3}
-                          d="M5 13l4 4L19 7"
+                          d='M5 13l4 4L19 7'
                         />
                       </svg>
                     )}
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                  <div className='flex-1 min-w-0'>
+                    <p className='text-sm font-medium text-gray-900 dark:text-white truncate'>
                       {item.label}
                     </p>
                     {item.description && (
-                      <p className="text-xs text-gray-600 dark:text-gray-400 truncate">
+                      <p className='text-xs text-gray-600 dark:text-gray-400 truncate'>
                         {item.description}
                       </p>
                     )}
@@ -272,7 +273,7 @@ export const TransferList: React.FC<TransferListProps> = ({
       )}
 
       {/* Transfer buttons */}
-      <div className="flex flex-col justify-center gap-2">
+      <div className='flex flex-col justify-center gap-2'>
         <button
           onClick={moveAllToTarget}
           disabled={disabled || source.length === 0}
@@ -284,19 +285,19 @@ export const TransferList: React.FC<TransferListProps> = ({
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
-          title="Move all to selected"
+          title='Move all to selected'
         >
           <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            className='w-4 h-4'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M13 5l7 7-7 7M5 5l7 7-7 7"
+              d='M13 5l7 7-7 7M5 5l7 7-7 7'
             />
           </svg>
         </button>
@@ -312,19 +313,19 @@ export const TransferList: React.FC<TransferListProps> = ({
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
-          title="Move selected to target"
+          title='Move selected to target'
         >
           <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            className='w-4 h-4'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M9 5l7 7-7 7"
+              d='M9 5l7 7-7 7'
             />
           </svg>
         </button>
@@ -340,19 +341,19 @@ export const TransferList: React.FC<TransferListProps> = ({
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
-          title="Move selected to source"
+          title='Move selected to source'
         >
           <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            className='w-4 h-4'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M15 19l-7-7 7-7"
+              d='M15 19l-7-7 7-7'
             />
           </svg>
         </button>
@@ -368,19 +369,19 @@ export const TransferList: React.FC<TransferListProps> = ({
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
-          title="Move all to available"
+          title='Move all to available'
         >
           <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            className='w-4 h-4'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M11 19l-7-7 7-7M19 19l-7-7 7-7"
+              d='M11 19l-7-7 7-7M19 19l-7-7 7-7'
             />
           </svg>
         </button>

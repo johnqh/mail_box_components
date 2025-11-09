@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UsurveyUbuilder Component
- * 
+ *
  * A reusable UsurveyUbuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UsurveyUbuilder className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/survey-builder}
  */
 
@@ -33,14 +33,14 @@ export interface UsurveyUbuilderProps {
   onClick?: () => void;
 }
 
-export const UsurveyUbuilder = ({ 
-  className, 
+export const UsurveyUbuilder = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UsurveyUbuilderProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UsurveyUbuilder = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UsurveyUbuilder"
+      role='region'
+      aria-label='UsurveyUbuilder'
     >
       {children || 'UsurveyUbuilder Component'}
     </div>

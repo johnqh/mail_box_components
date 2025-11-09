@@ -95,7 +95,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   const selectedCountryCode =
     controlledCountry !== undefined ? controlledCountry : internalCountry;
 
-  const selectedCountry = countries.find((c) => c.code === selectedCountryCode);
+  const selectedCountry = countries.find(c => c.code === selectedCountryCode);
 
   // Handle country selection
   const handleCountrySelect = (countryCode: string) => {
@@ -133,7 +133,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
 
   // Filter countries based on search
   const filteredCountries = countries.filter(
-    (country) =>
+    country =>
       country.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       country.dialCode.includes(searchQuery) ||
       country.code.toLowerCase().includes(searchQuery.toLowerCase())
@@ -141,11 +141,11 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
 
   return (
     <div className={cn('relative w-full', className)}>
-      <div className="flex gap-2">
+      <div className='flex gap-2'>
         {/* Country selector */}
-        <div className="relative">
+        <div className='relative'>
           <button
-            type="button"
+            type='button'
             onClick={() => !disabled && setIsOpen(!isOpen)}
             disabled={disabled}
             className={cn(
@@ -159,8 +159,8 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
               isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
             )}
           >
-            <span className="text-xl">{selectedCountry?.flag}</span>
-            <span className="text-sm font-medium text-gray-900 dark:text-white">
+            <span className='text-xl'>{selectedCountry?.flag}</span>
+            <span className='text-sm font-medium text-gray-900 dark:text-white'>
               {selectedCountry?.dialCode}
             </span>
             <svg
@@ -168,42 +168,42 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
                 'w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform',
                 isOpen && 'rotate-180'
               )}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth={2}
-                d="M19 9l-7 7-7-7"
+                d='M19 9l-7 7-7-7'
               />
             </svg>
           </button>
 
           {/* Country dropdown */}
           {isOpen && (
-            <div className="absolute top-full left-0 mt-1 w-72 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50">
+            <div className='absolute top-full left-0 mt-1 w-72 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50'>
               {/* Search */}
-              <div className="p-2 border-b border-gray-200 dark:border-gray-700">
+              <div className='p-2 border-b border-gray-200 dark:border-gray-700'>
                 <input
-                  type="text"
+                  type='text'
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search countries..."
-                  className="w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-                  onClick={(e) => e.stopPropagation()}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  placeholder='Search countries...'
+                  className='w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
+                  onClick={e => e.stopPropagation()}
                 />
               </div>
 
               {/* Countries list */}
-              <div className="max-h-60 overflow-y-auto py-1">
+              <div className='max-h-60 overflow-y-auto py-1'>
                 {filteredCountries.length === 0 ? (
-                  <div className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+                  <div className='px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center'>
                     No countries found
                   </div>
                 ) : (
-                  filteredCountries.map((country) => (
+                  filteredCountries.map(country => (
                     <button
                       key={country.code}
                       onClick={() => handleCountrySelect(country.code)}
@@ -215,11 +215,11 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
                           'bg-blue-50 dark:bg-blue-900/30'
                       )}
                     >
-                      <span className="text-xl">{country.flag}</span>
-                      <span className="flex-1 text-sm text-gray-900 dark:text-white">
+                      <span className='text-xl'>{country.flag}</span>
+                      <span className='flex-1 text-sm text-gray-900 dark:text-white'>
                         {country.name}
                       </span>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                      <span className='text-sm text-gray-600 dark:text-gray-400'>
                         {country.dialCode}
                       </span>
                     </button>
@@ -232,7 +232,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
 
         {/* Phone number input */}
         <input
-          type="tel"
+          type='tel'
           value={value}
           onChange={handleInputChange}
           placeholder={placeholder}
@@ -250,17 +250,14 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
 
       {/* Full number display */}
       {value && selectedCountry && (
-        <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">
+        <p className='mt-1.5 text-xs text-gray-600 dark:text-gray-400'>
           Full number: {selectedCountry.dialCode} {value}
         </p>
       )}
 
       {/* Click outside to close */}
       {isOpen && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setIsOpen(false)}
-        />
+        <div className='fixed inset-0 z-40' onClick={() => setIsOpen(false)} />
       )}
     </div>
   );

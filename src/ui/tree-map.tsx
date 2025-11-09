@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtreeUmap Component
- * 
+ *
  * A reusable UtreeUmap component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtreeUmap className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/tree-map}
  */
 
@@ -33,14 +33,14 @@ export interface UtreeUmapProps {
   onClick?: () => void;
 }
 
-export const UtreeUmap = ({ 
-  className, 
+export const UtreeUmap = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtreeUmapProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtreeUmap = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtreeUmap"
+      role='region'
+      aria-label='UtreeUmap'
     >
       {children || 'UtreeUmap Component'}
     </div>

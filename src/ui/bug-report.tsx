@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UbugUreport Component
- * 
+ *
  * A reusable UbugUreport component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UbugUreport className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/bug-report}
  */
 
@@ -33,14 +33,14 @@ export interface UbugUreportProps {
   onClick?: () => void;
 }
 
-export const UbugUreport = ({ 
-  className, 
+export const UbugUreport = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UbugUreportProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UbugUreport = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UbugUreport"
+      role='region'
+      aria-label='UbugUreport'
     >
       {children || 'UbugUreport Component'}
     </div>

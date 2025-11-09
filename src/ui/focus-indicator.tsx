@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfocusUindicator Component
- * 
+ *
  * A reusable UfocusUindicator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfocusUindicator className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/focus-indicator}
  */
 
@@ -33,14 +33,14 @@ export interface UfocusUindicatorProps {
   onClick?: () => void;
 }
 
-export const UfocusUindicator = ({ 
-  className, 
+export const UfocusUindicator = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfocusUindicatorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfocusUindicator = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfocusUindicator"
+      role='region'
+      aria-label='UfocusUindicator'
     >
       {children || 'UfocusUindicator Component'}
     </div>

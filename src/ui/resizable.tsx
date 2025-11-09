@@ -87,24 +87,26 @@ export const Resizable: React.FC<ResizableProps> = ({
   const [width, setWidth] = useState(defaultWidth);
   const [height, setHeight] = useState(defaultHeight);
   const [isResizing, setIsResizing] = useState(false);
-  const [resizeDirection, setResizeDirection] = useState<ResizeDirection | null>(null);
+  const [resizeDirection, setResizeDirection] =
+    useState<ResizeDirection | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const startPos = useRef({ x: 0, y: 0, width: 0, height: 0 });
 
   // Handle mouse down on resize handle
-  const handleMouseDown = (direction: ResizeDirection) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleMouseDown =
+    (direction: ResizeDirection) => (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
 
-    setIsResizing(true);
-    setResizeDirection(direction);
-    startPos.current = {
-      x: e.clientX,
-      y: e.clientY,
-      width,
-      height,
+      setIsResizing(true);
+      setResizeDirection(direction);
+      startPos.current = {
+        x: e.clientX,
+        y: e.clientY,
+        width,
+        height,
+      };
     };
-  };
 
   // Handle mouse move
   useEffect(() => {
@@ -118,17 +120,13 @@ export const Resizable: React.FC<ResizableProps> = ({
       let newHeight = startPos.current.height;
 
       // Calculate new dimensions based on direction
-      if (
-        resizeDirection.includes('right')
-      ) {
+      if (resizeDirection.includes('right')) {
         newWidth = startPos.current.width + deltaX;
       } else if (resizeDirection.includes('left')) {
         newWidth = startPos.current.width - deltaX;
       }
 
-      if (
-        resizeDirection.includes('bottom')
-      ) {
+      if (resizeDirection.includes('bottom')) {
         newHeight = startPos.current.height + deltaY;
       } else if (resizeDirection.includes('top')) {
         newHeight = startPos.current.height - deltaY;
@@ -165,7 +163,18 @@ export const Resizable: React.FC<ResizableProps> = ({
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isResizing, resizeDirection, width, height, minWidth, minHeight, maxWidth, maxHeight, onResize, onResizeEnd]);
+  }, [
+    isResizing,
+    resizeDirection,
+    width,
+    height,
+    minWidth,
+    minHeight,
+    maxWidth,
+    maxHeight,
+    onResize,
+    onResizeEnd,
+  ]);
 
   // Prevent text selection while resizing
   useEffect(() => {
@@ -218,7 +227,8 @@ export const Resizable: React.FC<ResizableProps> = ({
         key={direction}
         className={cn(
           'absolute z-10',
-          showHandles && 'bg-blue-500 dark:bg-blue-400 opacity-0 hover:opacity-50',
+          showHandles &&
+            'bg-blue-500 dark:bg-blue-400 opacity-0 hover:opacity-50',
           handleStyles[direction]
         )}
         onMouseDown={handleMouseDown(direction)}
@@ -238,9 +248,18 @@ export const Resizable: React.FC<ResizableProps> = ({
       {children}
 
       {/* Resize handles */}
-      {(['top', 'right', 'bottom', 'left', 'top-left', 'top-right', 'bottom-left', 'bottom-right'] as ResizeDirection[]).map(
-        renderHandle
-      )}
+      {(
+        [
+          'top',
+          'right',
+          'bottom',
+          'left',
+          'top-left',
+          'top-right',
+          'bottom-left',
+          'bottom-right',
+        ] as ResizeDirection[]
+      ).map(renderHandle)}
     </div>
   );
 };

@@ -47,7 +47,8 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
   className,
 }) => {
   const variantStyles = {
-    default: 'bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-white border-gray-200 dark:border-gray-700',
+    default:
+      'bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-white border-gray-200 dark:border-gray-700',
     primary: 'bg-blue-500 hover:bg-blue-600 text-white border-blue-500',
     success: 'bg-green-500 hover:bg-green-600 text-white border-green-500',
     warning: 'bg-yellow-500 hover:bg-yellow-600 text-white border-yellow-500',
@@ -67,9 +68,13 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
         orientation === 'grid' && `grid-cols-${columns}`,
         className
       )}
-      style={orientation === 'grid' ? { gridTemplateColumns: `repeat(${columns}, 1fr)` } : undefined}
+      style={
+        orientation === 'grid'
+          ? { gridTemplateColumns: `repeat(${columns}, 1fr)` }
+          : undefined
+      }
     >
-      {actions.map((action) => (
+      {actions.map(action => (
         <button
           key={action.id}
           onClick={action.onClick}
@@ -80,7 +85,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
             action.disabled && 'opacity-50 cursor-not-allowed'
           )}
         >
-          {action.icon && <span className="w-5 h-5">{action.icon}</span>}
+          {action.icon && <span className='w-5 h-5'>{action.icon}</span>}
           <span>{action.label}</span>
         </button>
       ))}

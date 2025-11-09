@@ -22,7 +22,13 @@ export const NotificationBadge: React.FC<NotificationBadgeProps> = ({
   };
 
   return (
-    <span className={cn('inline-flex items-center justify-center px-2 py-1 text-xs font-bold text-white rounded-full', variants[variant], className)}>
+    <span
+      className={cn(
+        'inline-flex items-center justify-center px-2 py-1 text-xs font-bold text-white rounded-full',
+        variants[variant],
+        className
+      )}
+    >
       {display}
     </span>
   );

@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UscreenUreaderUtext Component
- * 
+ *
  * A reusable UscreenUreaderUtext component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UscreenUreaderUtext className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/screen-reader-text}
  */
 
@@ -33,14 +33,14 @@ export interface UscreenUreaderUtextProps {
   onClick?: () => void;
 }
 
-export const UscreenUreaderUtext = ({ 
-  className, 
+export const UscreenUreaderUtext = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UscreenUreaderUtextProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UscreenUreaderUtext = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UscreenUreaderUtext"
+      role='region'
+      aria-label='UscreenUreaderUtext'
     >
       {children || 'UscreenUreaderUtext Component'}
     </div>

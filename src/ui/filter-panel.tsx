@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UfilterUpanel Component
- * 
+ *
  * A reusable UfilterUpanel component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UfilterUpanel className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/filter-panel}
  */
 
@@ -33,14 +33,14 @@ export interface UfilterUpanelProps {
   onClick?: () => void;
 }
 
-export const UfilterUpanel = ({ 
-  className, 
+export const UfilterUpanel = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UfilterUpanelProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UfilterUpanel = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UfilterUpanel"
+      role='region'
+      aria-label='UfilterUpanel'
     >
       {children || 'UfilterUpanel Component'}
     </div>

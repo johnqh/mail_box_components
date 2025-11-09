@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UchecklistUprogress Component
- * 
+ *
  * A reusable UchecklistUprogress component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UchecklistUprogress className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/checklist-progress}
  */
 
@@ -33,14 +33,14 @@ export interface UchecklistUprogressProps {
   onClick?: () => void;
 }
 
-export const UchecklistUprogress = ({ 
-  className, 
+export const UchecklistUprogress = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UchecklistUprogressProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UchecklistUprogress = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UchecklistUprogress"
+      role='region'
+      aria-label='UchecklistUprogress'
     >
       {children || 'UchecklistUprogress Component'}
     </div>

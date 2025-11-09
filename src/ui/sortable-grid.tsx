@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UsortableUgrid Component
- * 
+ *
  * A reusable UsortableUgrid component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UsortableUgrid className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/sortable-grid}
  */
 
@@ -33,14 +33,14 @@ export interface UsortableUgridProps {
   onClick?: () => void;
 }
 
-export const UsortableUgrid = ({ 
-  className, 
+export const UsortableUgrid = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UsortableUgridProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UsortableUgrid = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UsortableUgrid"
+      role='region'
+      aria-label='UsortableUgrid'
     >
       {children || 'UsortableUgrid Component'}
     </div>

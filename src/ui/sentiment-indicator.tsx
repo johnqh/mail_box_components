@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UsentimentUindicator Component
- * 
+ *
  * A reusable UsentimentUindicator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UsentimentUindicator className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/sentiment-indicator}
  */
 
@@ -33,14 +33,14 @@ export interface UsentimentUindicatorProps {
   onClick?: () => void;
 }
 
-export const UsentimentUindicator = ({ 
-  className, 
+export const UsentimentUindicator = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UsentimentUindicatorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UsentimentUindicator = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UsentimentUindicator"
+      role='region'
+      aria-label='UsentimentUindicator'
     >
       {children || 'UsentimentUindicator Component'}
     </div>

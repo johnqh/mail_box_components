@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UskipUnavigation Component
- * 
+ *
  * A reusable UskipUnavigation component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UskipUnavigation className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/skip-navigation}
  */
 
@@ -33,14 +33,14 @@ export interface UskipUnavigationProps {
   onClick?: () => void;
 }
 
-export const UskipUnavigation = ({ 
-  className, 
+export const UskipUnavigation = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UskipUnavigationProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UskipUnavigation = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UskipUnavigation"
+      role='region'
+      aria-label='UskipUnavigation'
     >
       {children || 'UskipUnavigation Component'}
     </div>

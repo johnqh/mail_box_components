@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UvirtualUtour Component
- * 
+ *
  * A reusable UvirtualUtour component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UvirtualUtour className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/virtual-tour}
  */
 
@@ -33,14 +33,14 @@ export interface UvirtualUtourProps {
   onClick?: () => void;
 }
 
-export const UvirtualUtour = ({ 
-  className, 
+export const UvirtualUtour = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UvirtualUtourProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UvirtualUtour = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UvirtualUtour"
+      role='region'
+      aria-label='UvirtualUtour'
     >
       {children || 'UvirtualUtour Component'}
     </div>

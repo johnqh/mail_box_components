@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UresizableUpanels Component
- * 
+ *
  * A reusable UresizableUpanels component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UresizableUpanels className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/resizable-panels}
  */
 
@@ -33,14 +33,14 @@ export interface UresizableUpanelsProps {
   onClick?: () => void;
 }
 
-export const UresizableUpanels = ({ 
-  className, 
+export const UresizableUpanels = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UresizableUpanelsProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UresizableUpanels = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UresizableUpanels"
+      role='region'
+      aria-label='UresizableUpanels'
     >
       {children || 'UresizableUpanels Component'}
     </div>

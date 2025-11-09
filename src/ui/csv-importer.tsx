@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UcsvUimporter Component
- * 
+ *
  * A reusable UcsvUimporter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UcsvUimporter className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/csv-importer}
  */
 
@@ -33,14 +33,14 @@ export interface UcsvUimporterProps {
   onClick?: () => void;
 }
 
-export const UcsvUimporter = ({ 
-  className, 
+export const UcsvUimporter = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UcsvUimporterProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UcsvUimporter = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UcsvUimporter"
+      role='region'
+      aria-label='UcsvUimporter'
     >
       {children || 'UcsvUimporter Component'}
     </div>

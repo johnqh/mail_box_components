@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UwelcomeUscreen Component
- * 
+ *
  * A reusable UwelcomeUscreen component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UwelcomeUscreen className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/welcome-screen}
  */
 
@@ -33,14 +33,14 @@ export interface UwelcomeUscreenProps {
   onClick?: () => void;
 }
 
-export const UwelcomeUscreen = ({ 
-  className, 
+export const UwelcomeUscreen = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UwelcomeUscreenProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UwelcomeUscreen = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UwelcomeUscreen"
+      role='region'
+      aria-label='UwelcomeUscreen'
     >
       {children || 'UwelcomeUscreen Component'}
     </div>

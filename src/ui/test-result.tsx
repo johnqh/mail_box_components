@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UtestUresult Component
- * 
+ *
  * A reusable UtestUresult component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UtestUresult className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/test-result}
  */
 
@@ -33,14 +33,14 @@ export interface UtestUresultProps {
   onClick?: () => void;
 }
 
-export const UtestUresult = ({ 
-  className, 
+export const UtestUresult = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UtestUresultProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UtestUresult = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UtestUresult"
+      role='region'
+      aria-label='UtestUresult'
     >
       {children || 'UtestUresult Component'}
     </div>

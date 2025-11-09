@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UdataUgrid Component
- * 
+ *
  * A reusable UdataUgrid component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UdataUgrid className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/data-grid}
  */
 
@@ -33,14 +33,14 @@ export interface UdataUgridProps {
   onClick?: () => void;
 }
 
-export const UdataUgrid = ({ 
-  className, 
+export const UdataUgrid = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UdataUgridProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UdataUgrid = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UdataUgrid"
+      role='region'
+      aria-label='UdataUgrid'
     >
       {children || 'UdataUgrid Component'}
     </div>

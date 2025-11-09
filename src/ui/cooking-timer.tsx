@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UcookingUtimer Component
- * 
+ *
  * A reusable UcookingUtimer component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UcookingUtimer className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/cooking-timer}
  */
 
@@ -33,14 +33,14 @@ export interface UcookingUtimerProps {
   onClick?: () => void;
 }
 
-export const UcookingUtimer = ({ 
-  className, 
+export const UcookingUtimer = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UcookingUtimerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UcookingUtimer = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UcookingUtimer"
+      role='region'
+      aria-label='UcookingUtimer'
     >
       {children || 'UcookingUtimer Component'}
     </div>

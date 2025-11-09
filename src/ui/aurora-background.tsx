@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UauroraUbackground Component
- * 
+ *
  * A reusable UauroraUbackground component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UauroraUbackground className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/aurora-background}
  */
 
@@ -33,14 +33,14 @@ export interface UauroraUbackgroundProps {
   onClick?: () => void;
 }
 
-export const UauroraUbackground = ({ 
-  className, 
+export const UauroraUbackground = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UauroraUbackgroundProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UauroraUbackground = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UauroraUbackground"
+      role='region'
+      aria-label='UauroraUbackground'
     >
       {children || 'UauroraUbackground Component'}
     </div>

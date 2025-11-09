@@ -2,23 +2,23 @@ import { cn } from '../lib/utils';
 
 /**
  * UnpsUsurvey Component
- * 
+ *
  * A reusable UnpsUsurvey component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
- * 
+ *
  * @component
  * @example
  * ```tsx
  * <UnpsUsurvey className="custom-class" />
  * ```
- * 
+ *
  * @remarks
  * This component supports:
  * - Light and dark themes automatically
  * - Responsive design
  * - Accessibility features
  * - TypeScript type safety
- * 
+ *
  * @see {@link https://docs.example.com/components/nps-survey}
  */
 
@@ -33,14 +33,14 @@ export interface UnpsUsurveyProps {
   onClick?: () => void;
 }
 
-export const UnpsUsurvey = ({ 
-  className, 
+export const UnpsUsurvey = ({
+  className,
   children,
   disabled = false,
-  onClick 
+  onClick,
 }: UnpsUsurveyProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -51,8 +51,8 @@ export const UnpsUsurvey = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
-      role="region"
-      aria-label="UnpsUsurvey"
+      role='region'
+      aria-label='UnpsUsurvey'
     >
       {children || 'UnpsUsurvey Component'}
     </div>

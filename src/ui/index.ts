@@ -245,6 +245,10 @@ export { ShareButtons } from './share-buttons';
 export { CommentThread } from './comment-thread';
 export { UserMention } from './user-mention';
 export { Reaction } from './reaction';
+export { ProductCard } from './product-card';
+export { PriceDisplay } from './price-display';
+export { CartSummary } from './cart-summary';
+export { RatingStars } from './rating-stars';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -414,6 +418,10 @@ export type { ShareButtonsProps, SharePlatform } from './share-buttons';
 export type { CommentThreadProps, Comment } from './comment-thread';
 export type { UserMentionProps, User } from './user-mention';
 export type { ReactionProps, EmojiReaction } from './reaction';
+export type { ProductCardProps } from './product-card';
+export type { PriceDisplayProps } from './price-display';
+export type { CartSummaryProps, CartItem } from './cart-summary';
+export type { RatingStarsProps } from './rating-stars';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -600,3 +608,7 @@ export * from './share-buttons';
 export * from './comment-thread';
 export * from './user-mention';
 export * from './reaction';
+export * from './product-card';
+export * from './price-display';
+export * from './cart-summary';
+export * from './rating-stars';

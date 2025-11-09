@@ -201,6 +201,10 @@ export { DateRangePicker } from './date-range-picker';
 export { ColorPicker } from './color-picker';
 export { TreeView } from './tree-view';
 export { VirtualList } from './virtual-list';
+export { MentionInput } from './mention-input';
+export { MultiSelect } from './multi-select';
+export { TransferList } from './transfer-list';
+export { OtpInput } from './otp-input';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -326,6 +330,10 @@ export type { DateRangePickerProps, DateRange } from './date-range-picker';
 export type { ColorPickerProps } from './color-picker';
 export type { TreeViewProps, TreeNode } from './tree-view';
 export type { VirtualListProps } from './virtual-list';
+export type { MentionInputProps, MentionOption } from './mention-input';
+export type { MultiSelectProps, MultiSelectOption } from './multi-select';
+export type { TransferListProps, TransferListItem } from './transfer-list';
+export type { OtpInputProps } from './otp-input';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -468,3 +476,7 @@ export * from './date-range-picker';
 export * from './color-picker';
 export * from './tree-view';
 export * from './virtual-list';
+export * from './mention-input';
+export * from './multi-select';
+export * from './transfer-list';
+export * from './otp-input';

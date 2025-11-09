@@ -209,6 +209,10 @@ export { TagInput } from './tag-input';
 export { InfiniteScroll } from './infinite-scroll';
 export { SplitPane } from './split-pane';
 export { Lightbox } from './lightbox';
+export { PasswordInput } from './password-input';
+export { PhoneInput } from './phone-input';
+export { CreditCardInput } from './credit-card-input';
+export { CurrencyInput } from './currency-input';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -342,6 +346,10 @@ export type { TagInputProps } from './tag-input';
 export type { InfiniteScrollProps } from './infinite-scroll';
 export type { SplitPaneProps } from './split-pane';
 export type { LightboxProps, LightboxImage } from './lightbox';
+export type { PasswordInputProps, PasswordStrength } from './password-input';
+export type { PhoneInputProps, Country } from './phone-input';
+export type { CreditCardInputProps, CardType } from './credit-card-input';
+export type { CurrencyInputProps, Currency } from './currency-input';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -492,3 +500,7 @@ export * from './tag-input';
 export * from './infinite-scroll';
 export * from './split-pane';
 export * from './lightbox';
+export * from './password-input';
+export * from './phone-input';
+export * from './credit-card-input';
+export * from './currency-input';

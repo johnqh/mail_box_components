@@ -205,6 +205,10 @@ export { MentionInput } from './mention-input';
 export { MultiSelect } from './multi-select';
 export { TransferList } from './transfer-list';
 export { OtpInput } from './otp-input';
+export { TagInput } from './tag-input';
+export { InfiniteScroll } from './infinite-scroll';
+export { SplitPane } from './split-pane';
+export { Lightbox } from './lightbox';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -334,6 +338,10 @@ export type { MentionInputProps, MentionOption } from './mention-input';
 export type { MultiSelectProps, MultiSelectOption } from './multi-select';
 export type { TransferListProps, TransferListItem } from './transfer-list';
 export type { OtpInputProps } from './otp-input';
+export type { TagInputProps } from './tag-input';
+export type { InfiniteScrollProps } from './infinite-scroll';
+export type { SplitPaneProps } from './split-pane';
+export type { LightboxProps, LightboxImage } from './lightbox';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -480,3 +488,7 @@ export * from './mention-input';
 export * from './multi-select';
 export * from './transfer-list';
 export * from './otp-input';
+export * from './tag-input';
+export * from './infinite-scroll';
+export * from './split-pane';
+export * from './lightbox';

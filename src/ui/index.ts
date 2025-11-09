@@ -121,6 +121,8 @@ export { GradientBanner } from './gradient-banner';
 export { InfoBox } from './info-box';
 export { BorderAccent } from './border-accent';
 export { CodeDisplay } from './code-display';
+export { SkeletonLoader } from './skeleton-loader';
+export { StatDisplay } from './stat-display';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -163,6 +165,8 @@ export type { GradientBannerProps } from './gradient-banner';
 export type { InfoBoxProps } from './info-box';
 export type { BorderAccentProps } from './border-accent';
 export type { CodeDisplayProps } from './code-display';
+export type { SkeletonLoaderProps } from './skeleton-loader';
+export type { StatDisplayProps } from './stat-display';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -225,3 +229,5 @@ export * from './gradient-banner';
 export * from './info-box';
 export * from './border-accent';
 export * from './code-display';
+export * from './skeleton-loader';
+export * from './stat-display';

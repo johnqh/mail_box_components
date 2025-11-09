@@ -228,6 +228,8 @@ export {
   InfoBox,
   BorderAccent,
   CodeDisplay,
+  SkeletonLoader,
+  StatDisplay,
 } from './ui';
 
 // Development & Documentation Components (now in core/)
@@ -266,6 +268,8 @@ export type {
   InfoBoxProps,
   BorderAccentProps,
   CodeDisplayProps,
+  SkeletonLoaderProps,
+  StatDisplayProps,
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

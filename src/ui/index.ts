@@ -146,6 +146,10 @@ export { TruncatedText } from './truncated-text';
 export { FormattedNumber } from './formatted-number';
 export { RelativeTime } from './relative-time';
 export { ButtonGroup } from './button-group';
+export { SearchInput } from './search-input';
+export { Slider } from './slider';
+export { NumberInput } from './number-input';
+export { DateInput } from './date-input';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -213,6 +217,10 @@ export type { TruncatedTextProps } from './truncated-text';
 export type { FormattedNumberProps } from './formatted-number';
 export type { RelativeTimeProps } from './relative-time';
 export type { ButtonGroupProps } from './button-group';
+export type { SearchInputProps } from './search-input';
+export type { SliderProps } from './slider';
+export type { NumberInputProps } from './number-input';
+export type { DateInputProps } from './date-input';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -300,3 +308,7 @@ export * from './truncated-text';
 export * from './formatted-number';
 export * from './relative-time';
 export * from './button-group';
+export * from './search-input';
+export * from './slider';
+export * from './number-input';
+export * from './date-input';

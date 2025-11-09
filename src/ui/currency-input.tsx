@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
 
 export interface Currency {
@@ -109,20 +109,23 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   const currentCurrency = getCurrency();
 
   // Format number for display
-  const formatDisplay = (num: number): string => {
-    const decimals = currentCurrency.decimals ?? 2;
-    return num.toLocaleString('en-US', {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals,
-    });
-  };
+  const formatDisplay = useCallback(
+    (num: number): string => {
+      const decimals = currentCurrency.decimals ?? 2;
+      return num.toLocaleString('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
+    },
+    [currentCurrency]
+  );
 
   // Update display value when value or currency changes
   useEffect(() => {
     if (!isFocused) {
       setDisplayValue(formatDisplay(value || 0));
     }
-  }, [value, currentCurrency, isFocused]);
+  }, [value, formatDisplay, isFocused]);
 
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

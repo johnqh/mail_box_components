@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * QaReport Component
- * 
+ *
  * Quality assurance component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -19,7 +19,7 @@ export interface QaReportProps {
 
 export const QaReport = ({ className, children, disabled }: QaReportProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +28,8 @@ export const QaReport = ({ className, children, disabled }: QaReportProps) => {
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="QaReport"
+      role='region'
+      aria-label='QaReport'
     >
       {children || 'QaReport Component'}
     </div>

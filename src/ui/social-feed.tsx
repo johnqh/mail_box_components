@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * SocialFeed Component
- * 
+ *
  * Social media integration component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface SocialFeedProps {
   disabled?: boolean;
 }
 
-export const SocialFeed = ({ className, children, disabled }: SocialFeedProps) => {
+export const SocialFeed = ({
+  className,
+  children,
+  disabled,
+}: SocialFeedProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const SocialFeed = ({ className, children, disabled }: SocialFeedProps) =
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="SocialFeed"
+      role='region'
+      aria-label='SocialFeed'
     >
       {children || 'SocialFeed Component'}
     </div>

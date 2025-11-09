@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * ShipmentTracker Component
- * 
+ *
  * Supply chain component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface ShipmentTrackerProps {
   disabled?: boolean;
 }
 
-export const ShipmentTracker = ({ className, children, disabled }: ShipmentTrackerProps) => {
+export const ShipmentTracker = ({
+  className,
+  children,
+  disabled,
+}: ShipmentTrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const ShipmentTracker = ({ className, children, disabled }: ShipmentTrack
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="ShipmentTracker"
+      role='region'
+      aria-label='ShipmentTracker'
     >
       {children || 'ShipmentTracker Component'}
     </div>

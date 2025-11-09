@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * SubscriberList Component
- * 
+ *
  * Email marketing component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface SubscriberListProps {
   disabled?: boolean;
 }
 
-export const SubscriberList = ({ className, children, disabled }: SubscriberListProps) => {
+export const SubscriberList = ({
+  className,
+  children,
+  disabled,
+}: SubscriberListProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const SubscriberList = ({ className, children, disabled }: SubscriberList
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="SubscriberList"
+      role='region'
+      aria-label='SubscriberList'
     >
       {children || 'SubscriberList Component'}
     </div>

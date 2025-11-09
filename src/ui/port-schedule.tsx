@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * PortSchedule Component
- * 
+ *
  * Maritime component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface PortScheduleProps {
   disabled?: boolean;
 }
 
-export const PortSchedule = ({ className, children, disabled }: PortScheduleProps) => {
+export const PortSchedule = ({
+  className,
+  children,
+  disabled,
+}: PortScheduleProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const PortSchedule = ({ className, children, disabled }: PortScheduleProp
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="PortSchedule"
+      role='region'
+      aria-label='PortSchedule'
     >
       {children || 'PortSchedule Component'}
     </div>

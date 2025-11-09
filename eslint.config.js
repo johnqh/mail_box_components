@@ -37,6 +37,7 @@ export default [
         setInterval: 'readonly',
         clearTimeout: 'readonly',
         clearInterval: 'readonly',
+        NodeJS: 'readonly',
         
         // Browser globals
         window: 'readonly',
@@ -60,10 +61,26 @@ export default [
         HTMLInputElement: 'readonly',
         HTMLLinkElement: 'readonly',
         HTMLScriptElement: 'readonly',
+        HTMLAudioElement: 'readonly',
+        HTMLVideoElement: 'readonly',
+        HTMLTextAreaElement: 'readonly',
+        HTMLCanvasElement: 'readonly',
         Event: 'readonly',
         Element: 'readonly',
         Node: 'readonly',
         KeyboardEvent: 'readonly',
+        MouseEvent: 'readonly',
+        PointerEvent: 'readonly',
+        TouchEvent: 'readonly',
+        DragEvent: 'readonly',
+        ClipboardEvent: 'readonly',
+        FileReader: 'readonly',
+        File: 'readonly',
+        Blob: 'readonly',
+
+        // React globals
+        React: 'readonly',
+        JSX: 'readonly',
         
         // Web APIs
         IntersectionObserver: 'readonly',

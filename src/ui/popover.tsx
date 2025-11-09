@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
 import { Portal } from './portal';
 
@@ -67,12 +67,15 @@ export const Popover: React.FC<PopoverProps> = ({
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isOpen =
     controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
-  const setIsOpen = (open: boolean) => {
-    if (controlledIsOpen === undefined) {
-      setInternalIsOpen(open);
-    }
-    onOpenChange?.(open);
-  };
+  const setIsOpen = useCallback(
+    (open: boolean) => {
+      if (controlledIsOpen === undefined) {
+        setInternalIsOpen(open);
+      }
+      onOpenChange?.(open);
+    },
+    [controlledIsOpen, onOpenChange]
+  );
 
   const triggerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -154,7 +157,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   // Escape key to close
   useEffect(() => {
@@ -168,7 +171,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   const handleTriggerClick = () => {
     if (trigger_action === 'click') {

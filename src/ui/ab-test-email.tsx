@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * AbTestEmail Component
- * 
+ *
  * Email marketing component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface AbTestEmailProps {
   disabled?: boolean;
 }
 
-export const AbTestEmail = ({ className, children, disabled }: AbTestEmailProps) => {
+export const AbTestEmail = ({
+  className,
+  children,
+  disabled,
+}: AbTestEmailProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const AbTestEmail = ({ className, children, disabled }: AbTestEmailProps)
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="AbTestEmail"
+      role='region'
+      aria-label='AbTestEmail'
     >
       {children || 'AbTestEmail Component'}
     </div>

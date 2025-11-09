@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * VesselTracker Component
- * 
+ *
  * Maritime component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface VesselTrackerProps {
   disabled?: boolean;
 }
 
-export const VesselTracker = ({ className, children, disabled }: VesselTrackerProps) => {
+export const VesselTracker = ({
+  className,
+  children,
+  disabled,
+}: VesselTrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const VesselTracker = ({ className, children, disabled }: VesselTrackerPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="VesselTracker"
+      role='region'
+      aria-label='VesselTracker'
     >
       {children || 'VesselTracker Component'}
     </div>

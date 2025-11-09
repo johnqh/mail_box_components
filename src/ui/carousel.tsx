@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
 
 export interface CarouselProps {
@@ -52,6 +52,26 @@ export const Carousel: React.FC<CarouselProps> = ({
   const slides = React.Children.toArray(children);
   const totalSlides = slides.length;
 
+  const goToPrevious = useCallback(() => {
+    if (currentIndex === 0) {
+      if (loop) {
+        setCurrentIndex(totalSlides - 1);
+      }
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  }, [currentIndex, loop, totalSlides]);
+
+  const goToNext = useCallback(() => {
+    if (currentIndex === totalSlides - 1) {
+      if (loop) {
+        setCurrentIndex(0);
+      }
+    } else {
+      setCurrentIndex(currentIndex + 1);
+    }
+  }, [currentIndex, loop, totalSlides]);
+
   // Auto-play
   useEffect(() => {
     if (!autoPlay || totalSlides <= 1) return;
@@ -61,27 +81,7 @@ export const Carousel: React.FC<CarouselProps> = ({
     }, autoPlay);
 
     return () => clearInterval(interval);
-  }, [autoPlay, currentIndex, totalSlides]);
-
-  const goToPrevious = () => {
-    if (currentIndex === 0) {
-      if (loop) {
-        setCurrentIndex(totalSlides - 1);
-      }
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
-  const goToNext = () => {
-    if (currentIndex === totalSlides - 1) {
-      if (loop) {
-        setCurrentIndex(0);
-      }
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
+  }, [autoPlay, totalSlides, goToNext]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);

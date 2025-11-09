@@ -1,4 +1,3 @@
-/* global TouchEvent */
 import React, { useRef, useState, useEffect, ReactNode } from 'react';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 

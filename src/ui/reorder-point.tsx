@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * ReorderPoint Component
- * 
+ *
  * Inventory management component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface ReorderPointProps {
   disabled?: boolean;
 }
 
-export const ReorderPoint = ({ className, children, disabled }: ReorderPointProps) => {
+export const ReorderPoint = ({
+  className,
+  children,
+  disabled,
+}: ReorderPointProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const ReorderPoint = ({ className, children, disabled }: ReorderPointProp
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="ReorderPoint"
+      role='region'
+      aria-label='ReorderPoint'
     >
       {children || 'ReorderPoint Component'}
     </div>

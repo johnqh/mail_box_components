@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * TicketSystem Component
- * 
+ *
  * Customer support component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface TicketSystemProps {
   disabled?: boolean;
 }
 
-export const TicketSystem = ({ className, children, disabled }: TicketSystemProps) => {
+export const TicketSystem = ({
+  className,
+  children,
+  disabled,
+}: TicketSystemProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const TicketSystem = ({ className, children, disabled }: TicketSystemProp
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="TicketSystem"
+      role='region'
+      aria-label='TicketSystem'
     >
       {children || 'TicketSystem Component'}
     </div>

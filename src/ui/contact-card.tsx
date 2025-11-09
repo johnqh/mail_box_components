@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * ContactCard Component
- * 
+ *
  * CRM component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface ContactCardProps {
   disabled?: boolean;
 }
 
-export const ContactCard = ({ className, children, disabled }: ContactCardProps) => {
+export const ContactCard = ({
+  className,
+  children,
+  disabled,
+}: ContactCardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const ContactCard = ({ className, children, disabled }: ContactCardProps)
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="ContactCard"
+      role='region'
+      aria-label='ContactCard'
     >
       {children || 'ContactCard Component'}
     </div>

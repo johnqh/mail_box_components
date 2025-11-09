@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * CargoManifest Component
- * 
+ *
  * Maritime component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface CargoManifestProps {
   disabled?: boolean;
 }
 
-export const CargoManifest = ({ className, children, disabled }: CargoManifestProps) => {
+export const CargoManifest = ({
+  className,
+  children,
+  disabled,
+}: CargoManifestProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const CargoManifest = ({ className, children, disabled }: CargoManifestPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="CargoManifest"
+      role='region'
+      aria-label='CargoManifest'
     >
       {children || 'CargoManifest Component'}
     </div>

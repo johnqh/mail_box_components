@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * AuditTrail Component
- * 
+ *
  * Legal & compliance component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface AuditTrailProps {
   disabled?: boolean;
 }
 
-export const AuditTrail = ({ className, children, disabled }: AuditTrailProps) => {
+export const AuditTrail = ({
+  className,
+  children,
+  disabled,
+}: AuditTrailProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const AuditTrail = ({ className, children, disabled }: AuditTrailProps) =
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="AuditTrail"
+      role='region'
+      aria-label='AuditTrail'
     >
       {children || 'AuditTrail Component'}
     </div>

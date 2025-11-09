@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * EmailCampaign Component
- * 
+ *
  * Email marketing component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface EmailCampaignProps {
   disabled?: boolean;
 }
 
-export const EmailCampaign = ({ className, children, disabled }: EmailCampaignProps) => {
+export const EmailCampaign = ({
+  className,
+  children,
+  disabled,
+}: EmailCampaignProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const EmailCampaign = ({ className, children, disabled }: EmailCampaignPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="EmailCampaign"
+      role='region'
+      aria-label='EmailCampaign'
     >
       {children || 'EmailCampaign Component'}
     </div>

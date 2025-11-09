@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * LogisticsMap Component
- * 
+ *
  * Supply chain component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface LogisticsMapProps {
   disabled?: boolean;
 }
 
-export const LogisticsMap = ({ className, children, disabled }: LogisticsMapProps) => {
+export const LogisticsMap = ({
+  className,
+  children,
+  disabled,
+}: LogisticsMapProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const LogisticsMap = ({ className, children, disabled }: LogisticsMapProp
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="LogisticsMap"
+      role='region'
+      aria-label='LogisticsMap'
     >
       {children || 'LogisticsMap Component'}
     </div>

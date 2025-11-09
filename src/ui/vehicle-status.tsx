@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * VehicleStatus Component
- * 
+ *
  * Automotive component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface VehicleStatusProps {
   disabled?: boolean;
 }
 
-export const VehicleStatus = ({ className, children, disabled }: VehicleStatusProps) => {
+export const VehicleStatus = ({
+  className,
+  children,
+  disabled,
+}: VehicleStatusProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const VehicleStatus = ({ className, children, disabled }: VehicleStatusPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="VehicleStatus"
+      role='region'
+      aria-label='VehicleStatus'
     >
       {children || 'VehicleStatus Component'}
     </div>

@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * InstagramWidget Component
- * 
+ *
  * Social media integration component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface InstagramWidgetProps {
   disabled?: boolean;
 }
 
-export const InstagramWidget = ({ className, children, disabled }: InstagramWidgetProps) => {
+export const InstagramWidget = ({
+  className,
+  children,
+  disabled,
+}: InstagramWidgetProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const InstagramWidget = ({ className, children, disabled }: InstagramWidg
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="InstagramWidget"
+      role='region'
+      aria-label='InstagramWidget'
     >
       {children || 'InstagramWidget Component'}
     </div>

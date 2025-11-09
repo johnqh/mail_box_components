@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * BugTracker Component
- * 
+ *
  * Quality assurance component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface BugTrackerProps {
   disabled?: boolean;
 }
 
-export const BugTracker = ({ className, children, disabled }: BugTrackerProps) => {
+export const BugTracker = ({
+  className,
+  children,
+  disabled,
+}: BugTrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const BugTracker = ({ className, children, disabled }: BugTrackerProps) =
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="BugTracker"
+      role='region'
+      aria-label='BugTracker'
     >
       {children || 'BugTracker Component'}
     </div>

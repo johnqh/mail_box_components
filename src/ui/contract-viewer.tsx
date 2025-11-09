@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * ContractViewer Component
- * 
+ *
  * Legal & compliance component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface ContractViewerProps {
   disabled?: boolean;
 }
 
-export const ContractViewer = ({ className, children, disabled }: ContractViewerProps) => {
+export const ContractViewer = ({
+  className,
+  children,
+  disabled,
+}: ContractViewerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const ContractViewer = ({ className, children, disabled }: ContractViewer
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="ContractViewer"
+      role='region'
+      aria-label='ContractViewer'
     >
       {children || 'ContractViewer Component'}
     </div>

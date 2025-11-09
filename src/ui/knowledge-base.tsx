@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * KnowledgeBase Component
- * 
+ *
  * Customer support component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface KnowledgeBaseProps {
   disabled?: boolean;
 }
 
-export const KnowledgeBase = ({ className, children, disabled }: KnowledgeBaseProps) => {
+export const KnowledgeBase = ({
+  className,
+  children,
+  disabled,
+}: KnowledgeBaseProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const KnowledgeBase = ({ className, children, disabled }: KnowledgeBasePr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="KnowledgeBase"
+      role='region'
+      aria-label='KnowledgeBase'
     >
       {children || 'KnowledgeBase Component'}
     </div>

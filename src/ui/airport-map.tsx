@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * AirportMap Component
- * 
+ *
  * Aviation component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface AirportMapProps {
   disabled?: boolean;
 }
 
-export const AirportMap = ({ className, children, disabled }: AirportMapProps) => {
+export const AirportMap = ({
+  className,
+  children,
+  disabled,
+}: AirportMapProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const AirportMap = ({ className, children, disabled }: AirportMapProps) =
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="AirportMap"
+      role='region'
+      aria-label='AirportMap'
     >
       {children || 'AirportMap Component'}
     </div>

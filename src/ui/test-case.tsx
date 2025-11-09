@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * TestCase Component
- * 
+ *
  * Quality assurance component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -19,7 +19,7 @@ export interface TestCaseProps {
 
 export const TestCase = ({ className, children, disabled }: TestCaseProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +28,8 @@ export const TestCase = ({ className, children, disabled }: TestCaseProps) => {
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="TestCase"
+      role='region'
+      aria-label='TestCase'
     >
       {children || 'TestCase Component'}
     </div>

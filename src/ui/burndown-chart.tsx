@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * BurndownChart Component
- * 
+ *
  * Project management component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface BurndownChartProps {
   disabled?: boolean;
 }
 
-export const BurndownChart = ({ className, children, disabled }: BurndownChartProps) => {
+export const BurndownChart = ({
+  className,
+  children,
+  disabled,
+}: BurndownChartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const BurndownChart = ({ className, children, disabled }: BurndownChartPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="BurndownChart"
+      role='region'
+      aria-label='BurndownChart'
     >
       {children || 'BurndownChart Component'}
     </div>

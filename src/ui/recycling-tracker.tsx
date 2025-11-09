@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * RecyclingTracker Component
- * 
+ *
  * Environmental/sustainability component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface RecyclingTrackerProps {
   disabled?: boolean;
 }
 
-export const RecyclingTracker = ({ className, children, disabled }: RecyclingTrackerProps) => {
+export const RecyclingTracker = ({
+  className,
+  children,
+  disabled,
+}: RecyclingTrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const RecyclingTracker = ({ className, children, disabled }: RecyclingTra
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="RecyclingTracker"
+      role='region'
+      aria-label='RecyclingTracker'
     >
       {children || 'RecyclingTracker Component'}
     </div>

@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * LeadScorer Component
- * 
+ *
  * CRM component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface LeadScorerProps {
   disabled?: boolean;
 }
 
-export const LeadScorer = ({ className, children, disabled }: LeadScorerProps) => {
+export const LeadScorer = ({
+  className,
+  children,
+  disabled,
+}: LeadScorerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const LeadScorer = ({ className, children, disabled }: LeadScorerProps) =
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="LeadScorer"
+      role='region'
+      aria-label='LeadScorer'
     >
       {children || 'LeadScorer Component'}
     </div>

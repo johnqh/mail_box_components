@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * ProcurementForm Component
- * 
+ *
  * Supply chain component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface ProcurementFormProps {
   disabled?: boolean;
 }
 
-export const ProcurementForm = ({ className, children, disabled }: ProcurementFormProps) => {
+export const ProcurementForm = ({
+  className,
+  children,
+  disabled,
+}: ProcurementFormProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const ProcurementForm = ({ className, children, disabled }: ProcurementFo
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="ProcurementForm"
+      role='region'
+      aria-label='ProcurementForm'
     >
       {children || 'ProcurementForm Component'}
     </div>

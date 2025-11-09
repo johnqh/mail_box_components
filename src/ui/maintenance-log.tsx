@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * MaintenanceLog Component
- * 
+ *
  * Automotive component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface MaintenanceLogProps {
   disabled?: boolean;
 }
 
-export const MaintenanceLog = ({ className, children, disabled }: MaintenanceLogProps) => {
+export const MaintenanceLog = ({
+  className,
+  children,
+  disabled,
+}: MaintenanceLogProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const MaintenanceLog = ({ className, children, disabled }: MaintenanceLog
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="MaintenanceLog"
+      role='region'
+      aria-label='MaintenanceLog'
     >
       {children || 'MaintenanceLog Component'}
     </div>

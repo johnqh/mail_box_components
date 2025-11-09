@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * CandidateCard Component
- * 
+ *
  * HR & recruiting component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface CandidateCardProps {
   disabled?: boolean;
 }
 
-export const CandidateCard = ({ className, children, disabled }: CandidateCardProps) => {
+export const CandidateCard = ({
+  className,
+  children,
+  disabled,
+}: CandidateCardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const CandidateCard = ({ className, children, disabled }: CandidateCardPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="CandidateCard"
+      role='region'
+      aria-label='CandidateCard'
     >
       {children || 'CandidateCard Component'}
     </div>

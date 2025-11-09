@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * TwitterEmbed Component
- * 
+ *
  * Social media integration component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface TwitterEmbedProps {
   disabled?: boolean;
 }
 
-export const TwitterEmbed = ({ className, children, disabled }: TwitterEmbedProps) => {
+export const TwitterEmbed = ({
+  className,
+  children,
+  disabled,
+}: TwitterEmbedProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const TwitterEmbed = ({ className, children, disabled }: TwitterEmbedProp
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="TwitterEmbed"
+      role='region'
+      aria-label='TwitterEmbed'
     >
       {children || 'TwitterEmbed Component'}
     </div>

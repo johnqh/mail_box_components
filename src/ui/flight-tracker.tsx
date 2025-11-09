@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * FlightTracker Component
- * 
+ *
  * Aviation component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface FlightTrackerProps {
   disabled?: boolean;
 }
 
-export const FlightTracker = ({ className, children, disabled }: FlightTrackerProps) => {
+export const FlightTracker = ({
+  className,
+  children,
+  disabled,
+}: FlightTrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const FlightTracker = ({ className, children, disabled }: FlightTrackerPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="FlightTracker"
+      role='region'
+      aria-label='FlightTracker'
     >
       {children || 'FlightTracker Component'}
     </div>

@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * SustainabilityScore Component
- * 
+ *
  * Environmental/sustainability component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface SustainabilityScoreProps {
   disabled?: boolean;
 }
 
-export const SustainabilityScore = ({ className, children, disabled }: SustainabilityScoreProps) => {
+export const SustainabilityScore = ({
+  className,
+  children,
+  disabled,
+}: SustainabilityScoreProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const SustainabilityScore = ({ className, children, disabled }: Sustainab
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="SustainabilityScore"
+      role='region'
+      aria-label='SustainabilityScore'
     >
       {children || 'SustainabilityScore Component'}
     </div>

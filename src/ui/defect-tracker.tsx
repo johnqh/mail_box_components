@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * DefectTracker Component
- * 
+ *
  * Manufacturing component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface DefectTrackerProps {
   disabled?: boolean;
 }
 
-export const DefectTracker = ({ className, children, disabled }: DefectTrackerProps) => {
+export const DefectTracker = ({
+  className,
+  children,
+  disabled,
+}: DefectTrackerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const DefectTracker = ({ className, children, disabled }: DefectTrackerPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="DefectTracker"
+      role='region'
+      aria-label='DefectTracker'
     >
       {children || 'DefectTracker Component'}
     </div>

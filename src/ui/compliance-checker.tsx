@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * ComplianceChecker Component
- * 
+ *
  * Legal & compliance component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface ComplianceCheckerProps {
   disabled?: boolean;
 }
 
-export const ComplianceChecker = ({ className, children, disabled }: ComplianceCheckerProps) => {
+export const ComplianceChecker = ({
+  className,
+  children,
+  disabled,
+}: ComplianceCheckerProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const ComplianceChecker = ({ className, children, disabled }: ComplianceC
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="ComplianceChecker"
+      role='region'
+      aria-label='ComplianceChecker'
     >
       {children || 'ComplianceChecker Component'}
     </div>

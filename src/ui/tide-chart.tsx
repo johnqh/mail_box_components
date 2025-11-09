@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * TideChart Component
- * 
+ *
  * Maritime component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface TideChartProps {
   disabled?: boolean;
 }
 
-export const TideChart = ({ className, children, disabled }: TideChartProps) => {
+export const TideChart = ({
+  className,
+  children,
+  disabled,
+}: TideChartProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const TideChart = ({ className, children, disabled }: TideChartProps) => 
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="TideChart"
+      role='region'
+      aria-label='TideChart'
     >
       {children || 'TideChart Component'}
     </div>

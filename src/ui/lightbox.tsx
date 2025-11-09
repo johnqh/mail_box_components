@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
 import { Portal } from './portal';
 
@@ -82,22 +82,22 @@ export const Lightbox: React.FC<LightboxProps> = ({
   const hasNext = index < images.length - 1;
 
   // Navigate to previous image
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     if (hasPrev) {
       const newIndex = index - 1;
       onIndexChange?.(newIndex);
       setZoom(1);
     }
-  };
+  }, [hasPrev, index, onIndexChange]);
 
   // Navigate to next image
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (hasNext) {
       const newIndex = index + 1;
       onIndexChange?.(newIndex);
       setZoom(1);
     }
-  };
+  }, [hasNext, index, onIndexChange]);
 
   // Zoom in
   const handleZoomIn = () => {
@@ -153,7 +153,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, index, images.length]);
+  }, [isOpen, index, images.length, onClose, handlePrev, handleNext]);
 
   // Lock body scroll
   useEffect(() => {

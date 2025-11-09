@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * LiveChat Component
- * 
+ *
  * Customer support component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -19,7 +19,7 @@ export interface LiveChatProps {
 
 export const LiveChat = ({ className, children, disabled }: LiveChatProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +28,8 @@ export const LiveChat = ({ className, children, disabled }: LiveChatProps) => {
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="LiveChat"
+      role='region'
+      aria-label='LiveChat'
     >
       {children || 'LiveChat Component'}
     </div>

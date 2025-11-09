@@ -63,22 +63,31 @@ export const PieChart: React.FC<PieChartProps> = ({
     '#ec4899',
   ];
 
-  let currentAngle = -90; // Start from top
-  const slices = data.map((item, index) => {
+  const slices = data.reduce<
+    Array<{
+      label: string;
+      value: number;
+      color: string;
+      percentage: number;
+      startAngle: number;
+      endAngle: number;
+    }>
+  >((acc, item, index) => {
     const percentage = (item.value / total) * 100;
     const angle = (percentage / 100) * 360;
-    const startAngle = currentAngle;
-    const endAngle = currentAngle + angle;
-    currentAngle = endAngle;
+    const startAngle = acc.length > 0 ? acc[acc.length - 1].endAngle : -90;
+    const endAngle = startAngle + angle;
 
-    return {
+    acc.push({
       ...item,
       percentage,
       startAngle,
       endAngle,
       color: item.color || defaultColors[index % defaultColors.length],
-    };
-  });
+    });
+
+    return acc;
+  }, []);
 
   const polarToCartesian = (
     centerX: number,

@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * TaskBoard Component
- * 
+ *
  * Project management component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface TaskBoardProps {
   disabled?: boolean;
 }
 
-export const TaskBoard = ({ className, children, disabled }: TaskBoardProps) => {
+export const TaskBoard = ({
+  className,
+  children,
+  disabled,
+}: TaskBoardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const TaskBoard = ({ className, children, disabled }: TaskBoardProps) => 
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="TaskBoard"
+      role='region'
+      aria-label='TaskBoard'
     >
       {children || 'TaskBoard Component'}
     </div>

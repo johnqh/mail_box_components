@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * CrmDashboard Component
- * 
+ *
  * CRM component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface CrmDashboardProps {
   disabled?: boolean;
 }
 
-export const CrmDashboard = ({ className, children, disabled }: CrmDashboardProps) => {
+export const CrmDashboard = ({
+  className,
+  children,
+  disabled,
+}: CrmDashboardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const CrmDashboard = ({ className, children, disabled }: CrmDashboardProp
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="CrmDashboard"
+      role='region'
+      aria-label='CrmDashboard'
     >
       {children || 'CrmDashboard Component'}
     </div>

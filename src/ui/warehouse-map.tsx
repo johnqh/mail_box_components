@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * WarehouseMap Component
- * 
+ *
  * Inventory management component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface WarehouseMapProps {
   disabled?: boolean;
 }
 
-export const WarehouseMap = ({ className, children, disabled }: WarehouseMapProps) => {
+export const WarehouseMap = ({
+  className,
+  children,
+  disabled,
+}: WarehouseMapProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const WarehouseMap = ({ className, children, disabled }: WarehouseMapProp
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="WarehouseMap"
+      role='region'
+      aria-label='WarehouseMap'
     >
       {children || 'WarehouseMap Component'}
     </div>

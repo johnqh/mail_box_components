@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * RegressionTest Component
- * 
+ *
  * Quality assurance component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface RegressionTestProps {
   disabled?: boolean;
 }
 
-export const RegressionTest = ({ className, children, disabled }: RegressionTestProps) => {
+export const RegressionTest = ({
+  className,
+  children,
+  disabled,
+}: RegressionTestProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const RegressionTest = ({ className, children, disabled }: RegressionTest
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="RegressionTest"
+      role='region'
+      aria-label='RegressionTest'
     >
       {children || 'RegressionTest Component'}
     </div>

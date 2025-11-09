@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * EnergyMonitor Component
- * 
+ *
  * Environmental/sustainability component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface EnergyMonitorProps {
   disabled?: boolean;
 }
 
-export const EnergyMonitor = ({ className, children, disabled }: EnergyMonitorProps) => {
+export const EnergyMonitor = ({
+  className,
+  children,
+  disabled,
+}: EnergyMonitorProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const EnergyMonitor = ({ className, children, disabled }: EnergyMonitorPr
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="EnergyMonitor"
+      role='region'
+      aria-label='EnergyMonitor'
     >
       {children || 'EnergyMonitor Component'}
     </div>

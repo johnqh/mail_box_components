@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * EmailAnalytics Component
- * 
+ *
  * Email marketing component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface EmailAnalyticsProps {
   disabled?: boolean;
 }
 
-export const EmailAnalytics = ({ className, children, disabled }: EmailAnalyticsProps) => {
+export const EmailAnalytics = ({
+  className,
+  children,
+  disabled,
+}: EmailAnalyticsProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const EmailAnalytics = ({ className, children, disabled }: EmailAnalytics
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="EmailAnalytics"
+      role='region'
+      aria-label='EmailAnalytics'
     >
       {children || 'EmailAnalytics Component'}
     </div>

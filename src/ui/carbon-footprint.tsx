@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * CarbonFootprint Component
- * 
+ *
  * Environmental/sustainability component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface CarbonFootprintProps {
   disabled?: boolean;
 }
 
-export const CarbonFootprint = ({ className, children, disabled }: CarbonFootprintProps) => {
+export const CarbonFootprint = ({
+  className,
+  children,
+  disabled,
+}: CarbonFootprintProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const CarbonFootprint = ({ className, children, disabled }: CarbonFootpri
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="CarbonFootprint"
+      role='region'
+      aria-label='CarbonFootprint'
     >
       {children || 'CarbonFootprint Component'}
     </div>

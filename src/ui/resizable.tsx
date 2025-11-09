@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
 
 export type ResizeDirection =
@@ -176,6 +176,21 @@ export const Resizable: React.FC<ResizableProps> = ({
     onResizeEnd,
   ]);
 
+  // Get cursor for direction
+  const getCursor = useCallback((direction: ResizeDirection): string => {
+    const cursorMap: Record<ResizeDirection, string> = {
+      top: 'ns-resize',
+      right: 'ew-resize',
+      bottom: 'ns-resize',
+      left: 'ew-resize',
+      'top-left': 'nwse-resize',
+      'top-right': 'nesw-resize',
+      'bottom-left': 'nesw-resize',
+      'bottom-right': 'nwse-resize',
+    };
+    return cursorMap[direction];
+  }, []);
+
   // Prevent text selection while resizing
   useEffect(() => {
     if (isResizing) {
@@ -190,22 +205,7 @@ export const Resizable: React.FC<ResizableProps> = ({
       document.body.style.userSelect = '';
       document.body.style.cursor = '';
     };
-  }, [isResizing, resizeDirection]);
-
-  // Get cursor for direction
-  const getCursor = (direction: ResizeDirection): string => {
-    const cursorMap: Record<ResizeDirection, string> = {
-      top: 'ns-resize',
-      right: 'ew-resize',
-      bottom: 'ns-resize',
-      left: 'ew-resize',
-      'top-left': 'nwse-resize',
-      'top-right': 'nesw-resize',
-      'bottom-left': 'nesw-resize',
-      'bottom-right': 'nwse-resize',
-    };
-    return cursorMap[direction];
-  };
+  }, [isResizing, resizeDirection, getCursor]);
 
   // Render resize handle
   const renderHandle = (direction: ResizeDirection) => {

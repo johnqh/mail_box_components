@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * FuelGauge Component
- * 
+ *
  * Automotive component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface FuelGaugeProps {
   disabled?: boolean;
 }
 
-export const FuelGauge = ({ className, children, disabled }: FuelGaugeProps) => {
+export const FuelGauge = ({
+  className,
+  children,
+  disabled,
+}: FuelGaugeProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const FuelGauge = ({ className, children, disabled }: FuelGaugeProps) => 
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="FuelGauge"
+      role='region'
+      aria-label='FuelGauge'
     >
       {children || 'FuelGauge Component'}
     </div>

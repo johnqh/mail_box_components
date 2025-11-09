@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * JobPosting Component
- * 
+ *
  * HR & recruiting component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface JobPostingProps {
   disabled?: boolean;
 }
 
-export const JobPosting = ({ className, children, disabled }: JobPostingProps) => {
+export const JobPosting = ({
+  className,
+  children,
+  disabled,
+}: JobPostingProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const JobPosting = ({ className, children, disabled }: JobPostingProps) =
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="JobPosting"
+      role='region'
+      aria-label='JobPosting'
     >
       {children || 'JobPosting Component'}
     </div>

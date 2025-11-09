@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * SupportDashboard Component
- * 
+ *
  * Customer support component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface SupportDashboardProps {
   disabled?: boolean;
 }
 
-export const SupportDashboard = ({ className, children, disabled }: SupportDashboardProps) => {
+export const SupportDashboard = ({
+  className,
+  children,
+  disabled,
+}: SupportDashboardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const SupportDashboard = ({ className, children, disabled }: SupportDashb
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="SupportDashboard"
+      role='region'
+      aria-label='SupportDashboard'
     >
       {children || 'SupportDashboard Component'}
     </div>

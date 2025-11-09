@@ -2,9 +2,9 @@ import { cn } from '../lib/utils';
 
 /**
  * OnboardingChecklist Component
- * 
+ *
  * HR & recruiting component with full dark mode support.
- * 
+ *
  * @component
  * @example
  * ```tsx
@@ -17,9 +17,13 @@ export interface OnboardingChecklistProps {
   disabled?: boolean;
 }
 
-export const OnboardingChecklist = ({ className, children, disabled }: OnboardingChecklistProps) => {
+export const OnboardingChecklist = ({
+  className,
+  children,
+  disabled,
+}: OnboardingChecklistProps) => {
   return (
-    <div 
+    <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
         'bg-white dark:bg-gray-900',
@@ -28,8 +32,8 @@ export const OnboardingChecklist = ({ className, children, disabled }: Onboardin
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      role="region"
-      aria-label="OnboardingChecklist"
+      role='region'
+      aria-label='OnboardingChecklist'
     >
       {children || 'OnboardingChecklist Component'}
     </div>

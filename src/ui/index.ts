@@ -217,6 +217,10 @@ export { TimePicker } from './time-picker';
 export { DateTimePicker } from './date-time-picker';
 export { CountdownTimer } from './countdown-timer';
 export { ProgressCircle } from './progress-circle';
+export { DragDrop } from './drag-drop';
+export { Resizable } from './resizable';
+export { FocusTrap } from './focus-trap';
+export { ScrollSpy } from './scroll-spy';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -358,6 +362,10 @@ export type { TimePickerProps } from './time-picker';
 export type { DateTimePickerProps } from './date-time-picker';
 export type { CountdownTimerProps } from './countdown-timer';
 export type { ProgressCircleProps } from './progress-circle';
+export type { DragDropProps } from './drag-drop';
+export type { ResizableProps, ResizeDirection } from './resizable';
+export type { FocusTrapProps } from './focus-trap';
+export type { ScrollSpyProps, ScrollSpySection } from './scroll-spy';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -516,3 +524,7 @@ export * from './time-picker';
 export * from './date-time-picker';
 export * from './countdown-timer';
 export * from './progress-circle';
+export * from './drag-drop';
+export * from './resizable';
+export * from './focus-trap';
+export * from './scroll-spy';

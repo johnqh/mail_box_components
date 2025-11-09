@@ -157,6 +157,10 @@ export { Collapsible } from './collapsible';
 export { Accordion, type AccordionItem } from './accordion';
 export { Image } from './image';
 export { Link } from './link';
+export { Stack, VStack, HStack } from './stack';
+export { Grid } from './grid';
+export { Center } from './center';
+export { Spacer } from './spacer';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -235,6 +239,10 @@ export type { CollapsibleProps } from './collapsible';
 export type { AccordionProps } from './accordion';
 export type { ImageProps } from './image';
 export type { LinkProps } from './link';
+export type { StackProps } from './stack';
+export type { GridProps } from './grid';
+export type { CenterProps } from './center';
+export type { SpacerProps } from './spacer';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -333,3 +341,7 @@ export * from './collapsible';
 export * from './accordion';
 export * from './image';
 export * from './link';
+export * from './stack';
+export * from './grid';
+export * from './center';
+export * from './spacer';

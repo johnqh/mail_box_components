@@ -639,3 +639,17 @@ export * from './breadcrumb-nav';
 export * from './pagination-nav';
 export * from './side-nav';
 export * from './stepper-nav';
+
+// Batch 36 - Notification Systems
+export { ToastNotification } from './toast-notification';
+export { NotificationBadge } from './notification-badge';
+export { NotificationPanel } from './notification-panel';
+export { AlertBanner } from './alert-banner';
+export type { ToastNotificationProps } from './toast-notification';
+export type { NotificationBadgeProps } from './notification-badge';
+export type { NotificationPanelProps, Notification } from './notification-panel';
+export type { AlertBannerProps } from './alert-banner';
+export * from './toast-notification';
+export * from './notification-badge';
+export * from './notification-panel';
+export * from './alert-banner';

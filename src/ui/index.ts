@@ -233,6 +233,10 @@ export { Masonry } from './masonry';
 export { Kanban } from './kanban';
 export { TimelineVertical } from './timeline-vertical';
 export { FloatingPanel } from './floating-panel';
+export { BarChart } from './bar-chart';
+export { LineChart } from './line-chart';
+export { PieChart } from './pie-chart';
+export { AreaChart } from './area-chart';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -390,6 +394,10 @@ export type { MasonryProps } from './masonry';
 export type { KanbanProps, KanbanColumn, KanbanCard } from './kanban';
 export type { TimelineVerticalProps, TimelineEvent } from './timeline-vertical';
 export type { FloatingPanelProps } from './floating-panel';
+export type { BarChartProps, BarChartDataPoint } from './bar-chart';
+export type { LineChartProps, LineChartSeries, LineChartDataPoint } from './line-chart';
+export type { PieChartProps, PieChartDataPoint } from './pie-chart';
+export type { AreaChartProps, AreaChartSeries, AreaChartDataPoint } from './area-chart';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -564,3 +572,7 @@ export * from './masonry';
 export * from './kanban';
 export * from './timeline-vertical';
 export * from './floating-panel';
+export * from './bar-chart';
+export * from './line-chart';
+export * from './pie-chart';
+export * from './area-chart';

@@ -142,6 +142,10 @@ export { Backdrop } from './backdrop';
 export { MenuItem } from './menu-item';
 export { LoadingOverlay } from './loading-overlay';
 export { Separator } from './separator';
+export { TruncatedText } from './truncated-text';
+export { FormattedNumber } from './formatted-number';
+export { RelativeTime } from './relative-time';
+export { ButtonGroup } from './button-group';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -205,6 +209,10 @@ export type { BackdropProps } from './backdrop';
 export type { MenuItemProps } from './menu-item';
 export type { LoadingOverlayProps } from './loading-overlay';
 export type { SeparatorProps } from './separator';
+export type { TruncatedTextProps } from './truncated-text';
+export type { FormattedNumberProps } from './formatted-number';
+export type { RelativeTimeProps } from './relative-time';
+export type { ButtonGroupProps } from './button-group';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -288,3 +296,7 @@ export * from './backdrop';
 export * from './menu-item';
 export * from './loading-overlay';
 export * from './separator';
+export * from './truncated-text';
+export * from './formatted-number';
+export * from './relative-time';
+export * from './button-group';

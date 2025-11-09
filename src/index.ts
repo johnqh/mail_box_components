@@ -244,6 +244,11 @@ export {
   IconButton,
   FileIcon,
   Pagination,
+  Tag,
+  Backdrop,
+  MenuItem,
+  LoadingOverlay,
+  Separator,
 } from './ui';
 
 // Development & Documentation Components (now in core/)
@@ -299,6 +304,11 @@ export type {
   IconButtonProps,
   FileIconProps,
   PaginationProps,
+  TagProps,
+  BackdropProps,
+  MenuItemProps,
+  LoadingOverlayProps,
+  SeparatorProps,
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

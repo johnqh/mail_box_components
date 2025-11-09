@@ -137,6 +137,11 @@ export { ExternalLink } from './external-link';
 export { IconButton } from './icon-button';
 export { FileIcon } from './file-icon';
 export { Pagination } from './pagination';
+export { Tag } from './tag';
+export { Backdrop } from './backdrop';
+export { MenuItem } from './menu-item';
+export { LoadingOverlay } from './loading-overlay';
+export { Separator } from './separator';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -195,6 +200,11 @@ export type { ExternalLinkProps } from './external-link';
 export type { IconButtonProps } from './icon-button';
 export type { FileIconProps } from './file-icon';
 export type { PaginationProps } from './pagination';
+export type { TagProps } from './tag';
+export type { BackdropProps } from './backdrop';
+export type { MenuItemProps } from './menu-item';
+export type { LoadingOverlayProps } from './loading-overlay';
+export type { SeparatorProps } from './separator';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -273,3 +283,8 @@ export * from './external-link';
 export * from './icon-button';
 export * from './file-icon';
 export * from './pagination';
+export * from './tag';
+export * from './backdrop';
+export * from './menu-item';
+export * from './loading-overlay';
+export * from './separator';

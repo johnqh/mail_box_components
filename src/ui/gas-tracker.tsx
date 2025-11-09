@@ -1,4 +1,62 @@
 import { cn } from '../lib/utils';
-export interface GasTrackerProps { className?: string; }
-export const gastracker = ({ className }: GasTrackerProps) => <div className={cn('p-4 bg-white dark:bg-gray-900 rounded-lg', className)}>Placeholder</div>;
-export default gastracker;
+
+/**
+ * UgasUtracker Component
+ * 
+ * A reusable UgasUtracker component with full dark mode support.
+ * Optimized for accessibility and AI-assisted development.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <UgasUtracker className="custom-class" />
+ * ```
+ * 
+ * @remarks
+ * This component supports:
+ * - Light and dark themes automatically
+ * - Responsive design
+ * - Accessibility features
+ * - TypeScript type safety
+ * 
+ * @see {@link https://docs.example.com/components/gas-tracker}
+ */
+
+export interface UgasUtrackerProps {
+  /** Additional CSS classes */
+  className?: string;
+  /** Component children */
+  children?: React.ReactNode;
+  /** Disabled state */
+  disabled?: boolean;
+  /** Callback when component is interacted with */
+  onClick?: () => void;
+}
+
+export const UgasUtracker = ({ 
+  className, 
+  children,
+  disabled = false,
+  onClick 
+}: UgasUtrackerProps) => {
+  return (
+    <div 
+      className={cn(
+        'p-4 rounded-lg border transition-colors',
+        'bg-white dark:bg-gray-900',
+        'border-gray-200 dark:border-gray-700',
+        'text-gray-900 dark:text-white',
+        disabled && 'opacity-50 cursor-not-allowed',
+        'hover:bg-gray-50 dark:hover:bg-gray-800',
+        className
+      )}
+      onClick={disabled ? undefined : onClick}
+      role="region"
+      aria-label="UgasUtracker"
+    >
+      {children || 'UgasUtracker Component'}
+    </div>
+  );
+};
+
+export default UgasUtracker;

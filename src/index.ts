@@ -230,6 +230,9 @@ export {
   CodeDisplay,
   SkeletonLoader,
   StatDisplay,
+  ProgressBar,
+  Divider,
+  IconText,
 } from './ui';
 
 // Development & Documentation Components (now in core/)
@@ -270,6 +273,9 @@ export type {
   CodeDisplayProps,
   SkeletonLoaderProps,
   StatDisplayProps,
+  ProgressBarProps,
+  DividerProps,
+  IconTextProps,
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

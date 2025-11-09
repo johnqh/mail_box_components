@@ -123,6 +123,9 @@ export { BorderAccent } from './border-accent';
 export { CodeDisplay } from './code-display';
 export { SkeletonLoader } from './skeleton-loader';
 export { StatDisplay } from './stat-display';
+export { ProgressBar } from './progress-bar';
+export { Divider } from './divider';
+export { IconText } from './icon-text';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -167,6 +170,9 @@ export type { BorderAccentProps } from './border-accent';
 export type { CodeDisplayProps } from './code-display';
 export type { SkeletonLoaderProps } from './skeleton-loader';
 export type { StatDisplayProps } from './stat-display';
+export type { ProgressBarProps } from './progress-bar';
+export type { DividerProps } from './divider';
+export type { IconTextProps } from './icon-text';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -231,3 +237,6 @@ export * from './border-accent';
 export * from './code-display';
 export * from './skeleton-loader';
 export * from './stat-display';
+export * from './progress-bar';
+export * from './divider';
+export * from './icon-text';

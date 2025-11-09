@@ -126,6 +126,9 @@ export { StatDisplay } from './stat-display';
 export { ProgressBar } from './progress-bar';
 export { Divider } from './divider';
 export { IconText } from './icon-text';
+export { CopyButton } from './copy-button';
+export { PageSectionHeader } from './page-section-header';
+export { Badge } from './badge';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -173,6 +176,9 @@ export type { StatDisplayProps } from './stat-display';
 export type { ProgressBarProps } from './progress-bar';
 export type { DividerProps } from './divider';
 export type { IconTextProps } from './icon-text';
+export type { CopyButtonProps } from './copy-button';
+export type { PageSectionHeaderProps } from './page-section-header';
+export type { BadgeProps } from './badge';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -240,3 +246,6 @@ export * from './stat-display';
 export * from './progress-bar';
 export * from './divider';
 export * from './icon-text';
+export * from './copy-button';
+export * from './page-section-header';
+export * from './badge';

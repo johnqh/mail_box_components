@@ -233,6 +233,9 @@ export {
   ProgressBar,
   Divider,
   IconText,
+  CopyButton,
+  PageSectionHeader,
+  Badge,
 } from './ui';
 
 // Development & Documentation Components (now in core/)
@@ -276,6 +279,9 @@ export type {
   ProgressBarProps,
   DividerProps,
   IconTextProps,
+  CopyButtonProps,
+  PageSectionHeaderProps,
+  BadgeProps,
 } from './ui';
 
 // === LEGACY NAMED EXPORTS ===

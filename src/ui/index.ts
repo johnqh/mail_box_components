@@ -150,6 +150,9 @@ export { SearchInput } from './search-input';
 export { Slider } from './slider';
 export { NumberInput } from './number-input';
 export { DateInput } from './date-input';
+export { RadioGroup, type RadioOption } from './radio-group';
+export { TextArea } from './text-area';
+export { FileInput } from './file-input';
 
 // Additional Components
 export { WalletIcon } from './wallet-icon';
@@ -221,6 +224,9 @@ export type { SearchInputProps } from './search-input';
 export type { SliderProps } from './slider';
 export type { NumberInputProps } from './number-input';
 export type { DateInputProps } from './date-input';
+export type { RadioGroupProps } from './radio-group';
+export type { TextAreaProps } from './text-area';
+export type { FileInputProps } from './file-input';
 
 // Legacy wildcard exports for backward compatibility
 export * from './address-label';
@@ -312,3 +318,6 @@ export * from './search-input';
 export * from './slider';
 export * from './number-input';
 export * from './date-input';
+export * from './radio-group';
+export * from './text-area';
+export * from './file-input';

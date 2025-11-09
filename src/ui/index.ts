@@ -653,3 +653,34 @@ export * from './toast-notification';
 export * from './notification-badge';
 export * from './notification-panel';
 export * from './alert-banner';
+
+
+// Batch 37-43 Exports
+export * from './form-builder';
+export * from './form-validator';
+export * from './data-grid';
+export * from './inline-edit';
+export * from './file-browser';
+export * from './file-preview';
+export * from './file-tree';
+export * from './upload-progress';
+export * from './search-bar';
+export * from './filter-panel';
+export * from './sort-dropdown';
+export * from './faceted-search';
+export * from './settings-group';
+export * from './theme-switcher';
+export * from './language-selector';
+export * from './preference-card';
+export * from './heatmap';
+export * from './funnel-chart';
+export * from './scatter-plot';
+export * from './metric-comparison';
+export * from './chat-bubble';
+export * from './message-list';
+export * from './typing-indicator-msg';
+export * from './message-input';
+export * from './user-table';
+export * from './role-manager';
+export * from './audit-log';
+export * from './system-status';

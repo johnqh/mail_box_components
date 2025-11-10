@@ -1,6 +1,11 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from 'react';
 import { cn } from '../lib/utils';
-import { Portal } from './portal';
 
 export interface ToastMessage {
   id: string;
@@ -168,6 +173,28 @@ export const Toast: React.FC<ToastProps> = ({ toast, onRemove }) => {
 };
 
 /**
+ * Individual toast wrapper with auto-remove timer
+ */
+const ToastItem: React.FC<{
+  toast: ToastMessage;
+  onRemove: (id: string) => void;
+}> = ({ toast, onRemove }) => {
+  useEffect(() => {
+    const duration = toast.duration ?? 5000;
+
+    if (duration > 0) {
+      const timer = setTimeout(() => {
+        onRemove(toast.id);
+      }, duration);
+
+      return () => clearTimeout(timer);
+    }
+  }, [toast.id, toast.duration, onRemove]);
+
+  return <Toast toast={toast} onRemove={onRemove} />;
+};
+
+/**
  * ToastProvider Component
  *
  * Provider for toast notifications system.
@@ -189,36 +216,23 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
     setToasts(prev => prev.filter(t => t.id !== id));
   }, []);
 
-  const addToast = useCallback(
-    (toast: Omit<ToastMessage, 'id'>) => {
-      const id = Math.random().toString(36).substr(2, 9);
-      const duration = toast.duration ?? 5000;
-
-      setToasts(prev => [...prev, { ...toast, id }]);
-
-      if (duration > 0) {
-        setTimeout(() => {
-          removeToast(id);
-        }, duration);
-      }
-    },
-    [removeToast]
-  );
+  const addToast = useCallback((toast: Omit<ToastMessage, 'id'>) => {
+    const id = Math.random().toString(36).substr(2, 9);
+    setToasts(prev => [...prev, { ...toast, id }]);
+  }, []);
 
   return (
     <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
       {children}
-      <Portal>
-        <div className='fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none'>
-          <div className='pointer-events-auto'>
-            {toasts.map(toast => (
-              <div key={toast.id} className='mb-2'>
-                <Toast toast={toast} onRemove={removeToast} />
-              </div>
-            ))}
-          </div>
+      <div className='fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none'>
+        <div className='pointer-events-auto'>
+          {toasts.map(toast => (
+            <div key={toast.id} className='mb-2'>
+              <ToastItem toast={toast} onRemove={removeToast} />
+            </div>
+          ))}
         </div>
-      </Portal>
+      </div>
     </ToastContext.Provider>
   );
 };

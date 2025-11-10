@@ -53,24 +53,22 @@ export const Carousel: React.FC<CarouselProps> = ({
   const totalSlides = slides.length;
 
   const goToPrevious = useCallback(() => {
-    if (currentIndex === 0) {
-      if (loop) {
-        setCurrentIndex(totalSlides - 1);
+    setCurrentIndex(prev => {
+      if (prev === 0) {
+        return loop ? totalSlides - 1 : prev;
       }
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
-  }, [currentIndex, loop, totalSlides]);
+      return prev - 1;
+    });
+  }, [loop, totalSlides]);
 
   const goToNext = useCallback(() => {
-    if (currentIndex === totalSlides - 1) {
-      if (loop) {
-        setCurrentIndex(0);
+    setCurrentIndex(prev => {
+      if (prev === totalSlides - 1) {
+        return loop ? 0 : prev;
       }
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
-  }, [currentIndex, loop, totalSlides]);
+      return prev + 1;
+    });
+  }, [loop, totalSlides]);
 
   // Auto-play
   useEffect(() => {

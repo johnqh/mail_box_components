@@ -10,8 +10,18 @@ export interface SkeletonLoaderProps {
   height?: string | number;
   /** Additional className for the skeleton */
   className?: string;
-  /** Number of lines (for text variant) */
+  /** Number of skeleton elements to render */
+  count?: number;
+  /** Number of lines (for text variant) - alias for count */
   lines?: number;
+  /** Enable/disable animation */
+  animate?: boolean;
+  /** Custom border radius */
+  borderRadius?: string;
+  /** Theme color scheme */
+  theme?: 'light' | 'dark';
+  /** Spacing between multiple skeletons (in Tailwind units) */
+  spacing?: number;
   /** Gap between lines (for multi-line text) */
   gap?: 'sm' | 'md' | 'lg';
 }
@@ -27,10 +37,10 @@ export interface SkeletonLoaderProps {
  * ```tsx
  * // Loading text
  * <SkeletonLoader variant="text" width="200px" />
- * <SkeletonLoader variant="text" lines={3} />
+ * <SkeletonLoader variant="text" count={3} />
  *
  * // Loading avatar
- * <SkeletonLoader variant="avatar" />
+ * <SkeletonLoader variant="circle" width="40px" height="40px" />
  *
  * // Loading button
  * <SkeletonLoader variant="button" width="120px" />
@@ -41,7 +51,12 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
   width,
   height,
   className,
+  count,
   lines = 1,
+  animate = true,
+  borderRadius,
+  theme,
+  spacing,
   gap = 'md',
 }) => {
   // Variant-specific styles
@@ -53,12 +68,21 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
     button: 'h-10 rounded-lg',
   };
 
+  // Theme-specific colors
+  const themeClasses = {
+    light: 'bg-gray-200',
+    dark: 'bg-gray-700',
+  };
+
   // Gap between lines
   const gapClasses = {
     sm: 'space-y-1',
     md: 'space-y-2',
     lg: 'space-y-3',
   };
+
+  // Determine number of elements to render
+  const elementCount = count ?? lines;
 
   // Single skeleton element
   const renderSkeleton = (key?: number) => {
@@ -72,11 +96,16 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
       style.height = typeof height === 'number' ? `${height}px` : height;
     }
 
+    if (borderRadius) {
+      style.borderRadius = borderRadius;
+    }
+
     return (
       <div
         key={key}
         className={cn(
-          'animate-pulse bg-gray-200 dark:bg-gray-700',
+          animate && 'animate-pulse',
+          theme ? themeClasses[theme] : 'bg-gray-200 dark:bg-gray-700',
           variantStyles[variant],
           className
         )}
@@ -85,11 +114,15 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
     );
   };
 
-  // Multi-line text skeletons
-  if (variant === 'text' && lines > 1) {
+  // Multiple skeletons
+  if (elementCount > 1) {
+    // Use spacing prop if provided, otherwise use gap classes
+    const spacingClass =
+      spacing !== undefined ? `space-y-${spacing}` : gapClasses[gap];
+
     return (
-      <div className={gapClasses[gap]}>
-        {Array.from({ length: lines }).map((_, i) => renderSkeleton(i))}
+      <div className={cn(spacingClass)}>
+        {Array.from({ length: elementCount }).map((_, i) => renderSkeleton(i))}
       </div>
     );
   }

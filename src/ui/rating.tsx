@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import { cn } from '../lib/utils';
 
 export interface RatingProps {
@@ -11,15 +11,23 @@ export interface RatingProps {
   /** Size variant */
   size?: 'sm' | 'md' | 'lg';
   /** Read-only mode */
-  readonly?: boolean;
+  readOnly?: boolean;
+  /** Disabled state */
+  disabled?: boolean;
   /** Allow half ratings */
   allowHalf?: boolean;
-  /** Custom icon */
-  icon?: 'star' | 'heart' | 'thumbs';
-  /** Color variant */
-  color?: 'yellow' | 'red' | 'blue' | 'green';
+  /** Allow clearing rating by clicking same star */
+  allowClear?: boolean;
+  /** Custom icon (ReactNode or icon type) */
+  icon?: React.ReactNode | 'star' | 'heart' | 'thumbs';
+  /** Empty icon color (color name like 'gray' or Tailwind class) */
+  emptyColor?: string;
+  /** Filled icon color (color name like 'yellow' or Tailwind class) */
+  filledColor?: string;
   /** Show count label */
-  showLabel?: boolean;
+  showCount?: boolean;
+  /** Count value to display */
+  count?: number;
   /** Additional className */
   className?: string;
 }
@@ -34,48 +42,76 @@ export interface RatingProps {
  * ```tsx
  * <Rating value={4.5} onChange={setRating} allowHalf />
  * ```
- *
- * @example
- * ```tsx
- * <Rating
- *   value={rating}
- *   onChange={handleRatingChange}
- *   max={5}
- *   size="lg"
- *   icon="heart"
- *   color="red"
- *   showLabel
- * />
- * ```
  */
 export const Rating: React.FC<RatingProps> = ({
   value,
   onChange,
   max = 5,
   size = 'md',
-  readonly = false,
+  readOnly = false,
+  disabled = false,
   allowHalf = false,
+  allowClear = true,
   icon = 'star',
-  color = 'yellow',
-  showLabel = false,
+  emptyColor,
+  filledColor,
+  showCount = false,
+  count,
   className,
 }) => {
   const [hoverValue, setHoverValue] = useState<number | null>(null);
 
+  const isInteractive = !readOnly && !disabled && onChange;
+
+  // Convert color names to Tailwind classes
+  const getColorClass = (color: string | undefined, defaultClass: string) => {
+    if (!color) return defaultClass;
+    if (color.includes('text-')) return color;
+    return `text-${color}-400`;
+  };
+
   const handleClick = (index: number, isHalf: boolean) => {
-    if (readonly || !onChange) return;
+    if (!isInteractive) return;
     const newValue = index + (isHalf && allowHalf ? 0.5 : 1);
-    onChange(newValue);
+
+    // Allow clearing rating by clicking the same star
+    if (allowClear && newValue === value) {
+      onChange(0);
+    } else {
+      onChange(newValue);
+    }
   };
 
   const handleMouseEnter = (index: number, isHalf: boolean) => {
-    if (readonly) return;
+    if (!isInteractive) return;
     const newValue = index + (isHalf && allowHalf ? 0.5 : 1);
     setHoverValue(newValue);
   };
 
   const handleMouseLeave = () => {
     setHoverValue(null);
+  };
+
+  const handleContainerKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (!isInteractive) return;
+
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const newValue = Math.min(value + 1, max);
+      onChange(newValue);
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const newValue = Math.max(value - 1, 0);
+      onChange(newValue);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const newValue = Math.min(value + 1, max);
+      onChange(newValue);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const newValue = Math.max(value - 1, 0);
+      onChange(newValue);
+    }
   };
 
   // Size configurations
@@ -85,15 +121,7 @@ export const Rating: React.FC<RatingProps> = ({
     lg: 'w-8 h-8',
   };
 
-  // Color configurations
-  const colorClasses = {
-    yellow: 'text-yellow-400',
-    red: 'text-red-500',
-    blue: 'text-blue-500',
-    green: 'text-green-500',
-  };
-
-  const icons = {
+  const defaultIcons = {
     star: (filled: boolean) => (
       <svg
         className='w-full h-full'
@@ -143,44 +171,52 @@ export const Rating: React.FC<RatingProps> = ({
 
   const displayValue = hoverValue !== null ? hoverValue : value;
 
+  const emptyColorClass = getColorClass(
+    emptyColor,
+    'text-gray-300 dark:text-gray-600'
+  );
+  const filledColorClass = getColorClass(filledColor, 'text-yellow-400');
+
   const renderIcon = (index: number) => {
     const isFilled = index < Math.floor(displayValue);
     const isHalf = index === Math.floor(displayValue) && displayValue % 1 !== 0;
 
-    return (
+    // Custom icon (ReactNode)
+    const customIcon = typeof icon !== 'string' ? icon : null;
+    const iconType = (typeof icon === 'string' ? icon : 'star') as
+      | 'star'
+      | 'heart'
+      | 'thumbs';
+
+    const StarContent = (
       <div
+        data-star
         className={cn(
           'relative',
-          !readonly && 'cursor-pointer transition-transform hover:scale-110',
+          !readOnly &&
+            !disabled &&
+            'cursor-pointer transition-transform hover:scale-110',
           sizeClasses[size]
         )}
       >
         {/* Full/empty icon */}
-        <div
-          className={cn(
-            isFilled ? colorClasses[color] : 'text-gray-300 dark:text-gray-600'
-          )}
-        >
-          {icons[icon](isFilled)}
+        <div className={cn(isFilled ? filledColorClass : emptyColorClass)}>
+          {customIcon || defaultIcons[iconType](isFilled)}
         </div>
 
         {/* Half icon overlay */}
         {isHalf && allowHalf && (
-          <div
-            className={cn(
-              'absolute inset-0 overflow-hidden',
-              colorClasses[color]
-            )}
-            style={{ width: '50%' }}
-          >
-            {icons[icon](true)}
+          <div className='absolute inset-0 flex' style={{ overflow: 'hidden' }}>
+            <div className={cn('w-1/2 h-full', filledColorClass)}>
+              {customIcon || defaultIcons[iconType](true)}
+            </div>
           </div>
         )}
 
         {/* Click areas for half ratings */}
-        {!readonly && onChange && (
+        {isInteractive && (
           <div className='absolute inset-0 flex'>
-            {allowHalf && (
+            {allowHalf ? (
               <>
                 <div
                   className='w-1/2 h-full'
@@ -195,8 +231,7 @@ export const Rating: React.FC<RatingProps> = ({
                   onMouseLeave={handleMouseLeave}
                 />
               </>
-            )}
-            {!allowHalf && (
+            ) : (
               <div
                 className='w-full h-full'
                 onClick={() => handleClick(index, false)}
@@ -208,18 +243,51 @@ export const Rating: React.FC<RatingProps> = ({
         )}
       </div>
     );
+
+    if (readOnly) {
+      return <div key={index}>{StarContent}</div>;
+    }
+
+    return (
+      <button
+        key={index}
+        type='button'
+        role='button'
+        disabled={disabled}
+        onClick={() => handleClick(index, false)}
+        className={cn(
+          'focus:outline-none focus:ring-2 focus:ring-blue-500 rounded'
+        )}
+        aria-label={`Rate ${index + 1} out of ${max}`}
+        tabIndex={-1}
+      >
+        {StarContent}
+      </button>
+    );
   };
 
   return (
-    <div className={cn('inline-flex items-center gap-2', className)}>
+    <div
+      className={cn(
+        'inline-flex items-center gap-2',
+        disabled && 'opacity-50 cursor-not-allowed',
+        className
+      )}
+      role='slider'
+      aria-valuenow={value}
+      aria-valuemin={0}
+      aria-valuemax={max}
+      aria-disabled={disabled}
+      aria-readonly={readOnly}
+      tabIndex={isInteractive ? 0 : -1}
+      onKeyDown={handleContainerKeyDown}
+    >
       <div className='flex items-center gap-1'>
-        {Array.from({ length: max }, (_, i) => (
-          <React.Fragment key={i}>{renderIcon(i)}</React.Fragment>
-        ))}
+        {Array.from({ length: max }, (_, i) => renderIcon(i))}
       </div>
-      {showLabel && (
+      {showCount && count !== undefined && (
         <span className='text-sm text-gray-600 dark:text-gray-400'>
-          {value.toFixed(allowHalf ? 1 : 0)} / {max}
+          ({count})
         </span>
       )}
     </div>

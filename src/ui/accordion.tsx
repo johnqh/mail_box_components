@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import React, { useState, KeyboardEvent } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 
 export interface AccordionItem {
@@ -18,7 +18,9 @@ export interface AccordionProps {
   items: AccordionItem[];
   /** Allow multiple items open at once */
   allowMultiple?: boolean;
-  /** Default open item IDs */
+  /** Default open item ID (single) */
+  defaultOpenId?: string;
+  /** Default open item IDs (multiple) */
   defaultOpenIds?: string[];
   /** Controlled open IDs */
   openIds?: string[];
@@ -47,20 +49,11 @@ export interface AccordionProps {
  *   ]}
  * />
  * ```
- *
- * @example
- * ```tsx
- * <Accordion
- *   items={faqItems}
- *   allowMultiple
- *   variant="bordered"
- *   defaultOpenIds={['1']}
- * />
- * ```
  */
 export const Accordion: React.FC<AccordionProps> = ({
   items,
   allowMultiple = false,
+  defaultOpenId,
   defaultOpenIds = [],
   openIds: controlledOpenIds,
   onOpenChange,
@@ -68,8 +61,9 @@ export const Accordion: React.FC<AccordionProps> = ({
   size = 'md',
   className,
 }) => {
+  const initialOpenIds = defaultOpenId ? [defaultOpenId] : defaultOpenIds;
   const [internalOpenIds, setInternalOpenIds] =
-    useState<string[]>(defaultOpenIds);
+    useState<string[]>(initialOpenIds);
 
   // Use controlled value if provided, otherwise use internal state
   const openIds =
@@ -143,11 +137,20 @@ export const Accordion: React.FC<AccordionProps> = ({
     onOpenChange?.(newOpenIds);
   };
 
+  const handleKeyDown = (
+    e: KeyboardEvent<HTMLButtonElement>,
+    itemId: string
+  ) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleToggle(itemId);
+    }
+  };
+
   return (
     <div className={cn('w-full', className)}>
       {items.map((item, index) => {
         const isOpen = openIds.includes(item.id);
-        const Icon = isOpen ? ChevronUpIcon : ChevronDownIcon;
 
         return (
           <div key={item.id} className={getItemClasses(index)}>
@@ -155,6 +158,7 @@ export const Accordion: React.FC<AccordionProps> = ({
             <button
               type='button'
               onClick={() => handleToggle(item.id)}
+              onKeyDown={e => handleKeyDown(e, item.id)}
               disabled={item.disabled}
               className={cn(
                 'flex items-center justify-between w-full text-left',
@@ -168,11 +172,14 @@ export const Accordion: React.FC<AccordionProps> = ({
               aria-expanded={isOpen}
             >
               <span className='flex-1'>{item.title}</span>
-              <Icon
+              <ChevronDownIcon
                 className={cn(
                   sizeConfig.icon,
-                  'text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0'
+                  'text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0',
+                  'transition-transform',
+                  isOpen && 'rotate-180'
                 )}
+                aria-hidden='true'
               />
             </button>
 
@@ -181,6 +188,8 @@ export const Accordion: React.FC<AccordionProps> = ({
               <div
                 className={cn(
                   'text-gray-600 dark:text-gray-400',
+                  'overflow-hidden transition-all',
+                  'animate-in slide-in-from-top-1 fade-in duration-200',
                   sizeConfig.content
                 )}
               >

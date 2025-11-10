@@ -12,14 +12,26 @@ export interface TagInputProps {
   maxTags?: number;
   /** Tag validation function */
   validate?: (tag: string) => boolean;
-  /** Invalid tag error message */
-  invalidMessage?: string;
-  /** Separator characters (default: comma, Enter) */
+  /** Tag validation function (alias for validate) */
+  validator?: (tag: string) => boolean;
+  /** Separator characters (default: Enter, Comma) */
   separators?: string[];
   /** Allow duplicates */
   allowDuplicates?: boolean;
   /** Disabled state */
   disabled?: boolean;
+  /** Error state */
+  error?: boolean;
+  /** Error message */
+  errorMessage?: string;
+  /** Tag variant style */
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error';
+  /** Custom tag renderer */
+  renderTag?: (
+    tag: string,
+    index: number,
+    remove: () => void
+  ) => React.ReactNode;
   /** Additional className */
   className?: string;
 }
@@ -37,18 +49,6 @@ export interface TagInputProps {
  *   onChange={setEmails}
  *   placeholder="Enter email addresses..."
  *   validate={(email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
- *   invalidMessage="Invalid email address"
- * />
- * ```
- *
- * @example
- * ```tsx
- * <TagInput
- *   value={tags}
- *   onChange={setTags}
- *   placeholder="Add tags..."
- *   maxTags={5}
- *   allowDuplicates={false}
  * />
  * ```
  */
@@ -58,15 +58,30 @@ export const TagInput: React.FC<TagInputProps> = ({
   placeholder = 'Type and press Enter...',
   maxTags,
   validate,
-  invalidMessage = 'Invalid input',
-  separators = [','],
+  validator,
+  separators = [],
   allowDuplicates = false,
   disabled = false,
+  error = false,
+  errorMessage,
+  variant = 'primary',
+  renderTag,
   className,
 }) => {
+  const validationFn = validate || validator;
   const [inputValue, setInputValue] = useState('');
-  const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Variant classes
+  const variantClasses = {
+    primary: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
+    secondary: 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
+    success:
+      'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300',
+    warning:
+      'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300',
+    error: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',
+  };
 
   // Add tag
   const addTag = (tag: string) => {
@@ -78,61 +93,53 @@ export const TagInput: React.FC<TagInputProps> = ({
 
     // Check max tags
     if (maxTags && value.length >= maxTags) {
-      setError(`Maximum ${maxTags} tags allowed`);
-      setTimeout(() => setError(null), 3000);
       return;
     }
 
     // Check duplicates
     if (!allowDuplicates && value.includes(trimmedTag)) {
-      setError('Tag already exists');
-      setTimeout(() => setError(null), 3000);
       return;
     }
 
     // Validate
-    if (validate && !validate(trimmedTag)) {
-      setError(invalidMessage);
-      setTimeout(() => setError(null), 3000);
+    if (validationFn && !validationFn(trimmedTag)) {
       return;
     }
 
     onChange([...value, trimmedTag]);
     setInputValue('');
-    setError(null);
   };
 
   // Remove tag
   const removeTag = (index: number) => {
     onChange(value.filter((_, i) => i !== index));
-    setError(null);
   };
 
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-
-    // Check for separators
-    const hasSeparator = separators.some(sep => newValue.includes(sep));
-
-    if (hasSeparator) {
-      const parts = newValue.split(new RegExp(`[${separators.join('')}]`));
-      parts.forEach(part => {
-        if (part.trim()) {
-          addTag(part);
-        }
-      });
-      setInputValue('');
-    } else {
-      setInputValue(newValue);
-      setError(null);
-    }
+    setInputValue(e.target.value);
   };
 
   // Handle keydown
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    // Enter
+    // Enter - always works
     if (e.key === 'Enter') {
+      e.preventDefault();
+      if (inputValue.trim()) {
+        addTag(inputValue);
+      }
+    }
+
+    // Comma - works by default
+    if (e.key === ',') {
+      e.preventDefault();
+      if (inputValue.trim()) {
+        addTag(inputValue);
+      }
+    }
+
+    // Custom separators
+    if (separators.length > 0 && separators.includes(e.key) && e.key !== ',') {
       e.preventDefault();
       if (inputValue.trim()) {
         addTag(inputValue);
@@ -147,14 +154,6 @@ export const TagInput: React.FC<TagInputProps> = ({
     // Escape - clear input
     if (e.key === 'Escape') {
       setInputValue('');
-      setError(null);
-    }
-  };
-
-  // Handle blur
-  const handleBlur = () => {
-    if (inputValue.trim()) {
-      addTag(inputValue);
     }
   };
 
@@ -178,74 +177,84 @@ export const TagInput: React.FC<TagInputProps> = ({
         onClick={() => !disabled && inputRef.current?.focus()}
       >
         {/* Tags */}
-        {value.map((tag, index) => (
-          <span
-            key={index}
-            className={cn(
-              'inline-flex items-center gap-1.5 px-2.5 py-1',
-              'bg-blue-100 dark:bg-blue-900/30',
-              'text-blue-700 dark:text-blue-300',
-              'text-sm font-medium',
-              'rounded-md',
-              'transition-colors'
-            )}
-          >
-            <span className='truncate max-w-[200px]'>{tag}</span>
-            <button
-              type='button'
-              onClick={e => {
-                e.stopPropagation();
-                removeTag(index);
-              }}
-              disabled={disabled}
+        {value.map((tag, index) =>
+          renderTag ? (
+            <React.Fragment key={index}>
+              {renderTag(tag, index, () => removeTag(index))}
+            </React.Fragment>
+          ) : (
+            <span
+              key={index}
               className={cn(
-                'flex-shrink-0 hover:text-blue-900 dark:hover:text-blue-100',
-                'transition-colors',
-                'disabled:cursor-not-allowed'
+                'inline-flex items-center gap-1.5 px-2.5 py-1',
+                variantClasses[variant],
+                'text-sm font-medium',
+                'rounded-md',
+                'transition-colors'
               )}
-              aria-label={`Remove ${tag}`}
             >
-              <svg
-                className='w-3.5 h-3.5'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
+              <span className='truncate max-w-[200px]'>{tag}</span>
+              <button
+                type='button'
+                onClick={e => {
+                  e.stopPropagation();
+                  removeTag(index);
+                }}
+                disabled={disabled}
+                className={cn(
+                  'flex-shrink-0 hover:text-blue-900 dark:hover:text-blue-100',
+                  'transition-colors',
+                  'disabled:cursor-not-allowed'
+                )}
+                aria-label={`Remove ${tag}`}
               >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M6 18L18 6M6 6l12 12'
-                />
-              </svg>
-            </button>
-          </span>
-        ))}
+                <svg
+                  className='w-3.5 h-3.5'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M6 18L18 6M6 6l12 12'
+                  />
+                </svg>
+              </button>
+            </span>
+          )
+        )}
 
         {/* Input */}
-        {!isMaxReached && (
-          <input
-            ref={inputRef}
-            type='text'
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            onBlur={handleBlur}
-            placeholder={value.length === 0 ? placeholder : ''}
-            disabled={disabled}
-            className={cn(
-              'flex-1 min-w-[120px] outline-none bg-transparent',
-              'text-sm text-gray-900 dark:text-white',
-              'placeholder:text-gray-500 dark:placeholder:text-gray-400',
-              'disabled:cursor-not-allowed'
-            )}
-          />
-        )}
+        <input
+          ref={inputRef}
+          type='text'
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder={
+            value.length === 0
+              ? placeholder
+              : isMaxReached
+                ? `Max ${maxTags} tags`
+                : ''
+          }
+          disabled={disabled}
+          className={cn(
+            'flex-1 min-w-[120px] outline-none bg-transparent',
+            'text-sm text-gray-900 dark:text-white',
+            'placeholder:text-gray-500 dark:placeholder:text-gray-400',
+            'disabled:cursor-not-allowed'
+          )}
+        />
       </div>
 
       {/* Error message */}
-      {error && (
-        <p className='mt-1.5 text-xs text-red-600 dark:text-red-400'>{error}</p>
+      {errorMessage && (
+        <p className='mt-1.5 text-xs text-red-600 dark:text-red-400'>
+          {errorMessage}
+        </p>
       )}
 
       {/* Helper text */}

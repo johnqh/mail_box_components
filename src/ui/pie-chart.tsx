@@ -200,7 +200,7 @@ export const PieChart: React.FC<PieChartProps> = ({
                 {slice.label}
                 {showPercentages && (
                   <span className='text-gray-500 dark:text-gray-400 ml-1'>
-                    ({slice.percentage.toFixed(1)}%)
+                    ({Math.round(slice.percentage)}%)
                   </span>
                 )}
               </span>

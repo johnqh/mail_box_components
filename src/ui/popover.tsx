@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
-import { Portal } from './portal';
 
 export interface PopoverProps {
   /** Trigger element */
@@ -216,7 +215,7 @@ export const Popover: React.FC<PopoverProps> = ({
   };
 
   return (
-    <>
+    <div className={cn('relative inline-block', className)}>
       <div
         ref={triggerRef}
         onClick={handleTriggerClick}
@@ -228,53 +227,51 @@ export const Popover: React.FC<PopoverProps> = ({
       </div>
 
       {isOpen && (
-        <Portal>
-          <div
-            ref={contentRef}
-            className={cn(
-              'fixed z-50',
-              'bg-white dark:bg-gray-800',
-              'border border-gray-200 dark:border-gray-700',
-              'rounded-lg shadow-lg',
-              'transition-all duration-200',
-              'animate-in fade-in zoom-in-95',
-              transformOrigin[placement],
-              transformTranslate[placement],
-              className
-            )}
-            style={{
-              top: position.top + 'px',
-              left: position.left + 'px',
-            }}
-            onMouseEnter={
-              trigger_action === 'hover' ? () => setIsOpen(true) : undefined
-            }
-            onMouseLeave={
-              trigger_action === 'hover' ? () => setIsOpen(false) : undefined
-            }
-          >
-            {children}
-            {showArrow && (
-              <div
-                className={cn(
-                  'absolute w-2 h-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transform rotate-45',
-                  placement.startsWith('top') &&
-                    'bottom-[-5px] border-t-0 border-l-0',
-                  placement.startsWith('bottom') &&
-                    'top-[-5px] border-b-0 border-r-0',
-                  placement === 'left' && 'right-[-5px] border-l-0 border-b-0',
-                  placement === 'right' && 'left-[-5px] border-r-0 border-t-0',
-                  (placement === 'top' || placement === 'bottom') &&
-                    'left-1/2 -translate-x-1/2',
-                  (placement === 'left' || placement === 'right') &&
-                    'top-1/2 -translate-y-1/2'
-                )}
-              />
-            )}
-          </div>
-        </Portal>
+        <div
+          ref={contentRef}
+          className={cn(
+            'fixed z-50',
+            'bg-white dark:bg-gray-800',
+            'border border-gray-200 dark:border-gray-700',
+            'rounded-lg shadow-lg',
+            'transition-all duration-200',
+            'animate-in fade-in zoom-in-95',
+            transformOrigin[placement],
+            transformTranslate[placement]
+          )}
+          style={{
+            position: 'fixed',
+            top: position.top + 'px',
+            left: position.left + 'px',
+          }}
+          onMouseEnter={
+            trigger_action === 'hover' ? () => setIsOpen(true) : undefined
+          }
+          onMouseLeave={
+            trigger_action === 'hover' ? () => setIsOpen(false) : undefined
+          }
+        >
+          {children}
+          {showArrow && (
+            <div
+              className={cn(
+                'arrow absolute w-2 h-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transform rotate-45',
+                placement.startsWith('top') &&
+                  'bottom-[-5px] border-t-0 border-l-0',
+                placement.startsWith('bottom') &&
+                  'top-[-5px] border-b-0 border-r-0',
+                placement === 'left' && 'right-[-5px] border-l-0 border-b-0',
+                placement === 'right' && 'left-[-5px] border-r-0 border-t-0',
+                (placement === 'top' || placement === 'bottom') &&
+                  'left-1/2 -translate-x-1/2',
+                (placement === 'left' || placement === 'right') &&
+                  'top-1/2 -translate-y-1/2'
+              )}
+            />
+          )}
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

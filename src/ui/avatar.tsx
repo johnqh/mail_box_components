@@ -1,34 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '../lib/utils';
 
 export interface AvatarProps {
-  /** Avatar type */
-  type?: 'initials' | 'image' | 'icon' | 'number' | 'text';
-  /** Content to display (initials, number, text, etc.) */
-  content?: string | number;
-  /** Image source URL (for type='image') */
+  /** Image source URL */
   src?: string;
   /** Alt text for image */
   alt?: string;
-  /** Icon component (for type='icon') */
-  icon?: React.ComponentType<{ className?: string }>;
+  /** Fallback text (initials) to display when no image */
+  fallback?: string;
+  /** Name to generate initials from */
+  name?: string;
   /** Size variant */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  /** Shape variant */
-  shape?: 'circle' | 'square' | 'rounded';
-  /** Color variant */
-  variant?:
-    | 'primary'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'purple'
-    | 'gray'
-    | 'gradient';
+  size?: 'sm' | 'md' | 'lg';
   /** Show status indicator */
-  status?: 'online' | 'offline' | 'away' | 'busy' | null;
-  /** Status indicator position */
-  statusPosition?: 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
+  status?: 'online' | 'offline' | 'away' | 'busy';
   /** Additional className */
   className?: string;
   /** Click handler */
@@ -38,76 +23,44 @@ export interface AvatarProps {
 /**
  * Avatar Component
  *
- * Versatile avatar component for displaying user images, initials, icons, or numbers.
- * Commonly used for user profiles, step indicators, and badges.
+ * Avatar component for displaying user images or initials.
+ * Supports status indicators and fallback to initials when image fails to load.
  *
  * @example
  * ```tsx
- * // User initials
- * <Avatar type="initials" content="JD" variant="primary" />
- *
  * // User image
- * <Avatar type="image" src="/avatar.jpg" alt="John Doe" />
+ * <Avatar src="/avatar.jpg" alt="John Doe" fallback="JD" />
  *
- * // Step number
- * <Avatar type="number" content={1} variant="primary" size="md" />
- *
- * // Icon avatar
- * <Avatar type="icon" icon={UserIcon} variant="gray" />
+ * // Generate initials from name
+ * <Avatar name="John Doe" />
  *
  * // With status indicator
- * <Avatar type="image" src="/avatar.jpg" status="online" />
+ * <Avatar src="/avatar.jpg" status="online" />
  * ```
  */
 export const Avatar: React.FC<AvatarProps> = ({
-  type = 'initials',
-  content,
   src,
-  alt,
-  icon: Icon,
+  alt = 'Avatar',
+  fallback,
+  name,
   size = 'md',
-  shape = 'circle',
-  variant = 'primary',
-  status = null,
-  statusPosition = 'bottom-right',
+  status,
   className,
   onClick,
 }) => {
+  const [imageError, setImageError] = useState(false);
+
   // Size configurations
   const sizeClasses = {
-    xs: 'w-6 h-6 text-xs',
     sm: 'w-8 h-8 text-xs',
     md: 'w-10 h-10 text-sm',
     lg: 'w-12 h-12 text-base',
-    xl: 'w-16 h-16 text-lg',
-    '2xl': 'w-20 h-20 text-xl',
   };
 
-  const iconSizeClasses = {
-    xs: 'h-3 w-3',
-    sm: 'h-4 w-4',
-    md: 'h-5 w-5',
-    lg: 'h-6 w-6',
-    xl: 'h-8 w-8',
-    '2xl': 'h-10 w-10',
-  };
-
-  // Shape configurations
-  const shapeClasses = {
-    circle: 'rounded-full',
-    square: 'rounded-none',
-    rounded: 'rounded-lg',
-  };
-
-  // Color variant configurations
-  const variantClasses = {
-    primary: 'bg-blue-500 text-white',
-    success: 'bg-green-500 text-white',
-    warning: 'bg-yellow-500 text-white',
-    danger: 'bg-red-500 text-white',
-    purple: 'bg-purple-500 text-white',
-    gray: 'bg-gray-500 text-white',
-    gradient: 'bg-gradient-to-r from-blue-500 to-purple-600 text-white',
+  const statusSizeClasses = {
+    sm: 'w-2 h-2',
+    md: 'w-2.5 h-2.5',
+    lg: 'w-3 h-3',
   };
 
   // Status indicator configurations
@@ -118,53 +71,34 @@ export const Avatar: React.FC<AvatarProps> = ({
     busy: 'bg-red-500',
   };
 
-  const statusPositionClasses = {
-    'top-right': 'top-0 right-0',
-    'bottom-right': 'bottom-0 right-0',
-    'top-left': 'top-0 left-0',
-    'bottom-left': 'bottom-0 left-0',
+  // Generate initials from name
+  const generateInitials = (name: string): string => {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) {
+      return parts[0].charAt(0).toUpperCase();
+    }
+    return (
+      parts[0].charAt(0).toUpperCase() +
+      parts[parts.length - 1].charAt(0).toUpperCase()
+    );
   };
 
-  const statusSizeClasses = {
-    xs: 'w-1.5 h-1.5',
-    sm: 'w-2 h-2',
-    md: 'w-2.5 h-2.5',
-    lg: 'w-3 h-3',
-    xl: 'w-4 h-4',
-    '2xl': 'w-5 h-5',
-  };
+  // Determine what to display
+  const displayFallback = fallback || (name ? generateInitials(name) : '');
+  const showImage = src && !imageError;
 
-  // Render content based on type
-  const renderContent = () => {
-    if (type === 'image' && src) {
-      return (
-        <img
-          src={src}
-          alt={alt || 'Avatar'}
-          className='w-full h-full object-cover'
-        />
-      );
-    }
-
-    if (type === 'icon' && Icon) {
-      return <Icon className={iconSizeClasses[size]} />;
-    }
-
-    if (type === 'number' || type === 'text' || type === 'initials') {
-      return <span className='font-bold'>{content}</span>;
-    }
-
-    return null;
+  const handleImageError = () => {
+    setImageError(true);
   };
 
   return (
     <div className='relative inline-block flex-shrink-0'>
       <div
         className={cn(
-          'flex items-center justify-center overflow-hidden',
+          'flex items-center justify-center overflow-hidden rounded-full',
           sizeClasses[size],
-          shapeClasses[shape],
-          type !== 'image' && variantClasses[variant],
+          !showImage &&
+            'bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200',
           onClick && 'cursor-pointer hover:opacity-80 transition-opacity',
           className
         )}
@@ -172,14 +106,22 @@ export const Avatar: React.FC<AvatarProps> = ({
         role={onClick ? 'button' : undefined}
         tabIndex={onClick ? 0 : undefined}
       >
-        {renderContent()}
+        {showImage ? (
+          <img
+            src={src}
+            alt={alt}
+            className='w-full h-full object-cover'
+            onError={handleImageError}
+          />
+        ) : (
+          <span className='font-semibold'>{displayFallback}</span>
+        )}
       </div>
       {status && (
         <span
           className={cn(
-            'absolute rounded-full border-2 border-white dark:border-gray-800',
+            'absolute bottom-0 right-0 rounded-full border-2 border-white dark:border-gray-800',
             statusClasses[status],
-            statusPositionClasses[statusPosition],
             statusSizeClasses[size]
           )}
           aria-label={status}

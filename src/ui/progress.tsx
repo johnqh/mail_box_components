@@ -3,21 +3,23 @@ import { cn } from '../lib/utils';
 
 export interface ProgressProps {
   /** Progress value (0-100) */
-  value: number;
+  value?: number;
   /** Maximum value */
   max?: number;
-  /** Progress variant */
-  variant?: 'linear' | 'circular';
+  /** Color variant */
+  variant?: 'default' | 'success' | 'warning' | 'danger';
   /** Size variant */
   size?: 'sm' | 'md' | 'lg';
-  /** Color variant */
-  color?: 'primary' | 'success' | 'warning' | 'danger';
   /** Show label */
   showLabel?: boolean;
   /** Custom label */
   label?: string;
   /** Indeterminate state (loading) */
   indeterminate?: boolean;
+  /** Striped style */
+  striped?: boolean;
+  /** Animate stripes */
+  animated?: boolean;
   /** Additional className */
   className?: string;
 }
@@ -25,8 +27,8 @@ export interface ProgressProps {
 /**
  * Progress Component
  *
- * Linear and circular progress indicators.
- * Supports determinate and indeterminate states.
+ * Linear progress indicator with support for determinate and indeterminate states.
+ * Supports color variants, sizes, striped styles, and animations.
  *
  * @example
  * ```tsx
@@ -37,148 +39,84 @@ export interface ProgressProps {
  * ```tsx
  * <Progress
  *   value={progress}
- *   variant="circular"
+ *   variant="success"
  *   size="lg"
- *   color="success"
+ *   striped
  * />
  * ```
  *
  * @example
  * ```tsx
- * <Progress indeterminate variant="linear" />
+ * <Progress indeterminate />
  * ```
  */
 export const Progress: React.FC<ProgressProps> = ({
-  value,
+  value = 0,
   max = 100,
-  variant = 'linear',
+  variant = 'default',
   size = 'md',
-  color = 'primary',
   showLabel = false,
   label,
   indeterminate = false,
+  striped = false,
+  animated = false,
   className,
 }) => {
+  // Clamp value between 0 and 100
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
 
   // Color configurations
   const colorClasses = {
-    primary: 'bg-blue-600 dark:bg-blue-500',
+    default: 'bg-blue-600 dark:bg-blue-500',
     success: 'bg-green-600 dark:bg-green-500',
     warning: 'bg-yellow-600 dark:bg-yellow-500',
     danger: 'bg-red-600 dark:bg-red-500',
   };
 
-  if (variant === 'linear') {
-    // Size configurations for linear
-    const linearSizeClasses = {
-      sm: 'h-1',
-      md: 'h-2',
-      lg: 'h-3',
-    };
-
-    return (
-      <div className={cn('w-full', className)}>
-        <div
-          className={cn(
-            'w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden',
-            linearSizeClasses[size]
-          )}
-        >
-          {indeterminate ? (
-            <div
-              className={cn(
-                'h-full rounded-full animate-pulse',
-                colorClasses[color]
-              )}
-              style={{ width: '100%' }}
-            />
-          ) : (
-            <div
-              className={cn(
-                'h-full rounded-full transition-all duration-300',
-                colorClasses[color]
-              )}
-              style={{ width: percentage + '%' }}
-            />
-          )}
-        </div>
-        {showLabel && (
-          <div className='mt-1 text-xs text-gray-600 dark:text-gray-400 text-right'>
-            {label || percentage.toFixed(0) + '%'}
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  // Circular variant
-  // Size configurations for circular
-  const circularSizes = {
-    sm: { size: 48, stroke: 4 },
-    md: { size: 64, stroke: 6 },
-    lg: { size: 96, stroke: 8 },
+  // Size configurations
+  const sizeClasses = {
+    sm: 'h-1',
+    md: 'h-2',
+    lg: 'h-4',
   };
 
-  const { size: circleSize, stroke: strokeWidth } = circularSizes[size];
-  const radius = (circleSize - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const offset = indeterminate
-    ? 0
-    : circumference - (percentage / 100) * circumference;
-
   return (
-    <div className={cn('inline-flex items-center justify-center', className)}>
+    <div className={cn('w-full', className)}>
       <div
-        className='relative'
-        style={{ width: circleSize, height: circleSize }}
+        className={cn(
+          'w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden',
+          sizeClasses[size]
+        )}
+        role='progressbar'
+        aria-valuenow={indeterminate ? undefined : percentage}
+        aria-valuemin={0}
+        aria-valuemax={100}
       >
-        <svg
-          className='transform -rotate-90'
-          width={circleSize}
-          height={circleSize}
-        >
-          {/* Background circle */}
-          <circle
-            cx={circleSize / 2}
-            cy={circleSize / 2}
-            r={radius}
-            stroke='currentColor'
-            strokeWidth={strokeWidth}
-            fill='none'
-            className='text-gray-200 dark:text-gray-700'
-          />
-          {/* Progress circle */}
-          <circle
-            cx={circleSize / 2}
-            cy={circleSize / 2}
-            r={radius}
-            stroke='currentColor'
-            strokeWidth={strokeWidth}
-            fill='none'
-            strokeLinecap='round'
+        {indeterminate ? (
+          <div
             className={cn(
-              'transition-all duration-300',
-              color === 'primary' && 'text-blue-600 dark:text-blue-500',
-              color === 'success' && 'text-green-600 dark:text-green-500',
-              color === 'warning' && 'text-yellow-600 dark:text-yellow-500',
-              color === 'danger' && 'text-red-600 dark:text-red-500',
-              indeterminate && 'animate-spin'
+              'h-full rounded-full animate-pulse',
+              colorClasses[variant]
             )}
-            style={{
-              strokeDasharray: circumference,
-              strokeDashoffset: offset,
-            }}
+            style={{ width: '100%' }}
           />
-        </svg>
-        {showLabel && (
-          <div className='absolute inset-0 flex items-center justify-center'>
-            <span className='text-sm font-semibold text-gray-900 dark:text-white'>
-              {label || percentage.toFixed(0) + '%'}
-            </span>
-          </div>
+        ) : (
+          <div
+            className={cn(
+              'h-full rounded-full transition-all duration-300',
+              colorClasses[variant],
+              striped && 'bg-stripe',
+              striped && animated && 'animate-stripe'
+            )}
+            style={{ width: `${percentage}%` }}
+          />
         )}
       </div>
+      {(showLabel || label) && (
+        <div className='mt-1 text-xs text-gray-600 dark:text-gray-400 text-right'>
+          {label || `${Math.round(percentage)}%`}
+        </div>
+      )}
     </div>
   );
 };

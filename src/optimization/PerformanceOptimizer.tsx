@@ -2,10 +2,16 @@ import React, { useEffect } from 'react';
 
 interface PerformanceOptimizerProps {
   children: React.ReactNode;
+  appName: string; // Required
+  appUrl: string; // Required
+  apiUrl?: string;
 }
 
 const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
   children,
+  appName,
+  appUrl,
+  apiUrl,
 }) => {
   useEffect(() => {
     // Critical performance optimizations for Core Web Vitals
@@ -118,13 +124,20 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
     const addResourceHints = () => {
       const hints = [
         { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
-        { rel: 'dns-prefetch', href: '//api.0xmail.box' },
+        ...(apiUrl
+          ? [
+              {
+                rel: 'dns-prefetch',
+                href: `//${apiUrl.replace(/^https?:\/\//, '')}`,
+              },
+            ]
+          : []),
         {
           rel: 'preconnect',
           href: 'https://fonts.gstatic.com',
           crossorigin: true,
         },
-        { rel: 'preconnect', href: 'https://api.0xmail.box' },
+        ...(apiUrl ? [{ rel: 'preconnect', href: apiUrl }] : []),
       ];
 
       hints.forEach(hint => {
@@ -206,10 +219,10 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
       const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
-        name: '0xmail.box',
+        name: appName,
         description:
           'Web3 email platform using blockchain wallet authentication',
-        url: 'https://0xmail.box',
+        url: appUrl,
         applicationCategory: 'CommunicationApplication',
         operatingSystem: 'Web Browser',
         offers: {
@@ -273,7 +286,7 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
     return () => {
       // Remove any added event listeners or observers if needed
     };
-  }, []);
+  }, [apiUrl, appName, appUrl]);
 
   return <>{children}</>;
 };

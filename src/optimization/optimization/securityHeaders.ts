@@ -1,10 +1,15 @@
 /**
- * Security Headers and CSP Configuration for 0xmail.box
+ * Security Headers and CSP Configuration
  * This file defines Content Security Policy and other security headers
  * for the Web3 email platform.
  */
 
-export const cspDirectives = {
+export interface CSPConfig {
+  apiUrls?: string[];
+  appUrls?: string[];
+}
+
+export const generateCSPDirectives = (config?: CSPConfig) => ({
   'default-src': ["'self'"],
   'script-src': [
     "'self'",
@@ -24,9 +29,9 @@ export const cspDirectives = {
   'img-src': ["'self'", 'data:', 'https:', 'blob:'],
   'connect-src': [
     "'self'",
-    // API endpoints
-    'https://api.0xmail.box',
-    'https://0xmail.box',
+    // API endpoints (configurable)
+    ...(config?.apiUrls || []),
+    ...(config?.appUrls || []),
 
     // WalletConnect
     'https://*.walletconnect.com',
@@ -72,15 +77,19 @@ export const cspDirectives = {
   'object-src': ["'none'"],
   'base-uri': ["'self'"],
   'form-action': ["'self'"],
-};
+});
 
-export const generateCSP = (): string => {
-  return Object.entries(cspDirectives)
+// Default CSP directives (for backward compatibility)
+export const cspDirectives = generateCSPDirectives();
+
+export const generateCSP = (config?: CSPConfig): string => {
+  const directives = generateCSPDirectives(config);
+  return Object.entries(directives)
     .map(([directive, sources]) => `${directive} ${sources.join(' ')}`)
     .join('; ');
 };
 
-export const securityHeaders = {
+export const getSecurityHeaders = (config?: CSPConfig) => ({
   'X-Frame-Options': 'DENY',
   'X-Content-Type-Options': 'nosniff',
   'X-XSS-Protection': '1; mode=block',
@@ -91,8 +100,11 @@ export const securityHeaders = {
   'Cross-Origin-Embedder-Policy': 'credentialless',
   'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
   'Cross-Origin-Resource-Policy': 'cross-origin',
-  'Content-Security-Policy': generateCSP(),
-};
+  'Content-Security-Policy': generateCSP(config),
+});
+
+// Default security headers (for backward compatibility)
+export const securityHeaders = getSecurityHeaders();
 
 export const cacheHeaders = {
   fonts: 'public, max-age=31536000, immutable',

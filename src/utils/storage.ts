@@ -9,7 +9,7 @@
  * // Store user wallet data with 7-day TTL
  * walletStorage.set('0x742d35cc...', {
  *   username: 'alice.eth',
- *   addresses: ['alice@0xmail.box'],
+ *   addresses: ['alice@example.com'],
  *   lastLogin: Date.now()
  * });
  *
@@ -365,7 +365,7 @@ export const themeStorage = new StorageManager({ prefix: 'mailbox-theme' });
  * const userData: WalletUserData = {
  *   id: 'user123',
  *   username: 'alice.eth',
- *   addresses: ['alice@0xmail.box'],
+ *   addresses: ['alice@example.com'],
  *   mailboxes: [...]
  * };
  *

@@ -7,7 +7,7 @@ interface LogoProps {
   onClick?: () => void;
   logoSrc?: string; // Allow customizing logo source
   logoAlt?: string; // Allow customizing alt text
-  logoText?: string; // Allow customizing logo text
+  logoText: string; // Required - no default
   fontFamily?: string; // Allow customizing font family
 }
 
@@ -18,7 +18,7 @@ const Logo: FC<LogoProps> = ({
   onClick,
   logoSrc = '/logo.png',
   logoAlt = 'Logo',
-  logoText = '0xmail.box',
+  logoText,
   fontFamily = 'Dancing Script, cursive',
 }) => {
   const getSizeClasses = () => {

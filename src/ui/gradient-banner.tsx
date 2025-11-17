@@ -36,7 +36,7 @@ export interface GradientBannerProps {
  * ```tsx
  * <GradientBanner variant="blue-purple" size="lg">
  *   <h3 className={textVariants.heading.h3()}>Special Offer</h3>
- *   <p>Get started with 0xMail today!</p>
+ *   <p>Get started with Web3 Email today!</p>
  * </GradientBanner>
  * ```
  *

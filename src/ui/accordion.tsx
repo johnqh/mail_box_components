@@ -44,7 +44,7 @@ export interface AccordionProps {
  * ```tsx
  * <Accordion
  *   items={[
- *     { id: '1', title: 'What is 0xMail?', content: 'Description...' },
+ *     { id: '1', title: 'What is Web3 Email?', content: 'Description...' },
  *     { id: '2', title: 'How does it work?', content: 'Explanation...' },
  *   ]}
  * />

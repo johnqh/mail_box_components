@@ -111,7 +111,7 @@ export const SolanaUtils = {
 };
 
 // Optimized wagmi configuration loader
-export const createWagmiConfig = async () => {
+export const createWagmiConfig = async (appName: string) => {
   try {
     // Dynamically import wagmi and its dependencies
     const [
@@ -142,9 +142,7 @@ export const createWagmiConfig = async () => {
               (window as any).VITE_WALLETCONNECT_PROJECT_ID) ||
             'test',
         }),
-        coinbaseWallet({
-          appName: '0xmail.box',
-        }),
+        coinbaseWallet({ appName }),
       ],
       transports: {
         [mainnet.id]: http(),

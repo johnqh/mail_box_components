@@ -49,7 +49,7 @@
       "Bash(prettier:*)",
       "Bash(npx prettier:*)",
       "WebSearch",
-      "Read(//Users/johnhuang/0xmail/design_system/**)",
+      "Read(../design_system/**)",
       "Bash(npx eslint:*)"
     ],
     "deny": [],

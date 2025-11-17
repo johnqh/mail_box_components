@@ -35,7 +35,7 @@ export const WEB3_CONCEPTS: ConceptDefinition[] = [
     category: 'Web3 Communication',
     synonyms: ['blockchain email', 'decentralized email', 'crypto email'],
     relatedTerms: ['wallet authentication', 'ENS email', 'SNS email'],
-    examples: ['vitalik.eth@0xmail.box', 'alice.sol@0xmail.box'],
+    examples: ['vitalik.eth@example.com', 'alice.sol@example.com'],
     context:
       'Web3 email revolutionizes digital communication by eliminating passwords and using cryptographic signatures for authentication',
   },

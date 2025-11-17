@@ -28,7 +28,7 @@ export interface CodeDisplayProps {
  * @example
  * ```tsx
  * <CodeDisplay variant="primary" size="lg" align="center">
- *   wallet@0xmail.box
+ *   wallet@example.com
  * </CodeDisplay>
  * ```
  *

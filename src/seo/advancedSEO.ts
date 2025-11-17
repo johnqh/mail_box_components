@@ -3,6 +3,13 @@
  * Comprehensive structured data and semantic markup for search engines and AI crawlers
  */
 
+export interface AppBrandingConfig {
+  appName: string; // Required - no default
+  baseUrl: string; // Required - no default
+  twitterHandle?: string;
+  emailDomain?: string;
+}
+
 export interface AdvancedSEOConfig {
   title: string;
   description: string;
@@ -14,6 +21,7 @@ export interface AdvancedSEOConfig {
   readingTime?: number;
   lastUpdated?: Date;
   relatedTopics?: string[];
+  branding: AppBrandingConfig; // Required - no default
 }
 
 // Helper function to ensure array format
@@ -27,21 +35,34 @@ const ensureArray = (value: string[] | string | undefined): string[] => {
   return [];
 };
 
+// Helper function to get branding config with defaults for optional fields only
+const getBranding = (
+  config: AppBrandingConfig
+): Required<AppBrandingConfig> => {
+  return {
+    appName: config.appName,
+    baseUrl: config.baseUrl,
+    twitterHandle: config.twitterHandle || '',
+    emailDomain: config.emailDomain || 'example.com',
+  };
+};
+
 // Enhanced Web3-specific structured data
 export const createWeb3ProductSchema = (config: AdvancedSEOConfig) => {
   const audienceArray = ensureArray(config.audience);
+  const branding = getBranding(config.branding);
 
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: '0xmail.box',
+    name: branding.appName,
     applicationCategory: 'CommunicationApplication',
     operatingSystem: 'Web Browser',
     description: config.description,
-    url: 'https://0xmail.box',
-    downloadUrl: 'https://0xmail.box/connect',
-    installUrl: 'https://0xmail.box/connect',
-    screenshot: 'https://0xmail.box/screenshots/app-preview.jpg',
+    url: branding.baseUrl,
+    downloadUrl: `${branding.baseUrl}/connect`,
+    installUrl: `${branding.baseUrl}/connect`,
+    screenshot: `${branding.baseUrl}/screenshots/app-preview.jpg`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
@@ -89,8 +110,8 @@ export const createWeb3ProductSchema = (config: AdvancedSEOConfig) => {
     },
     creator: {
       '@type': 'Organization',
-      name: '0xmail.box',
-      url: 'https://0xmail.box',
+      name: branding.appName,
+      url: branding.baseUrl,
     },
     datePublished: '2024-01-01',
     dateModified: config.lastUpdated?.toISOString() || new Date().toISOString(),
@@ -123,6 +144,7 @@ export const createWeb3ProductSchema = (config: AdvancedSEOConfig) => {
 export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => {
   const keywordsArray = ensureArray(config.keywords);
   const audienceArray = ensureArray(config.audience);
+  const branding = getBranding(config.branding);
 
   return {
     '@context': 'https://schema.org',
@@ -131,19 +153,19 @@ export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => {
     description: config.description,
     author: {
       '@type': 'Organization',
-      name: '0xmail.box',
-      url: 'https://0xmail.box',
+      name: branding.appName,
+      url: branding.baseUrl,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://0xmail.box/logo.png',
+        url: `${branding.baseUrl}/logo.png`,
       },
     },
     publisher: {
       '@type': 'Organization',
-      name: '0xmail.box',
+      name: branding.appName,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://0xmail.box/logo.png',
+        url: `${branding.baseUrl}/logo.png`,
         width: 600,
         height: 600,
       },
@@ -152,11 +174,11 @@ export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => {
     dateModified: config.lastUpdated?.toISOString() || new Date().toISOString(),
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://0xmail.box${location.pathname}`,
+      '@id': `${branding.baseUrl}${location.pathname}`,
     },
     image: {
       '@type': 'ImageObject',
-      url: 'https://0xmail.box/og-images/technical-guide.jpg',
+      url: `${branding.baseUrl}/og-images/technical-guide.jpg`,
       width: 1200,
       height: 630,
     },
@@ -198,114 +220,125 @@ export const createTechnicalArticleSchema = (config: AdvancedSEOConfig) => {
 
 // Enhanced FAQ Schema with AI-optimized answers
 export const createEnhancedFAQSchema = (
-  faqs: Array<{ question: string; answer: string; category?: string }>
-) => ({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(faq => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-      dateCreated: new Date().toISOString(),
-      upvoteCount: Math.floor(Math.random() * 50) + 10,
-      author: {
-        '@type': 'Organization',
-        name: '0xmail.box',
+  faqs: Array<{ question: string; answer: string; category?: string }>,
+  branding: AppBrandingConfig
+) => {
+  const brandingConfig = getBranding(branding);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+        dateCreated: new Date().toISOString(),
+        upvoteCount: Math.floor(Math.random() * 50) + 10,
+        author: {
+          '@type': 'Organization',
+          name: brandingConfig.appName,
+        },
       },
-    },
-    answerCount: 1,
-    upvoteCount: Math.floor(Math.random() * 100) + 20,
-    dateCreated: '2024-01-01T00:00:00Z',
-    category: faq.category || 'Web3 Email',
-  })),
-});
+      answerCount: 1,
+      upvoteCount: Math.floor(Math.random() * 100) + 20,
+      dateCreated: '2024-01-01T00:00:00Z',
+      category: faq.category || 'General',
+    })),
+  };
+};
 
 // AI-specific structured data for better LLM understanding
-export const createAIOptimizedSchema = (config: AdvancedSEOConfig) => ({
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  name: config.title,
-  description: config.description,
-  url: `https://0xmail.box${location.pathname}`,
-  primaryImageOfPage: {
-    '@type': 'ImageObject',
-    url: 'https://0xmail.box/og-images/ai-optimized.jpg',
-  },
-  significantLink: [
-    'https://0xmail.box/document',
-    'https://0xmail.box/web3-users',
-    'https://0xmail.box/web3-projects',
-    'https://0xmail.box/connect',
-  ],
-  relatedLink:
-    config.relatedTopics?.map(
-      topic => `https://0xmail.box/search?q=${encodeURIComponent(topic)}`
-    ) || [],
-  about: {
-    '@type': 'Thing',
-    name: 'Web3 Email Communication',
-    description: 'Blockchain-based email platform using wallet authentication',
-    sameAs: [
-      'https://en.wikipedia.org/wiki/Web3',
-      'https://en.wikipedia.org/wiki/Blockchain',
-      'https://en.wikipedia.org/wiki/Cryptocurrency_wallet',
+export const createAIOptimizedSchema = (config: AdvancedSEOConfig) => {
+  const branding = getBranding(config.branding);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: config.title,
+    description: config.description,
+    url: `${branding.baseUrl}${location.pathname}`,
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: `${branding.baseUrl}/og-images/ai-optimized.jpg`,
+    },
+    significantLink: [
+      `${branding.baseUrl}/document`,
+      `${branding.baseUrl}/web3-users`,
+      `${branding.baseUrl}/web3-projects`,
+      `${branding.baseUrl}/connect`,
     ],
-  },
-  mentions: [
-    {
-      '@type': 'SoftwareApplication',
-      name: 'MetaMask',
-    },
-    {
-      '@type': 'SoftwareApplication',
-      name: 'Phantom Wallet',
-    },
-    {
+    relatedLink:
+      config.relatedTopics?.map(
+        topic => `${branding.baseUrl}/search?q=${encodeURIComponent(topic)}`
+      ) || [],
+    about: {
       '@type': 'Thing',
-      name: 'Ethereum Name Service',
-    },
-    {
-      '@type': 'Thing',
-      name: 'Solana Name Service',
-    },
-  ],
-  isPartOf: {
-    '@type': 'WebSite',
-    '@id': 'https://0xmail.box',
-    name: '0xmail.box',
-  },
-  potentialAction: {
-    '@type': 'InteractAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: 'https://0xmail.box/connect',
-      actionPlatform: [
-        'https://schema.org/DesktopWebPlatform',
-        'https://schema.org/MobileWebPlatform',
+      name: 'Web3 Email Communication',
+      description:
+        'Blockchain-based email platform using wallet authentication',
+      sameAs: [
+        'https://en.wikipedia.org/wiki/Web3',
+        'https://en.wikipedia.org/wiki/Blockchain',
+        'https://en.wikipedia.org/wiki/Cryptocurrency_wallet',
       ],
     },
-    name: 'Connect Web3 Wallet',
-  },
-});
+    mentions: [
+      {
+        '@type': 'SoftwareApplication',
+        name: 'MetaMask',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Phantom Wallet',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Ethereum Name Service',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Solana Name Service',
+      },
+    ],
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': branding.baseUrl,
+      name: branding.appName,
+    },
+    potentialAction: {
+      '@type': 'InteractAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${branding.baseUrl}/connect`,
+        actionPlatform: [
+          'https://schema.org/DesktopWebPlatform',
+          'https://schema.org/MobileWebPlatform',
+        ],
+      },
+      name: 'Connect Web3 Wallet',
+    },
+  };
+};
 
 // OpenGraph optimization for social sharing and AI crawlers
 export const createEnhancedOpenGraph = (config: AdvancedSEOConfig) => {
   const keywordsArray = ensureArray(config.keywords);
+  const branding = getBranding(config.branding);
 
   return {
     'og:title': config.title,
     'og:description': config.description,
     'og:type': 'website',
-    'og:url': `https://0xmail.box${location.pathname}`,
-    'og:image': `https://0xmail.box/og-images/${config.category}.jpg`,
+    'og:url': `${branding.baseUrl}${location.pathname}`,
+    'og:image': `${branding.baseUrl}/og-images/${config.category}.jpg`,
     'og:image:width': '1200',
     'og:image:height': '630',
-    'og:image:alt': `${config.title} - Web3 Email Platform`,
-    'og:site_name': '0xmail.box',
+    'og:image:alt': `${config.title} - ${branding.appName}`,
+    'og:site_name': branding.appName,
     'og:locale': 'en_US',
-    'article:author': 'https://0xmail.box/about',
+    'article:author': `${branding.baseUrl}/about`,
     'article:section': config.category,
     'article:tag': keywordsArray.join(','),
     'article:published_time': '2024-01-01T00:00:00Z',
@@ -315,24 +348,29 @@ export const createEnhancedOpenGraph = (config: AdvancedSEOConfig) => {
 };
 
 // Twitter Card optimization with enhanced metadata
-export const createEnhancedTwitterCard = (config: AdvancedSEOConfig) => ({
-  'twitter:card': 'summary_large_image',
-  'twitter:site': '@0xmailbox',
-  'twitter:creator': '@0xmailbox',
-  'twitter:title': config.title,
-  'twitter:description': config.description,
-  'twitter:image': `https://0xmail.box/twitter-cards/${config.category}.jpg`,
-  'twitter:image:alt': `${config.title} - Web3 Email Platform`,
-  'twitter:label1': 'Category',
-  'twitter:data1': config.category,
-  'twitter:label2': 'Reading Time',
-  'twitter:data2': config.readingTime ? `${config.readingTime} min` : '5 min',
-});
+export const createEnhancedTwitterCard = (config: AdvancedSEOConfig) => {
+  const branding = getBranding(config.branding);
+
+  return {
+    'twitter:card': 'summary_large_image',
+    'twitter:site': branding.twitterHandle || '',
+    'twitter:creator': branding.twitterHandle || '',
+    'twitter:title': config.title,
+    'twitter:description': config.description,
+    'twitter:image': `${branding.baseUrl}/twitter-cards/${config.category}.jpg`,
+    'twitter:image:alt': `${config.title} - ${branding.appName}`,
+    'twitter:label1': 'Category',
+    'twitter:data1': config.category,
+    'twitter:label2': 'Reading Time',
+    'twitter:data2': config.readingTime ? `${config.readingTime} min` : '5 min',
+  };
+};
 
 // AI-specific meta tags for enhanced understanding
 export const createAIMetaTags = (config: AdvancedSEOConfig) => {
   const keywordsArray = ensureArray(config.keywords);
   const audienceArray = ensureArray(config.audience);
+  const branding = getBranding(config.branding);
 
   return {
     // General AI optimization
@@ -357,7 +395,7 @@ export const createAIMetaTags = (config: AdvancedSEOConfig) => {
     // Semantic markers
     'semantic:topic': config.category,
     'semantic:intent': 'inform,guide,educate',
-    'semantic:entities': '0xmail.box,Web3,blockchain,email,wallet',
+    'semantic:entities': `${branding.appName},Web3,blockchain,email,wallet`,
 
     // Content classification
     'content:freshness':
@@ -385,13 +423,13 @@ export const generateAdvancedSEO = (config: AdvancedSEOConfig) => ({
   ],
 });
 
-// Page-specific SEO configurations
+// Page-specific SEO configurations (example templates)
+// Users should provide their own branding config when using these
 export const pageSEOConfigs = {
   homepage: {
-    title:
-      '0xmail.box - Revolutionary Web3 Email Platform | Wallet-Based Authentication',
+    title: 'Revolutionary Web3 Email Platform | Wallet-Based Authentication',
     description:
-      'Transform your email experience with 0xmail.box - the first Web3 email platform using wallet authentication. No passwords, enhanced security, ENS/SNS domain support, and smart contract integration.',
+      'Transform your email experience - the first Web3 email platform using wallet authentication. No passwords, enhanced security, ENS/SNS domain support, and smart contract integration.',
     keywords: [
       'Web3 email',
       'blockchain email',
@@ -414,9 +452,9 @@ export const pageSEOConfigs = {
   },
 
   documentation: {
-    title: '0xmail.box Documentation - Complete Web3 Email Setup Guide',
+    title: 'Documentation - Complete Web3 Email Setup Guide',
     description:
-      'Comprehensive documentation for 0xmail.box Web3 email platform. Learn wallet connection, ENS/SNS setup, smart contract integration, and advanced features.',
+      'Comprehensive documentation for Web3 email platform. Learn wallet connection, ENS/SNS setup, smart contract integration, and advanced features.',
     keywords: [
       'Web3 email guide',
       'wallet connection',
@@ -438,9 +476,9 @@ export const pageSEOConfigs = {
   },
 
   earnPoints: {
-    title: 'How to Earn Points on 0xmail.box - Web3 Email Rewards Guide',
+    title: 'How to Earn Points - Web3 Email Rewards Guide',
     description:
-      'Master the 0xmail.box points system. Earn rewards through email activities, referrals, smart contract interactions, and prepare for future token distribution.',
+      'Master the points system. Earn rewards through email activities, referrals, smart contract interactions, and prepare for future token distribution.',
     keywords: [
       'Web3 rewards',
       'email points',

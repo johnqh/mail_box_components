@@ -39,7 +39,7 @@ export interface CopyButtonProps {
  *
  * // Text button with label
  * <CopyButton
- *   text="https://0xmail.box?referral=abc123"
+ *   text="https://example.com?referral=abc123"
  *   variant="text"
  *   label="Copy Link"
  *   successLabel="Copied!"

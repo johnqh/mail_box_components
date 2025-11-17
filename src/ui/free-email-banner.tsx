@@ -76,7 +76,7 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
   className,
   variant = 'default',
   size = 'default',
-  message = 'Get Your Free Email Address - Start Using 0xmail.box Today',
+  message = 'Get Your Free Email Address - Start Using Web3 Email Today',
   ctaText = 'Get Free Email',
   ctaLink = '/connect',
   showBadge = true,

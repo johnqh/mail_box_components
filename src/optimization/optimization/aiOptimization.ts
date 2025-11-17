@@ -157,7 +157,7 @@ export function generateContentRelationships(
  */
 export function generateEntityRecognition(config: AIContentConfig): string[] {
   const baseEntities = [
-    '0xmail.box',
+    'Web3 Email Platform',
     'Web3',
     'blockchain',
     'email',

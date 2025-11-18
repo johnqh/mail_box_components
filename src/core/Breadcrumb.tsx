@@ -49,6 +49,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
   const [shareUrl, setShareUrl] = useState<string>('');
   const [isPreparingShare, setIsPreparingShare] = useState(false);
   const [showCopiedFeedback, setShowCopiedFeedback] = useState(false);
+  const [isSharing, setIsSharing] = useState(false);
 
   // Prepare share URL when component mounts
   React.useEffect(() => {
@@ -81,8 +82,9 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
     typeof navigator !== 'undefined' && navigator.share !== undefined;
 
   const handleNativeShare = async () => {
-    if (!hasNativeShare) return;
+    if (!hasNativeShare || isSharing) return;
 
+    setIsSharing(true);
     try {
       await navigator.share({
         title: shareConfig.title,
@@ -94,9 +96,13 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
       // User cancelled or share failed
       if (err instanceof Error && err.name !== 'AbortError') {
         console.error('Share failed:', err);
-        // Fallback to dropdown on error
-        setIsOpen(true);
+        // Fallback to dropdown on error (but not for InvalidStateError)
+        if (err.name !== 'InvalidStateError') {
+          setIsOpen(true);
+        }
       }
+    } finally {
+      setIsSharing(false);
     }
   };
 
@@ -115,8 +121,10 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
 
   const handleShareClick = async () => {
     if (hasNativeShare) {
-      // Use native share API directly
-      await handleNativeShare();
+      // Use native share API directly (with guard against multiple calls)
+      if (!isSharing) {
+        await handleNativeShare();
+      }
     } else {
       // Show dropdown with social share options
       setIsOpen(!isOpen);
@@ -184,11 +192,11 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
     <div className='relative'>
       <button
         onClick={handleShareClick}
-        disabled={isPreparingShare}
+        disabled={isPreparingShare || isSharing}
         className='flex items-center justify-center w-8 h-8 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
         title='Share this page'
       >
-        {isPreparingShare ? (
+        {isPreparingShare || isSharing ? (
           <div className='w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin' />
         ) : (
           <svg

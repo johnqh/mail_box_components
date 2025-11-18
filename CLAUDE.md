@@ -62,7 +62,7 @@ The design system is imported as a local file dependency and re-exported for bac
 - Status: StatusBadge, StatusIndicator, ChainBadge, SectionBadge
 
 **Specialized Components** (`src/components/`):
-- StandardPageLayout, FeatureGrid, StepList, CodeExampleBlock
+- StandardPageLayout, FeatureGrid, StepList
 - Performance: PerformanceOptimizer, LoadingOptimizer
 - SEO: AIMeta, SemanticHTML
 - Security: SafeAppWrapper, SecurityProvider, ErrorBoundary

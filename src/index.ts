@@ -152,7 +152,6 @@ export { default as BreadcrumbSection } from './core/BreadcrumbSection';
 export { SafeAppWrapper } from './core/SafeAppWrapper';
 export { SecurityProvider } from './core/SecurityProvider';
 export { default as CodeBlock } from './core/CodeBlock';
-export { default as CodeExampleBlock } from './core/CodeExampleBlock';
 export {
   default as CollapsibleDocumentationTopic,
   type CollapsibleDocumentationTopicProps,

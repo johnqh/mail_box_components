@@ -6,7 +6,6 @@
 export { Breadcrumb } from './Breadcrumb';
 export { default as BreadcrumbSection } from './BreadcrumbSection';
 export { default as CodeBlock } from './CodeBlock';
-export { default as CodeExampleBlock } from './CodeExampleBlock';
 export {
   default as CollapsibleDocumentationTopic,
   type CollapsibleDocumentationTopicProps,

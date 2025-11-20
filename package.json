@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/components",
-  "version": "2.0.32",
+  "version": "2.0.33",
   "description": "Reusable UI components and design system for mail box applications",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -71,7 +71,7 @@
     "@radix-ui/react-switch": "^1.2.6",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@sudobility/design": "^1.1.8",
+    "@sudobility/design": "^1.1.9",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",

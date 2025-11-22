@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { cn } from '../../lib/utils';
 import { Calendar } from './calendar';
-import { TimePicker } from './time-picker';
+import { TimePicker } from '../inputs/time-picker';
 
 export interface DateTimePickerProps {
   /** Date time value */

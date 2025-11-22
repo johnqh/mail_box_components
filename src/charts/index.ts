@@ -5,36 +5,37 @@
  */
 
 // Bar Charts
-export * from '../ui/bar-chart';
+export * from './bar-chart';
 
 // Line Charts
-export * from '../ui/line-chart';
+export * from './line-chart';
 
 // Pie Charts
-export * from '../ui/pie-chart';
+export * from './pie-chart';
 
 // Area Charts
-export * from '../ui/area-chart';
+export * from './area-chart';
 
 // Advanced Charts
-export * from '../ui/radar-chart';
-export * from '../ui/bubble-chart';
-export * from '../ui/scatter-plot';
-export * from '../ui/tree-map';
-export * from '../ui/sankey-diagram';
+export * from './radar-chart';
+export * from './bubble-chart';
+export * from './scatter-plot';
+export * from './tree-map';
+export * from './sankey-diagram';
 
 // Trend Charts
-export * from '../ui/sparkline';
-export * from '../ui/heatmap';
-export * from '../ui/funnel-chart';
-export * from '../ui/burndown-chart';
+export * from './sparkline';
+export * from './heatmap';
+export * from './funnel-chart';
+export * from './burndown-chart';
 
 // Performance Charts
-export * from '../ui/performance-chart';
-export * from '../ui/metric-comparison';
+export * from './performance-chart';
+export * from './metric-comparison';
 
 // Progress Indicators
-export * from '../ui/gauge';
-export * from '../ui/progress-bar';
-export * from '../ui/progress';
-export * from '../ui/progress-circle';
+export * from './gauge';
+export * from './progress-bar';
+export * from './progress';
+export * from './progress-circle';
+export * from './progress-tracker';

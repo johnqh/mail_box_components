@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './button';
+import { Button } from '@/ui';
 import { TrashIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 

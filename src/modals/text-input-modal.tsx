@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, ModalContent, ModalFooter } from './modal';
-import { Button } from './button';
-import { Input } from './input';
+import { Button } from '@/ui';
+import { Input } from '../forms/inputs/input';
 import { textVariants } from '@sudobility/design';
 
 export interface TextInputModalProps {

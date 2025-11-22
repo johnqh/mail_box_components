@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Alert } from './alert';
+import { Alert } from '../../primitives/feedback/alert';
 
 export interface FormAlertsProps {
   /** Success message to display */

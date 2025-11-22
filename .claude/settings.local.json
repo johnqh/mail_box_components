@@ -51,7 +51,11 @@
       "WebSearch",
       "Read(../design_system/**)",
       "Bash(npx eslint:*)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "Bash(for file in input text-area number-input search-input date-input time-picker password-input phone-input otp-input checkbox switch radio-group select multi-select combobox dropdown toggle-group slider slider-input file-input file-icon tag-input mention-input label form-field form-field-group form-alerts password-strength)",
+      "Bash(do if [ -f \"$file.tsx\" ])",
+      "Bash(then echo \"✓ $file.tsx\" else echo \"✗ $file.tsx\" fi done)",
+      "Bash(tsc:*)"
     ],
     "deny": [],
     "ask": []

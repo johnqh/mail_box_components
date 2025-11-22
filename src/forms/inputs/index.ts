@@ -5,56 +5,61 @@
  */
 
 // Text Inputs
-export * from '../../ui/input';
-export * from '../../ui/text-area';
-export * from '../../ui/number-input';
-export * from '../../ui/search-input';
+export * from './input';
+export * from './text-area';
+export * from './number-input';
+export * from './search-input';
 
 // Date & Time
-export * from '../../ui/date-input';
-export * from '../../ui/time-picker';
+export * from './date-input';
+export * from './time-picker';
 
 // Specialized Inputs
-export * from '../../ui/password-input';
-export * from '../../ui/phone-input';
-export * from '../../ui/otp-input';
-export * from '../../ui/two-factor-input';
-export * from '../../ui/email-input-group';
+export * from './password-input';
+export * from './phone-input';
+export * from './otp-input';
+export * from '../../ui/two-factor-input'; // Not yet migrated
+export * from '../../ui/email-input-group'; // Not yet migrated
 
 // Selection Inputs
-export * from '../../ui/checkbox';
-export * from '../../ui/switch';
-export * from '../../ui/radio-group';
-export * from '../../ui/select';
-export * from '../../ui/multi-select';
-export * from '../../ui/combobox';
-export * from '../../ui/dropdown';
-export * from '../../ui/toggle-group';
+export * from './checkbox';
+export * from './switch';
+export * from './radio-group';
+export * from './select';
+export * from './multi-select';
+export * from './combobox';
+export * from './dropdown';
+export * from './toggle-group';
 
 // Range Inputs
-export * from '../../ui/slider';
-export * from '../../ui/slider-input';
+export * from './slider';
+export * from './slider-input';
 
 // File Inputs
-export * from '../../ui/file-input';
-export * from '../../ui/file-icon';
+export * from './file-input';
+export * from './file-icon';
+export * from './file-browser';
+export * from './file-preview';
+export * from './file-tree';
 
 // Tags & Mentions
-export * from '../../ui/tag-input';
-export * from '../../ui/mention-input';
+export * from './tag-input';
+export * from './mention-input';
 
 // Form Structure
-export * from '../../ui/label';
-// Note: HelperText is in primitives/typography
-export * from '../../ui/form-field';
-export * from '../../ui/form-field-group';
-export * from '../../ui/form-alerts';
-export * from '../../ui/design-system-components'; // FormSection
+export * from './label';
+export * from './form-field';
+export * from './form-field-group';
+export * from './form-alerts';
+// Note: FormBuilder, FormTemplate, FormValidator are in forms/builders
+
+// Phone
+export * from './phone-directory';
 
 // Actions
-export * from '../../ui/action-button';
-export * from '../../ui/inline-edit';
+export * from '../../ui/action-button'; // Not yet migrated
+export * from '../../ui/inline-edit'; // Not yet migrated
 
 // Security
-export * from '../../ui/privacy-toggle';
-export * from '../../ui/password-strength';
+export * from '../../ui/privacy-toggle'; // Not yet migrated
+export * from './password-strength';

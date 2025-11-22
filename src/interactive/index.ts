@@ -5,22 +5,22 @@
  */
 
 // Drag & Drop
-export * from '../ui/drag-drop';
-export * from '../ui/drag-drop-list';
-export * from '../ui/sortable-grid';
-export * from '../ui/nested-drag';
+export * from './drag-drop';
+export * from './drag-drop-list';
+export * from './sortable-grid';
+export * from './nested-drag';
 
 // Gestures
-export * from '../ui/gesture-detector';
-export * from '../ui/swipe-actions';
-export * from '../ui/pinch-zoom';
-export * from '../ui/double-tap';
-export * from '../ui/long-press';
+export * from './gesture-detector';
+export * from './swipe-actions';
+export * from './pinch-zoom';
+export * from './double-tap';
+export * from './long-press';
 
 // Interaction Helpers
-export * from '../ui/hover-tooltip';
-export * from '../ui/radial-menu';
-export * from '../ui/focus-trap';
-export * from '../ui/scroll-spy';
-export * from '../ui/pull-to-refresh';
-export * from '../ui/infinite-scroll';
+export * from './hover-tooltip';
+export * from './radial-menu';
+export * from './focus-trap';
+export * from './scroll-spy';
+export * from './pull-to-refresh';
+export * from './infinite-scroll';

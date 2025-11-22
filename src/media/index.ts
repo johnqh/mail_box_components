@@ -5,30 +5,30 @@
  */
 
 // Images
-export * from '../ui/image';
-export * from '../ui/image-gallery';
-export * from '../ui/image-comparison';
-export * from '../ui/image-cropper';
-export * from '../ui/lightbox';
+export * from './image';
+export * from './image-gallery';
+export * from './image-comparison';
+export * from './image-cropper';
+export * from './lightbox';
 
 // Video
-export * from '../ui/video-player';
-export * from '../ui/video-thumbnail';
-export * from '../ui/video-editor';
-export * from '../ui/video-call';
-export * from '../ui/live-stream';
+export * from './video-player';
+export * from './video-thumbnail';
+export * from './video-editor';
+export * from './video-call';
+export * from './live-stream';
 
 // Audio
-export * from '../ui/audio-player';
-export * from '../ui/audio-waveform';
-export * from '../ui/wave-form';
-export * from '../ui/voice-recorder';
-export * from '../ui/podcast-player';
+export * from './audio-player';
+export * from './audio-waveform';
+export * from './wave-form';
+export * from './voice-recorder';
+export * from './podcast-player';
 
 // Media Management
-export * from '../ui/media-uploader';
-export * from '../ui/media-playlist';
-export * from '../ui/playlist-manager';
+export * from './media-uploader';
+export * from './media-playlist';
+export * from './playlist-manager';
 
 // Misc
-export * from '../ui/qr-code-display';
+export * from './qr-code-display';

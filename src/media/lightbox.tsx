@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
-import { Portal } from './portal';
+import { Portal } from '../primitives/layout/portal';
 
 export interface LightboxImage {
   /** Image source URL */

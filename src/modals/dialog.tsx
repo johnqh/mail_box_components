@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { cn } from '../lib/utils';
-import { Portal } from './portal';
-import { Overlay } from './overlay';
+import { Portal } from '../primitives/layout/portal';
+import { Overlay } from '../primitives/layout/overlay';
 
 export interface DialogProps {
   /** Whether dialog is open */

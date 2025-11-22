@@ -21,7 +21,7 @@
     "build": "tsc && vite build",
     "dev": "vite build --watch",
     "type-check": "tsc --noEmit",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --ignore-pattern 'dist' --ignore-pattern 'packages/*/dist' --ignore-pattern 'node_modules' --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "test": "vitest",

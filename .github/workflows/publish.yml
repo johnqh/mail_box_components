@@ -1,0 +1,190 @@
+name: Publish Packages to NPM
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+      - 'packages/*/package.json'
+  workflow_dispatch:
+
+jobs:
+  # Check if version changed
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      main-changed: ${{ steps.check-main.outputs.changed }}
+      web3-changed: ${{ steps.check-web3.outputs.changed }}
+      email-changed: ${{ steps.check-email.outputs.changed }}
+      fitness-changed: ${{ steps.check-fitness.outputs.changed }}
+      realestate-changed: ${{ steps.check-realestate.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check main package version change
+        id: check-main
+        run: |
+          CHANGED=$(git diff HEAD^ HEAD -- package.json | grep -c '"version"' || echo "0")
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+
+      - name: Check web3-components version change
+        id: check-web3
+        run: |
+          CHANGED=$(git diff HEAD^ HEAD -- packages/web3-components/package.json | grep -c '"version"' || echo "0")
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+
+      - name: Check email-components version change
+        id: check-email
+        run: |
+          CHANGED=$(git diff HEAD^ HEAD -- packages/email-components/package.json | grep -c '"version"' || echo "0")
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+
+      - name: Check fitness-components version change
+        id: check-fitness
+        run: |
+          CHANGED=$(git diff HEAD^ HEAD -- packages/fitness-components/package.json | grep -c '"version"' || echo "0")
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+
+      - name: Check realestate-components version change
+        id: check-realestate
+        run: |
+          CHANGED=$(git diff HEAD^ HEAD -- packages/realestate-components/package.json | grep -c '"version"' || echo "0")
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+
+  # Publish main package
+  publish-main:
+    needs: check-version
+    if: needs.check-version.outputs.main-changed > 0 || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+
+      - name: Publish to NPM
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish web3-components
+  publish-web3:
+    needs: check-version
+    if: needs.check-version.outputs.web3-changed > 0 || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        working-directory: ./packages/web3-components
+        run: npm install --legacy-peer-deps
+
+      - name: Build
+        working-directory: ./packages/web3-components
+        run: npm run build
+
+      - name: Publish to NPM
+        working-directory: ./packages/web3-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish email-components
+  publish-email:
+    needs: check-version
+    if: needs.check-version.outputs.email-changed > 0 || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        working-directory: ./packages/email-components
+        run: npm install --legacy-peer-deps
+
+      - name: Build
+        working-directory: ./packages/email-components
+        run: npm run build
+
+      - name: Publish to NPM
+        working-directory: ./packages/email-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish fitness-components
+  publish-fitness:
+    needs: check-version
+    if: needs.check-version.outputs.fitness-changed > 0 || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        working-directory: ./packages/fitness-components
+        run: npm install --legacy-peer-deps
+
+      - name: Build
+        working-directory: ./packages/fitness-components
+        run: npm run build
+
+      - name: Publish to NPM
+        working-directory: ./packages/fitness-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish realestate-components
+  publish-realestate:
+    needs: check-version
+    if: needs.check-version.outputs.realestate-changed > 0 || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        working-directory: ./packages/realestate-components
+        run: npm install --legacy-peer-deps
+
+      - name: Build
+        working-directory: ./packages/realestate-components
+        run: npm run build
+
+      - name: Publish to NPM
+        working-directory: ./packages/realestate-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

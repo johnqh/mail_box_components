@@ -50,7 +50,8 @@
       "Bash(npx prettier:*)",
       "WebSearch",
       "Read(../design_system/**)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(xargs:*)"
     ],
     "deny": [],
     "ask": []

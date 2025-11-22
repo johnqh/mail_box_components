@@ -15,7 +15,9 @@ export * from './treeShaking';
 
 // Navigation
 export * from './navigation';
-export * from './navigationHelpers';
+// Note: navigationHelpers exports NavigationItem which conflicts with navigation/
+// If needed, import directly from './utils/navigationHelpers'
+// export * from './navigationHelpers';
 
 // Note: Indexer API utilities moved to @johnqh/lib
 // These were network logic and belonged in the core lib rather than components

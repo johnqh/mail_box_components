@@ -55,7 +55,9 @@
       "Bash(for file in input text-area number-input search-input date-input time-picker password-input phone-input otp-input checkbox switch radio-group select multi-select combobox dropdown toggle-group slider slider-input file-input file-icon tag-input mention-input label form-field form-field-group form-alerts password-strength)",
       "Bash(do if [ -f \"$file.tsx\" ])",
       "Bash(then echo \"✓ $file.tsx\" else echo \"✗ $file.tsx\" fi done)",
-      "Bash(tsc:*)"
+      "Bash(tsc:*)",
+      "Bash(for pkg in email-components fitness-components realestate-components)",
+      "Bash(do echo \"=== Building $pkg ===\" cd \"packages/$pkg\" npm install clsx tailwind-merge --save-dev --legacy-peer-deps --no-save)"
     ],
     "deny": [],
     "ask": []

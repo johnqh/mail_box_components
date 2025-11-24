@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/energy-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Energy and sustainability UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/food-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Food, restaurant, and recipe UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

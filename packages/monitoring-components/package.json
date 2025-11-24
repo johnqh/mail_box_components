@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/monitoring-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Monitoring and tracking utilities for timers, trackers, and system monitoring",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.esm.js",

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/documents-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "documents UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

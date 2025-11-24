@@ -69,8 +69,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check agriculture-components version change
@@ -79,8 +82,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/agriculture-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/agriculture-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check analytics-components version change
@@ -89,8 +95,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/analytics-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/analytics-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check automotive-components version change
@@ -99,8 +108,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/automotive-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/automotive-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check collaboration-components version change
@@ -109,8 +121,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/collaboration-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/collaboration-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check communication-components version change
@@ -119,8 +134,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/communication-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/communication-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check construction-components version change
@@ -129,8 +147,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/construction-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/construction-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check design-components version change
@@ -139,8 +160,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/design-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/design-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check devops-components version change
@@ -149,8 +173,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/devops-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/devops-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check documents-components version change
@@ -159,8 +186,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/documents-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/documents-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check ecommerce-components version change
@@ -169,8 +199,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/ecommerce-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/ecommerce-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check education-components version change
@@ -179,8 +212,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/education-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/education-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check email-components version change
@@ -189,8 +225,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/email-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/email-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check energy-components version change
@@ -199,8 +238,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/energy-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/energy-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check entertainment-components version change
@@ -209,8 +251,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/entertainment-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/entertainment-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check events-components version change
@@ -219,8 +264,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/events-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/events-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check finance-components version change
@@ -229,8 +277,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/finance-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/finance-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check fitness-components version change
@@ -239,8 +290,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/fitness-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/fitness-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check food-components version change
@@ -249,8 +303,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/food-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/food-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check gaming-components version change
@@ -259,8 +316,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/gaming-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/gaming-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check government-components version change
@@ -269,8 +329,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/government-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/government-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check healthcare-components version change
@@ -279,8 +342,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/healthcare-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/healthcare-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check hr-components version change
@@ -289,8 +355,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/hr-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/hr-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check insurance-components version change
@@ -299,8 +368,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/insurance-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/insurance-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check interaction-components version change
@@ -309,8 +381,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/interaction-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/interaction-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check iot-components version change
@@ -319,8 +394,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/iot-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/iot-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check legal-components version change
@@ -329,8 +407,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/legal-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/legal-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check logistics-components version change
@@ -339,8 +420,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/logistics-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/logistics-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check manufacturing-components version change
@@ -349,8 +433,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/manufacturing-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/manufacturing-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check marketing-components version change
@@ -359,8 +446,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/marketing-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/marketing-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check media-components version change
@@ -369,8 +459,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/media-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/media-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check monitoring-components version change
@@ -379,8 +472,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/monitoring-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/monitoring-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check nonprofit-components version change
@@ -389,8 +485,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/nonprofit-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/nonprofit-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check project-management-components version change
@@ -399,8 +498,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/project-management-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/project-management-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check realestate-components version change
@@ -409,8 +511,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/realestate-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/realestate-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check retail-components version change
@@ -419,8 +524,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/retail-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/retail-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check scheduling-components version change
@@ -429,8 +537,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/scheduling-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/scheduling-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check scientific-components version change
@@ -439,8 +550,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/scientific-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/scientific-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check search-components version change
@@ -449,8 +563,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/search-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/search-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check security-components version change
@@ -459,8 +576,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/security-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/security-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check social-components version change
@@ -469,8 +589,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/social-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/social-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check travel-components version change
@@ -479,8 +602,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/travel-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/travel-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check visualization-components version change
@@ -489,8 +615,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/visualization-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/visualization-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check web3-components version change
@@ -499,8 +628,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/web3-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/web3-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check workflow-components version change
@@ -509,8 +641,11 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/workflow-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+            if git diff HEAD^ HEAD -- packages/workflow-components/package.json | grep -q '"version"'; then
+              echo "changed=1" >> $GITHUB_OUTPUT
+            else
+              echo "changed=0" >> $GITHUB_OUTPUT
+            fi
           fi
 
   # Publish main package FIRST

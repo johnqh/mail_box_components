@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/hr-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "HR and employment UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

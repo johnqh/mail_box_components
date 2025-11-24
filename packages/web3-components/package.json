@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/web3-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Web3 and blockchain UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

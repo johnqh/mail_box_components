@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/search-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Search and filter components for faceted search, filter panels, and search bars",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.esm.js",

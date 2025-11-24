@@ -87,7 +87,8 @@
       "Bash(do [ -f \"$dir/package.json\" ])",
       "Bash(test:*)",
       "Bash(do [ -d \"$pkg/src\" ])",
-      "Bash(basename:*)"
+      "Bash(basename:*)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []

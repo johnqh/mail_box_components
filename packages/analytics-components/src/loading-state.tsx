@@ -1,6 +1,5 @@
 import React from 'react';
-import { cn } from '@sudobility/components';
-import Spinner from './spinner';
+import { cn, Spinner } from '@sudobility/components';
 
 interface LoadingStateProps {
   message?: string;

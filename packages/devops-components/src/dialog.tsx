@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { cn } from '@sudobility/components';
-import { Portal } from './portal';
-import { Overlay } from './overlay';
+import { cn, Portal, Overlay } from '@sudobility/components';
 
 export interface DialogProps {
   /** Whether dialog is open */

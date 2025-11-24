@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { cn } from '@sudobility/components';
-import { ChainBadge } from './status-badge';
+import { ChainBadge } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
 
 interface EmailAccount {

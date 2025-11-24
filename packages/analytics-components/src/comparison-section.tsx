@@ -1,7 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@sudobility/components';
-import { AnimatedSection } from './animated-section';
 
 const sectionVariants = cva('grid gap-8', {
   variants: {
@@ -124,8 +123,8 @@ export const ComparisonSection: React.FC<ComparisonSectionProps> = ({
 
   cardAnimation = 'hover',
 
-  animate = true,
-  animationDelay = 0,
+  animate: _animate = true,
+  animationDelay: _animationDelay = 0,
 
   traditionalIcon,
   web3Icon,
@@ -200,17 +199,7 @@ export const ComparisonSection: React.FC<ComparisonSectionProps> = ({
       </div>
     );
 
-    return animate ? (
-      <AnimatedSection
-        key={data.title}
-        animation='fade-in-up'
-        delay={animationDelay + index * 200}
-      >
-        {cardContent}
-      </AnimatedSection>
-    ) : (
-      <div key={data.title}>{cardContent}</div>
-    );
+    return <div key={data.title}>{cardContent}</div>;
   };
 
   const sectionContent = (
@@ -239,13 +228,7 @@ export const ComparisonSection: React.FC<ComparisonSectionProps> = ({
     </div>
   );
 
-  return animate ? (
-    <AnimatedSection animation='fade-in-up' delay={animationDelay}>
-      {sectionContent}
-    </AnimatedSection>
-  ) : (
-    sectionContent
-  );
+  return sectionContent;
 };
 
 // Helper function to create comparison data

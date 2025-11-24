@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import { Label } from './label';
+import { Label } from '@sudobility/components';
 
 interface EmailInputFieldProps {
   label: string;

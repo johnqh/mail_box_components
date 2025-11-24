@@ -1,7 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@sudobility/components';
-import { AnimatedSection } from './animated-section';
 
 const gridVariants = cva('grid gap-8', {
   variants: {
@@ -152,9 +151,9 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
   titleClass,
   descriptionClass,
 
-  animate = true,
-  animationDelay = 0,
-  staggerDelay = 100,
+  animate: _animate = true,
+  animationDelay: _animationDelay = 0,
+  staggerDelay: _staggerDelay = 100,
 
   onFeatureClick,
   defaultLinkText = 'Learn more',
@@ -278,17 +277,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
       </div>
     );
 
-    return animate ? (
-      <AnimatedSection
-        key={feature.id || index}
-        animation='fade-in-up'
-        delay={animationDelay + index * staggerDelay}
-      >
-        {featureContent}
-      </AnimatedSection>
-    ) : (
-      <div key={feature.id || index}>{featureContent}</div>
-    );
+    return <div key={feature.id || index}>{featureContent}</div>;
   };
 
   return (

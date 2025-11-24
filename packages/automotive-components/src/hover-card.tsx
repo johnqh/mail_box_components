@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { cn } from '@sudobility/components';
-import { Portal } from './portal';
+import { cn, Portal } from '@sudobility/components';
 
 export interface HoverCardProps {
   /** Trigger element */

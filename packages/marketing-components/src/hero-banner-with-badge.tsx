@@ -1,6 +1,12 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
-import { Button, ButtonProps } from './button';
+
+export interface ButtonConfig {
+  text: string;
+  onClick?: () => void;
+  href?: string;
+  className?: string;
+}
 
 export interface HeroBannerWithBadgeProps {
   badgeIcon?: React.ReactNode;
@@ -9,8 +15,8 @@ export interface HeroBannerWithBadgeProps {
   title: string | React.ReactNode;
   subtitle?: string;
   description: string;
-  primaryButton?: ButtonProps & { text: string };
-  secondaryButton?: ButtonProps & { text: string };
+  primaryButton?: ButtonConfig;
+  secondaryButton?: ButtonConfig;
   className?: string;
   children?: React.ReactNode;
 }
@@ -74,23 +80,50 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
         {(primaryButton || secondaryButton) && (
           <div className='flex flex-col sm:flex-row gap-4 justify-center mb-8'>
             {primaryButton && (
-              <Button
-                size='lg'
-                {...primaryButton}
-                className={cn('px-8 py-3', primaryButton.className)}
-              >
-                {primaryButton.text}
-              </Button>
+              primaryButton.href ? (
+                <a
+                  href={primaryButton.href}
+                  className={cn(
+                    'px-8 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors inline-block',
+                    primaryButton.className
+                  )}
+                >
+                  {primaryButton.text}
+                </a>
+              ) : (
+                <button
+                  onClick={primaryButton.onClick}
+                  className={cn(
+                    'px-8 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors',
+                    primaryButton.className
+                  )}
+                >
+                  {primaryButton.text}
+                </button>
+              )
             )}
             {secondaryButton && (
-              <Button
-                variant='outline'
-                size='lg'
-                {...secondaryButton}
-                className={cn('px-8 py-3', secondaryButton.className)}
-              >
-                {secondaryButton.text}
-              </Button>
+              secondaryButton.href ? (
+                <a
+                  href={secondaryButton.href}
+                  className={cn(
+                    'px-8 py-3 rounded-md border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 transition-colors inline-block',
+                    secondaryButton.className
+                  )}
+                >
+                  {secondaryButton.text}
+                </a>
+              ) : (
+                <button
+                  onClick={secondaryButton.onClick}
+                  className={cn(
+                    'px-8 py-3 rounded-md border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 transition-colors',
+                    secondaryButton.className
+                  )}
+                >
+                  {secondaryButton.text}
+                </button>
+              )
             )}
           </div>
         )}

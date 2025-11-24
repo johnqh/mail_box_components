@@ -1,8 +1,6 @@
 import React from 'react';
-import { Label } from './label';
-import { Input } from './input';
+import { Label, Input, cn } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
-import { cn } from '@sudobility/components';
 
 export interface FormFieldProps {
   /** Unique identifier for the input element */

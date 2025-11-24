@@ -16,6 +16,7 @@ export * from './primitives';
 
 // === FORMS ===
 export * from './forms';
+export * from './ui/button';
 
 // === NAVIGATION ===
 export * from './navigation';
@@ -34,6 +35,7 @@ export * from './modals';
 
 // === INTERACTIVE ===
 export * from './interactive';
+export * from './ui/animated-section';
 
 // === CORE COMPONENTS ===
 export * from './core';

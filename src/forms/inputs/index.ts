@@ -19,7 +19,7 @@ export * from './password-input';
 export * from './phone-input';
 export * from './otp-input';
 export * from '../../ui/two-factor-input'; // Not yet migrated
-export * from '../../ui/email-input-group'; // Not yet migrated
+// Note: email-input-group moved to @sudobility/email-components
 
 // Selection Inputs
 export * from './checkbox';

@@ -1,29 +1,20 @@
 /**
- * @sudobility/realestate-components
+ * Realestate Components
  *
- * Real estate listing and property management UI components
+ * Specialized components for realestate domain
  */
 
-// Property Display
-export * from './property-card';
-export * from './property-gallery';
-export * from './property-map';
-
-// Property Search & Compare
-export * from './property-search';
-export * from './property-compare';
-
-// Property Management
+export * from './agent-card';
 export * from './listing-form';
+export * from './location-picker';
+export * from './map-marker';
+export * from './mortgage-calc';
 export * from './neighborhood-info';
 export * from './open-house';
-
-// Rental & Applications
+export * from './property-card';
+export * from './property-compare';
+export * from './property-gallery';
+export * from './property-map';
+export * from './property-search';
 export * from './rental-application';
 export * from './virtual-tour';
-
-// Financial Tools
-export * from './mortgage-calc';
-
-// Agents
-export * from './agent-card';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './lib/utils';
+import { cn } from '@sudobility/components';
 
 const bannerVariants = cva('border-b transition-all duration-200', {
   variants: {

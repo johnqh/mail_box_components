@@ -57,7 +57,20 @@
       "Bash(then echo \"✓ $file.tsx\" else echo \"✗ $file.tsx\" fi done)",
       "Bash(tsc:*)",
       "Bash(for pkg in email-components fitness-components realestate-components)",
-      "Bash(do echo \"=== Building $pkg ===\" cd \"packages/$pkg\" npm install clsx tailwind-merge --save-dev --legacy-peer-deps --no-save)"
+      "Bash(do echo \"=== Building $pkg ===\" cd \"packages/$pkg\" npm install clsx tailwind-merge --save-dev --legacy-peer-deps --no-save)",
+      "Bash(/tmp/categorize_components.sh:*)",
+      "Bash(/tmp/create_package.sh:*)",
+      "Bash(/tmp/build_domain_package.sh:*)",
+      "Bash(done)",
+      "Bash(for pkg in packages/*-components)",
+      "Bash(do [ -d \"$pkg\" ])",
+      "Bash(do if [ -d \"$pkg/dist\" ])",
+      "Bash(fi)",
+      "Bash(python3:*)",
+      "Bash(/tmp/build_all_packages.sh)",
+      "Bash(/tmp/create_all_packages.sh)",
+      "Bash(/tmp/fix_all_imports.sh:*)",
+      "Bash(/tmp/create_5_new_packages.sh)"
     ],
     "deny": [],
     "ask": []

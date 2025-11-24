@@ -88,7 +88,11 @@
       "Bash(test:*)",
       "Bash(do [ -d \"$pkg/src\" ])",
       "Bash(basename:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(__NEW_LINE__ git add .)",
+      "Bash(__NEW_LINE__ git commit -m \"$(cat <<''EOF''\nfix: resolve linting errors in devops-components\n\nFixed quote style to use single quotes instead of double quotes\nin confirmation-dialog.tsx to pass ESLint checks.\n\nThis was preventing the main package from building and publishing\nin CI/CD.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(__NEW_LINE__ git push)",
+      "Bash(__NEW_LINE__ echo \"\")"
     ],
     "deny": [],
     "ask": []

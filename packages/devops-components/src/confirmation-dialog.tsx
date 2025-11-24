@@ -89,28 +89,28 @@ export const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
       </ModalContent>
       <ModalFooter>
         <button
-          type="button"
+          type='button'
           onClick={onClose}
           disabled={isLoading}
           className={cn(
-            "px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600",
-            "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300",
-            "hover:bg-gray-50 dark:hover:bg-gray-700",
-            "disabled:opacity-50 disabled:cursor-not-allowed"
+            'px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600',
+            'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300',
+            'hover:bg-gray-50 dark:hover:bg-gray-700',
+            'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
         >
           {cancelText}
         </button>
         <button
-          type="button"
+          type='button'
           onClick={onConfirm}
           disabled={isLoading}
           className={cn(
-            "px-4 py-2 rounded-md",
+            'px-4 py-2 rounded-md',
             buttonVariant === 'destructive'
-              ? "bg-red-600 hover:bg-red-700 text-white"
-              : "bg-blue-600 hover:bg-blue-700 text-white",
-            "disabled:opacity-50 disabled:cursor-not-allowed"
+              ? 'bg-red-600 hover:bg-red-700 text-white'
+              : 'bg-blue-600 hover:bg-blue-700 text-white',
+            'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
         >
           {isLoading ? loadingText : confirmText}

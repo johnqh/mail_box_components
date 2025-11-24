@@ -79,8 +79,8 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
 
         {(primaryButton || secondaryButton) && (
           <div className='flex flex-col sm:flex-row gap-4 justify-center mb-8'>
-            {primaryButton && (
-              primaryButton.href ? (
+            {primaryButton &&
+              (primaryButton.href ? (
                 <a
                   href={primaryButton.href}
                   className={cn(
@@ -100,10 +100,9 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
                 >
                   {primaryButton.text}
                 </button>
-              )
-            )}
-            {secondaryButton && (
-              secondaryButton.href ? (
+              ))}
+            {secondaryButton &&
+              (secondaryButton.href ? (
                 <a
                   href={secondaryButton.href}
                   className={cn(
@@ -123,8 +122,7 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
                 >
                   {secondaryButton.text}
                 </button>
-              )
-            )}
+              ))}
           </div>
         )}
 

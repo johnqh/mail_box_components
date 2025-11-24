@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/workflow-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Business workflow components for checklists, status tracking, and process management",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.esm.js",

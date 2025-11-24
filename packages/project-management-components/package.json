@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/project-management-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "project management UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

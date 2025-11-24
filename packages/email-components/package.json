@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/email-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Email marketing and management UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

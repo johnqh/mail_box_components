@@ -1,7 +1,9 @@
 /**
- * Food Components
- *
- * Specialized components for food domain
+ * food-components
+ * 
+ * Specialized components for the food domain
+ * 
+ * @package @sudobility/food-components
  */
 
 export * from './allergen-filter';
@@ -13,6 +15,7 @@ export * from './menu-item';
 export * from './navigation-menu';
 export * from './nutrition-facts';
 export * from './nutrition-label';
+export * from './portion-calculator';
 export * from './radial-menu';
 export * from './recipe-card';
 export * from './recipe-rating';

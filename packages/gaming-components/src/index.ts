@@ -1,7 +1,9 @@
 /**
- * Gaming Components
- *
- * Specialized components for gaming domain
+ * gaming-components
+ * 
+ * Specialized components for the gaming domain
+ * 
+ * @package @sudobility/gaming-components
  */
 
 export * from './achievement-badge';
@@ -16,5 +18,6 @@ export * from './score-board';
 export * from './score-display';
 export * from './scratch-card';
 export * from './signature-request';
+export * from './spin-wheel';
 export * from './sustainability-score';
 export * from './video-player';

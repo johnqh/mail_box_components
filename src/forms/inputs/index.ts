@@ -15,10 +15,10 @@ export * from './date-input';
 export * from './time-picker';
 
 // Specialized Inputs
-export * from './password-input';
+// Note: password-input moved to @sudobility/security-components
 export * from './phone-input';
-export * from './otp-input';
-export * from '../../ui/two-factor-input'; // Not yet migrated
+// Note: otp-input moved to @sudobility/security-components
+// Note: two-factor-input moved to @sudobility/security-components
 // Note: email-input-group moved to @sudobility/email-components
 
 // Selection Inputs
@@ -37,10 +37,10 @@ export * from './slider-input';
 
 // File Inputs
 export * from './file-input';
-export * from './file-icon';
-export * from './file-browser';
-export * from './file-preview';
-export * from './file-tree';
+// Note: file-icon moved to @sudobility/documents-components
+// Note: file-browser moved to @sudobility/documents-components
+// Note: file-preview moved to @sudobility/documents-components
+// Note: file-tree moved to @sudobility/documents-components
 
 // Tags & Mentions
 export * from './tag-input';
@@ -57,9 +57,9 @@ export * from './form-alerts';
 export * from './phone-directory';
 
 // Actions
-export * from '../../ui/action-button'; // Not yet migrated
-export * from '../../ui/inline-edit'; // Not yet migrated
+export * from '../../ui/action-button';
+// Note: inline-edit moved to @sudobility/interaction-components
 
 // Security
-export * from '../../ui/privacy-toggle'; // Not yet migrated
-export * from './password-strength';
+// Note: privacy-toggle moved to @sudobility/security-components
+// Note: password-strength moved to @sudobility/security-components

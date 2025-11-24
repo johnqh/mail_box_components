@@ -1,7 +1,9 @@
 /**
- * Hr Components
- *
- * Specialized components for hr domain
+ * hr-components
+ * 
+ * Specialized components for the hr domain
+ * 
+ * @package @sudobility/hr-components
  */
 
 export * from './attendance-calendar';
@@ -15,3 +17,4 @@ export * from './skill-progress';
 export * from './team-management';
 export * from './team-roster';
 export * from './timesheet-entry';
+export * from './user-table';

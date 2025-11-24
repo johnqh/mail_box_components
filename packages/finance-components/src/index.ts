@@ -1,7 +1,9 @@
 /**
- * Finance Components
- *
- * Specialized components for finance domain
+ * finance-components
+ * 
+ * Specialized components for the finance domain
+ * 
+ * @package @sudobility/finance-components
  */
 
 export * from './account-overview';
@@ -27,6 +29,7 @@ export * from './invoice-template';
 export * from './loan-calculator';
 export * from './mortgage-calc';
 export * from './payment-form';
+export * from './pricing-calculator';
 export * from './profit-loss';
 export * from './receipt-template';
 export * from './stock-level';

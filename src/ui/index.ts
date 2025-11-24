@@ -1,283 +1,133 @@
 /**
  * UI Components
- *
+ * 
  * Core, generic UI components for the component library.
- *
- * Domain-specific components have been moved to specialized packages:
- *
- * Infrastructure & Operations:
- * - @sudobility/devops-components (30)
- * - @sudobility/iot-components (3)
- * - @sudobility/security-components (2)
- *
- * Commerce & Business:
- * - @sudobility/ecommerce-components (10)
- * - @sudobility/finance-components (21)
- * - @sudobility/retail-components (2)
- * - @sudobility/automotive-components (18)
- * - @sudobility/manufacturing-components (3)
- *
- * Lifestyle & Wellness:
- * - @sudobility/fitness-components (13)
- * - @sudobility/food-components (12)
- * - @sudobility/healthcare-components (6)
- *
- * Professional Services:
- * - @sudobility/realestate-components (12)
- * - @sudobility/legal-components (3)
- * - @sudobility/hr-components (6)
- * - @sudobility/insurance-components (2)
- * - @sudobility/construction-components (3)
- *
- * Digital & Technology:
- * - @sudobility/web3-components (4)
- * - @sudobility/email-components (8)
- * - @sudobility/communication-components (13)
- * - @sudobility/social-components (12)
- * - @sudobility/marketing-components (2)
- * - @sudobility/media-components (4)
- *
- * Events & Entertainment:
- * - @sudobility/events-components (15)
- * - @sudobility/entertainment-components (7)
- * - @sudobility/gaming-components (13)
- * - @sudobility/travel-components (22)
- *
- * Education & Research:
- * - @sudobility/education-components (9)
- * - @sudobility/scientific-components (6)
- *
- * Specialized Industries:
- * - @sudobility/agriculture-components (7)
- * - @sudobility/energy-components (6)
- * - @sudobility/logistics-components (8)
- * - @sudobility/government-components (2)
- * - @sudobility/nonprofit-components (2)
+ * Domain-specific components moved to specialized packages.
+ * 
+ * Total: 111 components
+ * 
+ * Specialized packages (43 total):
+ * - @sudobility/visualization-components (15)
+ * - @sudobility/documents-components (11)
+ * - @sudobility/project-management-components (8)
+ * - @sudobility/scheduling-components (12)
+ * - @sudobility/analytics-components (14)
+ * - @sudobility/interaction-components (9)
+ * - @sudobility/monitoring-components (11)
+ * - @sudobility/search-components (3)
+ * - @sudobility/workflow-components (7)
+ * - @sudobility/design-components (2)
+ * - And 33 more domain-specific packages
  */
 
-export * from './accordion';
 export * from './action-button';
 export * from './address-link';
 export * from './alert';
 export * from './animated-counter';
 export * from './animated-section';
 export * from './aspect-ratio';
-export * from './aurora-background';
-export * from './avatar';
 export * from './backdrop';
-export * from './badge-designer';
 export * from './badge';
-export * from './blockquote';
 export * from './box';
-export * from './breadcrumb-nav';
 export * from './breadcrumb';
-export * from './break-timer';
+export * from './breadcrumb-nav';
 export * from './button';
 export * from './calendar';
 export * from './card';
-export * from './cell-editor';
-export * from './census-form';
 export * from './center';
 export * from './checkbox';
-export * from './checklist-progress';
-export * from './code-display';
-export * from './code-highlighter';
-export * from './code-playground';
 export * from './code';
-export * from './collapsible';
-export * from './color-picker-advanced';
-export * from './color-picker';
-export * from './color-swatch';
-export * from './column-resize';
+export * from './code-display';
 export * from './combobox';
 export * from './command';
-export * from './conflict-resolver';
-export * from './container-stats';
 export * from './container';
-export * from './copy-button';
-export * from './csv-importer';
-export * from './cursor-tracker';
 export * from './date-input';
 export * from './date-time-picker';
 export * from './design-system-components';
 export * from './dialog';
 export * from './divider';
-export * from './double-tap';
-export * from './drag-drop-list';
-export * from './drag-drop';
 export * from './drawer';
 export * from './dropdown';
-export * from './embed-widget';
-export * from './empty-state';
 export * from './external-link';
-export * from './faceted-search';
-export * from './feature-grid';
-export * from './feature-importance';
-export * from './feature-list-item';
-export * from './feature-spotlight';
-export * from './file-icon';
 export * from './file-input';
-export * from './filter-panel';
-export * from './flex-container';
 export * from './flex';
+export * from './flex-container';
 export * from './floating-panel';
 export * from './focus-indicator';
 export * from './focus-trap';
 export * from './form-alerts';
-export * from './form-builder';
-export * from './form-template';
-export * from './form-validator';
 export * from './formatted-number';
-export * from './gas-tracker';
-export * from './gauge';
-export * from './gesture-detector';
-export * from './gradient-banner';
 export * from './gradient-icon-container';
-export * from './grant-application';
 export * from './grid';
 export * from './heading';
 export * from './helper-text';
 export * from './hover-tooltip';
-export * from './icon-button';
 export * from './icon-container';
 export * from './icon-text';
-export * from './image-comparison';
-export * from './image-gallery';
-export * from './image';
 export * from './infinite-scroll';
 export * from './info-box';
-export * from './inline-edit';
 export * from './input';
-export * from './internal-link-clusters';
-export * from './json-importer';
 export * from './kbd';
-export * from './key-value-pair';
 export * from './keyboard-shortcut';
 export * from './language-selector';
-export * from './lightbox';
 export * from './link';
-export * from './list-item-with-action';
 export * from './list';
-export * from './load-planner';
+export * from './list-item-with-action';
 export * from './loading-dots';
 export * from './loading-overlay';
-export * from './loading-state';
 export * from './logo';
-export * from './long-press';
-export * from './markdown-renderer';
 export * from './masonry';
-export * from './memory-usage';
 export * from './modal';
-export * from './model-prediction';
 export * from './morph-transition';
 export * from './multi-select';
 export * from './navigation-list';
-export * from './nested-drag';
-export * from './network-status';
-export * from './neumorphic-button';
 export * from './number-input';
-export * from './oauth-button';
-export * from './otp-input';
 export * from './overlay';
-export * from './overtime-tracker';
 export * from './page-container';
 export * from './page-section-header';
-export * from './pagination-nav';
 export * from './pagination';
+export * from './pagination-nav';
 export * from './parallax-scroll';
-export * from './password-input';
-export * from './password-strength';
 export * from './phone-input';
-export * from './pinch-zoom';
 export * from './popover';
 export * from './portal';
-export * from './portion-calculator';
-export * from './pricing-calculator';
-export * from './privacy-toggle';
-export * from './process-diagram';
+export * from './progress';
 export * from './progress-bar';
 export * from './progress-circle';
-export * from './progress-tracker';
-export * from './progress';
-export * from './pull-to-refresh';
-export * from './qr-code-display';
 export * from './quick-actions';
-export * from './quote-generator';
-export * from './rating-stars';
-export * from './rating';
-export * from './recycling-tracker';
-export * from './relative-time';
-export * from './resizable-panels';
-export * from './resizable';
 export * from './reveal-on-scroll';
-export * from './role-manager';
-export * from './route-display';
-export * from './route-optimizer';
-export * from './safety-checklist';
-export * from './schedule-timeline';
-export * from './schema-validator';
 export * from './screen-reader-text';
 export * from './scroll-area';
 export * from './scroll-spy';
-export * from './search-bar';
 export * from './search-input';
+export * from './section';
 export * from './section-badge';
 export * from './section-header';
-export * from './section';
 export * from './select';
-export * from './sentiment-indicator';
 export * from './separator';
 export * from './settings-list';
 export * from './sheet';
-export * from './show';
 export * from './side-nav';
-export * from './signature-pad';
 export * from './skeleton-loader';
 export * from './skip-navigation';
-export * from './sleep-tracker';
-export * from './slider-input';
-export * from './slider';
 export * from './smart-link';
 export * from './sort-dropdown';
-export * from './sortable-grid';
 export * from './spacer';
-export * from './sparkline';
-export * from './spin-wheel';
 export * from './spinner';
 export * from './split-pane';
 export * from './stack';
-export * from './stat-display';
-export * from './status-badge';
-export * from './sticky-note';
-export * from './swipe-actions';
 export * from './switch';
-export * from './system-status';
 export * from './table';
 export * from './tabs';
+export * from './text';
 export * from './text-area';
 export * from './text-input-modal';
-export * from './text';
-export * from './theme-switcher';
 export * from './time-picker';
-export * from './time-tracker';
-export * from './timeline-vertical';
-export * from './timeline';
 export * from './toast';
 export * from './tooltip';
 export * from './transfer-list';
 export * from './tree-view';
 export * from './truncated-text';
-export * from './twitter-embed';
-export * from './two-factor-input';
-export * from './typography';
-export * from './user-table';
 export * from './version-badge';
-export * from './vessel-tracker';
 export * from './virtual-list';
 export * from './visually-hidden';
-export * from './vital-signs';
-export * from './water-intake';
-export * from './wave-form';
-export * from './welcome-screen';
-export * from './whiteboard';
-export * from './xml-parser';

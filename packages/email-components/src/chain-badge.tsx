@@ -10,8 +10,10 @@ interface ChainBadgeProps {
 
 const chainColors = {
   evm: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
-  solana: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
-  bitcoin: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300',
+  solana:
+    'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
+  bitcoin:
+    'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300',
   other: 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300',
 };
 

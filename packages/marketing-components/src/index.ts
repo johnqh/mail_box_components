@@ -1,8 +1,8 @@
 /**
  * marketing-components
- * 
+ *
  * Specialized components for the marketing domain
- * 
+ *
  * @package @sudobility/marketing-components
  */
 

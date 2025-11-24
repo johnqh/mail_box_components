@@ -1,8 +1,8 @@
 /**
  * monitoring-components
- * 
+ *
  * Specialized components for the monitoring domain
- * 
+ *
  * @package @sudobility/monitoring-components
  */
 

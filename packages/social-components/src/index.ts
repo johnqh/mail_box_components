@@ -1,8 +1,8 @@
 /**
  * social-components
- * 
+ *
  * Specialized components for the social domain
- * 
+ *
  * @package @sudobility/social-components
  */
 

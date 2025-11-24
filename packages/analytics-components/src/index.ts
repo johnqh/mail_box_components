@@ -1,8 +1,8 @@
 /**
  * analytics-components
- * 
+ *
  * Specialized components for the analytics domain
- * 
+ *
  * @package @sudobility/analytics-components
  */
 

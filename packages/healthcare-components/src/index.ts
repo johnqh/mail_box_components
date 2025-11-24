@@ -1,8 +1,8 @@
 /**
  * healthcare-components
- * 
+ *
  * Specialized components for the healthcare domain
- * 
+ *
  * @package @sudobility/healthcare-components
  */
 

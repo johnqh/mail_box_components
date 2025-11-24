@@ -1,8 +1,8 @@
 /**
  * design-components
- * 
+ *
  * Specialized components for the design domain
- * 
+ *
  * @package @sudobility/design-components
  */
 

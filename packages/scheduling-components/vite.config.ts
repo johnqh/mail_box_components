@@ -10,10 +10,15 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'Components',
       formats: ['es', 'umd'],
-      fileName: (format) => `index.${format === 'es' ? 'esm' : 'umd'}.js`,
+      fileName: format => `index.${format === 'es' ? 'esm' : 'umd'}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', '@sudobility/components', '@sudobility/design'],
+      external: [
+        'react',
+        'react-dom',
+        '@sudobility/components',
+        '@sudobility/design',
+      ],
       output: {
         globals: {
           react: 'React',

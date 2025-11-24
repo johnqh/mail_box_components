@@ -1,8 +1,8 @@
 /**
  * security-components
- * 
+ *
  * Specialized components for the security domain
- * 
+ *
  * @package @sudobility/security-components
  */
 

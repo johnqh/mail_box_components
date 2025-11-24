@@ -1,8 +1,8 @@
 /**
  * gaming-components
- * 
+ *
  * Specialized components for the gaming domain
- * 
+ *
  * @package @sudobility/gaming-components
  */
 

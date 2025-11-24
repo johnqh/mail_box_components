@@ -1,8 +1,8 @@
 /**
  * scheduling-components
- * 
+ *
  * Specialized components for the scheduling domain
- * 
+ *
  * @package @sudobility/scheduling-components
  */
 

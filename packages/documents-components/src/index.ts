@@ -1,8 +1,8 @@
 /**
  * documents-components
- * 
+ *
  * Specialized components for the documents domain
- * 
+ *
  * @package @sudobility/documents-components
  */
 

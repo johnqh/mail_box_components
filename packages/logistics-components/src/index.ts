@@ -1,8 +1,8 @@
 /**
  * logistics-components
- * 
+ *
  * Specialized components for the logistics domain
- * 
+ *
  * @package @sudobility/logistics-components
  */
 

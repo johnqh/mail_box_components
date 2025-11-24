@@ -1,11 +1,11 @@
 /**
  * UI Components
- * 
+ *
  * Core, generic UI components for the component library.
  * Domain-specific components moved to specialized packages.
- * 
+ *
  * Total: 111 components
- * 
+ *
  * Specialized packages (43 total):
  * - @sudobility/visualization-components (15)
  * - @sudobility/documents-components (11)

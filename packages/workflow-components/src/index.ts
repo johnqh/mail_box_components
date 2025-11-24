@@ -1,8 +1,8 @@
 /**
  * workflow-components
- * 
+ *
  * Specialized components for the workflow domain
- * 
+ *
  * @package @sudobility/workflow-components
  */
 

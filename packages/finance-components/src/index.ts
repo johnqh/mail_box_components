@@ -1,8 +1,8 @@
 /**
  * finance-components
- * 
+ *
  * Specialized components for the finance domain
- * 
+ *
  * @package @sudobility/finance-components
  */
 

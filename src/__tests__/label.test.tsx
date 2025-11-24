@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Label } from '../ui/label';
+import { Label } from '../forms/inputs/label';
 
 describe('Label Component', () => {
   it('renders label with text content', () => {

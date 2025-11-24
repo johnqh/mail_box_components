@@ -1,8 +1,8 @@
 /**
  * government-components
- * 
+ *
  * Specialized components for the government domain
- * 
+ *
  * @package @sudobility/government-components
  */
 

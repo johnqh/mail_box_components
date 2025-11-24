@@ -1,8 +1,8 @@
 /**
  * devops-components
- * 
+ *
  * Specialized components for the devops domain
- * 
+ *
  * @package @sudobility/devops-components
  */
 

@@ -1,8 +1,8 @@
 /**
  * search-components
- * 
+ *
  * Specialized components for the search domain
- * 
+ *
  * @package @sudobility/search-components
  */
 

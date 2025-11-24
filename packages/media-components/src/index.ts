@@ -1,8 +1,8 @@
 /**
  * media-components
- * 
+ *
  * Specialized components for the media domain
- * 
+ *
  * @package @sudobility/media-components
  */
 

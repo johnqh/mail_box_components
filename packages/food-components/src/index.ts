@@ -1,8 +1,8 @@
 /**
  * food-components
- * 
+ *
  * Specialized components for the food domain
- * 
+ *
  * @package @sudobility/food-components
  */
 

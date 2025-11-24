@@ -1,8 +1,8 @@
 /**
  * legal-components
- * 
+ *
  * Specialized components for the legal domain
- * 
+ *
  * @package @sudobility/legal-components
  */
 

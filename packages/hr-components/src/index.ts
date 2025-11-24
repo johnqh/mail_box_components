@@ -1,8 +1,8 @@
 /**
  * hr-components
- * 
+ *
  * Specialized components for the hr domain
- * 
+ *
  * @package @sudobility/hr-components
  */
 

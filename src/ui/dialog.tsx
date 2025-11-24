@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { cn } from '@sudobility/components';
+import { cn } from '../lib/utils';
 import { Portal } from './portal';
 import { Overlay } from './overlay';
 

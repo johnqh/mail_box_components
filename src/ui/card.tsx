@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@sudobility/components';
+import { cn } from '../lib/utils';
 import { textVariants, getCardVariantColors } from '@sudobility/design';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {

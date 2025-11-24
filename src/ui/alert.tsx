@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@sudobility/components';
+import { cn } from '../lib/utils';
 import { variants as v } from '@sudobility/design';
 import {
   BellAlertIcon,

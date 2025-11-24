@@ -27,32 +27,52 @@ jobs:
       - name: Check main package version change
         id: check-main
         run: |
-          CHANGED=$(git diff HEAD^ HEAD -- package.json | grep -c '"version"' || echo "0")
-          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
 
       - name: Check web3-components version change
         id: check-web3
         run: |
-          CHANGED=$(git diff HEAD^ HEAD -- packages/web3-components/package.json | grep -c '"version"' || echo "0")
-          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/web3-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
 
       - name: Check email-components version change
         id: check-email
         run: |
-          CHANGED=$(git diff HEAD^ HEAD -- packages/email-components/package.json | grep -c '"version"' || echo "0")
-          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/email-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
 
       - name: Check fitness-components version change
         id: check-fitness
         run: |
-          CHANGED=$(git diff HEAD^ HEAD -- packages/fitness-components/package.json | grep -c '"version"' || echo "0")
-          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/fitness-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
 
       - name: Check realestate-components version change
         id: check-realestate
         run: |
-          CHANGED=$(git diff HEAD^ HEAD -- packages/realestate-components/package.json | grep -c '"version"' || echo "0")
-          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/realestate-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
 
   # Publish main package
   publish-main:

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/manufacturing-components",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "manufacturing UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

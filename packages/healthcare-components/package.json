@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/healthcare-components",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Healthcare and medical UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

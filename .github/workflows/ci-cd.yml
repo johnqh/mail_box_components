@@ -26,10 +26,10 @@ jobs:
       npm-access: "restricted"
     secrets: inherit  # Pass all repository secrets
 
-  # Publish specialized packages after main package succeeds
+  # Publish specialized packages after main package (runs even if main fails)
   publish-specialized:
     needs: cicd
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

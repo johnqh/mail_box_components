@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/realestate-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Real estate listing and property management UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

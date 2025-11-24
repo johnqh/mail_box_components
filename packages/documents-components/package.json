@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/documents-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "documents UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -13,7 +13,10 @@
       "require": "./dist/index.umd.js"
     }
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite build --watch",

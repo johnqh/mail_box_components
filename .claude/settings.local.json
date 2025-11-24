@@ -78,7 +78,8 @@
       "Bash(if [ -f \"src/ui/$comp.tsx\" ])",
       "Bash(then)",
       "Bash(echo:*)",
-      "Bash(else)"
+      "Bash(else)",
+      "Bash(/tmp/update_all_packages.sh)"
     ],
     "deny": [],
     "ask": []

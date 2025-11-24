@@ -14,21 +14,50 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       main-changed: ${{ steps.check-main.outputs.changed }}
-      web3-changed: ${{ steps.check-web3.outputs.changed }}
-      email-changed: ${{ steps.check-email.outputs.changed }}
-      fitness-changed: ${{ steps.check-fitness.outputs.changed }}
-      realestate-changed: ${{ steps.check-realestate.outputs.changed }}
-      travel-changed: ${{ steps.check-travel.outputs.changed }}
-      food-changed: ${{ steps.check-food.outputs.changed }}
-      ecommerce-changed: ${{ steps.check-ecommerce.outputs.changed }}
-      finance-changed: ${{ steps.check-finance.outputs.changed }}
-      logistics-changed: ${{ steps.check-logistics.outputs.changed }}
-      hr-changed: ${{ steps.check-hr.outputs.changed }}
-      healthcare-changed: ${{ steps.check-healthcare.outputs.changed }}
       agriculture-changed: ${{ steps.check-agriculture.outputs.changed }}
-      energy-changed: ${{ steps.check-energy.outputs.changed }}
+      analytics-changed: ${{ steps.check-analytics.outputs.changed }}
+      automotive-changed: ${{ steps.check-automotive.outputs.changed }}
+      collaboration-changed: ${{ steps.check-collaboration.outputs.changed }}
+      communication-changed: ${{ steps.check-communication.outputs.changed }}
+      construction-changed: ${{ steps.check-construction.outputs.changed }}
+      design-changed: ${{ steps.check-design.outputs.changed }}
+      devops-changed: ${{ steps.check-devops.outputs.changed }}
+      documents-changed: ${{ steps.check-documents.outputs.changed }}
+      ecommerce-changed: ${{ steps.check-ecommerce.outputs.changed }}
       education-changed: ${{ steps.check-education.outputs.changed }}
+      email-changed: ${{ steps.check-email.outputs.changed }}
+      energy-changed: ${{ steps.check-energy.outputs.changed }}
+      entertainment-changed: ${{ steps.check-entertainment.outputs.changed }}
+      events-changed: ${{ steps.check-events.outputs.changed }}
+      finance-changed: ${{ steps.check-finance.outputs.changed }}
+      fitness-changed: ${{ steps.check-fitness.outputs.changed }}
+      food-changed: ${{ steps.check-food.outputs.changed }}
+      gaming-changed: ${{ steps.check-gaming.outputs.changed }}
+      government-changed: ${{ steps.check-government.outputs.changed }}
+      healthcare-changed: ${{ steps.check-healthcare.outputs.changed }}
+      hr-changed: ${{ steps.check-hr.outputs.changed }}
+      insurance-changed: ${{ steps.check-insurance.outputs.changed }}
+      interaction-changed: ${{ steps.check-interaction.outputs.changed }}
+      iot-changed: ${{ steps.check-iot.outputs.changed }}
       legal-changed: ${{ steps.check-legal.outputs.changed }}
+      logistics-changed: ${{ steps.check-logistics.outputs.changed }}
+      manufacturing-changed: ${{ steps.check-manufacturing.outputs.changed }}
+      marketing-changed: ${{ steps.check-marketing.outputs.changed }}
+      media-changed: ${{ steps.check-media.outputs.changed }}
+      monitoring-changed: ${{ steps.check-monitoring.outputs.changed }}
+      nonprofit-changed: ${{ steps.check-nonprofit.outputs.changed }}
+      project-management-changed: ${{ steps.check-project-management.outputs.changed }}
+      realestate-changed: ${{ steps.check-realestate.outputs.changed }}
+      retail-changed: ${{ steps.check-retail.outputs.changed }}
+      scheduling-changed: ${{ steps.check-scheduling.outputs.changed }}
+      scientific-changed: ${{ steps.check-scientific.outputs.changed }}
+      search-changed: ${{ steps.check-search.outputs.changed }}
+      security-changed: ${{ steps.check-security.outputs.changed }}
+      social-changed: ${{ steps.check-social.outputs.changed }}
+      travel-changed: ${{ steps.check-travel.outputs.changed }}
+      visualization-changed: ${{ steps.check-visualization.outputs.changed }}
+      web3-changed: ${{ steps.check-web3.outputs.changed }}
+      workflow-changed: ${{ steps.check-workflow.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,63 +73,93 @@ jobs:
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check web3-components version change
-        id: check-web3
+      - name: Check agriculture-components version change
+        id: check-agriculture
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/web3-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/agriculture-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check email-components version change
-        id: check-email
+      - name: Check analytics-components version change
+        id: check-analytics
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/email-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/analytics-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check fitness-components version change
-        id: check-fitness
+      - name: Check automotive-components version change
+        id: check-automotive
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/fitness-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/automotive-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check realestate-components version change
-        id: check-realestate
+      - name: Check collaboration-components version change
+        id: check-collaboration
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/realestate-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/collaboration-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check travel-components version change
-        id: check-travel
+      - name: Check communication-components version change
+        id: check-communication
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/travel-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/communication-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check food-components version change
-        id: check-food
+      - name: Check construction-components version change
+        id: check-construction
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/food-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/construction-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check design-components version change
+        id: check-design
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/design-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check devops-components version change
+        id: check-devops
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/devops-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check documents-components version change
+        id: check-documents
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/documents-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
@@ -114,53 +173,23 @@ jobs:
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check finance-components version change
-        id: check-finance
+      - name: Check education-components version change
+        id: check-education
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/finance-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/education-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check logistics-components version change
-        id: check-logistics
+      - name: Check email-components version change
+        id: check-email
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/logistics-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Check hr-components version change
-        id: check-hr
-        run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo "changed=1" >> $GITHUB_OUTPUT
-          else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/hr-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Check healthcare-components version change
-        id: check-healthcare
-        run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo "changed=1" >> $GITHUB_OUTPUT
-          else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/healthcare-components/package.json | grep -c '"version"' || echo "0")
-            echo "changed=$GITHUB_OUTPUT
-          fi
-
-      - name: Check agriculture-components version change
-        id: check-agriculture
-        run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo "changed=1" >> $GITHUB_OUTPUT
-          else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/agriculture-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/email-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
@@ -174,13 +203,123 @@ jobs:
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check education-components version change
-        id: check-education
+      - name: Check entertainment-components version change
+        id: check-entertainment
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
           else
-            CHANGED=$(git diff HEAD^ HEAD -- packages/education-components/package.json | grep -c '"version"' || echo "0")
+            CHANGED=$(git diff HEAD^ HEAD -- packages/entertainment-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check events-components version change
+        id: check-events
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/events-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check finance-components version change
+        id: check-finance
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/finance-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check fitness-components version change
+        id: check-fitness
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/fitness-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check food-components version change
+        id: check-food
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/food-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check gaming-components version change
+        id: check-gaming
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/gaming-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check government-components version change
+        id: check-government
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/government-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check healthcare-components version change
+        id: check-healthcare
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/healthcare-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check hr-components version change
+        id: check-hr
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/hr-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check insurance-components version change
+        id: check-insurance
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/insurance-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check interaction-components version change
+        id: check-interaction
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/interaction-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check iot-components version change
+        id: check-iot
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/iot-components/package.json | grep -c '"version"' || echo "0")
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
@@ -194,7 +333,187 @@ jobs:
             echo "changed=$CHANGED" >> $GITHUB_OUTPUT
           fi
 
-  # Publish main package
+      - name: Check logistics-components version change
+        id: check-logistics
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/logistics-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check manufacturing-components version change
+        id: check-manufacturing
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/manufacturing-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check marketing-components version change
+        id: check-marketing
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/marketing-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check media-components version change
+        id: check-media
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/media-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check monitoring-components version change
+        id: check-monitoring
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/monitoring-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check nonprofit-components version change
+        id: check-nonprofit
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/nonprofit-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check project-management-components version change
+        id: check-project-management
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/project-management-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check realestate-components version change
+        id: check-realestate
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/realestate-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check retail-components version change
+        id: check-retail
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/retail-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check scheduling-components version change
+        id: check-scheduling
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/scheduling-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check scientific-components version change
+        id: check-scientific
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/scientific-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check search-components version change
+        id: check-search
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/search-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check security-components version change
+        id: check-security
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/security-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check social-components version change
+        id: check-social
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/social-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check travel-components version change
+        id: check-travel
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/travel-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check visualization-components version change
+        id: check-visualization
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/visualization-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check web3-components version change
+        id: check-web3
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/web3-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check workflow-components version change
+        id: check-workflow
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=1" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff HEAD^ HEAD -- packages/workflow-components/package.json | grep -c '"version"' || echo "0")
+            echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          fi
+
+  # Publish main package FIRST
   publish-main:
     needs: check-version
     if: needs.check-version.outputs.main-changed > 0 || github.event_name == 'workflow_dispatch'
@@ -221,263 +540,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  # Publish web3-components
-  publish-web3:
-    needs: check-version
-    if: needs.check-version.outputs.web3-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/web3-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/web3-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/web3-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish email-components
-  publish-email:
-    needs: check-version
-    if: needs.check-version.outputs.email-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/email-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/email-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/email-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish fitness-components
-  publish-fitness:
-    needs: check-version
-    if: needs.check-version.outputs.fitness-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/fitness-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/fitness-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/fitness-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish realestate-components
-  publish-realestate:
-    needs: check-version
-    if: needs.check-version.outputs.realestate-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/realestate-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/realestate-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/realestate-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish travel-components
-  publish-travel:
-    needs: check-version
-    if: needs.check-version.outputs.travel-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/travel-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/travel-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/travel-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish food-components
-  publish-food:
-    needs: check-version
-    if: needs.check-version.outputs.food-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/food-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/food-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/food-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish ecommerce-components
-  publish-ecommerce:
-    needs: check-version
-    if: needs.check-version.outputs.ecommerce-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/ecommerce-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/ecommerce-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/ecommerce-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish finance-components
-  publish-finance:
-    needs: check-version
-    if: needs.check-version.outputs.finance-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/finance-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/finance-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/finance-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish logistics-components
-  publish-logistics:
-    needs: check-version
-    if: needs.check-version.outputs.logistics-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/logistics-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/logistics-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/logistics-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish hr-components
-  publish-hr:
-    needs: check-version
-    if: needs.check-version.outputs.hr-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/hr-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/hr-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/hr-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish healthcare-components
-  publish-healthcare:
-    needs: check-version
-    if: needs.check-version.outputs.healthcare-changed > 0 || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        working-directory: ./packages/healthcare-components
-        run: npm install --legacy-peer-deps
-      - name: Build
-        working-directory: ./packages/healthcare-components
-        run: npm run build
-      - name: Publish to NPM
-        working-directory: ./packages/healthcare-components
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  # Publish agriculture-components
+  # Publish agriculture-components (depends on main)
   publish-agriculture:
-    needs: check-version
-    if: needs.check-version.outputs.agriculture-changed > 0 || github.event_name == 'workflow_dispatch'
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.agriculture-changed > 0 || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -497,10 +566,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  # Publish energy-components
-  publish-energy:
-    needs: check-version
-    if: needs.check-version.outputs.energy-changed > 0 || github.event_name == 'workflow_dispatch'
+  # Publish analytics-components (depends on main)
+  publish-analytics:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.analytics-changed > 0 || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -509,21 +581,232 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
-        working-directory: ./packages/energy-components
+        working-directory: ./packages/analytics-components
         run: npm install --legacy-peer-deps
       - name: Build
-        working-directory: ./packages/energy-components
+        working-directory: ./packages/analytics-components
         run: npm run build
       - name: Publish to NPM
-        working-directory: ./packages/energy-components
+        working-directory: ./packages/analytics-components
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  # Publish education-components
+  # Publish automotive-components (depends on main)
+  publish-automotive:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.automotive-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/automotive-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/automotive-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/automotive-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish collaboration-components (depends on main)
+  publish-collaboration:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.collaboration-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/collaboration-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/collaboration-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/collaboration-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish communication-components (depends on main)
+  publish-communication:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.communication-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/communication-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/communication-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/communication-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish construction-components (depends on main)
+  publish-construction:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.construction-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/construction-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/construction-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/construction-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish design-components (depends on main)
+  publish-design:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.design-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/design-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/design-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/design-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish devops-components (depends on main)
+  publish-devops:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.devops-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/devops-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/devops-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/devops-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish documents-components (depends on main)
+  publish-documents:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.documents-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/documents-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/documents-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/documents-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish ecommerce-components (depends on main)
+  publish-ecommerce:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.ecommerce-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/ecommerce-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/ecommerce-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/ecommerce-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish education-components (depends on main)
   publish-education:
-    needs: check-version
-    if: needs.check-version.outputs.education-changed > 0 || github.event_name == 'workflow_dispatch'
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.education-changed > 0 || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -543,10 +826,377 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  # Publish legal-components
+  # Publish email-components (depends on main)
+  publish-email:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.email-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/email-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/email-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/email-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish energy-components (depends on main)
+  publish-energy:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.energy-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/energy-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/energy-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/energy-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish entertainment-components (depends on main)
+  publish-entertainment:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.entertainment-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/entertainment-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/entertainment-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/entertainment-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish events-components (depends on main)
+  publish-events:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.events-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/events-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/events-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/events-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish finance-components (depends on main)
+  publish-finance:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.finance-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/finance-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/finance-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/finance-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish fitness-components (depends on main)
+  publish-fitness:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.fitness-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/fitness-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/fitness-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/fitness-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish food-components (depends on main)
+  publish-food:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.food-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/food-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/food-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/food-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish gaming-components (depends on main)
+  publish-gaming:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.gaming-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/gaming-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/gaming-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/gaming-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish government-components (depends on main)
+  publish-government:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.government-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/government-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/government-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/government-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish healthcare-components (depends on main)
+  publish-healthcare:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.healthcare-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/healthcare-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/healthcare-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/healthcare-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish hr-components (depends on main)
+  publish-hr:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.hr-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/hr-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/hr-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/hr-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish insurance-components (depends on main)
+  publish-insurance:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.insurance-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/insurance-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/insurance-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/insurance-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish interaction-components (depends on main)
+  publish-interaction:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.interaction-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/interaction-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/interaction-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/interaction-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish iot-components (depends on main)
+  publish-iot:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.iot-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/iot-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/iot-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/iot-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish legal-components (depends on main)
   publish-legal:
-    needs: check-version
-    if: needs.check-version.outputs.legal-changed > 0 || github.event_name == 'workflow_dispatch'
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.legal-changed > 0 || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -562,6 +1212,474 @@ jobs:
         run: npm run build
       - name: Publish to NPM
         working-directory: ./packages/legal-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish logistics-components (depends on main)
+  publish-logistics:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.logistics-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/logistics-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/logistics-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/logistics-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish manufacturing-components (depends on main)
+  publish-manufacturing:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.manufacturing-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/manufacturing-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/manufacturing-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/manufacturing-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish marketing-components (depends on main)
+  publish-marketing:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.marketing-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/marketing-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/marketing-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/marketing-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish media-components (depends on main)
+  publish-media:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.media-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/media-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/media-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/media-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish monitoring-components (depends on main)
+  publish-monitoring:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.monitoring-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/monitoring-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/monitoring-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/monitoring-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish nonprofit-components (depends on main)
+  publish-nonprofit:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.nonprofit-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/nonprofit-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/nonprofit-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/nonprofit-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish project-management-components (depends on main)
+  publish-project_management:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.project-management-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/project-management-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/project-management-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/project-management-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish realestate-components (depends on main)
+  publish-realestate:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.realestate-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/realestate-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/realestate-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/realestate-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish retail-components (depends on main)
+  publish-retail:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.retail-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/retail-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/retail-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/retail-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish scheduling-components (depends on main)
+  publish-scheduling:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.scheduling-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/scheduling-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/scheduling-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/scheduling-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish scientific-components (depends on main)
+  publish-scientific:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.scientific-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/scientific-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/scientific-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/scientific-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish search-components (depends on main)
+  publish-search:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.search-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/search-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/search-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/search-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish security-components (depends on main)
+  publish-security:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.security-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/security-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/security-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/security-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish social-components (depends on main)
+  publish-social:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.social-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/social-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/social-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/social-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish travel-components (depends on main)
+  publish-travel:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.travel-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/travel-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/travel-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/travel-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish visualization-components (depends on main)
+  publish-visualization:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.visualization-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/visualization-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/visualization-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/visualization-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish web3-components (depends on main)
+  publish-web3:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.web3-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/web3-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/web3-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/web3-components
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Publish workflow-components (depends on main)
+  publish-workflow:
+    needs: [check-version, publish-main]
+    if: |
+      always() &&
+      (needs.publish-main.result == 'success' || needs.publish-main.result == 'skipped') &&
+      (needs.check-version.outputs.workflow-changed > 0 || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        working-directory: ./packages/workflow-components
+        run: npm install --legacy-peer-deps
+      - name: Build
+        working-directory: ./packages/workflow-components
+        run: npm run build
+      - name: Publish to NPM
+        working-directory: ./packages/workflow-components
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

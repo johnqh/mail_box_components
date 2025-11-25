@@ -189,8 +189,4 @@ const generateContextualLinks = (pageType: string, _userStatus?: string) => {
   return baseLinks[pageType as keyof typeof baseLinks] || [];
 };
 
-export {
-  TopicClusterLinks,
-  RelatedLinks,
-  generateContextualLinks,
-};
+export { TopicClusterLinks, RelatedLinks, generateContextualLinks };

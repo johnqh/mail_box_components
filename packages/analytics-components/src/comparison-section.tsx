@@ -76,7 +76,8 @@ export interface ComparisonData {
   };
 }
 
-export interface ComparisonSectionProps extends VariantProps<typeof sectionVariants> {
+export interface ComparisonSectionProps
+  extends VariantProps<typeof sectionVariants> {
   className?: string;
 
   // Content
@@ -291,4 +292,3 @@ export const createEmailComparisonData = (labels?: {
     ),
   };
 };
-

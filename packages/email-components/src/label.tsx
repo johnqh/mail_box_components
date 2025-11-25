@@ -1,7 +1,8 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
 
-export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+export interface LabelProps
+  extends React.LabelHTMLAttributes<HTMLLabelElement> {
   children: React.ReactNode;
   required?: boolean;
 }
@@ -25,4 +26,3 @@ export const Label: React.FC<LabelProps> = ({
     </label>
   );
 };
-

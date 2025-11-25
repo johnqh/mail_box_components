@@ -12,7 +12,6 @@ export * from './carousel';
 export * from './contact-card';
 export * from './dashboard-stat-card';
 export * from './fade-carousel';
-export * from './feature-card';
 export * from './flashcard';
 export * from './fleet-management';
 export * from './flip-card';

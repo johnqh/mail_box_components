@@ -565,11 +565,4 @@ export const cacheUtils = {
   },
 };
 
-export default {
-  optimizedFetch,
-  OptimizedAPIClient,
-  withRetry,
-  CancellableRequest,
-  cacheUtils,
-  CACHE_CONFIGS,
-};
+export { CACHE_CONFIGS };

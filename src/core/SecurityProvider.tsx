@@ -4,6 +4,8 @@ interface SecurityProviderProps {
   children: React.ReactNode;
 }
 
-export const SecurityProvider: React.FC<SecurityProviderProps> = ({ children }) => {
+export const SecurityProvider: React.FC<SecurityProviderProps> = ({
+  children,
+}) => {
   return <>{children}</>;
 };

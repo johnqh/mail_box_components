@@ -209,4 +209,4 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
   );
 };
 
-export { EmailAccountsList, type EmailAccount, type WalletEmailGroup };
+export { EmailAccountsList };

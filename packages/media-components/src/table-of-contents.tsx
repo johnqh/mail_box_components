@@ -123,4 +123,4 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   );
 };
 
-export { TableOfContents, type TOCSection };
+export { TableOfContents };

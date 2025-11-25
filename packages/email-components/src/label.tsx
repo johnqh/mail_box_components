@@ -25,3 +25,4 @@ export const Label: React.FC<LabelProps> = ({
     </label>
   );
 };
+

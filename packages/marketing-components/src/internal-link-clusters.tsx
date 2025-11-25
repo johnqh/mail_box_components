@@ -193,7 +193,4 @@ export {
   TopicClusterLinks,
   RelatedLinks,
   generateContextualLinks,
-  type InternalLinkProps,
-  type TopicClusterLinksProps,
-  type RelatedLinksProps,
 };

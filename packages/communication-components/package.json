@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/communication-components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Communication and messaging UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

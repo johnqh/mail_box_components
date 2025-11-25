@@ -8,7 +8,9 @@
       "Bash(then echo \"⚠️  $pkg-components still has warnings\" else echo \"✓ $pkg-components clean\" fi done)",
       "Bash(for pkg in email web3 devops finance collaboration)",
       "Bash(do echo \"=== Building $pkg-components ===\" cd \"/Users/johnhuang/0xmail/mail_box_components/packages/$pkg-components\" if npm run build)",
-      "Bash(then echo \"✓ $pkg-components built successfully\" else echo \"⚠️ $pkg-components had issues\" npm run build)"
+      "Bash(then echo \"✓ $pkg-components built successfully\" else echo \"⚠️ $pkg-components had issues\" npm run build)",
+      "Bash(do echo 'Bumping $(basename $pkg)...' cd $pkg npm version patch --no-git-tag-version cd - done)",
+      "Bash(/tmp/bump-all-packages.sh)"
     ],
     "deny": [],
     "ask": []

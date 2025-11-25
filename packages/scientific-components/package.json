@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/scientific-components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "scientific UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

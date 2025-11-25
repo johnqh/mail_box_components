@@ -12,5 +12,4 @@ export * from './email-campaign';
 export * from './email-input-group';
 export * from './email-template';
 export * from './free-email-banner';
-export * from './label';
 export * from './subscription-plan';

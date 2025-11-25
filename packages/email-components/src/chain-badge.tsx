@@ -1,9 +1,9 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
 
-type ChainType = 'evm' | 'solana' | 'bitcoin' | 'other';
+export type ChainType = 'evm' | 'solana' | 'bitcoin' | 'other';
 
-interface ChainBadgeProps {
+export interface ChainBadgeProps {
   chainType: ChainType;
   size?: 'sm' | 'md' | 'lg';
 }

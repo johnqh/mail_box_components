@@ -4,7 +4,7 @@ import {
   InformationCircleIcon,
 } from '@heroicons/react/24/outline';
 
-interface FormFieldGroupProps {
+export interface FormFieldGroupProps {
   label: string;
   required?: boolean;
   error?: string;
@@ -70,7 +70,7 @@ export const FormFieldGroup: React.FC<FormFieldGroupProps> = ({
 };
 
 // Specialized form field components
-interface TextFieldProps {
+export interface TextFieldProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
@@ -125,7 +125,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   );
 };
 
-interface TextAreaFieldProps {
+export interface TextAreaFieldProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
@@ -180,7 +180,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   );
 };
 
-interface SelectFieldProps {
+export interface SelectFieldProps {
   label: string;
   value: string;
   onChange: (value: string) => void;

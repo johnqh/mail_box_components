@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/entertainment-components",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "Entertainment and media UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

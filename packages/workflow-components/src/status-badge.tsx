@@ -13,14 +13,14 @@ export type StatusType =
 // Local ChainType enum to avoid @johnqh/lib dependency
 export type ChainType = 'evm' | 'solana' | 'unknown';
 
-interface StatusBadgeProps {
+export interface StatusBadgeProps {
   status: StatusType;
   label?: string;
   showDot?: boolean;
   size?: 'sm' | 'md' | 'lg';
 }
 
-interface ChainBadgeProps {
+export interface ChainBadgeProps {
   chainType: ChainType;
   size?: 'sm' | 'md' | 'lg';
 }

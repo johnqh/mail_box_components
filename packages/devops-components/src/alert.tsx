@@ -9,7 +9,7 @@ import {
   XCircleIcon,
 } from '@heroicons/react/24/outline';
 
-interface AlertProps {
+export interface AlertProps {
   variant?: 'info' | 'success' | 'warning' | 'attention' | 'error';
   title?: string;
   description?: string;

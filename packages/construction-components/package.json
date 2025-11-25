@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/construction-components",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "Construction and building management UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

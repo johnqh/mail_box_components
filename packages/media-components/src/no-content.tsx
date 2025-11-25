@@ -7,7 +7,7 @@
 import React from 'react';
 import { EmptyState } from '@sudobility/components';
 
-interface NoContentProps {
+export interface NoContentProps {
   title: string;
   subtext: string;
   className?: string;

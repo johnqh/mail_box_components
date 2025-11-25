@@ -97,7 +97,7 @@ export interface Feature {
   benefits?: string[];
 }
 
-interface FeatureGridProps extends VariantProps<typeof gridVariants> {
+export interface FeatureGridProps extends VariantProps<typeof gridVariants> {
   className?: string;
   features: Feature[];
 

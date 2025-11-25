@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 
-interface TOCSection {
+export interface TOCSection {
   id: string;
   title: string;
   subsections?: TOCSection[];
 }
 
-interface TableOfContentsProps {
+export interface TableOfContentsProps {
   sections: TOCSection[];
   selectedSection: string;
   selectedSubsection?: string | null;

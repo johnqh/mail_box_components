@@ -35,7 +35,7 @@ const contentContainerVariants = cva('mx-auto px-4 sm:px-6', {
   },
 });
 
-interface ContentContainerProps
+export interface ContentContainerProps
   extends VariantProps<typeof contentContainerVariants> {
   children: React.ReactNode;
   className?: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface WalletIconProps {
+export interface WalletIconProps {
   wallet: string;
   connector?: { icon?: string }; // Simplified connector type with optional icon
   className?: string;

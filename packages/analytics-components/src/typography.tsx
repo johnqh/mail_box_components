@@ -38,7 +38,7 @@ const pageTitleVariants = cva('', {
   },
 });
 
-interface PageTitleProps extends VariantProps<typeof pageTitleVariants> {
+export interface PageTitleProps extends VariantProps<typeof pageTitleVariants> {
   children: React.ReactNode;
   className?: string;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -108,7 +108,8 @@ const sectionTitleVariants = cva('', {
   },
 });
 
-interface SectionTitleProps extends VariantProps<typeof sectionTitleVariants> {
+export interface SectionTitleProps
+  extends VariantProps<typeof sectionTitleVariants> {
   children: React.ReactNode;
   className?: string;
   as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -165,7 +166,7 @@ const bodyTextVariants = cva('', {
   },
 });
 
-interface BodyTextProps extends VariantProps<typeof bodyTextVariants> {
+export interface BodyTextProps extends VariantProps<typeof bodyTextVariants> {
   children: React.ReactNode;
   className?: string;
   as?: keyof React.JSX.IntrinsicElements;
@@ -207,7 +208,7 @@ const textLinkVariants = cva(textVariants.link.default(), {
   },
 });
 
-interface TextLinkProps extends VariantProps<typeof textLinkVariants> {
+export interface TextLinkProps extends VariantProps<typeof textLinkVariants> {
   children: React.ReactNode;
   href: string;
   className?: string;

@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@sudobility/components';
 import { textVariants, getCardVariantColors } from '@sudobility/design';
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?:
     | 'default'
     | 'bordered'
@@ -97,7 +97,7 @@ export const Card: React.FC<CardProps> = ({
   );
 };
 
-interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   description?: string;
 }

@@ -2,7 +2,7 @@ import { cn } from '@sudobility/components';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface InternalLinkProps {
+export interface InternalLinkProps {
   to: string;
   children: React.ReactNode;
   className?: string;
@@ -69,7 +69,7 @@ const WEB3_EMAIL_CLUSTERS = {
   },
 };
 
-interface TopicClusterLinksProps {
+export interface TopicClusterLinksProps {
   cluster: keyof typeof WEB3_EMAIL_CLUSTERS;
   context?: string;
   className?: string;
@@ -126,7 +126,7 @@ const TopicClusterLinks: React.FC<TopicClusterLinksProps> = ({
   );
 };
 
-interface RelatedLinksProps {
+export interface RelatedLinksProps {
   title?: string;
   links: Array<{
     text: string;

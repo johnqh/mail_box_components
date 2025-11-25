@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
 
-interface EmptyStateProps {
+export interface EmptyStateProps {
   icon?: React.ReactNode;
   title?: string;
   description?: string;

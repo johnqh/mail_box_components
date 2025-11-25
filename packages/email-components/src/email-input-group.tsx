@@ -2,7 +2,7 @@ import React from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import { Label } from '@sudobility/components';
 
-interface EmailInputFieldProps {
+export interface EmailInputFieldProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
@@ -53,7 +53,7 @@ export const EmailInputField: React.FC<EmailInputFieldProps> = ({
   );
 };
 
-interface CollapsibleEmailFieldProps extends EmailInputFieldProps {
+export interface CollapsibleEmailFieldProps extends EmailInputFieldProps {
   isVisible: boolean;
   onToggle: () => void;
   showLabel?: string;
@@ -89,7 +89,7 @@ export const CollapsibleEmailField: React.FC<CollapsibleEmailFieldProps> = ({
   );
 };
 
-interface EmailInputGroupProps {
+export interface EmailInputGroupProps {
   to: string;
   onToChange: (value: string) => void;
   cc?: string;

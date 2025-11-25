@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/automotive-components",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "Automotive and vehicle management UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

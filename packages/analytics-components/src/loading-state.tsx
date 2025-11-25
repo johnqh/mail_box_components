@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn, Spinner } from '@sudobility/components';
 
-interface LoadingStateProps {
+export interface LoadingStateProps {
   message?: string;
   size?: 'small' | 'default' | 'large';
   fullScreen?: boolean;

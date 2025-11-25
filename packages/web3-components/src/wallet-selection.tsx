@@ -12,7 +12,7 @@ export interface WalletOption {
   onClick: () => void;
 }
 
-interface WalletSelectionButtonProps {
+export interface WalletSelectionButtonProps {
   wallet: WalletOption;
   disabled?: boolean;
   className?: string;
@@ -77,7 +77,7 @@ export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
   );
 };
 
-interface WalletTabProps {
+export interface WalletTabProps {
   active: boolean;
   onClick: () => void;
   icon: string;
@@ -114,7 +114,7 @@ export const WalletTab: React.FC<WalletTabProps> = ({
   );
 };
 
-interface WalletSelectionGridProps {
+export interface WalletSelectionGridProps {
   evmWallets: WalletOption[];
   solanaWallets: WalletOption[];
   activeTab: 'ethereum' | 'solana';

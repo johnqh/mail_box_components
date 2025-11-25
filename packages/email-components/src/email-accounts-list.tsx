@@ -4,7 +4,7 @@ import { cn } from '@sudobility/components';
 import { ChainBadge } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
 
-interface EmailAccount {
+export interface EmailAccount {
   address: string;
   name: string;
   type: 'primary' | 'ens' | 'sns';
@@ -12,7 +12,7 @@ interface EmailAccount {
   addressType: 'evm' | 'solana';
 }
 
-interface WalletEmailGroup {
+export interface WalletEmailGroup {
   walletAddress: string;
   addressType: 'evm' | 'solana';
   primaryEmail: EmailAccount;
@@ -20,7 +20,7 @@ interface WalletEmailGroup {
   customColor?: string;
 }
 
-interface EmailAccountsListProps {
+export interface EmailAccountsListProps {
   walletGroups: WalletEmailGroup[];
   selectedAccount?: string;
   expandedWallets: string[];

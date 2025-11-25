@@ -60,7 +60,8 @@ const buttonVariants = cva(
   }
 );
 
-interface FreeEmailBannerProps extends VariantProps<typeof bannerVariants> {
+export interface FreeEmailBannerProps
+  extends VariantProps<typeof bannerVariants> {
   className?: string;
   message?: string;
   ctaText?: string;

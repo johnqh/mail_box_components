@@ -58,14 +58,14 @@ const headerVariants = cva('text-lg font-bold mb-4 flex items-center gap-3', {
   },
 });
 
-interface ComparisonItem {
+export interface ComparisonItem {
   text: string;
   icon?: React.ReactNode;
   highlight?: boolean;
   subtext?: string;
 }
 
-interface ComparisonData {
+export interface ComparisonData {
   title: string;
   icon?: React.ReactNode;
   items: ComparisonItem[];
@@ -76,7 +76,7 @@ interface ComparisonData {
   };
 }
 
-interface ComparisonSectionProps extends VariantProps<typeof sectionVariants> {
+export interface ComparisonSectionProps extends VariantProps<typeof sectionVariants> {
   className?: string;
 
   // Content

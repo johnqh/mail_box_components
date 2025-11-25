@@ -3,7 +3,7 @@
  */
 
 // Components
-export { AIMeta } from './AIMeta';
+export { AIMeta, type AIMetaProps } from './AIMeta';
 export * from './SemanticHTML';
 export { AITrainingEnhancer } from './AITrainingEnhancer';
 

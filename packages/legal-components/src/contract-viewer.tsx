@@ -39,5 +39,3 @@ export const ContractViewer = ({
     </div>
   );
 };
-
-export default ContractViewer;

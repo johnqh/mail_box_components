@@ -58,5 +58,3 @@ export const Uwhiteboard = ({
     </div>
   );
 };
-
-export default Uwhiteboard;

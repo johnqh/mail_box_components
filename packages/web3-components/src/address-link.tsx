@@ -219,5 +219,3 @@ export const AddressLink: React.FC<AddressLinkProps> = ({
     </div>
   );
 };
-
-export default AddressLink;

@@ -135,5 +135,3 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
     </div>
   );
 };
-
-export default ProgressCircle;

@@ -400,5 +400,3 @@ export const TransferList: React.FC<TransferListProps> = ({
     </div>
   );
 };
-
-export default TransferList;

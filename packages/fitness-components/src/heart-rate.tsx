@@ -58,5 +58,3 @@ export const UheartUrate = ({
     </div>
   );
 };
-
-export default UheartUrate;

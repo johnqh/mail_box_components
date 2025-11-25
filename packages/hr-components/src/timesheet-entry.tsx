@@ -58,5 +58,3 @@ export const UtimesheetUentry = ({
     </div>
   );
 };
-
-export default UtimesheetUentry;

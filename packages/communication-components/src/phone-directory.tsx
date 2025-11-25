@@ -39,5 +39,3 @@ export const PhoneDirectory = ({
     </div>
   );
 };
-
-export default PhoneDirectory;

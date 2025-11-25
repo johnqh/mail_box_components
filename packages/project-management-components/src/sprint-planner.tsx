@@ -39,5 +39,3 @@ export const SprintPlanner = ({
     </div>
   );
 };
-
-export default SprintPlanner;

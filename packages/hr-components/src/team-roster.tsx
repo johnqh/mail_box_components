@@ -39,5 +39,3 @@ export const TeamRoster = ({
     </div>
   );
 };
-
-export default TeamRoster;

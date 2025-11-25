@@ -292,5 +292,3 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
     </div>
   );
 };
-
-export default CurrencyInput;

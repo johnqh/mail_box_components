@@ -246,5 +246,3 @@ export const Calendar: React.FC<CalendarProps> = ({
     </div>
   );
 };
-
-export default Calendar;

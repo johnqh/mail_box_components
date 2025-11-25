@@ -39,5 +39,3 @@ export const TaskBoard = ({
     </div>
   );
 };
-
-export default TaskBoard;

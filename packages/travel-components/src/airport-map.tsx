@@ -39,5 +39,3 @@ export const AirportMap = ({
     </div>
   );
 };
-
-export default AirportMap;

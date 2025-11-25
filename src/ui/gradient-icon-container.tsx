@@ -97,5 +97,3 @@ export const GradientIconContainer: React.FC<GradientIconContainerProps> = ({
     </div>
   );
 };
-
-export default GradientIconContainer;

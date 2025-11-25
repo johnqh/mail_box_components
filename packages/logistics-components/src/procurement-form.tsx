@@ -39,5 +39,3 @@ export const ProcurementForm = ({
     </div>
   );
 };
-
-export default ProcurementForm;

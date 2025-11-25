@@ -39,5 +39,3 @@ export const InventoryScanner = ({
     </div>
   );
 };
-
-export default InventoryScanner;

@@ -58,5 +58,3 @@ export const UgestureUdetector = ({
     </div>
   );
 };
-
-export default UgestureUdetector;

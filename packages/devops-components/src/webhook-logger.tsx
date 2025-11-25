@@ -58,5 +58,3 @@ export const UwebhookUlogger = ({
     </div>
   );
 };
-
-export default UwebhookUlogger;

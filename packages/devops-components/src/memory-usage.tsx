@@ -58,5 +58,3 @@ export const UmemoryUusage = ({
     </div>
   );
 };
-
-export default UmemoryUusage;

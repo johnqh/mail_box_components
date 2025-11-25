@@ -39,5 +39,3 @@ export const PlaylistManager = ({
     </div>
   );
 };
-
-export default PlaylistManager;

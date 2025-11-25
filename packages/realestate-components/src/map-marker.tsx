@@ -58,5 +58,3 @@ export const UmapUmarker = ({
     </div>
   );
 };
-
-export default UmapUmarker;

@@ -73,5 +73,3 @@ export const Container: React.FC<ContainerProps> = ({
     </div>
   );
 };
-
-export default Container;

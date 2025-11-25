@@ -58,5 +58,3 @@ export const UdoubleUtap = ({
     </div>
   );
 };
-
-export default UdoubleUtap;

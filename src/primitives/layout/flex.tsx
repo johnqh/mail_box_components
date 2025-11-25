@@ -117,5 +117,3 @@ export const Flex: React.FC<FlexProps> = ({
     />
   );
 };
-
-export default Flex;

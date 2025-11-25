@@ -58,5 +58,3 @@ export const UexportUwizard = ({
     </div>
   );
 };
-
-export default UexportUwizard;

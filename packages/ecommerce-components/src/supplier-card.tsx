@@ -39,5 +39,3 @@ export const SupplierCard = ({
     </div>
   );
 };
-
-export default SupplierCard;

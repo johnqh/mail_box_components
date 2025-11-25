@@ -58,5 +58,3 @@ export const UauroraUbackground = ({
     </div>
   );
 };
-
-export default UauroraUbackground;

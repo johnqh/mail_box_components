@@ -181,5 +181,3 @@ export const Drawer: React.FC<DrawerProps> = ({
     </Portal>
   );
 };
-
-export default Drawer;

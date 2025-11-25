@@ -58,5 +58,3 @@ export const UworkoutUlog = ({
     </div>
   );
 };
-
-export default UworkoutUlog;

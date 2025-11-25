@@ -50,5 +50,3 @@ export const useToggle = (initialValue = false): UseToggleReturn => {
     setValue,
   };
 };
-
-export default useToggle;

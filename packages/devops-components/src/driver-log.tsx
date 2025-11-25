@@ -39,5 +39,3 @@ export const DriverLog = ({
     </div>
   );
 };
-
-export default DriverLog;

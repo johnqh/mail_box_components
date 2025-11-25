@@ -39,5 +39,3 @@ export const SocialFeed = ({
     </div>
   );
 };
-
-export default SocialFeed;

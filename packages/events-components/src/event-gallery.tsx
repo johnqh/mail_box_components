@@ -58,5 +58,3 @@ export const UeventUgallery = ({
     </div>
   );
 };
-
-export default UeventUgallery;

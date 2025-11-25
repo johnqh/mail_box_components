@@ -58,5 +58,3 @@ export const UscratchUcard = ({
     </div>
   );
 };
-
-export default UscratchUcard;

@@ -58,5 +58,3 @@ export const UfileUpreview = ({
     </div>
   );
 };
-
-export default UfileUpreview;

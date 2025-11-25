@@ -58,5 +58,3 @@ export const UflipUcard = ({
     </div>
   );
 };
-
-export default UflipUcard;

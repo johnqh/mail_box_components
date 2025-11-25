@@ -58,5 +58,3 @@ export const UdashboardUbuilder = ({
     </div>
   );
 };
-
-export default UdashboardUbuilder;

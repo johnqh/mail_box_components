@@ -58,5 +58,3 @@ export const UexerciseUtimer = ({
     </div>
   );
 };
-
-export default UexerciseUtimer;

@@ -58,5 +58,3 @@ export const UbugUreport = ({
     </div>
   );
 };
-
-export default UbugUreport;

@@ -39,5 +39,3 @@ export const ProductionLine = ({
     </div>
   );
 };
-
-export default ProductionLine;

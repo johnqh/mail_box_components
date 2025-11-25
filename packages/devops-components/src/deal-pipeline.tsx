@@ -39,5 +39,3 @@ export const DealPipeline = ({
     </div>
   );
 };
-
-export default DealPipeline;

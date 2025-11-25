@@ -58,5 +58,3 @@ export const UinvoiceUdisplay = ({
     </div>
   );
 };
-
-export default UinvoiceUdisplay;

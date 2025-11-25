@@ -58,5 +58,3 @@ export const UbodyUmetrics = ({
     </div>
   );
 };
-
-export default UbodyUmetrics;

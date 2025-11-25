@@ -58,5 +58,3 @@ export const UformUvalidator = ({
     </div>
   );
 };
-
-export default UformUvalidator;

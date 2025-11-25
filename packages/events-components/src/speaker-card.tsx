@@ -58,5 +58,3 @@ export const UspeakerUcard = ({
     </div>
   );
 };
-
-export default UspeakerUcard;

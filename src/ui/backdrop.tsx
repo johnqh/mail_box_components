@@ -81,5 +81,3 @@ export const Backdrop: React.FC<BackdropProps> = ({
     </div>
   );
 };
-
-export default Backdrop;

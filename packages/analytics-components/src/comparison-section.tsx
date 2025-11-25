@@ -291,5 +291,3 @@ export const createEmailComparisonData = (labels?: {
     ),
   };
 };
-
-export default ComparisonSection;

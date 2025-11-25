@@ -154,5 +154,3 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
     </div>
   );
 };
-
-export default ToggleGroup;

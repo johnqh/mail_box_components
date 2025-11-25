@@ -58,5 +58,3 @@ export const UdeviceUcontrol = ({
     </div>
   );
 };
-
-export default UdeviceUcontrol;

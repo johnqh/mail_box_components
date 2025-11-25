@@ -39,5 +39,3 @@ export const ClaimSubmission = ({
     </div>
   );
 };
-
-export default ClaimSubmission;

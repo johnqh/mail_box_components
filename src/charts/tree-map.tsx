@@ -58,5 +58,3 @@ export const UtreeUmap = ({
     </div>
   );
 };
-
-export default UtreeUmap;

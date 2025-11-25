@@ -58,5 +58,3 @@ export const UuploadUprogress = ({
     </div>
   );
 };
-
-export default UuploadUprogress;

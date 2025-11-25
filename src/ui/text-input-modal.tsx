@@ -149,5 +149,3 @@ export const TextInputModal: React.FC<TextInputModalProps> = ({
     </Modal>
   );
 };
-
-export default TextInputModal;

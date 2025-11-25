@@ -39,5 +39,3 @@ export const TeamManagement = ({
     </div>
   );
 };
-
-export default TeamManagement;

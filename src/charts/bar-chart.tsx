@@ -135,5 +135,3 @@ export const BarChart: React.FC<BarChartProps> = ({
     </div>
   );
 };
-
-export default BarChart;

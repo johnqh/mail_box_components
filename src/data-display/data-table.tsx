@@ -161,5 +161,3 @@ export const DataTable = <T,>({
     </div>
   );
 };
-
-export default DataTable;

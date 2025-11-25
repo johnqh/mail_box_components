@@ -39,5 +39,3 @@ export const VoipPhone = ({
     </div>
   );
 };
-
-export default VoipPhone;

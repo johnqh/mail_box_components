@@ -213,5 +213,3 @@ export const Sheet: React.FC<SheetProps> = ({
     </Portal>
   );
 };
-
-export default Sheet;

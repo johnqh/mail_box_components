@@ -39,5 +39,3 @@ export const TournamentBracket = ({
     </div>
   );
 };
-
-export default TournamentBracket;

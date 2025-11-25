@@ -200,5 +200,3 @@ export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
     </div>
   );
 };
-
-export default EmailInputGroup;

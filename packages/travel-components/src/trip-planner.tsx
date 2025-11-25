@@ -58,5 +58,3 @@ export const UtripUplanner = ({
     </div>
   );
 };
-
-export default UtripUplanner;

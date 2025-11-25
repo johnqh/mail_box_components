@@ -58,5 +58,3 @@ export const UstickyUnote = ({
     </div>
   );
 };
-
-export default UstickyUnote;

@@ -150,5 +150,3 @@ export const useFormSubmission = (
     clearError,
   };
 };
-
-export default useFormSubmission;

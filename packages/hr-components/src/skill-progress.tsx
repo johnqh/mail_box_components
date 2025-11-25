@@ -58,5 +58,3 @@ export const UskillUprogress = ({
     </div>
   );
 };
-
-export default UskillUprogress;

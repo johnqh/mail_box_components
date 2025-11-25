@@ -58,5 +58,3 @@ export const UvacationUplanner = ({
     </div>
   );
 };
-
-export default UvacationUplanner;

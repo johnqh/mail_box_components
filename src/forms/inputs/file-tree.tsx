@@ -58,5 +58,3 @@ export const UfileUtree = ({
     </div>
   );
 };
-
-export default UfileUtree;

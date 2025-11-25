@@ -58,5 +58,3 @@ export const UchecklistUprogress = ({
     </div>
   );
 };
-
-export default UchecklistUprogress;

@@ -34,5 +34,3 @@ export const VisuallyHidden: React.FC<VisuallyHiddenProps> = ({
 }) => {
   return <Component className='sr-only'>{children}</Component>;
 };
-
-export default VisuallyHidden;

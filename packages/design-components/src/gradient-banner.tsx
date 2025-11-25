@@ -104,5 +104,3 @@ export const GradientBanner: React.FC<GradientBannerProps> = ({
     </div>
   );
 };
-
-export default GradientBanner;

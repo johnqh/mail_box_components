@@ -58,5 +58,3 @@ export const UlanguageUselector = ({
     </div>
   );
 };
-
-export default UlanguageUselector;

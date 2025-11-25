@@ -39,5 +39,3 @@ export const JobPosting = ({
     </div>
   );
 };
-
-export default JobPosting;

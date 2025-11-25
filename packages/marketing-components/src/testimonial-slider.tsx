@@ -58,5 +58,3 @@ export const UtestimonialUslider = ({
     </div>
   );
 };
-
-export default UtestimonialUslider;

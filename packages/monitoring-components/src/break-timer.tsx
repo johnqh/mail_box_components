@@ -58,5 +58,3 @@ export const UbreakUtimer = ({
     </div>
   );
 };
-
-export default UbreakUtimer;

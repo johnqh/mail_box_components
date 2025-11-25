@@ -58,5 +58,3 @@ export const UwelcomeUscreen = ({
     </div>
   );
 };
-
-export default UwelcomeUscreen;

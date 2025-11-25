@@ -39,5 +39,3 @@ export const GradeBook = ({
     </div>
   );
 };
-
-export default GradeBook;

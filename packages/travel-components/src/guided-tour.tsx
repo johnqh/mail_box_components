@@ -58,5 +58,3 @@ export const UguidedUtour = ({
     </div>
   );
 };
-
-export default UguidedUtour;

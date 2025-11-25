@@ -58,5 +58,3 @@ export const UapiUplayground = ({
     </div>
   );
 };
-
-export default UapiUplayground;

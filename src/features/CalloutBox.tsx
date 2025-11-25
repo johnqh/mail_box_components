@@ -113,5 +113,3 @@ export const CalloutBox: React.FC<CalloutBoxProps> = ({
     </div>
   );
 };
-
-export default CalloutBox;

@@ -58,5 +58,3 @@ export const UdragUdropUlist = ({
     </div>
   );
 };
-
-export default UdragUdropUlist;

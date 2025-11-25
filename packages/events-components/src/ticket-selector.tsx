@@ -58,5 +58,3 @@ export const UticketUselector = ({
     </div>
   );
 };
-
-export default UticketUselector;

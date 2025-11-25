@@ -58,5 +58,3 @@ export const UtravelUtips = ({
     </div>
   );
 };
-
-export default UtravelUtips;

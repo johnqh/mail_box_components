@@ -304,5 +304,3 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
     </div>
   );
 };
-
-export default CreditCardInput;

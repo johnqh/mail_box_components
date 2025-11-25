@@ -280,5 +280,3 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
     </div>
   );
 };
-
-export default MultiSelect;

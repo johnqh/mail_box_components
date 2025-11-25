@@ -39,5 +39,3 @@ export const FundraiserProgress = ({
     </div>
   );
 };
-
-export default FundraiserProgress;

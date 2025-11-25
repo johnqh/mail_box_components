@@ -39,5 +39,3 @@ export const SalesReport = ({
     </div>
   );
 };
-
-export default SalesReport;

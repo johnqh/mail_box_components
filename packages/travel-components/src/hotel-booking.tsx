@@ -58,5 +58,3 @@ export const UhotelUbooking = ({
     </div>
   );
 };
-
-export default UhotelUbooking;

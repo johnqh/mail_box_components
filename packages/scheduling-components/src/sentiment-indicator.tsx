@@ -58,5 +58,3 @@ export const UsentimentUindicator = ({
     </div>
   );
 };
-
-export default UsentimentUindicator;

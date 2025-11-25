@@ -39,5 +39,3 @@ export const PolicyManager = ({
     </div>
   );
 };
-
-export default PolicyManager;

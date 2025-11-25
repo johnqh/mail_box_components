@@ -39,5 +39,3 @@ export const PermitApplication = ({
     </div>
   );
 };
-
-export default PermitApplication;

@@ -39,5 +39,3 @@ export const StockLevel = ({
     </div>
   );
 };
-
-export default StockLevel;

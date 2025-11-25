@@ -58,5 +58,3 @@ export const UperformanceUchart = ({
     </div>
   );
 };
-
-export default UperformanceUchart;

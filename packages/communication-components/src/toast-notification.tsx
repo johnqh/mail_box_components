@@ -38,5 +38,3 @@ export const ToastNotification: React.FC<ToastNotificationProps> = ({
     </div>
   );
 };
-
-export default ToastNotification;

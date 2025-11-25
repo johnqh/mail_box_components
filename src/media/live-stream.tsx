@@ -39,5 +39,3 @@ export const LiveStream = ({
     </div>
   );
 };
-
-export default LiveStream;

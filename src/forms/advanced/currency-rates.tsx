@@ -58,5 +58,3 @@ export const UcurrencyUrates = ({
     </div>
   );
 };
-
-export default UcurrencyUrates;

@@ -187,5 +187,3 @@ export const DragDrop: React.FC<DragDropProps> = ({
     </div>
   );
 };
-
-export default DragDrop;

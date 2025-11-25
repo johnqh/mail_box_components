@@ -39,5 +39,3 @@ export const LoadPlanner = ({
     </div>
   );
 };
-
-export default LoadPlanner;

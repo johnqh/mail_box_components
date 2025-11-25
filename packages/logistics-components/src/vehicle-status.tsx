@@ -39,5 +39,3 @@ export const VehicleStatus = ({
     </div>
   );
 };
-
-export default VehicleStatus;

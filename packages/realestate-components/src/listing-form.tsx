@@ -58,5 +58,3 @@ export const UlistingUform = ({
     </div>
   );
 };
-
-export default UlistingUform;

@@ -39,5 +39,3 @@ export const TicketSystem = ({
     </div>
   );
 };
-
-export default TicketSystem;

@@ -58,5 +58,3 @@ export const UanimatedUcounter = ({
     </div>
   );
 };
-
-export default UanimatedUcounter;

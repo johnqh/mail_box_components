@@ -58,5 +58,3 @@ export const UtelemetryUchart = ({
     </div>
   );
 };
-
-export default UtelemetryUchart;

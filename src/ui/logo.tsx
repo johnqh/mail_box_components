@@ -11,7 +11,7 @@ interface LogoProps {
   fontFamily?: string; // Allow customizing font family
 }
 
-const Logo: FC<LogoProps> = ({
+export const Logo: FC<LogoProps> = ({
   size = 'md',
   className = '',
   showText = true,
@@ -89,6 +89,3 @@ const Logo: FC<LogoProps> = ({
     </div>
   );
 };
-
-export { Logo };
-export default Logo;

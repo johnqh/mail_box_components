@@ -58,5 +58,3 @@ export const Uheatmap = ({
     </div>
   );
 };
-
-export default Uheatmap;

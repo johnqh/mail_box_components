@@ -58,5 +58,3 @@ export const UfieldUmapper = ({
     </div>
   );
 };
-
-export default UfieldUmapper;

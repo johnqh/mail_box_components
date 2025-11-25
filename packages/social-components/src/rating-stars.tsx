@@ -174,5 +174,3 @@ export const RatingStars: React.FC<RatingStarsProps> = ({
     </div>
   );
 };
-
-export default RatingStars;

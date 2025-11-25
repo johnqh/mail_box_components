@@ -58,5 +58,3 @@ export const UfileUbrowser = ({
     </div>
   );
 };
-
-export default UfileUbrowser;

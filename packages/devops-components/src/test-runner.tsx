@@ -58,5 +58,3 @@ export const UtestUrunner = ({
     </div>
   );
 };
-
-export default UtestUrunner;

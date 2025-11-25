@@ -218,5 +218,3 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     </nav>
   );
 };
-
-export default Breadcrumb;

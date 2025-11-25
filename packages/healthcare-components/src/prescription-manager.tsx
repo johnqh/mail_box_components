@@ -39,5 +39,3 @@ export const PrescriptionManager = ({
     </div>
   );
 };
-
-export default PrescriptionManager;

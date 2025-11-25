@@ -58,5 +58,3 @@ export const UcallUcontrols = ({
     </div>
   );
 };
-
-export default UcallUcontrols;

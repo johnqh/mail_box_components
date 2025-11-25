@@ -39,5 +39,3 @@ export const RecyclingTracker = ({
     </div>
   );
 };
-
-export default RecyclingTracker;

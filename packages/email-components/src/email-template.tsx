@@ -58,5 +58,3 @@ export const UemailUtemplate = ({
     </div>
   );
 };
-
-export default UemailUtemplate;

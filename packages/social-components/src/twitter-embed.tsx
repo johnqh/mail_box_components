@@ -39,5 +39,3 @@ export const TwitterEmbed = ({
     </div>
   );
 };
-
-export default TwitterEmbed;

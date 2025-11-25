@@ -58,5 +58,3 @@ export const UlocationUpicker = ({
     </div>
   );
 };
-
-export default UlocationUpicker;

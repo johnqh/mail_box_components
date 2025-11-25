@@ -58,5 +58,3 @@ export const UbookingUconfirmation = ({
     </div>
   );
 };
-
-export default UbookingUconfirmation;

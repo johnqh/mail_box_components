@@ -77,5 +77,3 @@ export const InfoCard: React.FC<InfoCardProps> = ({
     </div>
   );
 };
-
-export default InfoCard;

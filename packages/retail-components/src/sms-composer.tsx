@@ -39,5 +39,3 @@ export const SmsComposer = ({
     </div>
   );
 };
-
-export default SmsComposer;

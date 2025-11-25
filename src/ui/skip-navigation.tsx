@@ -58,5 +58,3 @@ export const UskipUnavigation = ({
     </div>
   );
 };
-
-export default UskipUnavigation;

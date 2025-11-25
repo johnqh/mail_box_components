@@ -58,5 +58,3 @@ export const UspinUwheel = ({
     </div>
   );
 };
-
-export default UspinUwheel;

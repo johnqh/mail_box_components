@@ -58,5 +58,3 @@ export const UachievementUbadge = ({
     </div>
   );
 };
-
-export default UachievementUbadge;

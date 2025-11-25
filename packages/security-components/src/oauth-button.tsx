@@ -58,5 +58,3 @@ export const UoauthUbutton = ({
     </div>
   );
 };
-
-export default UoauthUbutton;

@@ -77,5 +77,3 @@ export const FormAlerts: React.FC<FormAlertsProps> = ({
     </div>
   );
 };
-
-export default FormAlerts;

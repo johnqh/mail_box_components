@@ -39,5 +39,3 @@ export const BugTracker = ({
     </div>
   );
 };
-
-export default BugTracker;

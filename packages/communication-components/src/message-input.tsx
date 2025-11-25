@@ -58,5 +58,3 @@ export const UmessageUinput = ({
     </div>
   );
 };
-
-export default UmessageUinput;

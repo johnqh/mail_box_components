@@ -58,5 +58,3 @@ export const UmeetingUscheduler = ({
     </div>
   );
 };
-
-export default UmeetingUscheduler;

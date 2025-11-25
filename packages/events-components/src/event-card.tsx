@@ -58,5 +58,3 @@ export const UeventUcard = ({
     </div>
   );
 };
-
-export default UeventUcard;

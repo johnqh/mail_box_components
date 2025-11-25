@@ -58,5 +58,3 @@ export const UsortUdropdown = ({
     </div>
   );
 };
-
-export default UsortUdropdown;

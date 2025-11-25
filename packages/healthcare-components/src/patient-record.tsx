@@ -39,5 +39,3 @@ export const PatientRecord = ({
     </div>
   );
 };
-
-export default PatientRecord;

@@ -22,5 +22,3 @@ export const NoContent: React.FC<NoContentProps> = ({
     <EmptyState title={title} description={subtext} className={className} />
   );
 };
-
-export default NoContent;

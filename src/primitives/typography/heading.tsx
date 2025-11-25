@@ -110,5 +110,3 @@ export const Heading: React.FC<HeadingProps> = ({
     children
   );
 };
-
-export default Heading;

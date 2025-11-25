@@ -58,5 +58,3 @@ export const UexcelUuploader = ({
     </div>
   );
 };
-
-export default UexcelUuploader;

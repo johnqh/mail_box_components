@@ -222,5 +222,3 @@ export const FloatingElement: React.FC<{
     {children}
   </AnimatedSection>
 );
-
-export default AnimatedSection;

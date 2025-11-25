@@ -94,5 +94,3 @@ export const DashboardStatCard: React.FC<DashboardStatCardProps> = ({
     </div>
   );
 };
-
-export default DashboardStatCard;

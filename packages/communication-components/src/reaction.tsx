@@ -142,5 +142,3 @@ export const Reaction: React.FC<ReactionProps> = ({
     </div>
   );
 };
-
-export default Reaction;

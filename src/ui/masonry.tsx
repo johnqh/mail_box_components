@@ -101,5 +101,3 @@ export const Masonry: React.FC<MasonryProps> = ({
     </div>
   );
 };
-
-export default Masonry;

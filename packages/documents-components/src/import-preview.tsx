@@ -58,5 +58,3 @@ export const UimportUpreview = ({
     </div>
   );
 };
-
-export default UimportUpreview;

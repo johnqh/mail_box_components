@@ -58,5 +58,3 @@ export const UxmlUparser = ({
     </div>
   );
 };
-
-export default UxmlUparser;

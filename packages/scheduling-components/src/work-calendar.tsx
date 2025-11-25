@@ -58,5 +58,3 @@ export const UworkUcalendar = ({
     </div>
   );
 };
-
-export default UworkUcalendar;

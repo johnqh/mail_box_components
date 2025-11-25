@@ -58,5 +58,3 @@ export const UquizUcard = ({
     </div>
   );
 };
-
-export default UquizUcard;

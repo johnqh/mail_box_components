@@ -62,5 +62,3 @@ export const Center: React.FC<CenterProps> = ({
     </div>
   );
 };
-
-export default Center;

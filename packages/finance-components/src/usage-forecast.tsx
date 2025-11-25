@@ -39,5 +39,3 @@ export const UsageForecast = ({
     </div>
   );
 };
-
-export default UsageForecast;

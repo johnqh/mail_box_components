@@ -39,5 +39,3 @@ export const InvestmentPortfolio = ({
     </div>
   );
 };
-
-export default InvestmentPortfolio;

@@ -115,5 +115,3 @@ export const Link: React.FC<LinkProps> = ({
     </a>
   );
 };
-
-export default Link;

@@ -58,5 +58,3 @@ export const UmodelUprediction = ({
     </div>
   );
 };
-
-export default UmodelUprediction;

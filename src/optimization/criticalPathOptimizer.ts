@@ -11,7 +11,7 @@ interface CriticalResource {
   preload?: boolean;
 }
 
-class CriticalPathOptimizer {
+export class CriticalPathOptimizer {
   private criticalResources: CriticalResource[] = [];
   private observedMetrics = {
     fcp: 0,
@@ -410,5 +410,3 @@ export function initializeCriticalPathOptimization(): void {
 export function getPerformanceMetrics() {
   return optimizerInstance?.getPerformanceMetrics();
 }
-
-export default CriticalPathOptimizer;

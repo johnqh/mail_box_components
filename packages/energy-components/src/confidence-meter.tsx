@@ -58,5 +58,3 @@ export const UconfidenceUmeter = ({
     </div>
   );
 };
-
-export default UconfidenceUmeter;

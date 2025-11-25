@@ -132,5 +132,3 @@ export const FloatingPanel: React.FC<FloatingPanelProps> = ({
     </div>
   );
 };
-
-export default FloatingPanel;

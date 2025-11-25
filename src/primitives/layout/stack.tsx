@@ -173,5 +173,3 @@ export const VStack: React.FC<Omit<StackProps, 'direction'>> = props => (
 export const HStack: React.FC<Omit<StackProps, 'direction'>> = props => (
   <Stack direction='horizontal' {...props} />
 );
-
-export default Stack;

@@ -58,5 +58,3 @@ export const UspreadsheetUgrid = ({
     </div>
   );
 };
-
-export default UspreadsheetUgrid;

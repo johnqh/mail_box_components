@@ -58,5 +58,3 @@ export const UscatterUplot = ({
     </div>
   );
 };
-
-export default UscatterUplot;

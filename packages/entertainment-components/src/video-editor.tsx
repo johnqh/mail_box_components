@@ -39,5 +39,3 @@ export const VideoEditor = ({
     </div>
   );
 };
-
-export default VideoEditor;

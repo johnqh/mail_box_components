@@ -58,5 +58,3 @@ export const UvideoUthumbnail = ({
     </div>
   );
 };
-
-export default UvideoUthumbnail;

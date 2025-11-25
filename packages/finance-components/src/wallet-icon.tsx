@@ -7,7 +7,7 @@ interface WalletIconProps {
   iconBasePath?: string; // Allow customizing the base path for icons
 }
 
-const WalletIcon: React.FC<WalletIconProps> = ({
+export const WalletIcon: React.FC<WalletIconProps> = ({
   wallet,
   connector,
   className = 'w-8 h-8',
@@ -70,6 +70,3 @@ const WalletIcon: React.FC<WalletIconProps> = ({
     />
   );
 };
-
-export { WalletIcon };
-export default WalletIcon;

@@ -91,5 +91,3 @@ export const HelperText: React.FC<HelperTextProps> = ({
     </div>
   );
 };
-
-export default HelperText;

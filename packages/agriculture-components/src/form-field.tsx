@@ -108,5 +108,3 @@ export const FormField: React.FC<FormFieldProps> = ({
     </div>
   );
 };
-
-export default FormField;

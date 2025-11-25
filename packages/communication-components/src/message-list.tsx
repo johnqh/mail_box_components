@@ -58,5 +58,3 @@ export const UmessageUlist = ({
     </div>
   );
 };
-
-export default UmessageUlist;

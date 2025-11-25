@@ -143,7 +143,7 @@ export interface MasterDetailLayoutProps {
  * />
  * ```
  */
-const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
+export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   masterTitle,
   masterSubtitle,
   backButtonText,
@@ -388,5 +388,3 @@ const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
     </>
   );
 };
-
-export default MasterDetailLayout;

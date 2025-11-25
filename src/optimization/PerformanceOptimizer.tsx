@@ -7,7 +7,7 @@ interface PerformanceOptimizerProps {
   apiUrl?: string;
 }
 
-const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
+export const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
   children,
   appName,
   appUrl,
@@ -290,5 +290,3 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({
 
   return <>{children}</>;
 };
-
-export default PerformanceOptimizer;

@@ -58,5 +58,3 @@ export const UnestedUdrag = ({
     </div>
   );
 };
-
-export default UnestedUdrag;

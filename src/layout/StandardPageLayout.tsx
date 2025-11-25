@@ -23,5 +23,3 @@ export const StandardPageLayout: React.FC<StandardPageLayoutProps> = ({
     </div>
   );
 };
-
-export default StandardPageLayout;

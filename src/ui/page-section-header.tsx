@@ -128,5 +128,3 @@ export const PageSectionHeader: React.FC<PageSectionHeaderProps> = ({
     </div>
   );
 };
-
-export default PageSectionHeader;

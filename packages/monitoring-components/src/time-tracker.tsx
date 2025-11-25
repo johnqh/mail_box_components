@@ -58,5 +58,3 @@ export const UtimeUtracker = ({
     </div>
   );
 };
-
-export default UtimeUtracker;

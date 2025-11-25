@@ -67,5 +67,3 @@ export const Code: React.FC<CodeProps> = ({
     </code>
   );
 };
-
-export default Code;

@@ -58,5 +58,3 @@ export const UsortableUgrid = ({
     </div>
   );
 };
-
-export default UsortableUgrid;

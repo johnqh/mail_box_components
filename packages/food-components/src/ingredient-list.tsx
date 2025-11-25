@@ -58,5 +58,3 @@ export const UingredientUlist = ({
     </div>
   );
 };
-
-export default UingredientUlist;

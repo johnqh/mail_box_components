@@ -39,5 +39,3 @@ export const RouteOptimizer = ({
     </div>
   );
 };
-
-export default RouteOptimizer;

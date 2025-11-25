@@ -39,5 +39,3 @@ export const RiskAssessment = ({
     </div>
   );
 };
-
-export default RiskAssessment;

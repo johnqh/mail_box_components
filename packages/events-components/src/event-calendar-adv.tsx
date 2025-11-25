@@ -58,5 +58,3 @@ export const UeventUcalendarUadv = ({
     </div>
   );
 };
-
-export default UeventUcalendarUadv;

@@ -235,5 +235,3 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
     </div>
   );
 };
-
-export default StepIndicator;

@@ -58,5 +58,3 @@ export const UbubbleUchart = ({
     </div>
   );
 };
-
-export default UbubbleUchart;

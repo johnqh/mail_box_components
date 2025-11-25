@@ -58,5 +58,3 @@ export const UdataUmapper = ({
     </div>
   );
 };
-
-export default UdataUmapper;

@@ -4,7 +4,7 @@
 
 // Components
 export { AIMeta } from './AIMeta';
-export { default as SemanticHTML } from './SemanticHTML';
+export * from './SemanticHTML';
 export { AITrainingEnhancer } from './AITrainingEnhancer';
 
 // Utilities

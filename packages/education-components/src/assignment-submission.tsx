@@ -39,5 +39,3 @@ export const AssignmentSubmission = ({
     </div>
   );
 };
-
-export default AssignmentSubmission;

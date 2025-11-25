@@ -58,5 +58,3 @@ export const UsystemUstatus = ({
     </div>
   );
 };
-
-export default UsystemUstatus;

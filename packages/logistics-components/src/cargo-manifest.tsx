@@ -39,5 +39,3 @@ export const CargoManifest = ({
     </div>
   );
 };
-
-export default CargoManifest;

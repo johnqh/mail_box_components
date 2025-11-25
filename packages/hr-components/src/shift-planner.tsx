@@ -58,5 +58,3 @@ export const UshiftUplanner = ({
     </div>
   );
 };
-
-export default UshiftUplanner;

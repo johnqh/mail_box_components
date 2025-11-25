@@ -1,7 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import Spinner from './spinner';
-
+import { Spinner } from './spinner';
 interface LoadingStateProps {
   message?: string;
   size?: 'small' | 'default' | 'large';
@@ -62,5 +61,3 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
 
   return content;
 };
-
-export default LoadingState;

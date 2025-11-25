@@ -39,5 +39,3 @@ export const FuelGauge = ({
     </div>
   );
 };
-
-export default FuelGauge;

@@ -262,5 +262,3 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
     </div>
   );
 };
-
-export default PhoneInput;

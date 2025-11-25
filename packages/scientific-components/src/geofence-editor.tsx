@@ -58,5 +58,3 @@ export const UgeofenceUeditor = ({
     </div>
   );
 };
-
-export default UgeofenceUeditor;

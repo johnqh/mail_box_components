@@ -58,5 +58,3 @@ export const UflightUsearch = ({
     </div>
   );
 };
-
-export default UflightUsearch;

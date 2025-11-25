@@ -58,5 +58,3 @@ export const UkeyboardUshortcut = ({
     </div>
   );
 };
-
-export default UkeyboardUshortcut;

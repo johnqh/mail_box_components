@@ -105,5 +105,3 @@ export const StepList: React.FC<StepListProps> = ({
     <ul className={cn(getListStyles(), className)}>{items.map(renderItem)}</ul>
   );
 };
-
-export default StepList;

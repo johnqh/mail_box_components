@@ -39,5 +39,3 @@ export const VesselTracker = ({
     </div>
   );
 };
-
-export default VesselTracker;

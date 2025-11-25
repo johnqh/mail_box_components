@@ -58,5 +58,3 @@ export const UattendeeUbadge = ({
     </div>
   );
 };
-
-export default UattendeeUbadge;

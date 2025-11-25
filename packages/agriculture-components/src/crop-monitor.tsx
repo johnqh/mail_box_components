@@ -39,5 +39,3 @@ export const CropMonitor = ({
     </div>
   );
 };
-
-export default CropMonitor;

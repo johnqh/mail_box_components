@@ -58,5 +58,3 @@ export const UdiffUviewer = ({
     </div>
   );
 };
-
-export default UdiffUviewer;

@@ -58,5 +58,3 @@ export const UhoverUtooltip = ({
     </div>
   );
 };
-
-export default UhoverUtooltip;

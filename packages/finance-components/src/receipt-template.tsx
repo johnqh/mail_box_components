@@ -58,5 +58,3 @@ export const UreceiptUtemplate = ({
     </div>
   );
 };
-
-export default UreceiptUtemplate;

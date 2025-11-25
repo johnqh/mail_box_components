@@ -184,5 +184,3 @@ export const AreaChart: React.FC<AreaChartProps> = ({
     </div>
   );
 };
-
-export default AreaChart;

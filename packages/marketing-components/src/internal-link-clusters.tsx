@@ -18,7 +18,7 @@ const linkVariants = {
     'text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 underline',
 };
 
-const InternalLink: React.FC<InternalLinkProps> = ({
+export const InternalLink: React.FC<InternalLinkProps> = ({
   to,
   children,
   className,
@@ -198,4 +198,3 @@ export {
   type TopicClusterLinksProps,
   type RelatedLinksProps,
 };
-export default InternalLink;

@@ -58,5 +58,3 @@ export const UsensorUreading = ({
     </div>
   );
 };
-
-export default UsensorUreading;

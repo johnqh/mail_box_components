@@ -58,5 +58,3 @@ export const UfunnelUchart = ({
     </div>
   );
 };
-
-export default UfunnelUchart;

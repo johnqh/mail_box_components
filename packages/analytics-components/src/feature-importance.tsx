@@ -58,5 +58,3 @@ export const UfeatureUimportance = ({
     </div>
   );
 };
-
-export default UfeatureUimportance;

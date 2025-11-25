@@ -58,5 +58,3 @@ export const UinvestmentUtracker = ({
     </div>
   );
 };
-
-export default UinvestmentUtracker;

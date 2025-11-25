@@ -58,5 +58,3 @@ export const UbudgetUtracker = ({
     </div>
   );
 };
-
-export default UbudgetUtracker;

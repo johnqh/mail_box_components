@@ -58,5 +58,3 @@ export const UpinchUzoom = ({
     </div>
   );
 };
-
-export default UpinchUzoom;

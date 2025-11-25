@@ -104,5 +104,3 @@ export const Overlay: React.FC<OverlayProps> = ({
     </Portal>
   );
 };
-
-export default Overlay;

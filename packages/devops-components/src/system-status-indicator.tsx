@@ -193,5 +193,3 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
     </Tooltip.Provider>
   );
 };
-
-export default SystemStatusIndicator;

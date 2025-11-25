@@ -39,5 +39,3 @@ export const FacebookShare = ({
     </div>
   );
 };
-
-export default FacebookShare;

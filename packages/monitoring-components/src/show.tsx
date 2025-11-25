@@ -36,5 +36,3 @@ export const Show: React.FC<ShowProps> = ({
 }) => {
   return <>{when ? children : fallback}</>;
 };
-
-export default Show;

@@ -39,5 +39,3 @@ export const LoanCalculator = ({
     </div>
   );
 };
-
-export default LoanCalculator;

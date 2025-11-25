@@ -254,5 +254,3 @@ export const Combobox: React.FC<ComboboxProps> = ({
     </div>
   );
 };
-
-export default Combobox;

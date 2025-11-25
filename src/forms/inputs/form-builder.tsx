@@ -58,5 +58,3 @@ export const UformUbuilder = ({
     </div>
   );
 };
-
-export default UformUbuilder;

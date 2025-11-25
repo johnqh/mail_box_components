@@ -58,5 +58,3 @@ export const UtaskUdependency = ({
     </div>
   );
 };
-
-export default UtaskUdependency;

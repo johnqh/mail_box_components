@@ -58,5 +58,3 @@ export const UpropertyUmap = ({
     </div>
   );
 };
-
-export default UpropertyUmap;

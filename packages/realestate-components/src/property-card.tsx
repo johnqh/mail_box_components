@@ -58,5 +58,3 @@ export const UpropertyUcard = ({
     </div>
   );
 };
-
-export default UpropertyUcard;

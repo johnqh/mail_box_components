@@ -190,5 +190,3 @@ export const TreeView: React.FC<TreeViewProps> = ({
     </div>
   );
 };
-
-export default TreeView;

@@ -198,5 +198,3 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
     {children}
   </div>
 );
-
-export default Modal;

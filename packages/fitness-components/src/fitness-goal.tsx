@@ -58,5 +58,3 @@ export const UfitnessUgoal = ({
     </div>
   );
 };
-
-export default UfitnessUgoal;

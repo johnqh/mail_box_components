@@ -103,5 +103,3 @@ export function VirtualList<T>({
     </div>
   );
 }
-
-export default VirtualList;

@@ -58,5 +58,3 @@ export const UtwoUfactorUinput = ({
     </div>
   );
 };
-
-export default UtwoUfactorUinput;

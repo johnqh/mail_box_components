@@ -238,5 +238,3 @@ export const MentionInput: React.FC<MentionInputProps> = ({
     </div>
   );
 };
-
-export default MentionInput;

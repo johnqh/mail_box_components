@@ -108,5 +108,3 @@ export const CodeDisplay: React.FC<CodeDisplayProps> = ({
     </Element>
   );
 };
-
-export default CodeDisplay;

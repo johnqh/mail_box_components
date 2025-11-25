@@ -39,5 +39,3 @@ export const BoardingPass = ({
     </div>
   );
 };
-
-export default BoardingPass;

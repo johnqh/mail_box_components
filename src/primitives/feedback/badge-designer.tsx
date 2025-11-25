@@ -58,5 +58,3 @@ export const UbadgeUdesigner = ({
     </div>
   );
 };
-
-export default UbadgeUdesigner;

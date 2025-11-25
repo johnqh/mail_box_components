@@ -58,5 +58,3 @@ export const UvideoUcall = ({
     </div>
   );
 };
-
-export default UvideoUcall;

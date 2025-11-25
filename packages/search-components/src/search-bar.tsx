@@ -58,5 +58,3 @@ export const UsearchUbar = ({
     </div>
   );
 };
-
-export default UsearchUbar;

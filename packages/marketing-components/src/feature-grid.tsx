@@ -345,5 +345,3 @@ export const createSecurityFeatures = (labels?: {
       'Your emails are encrypted and only you can read them.'
   ),
 ];
-
-export default FeatureGrid;

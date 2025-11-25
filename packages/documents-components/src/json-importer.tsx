@@ -58,5 +58,3 @@ export const UjsonUimporter = ({
     </div>
   );
 };
-
-export default UjsonUimporter;

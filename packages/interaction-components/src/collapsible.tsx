@@ -146,5 +146,3 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
     </div>
   );
 };
-
-export default Collapsible;

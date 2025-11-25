@@ -58,5 +58,3 @@ export const UroleUmanager = ({
     </div>
   );
 };
-
-export default UroleUmanager;

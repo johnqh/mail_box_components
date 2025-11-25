@@ -204,5 +204,3 @@ export function Table<T extends Record<string, any>>({
     </div>
   );
 }
-
-export default Table;

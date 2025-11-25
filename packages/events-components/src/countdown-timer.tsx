@@ -199,5 +199,3 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     </div>
   );
 };
-
-export default CountdownTimer;

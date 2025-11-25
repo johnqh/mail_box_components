@@ -98,7 +98,7 @@ const CollapsibleSubsections: React.FC<{
  * @param onSubsectionSelect - Callback when subsection is selected
  * @param className - Additional CSS classes
  */
-const CollapsibleDocumentationTopic: React.FC<
+export const CollapsibleDocumentationTopic: React.FC<
   CollapsibleDocumentationTopicProps
 > = ({
   id,
@@ -171,5 +171,3 @@ const CollapsibleDocumentationTopic: React.FC<
     </div>
   );
 };
-
-export default CollapsibleDocumentationTopic;

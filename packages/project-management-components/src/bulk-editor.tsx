@@ -58,5 +58,3 @@ export const UbulkUeditor = ({
     </div>
   );
 };
-
-export default UbulkUeditor;

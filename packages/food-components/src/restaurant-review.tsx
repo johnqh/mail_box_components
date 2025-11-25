@@ -58,5 +58,3 @@ export const UrestaurantUreview = ({
     </div>
   );
 };
-
-export default UrestaurantUreview;

@@ -58,5 +58,3 @@ export const UpasswordUstrength = ({
     </div>
   );
 };
-
-export default UpasswordUstrength;

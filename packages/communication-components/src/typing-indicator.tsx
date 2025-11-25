@@ -76,5 +76,3 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
     </div>
   );
 };
-
-export default TypingIndicator;

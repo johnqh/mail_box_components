@@ -208,5 +208,3 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
     </nav>
   );
 };
-
-export default ScrollSpy;

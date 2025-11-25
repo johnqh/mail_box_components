@@ -290,5 +290,3 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     </div>
   );
 };
-
-export default TimePicker;

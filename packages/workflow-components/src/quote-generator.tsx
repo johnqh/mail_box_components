@@ -39,5 +39,3 @@ export const QuoteGenerator = ({
     </div>
   );
 };
-
-export default QuoteGenerator;

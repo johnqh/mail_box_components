@@ -39,5 +39,3 @@ export const AuditTrail = ({
     </div>
   );
 };
-
-export default AuditTrail;

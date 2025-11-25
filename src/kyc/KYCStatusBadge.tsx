@@ -62,5 +62,3 @@ export const KYCStatusBadge: React.FC<KYCStatusBadgeProps> = ({
     </div>
   );
 };
-
-export default KYCStatusBadge;

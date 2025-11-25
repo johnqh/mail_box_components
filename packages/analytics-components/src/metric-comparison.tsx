@@ -58,5 +58,3 @@ export const UmetricUcomparison = ({
     </div>
   );
 };
-
-export default UmetricUcomparison;

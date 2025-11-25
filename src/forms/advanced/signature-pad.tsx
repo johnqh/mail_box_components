@@ -39,5 +39,3 @@ export const SignaturePad = ({
     </div>
   );
 };
-
-export default SignaturePad;

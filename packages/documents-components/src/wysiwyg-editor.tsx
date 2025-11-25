@@ -40,5 +40,3 @@ export const WysiwygEditor = ({
     </div>
   );
 };
-
-export default WysiwygEditor;

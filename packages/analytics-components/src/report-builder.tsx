@@ -58,5 +58,3 @@ export const UreportUbuilder = ({
     </div>
   );
 };
-
-export default UreportUbuilder;

@@ -58,5 +58,3 @@ export const UdeliveryUtracker = ({
     </div>
   );
 };
-
-export default UdeliveryUtracker;

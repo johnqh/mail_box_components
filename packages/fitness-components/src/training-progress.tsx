@@ -58,5 +58,3 @@ export const UtrainingUprogress = ({
     </div>
   );
 };
-
-export default UtrainingUprogress;

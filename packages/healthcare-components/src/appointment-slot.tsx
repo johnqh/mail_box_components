@@ -58,5 +58,3 @@ export const UappointmentUslot = ({
     </div>
   );
 };
-
-export default UappointmentUslot;

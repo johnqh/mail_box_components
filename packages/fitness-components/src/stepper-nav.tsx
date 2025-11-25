@@ -77,5 +77,3 @@ export const StepperNav: React.FC<StepperNavProps> = ({
     </nav>
   );
 };
-
-export default StepperNav;

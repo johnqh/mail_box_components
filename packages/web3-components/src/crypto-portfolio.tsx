@@ -58,5 +58,3 @@ export const UcryptoUportfolio = ({
     </div>
   );
 };
-
-export default UcryptoUportfolio;

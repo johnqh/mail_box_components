@@ -149,5 +149,3 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
     </div>
   );
 };
-
-export default ImageCropper;

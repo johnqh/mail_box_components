@@ -58,5 +58,3 @@ export const UconflictUresolver = ({
     </div>
   );
 };
-
-export default UconflictUresolver;

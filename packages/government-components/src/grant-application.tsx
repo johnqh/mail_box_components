@@ -39,5 +39,3 @@ export const GrantApplication = ({
     </div>
   );
 };
-
-export default GrantApplication;

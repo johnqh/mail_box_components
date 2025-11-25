@@ -39,5 +39,3 @@ export const ProjectBoard = ({
     </div>
   );
 };
-
-export default ProjectBoard;

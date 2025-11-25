@@ -247,5 +247,3 @@ export const SelectField: React.FC<SelectFieldProps> = ({
     </FormFieldGroup>
   );
 };
-
-export default FormFieldGroup;

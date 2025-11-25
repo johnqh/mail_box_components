@@ -39,5 +39,3 @@ export const VolunteerSchedule = ({
     </div>
   );
 };
-
-export default VolunteerSchedule;

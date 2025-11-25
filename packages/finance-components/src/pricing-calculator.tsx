@@ -58,5 +58,3 @@ export const UpricingUcalculator = ({
     </div>
   );
 };
-
-export default UpricingUcalculator;

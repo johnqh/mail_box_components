@@ -58,5 +58,3 @@ export const UfeedbackUform = ({
     </div>
   );
 };
-
-export default UfeedbackUform;

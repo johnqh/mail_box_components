@@ -58,5 +58,3 @@ export const UreviewUcard = ({
     </div>
   );
 };
-
-export default UreviewUcard;

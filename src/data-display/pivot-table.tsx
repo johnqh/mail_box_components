@@ -58,5 +58,3 @@ export const UpivotUtable = ({
     </div>
   );
 };
-
-export default UpivotUtable;

@@ -122,5 +122,3 @@ export const BorderAccent: React.FC<BorderAccentProps> = ({
     </div>
   );
 };
-
-export default BorderAccent;

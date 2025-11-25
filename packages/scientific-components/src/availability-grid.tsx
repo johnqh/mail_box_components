@@ -58,5 +58,3 @@ export const UavailabilityUgrid = ({
     </div>
   );
 };
-
-export default UavailabilityUgrid;

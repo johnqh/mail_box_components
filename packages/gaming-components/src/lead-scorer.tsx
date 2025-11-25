@@ -39,5 +39,3 @@ export const LeadScorer = ({
     </div>
   );
 };
-
-export default LeadScorer;

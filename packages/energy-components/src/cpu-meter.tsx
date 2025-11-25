@@ -58,5 +58,3 @@ export const UcpuUmeter = ({
     </div>
   );
 };
-
-export default UcpuUmeter;

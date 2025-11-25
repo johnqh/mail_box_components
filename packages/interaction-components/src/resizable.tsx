@@ -263,5 +263,3 @@ export const Resizable: React.FC<ResizableProps> = ({
     </div>
   );
 };
-
-export default Resizable;

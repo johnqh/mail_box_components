@@ -39,5 +39,3 @@ export const OnboardingChecklist = ({
     </div>
   );
 };
-
-export default OnboardingChecklist;

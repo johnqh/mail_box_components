@@ -58,5 +58,3 @@ export const UtravelUmap = ({
     </div>
   );
 };
-
-export default UtravelUmap;

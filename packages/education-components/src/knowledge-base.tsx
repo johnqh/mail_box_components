@@ -39,5 +39,3 @@ export const KnowledgeBase = ({
     </div>
   );
 };
-
-export default KnowledgeBase;

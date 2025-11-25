@@ -201,5 +201,3 @@ export const useMultipleCopyToClipboard = (
     resetCopiedState,
   };
 };
-
-export default useCopyToClipboard;

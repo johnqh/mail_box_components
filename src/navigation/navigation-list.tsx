@@ -128,5 +128,3 @@ export const NavigationList: React.FC<NavigationListProps> = ({
     </div>
   );
 };
-
-export default NavigationList;

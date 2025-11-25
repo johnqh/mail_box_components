@@ -139,5 +139,3 @@ export const Dialog: React.FC<DialogProps> = ({
     </Portal>
   );
 };
-
-export default Dialog;

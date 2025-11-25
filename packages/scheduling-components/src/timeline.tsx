@@ -227,5 +227,3 @@ export const Timeline: React.FC<TimelineProps> = ({
     </div>
   );
 };
-
-export default Timeline;

@@ -58,5 +58,3 @@ export const UpropertyUsearch = ({
     </div>
   );
 };
-
-export default UpropertyUsearch;

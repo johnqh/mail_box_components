@@ -33,5 +33,3 @@ export const NotificationBadge: React.FC<NotificationBadgeProps> = ({
     </span>
   );
 };
-
-export default NotificationBadge;

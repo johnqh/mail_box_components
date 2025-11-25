@@ -155,5 +155,3 @@ export const KeyValuePair: React.FC<KeyValuePairProps> = ({
     </div>
   );
 };
-
-export default KeyValuePair;

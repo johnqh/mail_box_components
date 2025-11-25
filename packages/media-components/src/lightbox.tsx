@@ -391,5 +391,3 @@ export const Lightbox: React.FC<LightboxProps> = ({
     </Portal>
   );
 };
-
-export default Lightbox;

@@ -4,37 +4,37 @@
 
 // Navigation & Content
 export { Breadcrumb } from './Breadcrumb';
-export { default as BreadcrumbSection } from './BreadcrumbSection';
-export { default as CodeBlock } from './CodeBlock';
+export { BreadcrumbSection } from './BreadcrumbSection';
+export { CodeBlock } from './CodeBlock';
 export {
-  default as CollapsibleDocumentationTopic,
+  CollapsibleDocumentationTopic,
   type CollapsibleDocumentationTopicProps,
   type Subsection,
 } from './CollapsibleDocumentationTopic';
 export {
-  default as PromotionalBanner,
+  PromotionalBanner,
   type PromotionalBannerProps,
 } from './PromotionalBanner';
 
 // Interactive Components
 export {
-  default as TrackedButton,
+  TrackedButton,
   type ButtonClickTrackingParams,
   type TrackingFunction,
 } from './TrackedButton';
 export {
-  default as TrackedLink,
+  TrackedLink,
   type LinkClickTrackingParams,
   type LinkTrackingFunction,
 } from './TrackedLink';
 
 // UI Components
-export { default as LanguageSelector } from './LanguageSelector';
-export { default as StepList } from './StepList';
+export { LanguageSelector } from './LanguageSelector';
+export { StepList } from './StepList';
 
 // Security & Error Handling
 export { ErrorBoundary } from './ErrorBoundary';
-export { default as ErrorBoundaryLazy } from './ErrorBoundaryLazy';
+export * from './ErrorBoundaryLazy';
 export { SafeAppWrapper } from './SafeAppWrapper';
 export { SecurityProvider } from './SecurityProvider';
 

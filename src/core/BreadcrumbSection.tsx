@@ -12,7 +12,7 @@ interface BreadcrumbSectionProps {
   };
 }
 
-const BreadcrumbSection: React.FC<BreadcrumbSectionProps> = ({
+export const BreadcrumbSection: React.FC<BreadcrumbSectionProps> = ({
   items,
   shareConfig,
 }) => {
@@ -24,5 +24,3 @@ const BreadcrumbSection: React.FC<BreadcrumbSectionProps> = ({
     </div>
   );
 };
-
-export default BreadcrumbSection;

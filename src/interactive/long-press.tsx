@@ -58,5 +58,3 @@ export const UlongUpress = ({
     </div>
   );
 };
-
-export default UlongUpress;

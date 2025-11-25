@@ -58,5 +58,3 @@ export const UsettingsUgroup = ({
     </div>
   );
 };
-
-export default UsettingsUgroup;

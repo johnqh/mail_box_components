@@ -58,5 +58,3 @@ export const UrecipeUrating = ({
     </div>
   );
 };
-
-export default UrecipeUrating;

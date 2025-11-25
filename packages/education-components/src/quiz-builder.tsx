@@ -39,5 +39,3 @@ export const QuizBuilder = ({
     </div>
   );
 };
-
-export default QuizBuilder;

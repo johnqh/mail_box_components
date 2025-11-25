@@ -53,5 +53,3 @@ export const AspectRatio: React.FC<AspectRatioProps> = ({
     </div>
   );
 };
-
-export default AspectRatio;

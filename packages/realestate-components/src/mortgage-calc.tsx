@@ -58,5 +58,3 @@ export const UmortgageUcalc = ({
     </div>
   );
 };
-
-export default UmortgageUcalc;

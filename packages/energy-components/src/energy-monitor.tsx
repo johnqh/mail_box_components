@@ -39,5 +39,3 @@ export const EnergyMonitor = ({
     </div>
   );
 };
-
-export default EnergyMonitor;

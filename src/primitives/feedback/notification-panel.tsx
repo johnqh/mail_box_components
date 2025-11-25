@@ -50,5 +50,3 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
     </div>
   );
 };
-
-export default NotificationPanel;

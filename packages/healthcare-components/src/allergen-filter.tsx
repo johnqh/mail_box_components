@@ -58,5 +58,3 @@ export const UallergenUfilter = ({
     </div>
   );
 };
-
-export default UallergenUfilter;

@@ -58,5 +58,3 @@ export const UexpenseUform = ({
     </div>
   );
 };
-
-export default UexpenseUform;

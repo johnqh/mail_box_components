@@ -58,5 +58,3 @@ export const UswipeUactions = ({
     </div>
   );
 };
-
-export default UswipeUactions;

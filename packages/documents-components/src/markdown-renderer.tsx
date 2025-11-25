@@ -58,5 +58,3 @@ export const UmarkdownUrenderer = ({
     </div>
   );
 };
-
-export default UmarkdownUrenderer;

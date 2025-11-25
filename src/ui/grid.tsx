@@ -144,5 +144,3 @@ export const Grid: React.FC<GridProps> = ({
     </div>
   );
 };
-
-export default Grid;

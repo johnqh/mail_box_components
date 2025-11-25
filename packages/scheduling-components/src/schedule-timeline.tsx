@@ -58,5 +58,3 @@ export const UscheduleUtimeline = ({
     </div>
   );
 };
-
-export default UscheduleUtimeline;

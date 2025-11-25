@@ -58,5 +58,3 @@ export const UrentalUapplication = ({
     </div>
   );
 };
-
-export default UrentalUapplication;

@@ -58,5 +58,3 @@ export const UpreferenceUcard = ({
     </div>
   );
 };
-
-export default UpreferenceUcard;

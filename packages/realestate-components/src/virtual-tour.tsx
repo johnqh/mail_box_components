@@ -58,5 +58,3 @@ export const UvirtualUtour = ({
     </div>
   );
 };
-
-export default UvirtualUtour;

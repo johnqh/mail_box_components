@@ -26,7 +26,7 @@ interface CodeBlockProps {
  * - Loading and error states (for file mode)
  * - Customizable styling and behavior
  */
-const CodeBlock: React.FC<CodeBlockProps> = ({
+export const CodeBlock: React.FC<CodeBlockProps> = ({
   filename,
   code: directCode,
   language: directLanguage,
@@ -173,5 +173,3 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     </div>
   );
 };
-
-export default CodeBlock;

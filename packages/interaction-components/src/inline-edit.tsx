@@ -58,5 +58,3 @@ export const UinlineUedit = ({
     </div>
   );
 };
-
-export default UinlineUedit;

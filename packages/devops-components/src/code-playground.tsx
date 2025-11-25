@@ -58,5 +58,3 @@ export const UcodeUplayground = ({
     </div>
   );
 };
-
-export default UcodeUplayground;

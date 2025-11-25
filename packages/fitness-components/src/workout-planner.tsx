@@ -39,5 +39,3 @@ export const WorkoutPlanner = ({
     </div>
   );
 };
-
-export default WorkoutPlanner;

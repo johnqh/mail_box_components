@@ -58,5 +58,3 @@ export const UfeatureUcomparison = ({
     </div>
   );
 };
-
-export default UfeatureUcomparison;

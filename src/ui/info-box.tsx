@@ -135,5 +135,3 @@ export const InfoBox: React.FC<InfoBoxProps> = ({
     </div>
   );
 };
-
-export default InfoBox;

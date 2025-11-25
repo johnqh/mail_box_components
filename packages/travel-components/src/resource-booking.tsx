@@ -58,5 +58,3 @@ export const UresourceUbooking = ({
     </div>
   );
 };
-
-export default UresourceUbooking;

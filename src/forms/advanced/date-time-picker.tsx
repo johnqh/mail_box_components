@@ -218,5 +218,3 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
     </div>
   );
 };
-
-export default DateTimePicker;

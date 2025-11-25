@@ -82,5 +82,3 @@ export const ListItemWithAction: React.FC<ListItemWithActionProps> = ({
     </div>
   );
 };
-
-export default ListItemWithAction;

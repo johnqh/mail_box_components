@@ -39,5 +39,3 @@ export const TideChart = ({
     </div>
   );
 };
-
-export default TideChart;

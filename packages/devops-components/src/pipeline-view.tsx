@@ -58,5 +58,3 @@ export const UpipelineUview = ({
     </div>
   );
 };
-
-export default UpipelineUview;

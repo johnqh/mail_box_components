@@ -58,5 +58,3 @@ export const UembedUwidget = ({
     </div>
   );
 };
-
-export default UembedUwidget;

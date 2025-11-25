@@ -115,5 +115,3 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
     </div>
   );
 };
-
-export default TimelineVertical;

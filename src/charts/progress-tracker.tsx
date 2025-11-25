@@ -58,5 +58,3 @@ export const UprogressUtracker = ({
     </div>
   );
 };
-
-export default UprogressUtracker;

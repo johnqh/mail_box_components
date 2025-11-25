@@ -39,5 +39,3 @@ export const CallCenter = ({
     </div>
   );
 };
-
-export default CallCenter;

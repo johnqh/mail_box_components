@@ -58,5 +58,3 @@ export const UversionUbadge = ({
     </div>
   );
 };
-
-export default UversionUbadge;

@@ -39,5 +39,3 @@ export const ShipmentTracker = ({
     </div>
   );
 };
-
-export default ShipmentTracker;

@@ -58,5 +58,3 @@ export const UtokenUswap = ({
     </div>
   );
 };
-
-export default UtokenUswap;

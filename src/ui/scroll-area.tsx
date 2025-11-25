@@ -76,5 +76,3 @@ export const ScrollArea: React.FC<ScrollAreaProps> = ({
     </div>
   );
 };
-
-export default ScrollArea;

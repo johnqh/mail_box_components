@@ -58,5 +58,3 @@ export const UtypingUindicatorUmsg = ({
     </div>
   );
 };
-
-export default UtypingUindicatorUmsg;

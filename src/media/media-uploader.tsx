@@ -236,5 +236,3 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
     </div>
   );
 };
-
-export default MediaUploader;

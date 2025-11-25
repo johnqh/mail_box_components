@@ -39,5 +39,3 @@ export const SubscriberList = ({
     </div>
   );
 };
-
-export default SubscriberList;

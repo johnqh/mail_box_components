@@ -39,5 +39,3 @@ export const ReorderPoint = ({
     </div>
   );
 };
-
-export default ReorderPoint;

@@ -58,5 +58,3 @@ export const UradarUchart = ({
     </div>
   );
 };
-
-export default UradarUchart;

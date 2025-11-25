@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import MasterDetailLayout from '../layout/MasterDetailLayout';
-
+import { MasterDetailLayout } from '../layout/MasterDetailLayout';
 describe('MasterDetailLayout', () => {
   it('renders master and detail content', () => {
     render(

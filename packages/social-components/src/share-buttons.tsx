@@ -165,5 +165,3 @@ function useState<T>(initialValue: T): [T, (value: T) => void] {
   const [state, setState] = React.useState(initialValue);
   return [state, setState];
 }
-
-export default ShareButtons;

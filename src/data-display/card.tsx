@@ -254,5 +254,3 @@ export const CalloutBox: React.FC<CalloutBoxProps> = ({
     </Card>
   );
 };
-
-export default Card;

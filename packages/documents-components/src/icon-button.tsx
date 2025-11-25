@@ -143,5 +143,3 @@ export const IconButton: React.FC<IconButtonProps> = ({
     </button>
   );
 };
-
-export default IconButton;

@@ -122,5 +122,3 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
     </div>
   );
 };
-
-export default PriceDisplay;

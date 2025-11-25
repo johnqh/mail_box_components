@@ -58,5 +58,3 @@ export const UtableUreservation = ({
     </div>
   );
 };
-
-export default UtableUreservation;

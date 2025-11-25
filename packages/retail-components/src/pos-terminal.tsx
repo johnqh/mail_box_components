@@ -39,5 +39,3 @@ export const PosTerminal = ({
     </div>
   );
 };
-
-export default PosTerminal;

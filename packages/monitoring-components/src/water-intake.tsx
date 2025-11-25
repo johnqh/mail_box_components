@@ -58,5 +58,3 @@ export const UwaterUintake = ({
     </div>
   );
 };
-
-export default UwaterUintake;

@@ -39,5 +39,3 @@ export const CustomerLoyalty = ({
     </div>
   );
 };
-
-export default CustomerLoyalty;

@@ -183,5 +183,3 @@ export const HoverCard: React.FC<HoverCardProps> = ({
     </>
   );
 };
-
-export default HoverCard;

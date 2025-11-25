@@ -58,5 +58,3 @@ export const UfilterUpanel = ({
     </div>
   );
 };
-
-export default UfilterUpanel;

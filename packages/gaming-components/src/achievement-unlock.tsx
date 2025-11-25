@@ -58,5 +58,3 @@ export const UachievementUunlock = ({
     </div>
   );
 };
-
-export default UachievementUunlock;

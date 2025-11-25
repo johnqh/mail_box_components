@@ -177,5 +177,3 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
     </div>
   );
 };
-
-export default CartSummary;

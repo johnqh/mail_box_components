@@ -39,5 +39,3 @@ export const StreamingStats = ({
     </div>
   );
 };
-
-export default StreamingStats;

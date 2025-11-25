@@ -39,5 +39,3 @@ export const LogisticsMap = ({
     </div>
   );
 };
-
-export default LogisticsMap;

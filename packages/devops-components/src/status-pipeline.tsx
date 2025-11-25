@@ -58,5 +58,3 @@ export const UstatusUpipeline = ({
     </div>
   );
 };
-
-export default UstatusUpipeline;

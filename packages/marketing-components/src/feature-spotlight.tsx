@@ -58,5 +58,3 @@ export const UfeatureUspotlight = ({
     </div>
   );
 };
-
-export default UfeatureUspotlight;

@@ -88,5 +88,3 @@ export const TruncatedText: React.FC<TruncatedTextProps> = ({
     </span>
   );
 };
-
-export default TruncatedText;

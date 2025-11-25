@@ -39,5 +39,3 @@ export const InstagramWidget = ({
     </div>
   );
 };
-
-export default InstagramWidget;

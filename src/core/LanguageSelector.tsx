@@ -46,7 +46,7 @@ const LANGUAGE_INFO: Record<string, { name: string; flag: string }> = {
  * @param variant - Display variant: "compact" for minimal UI, "full" for detailed form
  * @param className - Additional CSS classes
  */
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   variant = 'compact',
   className = '',
 }) => {
@@ -169,5 +169,3 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     </div>
   );
 };
-
-export default LanguageSelector;

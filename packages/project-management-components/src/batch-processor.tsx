@@ -58,5 +58,3 @@ export const UbatchUprocessor = ({
     </div>
   );
 };
-
-export default UbatchUprocessor;

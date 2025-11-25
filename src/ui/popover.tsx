@@ -274,5 +274,3 @@ export const Popover: React.FC<PopoverProps> = ({
     </div>
   );
 };
-
-export default Popover;

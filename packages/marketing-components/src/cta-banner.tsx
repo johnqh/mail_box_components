@@ -58,5 +58,3 @@ export const UctaUbanner = ({
     </div>
   );
 };
-
-export default UctaUbanner;

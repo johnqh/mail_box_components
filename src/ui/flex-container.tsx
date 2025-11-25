@@ -97,5 +97,3 @@ export const FlexContainer: React.FC<FlexContainerProps> = ({
     </div>
   );
 };
-
-export default FlexContainer;

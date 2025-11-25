@@ -58,5 +58,3 @@ export const UcsvUimporter = ({
     </div>
   );
 };
-
-export default UcsvUimporter;

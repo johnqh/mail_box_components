@@ -216,5 +216,3 @@ export const OtpInput: React.FC<OtpInputProps> = ({
     </div>
   );
 };
-
-export default OtpInput;

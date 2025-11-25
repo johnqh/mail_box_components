@@ -58,5 +58,3 @@ export const UcurrencyUconverter = ({
     </div>
   );
 };
-
-export default UcurrencyUconverter;

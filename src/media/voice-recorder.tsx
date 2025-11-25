@@ -58,5 +58,3 @@ export const UvoiceUrecorder = ({
     </div>
   );
 };
-
-export default UvoiceUrecorder;

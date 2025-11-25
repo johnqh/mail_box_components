@@ -220,5 +220,3 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
     </div>
   );
 };
-
-export default WalletSelectionGrid;

@@ -58,5 +58,3 @@ export const UtravelUchecklist = ({
     </div>
   );
 };
-
-export default UtravelUchecklist;

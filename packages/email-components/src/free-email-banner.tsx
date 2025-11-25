@@ -135,5 +135,3 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
     </div>
   );
 };
-
-export default FreeEmailBanner;

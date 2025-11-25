@@ -120,5 +120,3 @@ export const TrackedButton: React.FC<TrackedButtonProps> = ({
     </Button>
   );
 };
-
-export default TrackedButton;

@@ -58,5 +58,3 @@ export const UsleepUtracker = ({
     </div>
   );
 };
-
-export default UsleepUtracker;

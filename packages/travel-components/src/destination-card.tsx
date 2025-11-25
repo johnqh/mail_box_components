@@ -58,5 +58,3 @@ export const UdestinationUcard = ({
     </div>
   );
 };
-
-export default UdestinationUcard;

@@ -58,5 +58,3 @@ export const UgameUcontrols = ({
     </div>
   );
 };
-
-export default UgameUcontrols;

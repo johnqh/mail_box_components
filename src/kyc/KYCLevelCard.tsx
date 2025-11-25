@@ -103,5 +103,3 @@ export const KYCLevelCard: React.FC<KYCLevelCardProps> = ({
     </div>
   );
 };
-
-export default KYCLevelCard;

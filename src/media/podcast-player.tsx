@@ -39,5 +39,3 @@ export const PodcastPlayer = ({
     </div>
   );
 };
-
-export default PodcastPlayer;

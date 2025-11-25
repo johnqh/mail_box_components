@@ -58,5 +58,3 @@ export const UpropertyUgallery = ({
     </div>
   );
 };
-
-export default UpropertyUgallery;

@@ -39,5 +39,3 @@ export const AccountOverview = ({
     </div>
   );
 };
-
-export default AccountOverview;

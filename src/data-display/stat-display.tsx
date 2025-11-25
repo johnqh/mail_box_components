@@ -176,5 +176,3 @@ export const StatDisplay: React.FC<StatDisplayProps> = ({
     </div>
   );
 };
-
-export default StatDisplay;

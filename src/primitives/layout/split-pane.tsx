@@ -248,5 +248,3 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
     </div>
   );
 };
-
-export default SplitPane;

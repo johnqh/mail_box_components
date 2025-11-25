@@ -58,5 +58,3 @@ export const UtaxUcalculator = ({
     </div>
   );
 };
-
-export default UtaxUcalculator;

@@ -39,5 +39,3 @@ export const CandidateCard = ({
     </div>
   );
 };
-
-export default CandidateCard;

@@ -41,5 +41,3 @@ export const SideNav: React.FC<SideNavProps> = ({ items, className }) => {
     </nav>
   );
 };
-
-export default SideNav;

@@ -58,5 +58,3 @@ export const UworkflowUbuilder = ({
     </div>
   );
 };
-
-export default UworkflowUbuilder;

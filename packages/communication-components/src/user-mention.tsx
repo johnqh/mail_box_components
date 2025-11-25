@@ -184,5 +184,3 @@ export const UserMention: React.FC<UserMentionProps> = ({
     </div>
   );
 };
-
-export default UserMention;

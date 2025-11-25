@@ -127,5 +127,3 @@ export const IconText: React.FC<IconTextProps> = ({
     </div>
   );
 };
-
-export default IconText;

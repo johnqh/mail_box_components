@@ -137,5 +137,3 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     </div>
   );
 };
-
-export default ButtonGroup;

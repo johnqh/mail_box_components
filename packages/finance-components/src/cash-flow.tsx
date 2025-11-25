@@ -58,5 +58,3 @@ export const UcashUflow = ({
     </div>
   );
 };
-
-export default UcashUflow;

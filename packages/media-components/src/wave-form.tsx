@@ -70,5 +70,3 @@ export const WaveForm: React.FC<WaveFormProps> = ({
     </svg>
   );
 };
-
-export default WaveForm;

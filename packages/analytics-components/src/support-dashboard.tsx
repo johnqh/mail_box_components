@@ -39,5 +39,3 @@ export const SupportDashboard = ({
     </div>
   );
 };
-
-export default SupportDashboard;

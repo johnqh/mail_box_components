@@ -100,5 +100,3 @@ export const RelativeTime: React.FC<RelativeTimeProps> = ({
     </time>
   );
 };
-
-export default RelativeTime;

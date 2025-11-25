@@ -58,5 +58,3 @@ export const UfocusUindicator = ({
     </div>
   );
 };
-
-export default UfocusUindicator;

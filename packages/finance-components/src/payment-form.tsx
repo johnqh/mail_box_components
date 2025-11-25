@@ -58,5 +58,3 @@ export const UpaymentUform = ({
     </div>
   );
 };
-
-export default UpaymentUform;

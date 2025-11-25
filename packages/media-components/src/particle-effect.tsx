@@ -58,5 +58,3 @@ export const UparticleUeffect = ({
     </div>
   );
 };
-
-export default UparticleUeffect;

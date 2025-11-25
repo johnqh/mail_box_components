@@ -146,5 +146,3 @@ export const TextArea: React.FC<TextAreaProps> = ({
     </div>
   );
 };
-
-export default TextArea;

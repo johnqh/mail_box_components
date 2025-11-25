@@ -58,5 +58,3 @@ export const UinvoiceUtemplate = ({
     </div>
   );
 };
-
-export default UinvoiceUtemplate;

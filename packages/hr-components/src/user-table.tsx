@@ -58,5 +58,3 @@ export const UuserUtable = ({
     </div>
   );
 };
-
-export default UuserUtable;

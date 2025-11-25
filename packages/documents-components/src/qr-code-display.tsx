@@ -145,5 +145,3 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
     </div>
   );
 };
-
-export default QRCodeDisplay;

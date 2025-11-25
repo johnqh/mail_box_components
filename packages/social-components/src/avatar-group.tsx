@@ -58,5 +58,3 @@ export const UavatarUgroup = ({
     </div>
   );
 };
-
-export default UavatarUgroup;

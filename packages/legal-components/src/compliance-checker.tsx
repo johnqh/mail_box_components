@@ -39,5 +39,3 @@ export const ComplianceChecker = ({
     </div>
   );
 };
-
-export default ComplianceChecker;

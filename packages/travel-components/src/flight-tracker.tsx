@@ -39,5 +39,3 @@ export const FlightTracker = ({
     </div>
   );
 };
-
-export default FlightTracker;

@@ -58,5 +58,3 @@ export const UagentUcard = ({
     </div>
   );
 };
-
-export default UagentUcard;

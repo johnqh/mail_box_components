@@ -39,5 +39,3 @@ export const AppointmentBooking = ({
     </div>
   );
 };
-
-export default AppointmentBooking;

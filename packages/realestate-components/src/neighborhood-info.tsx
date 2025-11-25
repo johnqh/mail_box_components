@@ -58,5 +58,3 @@ export const UneighborhoodUinfo = ({
     </div>
   );
 };
-
-export default UneighborhoodUinfo;

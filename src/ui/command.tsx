@@ -256,5 +256,3 @@ export const Command: React.FC<CommandProps> = ({
     </Dialog>
   );
 };
-
-export default Command;

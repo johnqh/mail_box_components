@@ -186,5 +186,3 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
     </div>
   );
 };
-
-export default ColorPicker;

@@ -39,5 +39,3 @@ export const MachineMonitor = ({
     </div>
   );
 };
-
-export default MachineMonitor;

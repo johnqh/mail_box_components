@@ -43,5 +43,3 @@ export const AlertBanner: React.FC<AlertBannerProps> = ({
     </div>
   );
 };
-
-export default AlertBanner;

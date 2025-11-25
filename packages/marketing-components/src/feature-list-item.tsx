@@ -102,5 +102,3 @@ export const FeatureListItem: React.FC<FeatureListItemProps> = ({
     </div>
   );
 };
-
-export default FeatureListItem;

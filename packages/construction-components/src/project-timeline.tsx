@@ -39,5 +39,3 @@ export const ProjectTimeline = ({
     </div>
   );
 };
-
-export default ProjectTimeline;

@@ -39,5 +39,3 @@ export const HarvestTracker = ({
     </div>
   );
 };
-
-export default HarvestTracker;

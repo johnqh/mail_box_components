@@ -58,5 +58,3 @@ export const UsurveyUbuilder = ({
     </div>
   );
 };
-
-export default UsurveyUbuilder;

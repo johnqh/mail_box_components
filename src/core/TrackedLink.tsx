@@ -120,5 +120,3 @@ export const TrackedLink: React.FC<TrackedLinkProps> = ({
     </a>
   );
 };
-
-export default TrackedLink;

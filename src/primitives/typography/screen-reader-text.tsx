@@ -58,5 +58,3 @@ export const UscreenUreaderUtext = ({
     </div>
   );
 };
-
-export default UscreenUreaderUtext;

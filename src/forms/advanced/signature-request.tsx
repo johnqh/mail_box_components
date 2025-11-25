@@ -39,5 +39,3 @@ export const SignatureRequest = ({
     </div>
   );
 };
-
-export default SignatureRequest;

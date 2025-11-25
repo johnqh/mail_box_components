@@ -39,5 +39,3 @@ export const BlueprintViewer = ({
     </div>
   );
 };
-
-export default BlueprintViewer;

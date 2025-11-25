@@ -58,5 +58,3 @@ export const UnutritionUfacts = ({
     </div>
   );
 };
-
-export default UnutritionUfacts;

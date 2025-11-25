@@ -39,5 +39,3 @@ export const QualityControl = ({
     </div>
   );
 };
-
-export default QualityControl;

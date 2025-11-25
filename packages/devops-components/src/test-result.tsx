@@ -58,5 +58,3 @@ export const UtestUresult = ({
     </div>
   );
 };
-
-export default UtestUresult;

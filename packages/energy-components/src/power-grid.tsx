@@ -39,5 +39,3 @@ export const PowerGrid = ({
     </div>
   );
 };
-
-export default PowerGrid;

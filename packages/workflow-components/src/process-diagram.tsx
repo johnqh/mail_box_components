@@ -58,5 +58,3 @@ export const UprocessUdiagram = ({
     </div>
   );
 };
-
-export default UprocessUdiagram;

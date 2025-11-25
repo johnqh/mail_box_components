@@ -269,5 +269,3 @@ export class RoutePreloadingService {
 export const createRoutePreloadingService = (config: RoutePreloadingConfig) => {
   return new RoutePreloadingService(config);
 };
-
-export default RoutePreloadingService;

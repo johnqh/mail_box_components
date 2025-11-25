@@ -221,5 +221,3 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
     </div>
   );
 };
-
-export default InfiniteScroll;

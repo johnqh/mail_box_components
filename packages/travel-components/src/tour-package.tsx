@@ -58,5 +58,3 @@ export const UtourUpackage = ({
     </div>
   );
 };
-
-export default UtourUpackage;

@@ -39,5 +39,3 @@ export const FleetManagement = ({
     </div>
   );
 };
-
-export default FleetManagement;

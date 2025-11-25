@@ -58,5 +58,3 @@ export const UportionUcalculator = ({
     </div>
   );
 };
-
-export default UportionUcalculator;

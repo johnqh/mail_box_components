@@ -34,7 +34,7 @@ export interface PromotionalBannerProps {
  * @param onButtonClick - Callback when the CTA button is clicked
  * @param className - Additional CSS classes
  */
-const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
+export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
   title,
   subtitle,
   buttonText,
@@ -139,5 +139,3 @@ const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
     </div>
   );
 };
-
-export default PromotionalBanner;

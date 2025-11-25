@@ -58,5 +58,3 @@ export const UradialUmenu = ({
     </div>
   );
 };
-
-export default UradialUmenu;

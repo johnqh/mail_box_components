@@ -227,5 +227,3 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     </div>
   );
 };
-
-export default RadioGroup;

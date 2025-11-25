@@ -80,5 +80,3 @@ export const Spacer: React.FC<SpacerProps> = ({
     />
   );
 };
-
-export default Spacer;

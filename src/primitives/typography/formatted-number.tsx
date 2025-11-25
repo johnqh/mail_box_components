@@ -90,5 +90,3 @@ export const FormattedNumber: React.FC<FormattedNumberProps> = ({
 
   return <span className={cn(className)}>{formatNumber()}</span>;
 };
-
-export default FormattedNumber;

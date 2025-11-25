@@ -58,5 +58,3 @@ export const UauditUlog = ({
     </div>
   );
 };
-
-export default UauditUlog;

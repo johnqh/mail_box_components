@@ -58,5 +58,3 @@ export const UrecipeUcard = ({
     </div>
   );
 };
-
-export default UrecipeUcard;

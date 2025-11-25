@@ -81,5 +81,3 @@ export const IconContainer: React.FC<IconContainerProps> = ({
     </div>
   );
 };
-
-export default IconContainer;

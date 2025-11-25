@@ -58,5 +58,3 @@ export const UopenUhouse = ({
     </div>
   );
 };
-
-export default UopenUhouse;

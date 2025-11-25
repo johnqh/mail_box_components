@@ -39,5 +39,3 @@ export const VitalSigns = ({
     </div>
   );
 };
-
-export default VitalSigns;

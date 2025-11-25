@@ -79,5 +79,3 @@ export const Callout: React.FC<CalloutProps> = ({
     </div>
   );
 };
-
-export default Callout;

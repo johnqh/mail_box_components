@@ -39,5 +39,3 @@ export const VoterRegistration = ({
     </div>
   );
 };
-
-export default VoterRegistration;

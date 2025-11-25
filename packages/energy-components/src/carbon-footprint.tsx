@@ -39,5 +39,3 @@ export const CarbonFootprint = ({
     </div>
   );
 };
-
-export default CarbonFootprint;

@@ -58,5 +58,3 @@ export const UnutritionUlabel = ({
     </div>
   );
 };
-
-export default UnutritionUlabel;

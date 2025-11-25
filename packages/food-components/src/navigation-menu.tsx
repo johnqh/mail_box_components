@@ -196,5 +196,3 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
     </nav>
   );
 };
-
-export default NavigationMenu;

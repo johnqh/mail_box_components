@@ -58,5 +58,3 @@ export const UcoverageUchart = ({
     </div>
   );
 };
-
-export default UcoverageUchart;

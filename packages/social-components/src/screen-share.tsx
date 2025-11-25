@@ -58,5 +58,3 @@ export const UscreenUshare = ({
     </div>
   );
 };
-
-export default UscreenUshare;

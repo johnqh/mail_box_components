@@ -58,5 +58,3 @@ export const UcellUeditor = ({
     </div>
   );
 };
-
-export default UcellUeditor;

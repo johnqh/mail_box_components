@@ -58,5 +58,3 @@ export const Uflashcard = ({
     </div>
   );
 };
-
-export default Uflashcard;

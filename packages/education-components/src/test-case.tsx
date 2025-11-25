@@ -35,5 +35,3 @@ export const TestCase = ({ className, children, disabled }: TestCaseProps) => {
     </div>
   );
 };
-
-export default TestCase;

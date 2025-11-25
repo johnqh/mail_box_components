@@ -39,5 +39,3 @@ export const PortSchedule = ({
     </div>
   );
 };
-
-export default PortSchedule;

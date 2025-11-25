@@ -58,5 +58,3 @@ export const UsponsorUgrid = ({
     </div>
   );
 };
-
-export default UsponsorUgrid;

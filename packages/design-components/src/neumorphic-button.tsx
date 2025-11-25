@@ -58,5 +58,3 @@ export const UneumorphicUbutton = ({
     </div>
   );
 };
-
-export default UneumorphicUbutton;

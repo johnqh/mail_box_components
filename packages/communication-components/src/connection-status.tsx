@@ -58,5 +58,3 @@ export const UconnectionUstatus = ({
     </div>
   );
 };
-
-export default UconnectionUstatus;

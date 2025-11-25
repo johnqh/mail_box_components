@@ -111,5 +111,3 @@ export const SumsubWebSDK: React.FC<SumsubWebSDKProps> = ({
     </div>
   );
 };
-
-export default SumsubWebSDK;

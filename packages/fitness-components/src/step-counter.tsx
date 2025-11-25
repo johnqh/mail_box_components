@@ -58,5 +58,3 @@ export const UstepUcounter = ({
     </div>
   );
 };
-
-export default UstepUcounter;

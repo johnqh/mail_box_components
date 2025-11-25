@@ -58,5 +58,3 @@ export const UrevealUonUscroll = ({
     </div>
   );
 };
-
-export default UrevealUonUscroll;

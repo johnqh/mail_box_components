@@ -58,5 +58,3 @@ export const UitineraryUbuilder = ({
     </div>
   );
 };
-
-export default UitineraryUbuilder;

@@ -58,5 +58,3 @@ export const UrouteUdisplay = ({
     </div>
   );
 };
-
-export default UrouteUdisplay;

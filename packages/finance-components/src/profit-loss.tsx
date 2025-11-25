@@ -58,5 +58,3 @@ export const UprofitUloss = ({
     </div>
   );
 };
-
-export default UprofitUloss;

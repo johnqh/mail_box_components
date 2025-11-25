@@ -39,5 +39,3 @@ export const AbTestEmail = ({
     </div>
   );
 };
-
-export default AbTestEmail;

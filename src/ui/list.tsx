@@ -131,5 +131,3 @@ export const List: React.FC<ListProps> = ({
 export const ListItem: React.FC<ListItemProps> = ({ children, className }) => {
   return <li className={cn('leading-relaxed', className)}>{children}</li>;
 };
-
-export default List;

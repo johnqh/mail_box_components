@@ -151,5 +151,3 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
     </>
   );
 };
-
-export default AddressLabel;

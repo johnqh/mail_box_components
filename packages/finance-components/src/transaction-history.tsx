@@ -39,5 +39,3 @@ export const TransactionHistory = ({
     </div>
   );
 };
-
-export default TransactionHistory;

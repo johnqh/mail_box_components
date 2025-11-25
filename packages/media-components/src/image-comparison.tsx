@@ -58,5 +58,3 @@ export const UimageUcomparison = ({
     </div>
   );
 };
-
-export default UimageUcomparison;

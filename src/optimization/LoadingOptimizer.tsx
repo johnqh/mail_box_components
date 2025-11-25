@@ -240,5 +240,3 @@ export const LoadingOptimizer = () => {
 
   return null; // This component doesn't render anything
 };
-
-export default LoadingOptimizer;

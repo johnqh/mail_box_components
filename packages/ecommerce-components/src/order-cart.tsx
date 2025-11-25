@@ -58,5 +58,3 @@ export const UorderUcart = ({
     </div>
   );
 };
-
-export default UorderUcart;

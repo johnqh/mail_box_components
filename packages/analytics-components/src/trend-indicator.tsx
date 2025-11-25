@@ -126,5 +126,3 @@ export const TrendIndicator: React.FC<TrendIndicatorProps> = ({
     </div>
   );
 };
-
-export default TrendIndicator;

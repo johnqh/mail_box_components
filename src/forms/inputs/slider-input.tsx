@@ -38,5 +38,3 @@ export const SliderInput = ({
     </div>
   );
 };
-
-export default SliderInput;

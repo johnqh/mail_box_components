@@ -107,5 +107,3 @@ export const Kanban: React.FC<KanbanProps> = ({
     </div>
   );
 };
-
-export default Kanban;

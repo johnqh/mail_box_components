@@ -58,5 +58,3 @@ export const UgasUtracker = ({
     </div>
   );
 };
-
-export default UgasUtracker;

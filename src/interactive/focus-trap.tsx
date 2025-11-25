@@ -151,5 +151,3 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
     </div>
   );
 };
-
-export default FocusTrap;

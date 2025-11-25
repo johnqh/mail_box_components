@@ -49,5 +49,3 @@ export const ColorPickerAdvanced = ({
     </div>
   );
 };
-
-export default ColorPickerAdvanced;

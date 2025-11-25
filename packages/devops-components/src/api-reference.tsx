@@ -58,5 +58,3 @@ export const UapiUreference = ({
     </div>
   );
 };
-
-export default UapiUreference;

@@ -39,5 +39,3 @@ export const WeatherStation = ({
     </div>
   );
 };
-
-export default WeatherStation;

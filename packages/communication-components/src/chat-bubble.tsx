@@ -58,5 +58,3 @@ export const UchatUbubble = ({
     </div>
   );
 };
-
-export default UchatUbubble;

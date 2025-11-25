@@ -58,5 +58,3 @@ export const UbuildUlog = ({
     </div>
   );
 };
-
-export default UbuildUlog;

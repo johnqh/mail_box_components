@@ -58,5 +58,3 @@ export const UtimeUslotUpicker = ({
     </div>
   );
 };
-
-export default UtimeUslotUpicker;

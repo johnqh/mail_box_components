@@ -39,5 +39,3 @@ export const DefectTracker = ({
     </div>
   );
 };
-
-export default DefectTracker;

@@ -58,5 +58,3 @@ export const UscoreUdisplay = ({
     </div>
   );
 };
-
-export default UscoreUdisplay;

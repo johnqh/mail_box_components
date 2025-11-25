@@ -73,5 +73,3 @@ export const PaginationNav: React.FC<PaginationNavProps> = ({
     </nav>
   );
 };
-
-export default PaginationNav;

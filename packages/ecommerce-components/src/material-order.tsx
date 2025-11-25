@@ -39,5 +39,3 @@ export const MaterialOrder = ({
     </div>
   );
 };
-
-export default MaterialOrder;

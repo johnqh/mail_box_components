@@ -58,5 +58,3 @@ export const UprivacyUtoggle = ({
     </div>
   );
 };
-
-export default UprivacyUtoggle;

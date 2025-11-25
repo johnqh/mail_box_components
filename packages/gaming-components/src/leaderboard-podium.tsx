@@ -58,5 +58,3 @@ export const UleaderboardUpodium = ({
     </div>
   );
 };
-
-export default UleaderboardUpodium;

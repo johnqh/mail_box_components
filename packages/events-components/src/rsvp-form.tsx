@@ -58,5 +58,3 @@ export const UrsvpUform = ({
     </div>
   );
 };
-
-export default UrsvpUform;

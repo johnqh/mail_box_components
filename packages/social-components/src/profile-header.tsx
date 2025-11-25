@@ -58,5 +58,3 @@ export const UprofileUheader = ({
     </div>
   );
 };
-
-export default UprofileUheader;

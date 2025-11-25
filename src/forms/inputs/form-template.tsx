@@ -58,5 +58,3 @@ export const UformUtemplate = ({
     </div>
   );
 };
-
-export default UformUtemplate;

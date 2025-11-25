@@ -39,5 +39,3 @@ export const TripMeter = ({
     </div>
   );
 };
-
-export default TripMeter;

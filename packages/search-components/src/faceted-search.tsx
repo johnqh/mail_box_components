@@ -58,5 +58,3 @@ export const UfacetedUsearch = ({
     </div>
   );
 };
-
-export default UfacetedUsearch;

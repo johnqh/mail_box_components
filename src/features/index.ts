@@ -5,8 +5,8 @@
  * and are re-exported from there for backward compatibility
  */
 
-export { default as FeatureGrid } from './FeatureGrid';
-export { default as CTASection } from './CTASection';
+export { FeatureGrid } from './FeatureGrid';
+export { CTASection } from './CTASection';
 
 // Re-export from card.tsx (consolidated)
 export { CalloutBox, InfoCard } from '../ui/card';

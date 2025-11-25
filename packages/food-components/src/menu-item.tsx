@@ -155,5 +155,3 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     </div>
   );
 };
-
-export default MenuItem;

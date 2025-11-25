@@ -58,5 +58,3 @@ export const UsubscriptionUplan = ({
     </div>
   );
 };
-
-export default UsubscriptionUplan;

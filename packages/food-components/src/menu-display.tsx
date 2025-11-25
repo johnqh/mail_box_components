@@ -58,5 +58,3 @@ export const UmenuUdisplay = ({
     </div>
   );
 };
-
-export default UmenuUdisplay;

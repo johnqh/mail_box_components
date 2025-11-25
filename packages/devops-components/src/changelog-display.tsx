@@ -58,5 +58,3 @@ export const UchangelogUdisplay = ({
     </div>
   );
 };
-
-export default UchangelogUdisplay;

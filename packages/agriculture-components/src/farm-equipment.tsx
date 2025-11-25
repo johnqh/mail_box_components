@@ -39,5 +39,3 @@ export const FarmEquipment = ({
     </div>
   );
 };
-
-export default FarmEquipment;

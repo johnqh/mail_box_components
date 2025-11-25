@@ -129,5 +129,3 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
 
   return renderSkeleton();
 };
-
-export default SkeletonLoader;

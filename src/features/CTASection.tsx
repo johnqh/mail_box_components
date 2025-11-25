@@ -144,5 +144,3 @@ export const CTASection: React.FC<CTASectionProps> = ({
     </section>
   );
 };
-
-export default CTASection;

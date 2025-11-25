@@ -133,5 +133,3 @@ export const SettingsList: React.FC<SettingsListProps> = ({
     </nav>
   );
 };
-
-export default SettingsList;

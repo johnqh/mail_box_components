@@ -35,5 +35,3 @@ export const LiveChat = ({ className, children, disabled }: LiveChatProps) => {
     </div>
   );
 };
-
-export default LiveChat;

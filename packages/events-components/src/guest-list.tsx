@@ -58,5 +58,3 @@ export const UguestUlist = ({
     </div>
   );
 };
-
-export default UguestUlist;

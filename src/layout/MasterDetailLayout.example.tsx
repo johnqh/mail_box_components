@@ -5,8 +5,7 @@
  */
 
 import React, { useState } from 'react';
-import MasterDetailLayout from './MasterDetailLayout';
-
+import { MasterDetailLayout } from './MasterDetailLayout';
 /**
  * Example 1: Basic Documentation Layout
  * Similar to the DocumentationPage pattern

@@ -93,5 +93,3 @@ export const LoadingDots: React.FC<LoadingDotsProps> = ({
     </div>
   );
 };
-
-export default LoadingDots;

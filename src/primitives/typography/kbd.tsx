@@ -55,5 +55,3 @@ export const Kbd: React.FC<KbdProps> = ({
     </kbd>
   );
 };
-
-export default Kbd;

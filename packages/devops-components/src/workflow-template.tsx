@@ -58,5 +58,3 @@ export const UworkflowUtemplate = ({
     </div>
   );
 };
-
-export default UworkflowUtemplate;

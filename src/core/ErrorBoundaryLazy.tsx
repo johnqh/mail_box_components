@@ -374,5 +374,3 @@ export function GlobalLazyErrorBoundary({ children }: { children: ReactNode }) {
     </LazyErrorBoundary>
   );
 }
-
-export default LazyErrorBoundary;

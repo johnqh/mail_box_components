@@ -35,5 +35,3 @@ export const QaReport = ({ className, children, disabled }: QaReportProps) => {
     </div>
   );
 };
-
-export default QaReport;

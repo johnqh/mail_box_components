@@ -58,5 +58,3 @@ export const UstockUticker = ({
     </div>
   );
 };
-
-export default UstockUticker;

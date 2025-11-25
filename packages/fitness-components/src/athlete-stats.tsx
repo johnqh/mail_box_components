@@ -39,5 +39,3 @@ export const AthleteStats = ({
     </div>
   );
 };
-
-export default AthleteStats;

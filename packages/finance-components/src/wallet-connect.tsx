@@ -58,5 +58,3 @@ export const UwalletUconnect = ({
     </div>
   );
 };
-
-export default UwalletUconnect;

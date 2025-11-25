@@ -39,5 +39,3 @@ export const InventoryAlert = ({
     </div>
   );
 };
-
-export default InventoryAlert;

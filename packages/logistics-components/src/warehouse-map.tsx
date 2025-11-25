@@ -39,5 +39,3 @@ export const WarehouseMap = ({
     </div>
   );
 };
-
-export default WarehouseMap;

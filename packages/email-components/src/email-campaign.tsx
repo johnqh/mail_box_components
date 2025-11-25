@@ -39,5 +39,3 @@ export const EmailCampaign = ({
     </div>
   );
 };
-
-export default EmailCampaign;

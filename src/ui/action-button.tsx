@@ -57,5 +57,3 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
     </Button>
   );
 };
-
-export default ActionButton;

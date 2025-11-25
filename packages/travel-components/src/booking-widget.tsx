@@ -58,5 +58,3 @@ export const UbookingUwidget = ({
     </div>
   );
 };
-
-export default UbookingUwidget;

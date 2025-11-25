@@ -58,5 +58,3 @@ export const UcontainerUstats = ({
     </div>
   );
 };
-
-export default UcontainerUstats;

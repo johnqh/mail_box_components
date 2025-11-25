@@ -58,5 +58,3 @@ export const UcursorUtracker = ({
     </div>
   );
 };
-
-export default UcursorUtracker;

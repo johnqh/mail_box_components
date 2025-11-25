@@ -58,5 +58,3 @@ export const UattendanceUcalendar = ({
     </div>
   );
 };
-
-export default UattendanceUcalendar;

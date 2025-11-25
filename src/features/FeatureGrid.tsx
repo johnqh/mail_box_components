@@ -229,5 +229,3 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
     </section>
   );
 };
-
-export default FeatureGrid;

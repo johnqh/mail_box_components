@@ -155,5 +155,3 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
     </button>
   );
 };
-
-export default CopyButton;

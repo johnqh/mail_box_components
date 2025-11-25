@@ -195,5 +195,3 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
     </>
   );
 };
-
-export default ImageGallery;

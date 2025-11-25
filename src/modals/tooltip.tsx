@@ -284,5 +284,3 @@ export const Tooltip: React.FC<TooltipProps> = ({
     </div>
   );
 };
-
-export default Tooltip;

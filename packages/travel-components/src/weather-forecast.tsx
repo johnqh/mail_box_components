@@ -58,5 +58,3 @@ export const UweatherUforecast = ({
     </div>
   );
 };
-
-export default UweatherUforecast;

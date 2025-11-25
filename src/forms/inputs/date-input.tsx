@@ -181,5 +181,3 @@ function formatDateForInput(date: Date, type: DateInputProps['type']): string {
       return `${year}-${month}-${day}`;
   }
 }
-
-export default DateInput;

@@ -39,5 +39,3 @@ export const WaterMeter = ({
     </div>
   );
 };
-
-export default WaterMeter;

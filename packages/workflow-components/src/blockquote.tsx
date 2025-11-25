@@ -87,5 +87,3 @@ export const Blockquote: React.FC<BlockquoteProps> = ({
     </blockquote>
   );
 };
-
-export default Blockquote;

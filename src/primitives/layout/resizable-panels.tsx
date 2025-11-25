@@ -58,5 +58,3 @@ export const UresizableUpanels = ({
     </div>
   );
 };
-
-export default UresizableUpanels;

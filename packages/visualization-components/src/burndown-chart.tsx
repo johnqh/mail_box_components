@@ -39,5 +39,3 @@ export const BurndownChart = ({
     </div>
   );
 };
-
-export default BurndownChart;

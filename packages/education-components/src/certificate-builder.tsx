@@ -58,5 +58,3 @@ export const UcertificateUbuilder = ({
     </div>
   );
 };
-
-export default UcertificateUbuilder;

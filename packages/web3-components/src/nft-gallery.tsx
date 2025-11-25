@@ -58,5 +58,3 @@ export const UnftUgallery = ({
     </div>
   );
 };
-
-export default UnftUgallery;

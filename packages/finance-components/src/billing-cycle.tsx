@@ -39,5 +39,3 @@ export const BillingCycle = ({
     </div>
   );
 };
-
-export default BillingCycle;

@@ -16,10 +16,35 @@ export * from './primitives';
 
 // === FORMS ===
 export * from './forms';
+
+// === UI COMPONENTS (not in categories) ===
+export * from './ui/action-button';
+export * from './ui/address-link';
+export * from './ui/animated-counter';
+export * from './ui/animated-section';
+export * from './ui/backdrop';
 export * from './ui/button';
+export * from './ui/command';
+export * from './ui/design-system-components';
+export * from './ui/focus-indicator';
+export * from './ui/gradient-icon-container';
+export * from './ui/icon-container';
+export * from './ui/icon-text';
+export * from './ui/info-box';
+export * from './ui/keyboard-shortcut';
 export * from './ui/logo';
+export * from './ui/morph-transition';
+export * from './ui/page-section-header';
+export * from './ui/parallax-scroll';
+export * from './ui/quick-actions';
+export * from './ui/reveal-on-scroll';
 export * from './ui/section-badge';
 export * from './ui/section-header';
+export * from './ui/settings-list';
+export * from './ui/skip-navigation';
+export * from './ui/sort-dropdown';
+export * from './ui/version-badge';
+export * from './ui/visually-hidden';
 
 // === NAVIGATION ===
 export * from './navigation';
@@ -38,7 +63,6 @@ export * from './modals';
 
 // === INTERACTIVE ===
 export * from './interactive';
-export * from './ui/animated-section';
 
 // === CORE COMPONENTS ===
 export * from './core';

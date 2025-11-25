@@ -39,5 +39,6 @@ export { SafeAppWrapper } from './SafeAppWrapper';
 export { SecurityProvider } from './SecurityProvider';
 
 // Icons & Optimized components
+export { OptimizedImage } from './OptimizedImage';
 export * from './icons';
 export * from './optimized';

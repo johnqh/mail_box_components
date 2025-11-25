@@ -22,7 +22,9 @@ export * from './notification-panel';
 
 // Badges & Indicators
 export * from './badge';
+export * from './badge-designer';
 export * from './status-badge';
 export * from './status-indicator';
+export * from './status-pipeline';
 // Note: system-status-indicator may be in ui still
 // Note: section-badge may be in ui still

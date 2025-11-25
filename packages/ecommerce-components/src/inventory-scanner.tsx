@@ -11,13 +11,13 @@ import { cn } from './lib/utils';
  * <InventoryScanner className="custom-class" />
  * ```
  */
-export interface InventoryScannerProps {
+interface InventoryScannerProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const InventoryScanner = ({
+const InventoryScanner = ({
   className,
   children,
   disabled,

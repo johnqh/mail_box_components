@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/gas-tracker}
  */
 
-export interface UgasUtrackerProps {
+interface UgasUtrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ export interface UgasUtrackerProps {
   onClick?: () => void;
 }
 
-export const UgasUtracker = ({
+const UgasUtracker = ({
   className,
   children,
   disabled = false,

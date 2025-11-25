@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/wallet-connect}
  */
 
-export interface UwalletUconnectProps {
+interface UwalletUconnectProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ export interface UwalletUconnectProps {
   onClick?: () => void;
 }
 
-export const UwalletUconnect = ({
+const UwalletUconnect = ({
   className,
   children,
   disabled = false,

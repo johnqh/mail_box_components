@@ -1,13 +1,13 @@
 import React from 'react';
 
-export interface WalletIconProps {
+interface WalletIconProps {
   wallet: string;
   connector?: { icon?: string }; // Simplified connector type with optional icon
   className?: string;
   iconBasePath?: string; // Allow customizing the base path for icons
 }
 
-export const WalletIcon: React.FC<WalletIconProps> = ({
+const WalletIcon: React.FC<WalletIconProps> = ({
   wallet,
   connector,
   className = 'w-8 h-8',

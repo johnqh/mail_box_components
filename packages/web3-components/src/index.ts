@@ -5,7 +5,6 @@
  */
 
 export * from './address-label';
-export * from './address-link';
 export * from './crypto-portfolio';
 export * from './gas-tracker';
 export * from './nft-gallery';

@@ -16,5 +16,3 @@ const Label = React.forwardRef<
   <Root ref={ref} className={cn(labelVariants(), className)} {...props} />
 ));
 Label.displayName = Root.displayName;
-
-export { Label };

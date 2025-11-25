@@ -11,13 +11,13 @@ import { cn } from './lib/utils';
  * <StockLevel className="custom-class" />
  * ```
  */
-export interface StockLevelProps {
+interface StockLevelProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const StockLevel = ({
+const StockLevel = ({
   className,
   children,
   disabled,

@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <SubscriberList className="custom-class" />
  * ```
  */
-export interface SubscriberListProps {
+interface SubscriberListProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const SubscriberList = ({
+const SubscriberList = ({
   className,
   children,
   disabled,

@@ -11,13 +11,13 @@ import { cn } from './lib/utils';
  * <AppointmentBooking className="custom-class" />
  * ```
  */
-export interface AppointmentBookingProps {
+interface AppointmentBookingProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const AppointmentBooking = ({
+const AppointmentBooking = ({
   className,
   children,
   disabled,

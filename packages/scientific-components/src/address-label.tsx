@@ -14,7 +14,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-export interface AddressLabelProps {
+interface AddressLabelProps {
   /** Blockchain address (EVM or Solana) */
   address: string;
 
@@ -57,7 +57,7 @@ const shortenAddress = (
  * - Supports both EVM and Solana addresses
  * - Light/dark theme support
  */
-export const AddressLabel: React.FC<AddressLabelProps> = ({
+const AddressLabel: React.FC<AddressLabelProps> = ({
   address,
   prefixLength = 6,
   suffixLength = 4,

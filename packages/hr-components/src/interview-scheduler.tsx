@@ -11,13 +11,13 @@ import { cn } from './lib/utils';
  * <InterviewScheduler className="custom-class" />
  * ```
  */
-export interface InterviewSchedulerProps {
+interface InterviewSchedulerProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const InterviewScheduler = ({
+const InterviewScheduler = ({
   className,
   children,
   disabled,

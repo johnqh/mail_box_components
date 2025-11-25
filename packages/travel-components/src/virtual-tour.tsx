@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/virtual-tour}
  */
 
-export interface UvirtualUtourProps {
+interface UvirtualUtourProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ export interface UvirtualUtourProps {
   onClick?: () => void;
 }
 
-export const UvirtualUtour = ({
+const UvirtualUtour = ({
   className,
   children,
   disabled = false,

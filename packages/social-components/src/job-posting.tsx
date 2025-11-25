@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <JobPosting className="custom-class" />
  * ```
  */
-export interface JobPostingProps {
+interface JobPostingProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const JobPosting = ({
+const JobPosting = ({
   className,
   children,
   disabled,

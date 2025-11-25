@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/allergen-filter}
  */
 
-export interface UallergenUfilterProps {
+interface UallergenUfilterProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ export interface UallergenUfilterProps {
   onClick?: () => void;
 }
 
-export const UallergenUfilter = ({
+const UallergenUfilter = ({
   className,
   children,
   disabled = false,

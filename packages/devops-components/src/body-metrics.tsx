@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/body-metrics}
  */
 
-export interface UbodyUmetricsProps {
+interface UbodyUmetricsProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ export interface UbodyUmetricsProps {
   onClick?: () => void;
 }
 
-export const UbodyUmetrics = ({
+const UbodyUmetrics = ({
   className,
   children,
   disabled = false,

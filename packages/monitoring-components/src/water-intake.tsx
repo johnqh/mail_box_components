@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/water-intake}
  */
 
-export interface UwaterUintakeProps {
+interface UwaterUintakeProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ export interface UwaterUintakeProps {
   onClick?: () => void;
 }
 
-export const UwaterUintake = ({
+const UwaterUintake = ({
   className,
   children,
   disabled = false,

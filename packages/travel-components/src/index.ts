@@ -5,7 +5,6 @@
  */
 
 export * from './airport-map';
-export * from './appointment-booking';
 export * from './boarding-pass';
 export * from './booking-confirmation';
 export * from './booking-widget';
@@ -17,7 +16,6 @@ export * from './guided-tour';
 export * from './hotel-booking';
 export * from './itinerary-builder';
 export * from './resource-booking';
-export * from './table-reservation';
 export * from './tour-package';
 export * from './tournament-bracket';
 export * from './travel-checklist';
@@ -26,6 +24,5 @@ export * from './travel-tips';
 export * from './trip-meter';
 export * from './trip-planner';
 export * from './vacation-planner';
-export * from './virtual-tour';
 export * from './weather-forecast';
 export * from './weather-station';

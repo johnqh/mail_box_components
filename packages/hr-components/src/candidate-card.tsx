@@ -11,13 +11,13 @@ import { cn } from './lib/utils';
  * <CandidateCard className="custom-class" />
  * ```
  */
-export interface CandidateCardProps {
+interface CandidateCardProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const CandidateCard = ({
+const CandidateCard = ({
   className,
   children,
   disabled,

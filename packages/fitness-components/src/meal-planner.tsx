@@ -22,7 +22,7 @@ import { cn } from './lib/utils';
  * @see {@link https://docs.example.com/components/meal-planner}
  */
 
-export interface UmealUplannerProps {
+interface UmealUplannerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ export interface UmealUplannerProps {
   onClick?: () => void;
 }
 
-export const UmealUplanner = ({
+const UmealUplanner = ({
   className,
   children,
   disabled = false,

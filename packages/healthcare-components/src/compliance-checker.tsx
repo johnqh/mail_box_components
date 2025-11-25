@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <ComplianceChecker className="custom-class" />
  * ```
  */
-export interface ComplianceCheckerProps {
+interface ComplianceCheckerProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const ComplianceChecker = ({
+const ComplianceChecker = ({
   className,
   children,
   disabled,

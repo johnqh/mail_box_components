@@ -11,13 +11,13 @@ import { cn } from './lib/utils';
  * <WarehouseMap className="custom-class" />
  * ```
  */
-export interface WarehouseMapProps {
+interface WarehouseMapProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const WarehouseMap = ({
+const WarehouseMap = ({
   className,
   children,
   disabled,

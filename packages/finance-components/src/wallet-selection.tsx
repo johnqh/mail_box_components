@@ -1,7 +1,7 @@
 import React from 'react';
 import { WalletIcon } from './wallet-icon';
 
-export interface WalletOption {
+interface WalletOption {
   id: string;
   name: string;
   icon?: string;
@@ -12,7 +12,7 @@ export interface WalletOption {
   onClick: () => void;
 }
 
-export interface WalletSelectionButtonProps {
+interface WalletSelectionButtonProps {
   wallet: WalletOption;
   disabled?: boolean;
   className?: string;
@@ -22,7 +22,7 @@ export interface WalletSelectionButtonProps {
   };
 }
 
-export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
+const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
   wallet,
   disabled = false,
   className = '',
@@ -77,7 +77,7 @@ export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
   );
 };
 
-export interface WalletTabProps {
+interface WalletTabProps {
   active: boolean;
   onClick: () => void;
   icon: string;
@@ -85,7 +85,7 @@ export interface WalletTabProps {
   color: 'blue' | 'purple';
 }
 
-export const WalletTab: React.FC<WalletTabProps> = ({
+const WalletTab: React.FC<WalletTabProps> = ({
   active,
   onClick,
   icon,
@@ -114,7 +114,7 @@ export const WalletTab: React.FC<WalletTabProps> = ({
   );
 };
 
-export interface WalletSelectionGridProps {
+interface WalletSelectionGridProps {
   evmWallets: WalletOption[];
   solanaWallets: WalletOption[];
   activeTab: 'ethereum' | 'solana';
@@ -132,7 +132,7 @@ export interface WalletSelectionGridProps {
   };
 }
 
-export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
+const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
   evmWallets,
   solanaWallets,
   activeTab,

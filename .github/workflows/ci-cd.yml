@@ -90,13 +90,22 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Check if package version changed
+      - name: Check if package needs publishing
         id: check-version
         run: |
-          if git diff HEAD^ HEAD -- packages/${{ matrix.package }}-components/package.json | grep -q '"version"'; then
+          # Get published version from npm registry (empty if not published)
+          PUBLISHED_VERSION=$(npm view @sudobility/${{ matrix.package }}-components version 2>/dev/null || echo "")
+
+          # Get local version from package.json
+          LOCAL_VERSION=$(node -p "require('./packages/${{ matrix.package }}-components/package.json').version")
+
+          # Compare versions
+          if [ "$PUBLISHED_VERSION" != "$LOCAL_VERSION" ]; then
             echo "changed=1" >> $GITHUB_OUTPUT
+            echo "📦 Will publish ${{ matrix.package }}-components@$LOCAL_VERSION (npm: ${PUBLISHED_VERSION:-not published})"
           else
             echo "changed=0" >> $GITHUB_OUTPUT
+            echo "✓ ${{ matrix.package }}-components@$LOCAL_VERSION already published"
           fi
 
       - name: Install dependencies

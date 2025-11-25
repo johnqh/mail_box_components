@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/education-components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Education and learning UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

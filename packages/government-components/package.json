@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/government-components",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "government UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/media-components",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "media UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

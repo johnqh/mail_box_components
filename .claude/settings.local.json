@@ -12,7 +12,8 @@
       "Bash(do echo 'Bumping $(basename $pkg)...' cd $pkg npm version patch --no-git-tag-version cd - done)",
       "Bash(/tmp/bump-all-packages.sh)",
       "Bash(for pkg in collaboration-components marketing-components devops-components)",
-      "Bash(do echo '=== $pkg ===' echo 'Component files:' ls packages/$pkg/src/*.tsx)"
+      "Bash(do echo '=== $pkg ===' echo 'Component files:' ls packages/$pkg/src/*.tsx)",
+      "Bash(do cd $pkg)"
     ],
     "deny": [],
     "ask": []

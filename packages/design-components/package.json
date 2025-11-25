@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/design-components",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Design and theming components for color pickers, swatches, and visual design tools",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.esm.js",

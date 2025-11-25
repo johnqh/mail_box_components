@@ -67,6 +67,12 @@ export * from './interactive';
 // === CORE COMPONENTS ===
 export * from './core';
 
+// === FEATURE COMPONENTS ===
+export * from './features';
+
+// === KYC COMPONENTS ===
+export * from './kyc';
+
 // === LAYOUT COMPONENTS ===
 export * from './layout';
 

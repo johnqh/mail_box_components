@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/insurance-components",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "insurance UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

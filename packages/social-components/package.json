@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/social-components",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "social UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

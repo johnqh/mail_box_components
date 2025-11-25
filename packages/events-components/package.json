@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/events-components",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "events UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

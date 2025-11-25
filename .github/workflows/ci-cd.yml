@@ -112,6 +112,8 @@ jobs:
         if: steps.check-version.outputs.changed == '1'
         working-directory: ./packages/${{ matrix.package }}-components
         run: npm install --legacy-peer-deps
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build package
         if: steps.check-version.outputs.changed == '1'

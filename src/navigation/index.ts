@@ -8,7 +8,7 @@
 export * from './smart-link';
 export * from './link';
 export * from './external-link';
-export * from '../core/TrackedLink';
+// Note: TrackedLink is exported from core/
 
 // Breadcrumbs
 export * from './breadcrumb-nav';

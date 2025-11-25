@@ -22,7 +22,7 @@ import { cn } from './lib/utils';
  * @see {@link https://docs.example.com/components/mortgage-calc}
  */
 
-interface UmortgageUcalcProps {
+export interface UmortgageUcalcProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ interface UmortgageUcalcProps {
   onClick?: () => void;
 }
 
-const UmortgageUcalc = ({
+export const UmortgageUcalc = ({
   className,
   children,
   disabled = false,

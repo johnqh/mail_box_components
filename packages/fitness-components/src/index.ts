@@ -1,3 +1,6 @@
+export * from './meal-planner';
+export * from './nutrition-facts';
+export * from './nutrition-label';
 /**
  * Fitness Components
  *

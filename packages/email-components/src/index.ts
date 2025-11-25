@@ -1,3 +1,4 @@
+export * from './subscriber-list';
 /**
  * Email Components
  *

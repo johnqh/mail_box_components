@@ -11,13 +11,13 @@ import { cn } from './lib/utils';
  * <InventoryAlert className="custom-class" />
  * ```
  */
-interface InventoryAlertProps {
+export interface InventoryAlertProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-const InventoryAlert = ({
+export const InventoryAlert = ({
   className,
   children,
   disabled,

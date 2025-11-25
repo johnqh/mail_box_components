@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/weight-chart}
  */
 
-interface UweightUchartProps {
+export interface UweightUchartProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ interface UweightUchartProps {
   onClick?: () => void;
 }
 
-const UweightUchart = ({
+export const UweightUchart = ({
   className,
   children,
   disabled = false,

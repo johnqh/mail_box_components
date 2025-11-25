@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <SustainabilityScore className="custom-class" />
  * ```
  */
-interface SustainabilityScoreProps {
+export interface SustainabilityScoreProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-const SustainabilityScore = ({
+export const SustainabilityScore = ({
   className,
   children,
   disabled,

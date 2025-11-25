@@ -1,3 +1,4 @@
+export * from './address-label';
 /**
  * Scientific Components
  *

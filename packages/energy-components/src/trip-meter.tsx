@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <TripMeter className="custom-class" />
  * ```
  */
-interface TripMeterProps {
+export interface TripMeterProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-const TripMeter = ({
+export const TripMeter = ({
   className,
   children,
   disabled,

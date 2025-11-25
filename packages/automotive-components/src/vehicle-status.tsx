@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <VehicleStatus className="custom-class" />
  * ```
  */
-interface VehicleStatusProps {
+export interface VehicleStatusProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-const VehicleStatus = ({
+export const VehicleStatus = ({
   className,
   children,
   disabled,

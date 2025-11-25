@@ -1,3 +1,4 @@
+export * from './sustainability-score';
 /**
  * gaming-components
  *

@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <CarbonFootprint className="custom-class" />
  * ```
  */
-interface CarbonFootprintProps {
+export interface CarbonFootprintProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-const CarbonFootprint = ({
+export const CarbonFootprint = ({
   className,
   children,
   disabled,

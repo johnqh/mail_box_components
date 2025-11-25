@@ -1,3 +1,6 @@
+export * from './gas-tracker';
+export * from './sleep-tracker';
+export * from './water-intake';
 /**
  * monitoring-components
  *

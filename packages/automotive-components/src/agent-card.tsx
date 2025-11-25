@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/agent-card}
  */
 
-interface UagentUcardProps {
+export interface UagentUcardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ interface UagentUcardProps {
   onClick?: () => void;
 }
 
-const UagentUcard = ({
+export const UagentUcard = ({
   className,
   children,
   disabled = false,

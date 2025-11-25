@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/sleep-tracker}
  */
 
-interface UsleepUtrackerProps {
+export interface UsleepUtrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ interface UsleepUtrackerProps {
   onClick?: () => void;
 }
 
-const UsleepUtracker = ({
+export const UsleepUtracker = ({
   className,
   children,
   disabled = false,

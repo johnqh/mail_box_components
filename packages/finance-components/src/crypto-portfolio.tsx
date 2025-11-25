@@ -22,7 +22,7 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/crypto-portfolio}
  */
 
-interface UcryptoUportfolioProps {
+export interface UcryptoUportfolioProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ interface UcryptoUportfolioProps {
   onClick?: () => void;
 }
 
-const UcryptoUportfolio = ({
+export const UcryptoUportfolio = ({
   className,
   children,
   disabled = false,

@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <ContactCard className="custom-class" />
  * ```
  */
-interface ContactCardProps {
+export interface ContactCardProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-const ContactCard = ({
+export const ContactCard = ({
   className,
   children,
   disabled,

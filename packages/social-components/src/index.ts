@@ -1,3 +1,4 @@
+export * from './job-posting';
 /**
  * social-components
  *

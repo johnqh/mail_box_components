@@ -1,3 +1,4 @@
+export * from './trip-meter';
 /**
  * Energy Components
  *

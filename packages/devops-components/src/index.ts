@@ -1,3 +1,4 @@
+export * from './body-metrics';
 /**
  * devops-components
  *

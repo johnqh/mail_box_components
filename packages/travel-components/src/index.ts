@@ -1,3 +1,5 @@
+export * from './appointment-booking';
+export * from './virtual-tour';
 /**
  * Travel Components
  *

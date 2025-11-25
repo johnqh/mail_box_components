@@ -1,3 +1,4 @@
+export * from './weight-chart';
 /**
  * Visualization Components
  *

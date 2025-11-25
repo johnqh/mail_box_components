@@ -1,7 +1,7 @@
 import React from 'react';
 import { WalletIcon } from './wallet-icon';
 
-interface WalletOption {
+export interface WalletOption {
   id: string;
   name: string;
   icon?: string;
@@ -12,7 +12,7 @@ interface WalletOption {
   onClick: () => void;
 }
 
-interface WalletSelectionButtonProps {
+export interface WalletSelectionButtonProps {
   wallet: WalletOption;
   disabled?: boolean;
   className?: string;
@@ -77,7 +77,7 @@ const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
   );
 };
 
-interface WalletTabProps {
+export interface WalletTabProps {
   active: boolean;
   onClick: () => void;
   icon: string;
@@ -114,7 +114,7 @@ const WalletTab: React.FC<WalletTabProps> = ({
   );
 };
 
-interface WalletSelectionGridProps {
+export interface WalletSelectionGridProps {
   evmWallets: WalletOption[];
   solanaWallets: WalletOption[];
   activeTab: 'ethereum' | 'solana';
@@ -132,7 +132,7 @@ interface WalletSelectionGridProps {
   };
 }
 
-const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
+export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
   evmWallets,
   solanaWallets,
   activeTab,

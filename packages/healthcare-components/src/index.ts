@@ -1,3 +1,5 @@
+export * from './allergen-filter';
+export * from './compliance-checker';
 /**
  * healthcare-components
  *

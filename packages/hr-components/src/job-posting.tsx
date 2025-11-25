@@ -11,13 +11,13 @@ import { cn } from './lib/utils';
  * <JobPosting className="custom-class" />
  * ```
  */
-interface JobPostingProps {
+export interface JobPostingProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-const JobPosting = ({
+export const JobPosting = ({
   className,
   children,
   disabled,

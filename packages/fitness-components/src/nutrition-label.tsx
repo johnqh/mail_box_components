@@ -22,7 +22,7 @@ import { cn } from './lib/utils';
  * @see {@link https://docs.example.com/components/nutrition-label}
  */
 
-interface UnutritionUlabelProps {
+export interface UnutritionUlabelProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -33,7 +33,7 @@ interface UnutritionUlabelProps {
   onClick?: () => void;
 }
 
-const UnutritionUlabel = ({
+export const UnutritionUlabel = ({
   className,
   children,
   disabled = false,

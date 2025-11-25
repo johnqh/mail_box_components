@@ -11,13 +11,13 @@ import { cn } from '@sudobility/components';
  * <FleetManagement className="custom-class" />
  * ```
  */
-interface FleetManagementProps {
+export interface FleetManagementProps {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
-const FleetManagement = ({
+export const FleetManagement = ({
   className,
   children,
   disabled,

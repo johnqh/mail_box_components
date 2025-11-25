@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/marketing-components",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "marketing UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

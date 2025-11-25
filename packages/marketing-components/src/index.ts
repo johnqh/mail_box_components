@@ -8,7 +8,6 @@
 
 export * from './crm-dashboard';
 export * from './cta-banner';
-export * from './feature-grid';
 export * from './feature-list-item';
 export * from './feature-spotlight';
 export * from './funnel-chart';

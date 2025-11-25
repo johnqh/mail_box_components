@@ -32,7 +32,6 @@ export * from './performance-chart';
 export * from './pipeline-view';
 export * from './regression-test';
 export * from './schema-validator';
-export * from './status-indicator';
 export * from './status-pipeline';
 export * from './system-status-indicator';
 export * from './test-result';

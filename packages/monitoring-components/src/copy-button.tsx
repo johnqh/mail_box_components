@@ -1,7 +1,6 @@
 import React from 'react';
-import { cn } from '@sudobility/components';
+import { cn, useCopyToClipboard } from '@sudobility/components';
 import { ClipboardDocumentIcon, CheckIcon } from '@heroicons/react/24/outline';
-import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
 
 export interface CopyButtonProps {
   /** Text to copy to clipboard */

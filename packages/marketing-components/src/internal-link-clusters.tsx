@@ -190,7 +190,6 @@ const generateContextualLinks = (pageType: string, _userStatus?: string) => {
 };
 
 export {
-  InternalLink,
   TopicClusterLinks,
   RelatedLinks,
   generateContextualLinks,

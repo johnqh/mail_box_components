@@ -27,6 +27,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
+    "@heroicons/react": "^2.2.0",
     "@sudobility/components": "^3.0.0",
     "@types/node": "^24.7.1",
     "@types/react": "^19.2.2",

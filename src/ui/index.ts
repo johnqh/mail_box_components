@@ -100,7 +100,6 @@ export * from './screen-reader-text';
 export * from './scroll-area';
 export * from './scroll-spy';
 export * from './search-input';
-export * from './section';
 export * from './section-badge';
 export * from './section-header';
 export * from './select';

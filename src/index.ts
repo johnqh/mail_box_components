@@ -17,6 +17,8 @@ export * from './primitives';
 // === FORMS ===
 export * from './forms';
 export * from './ui/button';
+export * from './ui/logo';
+export * from './ui/section-header';
 
 // === NAVIGATION ===
 export * from './navigation';

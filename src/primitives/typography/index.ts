@@ -5,23 +5,23 @@
  */
 
 // Basic Text
-export * from './text';
-export * from './heading';
+export * from '../../ui/text';
+export * from '../../ui/heading';
 export * from './typography'; // PageTitle, SectionTitle, BodyText, TextLink
 
 // Code & Technical
-export * from './code';
-export * from './code-display';
-export * from './kbd';
+export * from '../../ui/code';
+export * from '../../ui/code-display';
+export * from '../../ui/kbd';
 
 // Quotes & Special
 export * from './blockquote';
 
 // Helpers
-export * from './helper-text';
-export * from './screen-reader-text';
-export * from './truncated-text';
+export * from '../../ui/helper-text';
+export * from '../../ui/screen-reader-text';
+export * from '../../ui/truncated-text';
 
 // Formatting
-export * from './formatted-number';
+export * from '../../ui/formatted-number';
 export * from './relative-time';

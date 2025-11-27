@@ -36,5 +36,5 @@ export * from './metric-comparison';
 // Progress Indicators
 export * from './gauge';
 export * from '../ui/progress';
-export * from './progress-circle';
+export * from '../ui/progress-circle';
 export * from './progress-tracker';

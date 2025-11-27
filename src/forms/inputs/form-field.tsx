@@ -1,6 +1,6 @@
 import React from 'react';
 import { Label } from './label';
-import { Input } from './input';
+import { Input } from '../../ui/input';
 import { textVariants } from '@sudobility/design';
 import { cn } from '../../lib/utils';
 

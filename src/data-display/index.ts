@@ -16,11 +16,11 @@ export * from './table-reservation';
 
 // Lists
 export * from '../ui/list';
-export * from './list-item-with-action';
+export * from '../ui/list-item-with-action';
 export * from './user-table';
-export * from './transfer-list';
-export * from './virtual-list';
-export * from './tree-view';
+export * from '../ui/transfer-list';
+export * from '../ui/virtual-list';
+export * from '../ui/tree-view';
 export * from './listing-form';
 
 // Cards

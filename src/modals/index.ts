@@ -5,17 +5,17 @@
  */
 
 // Modals
-export * from './modal';
-export * from './dialog';
+export * from '../ui/modal';
+export * from '../ui/dialog';
 // Note: alert-dialog is in primitives/feedback
 export * from './confirmation-dialog';
-export * from './text-input-modal';
+export * from '../ui/text-input-modal';
 
 // Drawers & Sheets
-export * from './drawer';
-export * from './sheet';
+export * from '../ui/drawer';
+export * from '../ui/sheet';
 
 // Popovers & Tooltips
-export * from './popover';
+export * from '../ui/popover';
 export * from './hover-card';
-export * from './tooltip';
+export * from '../ui/tooltip';

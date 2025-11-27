@@ -5,7 +5,7 @@
  */
 
 // Links
-export * from './smart-link';
+export * from '../ui/smart-link';
 export * from '../ui/link';
 export * from '../ui/external-link';
 // Note: TrackedLink is exported from core/
@@ -17,12 +17,12 @@ export * from '../ui/breadcrumb-nav';
 // Tabs & Navigation
 export * from '../ui/tabs';
 export * from './navigation-menu';
-export * from './navigation-list';
-export * from './side-nav';
+export * from '../ui/navigation-list';
+export * from '../ui/side-nav';
 
 // Pagination
 export * from './pagination';
-export * from './pagination-nav';
+export * from '../ui/pagination-nav';
 
 // Steppers
 export * from './stepper';

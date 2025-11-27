@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { Spinner } from './spinner';
+import { Spinner } from '../../ui/spinner';
 interface LoadingStateProps {
   message?: string;
   size?: 'small' | 'default' | 'large';

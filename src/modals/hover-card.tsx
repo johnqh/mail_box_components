@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '../lib/utils';
-import { Portal } from '../primitives/layout/portal';
+import { Portal } from '../ui/portal';
 
 export interface HoverCardProps {
   /** Trigger element */

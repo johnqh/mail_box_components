@@ -5,9 +5,9 @@
  */
 
 // Date & Time Pickers
-export * from './date-time-picker';
+export * from '../../ui/date-time-picker';
 export * from './date-range-picker';
-export * from './calendar';
+export * from '../../ui/calendar';
 export * from './time-slot-picker';
 
 // Color Pickers

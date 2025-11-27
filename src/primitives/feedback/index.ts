@@ -5,23 +5,23 @@
  */
 
 // Loading States
-export * from './spinner';
-export * from './loading-overlay';
-export * from './loading-dots';
+export * from '../../ui/spinner';
+export * from '../../ui/loading-overlay';
+export * from '../../ui/loading-dots';
 export * from './loading-state';
-export * from './skeleton-loader';
+export * from '../../ui/skeleton-loader';
 
 // Alerts & Notifications
-export * from './alert';
+export * from '../../ui/alert';
 // Note: AlertDialog is in modals/
 export * from './alert-banner';
-export * from './toast';
+export * from '../../ui/toast';
 export * from './toast-notification';
 export * from './notification-badge';
 export * from './notification-panel';
 
 // Badges & Indicators
-export * from './badge';
+export * from '../../ui/badge';
 export * from './badge-designer';
 export * from './status-badge';
 export * from './status-indicator';

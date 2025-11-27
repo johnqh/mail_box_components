@@ -5,7 +5,7 @@ import {
   CheckCircleIcon,
   XCircleIcon,
 } from '@heroicons/react/24/outline';
-import { Modal, ModalContent, ModalFooter } from './modal';
+import { Modal, ModalContent, ModalFooter } from '../ui/modal';
 import { Button } from '@/ui';
 import { variants } from '@sudobility/design';
 import { textVariants } from '@sudobility/design';

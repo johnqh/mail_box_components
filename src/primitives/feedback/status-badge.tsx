@@ -1,5 +1,6 @@
 import React from 'react';
 import { variants, getStatusIndicatorColor } from '@sudobility/design';
+import { ChainType } from '@sudobility/types';
 
 export type StatusType =
   | 'verified'
@@ -10,9 +11,6 @@ export type StatusType =
   | 'success'
   | 'warning';
 
-// Local ChainType enum to avoid @johnqh/lib dependency
-export type ChainType = 'evm' | 'solana' | 'unknown';
-
 interface StatusBadgeProps {
   status: StatusType;
   label?: string;
@@ -21,7 +19,7 @@ interface StatusBadgeProps {
 }
 
 interface ChainBadgeProps {
-  chainType: ChainType;
+  chainType?: ChainType;
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -120,15 +118,15 @@ export const ChainBadge: React.FC<ChainBadgeProps> = ({
   chainType,
   size = 'md',
 }) => {
-  if (chainType === 'unknown') return null;
+  if (!chainType) return null;
 
-  const chainLabel = chainType === 'solana' ? 'SOL' : 'ETH';
+  const chainLabel = chainType === ChainType.SOLANA ? 'SOL' : 'ETH';
   const sizeMap = { sm: 'small', md: 'default', lg: 'large' } as const;
   const badgeSize = sizeMap[size];
 
   // Use design system Web3 badge variants
   const getBadgeClass = () => {
-    const badgeType = chainType === 'solana' ? 'solana' : 'ethereum';
+    const badgeType = chainType === ChainType.SOLANA ? 'solana' : 'ethereum';
     if (badgeSize === 'default') {
       return variants.badge[badgeType]();
     } else {

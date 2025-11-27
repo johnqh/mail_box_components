@@ -5,7 +5,7 @@
  */
 
 // Tables
-export * from './table';
+export * from '../ui/table';
 export * from './data-table';
 export * from './data-grid';
 export * from './pivot-table';
@@ -15,7 +15,7 @@ export * from './cell-editor';
 export * from './table-reservation';
 
 // Lists
-export * from './list';
+export * from '../ui/list';
 export * from './list-item-with-action';
 export * from './user-table';
 export * from './transfer-list';
@@ -24,7 +24,7 @@ export * from './tree-view';
 export * from './listing-form';
 
 // Cards
-export * from './card';
+export * from '../ui/card';
 export * from './dashboard-stat-card';
 
 // User Display

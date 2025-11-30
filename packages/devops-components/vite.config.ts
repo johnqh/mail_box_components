@@ -18,6 +18,7 @@ export default defineConfig({
         'react-dom',
         '@sudobility/components',
         '@sudobility/design',
+        '@radix-ui/react-tooltip',
       ],
       output: {
         globals: {

@@ -1,20 +1,20 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { cn } from '@sudobility/components';
-import { ChainBadge } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
+import { AddressType, Optional } from '@sudobility/types';
 
 export interface EmailAccount {
   address: string;
   name: string;
-  type: 'primary' | 'ens' | 'sns';
   walletAddress: string;
-  addressType: 'evm' | 'solana';
+  addressType: Optional<AddressType>;
+  entitled?: boolean;
 }
 
 export interface WalletEmailGroup {
   walletAddress: string;
-  addressType: 'evm' | 'solana';
+  addressType: Optional<AddressType>;
   primaryEmail: EmailAccount;
   domainEmails: EmailAccount[];
   customColor?: string;
@@ -38,27 +38,34 @@ const formatWalletAddress = (address: string): string => {
 };
 
 const ChainPill: React.FC<{
-  type: 'primary' | 'ens' | 'sns';
-  addressType: 'evm' | 'solana';
-}> = ({ type, addressType }) => {
-  // Use ChainBadge for primary wallet addresses (EVM/Solana)
-  if (type === 'primary') {
-    return (
-      <ChainBadge
-        chainType={addressType === 'solana' ? 'solana' : 'evm'}
-        size='sm'
-      />
-    );
-  }
+  addressType: Optional<AddressType>;
+}> = ({ addressType }) => {
+  // Get label based on address type
+  const getChainLabel = () => {
+    switch (addressType) {
+      case AddressType.EVMAddress:
+        return 'ETH';
+      case AddressType.SolanaAddress:
+        return 'SOL';
+      case AddressType.ENSName:
+        return 'ENS';
+      case AddressType.SNSName:
+        return 'SNS';
+      default:
+        return 'DOMAIN';
+    }
+  };
 
-  // Custom pill for ENS/SNS with border
-  const getChainLabel = () => type.toUpperCase();
-
+  // Get consistent styling for all pill types
   const getChainStyle = () => {
-    switch (type) {
-      case 'ens':
+    switch (addressType) {
+      case AddressType.EVMAddress:
+        return 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/10 dark:text-blue-300 dark:border-blue-800';
+      case AddressType.SolanaAddress:
+        return 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/10 dark:text-purple-300 dark:border-purple-800';
+      case AddressType.ENSName:
         return 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/10 dark:text-green-300 dark:border-green-800';
-      case 'sns':
+      case AddressType.SNSName:
         return 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/10 dark:text-orange-300 dark:border-orange-800';
       default:
         return 'bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-800';
@@ -119,7 +126,7 @@ const CollapsibleDomainEmails: React.FC<{
             )}
           >
             <span className='truncate flex-1'>{email.name}</span>
-            <ChainPill type={email.type} addressType={email.addressType} />
+            <ChainPill addressType={email.addressType} />
           </button>
         ))}
       </div>
@@ -160,10 +167,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
               <span className='truncate flex-1'>
                 {formatWalletAddress(group.walletAddress)}
               </span>
-              <ChainPill
-                type={group.primaryEmail.type}
-                addressType={group.addressType}
-              />
+              <ChainPill addressType={group.primaryEmail.addressType} />
             </div>
             {group.domainEmails.length > 0 && (
               <div

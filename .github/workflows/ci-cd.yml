@@ -26,10 +26,97 @@ jobs:
       npm-access: "restricted"
     secrets: inherit  # Pass all repository secrets
 
-  # Publish specialized packages after main package (runs even if main fails)
+  # Validate all specialized packages (build, type-check, lint)
+  validate-specialized:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - agriculture
+          - analytics
+          - automotive
+          - collaboration
+          - communication
+          - construction
+          - design
+          - devops
+          - documents
+          - ecommerce
+          - education
+          - email
+          - energy
+          - entertainment
+          - events
+          - finance
+          - fitness
+          - food
+          - gaming
+          - government
+          - healthcare
+          - hr
+          - insurance
+          - interaction
+          - iot
+          - legal
+          - logistics
+          - manufacturing
+          - marketing
+          - media
+          - monitoring
+          - nonprofit
+          - project-management
+          - realestate
+          - retail
+          - scheduling
+          - scientific
+          - search
+          - security
+          - social
+          - travel
+          - visualization
+          - web3
+          - workflow
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        working-directory: ./packages/${{ matrix.package }}-components
+        run: npm install --legacy-peer-deps
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build package
+        working-directory: ./packages/${{ matrix.package }}-components
+        run: npm run build
+
+      - name: Type check
+        working-directory: ./packages/${{ matrix.package }}-components
+        run: npm run type-check
+
+      - name: Lint (if available)
+        working-directory: ./packages/${{ matrix.package }}-components
+        run: |
+          if grep -q '"lint"' package.json; then
+            npm run lint
+          else
+            echo "No lint script found, skipping..."
+          fi
+
+      - name: Test
+        working-directory: ./packages/${{ matrix.package }}-components
+        run: npm test
+
+  # Publish specialized packages after main package and validation
   publish-specialized:
-    needs: cicd
-    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [cicd, validate-specialized]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

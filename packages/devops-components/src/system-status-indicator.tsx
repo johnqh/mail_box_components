@@ -140,11 +140,18 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
       : statusData.message || config.label;
 
   return (
-    <button
+    <span
+      role="button"
+      tabIndex={0}
       onClick={handleClick}
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleClick(e as unknown as React.MouseEvent);
+        }
+      }}
       title={tooltipText}
       className={cn(
-        'rounded-full flex-shrink-0 transition-all duration-200 cursor-pointer',
+        'inline-block rounded-full flex-shrink-0 transition-all duration-200 cursor-pointer',
         'ring-offset-2 focus:outline-none focus:ring-2 focus:ring-offset-2',
         config.color,
         config.hoverColor,

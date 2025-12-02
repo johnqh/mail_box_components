@@ -165,21 +165,19 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
   return (
     <Tooltip.Provider delayDuration={200}>
       <Tooltip.Root>
-        <Tooltip.Trigger asChild>
-          <button
-            onClick={handleClick}
-            className={cn(
-              'rounded-full flex-shrink-0 transition-all duration-200 cursor-pointer',
-              'ring-offset-2 focus:outline-none focus:ring-2 focus:ring-offset-2',
-              config.color,
-              config.hoverColor,
-              sizeClasses[size],
-              (isLoading || !isNetworkOnline) && 'animate-pulse',
-              className
-            )}
-            aria-label={`System status: ${config.label}`}
-          />
-        </Tooltip.Trigger>
+        <Tooltip.Trigger
+          onClick={handleClick}
+          className={cn(
+            'rounded-full flex-shrink-0 transition-all duration-200 cursor-pointer',
+            'ring-offset-2 focus:outline-none focus:ring-2 focus:ring-offset-2',
+            config.color,
+            config.hoverColor,
+            sizeClasses[size],
+            (isLoading || !isNetworkOnline) && 'animate-pulse',
+            className
+          )}
+          aria-label={`System status: ${config.label}`}
+        />
         <Tooltip.Portal>
           <Tooltip.Content
             className='z-50 overflow-hidden rounded-md bg-gray-900 dark:bg-gray-800 px-3 py-2 text-white shadow-md animate-in fade-in-0 zoom-in-95'

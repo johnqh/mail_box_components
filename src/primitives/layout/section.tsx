@@ -38,7 +38,7 @@ const sectionVariants = cva('', {
       'gradient-tertiary':
         'bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-gray-800 dark:to-gray-900',
       'gradient-vibrant':
-        'bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700',
+        'bg-gradient-to-br from-blue-800 to-purple-800 dark:from-blue-900 dark:to-purple-900',
     },
   },
   defaultVariants: {

@@ -61,7 +61,17 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nfix: remove redundant OptimizedImage export\n\nOptimizedImage was exported twice in core/index.ts:\n- Once directly from ./OptimizedImage\n- Once via ./optimized re-export\n\nRemoved the direct export since it''s already available via ./optimized.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(npm test:*)",
       "Bash(npm run lint:*)",
-      "Bash(bash:*)"
+      "Bash(bash:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(npm config list:*)",
+      "Bash(npm config:*)",
+      "Bash(xxd:*)",
+      "Bash(npm version:*)",
+      "Bash(for pkg in packages/*/)",
+      "Bash(chmod:*)",
+      "Bash(/tmp/check-all-packages.sh)",
+      "Bash(/tmp/check-all-typecheck.sh)"
     ],
     "deny": [],
     "ask": []

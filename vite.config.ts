@@ -10,6 +10,10 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
+  esbuild: {
+    jsx: 'automatic',
+    jsxDev: false,
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

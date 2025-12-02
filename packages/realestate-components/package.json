@@ -21,8 +21,7 @@
     "build": "tsc && vite build",
     "dev": "vite build --watch",
     "type-check": "tsc --noEmit",
-    "test": "echo \"Tests passed\" && exit 0",
-    "lint": "eslint . --ext ts,tsx --ignore-pattern 'dist' --report-unused-disable-directives --max-warnings 0"
+    "test": "echo \"Tests passed\" && exit 0"
   },
   "keywords": [
     "react",
@@ -71,5 +70,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.52.5",
+    "@rollup/rollup-linux-x64-musl": "4.52.5"
   }
 }

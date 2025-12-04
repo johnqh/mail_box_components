@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/components",
-  "version": "4.0.21",
+  "version": "4.0.22",
   "description": "Reusable UI components and design system - Reorganized for better maintainability",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -46,8 +46,8 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-switch": "^1.2.6",
     "@radix-ui/react-tabs": "^1.1.13",
-    "@sudobility/design": "^1.1.11",
-    "@sudobility/types": "^1.9.18",
+    "@sudobility/design": "^1.1.14",
+    "@sudobility/types": "^1.9.31",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "i18next": "^25.0.0",

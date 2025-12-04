@@ -141,7 +141,7 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
 
   return (
     <span
-      role="button"
+      role='button'
       tabIndex={0}
       onClick={handleClick}
       onKeyDown={e => {

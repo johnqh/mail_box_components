@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/components",
-  "version": "4.0.20",
+  "version": "4.0.21",
   "description": "Reusable UI components and design system - Reorganized for better maintainability",
   "type": "module",
   "main": "dist/index.umd.js",

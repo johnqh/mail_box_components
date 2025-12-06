@@ -82,6 +82,9 @@ export * from './seo';
 // === OPTIMIZATION COMPONENTS ===
 export * from './optimization';
 
+// === DEV TOOLS ===
+export * from './dev-tools';
+
 // === HOOKS ===
 export { useClickOutside } from './hooks/useClickOutside';
 export { useCodeLoader } from './hooks/useCodeLoader';

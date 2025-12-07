@@ -11,7 +11,7 @@ interface SlotProps {
  */
 export const TopbarLeft: React.FC<SlotProps> = ({ children, className }) => {
   return (
-    <div className={cn('flex items-center space-x-2 shrink-0', className)}>
+    <div className={cn('flex items-center gap-2 shrink-0', className)}>
       {children}
     </div>
   );
@@ -36,7 +36,7 @@ export const TopbarCenter: React.FC<SlotProps> = ({ children, className }) => {
  */
 export const TopbarRight: React.FC<SlotProps> = ({ children, className }) => {
   return (
-    <div className={cn('flex items-center space-x-2 shrink-0', className)}>
+    <div className={cn('flex items-center gap-2 shrink-0', className)}>
       {children}
     </div>
   );

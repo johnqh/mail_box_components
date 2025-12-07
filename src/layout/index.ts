@@ -4,6 +4,28 @@
 
 export { StandardPageLayout } from './StandardPageLayout';
 export { PageHeader } from './PageHeader';
+
+// Footer components
+export {
+  Footer,
+  type FooterProps,
+  type FooterVariant,
+  FooterGrid,
+  FooterBrand,
+  type FooterBrandProps,
+  FooterLinkSection,
+  type FooterLinkSectionProps,
+  FooterLink,
+  type FooterLinkProps,
+  FooterBottom,
+  FooterCompact,
+  FooterCompactLeft,
+  FooterCompactRight,
+  FooterVersion,
+  type FooterVersionProps,
+  FooterCopyright,
+  type FooterCopyrightProps,
+} from './Footer';
 export {
   MasterDetailLayout,
   type MasterDetailLayoutProps,

@@ -5,6 +5,18 @@
 export { StandardPageLayout } from './StandardPageLayout';
 export { PageHeader } from './PageHeader';
 
+// Layout context for unified width control
+export {
+  LayoutProvider,
+  useLayout,
+  LayoutContext,
+  type LayoutProviderProps,
+  type LayoutContextValue,
+  type LayoutMode,
+  ContentContainer,
+  type ContentContainerProps,
+} from './Layout';
+
 // Footer components
 export {
   Footer,

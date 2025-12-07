@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 import { TopbarProvider, TopbarVariant } from './TopbarContext';
+import { useLayout } from '../Layout/LayoutContext';
 
 export interface TopbarProps {
   /** Content to render inside the topbar */
@@ -73,6 +74,8 @@ export const Topbar: React.FC<TopbarProps> = ({
   zIndex = 'high',
   'aria-label': ariaLabel = 'Main navigation',
 }) => {
+  const { containerClass } = useLayout();
+
   return (
     <TopbarProvider variant={variant} sticky={sticky}>
       <header
@@ -104,7 +107,7 @@ export const Topbar: React.FC<TopbarProps> = ({
         {/* Main topbar content container */}
         <div
           className={cn(
-            'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+            containerClass,
             heightClasses[height],
             'flex items-center justify-between'
           )}

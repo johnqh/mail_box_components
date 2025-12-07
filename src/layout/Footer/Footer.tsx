@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { cn } from '../../lib/utils';
+import { useLayout } from '../Layout/LayoutContext';
 
 export type FooterVariant = 'full' | 'compact';
 
@@ -40,6 +41,7 @@ export const Footer: React.FC<FooterProps> = ({
   className,
   children,
 }) => {
+  const { containerClass } = useLayout();
   const isCompact = variant === 'compact';
 
   return (
@@ -54,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({
         className
       )}
     >
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>{children}</div>
+      <div className={containerClass}>{children}</div>
     </footer>
   );
 };

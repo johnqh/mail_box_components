@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/devops-components",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "DevOps and deployment UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

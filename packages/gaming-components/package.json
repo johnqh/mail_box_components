@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/gaming-components",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "gaming UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

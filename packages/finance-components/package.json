@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/finance-components",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Finance and investment UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

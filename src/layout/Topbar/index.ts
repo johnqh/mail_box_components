@@ -82,6 +82,12 @@ export {
   type TopbarMobileNavProps,
 } from './TopbarNav';
 
+// Unified navigation (desktop + mobile)
+export {
+  TopbarNavigation,
+  type TopbarNavigationProps,
+} from './TopbarNavigation';
+
 // Actions
 export {
   TopbarActions,

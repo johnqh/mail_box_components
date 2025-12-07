@@ -34,6 +34,8 @@ export {
   type TopbarNavProps,
   type TopbarNavItem,
   type TopbarMobileNavProps,
+  TopbarNavigation,
+  type TopbarNavigationProps,
   TopbarActions,
   TopbarIconButton,
   TopbarSearch,

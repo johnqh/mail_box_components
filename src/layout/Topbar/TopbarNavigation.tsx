@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
   TopbarNav,
   type TopbarNavItem,
@@ -19,6 +19,8 @@ export interface TopbarNavigationProps {
   className?: string;
   /** ARIA label for the mobile menu toggle */
   mobileMenuLabel?: string;
+  /** Content to render between toggle and nav (e.g., logo) */
+  children?: ReactNode;
 }
 
 /**
@@ -54,6 +56,7 @@ export const TopbarNavigation: React.FC<TopbarNavigationProps> = ({
   align = 'center',
   className,
   mobileMenuLabel = 'Toggle navigation menu',
+  children,
 }) => {
   return (
     <>
@@ -65,6 +68,9 @@ export const TopbarNavigation: React.FC<TopbarNavigationProps> = ({
         aria-label={mobileMenuLabel}
         className={className}
       />
+
+      {/* Content between toggle and nav (e.g., logo) */}
+      {children}
 
       {/* Desktop: Horizontal navigation */}
       <TopbarNav

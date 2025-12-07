@@ -1,5 +1,6 @@
 import React from 'react';
 import { EnvelopeIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { useLayout } from '../layout/Layout/LayoutContext';
 
 export interface PromotionalBannerProps {
   title: string;
@@ -108,11 +109,13 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
   const displayBadgeText =
     variant === 'prominent' ? prominentBadgeText : badgeText;
 
+  const { containerClass } = useLayout();
+
   return (
     <div
       className={`bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20 ${getBorderClass()} ${className}`}
     >
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4'>
+      <div className={`${containerClass} py-4`}>
         <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
           <div
             className={`flex items-center ${variant === 'prominent' ? 'text-center sm:text-left' : ''}`}

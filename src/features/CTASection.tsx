@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui';
+import { useLayout } from '../layout/Layout/LayoutContext';
 
 interface CTAButton {
   label: string;
@@ -34,6 +35,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
   className = '',
   size = 'lg',
 }) => {
+  const { paddingClass } = useLayout();
   // Map gradient props to safe Tailwind classes with dark mode support
   const getGradientClass = () => {
     const key = gradient.via
@@ -123,7 +125,9 @@ export const CTASection: React.FC<CTASectionProps> = ({
         <div className='absolute bottom-10 right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl' />
       </div>
 
-      <div className='relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+      <div
+        className={`relative z-10 max-w-4xl mx-auto ${paddingClass} text-center`}
+      >
         <h2
           className={`${titleSizeClasses[size]} font-bold ${textColorClass} mb-6`}
         >

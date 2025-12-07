@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@sudobility/components';
+import { cn, useLayout } from '@sudobility/components';
 import { ui } from '@sudobility/design';
 
 export interface UseCase {
@@ -25,6 +25,8 @@ export const UseCaseGrid: React.FC<UseCaseGridProps> = ({
   columns = 3,
   className,
 }) => {
+  const { containerClass } = useLayout();
+
   const colorClasses = {
     blue: 'text-blue-600 dark:text-blue-400',
     green: 'text-green-600 dark:text-green-400',
@@ -42,7 +44,7 @@ export const UseCaseGrid: React.FC<UseCaseGridProps> = ({
 
   return (
     <section className={cn(ui.section.gradient, className)}>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <div className={containerClass}>
         {(title || description) && (
           <div className='text-center mb-12'>
             {title && (

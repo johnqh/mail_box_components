@@ -67,7 +67,7 @@ function getContainerClass(mode: LayoutMode, withPadding: boolean): string {
     full: 'w-full',
   };
 
-  const padding = 'px-4 sm:px-6 lg:px-8';
+  const padding = 'px-4';
 
   return withPadding
     ? `${maxWidthClasses[mode]} ${padding}`

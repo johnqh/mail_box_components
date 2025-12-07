@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useState, useRef } from 'react';
+import { useLayout } from './Layout/LayoutContext';
 
 /**
  * MasterListItem - Standardized list item with rounded selection overlay
@@ -164,6 +165,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   animationDuration = 300,
   animationRef,
 }) => {
+  const { containerClass } = useLayout();
   const gapClass = `gap-${Math.round(desktopGap / 4)}` || 'gap-8';
 
   // Extract first part of title before dash for back button
@@ -276,7 +278,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           }
         >
           {masterTitle && (
-            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <div className={containerClass}>
               <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>
                 {masterTitle}
               </h2>
@@ -291,7 +293,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         </div>
       </div>
 
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
+      <div className={`${containerClass} py-8`}>
         {/* Mobile Content View */}
         <div
           className={`md:hidden ${

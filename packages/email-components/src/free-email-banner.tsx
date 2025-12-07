@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@sudobility/components';
+import { cn, useLayout } from '@sudobility/components';
 
 const bannerVariants = cva('border-b transition-all duration-200', {
   variants: {
@@ -86,9 +86,11 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
   isDismissible = false,
   dismissAriaLabel = 'Dismiss banner',
 }) => {
+  const { containerClass } = useLayout();
+
   return (
     <div className={cn(bannerVariants({ variant, size }), className)}>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <div className={containerClass}>
         <div className='flex flex-col sm:flex-row items-center justify-center gap-4 text-center relative'>
           {isDismissible && onDismiss && (
             <button

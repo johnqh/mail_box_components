@@ -14,9 +14,9 @@ export interface LayoutContextValue {
 }
 
 const containerClasses: Record<LayoutMode, string> = {
-  standard: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
-  wide: 'max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8',
-  full: 'w-full px-4 sm:px-6 lg:px-8',
+  standard: 'max-w-7xl mx-auto px-4',
+  wide: 'max-w-[1920px] mx-auto px-4',
+  full: 'w-full px-4',
 };
 
 const maxWidthClasses: Record<LayoutMode, string> = {
@@ -25,7 +25,7 @@ const maxWidthClasses: Record<LayoutMode, string> = {
   full: 'w-full',
 };
 
-const paddingClass = 'px-4 sm:px-6 lg:px-8';
+const paddingClass = 'px-4';
 
 const LayoutContext = createContext<LayoutContextValue | undefined>(undefined);
 

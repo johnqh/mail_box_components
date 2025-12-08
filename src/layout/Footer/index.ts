@@ -76,4 +76,6 @@ export {
   type FooterVersionProps,
   FooterCopyright,
   type FooterCopyrightProps,
+  FooterSocialLinks,
+  type FooterSocialLinksProps,
 } from './FooterSlots';

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/realestate-components",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Real estate listing and property management UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
+    "@heroicons/react": "^2.2.0",
     "@sudobility/components": "^4.0.36",
     "@sudobility/design": "^1.1.14",
     "@types/node": "^24.7.1",

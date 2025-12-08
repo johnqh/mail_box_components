@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/web3-components",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Web3 and blockchain UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
+    "@heroicons/react": "^2.2.0",
     "@sudobility/components": "^4.0.36",
     "@sudobility/design": "^1.1.14",
     "@sudobility/types": "^1.0.0",
@@ -77,8 +78,5 @@
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.52.5",
     "@rollup/rollup-linux-x64-musl": "4.52.5"
-  },
-  "dependencies": {
-    "@sudobility/web3-components": "^2.0.3"
   }
 }

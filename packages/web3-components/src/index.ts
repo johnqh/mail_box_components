@@ -12,3 +12,6 @@ export * from './token-swap';
 export * from './wallet-connect';
 export * from './wallet-icon';
 export * from './wallet-selection';
+export * from './wallet-dropdown-menu';
+export * from './wallet-connect-screen';
+export * from './wallet-verify-screen';

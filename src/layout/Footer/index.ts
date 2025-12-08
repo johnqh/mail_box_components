@@ -69,6 +69,7 @@ export {
   FooterLink,
   type FooterLinkProps,
   FooterBottom,
+  FooterBottomRow,
   FooterCompact,
   FooterCompactLeft,
   FooterCompactRight,

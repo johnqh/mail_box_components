@@ -89,14 +89,40 @@ export const FooterBottom: React.FC<SlotProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        'border-t mt-8 pt-8 text-center',
+        'border-t mt-8 pt-8 text-center space-y-4',
         ui.border.default,
         className
       )}
     >
-      <div className='flex items-center justify-center gap-3 text-gray-400 text-sm'>
-        {children}
-      </div>
+      {children}
+    </div>
+  );
+};
+
+/**
+ * FooterBottomRow - A row within FooterBottom for grouping items
+ * Does not render if children are empty/null
+ */
+export const FooterBottomRow: React.FC<SlotProps> = ({
+  children,
+  className,
+}) => {
+  // Filter out null/undefined/false children
+  const validChildren = React.Children.toArray(children).filter(Boolean);
+
+  // Don't render row if no valid children
+  if (validChildren.length === 0) {
+    return null;
+  }
+
+  return (
+    <div
+      className={cn(
+        'flex items-center justify-center gap-3 text-gray-400 text-sm',
+        className
+      )}
+    >
+      {children}
     </div>
   );
 };

@@ -79,7 +79,8 @@
       "Bash(do if ! grep -A 50 '\"\"\"\"devDependencies\"\"\"\"' \"$pkg\")",
       "Bash(then echo \"MISSING in devDeps: $pkg\" fi done)",
       "Bash(for pkg in packages/agriculture-components packages/automotive-components packages/devops-components packages/documents-components packages/ecommerce-components packages/education-components packages/email-components packages/energy-components packages/finance-components packages/fitness-components packages/food-components packages/healthcare-components packages/hr-components packages/interaction-components packages/legal-components packages/logistics-components packages/marketing-components packages/media-components packages/monitoring-components packages/realestate-components packages/travel-components packages/web3-components)",
-      "Bash(do echo \"=== $pkg ===\" grep -A 2 \"devDependencies\" \"$pkg/package.json\")"
+      "Bash(do echo \"=== $pkg ===\" grep -A 2 \"devDependencies\" \"$pkg/package.json\")",
+      "Bash(git check-ignore:*)"
     ],
     "deny": [],
     "ask": []

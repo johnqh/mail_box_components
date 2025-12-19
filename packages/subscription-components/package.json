@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/subscription-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Subscription UI components for React with RevenueCat integration",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -21,6 +21,7 @@
     "build": "tsc && vite build",
     "dev": "vite build --watch",
     "type-check": "tsc --noEmit",
+    "lint": "eslint src/",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -56,7 +57,7 @@
     "@sudobility/components": "^4.0.36",
     "@sudobility/design": "^1.1.14",
     "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^14.2.1",
+    "@testing-library/react": "^16.0.0",
     "@types/node": "^24.7.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",

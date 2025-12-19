@@ -109,7 +109,7 @@ export const Topbar: React.FC<TopbarProps> = ({
           className={cn(
             containerClass,
             heightClasses[height],
-            'flex items-center justify-between'
+            'flex flex-wrap items-center justify-between'
           )}
         >
           {children}

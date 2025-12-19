@@ -32,7 +32,7 @@ describe('SubscriptionTile', () => {
   });
 
   it('renders with period label', () => {
-    render(<SubscriptionTile {...defaultProps} periodLabel="/month" />);
+    render(<SubscriptionTile {...defaultProps} periodLabel='/month' />);
 
     expect(screen.getByText('/month')).toBeInTheDocument();
   });
@@ -55,7 +55,10 @@ describe('SubscriptionTile', () => {
 
   it('renders top badge when provided', () => {
     render(
-      <SubscriptionTile {...defaultProps} topBadge={{ text: 'Best Value', color: 'purple' }} />
+      <SubscriptionTile
+        {...defaultProps}
+        topBadge={{ text: 'Best Value', color: 'purple' }}
+      />
     );
 
     expect(screen.getByText('Best Value')).toBeInTheDocument();
@@ -63,7 +66,10 @@ describe('SubscriptionTile', () => {
 
   it('renders discount badge when provided', () => {
     render(
-      <SubscriptionTile {...defaultProps} discountBadge={{ text: 'Save 40%', isBestValue: true }} />
+      <SubscriptionTile
+        {...defaultProps}
+        discountBadge={{ text: 'Save 40%', isBestValue: true }}
+      />
     );
 
     expect(screen.getByText('Save 40%')).toBeInTheDocument();
@@ -86,13 +92,20 @@ describe('SubscriptionTile', () => {
   });
 
   it('renders bottom note when provided', () => {
-    render(<SubscriptionTile {...defaultProps} bottomNote="Expires Dec 31, 2025" />);
+    render(
+      <SubscriptionTile {...defaultProps} bottomNote='Expires Dec 31, 2025' />
+    );
 
     expect(screen.getByText('Expires Dec 31, 2025')).toBeInTheDocument();
   });
 
   it('renders intro price note when provided', () => {
-    render(<SubscriptionTile {...defaultProps} introPriceNote="$4.99 for first 3 months" />);
+    render(
+      <SubscriptionTile
+        {...defaultProps}
+        introPriceNote='$4.99 for first 3 months'
+      />
+    );
 
     expect(screen.getByText('$4.99 for first 3 months')).toBeInTheDocument();
   });
@@ -100,7 +113,7 @@ describe('SubscriptionTile', () => {
   it('renders custom children content', () => {
     render(
       <SubscriptionTile {...defaultProps}>
-        <div data-testid="custom-content">Custom Content</div>
+        <div data-testid='custom-content'>Custom Content</div>
       </SubscriptionTile>
     );
 
@@ -108,13 +121,17 @@ describe('SubscriptionTile', () => {
   });
 
   it('applies selected styles when isSelected is true', () => {
-    const { container } = render(<SubscriptionTile {...defaultProps} isSelected />);
+    const { container } = render(
+      <SubscriptionTile {...defaultProps} isSelected />
+    );
 
     expect(container.firstChild).toHaveClass('border-blue-500');
   });
 
   it('applies best value styles when isBestValue is true', () => {
-    const { container } = render(<SubscriptionTile {...defaultProps} isSelected isBestValue />);
+    const { container } = render(
+      <SubscriptionTile {...defaultProps} isSelected isBestValue />
+    );
 
     expect(container.firstChild).toHaveClass('border-purple-500');
   });

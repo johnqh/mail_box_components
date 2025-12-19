@@ -6,7 +6,10 @@
  */
 
 // Components
-export { SubscriptionTile, type SubscriptionTileProps } from './subscription-tile';
+export {
+  SubscriptionTile,
+  type SubscriptionTileProps,
+} from './subscription-tile';
 export {
   SubscriptionLayout,
   type SubscriptionLayoutProps,

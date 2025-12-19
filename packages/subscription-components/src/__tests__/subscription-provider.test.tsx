@@ -9,15 +9,22 @@ import {
 
 // Test component that uses the context
 const TestConsumer: React.FC = () => {
-  const { products, currentSubscription, isLoading, error, initialize, purchase, restore } =
-    useSubscriptionContext();
+  const {
+    products,
+    currentSubscription,
+    isLoading,
+    error,
+    initialize,
+    purchase,
+    restore,
+  } = useSubscriptionContext();
 
   return (
     <div>
-      <div data-testid="loading">{isLoading ? 'Loading' : 'Ready'}</div>
-      <div data-testid="error">{error || 'No error'}</div>
-      <div data-testid="products">{products.length} products</div>
-      <div data-testid="subscription">
+      <div data-testid='loading'>{isLoading ? 'Loading' : 'Ready'}</div>
+      <div data-testid='error'>{error || 'No error'}</div>
+      <div data-testid='products'>{products.length} products</div>
+      <div data-testid='subscription'>
         {currentSubscription?.isActive ? 'Active' : 'Inactive'}
       </div>
       <button onClick={() => initialize('test-user')}>Initialize</button>
@@ -36,8 +43,8 @@ describe('SubscriptionProvider', () => {
 
   it('renders children', () => {
     render(
-      <SubscriptionProvider apiKey="" entitlementId="premium">
-        <div data-testid="child">Child Content</div>
+      <SubscriptionProvider apiKey='' entitlementId='premium'>
+        <div data-testid='child'>Child Content</div>
       </SubscriptionProvider>
     );
 
@@ -46,7 +53,7 @@ describe('SubscriptionProvider', () => {
 
   it('provides context to children', () => {
     render(
-      <SubscriptionProvider apiKey="" entitlementId="premium">
+      <SubscriptionProvider apiKey='' entitlementId='premium'>
         <TestConsumer />
       </SubscriptionProvider>
     );
@@ -63,14 +70,16 @@ describe('SubscriptionProvider', () => {
 
     expect(() => {
       render(<TestConsumer />);
-    }).toThrow('useSubscriptionContext must be used within a SubscriptionProvider');
+    }).toThrow(
+      'useSubscriptionContext must be used within a SubscriptionProvider'
+    );
 
     consoleSpy.mockRestore();
   });
 
   it('handles development mode without API key', async () => {
     render(
-      <SubscriptionProvider apiKey="" entitlementId="premium">
+      <SubscriptionProvider apiKey='' entitlementId='premium'>
         <TestConsumer />
       </SubscriptionProvider>
     );
@@ -90,8 +99,8 @@ describe('SubscriptionProvider', () => {
 
     render(
       <SubscriptionProvider
-        apiKey=""
-        entitlementId="premium"
+        apiKey=''
+        entitlementId='premium'
         onPurchaseSuccess={onPurchaseSuccess}
       >
         <TestConsumer />
@@ -119,7 +128,7 @@ describe('SubscriptionProvider', () => {
 
   it('simulates restore in development mode', async () => {
     render(
-      <SubscriptionProvider apiKey="" entitlementId="premium">
+      <SubscriptionProvider apiKey='' entitlementId='premium'>
         <TestConsumer />
       </SubscriptionProvider>
     );
@@ -135,7 +144,9 @@ describe('SubscriptionProvider', () => {
     // In dev mode, restore returns "No previous purchases found"
     await waitFor(
       () => {
-        expect(screen.getByTestId('error')).toHaveTextContent('No previous purchases found');
+        expect(screen.getByTestId('error')).toHaveTextContent(
+          'No previous purchases found'
+        );
       },
       { timeout: 2000 }
     );

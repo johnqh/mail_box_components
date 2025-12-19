@@ -32,18 +32,30 @@ vi.mock('@sudobility/components', () => ({
       disabled={disabled}
       data-variant={variant}
       className={className}
-      type="button"
+      type='button'
     >
       {children}
     </button>
   ),
-  Card: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <div className={className} data-testid="card">
+  Card: ({
+    children,
+    className,
+  }: {
+    children: React.ReactNode;
+    className?: string;
+  }) => (
+    <div className={className} data-testid='card'>
       {children}
     </div>
   ),
-  CardContent: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <div className={className} data-testid="card-content">
+  CardContent: ({
+    children,
+    className,
+  }: {
+    children: React.ReactNode;
+    className?: string;
+  }) => (
+    <div className={className} data-testid='card-content'>
       {children}
     </div>
   ),
@@ -56,7 +68,7 @@ describe('SubscriptionLayout', () => {
       label: 'Subscribe Now',
       onClick: vi.fn(),
     },
-    children: <div data-testid="child-content">Child Content</div>,
+    children: <div data-testid='child-content'>Child Content</div>,
   };
 
   it('renders with basic props', () => {
@@ -85,7 +97,10 @@ describe('SubscriptionLayout', () => {
     render(
       <SubscriptionLayout
         {...defaultProps}
-        secondaryAction={{ label: 'Restore Purchase', onClick: secondaryOnClick }}
+        secondaryAction={{
+          label: 'Restore Purchase',
+          onClick: secondaryOnClick,
+        }}
       />
     );
 
@@ -108,7 +123,7 @@ describe('SubscriptionLayout', () => {
   });
 
   it('displays error message when error prop is provided', () => {
-    render(<SubscriptionLayout {...defaultProps} error="An error occurred" />);
+    render(<SubscriptionLayout {...defaultProps} error='An error occurred' />);
 
     expect(screen.getByText('An error occurred')).toBeInTheDocument();
   });
@@ -153,7 +168,9 @@ describe('SubscriptionLayout', () => {
     );
 
     expect(screen.getByText('No Active Subscription')).toBeInTheDocument();
-    expect(screen.getByText('Subscribe to unlock premium features')).toBeInTheDocument();
+    expect(
+      screen.getByText('Subscribe to unlock premium features')
+    ).toBeInTheDocument();
   });
 
   it('uses custom currentStatusLabel', () => {
@@ -161,7 +178,7 @@ describe('SubscriptionLayout', () => {
       <SubscriptionLayout
         {...defaultProps}
         currentStatus={{ isActive: false }}
-        currentStatusLabel="Status"
+        currentStatusLabel='Status'
       />
     );
 
@@ -172,7 +189,7 @@ describe('SubscriptionLayout', () => {
     render(
       <SubscriptionLayout
         {...defaultProps}
-        headerContent={<div data-testid="header">Header Content</div>}
+        headerContent={<div data-testid='header'>Header Content</div>}
       />
     );
 
@@ -183,7 +200,7 @@ describe('SubscriptionLayout', () => {
     render(
       <SubscriptionLayout
         {...defaultProps}
-        footerContent={<div data-testid="footer">Footer Content</div>}
+        footerContent={<div data-testid='footer'>Footer Content</div>}
       />
     );
 

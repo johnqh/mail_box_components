@@ -45,12 +45,17 @@ export const TopbarRight: React.FC<SlotProps> = ({ children, className }) => {
 /**
  * TopbarMobileContent - Secondary row shown only on mobile
  * Useful for search bars or additional controls
+ * Uses w-full and basis-full to force wrapping to a new line in the flex container
  */
 export const TopbarMobileContent: React.FC<SlotProps> = ({
   children,
   className,
 }) => {
-  return <div className={cn('md:hidden px-4 pb-3', className)}>{children}</div>;
+  return (
+    <div className={cn('md:hidden w-full basis-full pt-2 pb-3', className)}>
+      {children}
+    </div>
+  );
 };
 
 /**

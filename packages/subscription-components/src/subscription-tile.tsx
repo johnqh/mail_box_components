@@ -1,7 +1,11 @@
 import React from 'react';
 import { textVariants } from '@sudobility/design';
 import { cn } from './lib/cn';
-import type { BadgeConfig, DiscountBadgeConfig, PremiumCalloutConfig } from './types';
+import type {
+  BadgeConfig,
+  DiscountBadgeConfig,
+  PremiumCalloutConfig,
+} from './types';
 
 export interface SubscriptionTileProps {
   /** Unique identifier for the subscription */
@@ -119,7 +123,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
       )}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      role="radio"
+      role='radio'
       aria-checked={isSelected}
       aria-label={ariaLabel || `${title} - ${price}${periodLabel || ''}`}
       aria-disabled={disabled}
@@ -127,7 +131,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
     >
       {/* Top Badge */}
       {topBadge && (
-        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+        <div className='absolute -top-3 left-1/2 transform -translate-x-1/2'>
           <span
             className={cn(
               BADGE_COLORS[topBadge.color],
@@ -140,11 +144,11 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
       )}
 
       {/* Main content that can grow */}
-      <div className="flex flex-col flex-grow">
+      <div className='flex flex-col flex-grow'>
         {/* Title and Price */}
-        <div className="text-center mb-6">
+        <div className='text-center mb-6'>
           <h3 className={cn(textVariants.heading.h4(), 'mb-2')}>{title}</h3>
-          <div className="mb-3">
+          <div className='mb-3'>
             <span
               className={cn(
                 'text-4xl font-bold',
@@ -156,7 +160,9 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
               {price}
             </span>
             {periodLabel && (
-              <span className="text-gray-500 dark:text-gray-400 text-lg">{periodLabel}</span>
+              <span className='text-gray-500 dark:text-gray-400 text-lg'>
+                {periodLabel}
+              </span>
             )}
           </div>
 
@@ -180,9 +186,9 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
 
         {/* Features List */}
         {features.length > 0 && (
-          <div className="space-y-3 mb-6 flex-grow">
+          <div className='space-y-3 mb-6 flex-grow'>
             {features.map((feature, index) => (
-              <div key={index} className="flex items-start">
+              <div key={index} className='flex items-start'>
                 <span
                   className={cn(
                     'text-lg mr-3 flex-shrink-0',
@@ -191,7 +197,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                 >
                   ✓
                 </span>
-                <span className="text-sm text-gray-700 dark:text-gray-300 text-left">
+                <span className='text-sm text-gray-700 dark:text-gray-300 text-left'>
                   {feature.replace(/^✓\s*/, '')}
                 </span>
               </div>
@@ -201,13 +207,13 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
 
         {/* Premium Callout */}
         {premiumCallout && (
-          <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 mb-4">
-            <div className="flex items-center mb-2">
-              <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm">
+          <div className='bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 mb-4'>
+            <div className='flex items-center mb-2'>
+              <span className='text-purple-600 dark:text-purple-400 font-semibold text-sm'>
                 {premiumCallout.title}
               </span>
             </div>
-            <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+            <ul className='text-xs text-gray-600 dark:text-gray-400 space-y-1'>
               {premiumCallout.features.map((feat, idx) => (
                 <li key={idx}>• {feat}</li>
               ))}
@@ -231,18 +237,18 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
       </div>
 
       {/* Bottom section - Always at bottom */}
-      <div className="mt-auto space-y-4">
+      <div className='mt-auto space-y-4'>
         {/* Intro Price Banner */}
         {introPriceNote && (
-          <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
-            <p className="text-sm text-yellow-700 dark:text-yellow-300 font-semibold text-center">
+          <div className='p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg'>
+            <p className='text-sm text-yellow-700 dark:text-yellow-300 font-semibold text-center'>
               {introPriceNote}
             </p>
           </div>
         )}
 
         {/* Radio button indicator */}
-        <div className="flex justify-center">
+        <div className='flex justify-center'>
           <div
             className={cn(
               'w-5 h-5 rounded-full border-2 flex items-center justify-center',
@@ -253,7 +259,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                 : 'border-gray-300 dark:border-gray-600'
             )}
           >
-            {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
+            {isSelected && <div className='w-2 h-2 rounded-full bg-white' />}
           </div>
         </div>
       </div>

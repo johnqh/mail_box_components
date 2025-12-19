@@ -49,11 +49,13 @@ const convertPackageToProduct = (pkg: Package): SubscriptionProduct => {
     title: product?.title || pkg.identifier,
     description: product?.description || '',
     period: product?.normalPeriodDuration || undefined,
-    introPrice: subscriptionOption?.introPrice?.price?.formattedPrice || undefined,
+    introPrice:
+      subscriptionOption?.introPrice?.price?.formattedPrice || undefined,
     introPriceAmount: subscriptionOption?.introPrice?.price?.amountMicros
       ? (subscriptionOption.introPrice.price.amountMicros / 1000000).toFixed(2)
       : undefined,
-    introPricePeriod: subscriptionOption?.introPrice?.periodDuration || undefined,
+    introPricePeriod:
+      subscriptionOption?.introPrice?.periodDuration || undefined,
     introPriceCycles: subscriptionOption?.introPrice?.cycleCount || undefined,
     freeTrialPeriod: subscriptionOption?.trial?.periodDuration || undefined,
   };
@@ -92,7 +94,9 @@ const parseCustomerInfo = (
   return { isActive: false };
 };
 
-const SubscriptionContext = createContext<SubscriptionContextValue | undefined>(undefined);
+const SubscriptionContext = createContext<SubscriptionContextValue | undefined>(
+  undefined
+);
 
 export interface SubscriptionProviderProps extends SubscriptionProviderConfig {
   children: ReactNode;
@@ -125,7 +129,8 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
   children,
 }) => {
   const [products, setProducts] = useState<SubscriptionProduct[]>([]);
-  const [currentSubscription, setCurrentSubscription] = useState<SubscriptionStatus | null>(null);
+  const [currentSubscription, setCurrentSubscription] =
+    useState<SubscriptionStatus | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -157,11 +162,14 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       const offerings: Offerings = await purchasesInstance.getOfferings();
       if (offerings.current) {
         setCurrentOffering(offerings.current);
-        const productList = offerings.current.availablePackages.map(convertPackageToProduct);
+        const productList = offerings.current.availablePackages.map(
+          convertPackageToProduct
+        );
         setProducts(productList);
       }
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Failed to load offerings';
+      const errorMsg =
+        err instanceof Error ? err.message : 'Failed to load offerings';
       setError(errorMsg);
       onError?.(err instanceof Error ? err : new Error(errorMsg));
     }
@@ -178,7 +186,10 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       const status = parseCustomerInfo(info, entitlementId);
       setCurrentSubscription(status.isActive ? status : null);
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Failed to load subscription status';
+      const errorMsg =
+        err instanceof Error
+          ? err.message
+          : 'Failed to load subscription status';
       setError(errorMsg);
       onError?.(err instanceof Error ? err : new Error(errorMsg));
     }
@@ -202,7 +213,9 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
         setError(null);
 
         if (isDevelopment) {
-          console.warn('[SubscriptionProvider] RevenueCat API key not configured');
+          console.warn(
+            '[SubscriptionProvider] RevenueCat API key not configured'
+          );
           setProducts([]);
           setCurrentSubscription(null);
         } else {
@@ -231,7 +244,8 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
         setCurrentUserId(userId);
         setIsInitialized(true);
       } catch (err) {
-        const errorMsg = err instanceof Error ? err.message : 'Failed to initialize';
+        const errorMsg =
+          err instanceof Error ? err.message : 'Failed to initialize';
         setError(errorMsg);
         setCurrentSubscription(null);
         setProducts([]);
@@ -282,7 +296,8 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
         }
 
         // Find the package by identifier
-        const packages = (currentOffering as { availablePackages: Package[] }).availablePackages;
+        const packages = (currentOffering as { availablePackages: Package[] })
+          .availablePackages;
         const packageToPurchase = packages.find(
           (pkg: Package) => pkg.identifier === productIdentifier
         );
@@ -313,7 +328,14 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
         setIsLoading(false);
       }
     },
-    [isDevelopment, currentOffering, userEmail, entitlementId, onPurchaseSuccess, onError]
+    [
+      isDevelopment,
+      currentOffering,
+      userEmail,
+      entitlementId,
+      onPurchaseSuccess,
+      onError,
+    ]
   );
 
   /**
@@ -380,9 +402,12 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
   useEffect(() => {
     if (!isInitialized || isDevelopment || !purchasesInstance) return;
 
-    const interval = setInterval(() => {
-      fetchCustomerInfo().catch(() => {});
-    }, 5 * 60 * 1000); // Every 5 minutes
+    const interval = setInterval(
+      () => {
+        fetchCustomerInfo().catch(() => {});
+      },
+      5 * 60 * 1000
+    ); // Every 5 minutes
 
     return () => clearInterval(interval);
   }, [isInitialized, isDevelopment, fetchCustomerInfo]);
@@ -399,7 +424,11 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
     clearError,
   };
 
-  return <SubscriptionContext.Provider value={value}>{children}</SubscriptionContext.Provider>;
+  return (
+    <SubscriptionContext.Provider value={value}>
+      {children}
+    </SubscriptionContext.Provider>
+  );
 };
 
 /**
@@ -410,7 +439,9 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
 export const useSubscriptionContext = (): SubscriptionContextValue => {
   const context = useContext(SubscriptionContext);
   if (!context) {
-    throw new Error('useSubscriptionContext must be used within a SubscriptionProvider');
+    throw new Error(
+      'useSubscriptionContext must be used within a SubscriptionProvider'
+    );
   }
   return context;
 };
@@ -423,7 +454,12 @@ export const clearRevenueCatCheckoutSessions = (): void => {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key && (key.includes('revenuecat') || key.includes('rcb') || key.includes('rc_'))) {
+      if (
+        key &&
+        (key.includes('revenuecat') ||
+          key.includes('rcb') ||
+          key.includes('rc_'))
+      ) {
         keysToRemove.push(key);
       }
     }
@@ -432,7 +468,12 @@ export const clearRevenueCatCheckoutSessions = (): void => {
     const sessionKeysToRemove: string[] = [];
     for (let i = 0; i < sessionStorage.length; i++) {
       const key = sessionStorage.key(i);
-      if (key && (key.includes('revenuecat') || key.includes('rcb') || key.includes('rc_'))) {
+      if (
+        key &&
+        (key.includes('revenuecat') ||
+          key.includes('rcb') ||
+          key.includes('rc_'))
+      ) {
         sessionKeysToRemove.push(key);
       }
     }

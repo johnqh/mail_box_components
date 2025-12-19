@@ -56,6 +56,7 @@
     "@revenuecat/purchases-js": "^1.5.0",
     "@sudobility/components": "^4.0.36",
     "@sudobility/design": "^1.1.14",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^16.0.0",
     "@types/node": "^24.7.1",

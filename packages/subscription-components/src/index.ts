@@ -17,6 +17,11 @@ export {
   type ActionButtonConfig,
 } from './subscription-layout';
 export {
+  SegmentedControl,
+  type SegmentedControlProps,
+  type SegmentedControlOption,
+} from './segmented-control';
+export {
   SubscriptionProvider,
   useSubscriptionContext,
   clearRevenueCatCheckoutSessions,

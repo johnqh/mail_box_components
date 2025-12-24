@@ -68,6 +68,9 @@ export interface SubscriptionLayoutProps {
   /** Custom header content */
   headerContent?: React.ReactNode;
 
+  /** Content to render above the product tiles (e.g., billing period selector) */
+  aboveProducts?: React.ReactNode;
+
   /** Custom footer content (rendered above action buttons) */
   footerContent?: React.ReactNode;
 
@@ -125,6 +128,7 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
   minTileWidth = 240,
   className,
   headerContent,
+  aboveProducts,
   footerContent,
   currentStatusLabel = 'Current Status',
 }) => {
@@ -196,6 +200,9 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
 
         {/* Section Title */}
         <h2 className={cn(textVariants.heading.h3(), 'mb-4')}>{title}</h2>
+
+        {/* Above Products Content (e.g., billing period selector) */}
+        {aboveProducts}
 
         {/* Subscription Tiles Grid */}
         <div style={gridStyle}>{children}</div>

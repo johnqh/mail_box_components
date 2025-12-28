@@ -23,6 +23,7 @@ export * from './ui/address-link';
 export * from './ui/animated-counter';
 export * from './ui/animated-section';
 export * from './ui/backdrop';
+export * from './ui/banner';
 export * from './ui/button';
 export * from './ui/command';
 export * from './ui/design-system-components';

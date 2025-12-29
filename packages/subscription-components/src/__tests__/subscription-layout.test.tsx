@@ -8,6 +8,7 @@ vi.mock('@sudobility/design', () => ({
   textVariants: {
     heading: {
       h3: () => 'text-lg font-semibold',
+      h4: () => 'text-md font-semibold',
     },
   },
 }));
@@ -205,5 +206,94 @@ describe('SubscriptionLayout', () => {
     );
 
     expect(screen.getByTestId('footer')).toBeInTheDocument();
+  });
+
+  describe('Free Tile', () => {
+    const freeTileConfig = {
+      title: 'Free',
+      price: '$0',
+      periodLabel: '/month',
+      features: ['Basic feature 1', 'Basic feature 2'],
+      ctaButton: {
+        label: 'Get Started',
+        onClick: vi.fn(),
+      },
+    };
+
+    it('renders free tile when variant is cta and freeTileConfig is provided', () => {
+      render(
+        <SubscriptionLayout
+          {...defaultProps}
+          variant='cta'
+          primaryAction={undefined}
+          freeTileConfig={freeTileConfig}
+        />
+      );
+
+      expect(screen.getByText('Free')).toBeInTheDocument();
+      expect(screen.getByText('$0')).toBeInTheDocument();
+      expect(screen.getByText('/month')).toBeInTheDocument();
+      expect(screen.getByText('Basic feature 1')).toBeInTheDocument();
+      expect(screen.getByText('Basic feature 2')).toBeInTheDocument();
+      expect(screen.getByText('Get Started')).toBeInTheDocument();
+    });
+
+    it('does not render free tile when variant is selection even with freeTileConfig', () => {
+      render(
+        <SubscriptionLayout
+          {...defaultProps}
+          variant='selection'
+          freeTileConfig={freeTileConfig}
+        />
+      );
+
+      expect(screen.queryByText('Get Started')).not.toBeInTheDocument();
+    });
+
+    it('does not render free tile when freeTileConfig is not provided', () => {
+      render(
+        <SubscriptionLayout
+          {...defaultProps}
+          variant='cta'
+          primaryAction={undefined}
+        />
+      );
+
+      expect(screen.queryByText('Get Started')).not.toBeInTheDocument();
+    });
+
+    it('calls freeTileConfig ctaButton onClick when button is clicked', () => {
+      const onClick = vi.fn();
+      render(
+        <SubscriptionLayout
+          {...defaultProps}
+          variant='cta'
+          primaryAction={undefined}
+          freeTileConfig={{
+            ...freeTileConfig,
+            ctaButton: { label: 'Get Started', onClick },
+          }}
+        />
+      );
+
+      fireEvent.click(screen.getByText('Get Started'));
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders free tile with topBadge when provided', () => {
+      render(
+        <SubscriptionLayout
+          {...defaultProps}
+          variant='cta'
+          primaryAction={undefined}
+          freeTileConfig={{
+            ...freeTileConfig,
+            topBadge: { text: 'Popular', color: 'purple' },
+          }}
+        />
+      );
+
+      expect(screen.getByText('Popular')).toBeInTheDocument();
+    });
   });
 });

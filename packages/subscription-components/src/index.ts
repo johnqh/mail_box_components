@@ -40,6 +40,7 @@ export type {
   CtaButtonConfig,
   DiscountBadgeConfig,
   PremiumCalloutConfig,
+  FreeTileConfig,
 } from './types';
 
 // Utilities

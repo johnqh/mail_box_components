@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Card, CardContent } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
 import { cn } from './lib/cn';
+import { SubscriptionTile } from './subscription-tile';
+import type { FreeTileConfig } from './types';
 
 /**
  * Current subscription status display configuration
@@ -91,6 +93,12 @@ export interface SubscriptionLayoutProps {
 
   /** Label for "Current Status" section - for localization */
   currentStatusLabel?: string;
+
+  /**
+   * Configuration for the free tile - only used when variant is 'cta'
+   * When provided, a "Free" subscription tile will be shown at the start of the grid
+   */
+  freeTileConfig?: FreeTileConfig;
 }
 
 /**
@@ -147,8 +155,11 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
   aboveProducts,
   footerContent,
   currentStatusLabel = 'Current Status',
+  freeTileConfig,
 }) => {
   const showActionButtons = variant === 'selection' && primaryAction;
+  // Free tile is only valid in 'cta' variant
+  const shouldShowFreeTile = variant === 'cta' && freeTileConfig;
   // Use CSS Grid auto-fit with minmax for responsive behavior
   const gridStyle: React.CSSProperties = {
     display: 'grid',
@@ -222,7 +233,23 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
         {aboveProducts}
 
         {/* Subscription Tiles Grid */}
-        <div style={gridStyle}>{children}</div>
+        <div style={gridStyle}>
+          {/* Free Tile - only shown in 'cta' variant when enabled */}
+          {shouldShowFreeTile && (
+            <SubscriptionTile
+              id='free'
+              title={freeTileConfig.title}
+              price={freeTileConfig.price}
+              periodLabel={freeTileConfig.periodLabel}
+              features={freeTileConfig.features}
+              isSelected={false}
+              onSelect={() => {}}
+              topBadge={freeTileConfig.topBadge}
+              ctaButton={freeTileConfig.ctaButton}
+            />
+          )}
+          {children}
+        </div>
 
         {/* Custom Footer Content */}
         {footerContent}

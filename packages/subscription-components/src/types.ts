@@ -97,6 +97,24 @@ export interface CtaButtonConfig {
 }
 
 /**
+ * Free tile configuration for CTA variant layout
+ */
+export interface FreeTileConfig {
+  /** Tile title (e.g., "Free") */
+  title: string;
+  /** Price display (e.g., "$0") */
+  price: string;
+  /** Period label (e.g., "/month") */
+  periodLabel?: string;
+  /** List of features included in free tier */
+  features: string[];
+  /** CTA button configuration */
+  ctaButton: CtaButtonConfig;
+  /** Optional top badge */
+  topBadge?: BadgeConfig;
+}
+
+/**
  * Subscription context value
  */
 export interface SubscriptionContextValue {

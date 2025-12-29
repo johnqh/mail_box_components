@@ -125,15 +125,19 @@ describe('SubscriptionTile', () => {
       <SubscriptionTile {...defaultProps} isSelected />
     );
 
-    expect(container.firstChild).toHaveClass('border-blue-500');
+    // Selected tiles have blue background with ring
+    expect(container.firstChild).toHaveClass('bg-blue-600');
+    expect(container.firstChild).toHaveClass('ring-4');
   });
 
-  it('applies best value styles when isBestValue is true', () => {
+  it('applies unselected styles when isSelected is false', () => {
     const { container } = render(
-      <SubscriptionTile {...defaultProps} isSelected isBestValue />
+      <SubscriptionTile {...defaultProps} isSelected={false} />
     );
 
-    expect(container.firstChild).toHaveClass('border-purple-500');
+    // Unselected tiles have gray background
+    expect(container.firstChild).toHaveClass('bg-gray-100');
+    expect(container.firstChild).not.toHaveClass('ring-4');
   });
 
   it('handles keyboard navigation', () => {
@@ -154,5 +158,101 @@ describe('SubscriptionTile', () => {
     const tile = screen.getByRole('radio');
     expect(tile).toHaveAttribute('aria-checked', 'true');
     expect(tile).toHaveAttribute('aria-label', 'Test Plan - $9.99');
+  });
+
+  // CTA Button tests (Style 2)
+  describe('CTA Button mode', () => {
+    it('renders CTA button when ctaButton prop is provided', () => {
+      render(
+        <SubscriptionTile
+          {...defaultProps}
+          ctaButton={{ label: 'Get Started', onClick: vi.fn() }}
+        />
+      );
+
+      expect(
+        screen.getByRole('button', { name: 'Get Started' })
+      ).toBeInTheDocument();
+    });
+
+    it('renders CTA link when ctaButton.href is provided', () => {
+      render(
+        <SubscriptionTile
+          {...defaultProps}
+          ctaButton={{ label: 'Get Started', href: '/subscribe' }}
+        />
+      );
+
+      const link = screen.getByRole('link', { name: 'Get Started' });
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', '/subscribe');
+    });
+
+    it('calls ctaButton.onClick when CTA button is clicked', () => {
+      const onClick = vi.fn();
+      render(
+        <SubscriptionTile
+          {...defaultProps}
+          ctaButton={{ label: 'Get Started', onClick }}
+        />
+      );
+
+      fireEvent.click(screen.getByRole('button', { name: 'Get Started' }));
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not call onSelect when tile is clicked in CTA mode', () => {
+      const onSelect = vi.fn();
+      render(
+        <SubscriptionTile
+          {...defaultProps}
+          onSelect={onSelect}
+          ctaButton={{ label: 'Get Started', onClick: vi.fn() }}
+        />
+      );
+
+      fireEvent.click(screen.getByRole('article'));
+      expect(onSelect).not.toHaveBeenCalled();
+    });
+
+    it('uses article role instead of radio in CTA mode', () => {
+      render(
+        <SubscriptionTile
+          {...defaultProps}
+          ctaButton={{ label: 'Get Started', onClick: vi.fn() }}
+        />
+      );
+
+      expect(screen.queryByRole('radio')).not.toBeInTheDocument();
+      expect(screen.getByRole('article')).toBeInTheDocument();
+    });
+
+    it('applies correct button styles for selected tile', () => {
+      render(
+        <SubscriptionTile
+          {...defaultProps}
+          isSelected
+          ctaButton={{ label: 'Get Started', onClick: vi.fn() }}
+        />
+      );
+
+      const button = screen.getByRole('button', { name: 'Get Started' });
+      expect(button).toHaveClass('bg-white');
+      expect(button).toHaveClass('text-blue-600');
+    });
+
+    it('applies correct button styles for unselected tile', () => {
+      render(
+        <SubscriptionTile
+          {...defaultProps}
+          isSelected={false}
+          ctaButton={{ label: 'Get Started', onClick: vi.fn() }}
+        />
+      );
+
+      const button = screen.getByRole('button', { name: 'Get Started' });
+      expect(button).toHaveClass('bg-blue-600');
+      expect(button).toHaveClass('text-white');
+    });
   });
 });

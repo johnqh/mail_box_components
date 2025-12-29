@@ -85,6 +85,18 @@ export interface PremiumCalloutConfig {
 }
 
 /**
+ * CTA button configuration for tile
+ */
+export interface CtaButtonConfig {
+  /** Button label */
+  label: string;
+  /** Click handler (for button behavior) */
+  onClick?: () => void;
+  /** Link href (for link behavior) */
+  href?: string;
+}
+
+/**
  * Subscription context value
  */
 export interface SubscriptionContextValue {

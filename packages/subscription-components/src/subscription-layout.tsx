@@ -42,6 +42,13 @@ export interface ActionButtonConfig {
   loading?: boolean;
 }
 
+/**
+ * Layout variant:
+ * - 'selection': User selects a tile, then clicks a shared CTA button (default)
+ * - 'cta': Each tile has its own CTA button, no shared action buttons
+ */
+export type SubscriptionLayoutVariant = 'selection' | 'cta';
+
 export interface SubscriptionLayoutProps {
   /** Section title */
   title: string;
@@ -50,13 +57,21 @@ export interface SubscriptionLayoutProps {
   /** Error message to display */
   error?: string | null;
 
+  /**
+   * Layout variant
+   * - 'selection': User selects a tile, then clicks primary action button
+   * - 'cta': Each tile has its own CTA button (use ctaButton prop on tiles)
+   * @default 'selection'
+   */
+  variant?: SubscriptionLayoutVariant;
+
   /** Current subscription status configuration */
   currentStatus?: SubscriptionStatusConfig;
 
-  /** Primary action button (e.g., "Subscribe Now") */
-  primaryAction: ActionButtonConfig;
+  /** Primary action button (e.g., "Subscribe Now") - only shown in 'selection' variant */
+  primaryAction?: ActionButtonConfig;
 
-  /** Secondary action button (e.g., "Restore Purchase") */
+  /** Secondary action button (e.g., "Restore Purchase") - only shown in 'selection' variant */
   secondaryAction?: ActionButtonConfig;
 
   /** Minimum tile width in pixels (default: 240) */
@@ -122,6 +137,7 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
   title,
   children,
   error,
+  variant = 'selection',
   currentStatus,
   primaryAction,
   secondaryAction,
@@ -132,6 +148,7 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
   footerContent,
   currentStatusLabel = 'Current Status',
 }) => {
+  const showActionButtons = variant === 'selection' && primaryAction;
   // Use CSS Grid auto-fit with minmax for responsive behavior
   const gridStyle: React.CSSProperties = {
     display: 'grid',
@@ -217,27 +234,29 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
           </div>
         )}
 
-        {/* Action Buttons */}
-        <div className='flex flex-col sm:flex-row gap-3 mt-6'>
-          {secondaryAction && (
-            <Button
-              onClick={secondaryAction.onClick}
-              disabled={secondaryAction.disabled || secondaryAction.loading}
-              variant='outline'
-              className='sm:flex-shrink-0'
-            >
-              {secondaryAction.label}
-            </Button>
-          )}
+        {/* Action Buttons - only shown in 'selection' variant */}
+        {showActionButtons && (
+          <div className='flex flex-col sm:flex-row gap-3 mt-6'>
+            {secondaryAction && (
+              <Button
+                onClick={secondaryAction.onClick}
+                disabled={secondaryAction.disabled || secondaryAction.loading}
+                variant='outline'
+                className='sm:flex-shrink-0'
+              >
+                {secondaryAction.label}
+              </Button>
+            )}
 
-          <Button
-            onClick={primaryAction.onClick}
-            disabled={primaryAction.disabled || primaryAction.loading}
-            className='flex-1'
-          >
-            {primaryAction.label}
-          </Button>
-        </div>
+            <Button
+              onClick={primaryAction.onClick}
+              disabled={primaryAction.disabled || primaryAction.loading}
+              className='flex-1'
+            >
+              {primaryAction.label}
+            </Button>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

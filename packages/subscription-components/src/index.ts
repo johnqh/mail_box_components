@@ -13,6 +13,7 @@ export {
 export {
   SubscriptionLayout,
   type SubscriptionLayoutProps,
+  type SubscriptionLayoutVariant,
   type SubscriptionStatusConfig,
   type ActionButtonConfig,
 } from './subscription-layout';
@@ -36,6 +37,7 @@ export type {
   SubscriptionContextValue,
   SubscriptionProviderConfig,
   BadgeConfig,
+  CtaButtonConfig,
   DiscountBadgeConfig,
   PremiumCalloutConfig,
 } from './types';

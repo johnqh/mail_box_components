@@ -188,23 +188,19 @@ export const Banner: React.FC<BannerProps> = ({
       aria-live='polite'
       data-testid='banner'
       className={cn(
-        // Base styles
-        'fixed left-1/2 z-50 w-full max-w-lg px-4',
-        // Transform for centering
-        '-translate-x-1/2',
+        // Base styles - full width at top of screen
+        'fixed inset-x-0 top-0 z-50 w-full',
         // Animation
         'transition-all duration-300 ease-out',
         animationState === 'entering' || animationState === 'exiting'
           ? '-translate-y-full opacity-0'
-          : 'translate-y-0 opacity-100',
-        // Position at top with safe area
-        'top-4'
+          : 'translate-y-0 opacity-100'
       )}
     >
       <div
         className={cn(
-          // Container styles
-          'flex items-start gap-3 p-4 rounded-lg border shadow-lg',
+          // Container styles - full width, no rounded corners
+          'flex items-start gap-3 p-4 border-b shadow-lg',
           'backdrop-blur-sm',
           config.container,
           className

@@ -1,0 +1,247 @@
+import React, { useMemo } from 'react';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ReferenceLine,
+  ResponsiveContainer,
+} from 'recharts';
+import { cn } from '../lib/cn';
+import type { UsageHistoryChartProps, PeriodType } from '../types';
+
+// =============================================================================
+// Default Labels
+// =============================================================================
+
+const defaultLabels = {
+  title: 'Usage History',
+  requestsLabel: 'Requests',
+  limitLabel: 'Limit',
+  periodLabel: 'Period',
+  noDataLabel: 'No usage data available',
+};
+
+// =============================================================================
+// Helper Functions
+// =============================================================================
+
+function defaultFormatDate(dateString: string, periodType: PeriodType): string {
+  const date = new Date(dateString);
+
+  switch (periodType) {
+    case 'hour':
+      return date.toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    case 'day':
+      return date.toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+      });
+    case 'month':
+      return date.toLocaleDateString(undefined, {
+        month: 'short',
+        year: 'numeric',
+      });
+    default:
+      return dateString;
+  }
+}
+
+// =============================================================================
+// Custom Tooltip Component
+// =============================================================================
+
+interface TooltipPayload {
+  value: number;
+  name: string;
+  color: string;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: TooltipPayload[];
+  label?: string;
+  labels: typeof defaultLabels;
+  limit: number | null;
+}
+
+const CustomTooltip: React.FC<CustomTooltipProps> = ({
+  active,
+  payload,
+  label,
+  labels,
+  limit,
+}) => {
+  if (!active || !payload || payload.length === 0) return null;
+
+  const value = payload[0].value;
+
+  return (
+    <div className='rounded-lg border border-gray-200 bg-white p-3 shadow-lg dark:border-gray-700 dark:bg-gray-800'>
+      <p className='mb-1 text-sm font-medium text-gray-900 dark:text-white'>
+        {label}
+      </p>
+      <p className='text-sm text-gray-600 dark:text-gray-400'>
+        {labels.requestsLabel}:{' '}
+        <span className='font-medium'>{value.toLocaleString()}</span>
+      </p>
+      {limit !== null && (
+        <p className='text-sm text-gray-600 dark:text-gray-400'>
+          {labels.limitLabel}:{' '}
+          <span className='font-medium'>{limit.toLocaleString()}</span>
+        </p>
+      )}
+    </div>
+  );
+};
+
+// =============================================================================
+// UsageHistoryChart Component
+// =============================================================================
+
+export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
+  entries,
+  periodType,
+  labels: customLabels,
+  height = 300,
+  className,
+  formatDate = defaultFormatDate,
+  barColor = '#3b82f6',
+  limitLineColor = '#ef4444',
+  showLimitLine = true,
+}) => {
+  const labels = { ...defaultLabels, ...customLabels };
+
+  // Transform entries for recharts
+  const chartData = useMemo(() => {
+    return entries.map(entry => ({
+      name: formatDate(entry.periodStart, periodType),
+      requests: entry.requestCount,
+      limit: entry.limit,
+    }));
+  }, [entries, formatDate, periodType]);
+
+  // Get the limit value (assuming consistent limit across entries)
+  const limitValue = useMemo(() => {
+    const firstWithLimit = entries.find(e => e.limit !== null);
+    return firstWithLimit?.limit ?? null;
+  }, [entries]);
+
+  // Calculate Y-axis domain
+  const maxValue = useMemo(() => {
+    const maxRequests = Math.max(...entries.map(e => e.requestCount), 0);
+    const maxLimit = limitValue ?? 0;
+    return Math.max(maxRequests, maxLimit) * 1.1; // Add 10% padding
+  }, [entries, limitValue]);
+
+  if (entries.length === 0) {
+    return (
+      <div
+        className={cn(
+          'flex items-center justify-center rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800',
+          className
+        )}
+        style={{ height }}
+      >
+        <p className='text-gray-500 dark:text-gray-400'>{labels.noDataLabel}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={cn(
+        'rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800',
+        className
+      )}
+    >
+      {/* Title */}
+      {labels.title && (
+        <h3 className='mb-4 text-lg font-semibold text-gray-900 dark:text-white'>
+          {labels.title}
+        </h3>
+      )}
+
+      {/* Chart */}
+      <ResponsiveContainer width='100%' height={height}>
+        <BarChart
+          data={chartData}
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        >
+          <CartesianGrid
+            strokeDasharray='3 3'
+            className='stroke-gray-200 dark:stroke-gray-700'
+          />
+          <XAxis
+            dataKey='name'
+            tick={{ fontSize: 12 }}
+            className='text-gray-600 dark:text-gray-400'
+          />
+          <YAxis
+            domain={[0, maxValue]}
+            tick={{ fontSize: 12 }}
+            className='text-gray-600 dark:text-gray-400'
+            tickFormatter={value => value.toLocaleString()}
+          />
+          <Tooltip
+            content={<CustomTooltip labels={labels} limit={limitValue} />}
+          />
+          <Bar
+            dataKey='requests'
+            fill={barColor}
+            radius={[4, 4, 0, 0]}
+            name={labels.requestsLabel}
+          />
+          {showLimitLine && limitValue !== null && (
+            <ReferenceLine
+              y={limitValue}
+              stroke={limitLineColor}
+              strokeDasharray='5 5'
+              strokeWidth={2}
+              label={{
+                value: labels.limitLabel,
+                position: 'right',
+                fill: limitLineColor,
+                fontSize: 12,
+              }}
+            />
+          )}
+        </BarChart>
+      </ResponsiveContainer>
+
+      {/* Legend */}
+      <div className='mt-4 flex items-center justify-center gap-6'>
+        <div className='flex items-center gap-2'>
+          <div
+            className='h-3 w-3 rounded'
+            style={{ backgroundColor: barColor }}
+          />
+          <span className='text-sm text-gray-600 dark:text-gray-400'>
+            {labels.requestsLabel}
+          </span>
+        </div>
+        {showLimitLine && limitValue !== null && (
+          <div className='flex items-center gap-2'>
+            <div
+              className='h-0.5 w-4'
+              style={{
+                backgroundColor: limitLineColor,
+                borderStyle: 'dashed',
+              }}
+            />
+            <span className='text-sm text-gray-600 dark:text-gray-400'>
+              {labels.limitLabel}
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default UsageHistoryChart;

@@ -67,6 +67,7 @@ jobs:
           - monitoring
           - nonprofit
           - project-management
+          - ratelimit
           - realestate
           - retail
           - scheduling
@@ -158,6 +159,7 @@ jobs:
           - monitoring
           - nonprofit
           - project-management
+          - ratelimit
           - realestate
           - retail
           - scheduling

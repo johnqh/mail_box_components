@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
+    "ajv": "^8.17.1",
     "@sudobility/components": "^4.0.36",
     "@sudobility/design": "^1.1.14",
     "@testing-library/dom": "^10.4.0",

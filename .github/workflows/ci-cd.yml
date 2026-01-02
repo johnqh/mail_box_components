@@ -48,6 +48,7 @@ jobs:
           - email
           - energy
           - entertainment
+          - entity
           - events
           - finance
           - fitness
@@ -140,6 +141,7 @@ jobs:
           - email
           - energy
           - entertainment
+          - entity
           - events
           - finance
           - fitness

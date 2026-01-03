@@ -188,8 +188,8 @@ export const Banner: React.FC<BannerProps> = ({
       aria-live='polite'
       data-testid='banner'
       className={cn(
-        // Base styles - full width at top of screen
-        'fixed inset-x-0 top-0 z-50 w-full',
+        // Base styles - full width at top of screen (z-[100] to be above all other elements including topbar and breadcrumbs)
+        'fixed inset-x-0 top-0 z-[100] w-full',
         // Animation
         'transition-all duration-300 ease-out',
         animationState === 'entering' || animationState === 'exiting'

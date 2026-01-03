@@ -38,7 +38,7 @@
   "author": "John Q Huang",
   "license": "MIT",
   "peerDependencies": {
-    "@sudobility/components": "^4.0.36",
+    "@sudobility/components": "*",
     "@sudobility/design": "^1.1.14",
     "@sudobility/types": "^1.9.37",
     "react": "^18.0.0 || ^19.0.0",
@@ -47,7 +47,7 @@
   "devDependencies": {
     "@eslint/js": "^9.38.0",
     "ajv": "^8.17.1",
-    "@sudobility/components": "^4.0.36",
+    "@sudobility/components": "*",
     "@sudobility/design": "^1.1.14",
     "@sudobility/types": "^1.9.37",
     "@testing-library/dom": "^10.4.0",

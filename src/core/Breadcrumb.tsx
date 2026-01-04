@@ -354,7 +354,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             <React.Fragment key={index}>
               <li>
                 {item.current ? (
-                  <span className='text-gray-700 dark:text-gray-300 font-medium'>
+                  <span className='text-gray-700 dark:text-gray-300'>
                     {item.label}
                   </span>
                 ) : (

@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/page-builder}
  */
 
+/** Tracking data for PageBuilder actions */
+export interface PageBuilderTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UpageUbuilderProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UpageUbuilderProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: PageBuilderTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UpageUbuilder = ({
@@ -38,7 +51,17 @@ export const UpageUbuilder = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UpageUbuilder',
 }: UpageUbuilderProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UpageUbuilder = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UpageUbuilder'
     >

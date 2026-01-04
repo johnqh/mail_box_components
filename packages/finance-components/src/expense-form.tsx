@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/expense-form}
  */
 
+/** Tracking data for ExpenseForm actions */
+export interface ExpenseFormTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UexpenseUformProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UexpenseUformProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: ExpenseFormTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UexpenseUform = ({
@@ -38,7 +51,17 @@ export const UexpenseUform = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UexpenseUform',
 }: UexpenseUformProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UexpenseUform = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UexpenseUform'
     >

@@ -8,6 +8,13 @@ import { ChevronDown, Building2, User, Plus, Check } from 'lucide-react';
 import type { EntityWithRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 
+/** Tracking data for EntitySelector actions */
+export interface EntitySelectorTrackingData {
+  action: 'toggle' | 'select' | 'create_new';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface EntitySelectorProps {
   /** Available entities */
   entities: EntityWithRole[];
@@ -21,6 +28,12 @@ export interface EntitySelectorProps {
   isLoading?: boolean;
   /** Additional class names */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: EntitySelectorTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -33,15 +46,25 @@ export function EntitySelector({
   onCreateNew,
   isLoading = false,
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'EntitySelector',
 }: EntitySelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleToggle = () => {
+    onTrack?.({ action: 'toggle', trackingLabel, componentName });
+    setIsOpen(!isOpen);
+  };
+
   const handleSelect = (entity: EntityWithRole) => {
+    onTrack?.({ action: 'select', trackingLabel, componentName });
     onSelect(entity);
     setIsOpen(false);
   };
 
   const handleCreateNew = () => {
+    onTrack?.({ action: 'create_new', trackingLabel, componentName });
     onCreateNew?.();
     setIsOpen(false);
   };
@@ -51,7 +74,7 @@ export function EntitySelector({
       {/* Trigger Button */}
       <button
         type='button'
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         disabled={isLoading}
         className={cn(
           'flex items-center gap-2 px-3 py-2 rounded-lg border',

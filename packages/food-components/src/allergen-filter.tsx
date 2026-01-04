@@ -22,6 +22,13 @@ import { cn } from './lib/utils';
  * @see {@link https://docs.example.com/components/allergen-filter}
  */
 
+/** Tracking data for AllergenFilter actions */
+export interface AllergenFilterTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UallergenUfilterProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UallergenUfilterProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: AllergenFilterTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UallergenUfilter = ({
@@ -38,7 +51,17 @@ export const UallergenUfilter = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UallergenUfilter',
 }: UallergenUfilterProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UallergenUfilter = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UallergenUfilter'
     >

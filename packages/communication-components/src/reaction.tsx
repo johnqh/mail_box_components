@@ -8,6 +8,13 @@ export interface EmojiReaction {
   reacted?: boolean;
 }
 
+/** Tracking data for Reaction actions */
+export interface ReactionTrackingData {
+  action: 'react' | 'toggle_picker';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface ReactionProps {
   /** Available reactions */
   reactions: EmojiReaction[];
@@ -19,6 +26,12 @@ export interface ReactionProps {
   availableEmojis?: string[];
   /** Additional className */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: ReactionTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -47,13 +60,22 @@ export const Reaction: React.FC<ReactionProps> = ({
   showPicker = true,
   availableEmojis = ['👍', '❤️', '😊', '🎉', '🔥', '👏', '👀', '🚀'],
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'Reaction',
 }) => {
   const [isPickerOpen, setIsPickerOpen] = useState(false);
 
   const handleReactionClick = (emoji: string) => {
+    onTrack?.({ action: 'react', trackingLabel, componentName });
     if (onReact) {
       onReact(emoji);
     }
+  };
+
+  const handleTogglePicker = () => {
+    onTrack?.({ action: 'toggle_picker', trackingLabel, componentName });
+    setIsPickerOpen(!isPickerOpen);
   };
 
   return (
@@ -91,7 +113,7 @@ export const Reaction: React.FC<ReactionProps> = ({
       {showPicker && (
         <div className='relative'>
           <button
-            onClick={() => setIsPickerOpen(!isPickerOpen)}
+            onClick={handleTogglePicker}
             className='inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'
           >
             <svg

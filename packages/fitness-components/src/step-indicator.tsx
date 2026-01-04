@@ -11,6 +11,13 @@ export interface Step {
   status?: 'pending' | 'current' | 'completed';
 }
 
+/** Tracking data for StepIndicator actions */
+export interface StepIndicatorTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface StepIndicatorProps {
   /** Array of steps */
   steps: Step[];
@@ -28,6 +35,12 @@ export interface StepIndicatorProps {
   className?: string;
   /** Click handler for steps */
   onStepClick?: (index: number) => void;
+  /** Optional tracking callback */
+  onTrack?: (data: StepIndicatorTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -67,7 +80,14 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
   showConnectors = true,
   className,
   onStepClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'StepIndicator',
 }) => {
+  const handleStepClick = (index: number) => {
+    onTrack?.({ action: 'click', trackingLabel, componentName });
+    onStepClick?.(index);
+  };
   // Size configurations
   const sizeClasses = {
     sm: {
@@ -162,7 +182,7 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
         >
           <div
             className={stepClasses}
-            onClick={isClickable ? () => onStepClick(index) : undefined}
+            onClick={isClickable ? () => handleStepClick(index) : undefined}
             role={isClickable ? 'button' : undefined}
             tabIndex={isClickable ? 0 : undefined}
           >

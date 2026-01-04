@@ -96,6 +96,20 @@ export interface CtaButtonConfig {
   href?: string;
 }
 
+/** Tracking data for SubscriptionTile actions */
+export interface SubscriptionTileTrackingData {
+  action: 'select' | 'cta_click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
+/** Tracking data for SubscriptionLayout actions */
+export interface SubscriptionLayoutTrackingData {
+  action: 'primary_action' | 'secondary_action';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 /**
  * Free tile configuration for CTA variant layout
  */

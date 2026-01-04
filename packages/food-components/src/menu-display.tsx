@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/menu-display}
  */
 
+/** Tracking data for MenuDisplay actions */
+export interface MenuDisplayTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UmenuUdisplayProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UmenuUdisplayProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: MenuDisplayTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UmenuUdisplay = ({
@@ -38,7 +51,17 @@ export const UmenuUdisplay = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UmenuUdisplay',
 }: UmenuUdisplayProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UmenuUdisplay = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UmenuUdisplay'
     >

@@ -21,6 +21,9 @@ export function AuthAction({
   dropdownAlign = 'right',
   onLoginClick,
   onLogoutClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'AuthAction',
 }: AuthActionProps) {
   const { isAuthenticated, isAnonymous, openModal, texts } = useAuthStatus();
 
@@ -32,6 +35,7 @@ export function AuthAction({
   };
 
   const handleLoginClick = () => {
+    onTrack?.({ action: 'login_click', trackingLabel, componentName });
     // If custom handler returns false, don't open modal
     const result = onLoginClick?.();
     if (result === false) return;
@@ -54,6 +58,11 @@ export function AuthAction({
     );
   }
 
+  const handleLogoutClick = () => {
+    onTrack?.({ action: 'logout_click', trackingLabel, componentName });
+    onLogoutClick?.();
+  };
+
   // Show user menu when authenticated
   return (
     <div className={cn('flex items-center', className)}>
@@ -64,7 +73,7 @@ export function AuthAction({
         renderAvatar={renderAvatar}
         avatarSize={avatarSize}
         dropdownAlign={dropdownAlign}
-        onLogoutClick={onLogoutClick}
+        onLogoutClick={handleLogoutClick}
       />
     </div>
   );

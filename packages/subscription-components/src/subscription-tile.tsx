@@ -6,6 +6,7 @@ import type {
   CtaButtonConfig,
   DiscountBadgeConfig,
   PremiumCalloutConfig,
+  SubscriptionTileTrackingData,
 } from './types';
 
 export interface SubscriptionTileProps {
@@ -48,6 +49,13 @@ export interface SubscriptionTileProps {
 
   /** Accessibility label */
   ariaLabel?: string;
+
+  /** Optional tracking callback */
+  onTrack?: (data: SubscriptionTileTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 const BADGE_COLORS: Record<BadgeConfig['color'], string> = {
@@ -97,6 +105,9 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   children,
   disabled = false,
   ariaLabel,
+  onTrack,
+  trackingLabel,
+  componentName = 'SubscriptionTile',
 }) => {
   // When ctaButton is provided, tile is not selectable (CTA mode)
   const isCtaMode = !!ctaButton;
@@ -108,6 +119,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
 
   const handleClick = () => {
     if (!disabled && !isCtaMode) {
+      onTrack?.({ action: 'select', trackingLabel, componentName });
       onSelect();
     }
   };
@@ -115,12 +127,14 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!disabled && !isCtaMode && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
+      onTrack?.({ action: 'select', trackingLabel, componentName });
       onSelect();
     }
   };
 
   const handleCtaClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    onTrack?.({ action: 'cta_click', trackingLabel, componentName });
     if (ctaButton?.onClick) {
       ctaButton.onClick();
     }

@@ -8,6 +8,13 @@ import type { EntityMember, EntityRole } from '@sudobility/types';
 import { MemberRoleSelector } from './MemberRoleSelector';
 import { cn } from '../lib/utils';
 
+/** Tracking data for MemberList actions */
+export interface MemberListTrackingData {
+  action: 'role_change' | 'remove';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface MemberListProps {
   /** Members to display */
   members: EntityMember[];
@@ -25,6 +32,12 @@ export interface MemberListProps {
   emptyMessage?: string;
   /** Additional class names */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: MemberListTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -49,6 +62,9 @@ export function MemberList({
   isLoading = false,
   emptyMessage = 'No members found',
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'MemberList',
 }: MemberListProps) {
   if (isLoading) {
     return (
@@ -71,6 +87,16 @@ export function MemberList({
     );
   }
 
+  const handleRoleChange = (memberId: string, role: EntityRole) => {
+    onTrack?.({ action: 'role_change', trackingLabel, componentName });
+    onRoleChange?.(memberId, role);
+  };
+
+  const handleRemove = (memberId: string) => {
+    onTrack?.({ action: 'remove', trackingLabel, componentName });
+    onRemove?.(memberId);
+  };
+
   return (
     <div className={cn('divide-y divide-border rounded-lg border', className)}>
       {members.map(member => (
@@ -79,8 +105,8 @@ export function MemberList({
           member={member}
           isSelf={member.userId === currentUserId}
           canManage={canManage}
-          onRoleChange={onRoleChange}
-          onRemove={onRemove}
+          onRoleChange={onRoleChange ? handleRoleChange : undefined}
+          onRemove={onRemove ? handleRemove : undefined}
         />
       ))}
     </div>

@@ -2,6 +2,13 @@ import React from 'react';
 import { cn } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
 
+/** Tracking data for MenuItem actions */
+export interface MenuItemTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface MenuItemProps {
   /** Menu item label */
   children: React.ReactNode;
@@ -21,6 +28,12 @@ export interface MenuItemProps {
   shortcut?: string;
   /** Additional className */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: MenuItemTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -63,9 +76,13 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   description,
   shortcut,
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'MenuItem',
 }) => {
   const handleClick = () => {
     if (disabled) return;
+    onTrack?.({ action: 'click', trackingLabel, componentName });
     onClick?.();
   };
 

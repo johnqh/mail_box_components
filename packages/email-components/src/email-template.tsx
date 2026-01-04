@@ -31,6 +31,8 @@ export interface UemailUtemplateProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 export const UemailUtemplate = ({
@@ -38,7 +40,14 @@ export const UemailUtemplate = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
 }: UemailUtemplateProps) => {
+  const handleClick = () => {
+    if (disabled) return;
+    onTrack?.('click');
+    onClick?.();
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +59,7 @@ export const UemailUtemplate = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UemailUtemplate'
     >

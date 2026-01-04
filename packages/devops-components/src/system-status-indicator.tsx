@@ -20,6 +20,8 @@ export interface SystemStatusIndicatorProps {
   onStatusChange?: (status: SystemStatusData) => void;
   /** Network online status - when false, overrides system status */
   isNetworkOnline?: boolean;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 const statusConfig = {
@@ -56,6 +58,7 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
   version,
   onStatusChange,
   isNetworkOnline = true,
+  onTrack,
 }) => {
   const [statusData, setStatusData] = useState<SystemStatusData>({
     status: 'operational',
@@ -120,6 +123,7 @@ export const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    onTrack?.('status_click');
 
     // Show alert when network is offline
     if (!isNetworkOnline) {

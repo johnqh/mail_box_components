@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/leaderboard-podium}
  */
 
+/** Tracking data for LeaderboardPodium actions */
+export interface LeaderboardPodiumTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UleaderboardUpodiumProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UleaderboardUpodiumProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: LeaderboardPodiumTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UleaderboardUpodium = ({
@@ -38,7 +51,17 @@ export const UleaderboardUpodium = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UleaderboardUpodium',
 }: UleaderboardUpodiumProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UleaderboardUpodium = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UleaderboardUpodium'
     >

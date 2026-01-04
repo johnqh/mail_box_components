@@ -7,6 +7,13 @@ import { Mail, Clock, X, Check, XCircle } from 'lucide-react';
 import type { EntityInvitation, EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 
+/** Tracking data for InvitationList actions */
+export interface InvitationListTrackingData {
+  action: 'cancel' | 'accept' | 'decline';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface InvitationListProps {
   /** Invitations to display */
   invitations: EntityInvitation[];
@@ -24,6 +31,12 @@ export interface InvitationListProps {
   emptyMessage?: string;
   /** Additional class names */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: InvitationListTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -48,6 +61,9 @@ export function InvitationList({
   isLoading = false,
   emptyMessage = 'No pending invitations',
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'InvitationList',
 }: InvitationListProps) {
   // Filter to only pending invitations
   const pendingInvitations = invitations.filter(
@@ -75,6 +91,21 @@ export function InvitationList({
     );
   }
 
+  const handleCancel = (invitationId: string) => {
+    onTrack?.({ action: 'cancel', trackingLabel, componentName });
+    onCancel?.(invitationId);
+  };
+
+  const handleAccept = (token: string) => {
+    onTrack?.({ action: 'accept', trackingLabel, componentName });
+    onAccept?.(token);
+  };
+
+  const handleDecline = (token: string) => {
+    onTrack?.({ action: 'decline', trackingLabel, componentName });
+    onDecline?.(token);
+  };
+
   return (
     <div className={cn('divide-y divide-border rounded-lg border', className)}>
       {pendingInvitations.map(invitation => (
@@ -82,9 +113,9 @@ export function InvitationList({
           key={invitation.id}
           invitation={invitation}
           mode={mode}
-          onCancel={onCancel}
-          onAccept={onAccept}
-          onDecline={onDecline}
+          onCancel={onCancel ? handleCancel : undefined}
+          onAccept={onAccept ? handleAccept : undefined}
+          onDecline={onDecline ? handleDecline : undefined}
         />
       ))}
     </div>

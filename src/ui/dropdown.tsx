@@ -2,6 +2,16 @@ import React, { useState } from 'react';
 import { useClickOutside } from '../hooks/useClickOutside';
 import { variants } from '@sudobility/design';
 
+/** Tracking event data for dropdown interactions */
+export interface DropdownTrackingData {
+  /** Action performed */
+  action: 'select';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 interface DropdownItem {
   id: string;
   label: string;
@@ -17,6 +27,12 @@ interface DropdownProps {
   align?: 'left' | 'right';
   className?: string;
   variant?: 'default' | 'bordered';
+  /** Optional callback for tracking dropdown item selections */
+  onTrack?: (data: DropdownTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -25,6 +41,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
   align = 'right',
   className = '',
   variant = 'default',
+  onTrack,
+  trackingLabel,
+  componentName,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,6 +53,14 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   const handleItemClick = (item: DropdownItem) => {
     if (!item.disabled) {
+      // Call tracking callback if provided
+      if (onTrack) {
+        onTrack({
+          action: 'select',
+          trackingLabel,
+          componentName,
+        });
+      }
       item.onClick();
       setIsOpen(false);
     }

@@ -2,6 +2,16 @@ import React, { useState } from 'react';
 import { CheckIcon, MinusIcon } from '@heroicons/react/24/solid';
 import { cn } from '../lib/utils';
 
+/** Tracking event data for checkbox interactions */
+export interface CheckboxTrackingData {
+  /** Action performed */
+  action: 'toggle';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface CheckboxProps {
   /** Whether the checkbox is checked (controlled mode) */
   checked?: boolean;
@@ -39,6 +49,12 @@ export interface CheckboxProps {
   errorMessage?: string;
   /** Custom icon to display when checked */
   icon?: React.ReactNode;
+  /** Optional callback for tracking checkbox toggle */
+  onTrack?: (data: CheckboxTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 /**
@@ -82,6 +98,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   error = false,
   errorMessage,
   icon,
+  onTrack,
+  trackingLabel,
+  componentName,
 }) => {
   // Support both controlled and uncontrolled modes
   const [uncontrolledChecked, setUncontrolledChecked] =
@@ -156,6 +175,15 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       setUncontrolledChecked(newChecked);
     }
 
+    // Call tracking callback if provided
+    if (onTrack) {
+      onTrack({
+        action: 'toggle',
+        trackingLabel,
+        componentName,
+      });
+    }
+
     onChange?.(newChecked);
   };
 
@@ -168,6 +196,15 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
       if (!isControlled) {
         setUncontrolledChecked(newChecked);
+      }
+
+      // Call tracking callback if provided
+      if (onTrack) {
+        onTrack({
+          action: 'toggle',
+          trackingLabel,
+          componentName,
+        });
       }
 
       onChange?.(newChecked);

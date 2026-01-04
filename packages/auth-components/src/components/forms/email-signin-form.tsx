@@ -11,6 +11,9 @@ export function EmailSignInForm({
   onSwitchToForgotPassword,
   onSuccess,
   compact,
+  onTrack,
+  trackingLabel,
+  componentName = 'EmailSignInForm',
 }: EmailSignInFormProps) {
   const { signInWithEmail, loading, error, clearError, texts } =
     useAuthStatus();
@@ -20,12 +23,23 @@ export function EmailSignInForm({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     clearError();
+    onTrack?.({ action: 'form_submit', trackingLabel, componentName });
 
     await signInWithEmail(email, password);
 
     // If no error after sign in, call success callback
     // Note: actual auth state change will be handled by the provider
     onSuccess?.();
+  };
+
+  const handleSwitchToForgotPassword = () => {
+    onTrack?.({ action: 'switch_mode', trackingLabel, componentName });
+    onSwitchToForgotPassword();
+  };
+
+  const handleSwitchToSignUp = () => {
+    onTrack?.({ action: 'switch_mode', trackingLabel, componentName });
+    onSwitchToSignUp();
   };
 
   const buttonSize = compact ? 'default' : 'lg';
@@ -77,7 +91,7 @@ export function EmailSignInForm({
       <div className='flex justify-end'>
         <button
           type='button'
-          onClick={onSwitchToForgotPassword}
+          onClick={handleSwitchToForgotPassword}
           className='text-sm text-blue-600 dark:text-blue-400 hover:underline'
         >
           {texts.forgotPassword}
@@ -108,7 +122,7 @@ export function EmailSignInForm({
           {texts.noAccount}{' '}
           <button
             type='button'
-            onClick={onSwitchToSignUp}
+            onClick={handleSwitchToSignUp}
             className='text-blue-600 dark:text-blue-400 hover:underline font-medium'
           >
             {texts.signUp}

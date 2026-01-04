@@ -42,6 +42,13 @@ export interface UsageDashboardLabels {
   remainingLabel?: string;
 }
 
+/** Tracking data for UsageDashboard actions */
+export interface UsageDashboardTrackingData {
+  action: 'upgrade_click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 /**
  * Props for UsageDashboard component
  */
@@ -62,6 +69,12 @@ export interface UsageDashboardProps {
   showPercentage?: boolean;
   /** Show remaining count */
   showRemaining?: boolean;
+  /** Optional tracking callback */
+  onTrack?: (data: UsageDashboardTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 // =============================================================================
@@ -108,6 +121,13 @@ export interface TierComparisonLabels {
   currentTierBadge?: string;
 }
 
+/** Tracking data for TierComparisonTable actions */
+export interface TierComparisonTableTrackingData {
+  action: 'tier_select';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 /**
  * Props for TierComparisonTable component
  */
@@ -122,6 +142,12 @@ export interface TierComparisonTableProps {
   className?: string;
   /** Custom number formatter (e.g., 1000 -> "1,000") */
   formatNumber?: (n: number) => string;
+  /** Optional tracking callback */
+  onTrack?: (data: TierComparisonTableTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 // =============================================================================

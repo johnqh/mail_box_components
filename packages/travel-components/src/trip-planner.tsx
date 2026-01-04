@@ -31,6 +31,8 @@ export interface UtripUplannerProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 export const UtripUplanner = ({
@@ -38,6 +40,7 @@ export const UtripUplanner = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
 }: UtripUplannerProps) => {
   return (
     <div
@@ -50,7 +53,14 @@ export const UtripUplanner = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={
+        disabled
+          ? undefined
+          : () => {
+              onTrack?.('click');
+              onClick?.();
+            }
+      }
       role='region'
       aria-label='UtripUplanner'
     >

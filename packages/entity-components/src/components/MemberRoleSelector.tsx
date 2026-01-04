@@ -8,6 +8,13 @@ import { ChevronDown, Shield, Briefcase, Eye, Check } from 'lucide-react';
 import { EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 
+/** Tracking data for MemberRoleSelector actions */
+export interface MemberRoleSelectorTrackingData {
+  action: 'toggle' | 'select';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface MemberRoleSelectorProps {
   /** Current role value */
   value: EntityRole;
@@ -17,6 +24,12 @@ export interface MemberRoleSelectorProps {
   disabled?: boolean;
   /** Additional class names */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: MemberRoleSelectorTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 interface RoleOption {
@@ -59,12 +72,23 @@ export function MemberRoleSelector({
   onChange,
   disabled = false,
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'MemberRoleSelector',
 }: MemberRoleSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const selectedRole =
     roleOptions.find(r => r.value === value) || roleOptions[2];
 
+  const handleToggle = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'toggle', trackingLabel, componentName });
+      setIsOpen(!isOpen);
+    }
+  };
+
   const handleSelect = (role: EntityRole) => {
+    onTrack?.({ action: 'select', trackingLabel, componentName });
     onChange(role);
     setIsOpen(false);
   };
@@ -74,7 +98,7 @@ export function MemberRoleSelector({
       {/* Trigger Button */}
       <button
         type='button'
-        onClick={() => !disabled && setIsOpen(!isOpen)}
+        onClick={handleToggle}
         disabled={disabled}
         className={cn(
           'flex items-center gap-1.5 px-2 py-1 rounded border text-sm',

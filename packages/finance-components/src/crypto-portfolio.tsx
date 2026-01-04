@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/crypto-portfolio}
  */
 
+/** Tracking data for CryptoPortfolio actions */
+export interface CryptoPortfolioTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UcryptoUportfolioProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UcryptoUportfolioProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: CryptoPortfolioTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UcryptoUportfolio = ({
@@ -38,7 +51,17 @@ export const UcryptoUportfolio = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UcryptoUportfolio',
 }: UcryptoUportfolioProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UcryptoUportfolio = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UcryptoUportfolio'
     >

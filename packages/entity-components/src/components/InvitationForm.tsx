@@ -9,6 +9,13 @@ import { EntityRole, type InviteMemberRequest } from '@sudobility/types';
 import { MemberRoleSelector } from './MemberRoleSelector';
 import { cn } from '../lib/utils';
 
+/** Tracking data for InvitationForm actions */
+export interface InvitationFormTrackingData {
+  action: 'submit';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface InvitationFormProps {
   /** Submit handler */
   onSubmit: (request: InviteMemberRequest) => Promise<void>;
@@ -18,6 +25,12 @@ export interface InvitationFormProps {
   defaultRole?: EntityRole;
   /** Additional class names */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: InvitationFormTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -28,6 +41,9 @@ export function InvitationForm({
   isSubmitting = false,
   defaultRole = EntityRole.VIEWER,
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'InvitationForm',
 }: InvitationFormProps) {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<EntityRole>(defaultRole);
@@ -46,6 +62,8 @@ export function InvitationForm({
       setError('Please enter a valid email address');
       return;
     }
+
+    onTrack?.({ action: 'submit', trackingLabel, componentName });
 
     try {
       await onSubmit({ email: email.trim(), role });

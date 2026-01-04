@@ -9,6 +9,13 @@ export interface CartItem {
   image?: string;
 }
 
+/** Tracking data for CartSummary actions */
+export interface CartSummaryTrackingData {
+  action: 'checkout';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface CartSummaryProps {
   /** Cart items */
   items: CartItem[];
@@ -24,6 +31,12 @@ export interface CartSummaryProps {
   onCheckout?: () => void;
   /** Additional className */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: CartSummaryTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -54,12 +67,20 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   currency = '$',
   onCheckout,
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'CartSummary',
 }) => {
   const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
   const total = subtotal + shipping + tax - discount;
+
+  const handleCheckout = () => {
+    onTrack?.({ action: 'checkout', trackingLabel, componentName });
+    onCheckout?.();
+  };
 
   return (
     <div
@@ -168,7 +189,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
       {/* Checkout button */}
       {onCheckout && (
         <button
-          onClick={onCheckout}
+          onClick={handleCheckout}
           className='w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-semibold'
         >
           Proceed to Checkout

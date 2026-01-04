@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/investment-tracker}
  */
 
+/** Tracking data for InvestmentTracker actions */
+export interface InvestmentTrackerTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UinvestmentUtrackerProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UinvestmentUtrackerProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: InvestmentTrackerTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UinvestmentUtracker = ({
@@ -38,7 +51,17 @@ export const UinvestmentUtracker = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UinvestmentUtracker',
 }: UinvestmentUtrackerProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UinvestmentUtracker = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UinvestmentUtracker'
     >

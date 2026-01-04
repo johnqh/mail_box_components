@@ -26,6 +26,8 @@ export interface AlertDialogProps {
   loading?: boolean;
   /** Additional className */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 /**
@@ -72,6 +74,7 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
   confirmDisabled = false,
   loading = false,
   className,
+  onTrack,
 }) => {
   if (!isOpen) return null;
 
@@ -168,8 +171,14 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
 
   const handleConfirm = () => {
     if (!confirmDisabled && !loading) {
+      onTrack?.('confirm');
       onConfirm();
     }
+  };
+
+  const handleCancel = () => {
+    onTrack?.('cancel');
+    onClose();
   };
 
   return (
@@ -221,7 +230,7 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
           <div className='flex gap-3 px-6 py-4 bg-gray-50 dark:bg-gray-800/50 rounded-b-lg'>
             {showCancel && (
               <button
-                onClick={onClose}
+                onClick={handleCancel}
                 disabled={loading}
                 className='flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
               >

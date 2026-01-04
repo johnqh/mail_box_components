@@ -9,6 +9,9 @@ import type { ForgotPasswordFormProps } from '../../types';
 export function ForgotPasswordForm({
   onSwitchToSignIn,
   compact,
+  onTrack,
+  trackingLabel,
+  componentName = 'ForgotPasswordForm',
 }: ForgotPasswordFormProps) {
   const { resetPassword, loading, error, clearError, texts } = useAuthStatus();
   const [email, setEmail] = useState('');
@@ -17,6 +20,7 @@ export function ForgotPasswordForm({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     clearError();
+    onTrack?.({ action: 'form_submit', trackingLabel, componentName });
 
     try {
       await resetPassword(email);
@@ -24,6 +28,11 @@ export function ForgotPasswordForm({
     } catch {
       // Error is handled by the context
     }
+  };
+
+  const handleSwitchToSignIn = () => {
+    onTrack?.({ action: 'switch_mode', trackingLabel, componentName });
+    onSwitchToSignIn();
   };
 
   const buttonSize = compact ? 'default' : 'lg';
@@ -61,7 +70,7 @@ export function ForgotPasswordForm({
           type='button'
           variant='secondary'
           size={buttonSize}
-          onClick={onSwitchToSignIn}
+          onClick={handleSwitchToSignIn}
           className='w-full'
         >
           {texts.backToSignIn}
@@ -117,7 +126,7 @@ export function ForgotPasswordForm({
       <div className='text-center'>
         <button
           type='button'
-          onClick={onSwitchToSignIn}
+          onClick={handleSwitchToSignIn}
           className='text-sm text-blue-600 dark:text-blue-400 hover:underline'
         >
           {texts.backToSignIn}

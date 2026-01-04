@@ -34,6 +34,16 @@ const smartLinkVariants = cva(
   }
 );
 
+/** Tracking event data for smart link interactions */
+export interface SmartLinkTrackingData {
+  /** Action performed */
+  action: 'click';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface SmartLinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
     VariantProps<typeof smartLinkVariants> {
@@ -41,19 +51,59 @@ export interface SmartLinkProps
   href?: string;
   external?: boolean;
   children: React.ReactNode;
+  /** Optional callback for tracking link clicks */
+  onTrack?: (data: SmartLinkTrackingData) => void;
+  /** Custom label for tracking (defaults to link text) */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 const SmartLink = React.forwardRef<HTMLAnchorElement, SmartLinkProps>(
   (
-    { className, variant, size, to, href, external, children, ...props },
+    {
+      className,
+      variant,
+      size,
+      to,
+      href,
+      external,
+      children,
+      onTrack,
+      trackingLabel,
+      componentName,
+      onClick,
+      ...props
+    },
     ref
   ) => {
     const destination = to || href;
+
+    // Determine if link is external
+    const isExternal =
+      external ||
+      (destination &&
+        (destination.startsWith('http') || destination.startsWith('mailto:')));
+
+    // Handle click with optional tracking
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+      if (onTrack) {
+        onTrack({
+          action: 'click',
+          trackingLabel,
+          componentName,
+        });
+      }
+      (onClick as React.MouseEventHandler<HTMLAnchorElement>)?.(
+        event as React.MouseEvent<HTMLAnchorElement>
+      );
+    };
 
     if (!destination) {
       return (
         <span
           className={cn(smartLinkVariants({ variant, size, className }))}
+          onClick={handleClick}
           {...props}
         >
           {children}
@@ -62,11 +112,7 @@ const SmartLink = React.forwardRef<HTMLAnchorElement, SmartLinkProps>(
     }
 
     // External links (http/https or explicitly marked as external)
-    if (
-      external ||
-      destination.startsWith('http') ||
-      destination.startsWith('mailto:')
-    ) {
+    if (isExternal) {
       return (
         <a
           className={cn(
@@ -80,6 +126,7 @@ const SmartLink = React.forwardRef<HTMLAnchorElement, SmartLinkProps>(
           target='_blank'
           rel='noopener noreferrer'
           ref={ref}
+          onClick={handleClick}
           {...props}
         >
           {children}
@@ -93,6 +140,7 @@ const SmartLink = React.forwardRef<HTMLAnchorElement, SmartLinkProps>(
         className={cn(smartLinkVariants({ variant, size, className }))}
         to={destination}
         ref={ref as React.Ref<HTMLAnchorElement>}
+        onClick={handleClick as React.MouseEventHandler<HTMLAnchorElement>}
         {...props}
       >
         {children}

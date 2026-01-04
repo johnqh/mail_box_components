@@ -13,6 +13,13 @@ export interface AccordionItem {
   disabled?: boolean;
 }
 
+/** Tracking data for Accordion actions */
+export interface AccordionTrackingData {
+  action: 'toggle';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface AccordionProps {
   /** Array of accordion items */
   items: AccordionItem[];
@@ -32,6 +39,12 @@ export interface AccordionProps {
   size?: 'sm' | 'md' | 'lg';
   /** Additional className */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: AccordionTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -60,6 +73,9 @@ export const Accordion: React.FC<AccordionProps> = ({
   variant = 'default',
   size = 'md',
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'Accordion',
 }) => {
   const initialOpenIds = defaultOpenId ? [defaultOpenId] : defaultOpenIds;
   const [internalOpenIds, setInternalOpenIds] =
@@ -118,6 +134,8 @@ export const Accordion: React.FC<AccordionProps> = ({
   };
 
   const handleToggle = (itemId: string) => {
+    onTrack?.({ action: 'toggle', trackingLabel, componentName });
+
     let newOpenIds: string[];
 
     if (allowMultiple) {

@@ -2,6 +2,13 @@ import React from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import { Label } from '@sudobility/components';
 
+/** Tracking data for EmailInputGroup actions */
+export interface EmailInputGroupTrackingData {
+  action: 'toggle';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface EmailInputFieldProps {
   label: string;
   value: string;
@@ -58,6 +65,12 @@ export interface CollapsibleEmailFieldProps extends EmailInputFieldProps {
   onToggle: () => void;
   showLabel?: string;
   hideLabel?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: EmailInputGroupTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const CollapsibleEmailField: React.FC<CollapsibleEmailFieldProps> = ({
@@ -65,15 +78,23 @@ export const CollapsibleEmailField: React.FC<CollapsibleEmailFieldProps> = ({
   onToggle,
   showLabel,
   hideLabel,
+  onTrack,
+  trackingLabel,
+  componentName = 'CollapsibleEmailField',
   ...fieldProps
 }) => {
   const toggleLabel = isVisible ? hideLabel : showLabel;
+
+  const handleToggle = () => {
+    onTrack?.({ action: 'toggle', trackingLabel, componentName });
+    onToggle();
+  };
 
   return (
     <div>
       <button
         type='button'
-        onClick={onToggle}
+        onClick={handleToggle}
         className='flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-2'
       >
         {isVisible ? (
@@ -120,6 +141,12 @@ export interface EmailInputGroupProps {
     cc?: string;
     bcc?: string;
   };
+  /** Optional tracking callback */
+  onTrack?: (data: EmailInputGroupTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
@@ -137,6 +164,9 @@ export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
   className = '',
   labels = {},
   placeholders = {},
+  onTrack,
+  trackingLabel,
+  componentName: _componentName = 'EmailInputGroup',
 }) => {
   const defaultLabels = {
     to: 'To',
@@ -180,6 +210,8 @@ export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
           onToggle={onToggleCc}
           showLabel={finalLabels.addCc}
           hideLabel={finalLabels.removeCc}
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
         />
       )}
 
@@ -195,6 +227,8 @@ export const EmailInputGroup: React.FC<EmailInputGroupProps> = ({
           onToggle={onToggleBcc}
           showLabel={finalLabels.addBcc}
           hideLabel={finalLabels.removeBcc}
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
         />
       )}
     </div>

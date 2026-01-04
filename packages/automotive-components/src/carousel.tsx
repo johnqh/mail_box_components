@@ -14,6 +14,8 @@ export interface CarouselProps {
   loop?: boolean;
   /** Additional className */
   className?: string;
+  /** Optional tracking callback for navigation actions */
+  onTrack?: (action: string) => void;
 }
 
 /**
@@ -47,6 +49,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   showIndicators = true,
   loop = true,
   className,
+  onTrack,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const slides = React.Children.toArray(children);
@@ -82,7 +85,18 @@ export const Carousel: React.FC<CarouselProps> = ({
   }, [autoPlay, totalSlides, goToNext]);
 
   const goToSlide = (index: number) => {
+    onTrack?.('slide_select');
     setCurrentIndex(index);
+  };
+
+  const handlePrevious = () => {
+    onTrack?.('previous_slide');
+    goToPrevious();
+  };
+
+  const handleNext = () => {
+    onTrack?.('next_slide');
+    goToNext();
   };
 
   if (totalSlides === 0) {
@@ -107,7 +121,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       {showArrows && totalSlides > 1 && (
         <>
           <button
-            onClick={goToPrevious}
+            onClick={handlePrevious}
             disabled={!loop && currentIndex === 0}
             className={cn(
               'absolute left-4 top-1/2 -translate-y-1/2',
@@ -137,7 +151,7 @@ export const Carousel: React.FC<CarouselProps> = ({
           </button>
 
           <button
-            onClick={goToNext}
+            onClick={handleNext}
             disabled={!loop && currentIndex === totalSlides - 1}
             className={cn(
               'absolute right-4 top-1/2 -translate-y-1/2',

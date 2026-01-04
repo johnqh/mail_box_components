@@ -1,6 +1,16 @@
 import React from 'react';
 import { cn } from '../lib/utils';
 
+/** Tracking event data for textarea interactions */
+export interface TextAreaTrackingData {
+  /** Action performed */
+  action: 'focus' | 'blur' | 'change';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface TextAreaProps {
   /** Current value */
   value: string;
@@ -26,6 +36,12 @@ export interface TextAreaProps {
   className?: string;
   /** Additional textarea props */
   textareaProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+  /** Optional callback for tracking textarea interactions */
+  onTrack?: (data: TextAreaTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 /**
@@ -68,6 +84,9 @@ export const TextArea: React.FC<TextAreaProps> = ({
   size = 'md',
   className,
   textareaProps,
+  onTrack,
+  trackingLabel,
+  componentName,
 }) => {
   // Size configurations
   const sizeClasses = {
@@ -92,7 +111,25 @@ export const TextArea: React.FC<TextAreaProps> = ({
       return;
     }
 
+    if (onTrack) {
+      onTrack({
+        action: 'change',
+        trackingLabel,
+        componentName,
+      });
+    }
+
     onChange(newValue);
+  };
+
+  const handleBlur = () => {
+    if (onTrack) {
+      onTrack({
+        action: 'blur',
+        trackingLabel,
+        componentName,
+      });
+    }
   };
 
   const characterCount = value.length;
@@ -103,6 +140,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
       <textarea
         value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder={placeholder}
         rows={rows}
         disabled={disabled}

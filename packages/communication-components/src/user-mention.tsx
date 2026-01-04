@@ -21,6 +21,8 @@ export interface UserMentionProps {
   placeholder?: string;
   /** Additional className */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 /**
@@ -49,6 +51,7 @@ export const UserMention: React.FC<UserMentionProps> = ({
   onChange,
   placeholder = 'Type @ to mention someone...',
   className,
+  onTrack,
 }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
@@ -94,6 +97,7 @@ export const UserMention: React.FC<UserMentionProps> = ({
   }, [value, users]);
 
   const insertMention = (user: User) => {
+    onTrack?.('mention_select');
     const before = value.slice(0, mentionStart);
     const after = value.slice(inputRef.current?.selectionStart || value.length);
     const newValue = `${before}@${user.username} ${after}`;

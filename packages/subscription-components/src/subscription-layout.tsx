@@ -3,7 +3,7 @@ import { Button, Card, CardContent } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
 import { cn } from './lib/cn';
 import { SubscriptionTile } from './subscription-tile';
-import type { FreeTileConfig } from './types';
+import type { FreeTileConfig, SubscriptionLayoutTrackingData } from './types';
 
 /**
  * Current subscription status display configuration
@@ -99,6 +99,13 @@ export interface SubscriptionLayoutProps {
    * When provided, a "Free" subscription tile will be shown at the start of the grid
    */
   freeTileConfig?: FreeTileConfig;
+
+  /** Optional tracking callback */
+  onTrack?: (data: SubscriptionLayoutTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -156,8 +163,21 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
   footerContent,
   currentStatusLabel = 'Current Status',
   freeTileConfig,
+  onTrack,
+  trackingLabel,
+  componentName = 'SubscriptionLayout',
 }) => {
   const showActionButtons = variant === 'selection' && primaryAction;
+
+  const handlePrimaryClick = () => {
+    onTrack?.({ action: 'primary_action', trackingLabel, componentName });
+    primaryAction?.onClick();
+  };
+
+  const handleSecondaryClick = () => {
+    onTrack?.({ action: 'secondary_action', trackingLabel, componentName });
+    secondaryAction?.onClick();
+  };
   // Free tile is only valid in 'cta' variant
   const shouldShowFreeTile = variant === 'cta' && freeTileConfig;
   // Use CSS Grid auto-fit with minmax for responsive behavior
@@ -266,7 +286,7 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
           <div className='flex flex-col sm:flex-row gap-3 mt-6'>
             {secondaryAction && (
               <Button
-                onClick={secondaryAction.onClick}
+                onClick={handleSecondaryClick}
                 disabled={secondaryAction.disabled || secondaryAction.loading}
                 variant='outline'
                 className='sm:flex-shrink-0'
@@ -276,7 +296,7 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
             )}
 
             <Button
-              onClick={primaryAction.onClick}
+              onClick={handlePrimaryClick}
               disabled={primaryAction.disabled || primaryAction.loading}
               className='flex-1'
             >

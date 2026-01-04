@@ -2,6 +2,16 @@ import React from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 
+/** Tracking event data for link interactions */
+export interface LinkTrackingData {
+  /** Action performed */
+  action: 'click';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface LinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Link URL */
@@ -18,6 +28,12 @@ export interface LinkProps
   disabled?: boolean;
   /** Additional className */
   className?: string;
+  /** Optional callback for tracking link clicks */
+  onTrack?: (data: LinkTrackingData) => void;
+  /** Custom label for tracking (defaults to link text) */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 /**
@@ -52,6 +68,10 @@ export const Link: React.FC<LinkProps> = ({
   showExternalIcon = false,
   disabled = false,
   className,
+  onTrack,
+  trackingLabel,
+  componentName,
+  onClick,
   ...props
 }) => {
   // Auto-detect external links
@@ -80,6 +100,18 @@ export const Link: React.FC<LinkProps> = ({
       }
     : {};
 
+  // Handle click with optional tracking
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onTrack) {
+      onTrack({
+        action: 'click',
+        trackingLabel,
+        componentName,
+      });
+    }
+    onClick?.(event);
+  };
+
   if (disabled) {
     return (
       <span
@@ -105,6 +137,7 @@ export const Link: React.FC<LinkProps> = ({
         variantClasses[variant],
         className
       )}
+      onClick={handleClick}
       {...externalAttrs}
       {...props}
     >

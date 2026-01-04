@@ -68,6 +68,9 @@ export function ProviderButtons({
   providers,
   onEmailClick,
   compact,
+  onTrack,
+  trackingLabel,
+  componentName = 'ProviderButtons',
 }: ProviderButtonsProps) {
   const { signInWithGoogle, signInWithApple, loading, texts } = useAuthStatus();
 
@@ -78,13 +81,28 @@ export function ProviderButtons({
   const buttonSize = compact ? 'default' : 'lg';
   const iconSize = compact ? 'w-4 h-4' : 'w-5 h-5';
 
+  const handleGoogleClick = () => {
+    onTrack?.({ action: 'provider_click', trackingLabel, componentName });
+    signInWithGoogle();
+  };
+
+  const handleAppleClick = () => {
+    onTrack?.({ action: 'provider_click', trackingLabel, componentName });
+    signInWithApple();
+  };
+
+  const handleEmailClick = () => {
+    onTrack?.({ action: 'provider_click', trackingLabel, componentName });
+    onEmailClick();
+  };
+
   return (
     <div className={cn('space-y-3', compact && 'space-y-2')}>
       {showGoogle && (
         <Button
           variant='secondary'
           size={buttonSize}
-          onClick={signInWithGoogle}
+          onClick={handleGoogleClick}
           disabled={loading}
           className='w-full'
         >
@@ -97,7 +115,7 @@ export function ProviderButtons({
         <Button
           variant='secondary'
           size={buttonSize}
-          onClick={signInWithApple}
+          onClick={handleAppleClick}
           disabled={loading}
           className='w-full'
         >
@@ -123,7 +141,7 @@ export function ProviderButtons({
         <Button
           variant='secondary'
           size={buttonSize}
-          onClick={onEmailClick}
+          onClick={handleEmailClick}
           className='w-full'
         >
           <EmailIcon className={cn(iconSize, 'mr-2')} />

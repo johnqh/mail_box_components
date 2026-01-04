@@ -31,6 +31,8 @@ export interface UvirtualUtourProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 export const UvirtualUtour = ({
@@ -38,6 +40,7 @@ export const UvirtualUtour = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
 }: UvirtualUtourProps) => {
   return (
     <div
@@ -50,7 +53,14 @@ export const UvirtualUtour = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={
+        disabled
+          ? undefined
+          : () => {
+              onTrack?.('click');
+              onClick?.();
+            }
+      }
       role='region'
       aria-label='UvirtualUtour'
     >

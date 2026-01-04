@@ -1,6 +1,13 @@
 import React from 'react';
 import { WalletIcon } from './wallet-icon';
 
+/** Tracking data for WalletSelection actions */
+export interface WalletSelectionTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface WalletOption {
   id: string;
   name: string;
@@ -20,6 +27,12 @@ export interface WalletSelectionButtonProps {
     available: string;
     notAvailable: string;
   };
+  /** Optional tracking callback */
+  onTrack?: (data: WalletSelectionTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
@@ -27,10 +40,18 @@ const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
   disabled = false,
   className = '',
   statusLabels = { available: 'Available', notAvailable: 'Not Available' },
+  onTrack,
+  trackingLabel,
+  componentName = 'WalletSelectionButton',
 }) => {
+  const handleClick = () => {
+    onTrack?.({ action: 'click', trackingLabel, componentName });
+    wallet.onClick();
+  };
+
   return (
     <button
-      onClick={wallet.onClick}
+      onClick={handleClick}
       disabled={disabled || !wallet.available}
       aria-label={`Connect ${wallet.name} wallet for ${wallet.chainType === 'solana' ? 'Solana' : 'Ethereum'} network`}
       className={`
@@ -83,6 +104,12 @@ export interface WalletTabProps {
   icon: string;
   label: string;
   color: 'blue' | 'purple';
+  /** Optional tracking callback */
+  onTrack?: (data: WalletSelectionTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 const WalletTab: React.FC<WalletTabProps> = ({
@@ -91,7 +118,14 @@ const WalletTab: React.FC<WalletTabProps> = ({
   icon,
   label,
   color,
+  onTrack,
+  trackingLabel,
+  componentName = 'WalletTab',
 }) => {
+  const handleClick = () => {
+    onTrack?.({ action: 'click', trackingLabel, componentName });
+    onClick();
+  };
   const colorClasses = {
     blue: active
       ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm'
@@ -103,7 +137,7 @@ const WalletTab: React.FC<WalletTabProps> = ({
 
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${colorClasses[color]}`}
     >
       <span className='flex items-center justify-center space-x-2'>
@@ -130,6 +164,12 @@ export interface WalletSelectionGridProps {
     installMetaMask?: string;
     installPhantom?: string;
   };
+  /** Optional tracking callback */
+  onTrack?: (data: WalletSelectionTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
@@ -140,6 +180,9 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
   connectingWallet,
   className = '',
   labels = {},
+  onTrack,
+  trackingLabel,
+  componentName: _componentName = 'WalletSelectionGrid',
 }) => {
   const defaultLabels = {
     ethereum: 'Ethereum',
@@ -164,6 +207,8 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
           icon='⟠'
           label={finalLabels.ethereum}
           color='blue'
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
         />
         <WalletTab
           active={activeTab === 'solana'}
@@ -171,6 +216,8 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
           icon='◎'
           label={finalLabels.solana}
           color='purple'
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
         />
       </div>
 
@@ -188,6 +235,8 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
               available: finalLabels.available,
               notAvailable: finalLabels.notAvailable,
             }}
+            onTrack={onTrack}
+            trackingLabel={trackingLabel}
           />
         ))}
       </div>

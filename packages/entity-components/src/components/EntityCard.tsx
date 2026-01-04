@@ -7,6 +7,13 @@ import { Building2, User } from 'lucide-react';
 import type { EntityWithRole, EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 
+/** Tracking data for EntityCard actions */
+export interface EntityCardTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface EntityCardProps {
   /** Entity to display */
   entity: EntityWithRole;
@@ -16,6 +23,12 @@ export interface EntityCardProps {
   onClick?: () => void;
   /** Additional class names */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: EntityCardTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -36,13 +49,21 @@ export function EntityCard({
   isSelected = false,
   onClick,
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'EntityCard',
 }: EntityCardProps) {
   const isPersonal = entity.entityType === 'personal';
   const Icon = isPersonal ? User : Building2;
 
+  const handleClick = () => {
+    onTrack?.({ action: 'click', trackingLabel, componentName });
+    onClick?.();
+  };
+
   return (
     <div
-      onClick={onClick}
+      onClick={onClick ? handleClick : undefined}
       className={cn(
         'rounded-lg border p-4 transition-all',
         onClick && 'cursor-pointer hover:border-primary',

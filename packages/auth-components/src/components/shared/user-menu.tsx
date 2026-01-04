@@ -13,6 +13,8 @@ interface UserMenuProps {
   avatarSize?: number;
   dropdownAlign?: 'left' | 'right';
   onLogoutClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 /**
@@ -26,6 +28,7 @@ export function UserMenu({
   avatarSize = 32,
   dropdownAlign = 'right',
   onLogoutClick,
+  onTrack,
 }: UserMenuProps) {
   const { user, signOut, texts } = useAuthStatus();
   const [isOpen, setIsOpen] = useState(false);
@@ -69,6 +72,7 @@ export function UserMenu({
 
   const handleLogout = async () => {
     setIsOpen(false);
+    onTrack?.('logout_click');
     onLogoutClick?.();
     await signOut();
   };
@@ -76,22 +80,27 @@ export function UserMenu({
   const handleMenuItemClick = (item: AuthMenuItem) => {
     if (item.disabled) return;
     setIsOpen(false);
+    onTrack?.(`menu_item_click:${item.id}`);
     item.onClick();
+  };
+
+  const handleToggleMenu = () => {
+    const newState = !isOpen;
+    if (newState) {
+      onTrack?.('menu_open');
+    }
+    setIsOpen(newState);
   };
 
   return (
     <div ref={menuRef} className='relative'>
       {/* Avatar trigger */}
       {renderAvatar ? (
-        <div onClick={() => setIsOpen(!isOpen)} className='cursor-pointer'>
+        <div onClick={handleToggleMenu} className='cursor-pointer'>
           {renderAvatar(user)}
         </div>
       ) : (
-        <Avatar
-          user={user}
-          size={avatarSize}
-          onClick={() => setIsOpen(!isOpen)}
-        />
+        <Avatar user={user} size={avatarSize} onClick={handleToggleMenu} />
       )}
 
       {/* Dropdown menu */}

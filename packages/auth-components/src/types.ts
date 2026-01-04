@@ -244,6 +244,12 @@ export interface AuthModalProps {
   footerContent?: ReactNode;
   /** Override which providers to show */
   providers?: AuthProviderType[];
+  /** Optional tracking callback */
+  onTrack?: (data: AuthTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -316,6 +322,12 @@ export interface AuthActionProps {
   onLoginClick?: () => void | boolean;
   /** Callback when logout clicked */
   onLogoutClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: AuthTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -356,17 +368,35 @@ export interface EmailSignInFormProps {
   onSwitchToForgotPassword: () => void;
   onSuccess?: () => void;
   compact?: boolean;
+  /** Optional tracking callback */
+  onTrack?: (data: AuthTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export interface EmailSignUpFormProps {
   onSwitchToSignIn: () => void;
   onSuccess?: () => void;
   compact?: boolean;
+  /** Optional tracking callback */
+  onTrack?: (data: AuthTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export interface ForgotPasswordFormProps {
   onSwitchToSignIn: () => void;
   compact?: boolean;
+  /** Optional tracking callback */
+  onTrack?: (data: AuthTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -376,4 +406,25 @@ export interface ProviderButtonsProps {
   providers: AuthProviderType[];
   onEmailClick: () => void;
   compact?: boolean;
+  /** Optional tracking callback */
+  onTrack?: (data: AuthTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
+}
+
+// ============ Tracking Types ============
+
+/** Tracking data for auth component actions */
+export interface AuthTrackingData {
+  action:
+    | 'login_click'
+    | 'logout_click'
+    | 'provider_click'
+    | 'modal_close'
+    | 'form_submit'
+    | 'switch_mode';
+  trackingLabel?: string;
+  componentName?: string;
 }

@@ -1,6 +1,13 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
 
+/** Tracking data for ProductCard actions */
+export interface ProductCardTrackingData {
+  action: 'click' | 'add_to_cart';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface ProductCardProps {
   /** Product image URL */
   image: string;
@@ -24,6 +31,12 @@ export interface ProductCardProps {
   onAddToCart?: () => void;
   /** Additional className */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: ProductCardTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -59,6 +72,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onClick,
   onAddToCart,
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'ProductCard',
 }) => {
   const badgeStyles = {
     sale: 'bg-red-500',
@@ -70,6 +86,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     ? Math.round(((originalPrice - price) / originalPrice) * 100)
     : 0;
 
+  const handleClick = () => {
+    onTrack?.({ action: 'click', trackingLabel, componentName });
+    onClick?.();
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onTrack?.({ action: 'add_to_cart', trackingLabel, componentName });
+    onAddToCart?.();
+  };
+
   return (
     <div
       className={cn(
@@ -77,7 +104,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         onClick && 'cursor-pointer',
         className
       )}
-      onClick={onClick}
+      onClick={onClick ? handleClick : undefined}
     >
       {/* Image */}
       <div className='relative aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800'>
@@ -157,10 +184,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Add to cart button */}
         {onAddToCart && (
           <button
-            onClick={e => {
-              e.stopPropagation();
-              onAddToCart();
-            }}
+            onClick={handleAddToCart}
             className='w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium'
           >
             Add to Cart

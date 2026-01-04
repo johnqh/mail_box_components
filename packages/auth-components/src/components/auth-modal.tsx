@@ -20,6 +20,9 @@ export function AuthModal({
   headerContent,
   footerContent,
   providers,
+  onTrack,
+  trackingLabel,
+  componentName = 'AuthModal',
 }: AuthModalProps) {
   const { isModalOpen, closeModal, texts, isAuthenticated, isAnonymous } =
     useAuthStatus();
@@ -27,7 +30,12 @@ export function AuthModal({
 
   // Determine if modal is open (controlled or context mode)
   const isOpen = open !== undefined ? open : isModalOpen;
-  const handleClose = onClose ?? closeModal;
+  const baseClose = onClose ?? closeModal;
+
+  const handleClose = useCallback(() => {
+    onTrack?.({ action: 'modal_close', trackingLabel, componentName });
+    baseClose();
+  }, [onTrack, trackingLabel, componentName, baseClose]);
 
   // Reset mode when modal opens
   useEffect(() => {

@@ -28,6 +28,8 @@ export interface EmailAccountsListProps {
   onToggleWallet: (walletAddress: string) => void;
   onAccountSettings?: (address: string) => void;
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 // Helper function to format wallet addresses
@@ -90,12 +92,14 @@ const CollapsibleDomainEmails: React.FC<{
   selectedAccount?: string;
   onAccountSelect: (address: string) => void;
   onAccountSettings?: (address: string) => void;
+  onTrack?: (action: string) => void;
 }> = ({
   domainEmails,
   isExpanded,
   selectedAccount,
   onAccountSelect,
   onAccountSettings: _onAccountSettings,
+  onTrack,
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
@@ -116,7 +120,10 @@ const CollapsibleDomainEmails: React.FC<{
         {domainEmails.map(email => (
           <button
             key={email.address}
-            onClick={() => onAccountSelect(email.address)}
+            onClick={() => {
+              onTrack?.('account_select');
+              onAccountSelect(email.address);
+            }}
             className={cn(
               'w-full flex items-center justify-between text-left px-3 py-2 rounded-lg transition-colors h-[44px]',
               textVariants.body.sm(),
@@ -142,13 +149,17 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
   onToggleWallet,
   onAccountSettings,
   className = '',
+  onTrack,
 }) => {
   return (
     <nav className={cn('space-y-1', className)}>
       {walletGroups.map(group => (
         <div key={group.walletAddress}>
           <button
-            onClick={() => onAccountSelect(group.primaryEmail.address)}
+            onClick={() => {
+              onTrack?.('primary_account_select');
+              onAccountSelect(group.primaryEmail.address);
+            }}
             className={cn(
               'w-full flex items-center justify-between text-left px-3 py-2 rounded-lg transition-colors h-[44px]',
               textVariants.body.sm(),
@@ -173,6 +184,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
               <div
                 onClick={e => {
                   e.stopPropagation();
+                  onTrack?.('toggle_wallet');
                   onToggleWallet(group.walletAddress);
                 }}
                 className='p-1 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer'
@@ -182,6 +194,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     e.stopPropagation();
+                    onTrack?.('toggle_wallet');
                     onToggleWallet(group.walletAddress);
                   }
                 }}
@@ -205,6 +218,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
               selectedAccount={selectedAccount}
               onAccountSelect={onAccountSelect}
               onAccountSettings={onAccountSettings}
+              onTrack={onTrack}
             />
           )}
         </div>

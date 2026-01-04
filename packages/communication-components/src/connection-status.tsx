@@ -31,6 +31,8 @@ export interface UconnectionUstatusProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 export const UconnectionUstatus = ({
@@ -38,7 +40,14 @@ export const UconnectionUstatus = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
 }: UconnectionUstatusProps) => {
+  const handleClick = () => {
+    if (disabled) return;
+    onTrack?.('click');
+    onClick?.();
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +59,7 @@ export const UconnectionUstatus = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UconnectionUstatus'
     >

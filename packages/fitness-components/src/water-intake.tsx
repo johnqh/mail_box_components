@@ -22,6 +22,13 @@ import { cn } from './lib/utils';
  * @see {@link https://docs.example.com/components/water-intake}
  */
 
+/** Tracking data for WaterIntake actions */
+export interface WaterIntakeTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UwaterUintakeProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UwaterUintakeProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: WaterIntakeTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UwaterUintake = ({
@@ -38,7 +51,17 @@ export const UwaterUintake = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UwaterUintake',
 }: UwaterUintakeProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UwaterUintake = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UwaterUintake'
     >

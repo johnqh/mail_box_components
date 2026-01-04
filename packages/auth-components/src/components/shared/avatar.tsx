@@ -2,6 +2,12 @@ import { useState } from 'react';
 import type { AvatarProps } from '../../types';
 import { cn } from '../../lib/cn';
 
+/** Extended props with tracking */
+interface AvatarPropsWithTracking extends AvatarProps {
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
+}
+
 /**
  * Get initials from display name or email
  */
@@ -22,7 +28,17 @@ function getInitials(name: string | null, email: string | null): string {
 /**
  * Avatar component with photo URL and initials fallback
  */
-export function Avatar({ user, size = 32, className, onClick }: AvatarProps) {
+export function Avatar({
+  user,
+  size = 32,
+  className,
+  onClick,
+  onTrack,
+}: AvatarPropsWithTracking) {
+  const handleClick = () => {
+    onTrack?.('avatar_click');
+    onClick?.();
+  };
   const [imageError, setImageError] = useState(false);
 
   const hasValidPhoto = user.photoURL && !imageError;
@@ -38,7 +54,7 @@ export function Avatar({ user, size = 32, className, onClick }: AvatarProps) {
     return (
       <button
         type='button'
-        onClick={onClick}
+        onClick={handleClick}
         className={baseStyles}
         style={{ width: size, height: size }}
       >
@@ -55,7 +71,7 @@ export function Avatar({ user, size = 32, className, onClick }: AvatarProps) {
   return (
     <button
       type='button'
-      onClick={onClick}
+      onClick={handleClick}
       className={cn(baseStyles, 'bg-blue-600 text-white font-medium')}
       style={{
         width: size,

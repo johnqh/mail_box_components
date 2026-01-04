@@ -31,6 +31,8 @@ export interface UitineraryUbuilderProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 export const UitineraryUbuilder = ({
@@ -38,6 +40,7 @@ export const UitineraryUbuilder = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
 }: UitineraryUbuilderProps) => {
   return (
     <div
@@ -50,7 +53,14 @@ export const UitineraryUbuilder = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={
+        disabled
+          ? undefined
+          : () => {
+              onTrack?.('click');
+              onClick?.();
+            }
+      }
       role='region'
       aria-label='UitineraryUbuilder'
     >

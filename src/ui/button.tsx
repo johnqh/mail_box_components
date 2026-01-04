@@ -52,14 +52,45 @@ const buttonVariants = cva('min-h-[44px] touch-manipulation', {
   },
 });
 
+/** Tracking event data for button interactions */
+export interface ButtonTrackingData {
+  /** Action performed */
+  action: 'click';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  /** Optional callback for tracking button clicks */
+  onTrack?: (data: ButtonTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, animation, asChild = false, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      animation,
+      asChild = false,
+      onTrack,
+      trackingLabel,
+      componentName,
+      onClick,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : 'button';
 
     // ✨ SIMPLE: Get variant classes using the new system
@@ -98,6 +129,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
     const designSystemClass = getButtonClass();
 
+    // Handle click with optional tracking
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      // Call tracking callback if provided
+      if (onTrack) {
+        onTrack({
+          action: 'click',
+          trackingLabel,
+          componentName,
+        });
+      }
+
+      // Call original onClick handler
+      onClick?.(event);
+    };
+
     return (
       <Comp
         className={cn(
@@ -106,8 +152,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className // Custom overrides
         )}
         ref={ref}
+        onClick={handleClick}
         {...props}
-      />
+      >
+        {children}
+      </Comp>
     );
   }
 );

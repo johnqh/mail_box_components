@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn, useLayout } from '@sudobility/components';
+import { cn } from '@sudobility/components';
 
 const bannerVariants = cva('border-b transition-all duration-200', {
   variants: {
@@ -71,6 +71,8 @@ export interface FreeEmailBannerProps
   onDismiss?: () => void;
   isDismissible?: boolean;
   dismissAriaLabel?: string;
+  /** Optional tracking callback */
+  onTrack?: (action: string) => void;
 }
 
 export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
@@ -85,8 +87,9 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
   onDismiss,
   isDismissible = false,
   dismissAriaLabel = 'Dismiss banner',
+  onTrack,
 }) => {
-  const { containerClass } = useLayout();
+  const containerClass = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8';
 
   return (
     <div className={cn(bannerVariants({ variant, size }), className)}>
@@ -94,7 +97,10 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
         <div className='flex flex-col sm:flex-row items-center justify-center gap-4 text-center relative'>
           {isDismissible && onDismiss && (
             <button
-              onClick={onDismiss}
+              onClick={() => {
+                onTrack?.('dismiss');
+                onDismiss();
+              }}
               className='absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors'
               aria-label={dismissAriaLabel}
             >
@@ -130,7 +136,11 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
             <span className={cn(textVariants({ variant }))}>{message}</span>
           </div>
 
-          <Link to={ctaLink} className={cn(buttonVariants({ variant }))}>
+          <Link
+            to={ctaLink}
+            className={cn(buttonVariants({ variant }))}
+            onClick={() => onTrack?.('cta_click')}
+          >
             {ctaText}
           </Link>
         </div>

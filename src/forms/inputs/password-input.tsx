@@ -10,6 +10,16 @@ export interface PasswordStrength {
   color: string;
 }
 
+/** Tracking event data for password input interactions */
+export interface PasswordInputTrackingData {
+  /** Action performed */
+  action: 'input' | 'visibility_toggle';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface PasswordInputProps {
   /** Input value */
   value: string;
@@ -35,6 +45,12 @@ export interface PasswordInputProps {
   disabled?: boolean;
   /** Additional className */
   className?: string;
+  /** Optional callback for tracking password input interactions */
+  onTrack?: (data: PasswordInputTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 /**
@@ -80,6 +96,9 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
   requireSpecial = true,
   disabled = false,
   className,
+  onTrack,
+  trackingLabel,
+  componentName,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -150,6 +169,32 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
 
   const strength = calculateStrength();
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+
+    if (onTrack) {
+      onTrack({
+        action: 'input',
+        trackingLabel,
+        componentName,
+      });
+    }
+
+    onChange(newValue);
+  };
+
+  const handleVisibilityToggle = () => {
+    if (onTrack) {
+      onTrack({
+        action: 'visibility_toggle',
+        trackingLabel,
+        componentName,
+      });
+    }
+
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className={cn('w-full', className)}>
       {/* Input container */}
@@ -157,7 +202,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
         <input
           type={showPassword ? 'text' : 'password'}
           value={value}
-          onChange={e => onChange(e.target.value)}
+          onChange={handleChange}
           placeholder={placeholder}
           disabled={disabled}
           className={cn(
@@ -173,7 +218,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
         {/* Show/Hide toggle */}
         <button
           type='button'
-          onClick={() => setShowPassword(!showPassword)}
+          onClick={handleVisibilityToggle}
           disabled={disabled}
           className={cn(
             'absolute right-2 top-1/2 -translate-y-1/2',

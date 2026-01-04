@@ -1,10 +1,20 @@
 import { useAuthStatus } from '../context/auth-provider';
-import type { AuthContentProps, AuthMode } from '../types';
+import type { AuthContentProps, AuthMode, AuthTrackingData } from '../types';
 import { ProviderButtons } from './shared/provider-buttons';
 import { EmailSignInForm } from './forms/email-signin-form';
 import { EmailSignUpForm } from './forms/email-signup-form';
 import { ForgotPasswordForm } from './forms/forgot-password-form';
 import { Text } from '@sudobility/components';
+
+/** Extended props with tracking */
+interface AuthContentPropsWithTracking extends AuthContentProps {
+  /** Optional tracking callback */
+  onTrack?: (data: AuthTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
+}
 
 /**
  * Get title for current auth mode
@@ -41,7 +51,14 @@ export function AuthContent({
   providers,
   onSuccess,
   compact,
-}: AuthContentProps) {
+  onTrack,
+  trackingLabel,
+  componentName = 'AuthContent',
+}: AuthContentPropsWithTracking) {
+  const handleModeChange = (newMode: AuthMode) => {
+    onTrack?.({ action: 'switch_mode', trackingLabel, componentName });
+    onModeChange(newMode);
+  };
   const { providerConfig, texts } = useAuthStatus();
 
   const activeProviders = providers ?? providerConfig.providers;
@@ -60,8 +77,11 @@ export function AuthContent({
         </Text>
         <ProviderButtons
           providers={activeProviders}
-          onEmailClick={() => onModeChange('email-signin')}
+          onEmailClick={() => handleModeChange('email-signin')}
           compact={compact}
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
+          componentName={componentName}
         />
       </div>
     );
@@ -74,7 +94,7 @@ export function AuthContent({
         <div className='flex items-center'>
           <button
             type='button'
-            onClick={() => onModeChange('select')}
+            onClick={() => handleModeChange('select')}
             className='p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors'
             aria-label='Back'
           >
@@ -101,10 +121,13 @@ export function AuthContent({
           </Text>
         </div>
         <EmailSignInForm
-          onSwitchToSignUp={() => onModeChange('email-signup')}
-          onSwitchToForgotPassword={() => onModeChange('forgot-password')}
+          onSwitchToSignUp={() => handleModeChange('email-signup')}
+          onSwitchToForgotPassword={() => handleModeChange('forgot-password')}
           onSuccess={onSuccess}
           compact={compact}
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
+          componentName={componentName}
         />
       </div>
     );
@@ -117,7 +140,7 @@ export function AuthContent({
         <div className='flex items-center'>
           <button
             type='button'
-            onClick={() => onModeChange('email-signin')}
+            onClick={() => handleModeChange('email-signin')}
             className='p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors'
             aria-label='Back'
           >
@@ -144,9 +167,12 @@ export function AuthContent({
           </Text>
         </div>
         <EmailSignUpForm
-          onSwitchToSignIn={() => onModeChange('email-signin')}
+          onSwitchToSignIn={() => handleModeChange('email-signin')}
           onSuccess={onSuccess}
           compact={compact}
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
+          componentName={componentName}
         />
       </div>
     );
@@ -159,7 +185,7 @@ export function AuthContent({
         <div className='flex items-center'>
           <button
             type='button'
-            onClick={() => onModeChange('email-signin')}
+            onClick={() => handleModeChange('email-signin')}
             className='p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors'
             aria-label='Back'
           >
@@ -186,8 +212,11 @@ export function AuthContent({
           </Text>
         </div>
         <ForgotPasswordForm
-          onSwitchToSignIn={() => onModeChange('email-signin')}
+          onSwitchToSignIn={() => handleModeChange('email-signin')}
           compact={compact}
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
+          componentName={componentName}
         />
       </div>
     );

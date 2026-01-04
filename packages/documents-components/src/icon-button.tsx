@@ -1,6 +1,13 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
 
+/** Tracking data for IconButton actions */
+export interface IconButtonTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface IconButtonProps {
   /** Icon component to display */
   icon: React.ComponentType<{ className?: string }>;
@@ -28,6 +35,12 @@ export interface IconButtonProps {
   className?: string;
   /** Tooltip content (optional) */
   title?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: IconButtonTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -71,7 +84,16 @@ export const IconButton: React.FC<IconButtonProps> = ({
   type = 'button',
   className,
   title,
+  onTrack,
+  trackingLabel,
+  componentName = 'IconButton',
 }) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.(e);
+    }
+  };
   // Size configurations
   const sizeClasses = {
     xs: {
@@ -124,7 +146,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   return (
     <button
       type={type}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       aria-label={ariaLabel}
       title={title || ariaLabel}

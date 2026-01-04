@@ -4,8 +4,15 @@
  */
 
 import type { EntityWithRole } from '@sudobility/types';
-import { EntityCard } from './EntityCard';
+import { EntityCard, type EntityCardTrackingData } from './EntityCard';
 import { cn } from '../lib/utils';
+
+/** Tracking data for EntityList actions */
+export interface EntityListTrackingData {
+  action: 'select';
+  trackingLabel?: string;
+  componentName?: string;
+}
 
 export interface EntityListProps {
   /** Entities to display */
@@ -20,6 +27,12 @@ export interface EntityListProps {
   emptyMessage?: string;
   /** Additional class names */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: EntityListTrackingData | EntityCardTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -32,6 +45,9 @@ export function EntityList({
   isLoading = false,
   emptyMessage = 'No workspaces found',
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'EntityList',
 }: EntityListProps) {
   if (isLoading) {
     return (
@@ -54,6 +70,11 @@ export function EntityList({
     );
   }
 
+  const handleSelect = (entity: EntityWithRole) => {
+    onTrack?.({ action: 'select', trackingLabel, componentName });
+    onSelect?.(entity);
+  };
+
   return (
     <div className={cn('space-y-3', className)}>
       {entities.map(entity => (
@@ -61,7 +82,9 @@ export function EntityList({
           key={entity.id}
           entity={entity}
           isSelected={entity.entitySlug === selectedSlug}
-          onClick={onSelect ? () => onSelect(entity) : undefined}
+          onClick={onSelect ? () => handleSelect(entity) : undefined}
+          onTrack={onTrack}
+          trackingLabel={trackingLabel}
         />
       ))}
     </div>

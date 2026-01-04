@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/confidence-meter}
  */
 
+/** Tracking data for ConfidenceMeter actions */
+export interface ConfidenceMeterTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UconfidenceUmeterProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UconfidenceUmeterProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: ConfidenceMeterTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UconfidenceUmeter = ({
@@ -38,7 +51,17 @@ export const UconfidenceUmeter = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UconfidenceUmeter',
 }: UconfidenceUmeterProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UconfidenceUmeter = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UconfidenceUmeter'
     >

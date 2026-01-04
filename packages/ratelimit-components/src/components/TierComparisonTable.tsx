@@ -34,8 +34,16 @@ export const TierComparisonTable: React.FC<TierComparisonTableProps> = ({
   onTierSelect,
   className,
   formatNumber = defaultFormatNumber,
+  onTrack,
+  trackingLabel,
+  componentName = 'TierComparisonTable',
 }) => {
   const labels = { ...defaultLabels, ...customLabels };
+
+  const handleTierSelect = (tierId: string) => {
+    onTrack?.({ action: 'tier_select', trackingLabel, componentName });
+    onTierSelect?.(tierId);
+  };
 
   const formatLimit = (limit: number | null): string => {
     if (limit === null)
@@ -98,7 +106,7 @@ export const TierComparisonTable: React.FC<TierComparisonTableProps> = ({
             {tiers.map(tier => (
               <tr
                 key={tier.id}
-                onClick={() => onTierSelect?.(tier.id)}
+                onClick={() => handleTierSelect(tier.id)}
                 className={cn(
                   'transition-colors',
                   tier.isHighlighted && 'bg-blue-50 dark:bg-blue-900/20',

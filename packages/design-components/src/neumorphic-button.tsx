@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/neumorphic-button}
  */
 
+/** Tracking data for NeumorphicButton actions */
+export interface NeumorphicButtonTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UneumorphicUbuttonProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UneumorphicUbuttonProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: NeumorphicButtonTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UneumorphicUbutton = ({
@@ -38,7 +51,17 @@ export const UneumorphicUbutton = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UneumorphicUbutton',
 }: UneumorphicUbuttonProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UneumorphicUbutton = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UneumorphicUbutton'
     >

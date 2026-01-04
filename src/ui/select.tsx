@@ -4,7 +4,50 @@ import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { variants } from '@sudobility/design';
 
-const Select = SelectPrimitive.Root;
+/** Tracking event data for select interactions */
+export interface SelectTrackingData {
+  /** Action performed */
+  action: 'change';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
+export interface SelectProps extends SelectPrimitive.SelectProps {
+  /** Optional callback for tracking select value changes */
+  onTrack?: (data: SelectTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
+}
+
+const Select: React.FC<SelectProps> = ({
+  onTrack,
+  trackingLabel,
+  componentName,
+  onValueChange,
+  children,
+  ...props
+}) => {
+  const handleValueChange = (value: string) => {
+    if (onTrack) {
+      onTrack({
+        action: 'change',
+        trackingLabel,
+        componentName,
+      });
+    }
+    onValueChange?.(value);
+  };
+
+  return (
+    <SelectPrimitive.Root onValueChange={handleValueChange} {...props}>
+      {children}
+    </SelectPrimitive.Root>
+  );
+};
 
 const SelectGroup = SelectPrimitive.Group;
 

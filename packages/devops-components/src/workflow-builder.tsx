@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/workflow-builder}
  */
 
+/** Tracking data for WorkflowBuilder actions */
+export interface WorkflowBuilderTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UworkflowUbuilderProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UworkflowUbuilderProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: WorkflowBuilderTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UworkflowUbuilder = ({
@@ -38,7 +51,17 @@ export const UworkflowUbuilder = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'UworkflowUbuilder',
 }: UworkflowUbuilderProps) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onTrack?.({ action: 'click', trackingLabel, componentName });
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +73,7 @@ export const UworkflowUbuilder = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UworkflowUbuilder'
     >

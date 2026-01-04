@@ -2,6 +2,13 @@ import React, { useState, KeyboardEvent } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { cn } from '@sudobility/components';
 
+/** Tracking data for Collapsible actions */
+export interface CollapsibleTrackingData {
+  action: 'toggle';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface CollapsibleProps {
   /** Trigger content (can be string or React node) */
   trigger: React.ReactNode;
@@ -25,6 +32,12 @@ export interface CollapsibleProps {
   animated?: boolean;
   /** Additional className */
   className?: string;
+  /** Optional tracking callback */
+  onTrack?: (data: CollapsibleTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 /**
@@ -64,6 +77,9 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
   variant = 'default',
   animated = false,
   className,
+  onTrack,
+  trackingLabel,
+  componentName = 'Collapsible',
 }) => {
   const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(defaultOpen);
 
@@ -74,6 +90,8 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
 
   const handleToggle = () => {
     if (disabled) return;
+
+    onTrack?.({ action: 'toggle', trackingLabel, componentName });
 
     const newOpen = !isOpen;
 

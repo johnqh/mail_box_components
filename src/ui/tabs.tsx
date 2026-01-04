@@ -3,7 +3,56 @@ import { Root, List, Trigger, Content } from '@radix-ui/react-tabs';
 import { cn } from '../lib/utils';
 import { variants } from '@sudobility/design';
 
-const Tabs = Root;
+/** Tracking event data for tabs interactions */
+export interface TabsTrackingData {
+  /** Action performed */
+  action: 'change';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
+export interface TabsProps extends React.ComponentPropsWithoutRef<typeof Root> {
+  /** Optional callback for tracking tab changes */
+  onTrack?: (data: TabsTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
+}
+
+const Tabs = React.forwardRef<React.ElementRef<typeof Root>, TabsProps>(
+  (
+    {
+      onTrack,
+      trackingLabel,
+      componentName,
+      onValueChange,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const handleValueChange = (value: string) => {
+      if (onTrack) {
+        onTrack({
+          action: 'change',
+          trackingLabel,
+          componentName,
+        });
+      }
+      onValueChange?.(value);
+    };
+
+    return (
+      <Root ref={ref} onValueChange={handleValueChange} {...props}>
+        {children}
+      </Root>
+    );
+  }
+);
+Tabs.displayName = 'Tabs';
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof List>,

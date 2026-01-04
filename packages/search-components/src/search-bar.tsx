@@ -22,6 +22,13 @@ import { cn } from '@sudobility/components';
  * @see {@link https://docs.example.com/components/search-bar}
  */
 
+/** Tracking data for SearchBar actions */
+export interface SearchBarTrackingData {
+  action: 'click';
+  trackingLabel?: string;
+  componentName?: string;
+}
+
 export interface UsearchUbarProps {
   /** Additional CSS classes */
   className?: string;
@@ -31,6 +38,12 @@ export interface UsearchUbarProps {
   disabled?: boolean;
   /** Callback when component is interacted with */
   onClick?: () => void;
+  /** Optional tracking callback */
+  onTrack?: (data: SearchBarTrackingData) => void;
+  /** Optional tracking label */
+  trackingLabel?: string;
+  /** Optional component name for tracking */
+  componentName?: string;
 }
 
 export const UsearchUbar = ({
@@ -38,7 +51,16 @@ export const UsearchUbar = ({
   children,
   disabled = false,
   onClick,
+  onTrack,
+  trackingLabel,
+  componentName = 'SearchBar',
 }: UsearchUbarProps) => {
+  const handleClick = () => {
+    if (disabled) return;
+    onTrack?.({ action: 'click', trackingLabel, componentName });
+    onClick?.();
+  };
+
   return (
     <div
       className={cn(
@@ -50,7 +72,7 @@ export const UsearchUbar = ({
         'hover:bg-gray-50 dark:hover:bg-gray-800',
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       role='region'
       aria-label='UsearchUbar'
     >

@@ -2,6 +2,16 @@ import React, { useState, useCallback } from 'react';
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 
+/** Tracking event data for search input interactions */
+export interface SearchInputTrackingData {
+  /** Action performed */
+  action: 'search' | 'clear';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface SearchInputProps {
   /** Current search query */
   value?: string;
@@ -25,6 +35,12 @@ export interface SearchInputProps {
   className?: string;
   /** Additional input props */
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  /** Optional callback for tracking search interactions */
+  onTrack?: (data: SearchInputTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 /**
@@ -63,6 +79,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   loading = false,
   className,
   inputProps,
+  onTrack,
+  trackingLabel,
+  componentName,
 }) => {
   const [internalValue, setInternalValue] = useState('');
 
@@ -110,12 +129,33 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     [onChange, isControlled]
   );
 
+  // Track on blur to avoid tracking every keystroke
+  const handleBlur = useCallback(() => {
+    if (onTrack) {
+      onTrack({
+        action: 'search',
+        trackingLabel,
+        componentName,
+      });
+    }
+  }, [onTrack, trackingLabel, componentName]);
+
   const handleClear = useCallback(() => {
     if (!isControlled) {
       setInternalValue('');
     }
+
+    // Track clear action
+    if (onTrack) {
+      onTrack({
+        action: 'clear',
+        trackingLabel,
+        componentName,
+      });
+    }
+
     onChange?.('');
-  }, [onChange, isControlled]);
+  }, [onChange, isControlled, onTrack, trackingLabel, componentName]);
 
   return (
     <div className={cn('relative w-full', className)}>
@@ -138,6 +178,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         type='text'
         value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder={placeholder}
         autoFocus={autoFocus}
         disabled={disabled || loading}

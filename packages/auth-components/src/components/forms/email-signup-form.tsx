@@ -10,6 +10,9 @@ export function EmailSignUpForm({
   onSwitchToSignIn,
   onSuccess,
   compact,
+  onTrack,
+  trackingLabel,
+  componentName = 'EmailSignUpForm',
 }: EmailSignUpFormProps) {
   const { signUpWithEmail, loading, error, clearError, texts } =
     useAuthStatus();
@@ -23,6 +26,7 @@ export function EmailSignUpForm({
     e.preventDefault();
     clearError();
     setValidationError(null);
+    onTrack?.({ action: 'form_submit', trackingLabel, componentName });
 
     // Validate password match
     if (password !== confirmPassword) {
@@ -40,6 +44,11 @@ export function EmailSignUpForm({
 
     // If no error after sign up, call success callback
     onSuccess?.();
+  };
+
+  const handleSwitchToSignIn = () => {
+    onTrack?.({ action: 'switch_mode', trackingLabel, componentName });
+    onSwitchToSignIn();
   };
 
   const buttonSize = compact ? 'default' : 'lg';
@@ -149,7 +158,7 @@ export function EmailSignUpForm({
           {texts.haveAccount}{' '}
           <button
             type='button'
-            onClick={onSwitchToSignIn}
+            onClick={handleSwitchToSignIn}
             className='text-blue-600 dark:text-blue-400 hover:underline font-medium'
           >
             {texts.signIn}

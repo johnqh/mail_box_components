@@ -2,6 +2,16 @@ import React from 'react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 
+/** Tracking event data for number input interactions */
+export interface NumberInputTrackingData {
+  /** Action performed */
+  action: 'input' | 'increment' | 'decrement';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface NumberInputProps {
   /** Current value */
   value: number;
@@ -27,6 +37,12 @@ export interface NumberInputProps {
   className?: string;
   /** Additional input props */
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  /** Optional callback for tracking number input interactions */
+  onTrack?: (data: NumberInputTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 /**
@@ -71,6 +87,9 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   size = 'md',
   className,
   inputProps,
+  onTrack,
+  trackingLabel,
+  componentName,
 }) => {
   // Size configurations
   const sizeClasses = {
@@ -93,13 +112,28 @@ export const NumberInput: React.FC<NumberInputProps> = ({
 
   const sizeConfig = sizeClasses[size];
 
+  const createTrackingData = (
+    action: 'input' | 'increment' | 'decrement'
+  ): NumberInputTrackingData => ({
+    action,
+    trackingLabel,
+    componentName,
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseFloat(e.target.value);
     if (!isNaN(newValue)) {
       const clampedValue = clampValue(newValue);
+      if (onTrack) {
+        onTrack(createTrackingData('input'));
+      }
       onChange(clampedValue);
     } else if (e.target.value === '') {
-      onChange(min ?? 0);
+      const defaultValue = min ?? 0;
+      if (onTrack) {
+        onTrack(createTrackingData('input'));
+      }
+      onChange(defaultValue);
     }
   };
 
@@ -112,11 +146,17 @@ export const NumberInput: React.FC<NumberInputProps> = ({
 
   const increment = () => {
     const newValue = clampValue(value + step);
+    if (onTrack) {
+      onTrack(createTrackingData('increment'));
+    }
     onChange(newValue);
   };
 
   const decrement = () => {
     const newValue = clampValue(value - step);
+    if (onTrack) {
+      onTrack(createTrackingData('decrement'));
+    }
     onChange(newValue);
   };
 

@@ -6,6 +6,16 @@ import {
 } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 
+/** Tracking event data for file input interactions */
+export interface FileInputTrackingData {
+  /** Action performed */
+  action: 'select' | 'drop' | 'remove';
+  /** Optional custom label for tracking */
+  trackingLabel?: string;
+  /** Optional component context */
+  componentName?: string;
+}
+
 export interface FileInputProps {
   /** Callback when files are selected */
   onChange: (files: File[]) => void;
@@ -33,6 +43,12 @@ export interface FileInputProps {
   buttonText?: string;
   /** Drop zone text */
   dropZoneText?: string;
+  /** Optional callback for tracking file input interactions */
+  onTrack?: (data: FileInputTrackingData) => void;
+  /** Custom label for tracking */
+  trackingLabel?: string;
+  /** Component name for tracking context */
+  componentName?: string;
 }
 
 /**
@@ -77,6 +93,9 @@ export const FileInput: React.FC<FileInputProps> = ({
   className,
   buttonText = 'Choose Files',
   dropZoneText = 'Drop files here or click to browse',
+  onTrack,
+  trackingLabel,
+  componentName,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -105,11 +124,22 @@ export const FileInput: React.FC<FileInputProps> = ({
     return validFiles;
   };
 
+  const trackAction = (action: 'select' | 'drop' | 'remove') => {
+    if (onTrack) {
+      onTrack({
+        action,
+        trackingLabel,
+        componentName,
+      });
+    }
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(e.target.files || []);
     const validFiles = validateFiles(selectedFiles);
 
     if (validFiles.length > 0) {
+      trackAction('select');
       onChange(validFiles);
     }
 
@@ -153,12 +183,14 @@ export const FileInput: React.FC<FileInputProps> = ({
     const validFiles = validateFiles(droppedFiles);
 
     if (validFiles.length > 0) {
+      trackAction('drop');
       onChange(validFiles);
     }
   };
 
   const handleRemove = (index: number) => {
     if (onRemove) {
+      trackAction('remove');
       onRemove(index);
     }
   };

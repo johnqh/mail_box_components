@@ -31,6 +31,7 @@ export * from './ui/focus-indicator';
 export * from './ui/gradient-icon-container';
 export * from './ui/icon-container';
 export * from './ui/icon-text';
+export * from './ui/item-list';
 export * from './ui/info-box';
 export * from './ui/keyboard-shortcut';
 export * from './ui/logo';

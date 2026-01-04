@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/ecommerce-components",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "E-commerce and shopping UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

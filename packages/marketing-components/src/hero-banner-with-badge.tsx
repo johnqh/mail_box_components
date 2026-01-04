@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn, useLayout } from '@sudobility/components';
+import { cn } from '@sudobility/components';
 
 export interface ButtonConfig {
   text: string;
@@ -33,7 +33,7 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
   className,
   children,
 }) => {
-  const { containerClass } = useLayout();
+  const containerClass = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8';
 
   const badgeColorClasses = {
     blue: 'bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700 text-blue-800 dark:text-blue-200',

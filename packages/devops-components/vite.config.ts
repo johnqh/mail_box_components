@@ -25,6 +25,8 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'ReactJSXRuntime',
+          '@sudobility/components': 'SudobilityComponents',
+          '@sudobility/design': 'SudobilityDesign',
         },
       },
     },

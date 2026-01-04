@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn, useLayout } from '@sudobility/components';
+import { cn } from '@sudobility/components';
 
 export interface ProcessStep {
   step: number | string;
@@ -26,7 +26,7 @@ export const ProcessSteps: React.FC<ProcessStepsProps> = ({
   color = 'blue',
   className,
 }) => {
-  const { containerClass } = useLayout();
+  const containerClass = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8';
 
   const colorClasses = {
     blue: {

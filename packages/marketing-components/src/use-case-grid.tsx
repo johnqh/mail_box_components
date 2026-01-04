@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn, useLayout } from '@sudobility/components';
+import { cn } from '@sudobility/components';
 import { ui } from '@sudobility/design';
 
 export interface UseCase {
@@ -25,7 +25,7 @@ export const UseCaseGrid: React.FC<UseCaseGridProps> = ({
   columns = 3,
   className,
 }) => {
-  const { containerClass } = useLayout();
+  const containerClass = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8';
 
   const colorClasses = {
     blue: 'text-blue-600 dark:text-blue-400',

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/devops-components",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "DevOps and deployment UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -21,7 +21,8 @@
     "build": "tsc && vite build",
     "dev": "vite build --watch",
     "type-check": "tsc --noEmit",
-    "test": "echo \"Tests passed\" && exit 0"
+    "test": "echo \"Tests passed\" && exit 0",
+    "lint": "eslint src --ext .ts,.tsx"
   },
   "keywords": [
     "react",

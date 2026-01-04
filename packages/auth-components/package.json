@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/auth-components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Firebase Auth UI components for React with full i18n support",
   "type": "module",
   "main": "dist/index.umd.js",

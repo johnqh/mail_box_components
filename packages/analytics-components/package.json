@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/analytics-components",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "description": "analytics UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

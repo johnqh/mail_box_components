@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/security-components",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "security UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

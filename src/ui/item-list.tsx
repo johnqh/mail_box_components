@@ -101,7 +101,9 @@ export function ItemList<T>({
     lg: 'space-y-4',
   };
 
-  const getButtonClasses = (variant: ItemListAction['variant'] = 'secondary') => {
+  const getButtonClasses = (
+    variant: ItemListAction['variant'] = 'secondary'
+  ) => {
     const base =
       'inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
@@ -134,19 +136,19 @@ export function ItemList<T>({
           headerClassName
         )}
       >
-        <div className="min-w-0 flex-1">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
+        <div className='min-w-0 flex-1'>
+          <h2 className='text-lg font-semibold text-gray-900 dark:text-gray-100 truncate'>
             {title}
           </h2>
           {subtitle && (
-            <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
+            <p className='mt-0.5 text-sm text-gray-500 dark:text-gray-400'>
               {subtitle}
             </p>
           )}
         </div>
 
         {actions && actions.length > 0 && (
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className='flex items-center gap-2 flex-shrink-0'>
             {actions.map(action => (
               <button
                 key={action.id}
@@ -164,24 +166,24 @@ export function ItemList<T>({
 
       {/* Loading State */}
       {loading && (
-        <div className="flex items-center justify-center py-12">
-          <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+        <div className='flex items-center justify-center py-12'>
+          <div className='w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin' />
         </div>
       )}
 
       {/* Empty State */}
       {!loading && items.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-12 text-center">
+        <div className='flex flex-col items-center justify-center py-12 text-center'>
           {emptyIcon && (
-            <div className="mb-4 text-gray-400 dark:text-gray-500">
+            <div className='mb-4 text-gray-400 dark:text-gray-500'>
               {emptyIcon}
             </div>
           )}
-          <p className="text-gray-500 dark:text-gray-400">{emptyMessage}</p>
+          <p className='text-gray-500 dark:text-gray-400'>{emptyMessage}</p>
           {emptyAction && (
             <button
               onClick={emptyAction.onClick}
-              className="mt-4 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              className='mt-4 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300'
             >
               {emptyAction.label}
             </button>

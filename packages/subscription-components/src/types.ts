@@ -54,6 +54,8 @@ export interface SubscriptionStatus {
   unsubscribeDetectedAt?: Date;
   /** Date when billing issue was detected */
   billingIssueDetectedAt?: Date;
+  /** Active entitlement identifiers */
+  activeEntitlements?: string[];
 }
 
 /**
@@ -160,8 +162,6 @@ export interface SubscriptionContextValue {
 export interface SubscriptionProviderConfig {
   /** RevenueCat API key */
   apiKey: string;
-  /** Entitlement identifier to check for active subscription */
-  entitlementId: string;
   /** Optional user email for RevenueCat */
   userEmail?: string;
   /** Error callback */

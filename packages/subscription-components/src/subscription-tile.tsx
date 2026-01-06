@@ -56,6 +56,8 @@ export interface SubscriptionTileProps {
   trackingLabel?: string;
   /** Optional component name for tracking */
   componentName?: string;
+  /** Hide both radio button and CTA button (for free tier tiles) */
+  hideSelectionIndicator?: boolean;
 }
 
 const BADGE_COLORS: Record<BadgeConfig['color'], string> = {
@@ -108,9 +110,12 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   onTrack,
   trackingLabel,
   componentName = 'SubscriptionTile',
+  hideSelectionIndicator = false,
 }) => {
   // When ctaButton is provided, tile is not selectable (CTA mode)
   const isCtaMode = !!ctaButton;
+  // Whether to show any bottom indicator (radio or CTA)
+  const showIndicator = !hideSelectionIndicator;
   // Selected: Blue background with ring (like pricing page popular tile)
   // Unselected: Gray background (like pricing page non-popular tiles)
   const tileStyles = isSelected
@@ -144,8 +149,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
     <div
       className={cn(
         'relative rounded-2xl p-6 transition-all flex flex-col h-full',
-        // Add extra bottom padding for radio button or CTA button
-        isCtaMode ? 'pb-20' : 'pb-14',
+        // Add extra bottom padding for radio button or CTA button (not needed if hidden)
+        showIndicator && (isCtaMode ? 'pb-20' : 'pb-14'),
         disabled
           ? 'opacity-50 cursor-not-allowed'
           : isCtaMode
@@ -340,8 +345,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
       </div>
 
       {/* CTA Button - absolutely positioned at bottom */}
-      {isCtaMode && (
-        <div className='absolute bottom-4 left-6 right-6'>
+      {showIndicator && isCtaMode && (
+        <div className='absolute bottom-4 left-0 right-0 px-6'>
           {ctaButton.href ? (
             <a
               href={ctaButton.href}
@@ -374,7 +379,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
       )}
 
       {/* Radio button indicator - absolutely positioned at bottom */}
-      {!isCtaMode && (
+      {showIndicator && !isCtaMode && (
         <div className='absolute bottom-4 left-1/2 -translate-x-1/2'>
           <div
             className={cn(

@@ -75,14 +75,16 @@ const convertPackageToProduct = (
 
 /**
  * Parse CustomerInfo into SubscriptionStatus
+ * Checks for any active entitlement and returns the subscription status
  */
-const parseCustomerInfo = (
-  customerInfo: CustomerInfo,
-  entitlementId: string
-): SubscriptionStatus => {
-  const entitlement = customerInfo.entitlements.active[entitlementId];
+const parseCustomerInfo = (customerInfo: CustomerInfo): SubscriptionStatus => {
+  const activeEntitlementIds = Object.keys(customerInfo.entitlements.active);
 
-  if (entitlement) {
+  if (activeEntitlementIds.length > 0) {
+    // Use the first active entitlement for status details
+    const firstEntitlementId = activeEntitlementIds[0];
+    const entitlement = customerInfo.entitlements.active[firstEntitlementId];
+
     return {
       isActive: true,
       expirationDate: entitlement.expirationDate
@@ -100,6 +102,7 @@ const parseCustomerInfo = (
       billingIssueDetectedAt: entitlement.billingIssueDetectedAt
         ? new Date(entitlement.billingIssueDetectedAt)
         : undefined,
+      activeEntitlements: activeEntitlementIds,
     };
   }
 
@@ -124,7 +127,6 @@ export interface SubscriptionProviderProps extends SubscriptionProviderConfig {
  * ```tsx
  * <SubscriptionProvider
  *   apiKey="your_revenuecat_api_key"
- *   entitlementId="premium"
  *   onError={(error) => console.error(error)}
  *   onPurchaseSuccess={(productId) => analytics.track('purchase', { productId })}
  * >
@@ -134,7 +136,6 @@ export interface SubscriptionProviderProps extends SubscriptionProviderConfig {
  */
 export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
   apiKey,
-  entitlementId,
   userEmail,
   onError,
   onPurchaseSuccess,
@@ -237,7 +238,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
 
     try {
       const info = await purchasesInstance.getCustomerInfo();
-      const status = parseCustomerInfo(info, entitlementId);
+      const status = parseCustomerInfo(info);
       setCurrentSubscription(status.isActive ? status : null);
     } catch (err) {
       const errorMsg =
@@ -247,7 +248,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       setError(errorMsg);
       onError?.(err instanceof Error ? err : new Error(errorMsg));
     }
-  }, [entitlementId, onError]);
+  }, [onError]);
 
   /**
    * Initialize RevenueCat with user ID
@@ -382,7 +383,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
           ...(userEmail ? { customerEmail: userEmail } : {}),
         });
 
-        const status = parseCustomerInfo(result.customerInfo, entitlementId);
+        const status = parseCustomerInfo(result.customerInfo);
         setCurrentSubscription(status.isActive ? status : null);
 
         if (status.isActive) {
@@ -404,7 +405,6 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       currentOffering,
       allOfferings,
       userEmail,
-      entitlementId,
       onPurchaseSuccess,
       onError,
     ]
@@ -429,7 +429,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       }
 
       const customerInfo = await purchasesInstance.getCustomerInfo();
-      const status = parseCustomerInfo(customerInfo, entitlementId);
+      const status = parseCustomerInfo(customerInfo);
       setCurrentSubscription(status.isActive ? status : null);
 
       if (!status.isActive) {
@@ -445,7 +445,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [isDevelopment, entitlementId, onError]);
+  }, [isDevelopment, onError]);
 
   /**
    * Refresh subscription status

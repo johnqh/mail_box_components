@@ -329,9 +329,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
           <p
             className={cn(
               'text-sm font-semibold text-center',
-              isSelected
-                ? 'text-white'
-                : 'text-yellow-700 dark:text-yellow-300'
+              isSelected ? 'text-white' : 'text-yellow-700 dark:text-yellow-300'
             )}
           >
             {introPriceNote}
@@ -384,9 +382,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                 : 'border-gray-300 dark:border-gray-600'
             )}
           >
-            {isSelected && (
-              <div className='w-2 h-2 rounded-full bg-blue-600' />
-            )}
+            {isSelected && <div className='w-2 h-2 rounded-full bg-blue-600' />}
           </div>
         </div>
       )}

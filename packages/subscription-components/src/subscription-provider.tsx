@@ -148,7 +148,10 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
   const [isInitialized, setIsInitialized] = useState(false);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [currentOffering, setCurrentOffering] = useState<unknown | null>(null);
-  const [allOfferings, setAllOfferings] = useState<Record<string, unknown> | null>(null);
+  const [allOfferings, setAllOfferings] = useState<Record<
+    string,
+    unknown
+  > | null>(null);
 
   const isDevelopment = !apiKey || apiKey === 'your_revenuecat_api_key_here';
 
@@ -182,9 +185,8 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       }
 
       // Aggregate products from ALL offerings, each with its own entitlement
-      const allOfferingsData = (
-        offerings as { all?: Record<string, unknown> }
-      ).all;
+      const allOfferingsData = (offerings as { all?: Record<string, unknown> })
+        .all;
 
       if (allOfferingsData) {
         // Store all offerings for purchase flow

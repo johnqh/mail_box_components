@@ -144,6 +144,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
     <div
       className={cn(
         'relative rounded-2xl p-6 transition-all flex flex-col h-full',
+        // Add extra bottom padding for radio button when not in CTA mode
+        !isCtaMode && 'pb-14',
         disabled
           ? 'opacity-50 cursor-not-allowed'
           : isCtaMode
@@ -160,13 +162,13 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
       aria-disabled={disabled}
       tabIndex={isCtaMode || disabled ? -1 : 0}
     >
-      {/* Top Badge */}
+      {/* Top Badge - vertically centered on the top border */}
       {topBadge && (
-        <div className='absolute -top-3 left-1/2 transform -translate-x-1/2'>
+        <div className='absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10'>
           <span
             className={cn(
               BADGE_COLORS[topBadge.color],
-              'text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap'
+              'text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap'
             )}
           >
             {topBadge.text}
@@ -176,8 +178,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
 
       {/* Main content that can grow */}
       <div className='flex flex-col flex-grow'>
-        {/* Title and Price */}
-        <div className='text-center mb-6'>
+        {/* Title and Price - add top margin when there's a topBadge */}
+        <div className={cn('text-center mb-6', topBadge && 'mt-2')}>
           <h3
             className={cn(
               textVariants.heading.h4(),
@@ -314,35 +316,33 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
         )}
       </div>
 
-      {/* Bottom section - Always at bottom */}
-      <div className='mt-auto space-y-4'>
-        {/* Intro Price Banner */}
-        {introPriceNote && (
-          <div
+      {/* Intro Price Banner - in content flow */}
+      {introPriceNote && (
+        <div
+          className={cn(
+            'p-3 rounded-lg mt-auto',
+            isSelected
+              ? 'bg-blue-500/30'
+              : 'bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800'
+          )}
+        >
+          <p
             className={cn(
-              'p-3 rounded-lg',
+              'text-sm font-semibold text-center',
               isSelected
-                ? 'bg-blue-500/30'
-                : 'bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800'
+                ? 'text-white'
+                : 'text-yellow-700 dark:text-yellow-300'
             )}
           >
-            <p
-              className={cn(
-                'text-sm font-semibold text-center',
-                isSelected
-                  ? 'text-white'
-                  : 'text-yellow-700 dark:text-yellow-300'
-              )}
-            >
-              {introPriceNote}
-            </p>
-          </div>
-        )}
+            {introPriceNote}
+          </p>
+        </div>
+      )}
 
-        {/* CTA Button (Style 2) or Radio Indicator (Style 1) */}
-        {isCtaMode ? (
-          // CTA Button - like pricing page
-          ctaButton.href ? (
+      {/* CTA Button - in content flow */}
+      {isCtaMode && (
+        <div className='mt-auto'>
+          {ctaButton.href ? (
             <a
               href={ctaButton.href}
               className={cn(
@@ -369,25 +369,27 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
             >
               {ctaButton.label}
             </button>
-          )
-        ) : (
-          // Radio button indicator (Style 1)
-          <div className='flex justify-center'>
-            <div
-              className={cn(
-                'w-5 h-5 rounded-full border-2 flex items-center justify-center',
-                isSelected
-                  ? 'border-white bg-white'
-                  : 'border-gray-300 dark:border-gray-600'
-              )}
-            >
-              {isSelected && (
-                <div className='w-2 h-2 rounded-full bg-blue-600' />
-              )}
-            </div>
+          )}
+        </div>
+      )}
+
+      {/* Radio button indicator - absolutely positioned at bottom */}
+      {!isCtaMode && (
+        <div className='absolute bottom-4 left-1/2 -translate-x-1/2'>
+          <div
+            className={cn(
+              'w-5 h-5 rounded-full border-2 flex items-center justify-center',
+              isSelected
+                ? 'border-white bg-white'
+                : 'border-gray-300 dark:border-gray-600'
+            )}
+          >
+            {isSelected && (
+              <div className='w-2 h-2 rounded-full bg-blue-600' />
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

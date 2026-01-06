@@ -13,7 +13,12 @@
       "Bash(npx eslint:*)",
       "Bash(npm version:*)",
       "Bash(ls:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(for dir in packages/*-components)",
+      "Bash(do if [ ! -f \"$dir/eslint.config.js\" ])",
+      "Bash(then echo \"$dir\")",
+      "Bash(fi)",
+      "Bash(done)"
     ]
   }
 }

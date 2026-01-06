@@ -143,7 +143,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   return (
     <div
       className={cn(
-        'relative rounded-2xl p-6 transition-all flex flex-col',
+        'relative rounded-2xl p-6 transition-all flex flex-col h-full',
         disabled
           ? 'opacity-50 cursor-not-allowed'
           : isCtaMode

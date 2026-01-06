@@ -34,10 +34,21 @@ let purchasesInstance: Purchases | null = null;
 
 /**
  * Convert RevenueCat Package to SubscriptionProduct
+ * @param pkg - RevenueCat Package
+ * @param offeringMetadata - Optional metadata from the offering containing entitlement info
  */
-const convertPackageToProduct = (pkg: Package): SubscriptionProduct => {
+const convertPackageToProduct = (
+  pkg: Package,
+  offeringMetadata?: Record<string, unknown>
+): SubscriptionProduct => {
   const product = pkg.rcBillingProduct;
   const subscriptionOption = product?.defaultSubscriptionOption;
+
+  // Extract entitlement from offering metadata (set in RevenueCat dashboard)
+  const entitlement =
+    typeof offeringMetadata?.entitlement === 'string'
+      ? offeringMetadata.entitlement
+      : undefined;
 
   return {
     identifier: pkg.identifier,
@@ -58,6 +69,7 @@ const convertPackageToProduct = (pkg: Package): SubscriptionProduct => {
       subscriptionOption?.introPrice?.periodDuration || undefined,
     introPriceCycles: subscriptionOption?.introPrice?.cycleCount || undefined,
     freeTrialPeriod: subscriptionOption?.trial?.periodDuration || undefined,
+    entitlement,
   };
 };
 
@@ -162,8 +174,12 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       const offerings: Offerings = await purchasesInstance.getOfferings();
       if (offerings.current) {
         setCurrentOffering(offerings.current);
-        const productList = offerings.current.availablePackages.map(
-          convertPackageToProduct
+        // Pass offering metadata to include entitlement info in products
+        const offeringMetadata = (
+          offerings.current as { metadata?: Record<string, unknown> }
+        ).metadata;
+        const productList = offerings.current.availablePackages.map(pkg =>
+          convertPackageToProduct(pkg, offeringMetadata)
         );
         setProducts(productList);
       }

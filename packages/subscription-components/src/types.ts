@@ -30,6 +30,8 @@ export interface SubscriptionProduct {
   introPriceCycles?: number;
   /** Free trial period (ISO 8601, e.g., "P7D") */
   freeTrialPeriod?: string;
+  /** Entitlement identifier this product grants (from offering metadata) */
+  entitlement?: string;
 }
 
 /**

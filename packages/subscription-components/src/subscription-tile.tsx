@@ -144,8 +144,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
     <div
       className={cn(
         'relative rounded-2xl p-6 transition-all flex flex-col h-full',
-        // Add extra bottom padding for radio button when not in CTA mode
-        !isCtaMode && 'pb-14',
+        // Add extra bottom padding for radio button or CTA button
+        isCtaMode ? 'pb-20' : 'pb-14',
         disabled
           ? 'opacity-50 cursor-not-allowed'
           : isCtaMode
@@ -314,32 +314,34 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
             {bottomNote}
           </div>
         )}
-      </div>
 
-      {/* Intro Price Banner - in content flow */}
-      {introPriceNote && (
-        <div
-          className={cn(
-            'p-3 rounded-lg mt-auto',
-            isSelected
-              ? 'bg-blue-500/30'
-              : 'bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800'
-          )}
-        >
-          <p
+        {/* Intro Price Banner */}
+        {introPriceNote && (
+          <div
             className={cn(
-              'text-sm font-semibold text-center',
-              isSelected ? 'text-white' : 'text-yellow-700 dark:text-yellow-300'
+              'p-3 rounded-lg mt-auto',
+              isSelected
+                ? 'bg-blue-500/30'
+                : 'bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800'
             )}
           >
-            {introPriceNote}
-          </p>
-        </div>
-      )}
+            <p
+              className={cn(
+                'text-sm font-semibold text-center',
+                isSelected
+                  ? 'text-white'
+                  : 'text-yellow-700 dark:text-yellow-300'
+              )}
+            >
+              {introPriceNote}
+            </p>
+          </div>
+        )}
+      </div>
 
-      {/* CTA Button - in content flow */}
+      {/* CTA Button - absolutely positioned at bottom */}
       {isCtaMode && (
-        <div className='mt-auto'>
+        <div className='absolute bottom-4 left-6 right-6'>
           {ctaButton.href ? (
             <a
               href={ctaButton.href}

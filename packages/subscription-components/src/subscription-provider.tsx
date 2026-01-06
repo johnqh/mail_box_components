@@ -148,6 +148,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
   const [isInitialized, setIsInitialized] = useState(false);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [currentOffering, setCurrentOffering] = useState<unknown | null>(null);
+  const [allOfferings, setAllOfferings] = useState<Record<string, unknown> | null>(null);
 
   const isDevelopment = !apiKey || apiKey === 'your_revenuecat_api_key_here';
 
@@ -158,6 +159,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
     setProducts([]);
     setCurrentSubscription(null);
     setCurrentOffering(null);
+    setAllOfferings(null);
     setError(null);
     setIsInitialized(false);
     setCurrentUserId(null);
@@ -166,15 +168,49 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
 
   /**
    * Fetch offerings from RevenueCat
+   * Aggregates packages from ALL offerings, each with its own entitlement from metadata
    */
   const fetchOfferings = useCallback(async () => {
     if (!purchasesInstance) return;
 
     try {
       const offerings: Offerings = await purchasesInstance.getOfferings();
+
+      // Store the current offering for purchase flow
       if (offerings.current) {
         setCurrentOffering(offerings.current);
-        // Pass offering metadata to include entitlement info in products
+      }
+
+      // Aggregate products from ALL offerings, each with its own entitlement
+      const allOfferingsData = (
+        offerings as { all?: Record<string, unknown> }
+      ).all;
+
+      if (allOfferingsData) {
+        // Store all offerings for purchase flow
+        setAllOfferings(allOfferingsData);
+
+        const productList: SubscriptionProduct[] = [];
+
+        for (const offeringKey of Object.keys(allOfferingsData)) {
+          const offering = allOfferingsData[offeringKey] as {
+            availablePackages?: Package[];
+            metadata?: Record<string, unknown>;
+          };
+
+          if (offering?.availablePackages) {
+            // Each offering has its own metadata with entitlement
+            const offeringMetadata = offering.metadata;
+            const productsFromOffering = offering.availablePackages.map(pkg =>
+              convertPackageToProduct(pkg, offeringMetadata)
+            );
+            productList.push(...productsFromOffering);
+          }
+        }
+
+        setProducts(productList);
+      } else if (offerings.current) {
+        // Fallback: if no 'all' property, use current offering
         const offeringMetadata = (
           offerings.current as { metadata?: Record<string, unknown> }
         ).metadata;
@@ -307,16 +343,33 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
           return true;
         }
 
-        if (!purchasesInstance || !currentOffering) {
+        if (!purchasesInstance || (!currentOffering && !allOfferings)) {
           throw new Error('Subscription service not initialized');
         }
 
-        // Find the package by identifier
-        const packages = (currentOffering as { availablePackages: Package[] })
-          .availablePackages;
-        const packageToPurchase = packages.find(
-          (pkg: Package) => pkg.identifier === productIdentifier
-        );
+        // Find the package by identifier - search across all offerings
+        let packageToPurchase: Package | undefined;
+
+        if (allOfferings) {
+          for (const offeringKey of Object.keys(allOfferings)) {
+            const offering = allOfferings[offeringKey] as {
+              availablePackages?: Package[];
+            };
+            if (offering?.availablePackages) {
+              packageToPurchase = offering.availablePackages.find(
+                (pkg: Package) => pkg.identifier === productIdentifier
+              );
+              if (packageToPurchase) break;
+            }
+          }
+        } else if (currentOffering) {
+          // Fallback to current offering
+          const packages = (currentOffering as { availablePackages: Package[] })
+            .availablePackages;
+          packageToPurchase = packages.find(
+            (pkg: Package) => pkg.identifier === productIdentifier
+          );
+        }
 
         if (!packageToPurchase) {
           throw new Error(`Package not found: ${productIdentifier}`);
@@ -347,6 +400,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
     [
       isDevelopment,
       currentOffering,
+      allOfferings,
       userEmail,
       entitlementId,
       onPurchaseSuccess,

@@ -1,7 +1,13 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { ToastProvider, useToast } from '../ui/toast';
+import { ToastProvider, ToastContainer, useToast } from '../ui/toast';
 import { act } from 'react';
+
+// Consumer component that renders toasts
+const ToastConsumer = () => {
+  const { toasts, removeToast } = useToast();
+  return <ToastContainer toasts={toasts} onDismiss={removeToast} />;
+};
 
 // Test component that uses the toast hook
 const TestComponent = () => {
@@ -9,15 +15,7 @@ const TestComponent = () => {
 
   return (
     <div>
-      <button
-        onClick={() =>
-          addToast({
-            title: 'Test Toast',
-            description: 'Test Description',
-            variant: 'success',
-          })
-        }
-      >
+      <button onClick={() => addToast('success', 'Test Toast')}>
         Show Toast
       </button>
     </div>
@@ -51,7 +49,7 @@ describe('Toast', () => {
 
     expect(() => {
       render(<TestComponent />);
-    }).toThrow('useToast must be used within ToastProvider');
+    }).toThrow('useToast must be used within a ToastProvider');
 
     spy.mockRestore();
   });
@@ -60,6 +58,7 @@ describe('Toast', () => {
     render(
       <ToastProvider>
         <TestComponent />
+        <ToastConsumer />
       </ToastProvider>
     );
 
@@ -67,16 +66,13 @@ describe('Toast', () => {
     fireEvent.click(button);
 
     expect(screen.getByText('Test Toast')).toBeInTheDocument();
-    expect(screen.getByText('Test Description')).toBeInTheDocument();
   });
 
   it('displays success variant correctly', () => {
     const TestSuccess = () => {
-      const { addToast } = useToast();
+      const { success } = useToast();
       return (
-        <button
-          onClick={() => addToast({ title: 'Success', variant: 'success' })}
-        >
+        <button onClick={() => success('Success message')}>
           Success Toast
         </button>
       );
@@ -85,12 +81,13 @@ describe('Toast', () => {
     const { container } = render(
       <ToastProvider>
         <TestSuccess />
+        <ToastConsumer />
       </ToastProvider>
     );
 
     fireEvent.click(screen.getByText('Success Toast'));
 
-    expect(screen.getByText('Success')).toBeInTheDocument();
+    expect(screen.getByText('Success message')).toBeInTheDocument();
     // Check for success-related classes
     const toast = container.querySelector('[class*="green"]');
     expect(toast).toBeInTheDocument();
@@ -98,23 +95,22 @@ describe('Toast', () => {
 
   it('displays error variant correctly', () => {
     const TestError = () => {
-      const { addToast } = useToast();
+      const { error } = useToast();
       return (
-        <button onClick={() => addToast({ title: 'Error', variant: 'error' })}>
-          Error Toast
-        </button>
+        <button onClick={() => error('Error message')}>Error Toast</button>
       );
     };
 
     const { container } = render(
       <ToastProvider>
         <TestError />
+        <ToastConsumer />
       </ToastProvider>
     );
 
     fireEvent.click(screen.getByText('Error Toast'));
 
-    expect(screen.getByText('Error')).toBeInTheDocument();
+    expect(screen.getByText('Error message')).toBeInTheDocument();
     // Check for error-related classes
     const toast = container.querySelector('[class*="red"]');
     expect(toast).toBeInTheDocument();
@@ -122,11 +118,9 @@ describe('Toast', () => {
 
   it('displays warning variant correctly', () => {
     const TestWarning = () => {
-      const { addToast } = useToast();
+      const { warning } = useToast();
       return (
-        <button
-          onClick={() => addToast({ title: 'Warning', variant: 'warning' })}
-        >
+        <button onClick={() => warning('Warning message')}>
           Warning Toast
         </button>
       );
@@ -135,14 +129,36 @@ describe('Toast', () => {
     const { container } = render(
       <ToastProvider>
         <TestWarning />
+        <ToastConsumer />
       </ToastProvider>
     );
 
     fireEvent.click(screen.getByText('Warning Toast'));
 
-    expect(screen.getByText('Warning')).toBeInTheDocument();
+    expect(screen.getByText('Warning message')).toBeInTheDocument();
     // Check for warning-related classes
     const toast = container.querySelector('[class*="yellow"]');
+    expect(toast).toBeInTheDocument();
+  });
+
+  it('displays info variant correctly', () => {
+    const TestInfo = () => {
+      const { info } = useToast();
+      return <button onClick={() => info('Info message')}>Info Toast</button>;
+    };
+
+    const { container } = render(
+      <ToastProvider>
+        <TestInfo />
+        <ToastConsumer />
+      </ToastProvider>
+    );
+
+    fireEvent.click(screen.getByText('Info Toast'));
+
+    expect(screen.getByText('Info message')).toBeInTheDocument();
+    // Check for info-related classes
+    const toast = container.querySelector('[class*="blue"]');
     expect(toast).toBeInTheDocument();
   });
 
@@ -150,33 +166,36 @@ describe('Toast', () => {
     render(
       <ToastProvider>
         <TestComponent />
+        <ToastConsumer />
       </ToastProvider>
     );
 
     fireEvent.click(screen.getByText('Show Toast'));
     expect(screen.getByText('Test Toast')).toBeInTheDocument();
 
-    const closeButton = screen.getByLabelText('Close notification');
+    const closeButton = screen.getByLabelText('Dismiss notification');
     fireEvent.click(closeButton);
+
+    // Wait for animation delay before toast is removed
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
 
     expect(screen.queryByText('Test Toast')).not.toBeInTheDocument();
   });
 
   it('auto-removes toast after duration', () => {
     const TestWithDuration = () => {
-      const { addToast } = useToast();
+      const { success } = useToast();
       return (
-        <button
-          onClick={() => addToast({ title: 'Auto Close', duration: 3000 })}
-        >
-          Show Toast
-        </button>
+        <button onClick={() => success('Auto Close', 3000)}>Show Toast</button>
       );
     };
 
     render(
       <ToastProvider>
         <TestWithDuration />
+        <ToastConsumer />
       </ToastProvider>
     );
 
@@ -191,52 +210,13 @@ describe('Toast', () => {
     expect(screen.queryByText('Auto Close')).not.toBeInTheDocument();
   });
 
-  it('displays toast with action button', () => {
-    const actionFn = vi.fn();
-
-    const TestWithAction = () => {
-      const { addToast } = useToast();
-      return (
-        <button
-          onClick={() =>
-            addToast({
-              title: 'Action Toast',
-              action: { label: 'Undo', onClick: actionFn },
-            })
-          }
-        >
-          Show Toast
-        </button>
-      );
-    };
-
-    render(
-      <ToastProvider>
-        <TestWithAction />
-      </ToastProvider>
-    );
-
-    fireEvent.click(screen.getByText('Show Toast'));
-    expect(screen.getByText('Action Toast')).toBeInTheDocument();
-
-    const actionButton = screen.getByText('Undo');
-    expect(actionButton).toBeInTheDocument();
-
-    fireEvent.click(actionButton);
-    expect(actionFn).toHaveBeenCalledTimes(1);
-  });
-
   it('displays multiple toasts simultaneously', () => {
     const TestMultiple = () => {
-      const { addToast } = useToast();
+      const { success, error } = useToast();
       return (
         <div>
-          <button onClick={() => addToast({ title: 'Toast 1' })}>
-            Show Toast 1
-          </button>
-          <button onClick={() => addToast({ title: 'Toast 2' })}>
-            Show Toast 2
-          </button>
+          <button onClick={() => success('Toast 1')}>Show Toast 1</button>
+          <button onClick={() => error('Toast 2')}>Show Toast 2</button>
         </div>
       );
     };
@@ -244,6 +224,7 @@ describe('Toast', () => {
     render(
       <ToastProvider>
         <TestMultiple />
+        <ToastConsumer />
       </ToastProvider>
     );
 
@@ -256,11 +237,9 @@ describe('Toast', () => {
 
   it('does not auto-remove when duration is 0', async () => {
     const TestNoDuration = () => {
-      const { addToast } = useToast();
+      const { success } = useToast();
       return (
-        <button
-          onClick={() => addToast({ title: 'Persistent Toast', duration: 0 })}
-        >
+        <button onClick={() => success('Persistent Toast', 0)}>
           Show Toast
         </button>
       );
@@ -269,6 +248,7 @@ describe('Toast', () => {
     render(
       <ToastProvider>
         <TestNoDuration />
+        <ToastConsumer />
       </ToastProvider>
     );
 
@@ -282,5 +262,58 @@ describe('Toast', () => {
 
     // Toast should still be there
     expect(screen.getByText('Persistent Toast')).toBeInTheDocument();
+  });
+
+  it('respects maxToasts limit', () => {
+    const TestMaxToasts = () => {
+      const { success } = useToast();
+      return (
+        <button onClick={() => success(`Toast ${Date.now()}`)}>
+          Add Toast
+        </button>
+      );
+    };
+
+    render(
+      <ToastProvider maxToasts={3}>
+        <TestMaxToasts />
+        <ToastConsumer />
+      </ToastProvider>
+    );
+
+    // Add 5 toasts
+    for (let i = 0; i < 5; i++) {
+      fireEvent.click(screen.getByText('Add Toast'));
+    }
+
+    // Should only show 3 toasts (maxToasts limit)
+    const toasts = screen.getAllByRole('alert');
+    expect(toasts.length).toBe(3);
+  });
+
+  it('uses custom default duration', () => {
+    const TestCustomDuration = () => {
+      const { success } = useToast();
+      return (
+        <button onClick={() => success('Custom Duration')}>Add Toast</button>
+      );
+    };
+
+    render(
+      <ToastProvider defaultDuration={1000}>
+        <TestCustomDuration />
+        <ToastConsumer />
+      </ToastProvider>
+    );
+
+    fireEvent.click(screen.getByText('Add Toast'));
+    expect(screen.getByText('Custom Duration')).toBeInTheDocument();
+
+    // Advance timers by custom duration
+    act(() => {
+      vi.advanceTimersByTime(1000);
+    });
+
+    expect(screen.queryByText('Custom Duration')).not.toBeInTheDocument();
   });
 });

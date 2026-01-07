@@ -29,3 +29,9 @@ export * from './lazy-loading';
 // Other utilities
 export * from './storage';
 export * from './walletBrowserDetection';
+
+// Error detection utilities
+export * from './error-utils';
+
+// Analytics utilities
+export * from './analytics-utils';

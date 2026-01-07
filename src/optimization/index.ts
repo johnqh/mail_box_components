@@ -12,3 +12,4 @@ export * from './optimization';
 export { CriticalPathOptimizer } from './criticalPathOptimizer';
 export * from './performance';
 export * from './performance-monitoring';
+export * from './web-vitals';

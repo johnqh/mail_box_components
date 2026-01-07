@@ -42,3 +42,15 @@ export { SecurityProvider } from './SecurityProvider';
 // Note: OptimizedImage is exported via ./optimized
 export * from './icons';
 export * from './optimized';
+
+// i18n Routing
+export * from './i18n-routing';
+
+// Auth components
+export * from './auth';
+
+// Error components
+export * from './error';
+
+// Theme system
+export * from './theme';

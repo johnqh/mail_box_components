@@ -47,6 +47,8 @@ export * from './ui/skip-navigation';
 export * from './ui/sort-dropdown';
 export * from './ui/version-badge';
 export * from './ui/visually-hidden';
+export * from './ui/timer-display';
+export * from './ui/confetti';
 
 // === NAVIGATION ===
 export * from './navigation';

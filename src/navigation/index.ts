@@ -8,6 +8,7 @@
 export * from '../ui/smart-link';
 export * from '../ui/link';
 export * from '../ui/external-link';
+export * from './preload-link';
 // Note: TrackedLink is exported from core/
 
 // Breadcrumbs

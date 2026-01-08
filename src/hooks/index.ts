@@ -31,3 +31,13 @@ export type {
 
 // Performance hooks
 export { useRoutePerformance } from './useRoutePerformance';
+
+// Form hooks
+export {
+  useFormValidation,
+  type ValidationRule,
+  type FieldConfig,
+  type FormFieldState,
+  type UseFormValidationOptions,
+  type UseFormValidationResult,
+} from './useFormValidation';

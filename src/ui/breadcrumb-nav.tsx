@@ -1,18 +1,36 @@
+/**
+ * @deprecated Use Breadcrumb from './breadcrumb' instead. This component will be removed in v4.0.
+ *
+ * Migration guide:
+ * - `<BreadcrumbNav items={items} />` → `<Breadcrumb items={items} />`
+ *
+ * Breadcrumb has additional features:
+ * - Icon support for items
+ * - Collapsible with ellipsis for long trails
+ * - Size variants
+ * - Custom separator
+ * - Custom renderItem
+ * - Better accessibility
+ */
+
 import React from 'react';
 import { cn } from '../lib/utils';
 
+/** @deprecated Use BreadcrumbItem from './breadcrumb' instead */
 export interface BreadcrumbNavItem {
   label: string;
   href?: string;
   onClick?: () => void;
 }
 
+/** @deprecated Use BreadcrumbProps from './breadcrumb' instead */
 export interface BreadcrumbNavProps {
   items: BreadcrumbNavItem[];
   separator?: React.ReactNode;
   className?: string;
 }
 
+/** @deprecated Use Breadcrumb from './breadcrumb' instead. This component will be removed in v4.0. */
 export const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({
   items,
   separator = '/',

@@ -7,7 +7,6 @@
 // Container Components
 export * from '../../ui/box';
 export * from '../../ui/flex';
-export * from '../../ui/flex-container';
 export * from '../../ui/container';
 export * from '../../ui/grid';
 export * from '../../ui/stack';

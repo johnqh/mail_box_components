@@ -20,7 +20,6 @@ export * from './forms';
 // === UI COMPONENTS (not in categories) ===
 export * from './ui/action-button';
 export * from './ui/address-link';
-export * from './ui/animated-counter';
 export * from './ui/animated-section';
 export * from './ui/backdrop';
 export * from './ui/banner';

@@ -18,7 +18,6 @@ export * from './double-tap';
 export * from './long-press';
 
 // Interaction Helpers
-export * from '../ui/hover-tooltip';
 export * from './radial-menu';
 export * from '../ui/focus-trap';
 export * from '../ui/scroll-spy';

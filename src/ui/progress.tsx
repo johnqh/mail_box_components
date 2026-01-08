@@ -1,6 +1,20 @@
+/**
+ * @deprecated Use ProgressBar instead. This component will be removed in v4.0.
+ *
+ * Migration guide:
+ * - `<Progress value={75} />` → `<ProgressBar value={75} />`
+ * - `<Progress indeterminate />` → Not supported in ProgressBar yet
+ * - `<Progress striped animated />` → `<ProgressBar striped animated />`
+ *
+ * ProgressBar has additional features:
+ * - labelPosition: 'inside' | 'outside' | 'none'
+ * - More color variants: 'primary' | 'success' | 'warning' | 'danger' | 'purple' | 'gray'
+ */
+
 import React from 'react';
 import { cn } from '../lib/utils';
 
+/** @deprecated Use ProgressBarProps instead */
 export interface ProgressProps {
   /** Progress value (0-100) */
   value?: number;
@@ -26,6 +40,8 @@ export interface ProgressProps {
 
 /**
  * Progress Component
+ *
+ * @deprecated Use ProgressBar instead. This component will be removed in v4.0.
  *
  * Linear progress indicator with support for determinate and indeterminate states.
  * Supports color variants, sizes, striped styles, and animations.

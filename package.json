@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/components",
-  "version": "4.0.116",
+  "version": "4.0.117",
   "description": "Reusable UI components and design system - Reorganized for better maintainability",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -129,15 +129,10 @@
     "@rollup/rollup-linux-x64-gnu": "4.52.5",
     "@rollup/rollup-linux-x64-musl": "4.52.5"
   },
-  "overrides": {
-    "react-helmet-async": {
-      "react": "$react"
-    }
-  },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@sudobility/components": "^4.0.115"
+    "@sudobility/components": "^4.0.116"
   }
 }

@@ -83,7 +83,7 @@ export const DataSkeleton: React.FC<DataSkeletonProps> = ({
     return (
       <div className={cn('space-y-3', className)} style={{ width: widthStyle }}>
         {/* Header */}
-        <div className="flex gap-4">
+        <div className='flex gap-4'>
           {Array.from({ length: columns }).map((_, i) => (
             <div
               key={`header-${i}`}
@@ -93,7 +93,7 @@ export const DataSkeleton: React.FC<DataSkeletonProps> = ({
         </div>
         {/* Rows */}
         {Array.from({ length: count }).map((_, rowIndex) => (
-          <div key={`row-${rowIndex}`} className="flex gap-4">
+          <div key={`row-${rowIndex}`} className='flex gap-4'>
             {Array.from({ length: columns }).map((_, colIndex) => (
               <div
                 key={`cell-${rowIndex}-${colIndex}`}
@@ -117,12 +117,12 @@ export const DataSkeleton: React.FC<DataSkeletonProps> = ({
         style={{ width: widthStyle }}
       >
         <div className={cn(baseClasses, 'h-4 w-1/3')} />
-        <div className="space-y-2">
+        <div className='space-y-2'>
           <div className={cn(baseClasses, 'h-3 w-full')} />
           <div className={cn(baseClasses, 'h-3 w-5/6')} />
           <div className={cn(baseClasses, 'h-3 w-4/6')} />
         </div>
-        <div className="flex gap-2 pt-2">
+        <div className='flex gap-2 pt-2'>
           <div className={cn(baseClasses, 'h-8 w-20')} />
           <div className={cn(baseClasses, 'h-8 w-20')} />
         </div>
@@ -135,9 +135,9 @@ export const DataSkeleton: React.FC<DataSkeletonProps> = ({
     return (
       <div className={cn('space-y-3', className)} style={{ width: widthStyle }}>
         {Array.from({ length: count }).map((_, i) => (
-          <div key={i} className="flex items-center gap-3">
+          <div key={i} className='flex items-center gap-3'>
             <div className={cn(baseClasses, 'h-10 w-10 rounded-full')} />
-            <div className="flex-1 space-y-2">
+            <div className='flex-1 space-y-2'>
               <div className={cn(baseClasses, 'h-4 w-3/4')} />
               <div className={cn(baseClasses, 'h-3 w-1/2')} />
             </div>

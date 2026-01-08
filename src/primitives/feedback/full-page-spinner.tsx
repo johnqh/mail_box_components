@@ -55,8 +55,8 @@ export const FullPageSpinner: React.FC<FullPageSpinnerProps> = ({
         backgroundStyles[background],
         className
       )}
-      role="status"
-      aria-live="polite"
+      role='status'
+      aria-live='polite'
     >
       <Spinner
         size={size}
@@ -65,7 +65,7 @@ export const FullPageSpinner: React.FC<FullPageSpinnerProps> = ({
         loadingText={loadingText}
       />
       {showText && (
-        <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+        <p className='mt-4 text-sm text-gray-600 dark:text-gray-400'>
           {loadingText}
         </p>
       )}

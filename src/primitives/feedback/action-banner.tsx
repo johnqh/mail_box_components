@@ -36,8 +36,7 @@ const variantStyles = {
     icon: 'text-blue-600 dark:text-blue-400',
     title: 'text-blue-800 dark:text-blue-200',
     description: 'text-blue-700 dark:text-blue-300',
-    button:
-      'bg-blue-600 hover:bg-blue-700 text-white',
+    button: 'bg-blue-600 hover:bg-blue-700 text-white',
     secondaryButton:
       'text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200',
   },
@@ -47,8 +46,7 @@ const variantStyles = {
     icon: 'text-green-600 dark:text-green-400',
     title: 'text-green-800 dark:text-green-200',
     description: 'text-green-700 dark:text-green-300',
-    button:
-      'bg-green-600 hover:bg-green-700 text-white',
+    button: 'bg-green-600 hover:bg-green-700 text-white',
     secondaryButton:
       'text-green-700 dark:text-green-300 hover:text-green-800 dark:hover:text-green-200',
   },
@@ -58,8 +56,7 @@ const variantStyles = {
     icon: 'text-amber-600 dark:text-amber-400',
     title: 'text-amber-800 dark:text-amber-200',
     description: 'text-amber-700 dark:text-amber-300',
-    button:
-      'bg-amber-600 hover:bg-amber-700 text-white',
+    button: 'bg-amber-600 hover:bg-amber-700 text-white',
     secondaryButton:
       'text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-200',
   },
@@ -69,8 +66,7 @@ const variantStyles = {
     icon: 'text-red-600 dark:text-red-400',
     title: 'text-red-800 dark:text-red-200',
     description: 'text-red-700 dark:text-red-300',
-    button:
-      'bg-red-600 hover:bg-red-700 text-white',
+    button: 'bg-red-600 hover:bg-red-700 text-white',
     secondaryButton:
       'text-red-700 dark:text-red-300 hover:text-red-800 dark:hover:text-red-200',
   },
@@ -112,18 +108,12 @@ export const ActionBanner: React.FC<ActionBannerProps> = ({
 
   return (
     <div
-      className={cn(
-        'p-4 border rounded-lg',
-        styles.container,
-        className
-      )}
-      role="alert"
+      className={cn('p-4 border rounded-lg', styles.container, className)}
+      role='alert'
     >
-      <div className="flex items-start gap-3">
-        {icon && (
-          <div className={cn('flex-shrink-0', styles.icon)}>{icon}</div>
-        )}
-        <div className="flex-1 min-w-0">
+      <div className='flex items-start gap-3'>
+        {icon && <div className={cn('flex-shrink-0', styles.icon)}>{icon}</div>}
+        <div className='flex-1 min-w-0'>
           <h4 className={cn('text-sm font-semibold mb-1', styles.title)}>
             {title}
           </h4>
@@ -133,7 +123,7 @@ export const ActionBanner: React.FC<ActionBannerProps> = ({
             </p>
           )}
           {(action || secondaryAction) && (
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className='flex items-center gap-2 flex-wrap'>
               {action && (
                 <button
                   onClick={action.onClick}
@@ -167,19 +157,19 @@ export const ActionBanner: React.FC<ActionBannerProps> = ({
               'flex-shrink-0 p-1 rounded hover:bg-black/5 dark:hover:bg-white/5 transition-colors',
               styles.icon
             )}
-            aria-label="Dismiss"
+            aria-label='Dismiss'
           >
             <svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              className='w-4 h-4'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
               strokeWidth={2}
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M6 18L18 6M6 6l12 12'
               />
             </svg>
           </button>

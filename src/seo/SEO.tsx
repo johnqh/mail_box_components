@@ -81,7 +81,13 @@ export const SEO: React.FC<SEOProps> = ({
   meta = [],
   links = [],
 }) => {
-  const { appName, baseUrl, defaultDescription, defaultOgImage, defaultTwitterSite } = config;
+  const {
+    appName,
+    baseUrl,
+    defaultDescription,
+    defaultOgImage,
+    defaultTwitterSite,
+  } = config;
 
   // Build full title
   const fullTitle = title ? `${title} | ${appName}` : appName;
@@ -95,7 +101,9 @@ export const SEO: React.FC<SEOProps> = ({
   const canonicalUrl = canonical ? `${baseUrl}${canonical}` : undefined;
 
   // Format keywords
-  const keywordsString = Array.isArray(keywords) ? keywords.join(', ') : keywords;
+  const keywordsString = Array.isArray(keywords)
+    ? keywords.join(', ')
+    : keywords;
 
   // Format structured data
   const structuredDataArray = structuredData
@@ -108,27 +116,33 @@ export const SEO: React.FC<SEOProps> = ({
     <Helmet>
       {/* Primary Meta Tags */}
       <title>{fullTitle}</title>
-      <meta name="title" content={fullTitle} />
-      {metaDescription && <meta name="description" content={metaDescription} />}
-      {keywordsString && <meta name="keywords" content={keywordsString} />}
-      {noIndex && <meta name="robots" content="noindex, nofollow" />}
-      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      <meta name='title' content={fullTitle} />
+      {metaDescription && <meta name='description' content={metaDescription} />}
+      {keywordsString && <meta name='keywords' content={keywordsString} />}
+      {noIndex && <meta name='robots' content='noindex, nofollow' />}
+      {canonicalUrl && <link rel='canonical' href={canonicalUrl} />}
 
       {/* Open Graph / Facebook */}
-      <meta property="og:type" content={ogType} />
-      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-      <meta property="og:title" content={fullTitle} />
-      {metaDescription && <meta property="og:description" content={metaDescription} />}
-      <meta property="og:image" content={metaOgImage} />
-      <meta property="og:site_name" content={appName} />
+      <meta property='og:type' content={ogType} />
+      {canonicalUrl && <meta property='og:url' content={canonicalUrl} />}
+      <meta property='og:title' content={fullTitle} />
+      {metaDescription && (
+        <meta property='og:description' content={metaDescription} />
+      )}
+      <meta property='og:image' content={metaOgImage} />
+      <meta property='og:site_name' content={appName} />
 
       {/* Twitter */}
-      <meta name="twitter:card" content={twitterCard} />
-      {metaTwitterSite && <meta name="twitter:site" content={metaTwitterSite} />}
-      {canonicalUrl && <meta name="twitter:url" content={canonicalUrl} />}
-      <meta name="twitter:title" content={fullTitle} />
-      {metaDescription && <meta name="twitter:description" content={metaDescription} />}
-      <meta name="twitter:image" content={metaOgImage} />
+      <meta name='twitter:card' content={twitterCard} />
+      {metaTwitterSite && (
+        <meta name='twitter:site' content={metaTwitterSite} />
+      )}
+      {canonicalUrl && <meta name='twitter:url' content={canonicalUrl} />}
+      <meta name='twitter:title' content={fullTitle} />
+      {metaDescription && (
+        <meta name='twitter:description' content={metaDescription} />
+      )}
+      <meta name='twitter:image' content={metaOgImage} />
 
       {/* Additional meta tags */}
       {meta.map((tag, index) => (
@@ -142,7 +156,7 @@ export const SEO: React.FC<SEOProps> = ({
 
       {/* Structured Data */}
       {structuredDataArray.map((data, index) => (
-        <script key={index} type="application/ld+json">
+        <script key={index} type='application/ld+json'>
           {JSON.stringify(data)}
         </script>
       ))}

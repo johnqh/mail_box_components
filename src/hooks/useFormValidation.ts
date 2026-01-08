@@ -1,3 +1,5 @@
+/* global HTMLSelectElement */
+
 import { useState, useCallback, useMemo } from 'react';
 
 export type ValidationRule<T> = (value: T) => string | undefined;
@@ -57,9 +59,15 @@ export interface UseFormValidationResult<T extends Record<string, unknown>> {
   /** Reset a single field */
   resetField: (field: keyof T) => void;
   /** Get props for an input field */
-  getFieldProps: <K extends keyof T>(field: K) => {
+  getFieldProps: <K extends keyof T>(
+    field: K
+  ) => {
     value: T[K];
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+    onChange: (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >
+    ) => void;
     onBlur: () => void;
     name: string;
     'aria-invalid': boolean;
@@ -132,7 +140,9 @@ export function useFormValidation<T extends Record<string, unknown>>({
 
   const [values, setValuesState] = useState<T>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});
-  const [touched, setTouchedState] = useState<Partial<Record<keyof T, boolean>>>({});
+  const [touched, setTouchedState] = useState<
+    Partial<Record<keyof T, boolean>>
+  >({});
   const [dirty, setDirty] = useState<Partial<Record<keyof T, boolean>>>({});
 
   // Validate a single field
@@ -171,12 +181,12 @@ export function useFormValidation<T extends Record<string, unknown>>({
   // Set a single value
   const setValue = useCallback(
     <K extends keyof T>(field: K, value: T[K]) => {
-      setValuesState((prev) => ({ ...prev, [field]: value }));
-      setDirty((prev) => ({ ...prev, [field]: true }));
+      setValuesState(prev => ({ ...prev, [field]: value }));
+      setDirty(prev => ({ ...prev, [field]: true }));
 
       if (validateOnChange && touched[field]) {
         const error = validateField(field);
-        setErrors((prev) => ({ ...prev, [field]: error }));
+        setErrors(prev => ({ ...prev, [field]: error }));
       }
     },
     [validateOnChange, touched, validateField]
@@ -184,22 +194,22 @@ export function useFormValidation<T extends Record<string, unknown>>({
 
   // Set multiple values
   const setValues = useCallback((newValues: Partial<T>) => {
-    setValuesState((prev) => ({ ...prev, ...newValues }));
+    setValuesState(prev => ({ ...prev, ...newValues }));
     const dirtyUpdates: Partial<Record<keyof T, boolean>> = {};
     for (const key in newValues) {
       dirtyUpdates[key as keyof T] = true;
     }
-    setDirty((prev) => ({ ...prev, ...dirtyUpdates }));
+    setDirty(prev => ({ ...prev, ...dirtyUpdates }));
   }, []);
 
   // Mark field as touched and validate
   const setTouched = useCallback(
     (field: keyof T) => {
-      setTouchedState((prev) => ({ ...prev, [field]: true }));
+      setTouchedState(prev => ({ ...prev, [field]: true }));
 
       if (validateOnBlur) {
         const error = validateField(field);
-        setErrors((prev) => ({ ...prev, [field]: error }));
+        setErrors(prev => ({ ...prev, [field]: error }));
       }
     },
     [validateOnBlur, validateField]
@@ -236,18 +246,21 @@ export function useFormValidation<T extends Record<string, unknown>>({
   // Reset single field
   const resetField = useCallback(
     (field: keyof T) => {
-      setValuesState((prev) => ({ ...prev, [field]: fields[field].initialValue }));
-      setErrors((prev) => {
+      setValuesState(prev => ({
+        ...prev,
+        [field]: fields[field].initialValue,
+      }));
+      setErrors(prev => {
         const newErrors = { ...prev };
         delete newErrors[field];
         return newErrors;
       });
-      setTouchedState((prev) => {
+      setTouchedState(prev => {
         const newTouched = { ...prev };
         delete newTouched[field];
         return newTouched;
       });
-      setDirty((prev) => {
+      setDirty(prev => {
         const newDirty = { ...prev };
         delete newDirty[field];
         return newDirty;
@@ -261,7 +274,9 @@ export function useFormValidation<T extends Record<string, unknown>>({
     <K extends keyof T>(field: K) => ({
       value: values[field],
       onChange: (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+        e: React.ChangeEvent<
+          HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
       ) => {
         setValue(field, e.target.value as T[K]);
       },

@@ -144,7 +144,12 @@ export const PreloadLink: React.FC<PreloadLinkProps> = ({
 
     const preloadFn =
       preload ||
-      getRouteModule(toPath, routeModules, languagePrefixes, pathNormalizations);
+      getRouteModule(
+        toPath,
+        routeModules,
+        languagePrefixes,
+        pathNormalizations
+      );
 
     if (preloadFn) {
       timeoutRef.current = setTimeout(() => {
@@ -157,7 +162,14 @@ export const PreloadLink: React.FC<PreloadLinkProps> = ({
           });
       }, preloadDelay);
     }
-  }, [preload, preloadDelay, to, routeModules, languagePrefixes, pathNormalizations]);
+  }, [
+    preload,
+    preloadDelay,
+    to,
+    routeModules,
+    languagePrefixes,
+    pathNormalizations,
+  ]);
 
   const clearPreload = useCallback(() => {
     if (timeoutRef.current) {

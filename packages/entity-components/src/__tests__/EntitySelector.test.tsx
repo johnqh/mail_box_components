@@ -17,7 +17,7 @@ describe('EntitySelector', () => {
       id: 'org-1',
       displayName: 'Acme Corp',
       entityType: 'organization',
-      userRole: 'manager',
+      userRole: 'owner',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },

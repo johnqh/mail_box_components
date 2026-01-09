@@ -18,7 +18,7 @@ describe('EntityCard', () => {
     id: 'org-1',
     displayName: 'Acme Corp',
     entityType: 'organization',
-    userRole: 'manager',
+    userRole: 'owner',
     description: 'Our organization',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -36,7 +36,7 @@ describe('EntityCard', () => {
     render(<EntityCard entity={mockOrgEntity} />);
 
     expect(screen.getByText('Acme Corp')).toBeInTheDocument();
-    expect(screen.getByText('manager')).toBeInTheDocument();
+    expect(screen.getByText('owner')).toBeInTheDocument();
     expect(screen.getByText('Organization')).toBeInTheDocument();
   });
 

@@ -11,18 +11,18 @@ describe('MemberRoleSelector', () => {
   });
 
   it('opens dropdown on click', () => {
-    render(<MemberRoleSelector value={EntityRole.VIEWER} onChange={vi.fn()} />);
+    render(<MemberRoleSelector value={EntityRole.MEMBER} onChange={vi.fn()} />);
 
     fireEvent.click(screen.getByRole('button'));
 
+    expect(screen.getByText('Owner')).toBeInTheDocument();
     expect(screen.getByText('Admin')).toBeInTheDocument();
-    expect(screen.getByText('Manager')).toBeInTheDocument();
-    // Viewer appears twice: in the button and in the dropdown
-    expect(screen.getAllByText('Viewer').length).toBe(2);
+    // Member appears twice: in the button and in the dropdown
+    expect(screen.getAllByText('Member').length).toBe(2);
   });
 
   it('shows role descriptions in dropdown', () => {
-    render(<MemberRoleSelector value={EntityRole.VIEWER} onChange={vi.fn()} />);
+    render(<MemberRoleSelector value={EntityRole.MEMBER} onChange={vi.fn()} />);
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -38,20 +38,20 @@ describe('MemberRoleSelector', () => {
   it('calls onChange when role is selected', () => {
     const onChange = vi.fn();
     render(
-      <MemberRoleSelector value={EntityRole.VIEWER} onChange={onChange} />
+      <MemberRoleSelector value={EntityRole.MEMBER} onChange={onChange} />
     );
 
     fireEvent.click(screen.getByRole('button'));
-    fireEvent.click(screen.getByText('Manager'));
+    fireEvent.click(screen.getByText('Admin'));
 
-    expect(onChange).toHaveBeenCalledWith(EntityRole.MANAGER);
+    expect(onChange).toHaveBeenCalledWith(EntityRole.ADMIN);
   });
 
   it('closes dropdown after selection', () => {
-    render(<MemberRoleSelector value={EntityRole.VIEWER} onChange={vi.fn()} />);
+    render(<MemberRoleSelector value={EntityRole.MEMBER} onChange={vi.fn()} />);
 
     fireEvent.click(screen.getByRole('button'));
-    fireEvent.click(screen.getByText('Admin'));
+    fireEvent.click(screen.getByText('Owner'));
 
     // Dropdown should close, so descriptions shouldn't be visible
     expect(
@@ -62,7 +62,7 @@ describe('MemberRoleSelector', () => {
   it('is disabled when disabled prop is true', () => {
     render(
       <MemberRoleSelector
-        value={EntityRole.VIEWER}
+        value={EntityRole.MEMBER}
         onChange={vi.fn()}
         disabled
       />
@@ -74,7 +74,7 @@ describe('MemberRoleSelector', () => {
   it('applies custom className', () => {
     const { container } = render(
       <MemberRoleSelector
-        value={EntityRole.VIEWER}
+        value={EntityRole.MEMBER}
         onChange={vi.fn()}
         className='custom-class'
       />

@@ -13,22 +13,28 @@ describe('InvitationList', () => {
     {
       id: 'inv-1',
       email: 'user1@example.com',
-      role: 'manager',
+      role: 'admin',
       status: 'pending',
       token: 'token-1',
       expiresAt: futureDate,
       createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       entityId: 'entity-1',
+      invitedByUserId: 'user-0',
+      acceptedAt: null,
     },
     {
       id: 'inv-2',
       email: 'user2@example.com',
-      role: 'viewer',
+      role: 'member',
       status: 'pending',
       token: 'token-2',
       expiresAt: futureDate,
       createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       entityId: 'entity-1',
+      invitedByUserId: 'user-0',
+      acceptedAt: null,
     },
   ];
 
@@ -174,12 +180,15 @@ describe('InvitationList', () => {
         {
           id: 'inv-3',
           email: 'user3@example.com',
-          role: 'admin',
+          role: 'owner',
           status: 'accepted',
           token: 'token-3',
           expiresAt: futureDate,
           createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
           entityId: 'entity-1',
+          invitedByUserId: 'user-0',
+          acceptedAt: new Date().toISOString(),
         },
       ];
 

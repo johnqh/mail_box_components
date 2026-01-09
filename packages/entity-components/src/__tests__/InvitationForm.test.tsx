@@ -62,7 +62,7 @@ describe('InvitationForm', () => {
     await waitFor(() => {
       expect(onSubmit).toHaveBeenCalledWith({
         email: 'test@example.com',
-        role: EntityRole.VIEWER,
+        role: EntityRole.MEMBER,
       });
     });
   });
@@ -70,7 +70,7 @@ describe('InvitationForm', () => {
   it('uses custom default role', async () => {
     const onSubmit = vi.fn().mockResolvedValue(undefined);
     render(
-      <InvitationForm onSubmit={onSubmit} defaultRole={EntityRole.MANAGER} />
+      <InvitationForm onSubmit={onSubmit} defaultRole={EntityRole.ADMIN} />
     );
 
     const input = screen.getByPlaceholderText('Enter email address');
@@ -84,7 +84,7 @@ describe('InvitationForm', () => {
     await waitFor(() => {
       expect(onSubmit).toHaveBeenCalledWith({
         email: 'test@example.com',
-        role: EntityRole.MANAGER,
+        role: EntityRole.ADMIN,
       });
     });
   });

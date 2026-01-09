@@ -42,22 +42,22 @@ interface RoleOption {
 
 const roleOptions: RoleOption[] = [
   {
-    value: EntityRole.ADMIN,
-    label: 'Admin',
+    value: EntityRole.OWNER,
+    label: 'Owner',
     description: 'Full access to all settings and members',
     icon: Shield,
     color: 'text-purple-600 dark:text-purple-400',
   },
   {
-    value: EntityRole.MANAGER,
-    label: 'Manager',
+    value: EntityRole.ADMIN,
+    label: 'Admin',
     description: 'Can manage projects and API keys',
     icon: Briefcase,
     color: 'text-blue-600 dark:text-blue-400',
   },
   {
-    value: EntityRole.VIEWER,
-    label: 'Viewer',
+    value: EntityRole.MEMBER,
+    label: 'Member',
     description: 'Read-only access',
     icon: Eye,
     color: 'text-gray-600 dark:text-gray-400',

@@ -9,7 +9,9 @@ describe('MemberList', () => {
       id: 'member-1',
       userId: 'user-1',
       entityId: 'entity-1',
-      role: 'admin',
+      role: 'owner',
+      isActive: true,
+      joinedAt: new Date().toISOString(),
       user: {
         id: 'user-1',
         displayName: 'John Doe',
@@ -22,7 +24,9 @@ describe('MemberList', () => {
       id: 'member-2',
       userId: 'user-2',
       entityId: 'entity-1',
-      role: 'manager',
+      role: 'admin',
+      isActive: true,
+      joinedAt: new Date().toISOString(),
       user: {
         id: 'user-2',
         displayName: 'Jane Smith',
@@ -45,8 +49,8 @@ describe('MemberList', () => {
   it('shows role badges', () => {
     render(<MemberList members={mockMembers} />);
 
+    expect(screen.getByText('owner')).toBeInTheDocument();
     expect(screen.getByText('admin')).toBeInTheDocument();
-    expect(screen.getByText('manager')).toBeInTheDocument();
   });
 
   it('shows (you) indicator for current user', () => {
@@ -135,8 +139,8 @@ describe('MemberList', () => {
       );
 
       // Should see role selector for user-2
-      const managerButton = screen.getByText('Manager');
-      expect(managerButton).toBeInTheDocument();
+      const adminButton = screen.getByText('Admin');
+      expect(adminButton).toBeInTheDocument();
     });
   });
 
@@ -146,7 +150,9 @@ describe('MemberList', () => {
         id: 'member-1',
         userId: 'user-1',
         entityId: 'entity-1',
-        role: 'viewer',
+        role: 'member',
+        isActive: true,
+        joinedAt: new Date().toISOString(),
         user: {
           id: 'user-1',
           email: 'noname@example.com',

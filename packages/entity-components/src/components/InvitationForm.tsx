@@ -39,7 +39,7 @@ export interface InvitationFormProps {
 export function InvitationForm({
   onSubmit,
   isSubmitting = false,
-  defaultRole = EntityRole.VIEWER,
+  defaultRole = EntityRole.MEMBER,
   className,
   onTrack,
   trackingLabel,

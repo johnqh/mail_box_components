@@ -19,7 +19,7 @@ describe('EntityList', () => {
       displayName: 'Acme Corp',
       entityType: 'organization',
       entitySlug: 'acme-corp',
-      userRole: 'manager',
+      userRole: 'owner',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },

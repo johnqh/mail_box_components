@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/auth-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Firebase Auth UI components for React with full i18n support",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -83,7 +83,6 @@
     "prettier": "^3.6.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-helmet-async": "^2.0.5",
     "react-i18next": "^16.0.0",
     "react-router-dom": "^7.9.4",
     "tailwind-merge": "^3.3.1",
@@ -99,5 +98,6 @@
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.52.5",
     "@rollup/rollup-linux-x64-musl": "4.52.5"
-  }
+  },
+  "trustedDependencies": ["@firebase/util", "protobufjs"]
 }

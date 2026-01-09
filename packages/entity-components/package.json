@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/entity-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Entity/Organization UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

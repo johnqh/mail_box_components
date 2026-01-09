@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/ratelimit-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Rate limit UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",

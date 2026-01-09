@@ -6,30 +6,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a React component library (`@johnqh/mail-box-components`) built with TypeScript, Vite, and Tailwind CSS. It provides 20+ reusable UI components based on Radix UI primitives, with design system functionality imported from a separate `@johnqh/design-system` package.
 
+## Package Manager
+
+**This project uses Bun as the package manager.** Always use `bun` commands instead of `npm`:
+
+```bash
+# Install dependencies
+bun install
+
+# Run any script
+bun run <script-name>
+```
+
 ## Common Development Commands
 
 ```bash
 # Build the library (TypeScript compilation + Vite bundling)
-npm run build
+bun run build
 
 # Development mode with watch
-npm run dev
+bun run dev
 
 # Type checking without emitting files
-npm run type-check
+bun run type-check
 
 # Linting (ESLint with TypeScript rules)
-npm run lint
+bun run lint
 
 # Testing (Vitest with React Testing Library)
-npm test
-npm run test:ui
+bun test
+bun run test:ui
 
 # Run single test file
-npm test -- src/__tests__/button.test.tsx
+bun test -- src/__tests__/button.test.tsx
 
 # Package preparation
-npm run prepublishOnly
+bun run prepublishOnly
 ```
 
 ## Architecture
@@ -135,7 +147,7 @@ The design system is imported from `@johnqh/design-system` and includes:
 - Use React Testing Library for component tests
 - Test user interactions, accessibility, and edge cases
 - Performance utilities have dedicated test suites
-- Run specific tests: `npm test -- src/__tests__/button.test.tsx`
+- Run specific tests: `bun test -- src/__tests__/button.test.tsx`
 
 ### Performance Considerations
 - Components use lazy loading patterns in `src/utils/lazy-loading.tsx`

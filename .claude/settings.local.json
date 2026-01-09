@@ -18,7 +18,11 @@
       "Bash(do if [ ! -f \"$dir/eslint.config.js\" ])",
       "Bash(then echo \"$dir\")",
       "Bash(fi)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(xargs:*)",
+      "Bash(bun:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)"
     ]
   }
 }

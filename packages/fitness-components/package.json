@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/fitness-components",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Fitness and health tracking UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -21,7 +21,8 @@
     "build": "tsc && vite build",
     "dev": "vite build --watch",
     "type-check": "tsc --noEmit",
-    "test": "echo \"Tests passed\" && exit 0"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [
     "react",
@@ -47,6 +48,8 @@
     "@heroicons/react": "^2.2.0",
     "@sudobility/components": "*",
     "@sudobility/design": "^1.1.14",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
     "@types/node": "^24.7.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
@@ -61,13 +64,15 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react-hooks": "^7.0.0",
     "eslint-plugin-react-refresh": "^0.4.0",
+    "jsdom": "^27.0.1",
     "prettier": "^3.6.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.3.1",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4"
   },
   "publishConfig": {
     "access": "public"

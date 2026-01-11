@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/components",
-  "version": "4.0.140",
+  "version": "4.0.141",
   "description": "Reusable UI components and design system - Reorganized for better maintainability",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -133,6 +133,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@sudobility/components": "^4.0.139"
+    "@sudobility/components": "^4.0.140"
   }
 }

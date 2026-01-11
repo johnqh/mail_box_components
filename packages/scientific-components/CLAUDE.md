@@ -1,10 +1,20 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/scientific-components`, a TypeScript React component library. scientific UI components for React
+**Package**: `@sudobility/scientific-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Scientific and data UI components for React.
+
+### Components
+- `AddressLabel` - Address label component
+- `AvailabilityGrid` - Availability grid display
+- `DataMapper` - Data mapping component
+- `GeofenceEditor` - Geofence editing interface
 
 ## Package Manager
 

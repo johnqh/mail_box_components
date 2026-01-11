@@ -1,10 +1,26 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/monitoring-components`, a TypeScript React component library. Monitoring and tracking utilities for timers, trackers, and system monitoring
+**Package**: `@sudobility/monitoring-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Monitoring and tracking UI components for React.
+
+### Components
+- `GasTracker` - Gas price tracker
+- `SleepTracker` - Sleep tracking component
+- `WaterIntake` - Water intake tracker
+- `BreakTimer` - Break timer component
+- `CopyButton` - Copy to clipboard button
+- `CursorTracker` - Cursor position tracker
+- `OvertimeTracker` - Overtime tracking
+- `RecyclingTracker` - Recycling tracker
+- `Show` - Conditional rendering component
+- `TimeTracker` - Time tracking component
 
 ## Package Manager
 

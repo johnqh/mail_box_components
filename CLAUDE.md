@@ -1,10 +1,15 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides comprehensive guidance for AI assistants (Claude Code, GitHub Copilot, Cursor, etc.) when working with this repository.
 
 ## Project Overview
 
-This is a React component library (`@johnqh/mail-box-components`) built with TypeScript, Vite, and Tailwind CSS. It provides 20+ reusable UI components based on Radix UI primitives, with design system functionality imported from a separate `@johnqh/design-system` package.
+This is a React component library (`@sudobility/components`) built with TypeScript, Vite, and Tailwind CSS. It provides 40+ reusable UI components based on Radix UI primitives, with design system functionality imported from the separate `@sudobility/design` package.
+
+**Package**: `@sudobility/components`
+**Version**: 4.0.135
+**Type**: ES Module + UMD
+**Framework**: React 18/19, TypeScript 5.9+, Vite 7.x
 
 ## Package Manager
 
@@ -49,10 +54,10 @@ bun run prepublishOnly
 ### Multi-Package Structure
 This project uses a **dual-package architecture**:
 
-1. **`@johnqh/mail-box-components`** (this repo) - UI components and library
-2. **`@johnqh/design-system`** (`../design_system`) - Design tokens, colors, typography, variants
+1. **`@sudobility/components`** (this repo) - UI components and library
+2. **`@sudobility/design`** (`../design_system`) - Design tokens, colors, typography, variants
 
-The design system is imported as a local file dependency and re-exported for backward compatibility.
+The design system is a peer dependency and used throughout for consistent styling.
 
 ### Source Structure
 - `src/index.ts` - Main library entry point with comprehensive exports
@@ -93,14 +98,14 @@ The design system is imported as a local file dependency and re-exported for bac
 
 ### Testing Architecture
 - **Vitest** - Test runner with React Testing Library
-- **Comprehensive Coverage** - 341 tests across 23 test files
+- **Comprehensive Coverage** - 503 tests across 30 test files
 - **Component Testing** - Every UI component has dedicated test coverage
 - **Utility Testing** - Performance, SEO, and optimization utilities tested
 
 ## Key Implementation Details
 
 ### Design System Integration
-The design system is imported from `@johnqh/design-system` and includes:
+The design system is imported from `@sudobility/design` and includes:
 - **Colors** - Semantic color palette with dark mode support
 - **Design Tokens** - Spacing, typography, animation tokens (4px grid)
 - **Typography** - Text variants and semantic typography system
@@ -122,8 +127,8 @@ The design system is imported from `@johnqh/design-system` and includes:
 - **AI training metadata** - Enhanced for AI-assisted development
 
 ### Library Build Output
-- ES modules (`dist/index.esm.js`) - 547KB, 122KB gzipped
-- UMD (`dist/index.umd.js`) - 408KB, 100KB gzipped  
+- ES modules (`dist/index.esm.js`) - ~843KB, ~180KB gzipped
+- UMD (`dist/index.umd.js`) - ~580KB, ~147KB gzipped
 - TypeScript declarations with source maps
 - Optimized for bundler and direct browser use
 
@@ -137,9 +142,8 @@ The design system is imported from `@johnqh/design-system` and includes:
 5. Ensure accessibility with Radix UI primitives where applicable
 
 ### Working with Design System
-- Design system is in separate `../design_system` package
-- Local file dependency means changes require rebuilding design system
-- Import design tokens: `import { designTokens, colors } from '@johnqh/design-system'`
+- Design system is the `@sudobility/design` package
+- Import design tokens: `import { designTokens, colors } from '@sudobility/design'`
 - Use `cn()` utility for conditional styling: `cn('base-classes', condition && 'conditional-class')`
 
 ### Testing Guidelines

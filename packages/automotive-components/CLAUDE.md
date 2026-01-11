@@ -1,10 +1,23 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/automotive-components`, a TypeScript React component library. Automotive and vehicle management UI components for React
+**Package**: `@sudobility/automotive-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Automotive and vehicle management UI components for React.
+
+### Components
+- `AgentCard`, `CandidateCard`, `ContactCard`, `PreferenceCard` - Card components
+- `CarbonFootprint` - Carbon footprint display
+- `FleetManagement` - Fleet management dashboard
+- `Carousel`, `FadeCarousel` - Carousel components
+- `Flashcard`, `FlipCard`, `GlassmorphismCard` - Interactive cards
+- `FuelGauge` - Fuel gauge visualization
+- `MaintenanceLog` - Vehicle maintenance tracking
 
 ## Package Manager
 

@@ -1,10 +1,29 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/realestate-components`, a TypeScript React component library. Real estate listing and property management UI components for React
+**Package**: `@sudobility/realestate-components`
+**Version**: 2.0.7
+**Type**: ES Module + UMD
+
+Real estate and property UI components for React.
+
+### Components
+- `AgentCard` - Real estate agent card
+- `LocationPicker` - Location picker component
+- `MapMarker` - Map marker component
+- `MortgageCalc` - Mortgage calculator
+- `NeighborhoodInfo` - Neighborhood information
+- `OpenHouse` - Open house display
+- `PropertyCard` - Property listing card
+- `PropertyCompare` - Property comparison
+- `PropertyGallery` - Property image gallery
+- `PropertyMap` - Property map display
+- `PropertySearch` - Property search interface
+- `RentalApplication` - Rental application form
+- `VirtualTour` - Virtual tour component
 
 ## Package Manager
 

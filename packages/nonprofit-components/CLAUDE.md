@@ -1,10 +1,18 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/nonprofit-components`, a TypeScript React component library. nonprofit UI components for React
+**Package**: `@sudobility/nonprofit-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Nonprofit and charity UI components for React.
+
+### Components
+- `DonationForm` - Donation form component
+- `VolunteerSchedule` - Volunteer scheduling
 
 ## Package Manager
 

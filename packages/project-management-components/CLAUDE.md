@@ -1,10 +1,24 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/project-management-components`, a TypeScript React component library. project management UI components for React
+**Package**: `@sudobility/project-management-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Project management UI components for React.
+
+### Components
+- `BatchProcessor` - Batch processing component
+- `BugReport` - Bug report form
+- `BugTracker` - Bug tracking interface
+- `BulkEditor` - Bulk editing component
+- `SprintPlanner` - Sprint planning interface
+- `TaskBoard` - Task board component
+- `TaskDependency` - Task dependency visualization
+- `TimelineGantt` - Gantt chart timeline
 
 ## Package Manager
 

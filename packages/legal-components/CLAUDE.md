@@ -1,10 +1,20 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/legal-components`, a TypeScript React component library. Legal and compliance UI components for React
+**Package**: `@sudobility/legal-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Legal and compliance UI components for React.
+
+### Components
+- `ClaimSubmission` - Claim submission form
+- `ComplianceChecker` - Compliance checking component
+- `ContractViewer` - Contract document viewer
+- `PolicyManager` - Policy management interface
 
 ## Package Manager
 

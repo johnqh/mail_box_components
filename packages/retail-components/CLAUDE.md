@@ -1,10 +1,18 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/retail-components`, a TypeScript React component library. retail UI components for React
+**Package**: `@sudobility/retail-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Retail and point-of-sale UI components for React.
+
+### Components
+- `PosTerminal` - Point-of-sale terminal interface
+- `SmsComposer` - SMS composer component
 
 ## Package Manager
 

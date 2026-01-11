@@ -1,10 +1,27 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/events-components`, a TypeScript React component library. events UI components for React
+**Package**: `@sudobility/events-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Event management and scheduling UI components for React.
+
+### Components
+- `AttendeeBadge` - Event attendee badge
+- `CountdownEvent`, `CountdownTimer` - Countdown components
+- `EventCalendar`, `EventCalendarAdv` - Calendar components
+- `EventCard`, `EventGallery` - Event display components
+- `ExportWizard` - Export wizard
+- `GuestList` - Guest management
+- `RSVPForm` - RSVP form component
+- `SeatingChart` - Seating arrangement
+- `SpeakerCard` - Speaker information card
+- `TicketSelector`, `TicketSystem` - Ticketing components
+- `VoterRegistration` - Voter registration
 
 ## Package Manager
 

@@ -1,10 +1,27 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/gaming-components`, a TypeScript React component library. gaming UI components for React
+**Package**: `@sudobility/gaming-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Gaming and gamification UI components for React.
+
+### Components
+- `SustainabilityScore` - Sustainability scoring display
+- `AchievementBadge` - Achievement badge display
+- `AchievementUnlock` - Achievement unlock animation
+- `GameControls` - Game control interface
+- `LeadScorer` - Lead scorer display
+- `LeaderboardPodium` - Leaderboard podium display
+- `PlayerStats` - Player statistics display
+- `ScoreBoard` - Score board component
+- `ScoreDisplay` - Score display component
+- `ScratchCard` - Interactive scratch card
+- `SpinWheel` - Spin wheel game component
 
 ## Package Manager
 

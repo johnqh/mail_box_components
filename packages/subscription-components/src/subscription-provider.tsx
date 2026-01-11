@@ -324,9 +324,11 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
 
   /**
    * Purchase a subscription
+   * @param productIdentifier - The product/package identifier to purchase
+   * @param _subscriptionUserId - Optional user ID (for reference; actual user is bound via initialize)
    */
   const purchase = useCallback(
-    async (productIdentifier: string): Promise<boolean> => {
+    async (productIdentifier: string, _subscriptionUserId?: string): Promise<boolean> => {
       try {
         setIsLoading(true);
         setError(null);
@@ -412,8 +414,9 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
 
   /**
    * Restore previous purchases
+   * @param _subscriptionUserId - Optional user ID (for reference; actual user is bound via initialize)
    */
-  const restore = useCallback(async (): Promise<boolean> => {
+  const restore = useCallback(async (_subscriptionUserId?: string): Promise<boolean> => {
     try {
       setIsLoading(true);
       setError(null);

@@ -1,10 +1,23 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/communication-components`, a TypeScript React component library. Communication and messaging UI components for React
+**Package**: `@sudobility/communication-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Communication and messaging UI components for React.
+
+### Components
+- `CallCenter`, `CallControls`, `VoipPhone` - Voice call components
+- `ChatBubble`, `LiveChat` - Chat interface components
+- `MessageInput`, `MessageList` - Message components
+- `ConnectionStatus`, `PresenceIndicator` - Status indicators
+- `Callout`, `Reaction` - Interaction components
+- `TypingIndicator`, `TypingIndicatorMsg` - Typing indicators
+- `UserMention` - User mention component
 
 ## Package Manager
 

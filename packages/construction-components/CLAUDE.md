@@ -1,10 +1,19 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/construction-components`, a TypeScript React component library. Construction and building management UI components for React
+**Package**: `@sudobility/construction-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Construction and building management UI components for React.
+
+### Components
+- `BlueprintViewer` - Construction blueprint display
+- `ProjectBoard` - Project management board
+- `ProjectTimeline` - Project timeline visualization
 
 ## Package Manager
 

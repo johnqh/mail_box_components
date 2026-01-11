@@ -1,10 +1,23 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/healthcare-components`, a TypeScript React component library. Healthcare and medical UI components for React
+**Package**: `@sudobility/healthcare-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Healthcare and medical UI components for React.
+
+### Components
+- `AllergenFilter` - Allergen filtering component
+- `ComplianceChecker` - Compliance checking component
+- `AppointmentBooking` - Appointment booking interface
+- `AppointmentSlot` - Appointment slot display
+- `PatientRecord` - Patient record display
+- `PrescriptionManager` - Prescription management
+- `VitalSigns` - Vital signs display
 
 ## Package Manager
 

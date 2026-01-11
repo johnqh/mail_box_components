@@ -1,10 +1,27 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/social-components`, a TypeScript React component library. social UI components for React
+**Package**: `@sudobility/social-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Social media and sharing UI components for React.
+
+### Components
+- `JobPosting` - Job posting display
+- `ButtonGroup` - Button group component
+- `FacebookShare` - Facebook share button
+- `FeedbackForm` - Feedback form component
+- `RatingStars` - Star rating display
+- `Rating` - Rating component
+- `ScreenShare` - Screen sharing component
+- `SettingsGroup` - Settings group component
+- `ShareButtons` - Social share buttons
+- `SocialFeed` - Social media feed
+- `TwitterEmbed` - Twitter embed component
 
 ## Package Manager
 

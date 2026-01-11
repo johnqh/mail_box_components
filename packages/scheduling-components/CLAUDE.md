@@ -1,10 +1,24 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/scheduling-components`, a TypeScript React component library. scheduling UI components for React
+**Package**: `@sudobility/scheduling-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Scheduling and calendar UI components for React.
+
+### Components
+- `InterviewScheduler` - Interview scheduling component
+- `MeetingScheduler` - Meeting scheduler
+- `PortSchedule` - Port scheduling component
+- `ScheduleTimeline` - Schedule timeline display
+- `SentimentIndicator` - Sentiment indicator
+- `TimelineVertical` - Vertical timeline
+- `Timeline` - Timeline component
+- `WorkCalendar` - Work calendar
 
 ## Package Manager
 

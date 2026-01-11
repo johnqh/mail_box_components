@@ -1,10 +1,17 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/entity-components`, a TypeScript React component library. Entity/Organization UI components for React
+**Package**: `@sudobility/entity-components`
+**Version**: 1.0.4
+**Type**: ES Module + UMD
+
+Entity and organization management UI components for React.
+
+### Utilities
+- `cn` - Classname utility for conditional styling
 
 ## Package Manager
 

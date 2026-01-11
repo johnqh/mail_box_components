@@ -1,10 +1,33 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/logistics-components`, a TypeScript React component library. Logistics and transportation UI components for React
+**Package**: `@sudobility/logistics-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Logistics and transportation UI components for React.
+
+### Components
+- `CargoManifest` - Cargo manifest display
+- `DeliveryTracker` - Delivery tracking component
+- `FleetManagement` - Fleet management interface
+- `InventoryAlert` - Inventory alert component
+- `InventoryScanner` - Inventory scanning interface
+- `Kanban` - Kanban board component
+- `LoadPlanner` - Load planning component
+- `LogisticsMap` - Logistics map display
+- `ProcurementForm` - Procurement form
+- `RouteDisplay` - Route display component
+- `RouteOptimizer` - Route optimization tool
+- `ShipmentTracker` - Shipment tracking
+- `StockLevel` - Stock level display
+- `SupplierCard` - Supplier information card
+- `VehicleStatus` - Vehicle status display
+- `VesselTracker` - Vessel tracking component
+- `WarehouseMap` - Warehouse map visualization
 
 ## Package Manager
 

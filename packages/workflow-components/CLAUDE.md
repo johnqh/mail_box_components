@@ -1,10 +1,23 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/workflow-components`, a TypeScript React component library. Business workflow components for checklists, status tracking, and process management
+**Package**: `@sudobility/workflow-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Workflow and process management UI components for React.
+
+### Components
+- `ChecklistProgress` - Checklist progress display
+- `NetworkStatus` - Network status indicator
+- `ProcessDiagram` - Process diagram visualization
+- `QuoteGenerator` - Quote generator component
+- `SafetyChecklist` - Safety checklist
+- `StickyNote` - Sticky note component
+- `SystemStatus` - System status display
 
 ## Package Manager
 

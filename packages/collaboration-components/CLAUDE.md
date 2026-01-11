@@ -1,10 +1,17 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/collaboration-components`, a TypeScript React component library. Collaboration and real-time teamwork components for whiteboards, co-editing, and shared workspaces
+**Package**: `@sudobility/collaboration-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Collaboration and real-time teamwork components for whiteboards, co-editing, and shared workspaces.
+
+### Components
+- `Whiteboard` - Real-time collaborative whiteboard
 
 ## Package Manager
 

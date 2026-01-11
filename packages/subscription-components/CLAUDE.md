@@ -1,10 +1,28 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/subscription-components`, a TypeScript React component library. Subscription UI components for React with RevenueCat integration
+**Package**: `@sudobility/subscription-components`
+**Version**: 1.0.13
+**Type**: ES Module + UMD
+
+Subscription and billing UI components for React with RevenueCat integration.
+
+### Components
+- `SubscriptionTile` - Subscription plan tile display
+- `SubscriptionLayout` - Subscription page layout
+- `SegmentedControl` - Segmented control selector
+- `SubscriptionProvider` - Subscription context provider
+
+### Hooks
+- `useSubscriptionContext` - Access subscription state
+
+### Utilities
+- `cn` - Classname utility for conditional styling
+- `clearRevenueCatCheckoutSessions` - Clear checkout sessions
+- `closeRevenueCatInstance` - Close RevenueCat instance
 
 ## Package Manager
 

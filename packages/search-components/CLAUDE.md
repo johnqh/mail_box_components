@@ -1,10 +1,19 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/search-components`, a TypeScript React component library. Search and filter components for faceted search, filter panels, and search bars
+**Package**: `@sudobility/search-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Search and filter UI components for React.
+
+### Components
+- `FacetedSearch` - Faceted search interface
+- `FilterPanel` - Filter panel component
+- `SearchBar` - Search bar component
 
 ## Package Manager
 

@@ -1,10 +1,31 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/devops-components`, a TypeScript React component library. DevOps and deployment UI components for React
+**Package**: `@sudobility/devops-components`
+**Version**: 2.0.13
+**Type**: ES Module + UMD
+
+DevOps and deployment UI components for React.
+
+### Components
+- `ApiPlayground`, `ApiReference` - API documentation components
+- `AuditLog`, `BuildLog`, `DriverLog` - Logging components
+- `ChangelogDisplay` - Changelog display
+- `CodePlayground` - Interactive code editor
+- `ConflictResolver` - Git conflict resolution
+- `DashboardBuilder`, `PageBuilder` - Builder components
+- `DealPipeline`, `PipelineView` - Pipeline visualization
+- `DeploymentStatus` - Deployment status display
+- `MemoryUsage`, `MetricsGrid` - Metrics components
+- `NetworkContext` - Network context provider
+- `RegressionTest`, `TestResult`, `TestRunner` - Testing components
+- `SystemStatusIndicator` - System health indicator
+- `WebhookLogger` - Webhook logging
+- `WorkflowBuilder`, `WorkflowTemplate` - Workflow components
+- `XmlParser` - XML parsing utility
 
 ## Package Manager
 

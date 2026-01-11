@@ -1,10 +1,25 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/analytics-components`, a TypeScript React component library. analytics UI components for React
+**Package**: `@sudobility/analytics-components`
+**Version**: 2.0.7
+**Type**: ES Module + UMD
+
+Analytics and data visualization UI components for React applications.
+
+### Components
+- `ComparisonSection` - Data comparison visualization
+- `ContainerStats` - Container statistics display
+- `FeatureComparison` - Feature comparison component
+- `FeatureImportance` - Feature importance visualization
+- `ModelPrediction` - ML model prediction display
+- `QAReport` - QA reporting component
+- `ReportBuilder` - Report builder interface
+- `SupportDashboard` - Support metrics dashboard
+- `TrendIndicator` - Trend indicator component
 
 ## Package Manager
 

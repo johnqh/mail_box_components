@@ -1,10 +1,27 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/hr-components`, a TypeScript React component library. HR and employment UI components for React
+**Package**: `@sudobility/hr-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Human resources and employment UI components for React.
+
+### Components
+- `CandidateCard` - Candidate profile card
+- `InterviewScheduler` - Interview scheduling component
+- `JobPosting` - Job posting display
+- `AttendanceCalendar` - Attendance tracking calendar
+- `CommentThread` - Comment thread component
+- `OnboardingChecklist` - Onboarding checklist
+- `ShiftPlanner` - Shift planning component
+- `SkillProgress` - Skill progress display
+- `TeamManagement` - Team management interface
+- `TeamRoster` - Team roster display
+- `TimesheetEntry` - Timesheet entry form
 
 ## Package Manager
 

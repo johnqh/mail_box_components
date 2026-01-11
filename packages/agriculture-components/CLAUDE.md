@@ -1,10 +1,19 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/agriculture-components`, a TypeScript React component library. Agriculture and farming UI components for React
+**Package**: `@sudobility/agriculture-components`
+**Version**: 2.0.9
+**Type**: ES Module + UMD
+
+Agriculture and farming UI components for React applications.
+
+### Components
+- `CropMonitor` - Crop monitoring dashboard component
+- `FarmEquipment` - Farm equipment management component
+- `HarvestTracker` - Harvest tracking component
 
 ## Package Manager
 

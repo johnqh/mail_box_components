@@ -1,10 +1,22 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/ratelimit-components`, a TypeScript React component library. Rate limit UI components for React
+**Package**: `@sudobility/ratelimit-components`
+**Version**: 1.0.4
+**Type**: ES Module + UMD
+
+Rate limiting and usage UI components for React.
+
+### Components
+- `UsageDashboard` - Usage dashboard display
+- `TierComparisonTable` - Tier comparison table
+- `UsageHistoryChart` - Usage history chart
+
+### Utilities
+- `cn` - Classname utility for conditional styling
 
 ## Package Manager
 

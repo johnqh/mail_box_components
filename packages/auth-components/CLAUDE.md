@@ -1,10 +1,30 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/auth-components`, a TypeScript React component library. Firebase Auth UI components for React with full i18n support
+**Package**: `@sudobility/auth-components`
+**Version**: 1.0.4
+**Type**: ES Module + UMD
+
+Firebase Auth UI components for React with full i18n support.
+
+### Components
+- `AuthProvider` - Context provider for authentication state
+- `AuthModal` - Modal-based authentication flow
+- `AuthInline` - Inline authentication component
+- `AuthAction` - Authentication action button
+- `AuthContent` - Authentication content wrapper
+- `Avatar` - User avatar component
+- `UserMenu` - Authenticated user dropdown menu
+- `ProviderButtons` - OAuth provider buttons (Google, Apple, etc.)
+- `EmailSignInForm` - Email sign-in form
+- `EmailSignUpForm` - Email sign-up form
+- `ForgotPasswordForm` - Password reset form
+
+### Hooks
+- `useAuthStatus` - Authentication status hook
 
 ## Package Manager
 

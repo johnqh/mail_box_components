@@ -1,10 +1,22 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/documents-components`, a TypeScript React component library. documents UI components for React
+**Package**: `@sudobility/documents-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Document handling and file management UI components for React.
+
+### Components
+- `CsvImporter`, `JsonImporter`, `ExcelUploader` - File import components
+- `DiffViewer` - File diff visualization
+- `IconButton` - Icon button component
+- `ImportPreview` - Import data preview
+- `JsonViewer` - JSON data viewer
+- `UploadProgress` - Upload progress indicator
 
 ## Package Manager
 

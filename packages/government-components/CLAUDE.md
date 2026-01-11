@@ -1,10 +1,20 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/government-components`, a TypeScript React component library. government UI components for React
+**Package**: `@sudobility/government-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Government and civic UI components for React.
+
+### Components
+- `CensusForm` - Census form component
+- `GrantApplication` - Grant application form
+- `PermitApplication` - Permit application form
+- `PublicNotice` - Public notice display
 
 ## Package Manager
 

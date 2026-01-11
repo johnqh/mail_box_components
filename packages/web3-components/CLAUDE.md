@@ -1,10 +1,27 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/web3-components`, a TypeScript React component library. Web3 and blockchain UI components for React
+**Package**: `@sudobility/web3-components`
+**Version**: 2.0.9
+**Type**: ES Module + UMD
+
+Web3 and blockchain UI components for React.
+
+### Components
+- `AddressLabel` - Wallet address label
+- `CryptoPortfolio` - Crypto portfolio display
+- `GasTracker` - Gas price tracker
+- `NftGallery` - NFT gallery display
+- `TokenSwap` - Token swap interface
+- `WalletConnect` - Wallet connection component
+- `WalletIcon` - Wallet icon display
+- `WalletSelection` - Wallet selection interface
+- `WalletDropdownMenu` - Wallet dropdown menu
+- `WalletConnectScreen` - Wallet connect screen
+- `WalletVerifyScreen` - Wallet verification screen
 
 ## Package Manager
 

@@ -1,10 +1,24 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/energy-components`, a TypeScript React component library. Energy and sustainability UI components for React
+**Package**: `@sudobility/energy-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Energy and sustainability UI components for React.
+
+### Components
+- `TripMeter` - Trip distance/fuel tracking
+- `CarbonFootprint` - Carbon footprint display
+- `ConfidenceMeter` - Confidence level indicator
+- `CpuMeter` - CPU usage visualization
+- `EnergyMonitor` - Energy consumption monitor
+- `PowerGrid` - Power grid visualization
+- `SustainabilityScore` - Sustainability metrics
+- `WaterMeter` - Water usage display
 
 ## Package Manager
 

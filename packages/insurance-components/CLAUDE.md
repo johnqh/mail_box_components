@@ -1,10 +1,18 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/insurance-components`, a TypeScript React component library. insurance UI components for React
+**Package**: `@sudobility/insurance-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Insurance and risk management UI components for React.
+
+### Components
+- `CoverageChart` - Insurance coverage chart
+- `RiskAssessment` - Risk assessment display
 
 ## Package Manager
 

@@ -1,10 +1,26 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/email-components`, a TypeScript React component library. Email marketing and management UI components for React
+**Package**: `@sudobility/email-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Email marketing and management UI components for React.
+
+### Components
+- `SubscriberList` - Email subscriber management
+- `ABTestEmail` - A/B testing for emails
+- `ContactCard` - Contact information display
+- `EmailAccountsList` - Email accounts listing
+- `EmailAnalytics` - Email analytics dashboard
+- `EmailCampaign` - Campaign management
+- `EmailInputGroup` - Email input form group
+- `EmailTemplate` - Email template builder
+- `FreeEmailBanner` - Promotional banner
+- `SubscriptionPlan` - Subscription plan display
 
 ## Package Manager
 

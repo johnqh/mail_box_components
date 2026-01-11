@@ -1,10 +1,18 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/visualization-components`, a TypeScript React component library. visualization UI components for React
+**Package**: `@sudobility/visualization-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Data visualization UI components for React.
+
+### Components
+- `WeightChart` - Weight chart visualization
+- `TideChart` - Tide chart display
 
 ## Package Manager
 

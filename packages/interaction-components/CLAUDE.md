@@ -1,10 +1,19 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/interaction-components`, a TypeScript React component library. Interactive gesture and behavior components for drag-drop, resize, swipe, and collapsible interactions
+**Package**: `@sudobility/interaction-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Interactive gesture and behavior components for React.
+
+### Components
+- `Accordion` - Accordion component
+- `Collapsible` - Collapsible container
+- `InlineEdit` - Inline editing component
 
 ## Package Manager
 

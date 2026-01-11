@@ -1,10 +1,20 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/design-components`, a TypeScript React component library. Design and theming components for color pickers, swatches, and visual design tools
+**Package**: `@sudobility/design-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Design and theming components for color pickers, swatches, and visual design tools.
+
+### Components
+- `AuroraBackground` - Animated aurora background effect
+- `GradientBanner` - Gradient banner component
+- `NeumorphicButton` - Neumorphic styled button
+- `ThemeSwitcher` - Theme switching component
 
 ## Package Manager
 

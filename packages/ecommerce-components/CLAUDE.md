@@ -1,10 +1,27 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/ecommerce-components`, a TypeScript React component library. E-commerce and shopping UI components for React
+**Package**: `@sudobility/ecommerce-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+E-commerce and shopping UI components for React.
+
+### Components
+- `InventoryAlert`, `InventoryScanner` - Inventory management
+- `SupplierCard` - Supplier information display
+- `WarehouseMap` - Warehouse visualization
+- `CartSummary`, `OrderCart` - Shopping cart components
+- `CustomerLoyalty` - Loyalty program display
+- `MaterialOrder`, `ReorderPoint` - Order management
+- `PriceDisplay` - Price formatting component
+- `ProductCard` - Product display card
+- `ProductionLine` - Production tracking
+- `ReviewCard` - Customer review display
+- `SponsorGrid` - Sponsor showcase
 
 ## Package Manager
 

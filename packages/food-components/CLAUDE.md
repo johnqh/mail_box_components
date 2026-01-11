@@ -1,10 +1,25 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/food-components`, a TypeScript React component library. Food, restaurant, and recipe UI components for React
+**Package**: `@sudobility/food-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Food, restaurant, and recipe UI components for React.
+
+### Components
+- `AllergenFilter` - Allergen filtering
+- `CookingTimer` - Cooking timer
+- `IngredientList` - Ingredient display
+- `MealPlanner` - Meal planning
+- `MenuDisplay`, `MenuItem` - Menu components
+- `NutritionFacts`, `NutritionLabel` - Nutrition display
+- `PortionCalculator` - Portion sizing
+- `RecipeCard`, `RecipeRating` - Recipe components
+- `RestaurantReview` - Restaurant reviews
 
 ## Package Manager
 

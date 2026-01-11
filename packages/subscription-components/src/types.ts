@@ -146,10 +146,10 @@ export interface SubscriptionContextValue {
   error: string | null;
   /** Initialize the subscription service */
   initialize: (userId: string, email?: string) => Promise<void>;
-  /** Purchase a subscription */
-  purchase: (productIdentifier: string) => Promise<boolean>;
-  /** Restore previous purchases */
-  restore: () => Promise<boolean>;
+  /** Purchase a subscription. subscriptionUserId identifies which user/entity the subscription is for. */
+  purchase: (productIdentifier: string, subscriptionUserId?: string) => Promise<boolean>;
+  /** Restore previous purchases. subscriptionUserId identifies which user/entity to restore for. */
+  restore: (subscriptionUserId?: string) => Promise<boolean>;
   /** Refresh subscription status */
   refresh: () => Promise<void>;
   /** Clear error state */

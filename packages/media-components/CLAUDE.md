@@ -1,10 +1,21 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/media-components`, a TypeScript React component library. media UI components for React
+**Package**: `@sudobility/media-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Media and content UI components for React.
+
+### Components
+- `ContentContainer` - Content container component
+- `EmbedWidget` - Embed widget for external content
+- `InstagramWidget` - Instagram feed widget
+- `ParticleEffect` - Particle effect animation
+- `Tag` - Tag/label component
 
 ## Package Manager
 

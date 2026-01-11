@@ -1,10 +1,40 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/travel-components`, a TypeScript React component library. Travel and hospitality UI components for React
+**Package**: `@sudobility/travel-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Travel and hospitality UI components for React.
+
+### Components
+- `AppointmentBooking` - Appointment booking interface
+- `VirtualTour` - Virtual tour component
+- `AirportMap` - Airport map display
+- `BoardingPass` - Boarding pass display
+- `BookingConfirmation` - Booking confirmation
+- `BookingWidget` - Booking widget
+- `DestinationCard` - Destination card
+- `FlightSearch` - Flight search interface
+- `FlightStatus` - Flight status display
+- `FlightTracker` - Flight tracking component
+- `GuidedTour` - Guided tour component
+- `HotelBooking` - Hotel booking interface
+- `ItineraryBuilder` - Itinerary builder
+- `ResourceBooking` - Resource booking
+- `TourPackage` - Tour package display
+- `TournamentBracket` - Tournament bracket
+- `TravelChecklist` - Travel checklist
+- `TravelMap` - Travel map display
+- `TravelTips` - Travel tips display
+- `TripMeter` - Trip meter component
+- `TripPlanner` - Trip planning interface
+- `VacationPlanner` - Vacation planner
+- `WeatherForecast` - Weather forecast display
+- `WeatherStation` - Weather station display
 
 ## Package Manager
 

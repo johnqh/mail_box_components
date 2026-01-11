@@ -1,10 +1,21 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/security-components`, a TypeScript React component library. security UI components for React
+**Package**: `@sudobility/security-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Security and authentication UI components for React.
+
+### Components
+- `OauthButton` - OAuth authentication button
+- `PrivacyToggle` - Privacy settings toggle
+- `RoleManager` - Role management interface
+- `SecurityBadge` - Security badge display
+- `TwoFactorInput` - Two-factor authentication input
 
 ## Package Manager
 

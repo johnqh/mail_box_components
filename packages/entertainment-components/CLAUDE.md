@@ -1,10 +1,17 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/entertainment-components`, a TypeScript React component library. Entertainment and media UI components for React
+**Package**: `@sudobility/entertainment-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Entertainment and media UI components for React.
+
+### Components
+- `StreamingStats` - Streaming statistics display
 
 ## Package Manager
 

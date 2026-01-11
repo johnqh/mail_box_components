@@ -1,10 +1,19 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/manufacturing-components`, a TypeScript React component library. manufacturing UI components for React
+**Package**: `@sudobility/manufacturing-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+Manufacturing and production UI components for React.
+
+### Components
+- `DefectTracker` - Defect tracking component
+- `MachineMonitor` - Machine monitoring display
+- `QualityControl` - Quality control interface
 
 ## Package Manager
 

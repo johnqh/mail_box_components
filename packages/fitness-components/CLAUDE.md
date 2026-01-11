@@ -1,10 +1,30 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/fitness-components`, a TypeScript React component library. Fitness and health tracking UI components for React
+**Package**: `@sudobility/fitness-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Fitness and health tracking UI components for React.
+
+### Components
+- `MealPlanner`, `NutritionFacts`, `NutritionLabel` - Nutrition components
+- `ActivityFeed` - Activity tracking
+- `AthleteStats` - Athlete statistics
+- `BodyMetrics` - Body measurement display
+- `CalorieTracker` - Calorie tracking
+- `ExerciseTimer` - Exercise timer
+- `FitnessGoal` - Fitness goal tracking
+- `HeartRate` - Heart rate display
+- `ProcessSteps`, `StepCounter`, `StepIndicator` - Step tracking
+- `SleepTracker` - Sleep tracking
+- `TrainingProgress` - Training progress
+- `WaterIntake` - Water intake tracking
+- `WeightChart` - Weight visualization
+- `WorkoutLog`, `WorkoutPlanner` - Workout components
 
 ## Package Manager
 

@@ -1,10 +1,19 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/iot-components`, a TypeScript React component library. iot UI components for React
+**Package**: `@sudobility/iot-components`
+**Version**: 1.1.6
+**Type**: ES Module + UMD
+
+IoT (Internet of Things) UI components for React.
+
+### Components
+- `DeviceControl` - IoT device control interface
+- `SensorReading` - Sensor data display
+- `TelemetryChart` - Telemetry data visualization
 
 ## Package Manager
 

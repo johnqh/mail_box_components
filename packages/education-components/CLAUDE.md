@@ -1,10 +1,23 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/education-components`, a TypeScript React component library. Education and learning UI components for React
+**Package**: `@sudobility/education-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Education and learning UI components for React.
+
+### Components
+- `AssignmentSubmission` - Assignment submission interface
+- `Certificate`, `CertificateBuilder` - Certificate components
+- `CourseCatalog` - Course listing and browsing
+- `GradeBook` - Grade management display
+- `KnowledgeBase` - Knowledge base viewer
+- `QuizCard` - Quiz/assessment component
+- `TestCase` - Test case display
 
 ## Package Manager
 

@@ -1,10 +1,27 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/finance-components`, a TypeScript React component library. Finance and investment UI components for React
+**Package**: `@sudobility/finance-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Finance and investment UI components for React.
+
+### Components
+- `MortgageCalc`, `LoanCalculator`, `PricingCalculator` - Calculator components
+- `StockLevel`, `CryptoPortfolio`, `InvestmentPortfolio`, `InvestmentTracker` - Investment components
+- `WalletConnect`, `WalletIcon` - Wallet components
+- `AccountOverview`, `BalanceSheet`, `CashFlow`, `ProfitLoss` - Financial statements
+- `AuditTrail` - Audit tracking
+- `BillingCycle`, `BillingHistory` - Billing components
+- `BudgetTracker`, `ExpenseForm` - Budgeting components
+- `FinancialReport`, `IncomeChart` - Reporting components
+- `FundraiserProgress` - Fundraising display
+- `InvoiceDisplay`, `InvoiceTemplate` - Invoice components
+- `PaymentForm`, `ReceiptTemplate` - Payment components
 
 ## Package Manager
 

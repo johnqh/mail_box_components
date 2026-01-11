@@ -1,10 +1,29 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI assistants working with this repository.
 
 ## Project Overview
 
-This is `@sudobility/marketing-components`, a TypeScript React component library. marketing UI components for React
+**Package**: `@sudobility/marketing-components`
+**Version**: 2.0.6
+**Type**: ES Module + UMD
+
+Marketing and promotional UI components for React.
+
+### Components
+- `CrmDashboard` - CRM dashboard component
+- `CtaBanner` - Call-to-action banner
+- `FeatureListItem` - Feature list item
+- `FeatureSpotlight` - Feature spotlight display
+- `HeroBannerWithBadge` - Hero banner with badge
+- `InternalLinkClusters` - Internal link clustering
+- `LandingBuilder` - Landing page builder
+- `NpsSurvey` - NPS survey component
+- `SalesReport` - Sales report display
+- `SubscriberList` - Subscriber list management
+- `TestimonialSlider` - Testimonial slider
+- `UseCaseGrid` - Use case grid display
+- `WelcomeScreen` - Welcome screen component
 
 ## Package Manager
 

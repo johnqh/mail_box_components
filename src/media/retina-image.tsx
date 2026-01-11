@@ -53,7 +53,10 @@ export const RetinaImage: React.FC<RetinaImageProps> = ({
   onLoad,
   onError,
 }) => {
-  const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
+  const [dimensions, setDimensions] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
 
   const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -73,10 +76,7 @@ export const RetinaImage: React.FC<RetinaImageProps> = ({
     <img
       src={src}
       alt={alt}
-      className={cn(
-        'max-w-full h-auto',
-        className
-      )}
+      className={cn('max-w-full h-auto', className)}
       onLoad={handleLoad}
       onError={handleError}
       width={dimensions?.width}

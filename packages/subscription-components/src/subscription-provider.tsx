@@ -328,7 +328,10 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
    * @param _subscriptionUserId - Optional user ID (for reference; actual user is bound via initialize)
    */
   const purchase = useCallback(
-    async (productIdentifier: string, _subscriptionUserId?: string): Promise<boolean> => {
+    async (
+      productIdentifier: string,
+      _subscriptionUserId?: string
+    ): Promise<boolean> => {
       try {
         setIsLoading(true);
         setError(null);
@@ -416,39 +419,42 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
    * Restore previous purchases
    * @param _subscriptionUserId - Optional user ID (for reference; actual user is bound via initialize)
    */
-  const restore = useCallback(async (_subscriptionUserId?: string): Promise<boolean> => {
-    try {
-      setIsLoading(true);
-      setError(null);
+  const restore = useCallback(
+    async (_subscriptionUserId?: string): Promise<boolean> => {
+      try {
+        setIsLoading(true);
+        setError(null);
 
-      if (isDevelopment) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setError('No previous purchases found');
+        if (isDevelopment) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          setError('No previous purchases found');
+          return false;
+        }
+
+        if (!purchasesInstance) {
+          throw new Error('Subscription service not initialized');
+        }
+
+        const customerInfo = await purchasesInstance.getCustomerInfo();
+        const status = parseCustomerInfo(customerInfo);
+        setCurrentSubscription(status.isActive ? status : null);
+
+        if (!status.isActive) {
+          setError('No previous purchases found');
+        }
+
+        return status.isActive;
+      } catch (err) {
+        const errorMsg = err instanceof Error ? err.message : 'Restore failed';
+        setError(errorMsg);
+        onError?.(err instanceof Error ? err : new Error(errorMsg));
         return false;
+      } finally {
+        setIsLoading(false);
       }
-
-      if (!purchasesInstance) {
-        throw new Error('Subscription service not initialized');
-      }
-
-      const customerInfo = await purchasesInstance.getCustomerInfo();
-      const status = parseCustomerInfo(customerInfo);
-      setCurrentSubscription(status.isActive ? status : null);
-
-      if (!status.isActive) {
-        setError('No previous purchases found');
-      }
-
-      return status.isActive;
-    } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Restore failed';
-      setError(errorMsg);
-      onError?.(err instanceof Error ? err : new Error(errorMsg));
-      return false;
-    } finally {
-      setIsLoading(false);
-    }
-  }, [isDevelopment, onError]);
+    },
+    [isDevelopment, onError]
+  );
 
   /**
    * Refresh subscription status

@@ -10,6 +10,7 @@ export * from './image-gallery';
 export * from './image-comparison';
 export * from './image-cropper';
 export * from './lightbox';
+export * from './retina-image';
 
 // Video
 export * from './video-player';

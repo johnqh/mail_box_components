@@ -74,19 +74,8 @@ const BADGE_COLORS: Record<BadgeConfig['color'], string> = {
  * Displays a subscription plan with pricing, features, badges, and selection state.
  * All text is passed by the consumer for full localization control.
  *
- * @example
- * ```tsx
- * <SubscriptionTile
- *   id="yearly"
- *   title={t('plans.yearly.title')}
- *   price="$99.99"
- *   periodLabel={t('periods.year')}
- *   features={[t('feature1'), t('feature2')]}
- *   isSelected={selected === 'yearly'}
- *   onSelect={() => setSelected('yearly')}
- *   topBadge={{ text: t('badges.bestValue'), color: 'purple' }}
- * />
- * ```
+ * Layout: Uses flexbox with content area (flex-1) and a fixed-height bottom area
+ * for button/radio. This ensures no overlap between content and bottom elements.
  */
 export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   id: _id,
@@ -145,13 +134,6 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
     }
   };
 
-  // Calculate bottom margin for content to leave space for button/radio
-  const contentBottomMargin = showIndicator
-    ? isCtaMode
-      ? 'mb-16' // Space for CTA button (absolute bottom-4 + button height)
-      : 'mb-10' // Space for radio button (absolute bottom-4 + radio height)
-    : '';
-
   return (
     <div
       className={cn(
@@ -186,8 +168,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
         </div>
       )}
 
-      {/* Main content that can grow - margin-bottom ensures space for button/radio */}
-      <div className={cn('flex flex-col flex-grow', contentBottomMargin)}>
+      {/* Main content - flex-1 takes available space above the fixed bottom area */}
+      <div className='flex-1 flex flex-col'>
         {/* Title and Price - add top margin when there's a topBadge */}
         <div className={cn('text-center mb-6', topBadge && 'mt-2')}>
           <h3
@@ -240,9 +222,9 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
         {/* Custom Content Area */}
         {children}
 
-        {/* Features List */}
+        {/* Features List - no flex-grow, just takes its natural height */}
         {features.length > 0 && (
-          <div className='space-y-3 mb-6 flex-grow'>
+          <div className='space-y-3 mb-6'>
             {features.map((feature, index) => (
               <div key={index} className='flex items-start'>
                 <svg
@@ -329,7 +311,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
         {introPriceNote && (
           <div
             className={cn(
-              'p-3 rounded-lg mt-auto',
+              'p-3 rounded-lg',
               isSelected
                 ? 'bg-blue-500/30'
                 : 'bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800'
@@ -349,43 +331,44 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
         )}
       </div>
 
-      {/* CTA Button - absolutely positioned at bottom */}
-      {showIndicator && isCtaMode && (
-        <div className='absolute bottom-4 left-0 right-0 px-6'>
-          {ctaButton.href ? (
-            <a
-              href={ctaButton.href}
-              className={cn(
-                'block w-full py-3 font-semibold rounded-lg text-center transition-colors',
-                isSelected
-                  ? 'bg-white text-blue-600 hover:bg-gray-100'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
-              )}
-              onClick={e => e.stopPropagation()}
-            >
-              {ctaButton.label}
-            </a>
-          ) : (
-            <button
-              onClick={handleCtaClick}
-              disabled={disabled}
-              className={cn(
-                'w-full py-3 font-semibold rounded-lg transition-colors',
-                isSelected
-                  ? 'bg-white text-blue-600 hover:bg-gray-100'
-                  : 'bg-blue-600 text-white hover:bg-blue-700',
-                disabled && 'opacity-50 cursor-not-allowed'
-              )}
-            >
-              {ctaButton.label}
-            </button>
-          )}
-        </div>
-      )}
+      {/* Fixed-height bottom area - always present to reserve space */}
+      <div className='h-14 flex-shrink-0 flex items-end justify-center'>
+        {/* CTA Button */}
+        {showIndicator && isCtaMode && (
+          <div className='w-full'>
+            {ctaButton.href ? (
+              <a
+                href={ctaButton.href}
+                className={cn(
+                  'block w-full py-3 font-semibold rounded-lg text-center transition-colors',
+                  isSelected
+                    ? 'bg-white text-blue-600 hover:bg-gray-100'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                )}
+                onClick={e => e.stopPropagation()}
+              >
+                {ctaButton.label}
+              </a>
+            ) : (
+              <button
+                onClick={handleCtaClick}
+                disabled={disabled}
+                className={cn(
+                  'w-full py-3 font-semibold rounded-lg transition-colors',
+                  isSelected
+                    ? 'bg-white text-blue-600 hover:bg-gray-100'
+                    : 'bg-blue-600 text-white hover:bg-blue-700',
+                  disabled && 'opacity-50 cursor-not-allowed'
+                )}
+              >
+                {ctaButton.label}
+              </button>
+            )}
+          </div>
+        )}
 
-      {/* Radio button indicator - absolutely positioned at bottom */}
-      {showIndicator && !isCtaMode && (
-        <div className='absolute bottom-4 left-1/2 -translate-x-1/2'>
+        {/* Radio button indicator */}
+        {showIndicator && !isCtaMode && (
           <div
             className={cn(
               'w-5 h-5 rounded-full border-2 flex items-center justify-center',
@@ -396,8 +379,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
           >
             {isSelected && <div className='w-2 h-2 rounded-full bg-blue-600' />}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

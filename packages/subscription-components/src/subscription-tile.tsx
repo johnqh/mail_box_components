@@ -145,12 +145,17 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
     }
   };
 
+  // Calculate bottom margin for content to leave space for button/radio
+  const contentBottomMargin = showIndicator
+    ? isCtaMode
+      ? 'mb-16' // Space for CTA button (absolute bottom-4 + button height)
+      : 'mb-10' // Space for radio button (absolute bottom-4 + radio height)
+    : '';
+
   return (
     <div
       className={cn(
         'relative rounded-2xl p-6 transition-all flex flex-col h-full',
-        // Add extra bottom padding for radio button or CTA button (not needed if hidden)
-        showIndicator && (isCtaMode ? 'pb-20' : 'pb-14'),
         disabled
           ? 'opacity-50 cursor-not-allowed'
           : isCtaMode
@@ -181,8 +186,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
         </div>
       )}
 
-      {/* Main content that can grow */}
-      <div className='flex flex-col flex-grow'>
+      {/* Main content that can grow - margin-bottom ensures space for button/radio */}
+      <div className={cn('flex flex-col flex-grow', contentBottomMargin)}>
         {/* Title and Price - add top margin when there's a topBadge */}
         <div className={cn('text-center mb-6', topBadge && 'mt-2')}>
           <h3

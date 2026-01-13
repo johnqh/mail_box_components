@@ -28,6 +28,7 @@ export * from './radio-group';
 export * from '../../ui/select';
 export * from '../../ui/multi-select';
 export * from '../../ui/combobox';
+export * from '../../ui/editable-selector';
 export * from '../../ui/dropdown';
 export * from './toggle-group';
 

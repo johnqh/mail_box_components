@@ -48,6 +48,9 @@ export {
   type MasterListItemProps,
 } from './MasterDetailLayout';
 
+// Screen container
+export { ScreenContainer, type ScreenContainerProps } from './ScreenContainer';
+
 // Topbar components
 export {
   Topbar,

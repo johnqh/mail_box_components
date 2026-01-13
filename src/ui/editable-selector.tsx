@@ -6,8 +6,10 @@ import { variants as v } from '@sudobility/design';
 export interface EditableSelectorOption {
   /** Option value */
   value: string;
-  /** Option label (defaults to value if not provided) */
-  label?: string;
+  /** Option label - can be string or React element (defaults to value if not provided) */
+  label?: React.ReactNode;
+  /** Search label for filtering (defaults to value if not provided, used when label is a React element) */
+  searchLabel?: string;
   /** Disabled state */
   disabled?: boolean;
 }
@@ -69,12 +71,12 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Filter options based on input value
+  // Use searchLabel for filtering (falls back to value), since label can be a React element
   const filteredOptions = filterOptions
-    ? options.filter(option =>
-        (option.label || option.value)
-          .toLowerCase()
-          .includes(value.toLowerCase())
-      )
+    ? options.filter(option => {
+        const searchText = option.searchLabel || option.value;
+        return searchText.toLowerCase().includes(value.toLowerCase());
+      })
     : options;
 
   // Click outside to close

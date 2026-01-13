@@ -163,10 +163,10 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
 
   return (
     <div ref={containerRef} className={cn('relative w-full', className)}>
-      <div className="relative flex items-center">
+      <div className='relative flex items-center'>
         <input
           ref={inputRef}
-          type="text"
+          type='text'
           value={value}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
@@ -181,7 +181,7 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
           )}
         />
         <button
-          type="button"
+          type='button'
           onClick={toggleDropdown}
           disabled={disabled}
           className={cn(
@@ -193,7 +193,7 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
             'disabled:opacity-50 disabled:cursor-not-allowed',
             isOpen && 'text-gray-700 dark:text-gray-200'
           )}
-          aria-label="Toggle dropdown"
+          aria-label='Toggle dropdown'
         >
           <ChevronDown
             className={cn(
@@ -216,14 +216,14 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
           )}
         >
           {filteredOptions.length === 0 ? (
-            <div className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+            <div className='px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center'>
               {emptyMessage}
             </div>
           ) : (
             filteredOptions.map((option, index) => (
               <button
                 key={option.value}
-                type="button"
+                type='button'
                 onClick={() => handleSelect(option.value, option.disabled)}
                 disabled={option.disabled}
                 className={cn(

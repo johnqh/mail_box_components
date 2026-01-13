@@ -280,6 +280,7 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
                 disabled={option.disabled}
                 className={cn(
                   'w-full px-3 py-2 text-sm text-left',
+                  'flex items-center gap-2',
                   'transition-colors',
                   'disabled:opacity-50 disabled:cursor-not-allowed',
                   option.value === value

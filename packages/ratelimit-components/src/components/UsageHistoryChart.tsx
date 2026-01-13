@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -169,7 +169,7 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
 
       {/* Chart */}
       <ResponsiveContainer width='100%' height={height}>
-        <BarChart
+        <LineChart
           data={chartData}
           margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
         >
@@ -191,10 +191,13 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
           <Tooltip
             content={<CustomTooltip labels={labels} limit={limitValue} />}
           />
-          <Bar
+          <Line
+            type='monotone'
             dataKey='requests'
-            fill={barColor}
-            radius={[4, 4, 0, 0]}
+            stroke={barColor}
+            strokeWidth={2}
+            dot={{ fill: barColor, strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, strokeWidth: 2 }}
             name={labels.requestsLabel}
           />
           {showLimitLine && limitValue !== null && (
@@ -211,14 +214,14 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
               }}
             />
           )}
-        </BarChart>
+        </LineChart>
       </ResponsiveContainer>
 
       {/* Legend */}
       <div className='mt-4 flex items-center justify-center gap-6'>
         <div className='flex items-center gap-2'>
           <div
-            className='h-3 w-3 rounded'
+            className='h-0.5 w-4 rounded'
             style={{ backgroundColor: barColor }}
           />
           <span className='text-sm text-gray-600 dark:text-gray-400'>

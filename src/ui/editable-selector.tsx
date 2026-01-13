@@ -66,22 +66,30 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
   emptyMessage = 'No matching options',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isTyping, setIsTyping] = useState(false); // Track if user is actively typing
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Filter options based on input value
-  // Use searchLabel for filtering (falls back to value), since label can be a React element
-  const filteredOptions = filterOptions
-    ? options.filter(option => {
-        const searchText = option.searchLabel || option.value;
-        return searchText.toLowerCase().includes(value.toLowerCase());
-      })
-    : options;
+  // Find the selected option to display its label (with icons if applicable)
+  const selectedOption = options.find(opt => opt.value === value);
+  const hasCustomLabel =
+    selectedOption?.label && typeof selectedOption.label !== 'string';
 
-  // Click outside to close
+  // Filter options based on input value - only when user is actively typing
+  // Use searchLabel for filtering (falls back to value), since label can be a React element
+  const filteredOptions =
+    filterOptions && isTyping
+      ? options.filter(option => {
+          const searchText = option.searchLabel || option.value;
+          return searchText.toLowerCase().includes(value.toLowerCase());
+        })
+      : options;
+
+  // Click outside to close and exit editing mode
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen && !isEditing) return;
 
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -89,12 +97,14 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
         !containerRef.current.contains(e.target as Node)
       ) {
         setIsOpen(false);
+        setIsEditing(false);
+        setIsTyping(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen]);
+  }, [isOpen, isEditing]);
 
   // Reset highlighted index when filtered options change
   useEffect(() => {
@@ -129,14 +139,17 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
         ) {
           onChange(filteredOptions[highlightedIndex].value);
           setIsOpen(false);
+          setIsTyping(false);
         }
         break;
       case 'Escape':
         e.preventDefault();
         setIsOpen(false);
+        setIsTyping(false);
         break;
       case 'Tab':
         setIsOpen(false);
+        setIsTyping(false);
         break;
     }
   };
@@ -145,11 +158,13 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
     if (optionDisabled) return;
     onChange(optionValue);
     setIsOpen(false);
-    inputRef.current?.focus();
+    setIsEditing(false);
+    setIsTyping(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
+    setIsTyping(true); // User is actively typing, enable filtering
     if (!isOpen) {
       setIsOpen(true);
     }
@@ -163,25 +178,60 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
     }
   };
 
+  // Start editing mode
+  const startEditing = () => {
+    if (disabled) return;
+    setIsEditing(true);
+    setIsOpen(true);
+    // Focus input after render
+    setTimeout(() => inputRef.current?.focus(), 0);
+  };
+
   return (
     <div ref={containerRef} className={cn('relative w-full', className)}>
       <div className='relative flex items-center'>
-        <input
-          ref={inputRef}
-          type='text'
-          value={value}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          onFocus={() => options.length > 0 && setIsOpen(true)}
-          placeholder={placeholder}
-          disabled={disabled}
-          className={cn(
-            v.input.default(),
-            'pr-10',
-            disabled && 'opacity-50 cursor-not-allowed',
-            inputClassName
-          )}
-        />
+        {/* Display mode: show label with icons when not editing and has custom label */}
+        {!isEditing && hasCustomLabel && value ? (
+          <button
+            type='button'
+            onClick={startEditing}
+            disabled={disabled}
+            className={cn(
+              v.input.default(),
+              'pr-10 text-left flex items-center',
+              disabled && 'opacity-50 cursor-not-allowed',
+              inputClassName
+            )}
+          >
+            {selectedOption?.label}
+          </button>
+        ) : (
+          <input
+            ref={inputRef}
+            type='text'
+            value={value}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            onFocus={() => {
+              setIsEditing(true);
+              if (options.length > 0) setIsOpen(true);
+            }}
+            onBlur={() => {
+              // Delay to allow click on dropdown options
+              setTimeout(() => {
+                if (!isOpen) setIsEditing(false);
+              }, 150);
+            }}
+            placeholder={placeholder}
+            disabled={disabled}
+            className={cn(
+              v.input.default(),
+              'pr-10',
+              disabled && 'opacity-50 cursor-not-allowed',
+              inputClassName
+            )}
+          />
+        )}
         <button
           type='button'
           onClick={toggleDropdown}

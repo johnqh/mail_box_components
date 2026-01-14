@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/collaboration-components",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Collaboration and real-time teamwork components for whiteboards, co-editing, and shared workspaces",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.esm.js",

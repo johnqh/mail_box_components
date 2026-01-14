@@ -88,13 +88,6 @@ If you use performance monitoring utilities:
 npm install web-vitals@^5.0.0
 ```
 
-#### Additional Icons
-If you use components with Lucide icons:
-
-```bash
-npm install lucide-react@^0.400.0
-```
-
 ### 3. Update Your package.json
 
 Your `package.json` should now include:
@@ -121,8 +114,7 @@ Your `package.json` should now include:
     "react-router-dom": "^7.0.0",
     "react-helmet-async": "^2.0.0",
     "react-share": "^5.0.0",
-    "web-vitals": "^5.0.0",
-    "lucide-react": "^0.400.0"
+    "web-vitals": "^5.0.0"
   }
 }
 ```

@@ -21,7 +21,6 @@ All dependencies (except `@johnqh/design_system`) have been moved to `peerDepend
 - `class-variance-authority` - Required
 - `clsx` - Required
 - `tailwind-merge` - Required
-- `lucide-react` - Optional
 - `react-helmet-async` - Optional
 - `react-i18next` - Optional
 - `i18next` - Optional

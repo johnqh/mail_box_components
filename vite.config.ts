@@ -38,7 +38,6 @@ export default defineConfig({
         '@radix-ui/react-tabs',
         'class-variance-authority',
         'clsx',
-        'lucide-react',
         'tailwind-merge',
         // Optional peer dependencies
         'react-helmet-async',
@@ -57,7 +56,6 @@ export default defineConfig({
           clsx: 'clsx',
           'tailwind-merge': 'tailwindMerge',
           'class-variance-authority': 'cva',
-          'lucide-react': 'LucideReact',
           '@heroicons/react/20/solid': 'HeroiconsSolid20',
           '@heroicons/react/24/outline': 'HeroiconsOutline',
           '@heroicons/react/24/solid': 'HeroiconsSolid',

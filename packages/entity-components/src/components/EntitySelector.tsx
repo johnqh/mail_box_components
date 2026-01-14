@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { ChevronDown, Building2, User, Plus, Check } from 'lucide-react';
+import { ChevronDownIcon, BuildingOffice2Icon, UserIcon, PlusIcon, CheckIcon } from '@heroicons/react/24/outline';
 import type { EntityWithRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 
@@ -86,9 +86,9 @@ export function EntitySelector({
         {currentEntity ? (
           <>
             {currentEntity.entityType === 'personal' ? (
-              <User className='h-4 w-4 text-blue-600 dark:text-blue-400' />
+              <UserIcon className='h-4 w-4 text-blue-600 dark:text-blue-400' />
             ) : (
-              <Building2 className='h-4 w-4 text-purple-600 dark:text-purple-400' />
+              <BuildingOffice2Icon className='h-4 w-4 text-purple-600 dark:text-purple-400' />
             )}
             <span className='font-medium text-sm truncate max-w-[150px]'>
               {currentEntity.displayName}
@@ -99,7 +99,7 @@ export function EntitySelector({
             Select workspace
           </span>
         )}
-        <ChevronDown
+        <ChevronDownIcon
           className={cn(
             'h-4 w-4 text-muted-foreground transition-transform',
             isOpen && 'rotate-180'
@@ -167,7 +167,7 @@ export function EntitySelector({
                       'text-sm text-primary hover:bg-muted transition-colors'
                     )}
                   >
-                    <Plus className='h-4 w-4' />
+                    <PlusIcon className='h-4 w-4' />
                     <span>Create organization</span>
                   </button>
                 </>
@@ -188,7 +188,7 @@ interface EntityMenuItemProps {
 
 function EntityMenuItem({ entity, isSelected, onClick }: EntityMenuItemProps) {
   const isPersonal = entity.entityType === 'personal';
-  const Icon = isPersonal ? User : Building2;
+  const Icon = isPersonal ? UserIcon : BuildingOffice2Icon;
 
   return (
     <button
@@ -211,7 +211,7 @@ function EntityMenuItem({ entity, isSelected, onClick }: EntityMenuItemProps) {
         )}
       />
       <span className='flex-1 text-left truncate'>{entity.displayName}</span>
-      {isSelected && <Check className='h-4 w-4' />}
+      {isSelected && <CheckIcon className='h-4 w-4' />}
     </button>
   );
 }

@@ -25,7 +25,7 @@ export default defineConfig({
         '@sudobility/components',
         '@sudobility/design',
         '@sudobility/types',
-        'lucide-react',
+        '@heroicons/react/24/outline',
       ],
       output: {
         exports: 'named',
@@ -36,7 +36,7 @@ export default defineConfig({
           '@sudobility/components': 'SudobilityComponents',
           '@sudobility/design': 'SudobilityDesign',
           '@sudobility/types': 'SudobilityTypes',
-          'lucide-react': 'LucideReact',
+          '@heroicons/react/24/outline': 'HeroiconsOutline',
         },
       },
     },

@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { ChevronDown, Shield, Briefcase, Eye, Check } from 'lucide-react';
+import { ChevronDownIcon, ShieldCheckIcon, BriefcaseIcon, EyeIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 
@@ -36,7 +36,7 @@ interface RoleOption {
   value: EntityRole;
   label: string;
   description: string;
-  icon: typeof Shield;
+  icon: typeof ShieldCheckIcon;
   color: string;
 }
 
@@ -45,21 +45,21 @@ const roleOptions: RoleOption[] = [
     value: EntityRole.OWNER,
     label: 'Owner',
     description: 'Full access to all settings and members',
-    icon: Shield,
+    icon: ShieldCheckIcon,
     color: 'text-purple-600 dark:text-purple-400',
   },
   {
     value: EntityRole.ADMIN,
     label: 'Admin',
     description: 'Can manage projects and API keys',
-    icon: Briefcase,
+    icon: BriefcaseIcon,
     color: 'text-blue-600 dark:text-blue-400',
   },
   {
     value: EntityRole.MEMBER,
     label: 'Member',
     description: 'Read-only access',
-    icon: Eye,
+    icon: EyeIcon,
     color: 'text-gray-600 dark:text-gray-400',
   },
 ];
@@ -110,7 +110,7 @@ export function MemberRoleSelector({
       >
         <selectedRole.icon className={cn('h-3.5 w-3.5', selectedRole.color)} />
         <span>{selectedRole.label}</span>
-        <ChevronDown
+        <ChevronDownIcon
           className={cn(
             'h-3.5 w-3.5 text-muted-foreground transition-transform',
             isOpen && 'rotate-180'
@@ -151,7 +151,7 @@ export function MemberRoleSelector({
                   <div className='flex items-center gap-2'>
                     <span className='font-medium text-sm'>{option.label}</span>
                     {option.value === value && (
-                      <Check className='h-3.5 w-3.5 text-primary' />
+                      <CheckIcon className='h-3.5 w-3.5 text-primary' />
                     )}
                   </div>
                   <p className='text-xs text-muted-foreground'>

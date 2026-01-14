@@ -8,7 +8,7 @@ export interface ActionBannerProps {
   description?: string;
   /** Variant determines the color scheme */
   variant?: 'info' | 'success' | 'warning' | 'error';
-  /** Icon to display (React node, typically from lucide-react) */
+  /** Icon to display (React node, typically from @heroicons/react) */
   icon?: React.ReactNode;
   /** Action button configuration */
   action?: {

@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { Mail, Send, Loader2 } from 'lucide-react';
+import { EnvelopeIcon, PaperAirplaneIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import { EntityRole, type InviteMemberRequest } from '@sudobility/types';
 import { MemberRoleSelector } from './MemberRoleSelector';
 import { cn } from '../lib/utils';
@@ -79,7 +79,7 @@ export function InvitationForm({
       <div className='flex gap-2'>
         {/* Email Input */}
         <div className='relative flex-1'>
-          <Mail className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground' />
+          <EnvelopeIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground' />
           <input
             type='email'
             value={email}
@@ -116,9 +116,9 @@ export function InvitationForm({
           )}
         >
           {isSubmitting ? (
-            <Loader2 className='h-4 w-4 animate-spin' />
+            <ArrowPathIcon className='h-4 w-4 animate-spin' />
           ) : (
-            <Send className='h-4 w-4' />
+            <PaperAirplaneIcon className='h-4 w-4' />
           )}
           <span className='hidden sm:inline'>Invite</span>
         </button>

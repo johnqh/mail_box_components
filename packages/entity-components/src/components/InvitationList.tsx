@@ -3,7 +3,7 @@
  * @description List of pending invitations
  */
 
-import { Mail, Clock, X, Check, XCircle } from 'lucide-react';
+import { EnvelopeIcon, ClockIcon, XMarkIcon, CheckIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import type { EntityInvitation, EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 
@@ -147,7 +147,7 @@ function InvitationRow({
     <div className='flex items-center gap-3 p-3'>
       {/* Icon */}
       <div className='flex h-10 w-10 items-center justify-center rounded-full bg-muted'>
-        <Mail className='h-5 w-5 text-muted-foreground' />
+        <EnvelopeIcon className='h-5 w-5 text-muted-foreground' />
       </div>
 
       {/* Info */}
@@ -172,7 +172,7 @@ function InvitationRow({
           </span>
         </div>
         <div className='flex items-center gap-1.5 text-sm text-muted-foreground'>
-          <Clock className='h-3.5 w-3.5' />
+          <ClockIcon className='h-3.5 w-3.5' />
           {isExpired ? (
             <span className='text-destructive'>Expired</span>
           ) : (
@@ -192,7 +192,7 @@ function InvitationRow({
           )}
           title='Cancel invitation'
         >
-          <XCircle className='h-4 w-4' />
+          <XCircleIcon className='h-4 w-4' />
         </button>
       )}
 
@@ -207,7 +207,7 @@ function InvitationRow({
                 'border hover:bg-muted transition-colors'
               )}
             >
-              <X className='h-4 w-4' />
+              <XMarkIcon className='h-4 w-4' />
               <span>Decline</span>
             </button>
           )}
@@ -223,7 +223,7 @@ function InvitationRow({
                 isExpired && 'opacity-50 cursor-not-allowed'
               )}
             >
-              <Check className='h-4 w-4' />
+              <CheckIcon className='h-4 w-4' />
               <span>Accept</span>
             </button>
           )}

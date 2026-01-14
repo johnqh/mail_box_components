@@ -3,7 +3,7 @@
  * @description List of entity members with role management
  */
 
-import { User, Trash2 } from 'lucide-react';
+import { UserIcon, TrashIcon } from '@heroicons/react/24/outline';
 import type { EntityMember, EntityRole } from '@sudobility/types';
 import { MemberRoleSelector } from './MemberRoleSelector';
 import { cn } from '../lib/utils';
@@ -136,7 +136,7 @@ function MemberRow({
     <div className='flex items-center gap-3 p-3'>
       {/* Avatar */}
       <div className='flex h-10 w-10 items-center justify-center rounded-full bg-muted'>
-        <User className='h-5 w-5 text-muted-foreground' />
+        <UserIcon className='h-5 w-5 text-muted-foreground' />
       </div>
 
       {/* Info */}
@@ -180,7 +180,7 @@ function MemberRow({
           )}
           title='Remove member'
         >
-          <Trash2 className='h-4 w-4' />
+          <TrashIcon className='h-4 w-4' />
         </button>
       )}
     </div>

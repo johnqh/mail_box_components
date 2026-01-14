@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { cn } from '../lib/utils';
 import { variants as v } from '@sudobility/design';
 
@@ -247,7 +247,7 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
           )}
           aria-label='Toggle dropdown'
         >
-          <ChevronDown
+          <ChevronDownIcon
             className={cn(
               'w-4 h-4 transition-transform',
               isOpen && 'rotate-180'

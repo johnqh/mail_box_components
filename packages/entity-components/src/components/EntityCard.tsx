@@ -3,7 +3,7 @@
  * @description Card displaying entity information
  */
 
-import { Building2, User } from 'lucide-react';
+import { BuildingOffice2Icon, UserIcon } from '@heroicons/react/24/outline';
 import type { EntityWithRole, EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 
@@ -54,7 +54,7 @@ export function EntityCard({
   componentName = 'EntityCard',
 }: EntityCardProps) {
   const isPersonal = entity.entityType === 'personal';
-  const Icon = isPersonal ? User : Building2;
+  const Icon = isPersonal ? UserIcon : BuildingOffice2Icon;
 
   const handleClick = () => {
     onTrack?.({ action: 'click', trackingLabel, componentName });

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/ratelimit-components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Rate limit UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -37,16 +37,16 @@
   "author": "John Q Huang",
   "license": "MIT",
   "peerDependencies": {
-    "@sudobility/components": "*",
-    "@sudobility/design": "^1.1.14",
+    "@sudobility/components": "^4.0.156",
+    "@sudobility/design": "^1.1.18",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
-    "recharts": "^2.0.0"
+    "recharts": "^2.0.0 || ^3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
-    "@sudobility/components": "*",
-    "@sudobility/design": "^1.1.14",
+    "@sudobility/components": "^4.0.156",
+    "@sudobility/design": "^1.1.18",
     "ajv": "^8.17.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.2",

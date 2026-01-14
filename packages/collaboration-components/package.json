@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/collaboration-components",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Collaboration and real-time teamwork components for whiteboards, co-editing, and shared workspaces",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.esm.js",
@@ -24,13 +24,13 @@
     "test:watch": "vitest"
   },
   "peerDependencies": {
-    "@sudobility/components": "*",
+    "@sudobility/components": "^4.0.156",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
-    "@sudobility/components": "*",
+    "@sudobility/components": "^4.0.156",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^24.7.1",

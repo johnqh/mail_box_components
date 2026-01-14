@@ -4,7 +4,13 @@
  */
 
 import { useState } from 'react';
-import { ChevronDownIcon, ShieldCheckIcon, BriefcaseIcon, EyeIcon, CheckIcon } from '@heroicons/react/24/outline';
+import {
+  ChevronDownIcon,
+  ShieldCheckIcon,
+  BriefcaseIcon,
+  EyeIcon,
+  CheckIcon,
+} from '@heroicons/react/24/outline';
 import { EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 

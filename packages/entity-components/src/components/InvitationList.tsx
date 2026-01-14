@@ -3,7 +3,13 @@
  * @description List of pending invitations
  */
 
-import { EnvelopeIcon, ClockIcon, XMarkIcon, CheckIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import {
+  EnvelopeIcon,
+  ClockIcon,
+  XMarkIcon,
+  CheckIcon,
+  XCircleIcon,
+} from '@heroicons/react/24/outline';
 import type { EntityInvitation, EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
 

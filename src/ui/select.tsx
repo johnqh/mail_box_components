@@ -1,6 +1,10 @@
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@heroicons/react/20/solid';
 import { cn } from '../lib/utils';
 import { variants } from '@sudobility/design';
 

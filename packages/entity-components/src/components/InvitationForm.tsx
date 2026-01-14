@@ -4,7 +4,11 @@
  */
 
 import { useState } from 'react';
-import { EnvelopeIcon, PaperAirplaneIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import {
+  EnvelopeIcon,
+  PaperAirplaneIcon,
+  ArrowPathIcon,
+} from '@heroicons/react/24/outline';
 import { EntityRole, type InviteMemberRequest } from '@sudobility/types';
 import { MemberRoleSelector } from './MemberRoleSelector';
 import { cn } from '../lib/utils';

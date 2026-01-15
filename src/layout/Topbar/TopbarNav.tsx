@@ -20,6 +20,8 @@ export interface TopbarNavItem {
   children?: TopbarNavItem[];
   /** Whether this item is disabled */
   disabled?: boolean;
+  /** Custom CSS classes for this item */
+  className?: string;
 }
 
 export interface TopbarNavProps {
@@ -91,7 +93,8 @@ export const TopbarNav: React.FC<TopbarNavProps> = ({
         ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
         : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700',
       item.disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
-      isMobile && 'w-full text-left'
+      isMobile && 'w-full text-left',
+      item.className
     );
 
     // If item has children, render as dropdown
@@ -297,7 +300,8 @@ export const TopbarMobileNav: React.FC<TopbarMobileNavProps> = ({
               'transition-colors duration-200',
               item.active
                 ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700'
+                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700',
+              item.className
             )}
             onClick={() => setMobileMenuOpen(false)}
           />

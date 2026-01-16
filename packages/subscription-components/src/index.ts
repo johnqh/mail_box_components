@@ -43,5 +43,16 @@ export type {
   FreeTileConfig,
 } from './types';
 
+// Subscription Service
+export {
+  SubscriptionService,
+  createSubscriptionService,
+  type SubscriptionEntitlement,
+  type SubscriptionProductInfo,
+  type SubscriptionPackage,
+  type SubscriptionOffer,
+  type CurrentSubscriptionInfo,
+} from './subscription-service';
+
 // Utilities
 export { cn } from './lib/cn';

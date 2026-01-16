@@ -24,6 +24,8 @@ export interface SubscriptionTileProps {
   isSelected: boolean;
   /** Selection callback */
   onSelect: () => void;
+  /** Whether this is the user's current plan (shows persistent blue border) */
+  isCurrentPlan?: boolean;
 
   /** Optional top badge (e.g., "Most Popular", "Free Trial") */
   topBadge?: BadgeConfig;
@@ -44,8 +46,10 @@ export interface SubscriptionTileProps {
   className?: string;
   /** Custom content to render in the content area */
   children?: React.ReactNode;
-  /** Disabled state */
+  /** Disabled state (prevents interaction but keeps normal appearance) */
   disabled?: boolean;
+  /** Whether this tile is enabled/selectable (false = grayed out, no indicator) */
+  enabled?: boolean;
 
   /** Accessibility label */
   ariaLabel?: string;
@@ -85,6 +89,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   features,
   isSelected,
   onSelect,
+  isCurrentPlan = false,
   topBadge,
   discountBadge,
   premiumCallout,
@@ -95,6 +100,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   className,
   children,
   disabled = false,
+  enabled = true,
   ariaLabel,
   onTrack,
   trackingLabel,
@@ -104,22 +110,33 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   // When ctaButton is provided, tile is not selectable (CTA mode)
   const isCtaMode = !!ctaButton;
   // Whether to show any bottom indicator (radio or CTA)
-  const showIndicator = !hideSelectionIndicator;
-  // Selected: Blue background with ring (like pricing page popular tile)
-  // Unselected: Gray background (like pricing page non-popular tiles)
+  // Hide indicator when: hideSelectionIndicator, isCurrentPlan (user's current plan), or not enabled
+  const showIndicator = !hideSelectionIndicator && !isCurrentPlan && enabled;
+  // Whether the tile is interactive (can be clicked/selected)
+  const isInteractive = enabled && !isCurrentPlan && !disabled;
+  // Styling logic:
+  // - Selected: Blue background with blue border
+  // - Current plan (not selected): Blue border to indicate current subscription
+  // - Not enabled: Grayed out with opacity-50
+  // - Default: Gray background
+  // Note: All states use the same border-2 and shadow-md for consistent layout
   const tileStyles = isSelected
-    ? 'bg-blue-600 text-white ring-4 ring-blue-600 ring-offset-4 ring-offset-white dark:ring-offset-gray-900 border-transparent'
-    : 'bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-md';
+    ? 'bg-blue-600 text-white border-2 border-blue-600 shadow-md'
+    : isCurrentPlan
+      ? 'bg-gray-100 dark:bg-gray-800 border-2 border-blue-500 dark:border-blue-400 shadow-md'
+      : !enabled
+        ? 'bg-gray-100 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 opacity-50 shadow-md'
+        : 'bg-gray-100 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-md hover:border-gray-300 dark:hover:border-gray-600';
 
   const handleClick = () => {
-    if (!disabled && !isCtaMode) {
+    if (isInteractive && !isCtaMode) {
       onTrack?.({ action: 'select', trackingLabel, componentName });
       onSelect();
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!disabled && !isCtaMode && (e.key === 'Enter' || e.key === ' ')) {
+    if (isInteractive && !isCtaMode && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
       onTrack?.({ action: 'select', trackingLabel, componentName });
       onSelect();
@@ -138,11 +155,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
     <div
       className={cn(
         'relative rounded-2xl p-6 transition-all flex flex-col h-full',
-        disabled
-          ? 'opacity-50 cursor-not-allowed'
-          : isCtaMode
-            ? 'cursor-default'
-            : 'cursor-pointer',
+        !isInteractive || isCtaMode ? 'cursor-default' : 'cursor-pointer',
+        disabled && 'cursor-not-allowed',
         tileStyles,
         className
       )}
@@ -151,8 +165,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
       role={isCtaMode ? 'article' : 'radio'}
       aria-checked={isCtaMode ? undefined : isSelected}
       aria-label={ariaLabel || `${title} - ${price}${periodLabel || ''}`}
-      aria-disabled={disabled}
-      tabIndex={isCtaMode || disabled ? -1 : 0}
+      aria-disabled={!isInteractive}
+      tabIndex={isCtaMode || !isInteractive ? -1 : 0}
     >
       {/* Top Badge - vertically centered on the top border */}
       {topBadge && (

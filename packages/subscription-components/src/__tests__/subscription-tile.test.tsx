@@ -125,9 +125,9 @@ describe('SubscriptionTile', () => {
       <SubscriptionTile {...defaultProps} isSelected />
     );
 
-    // Selected tiles have blue background with ring
+    // Selected tiles have blue background with border
     expect(container.firstChild).toHaveClass('bg-blue-600');
-    expect(container.firstChild).toHaveClass('ring-4');
+    expect(container.firstChild).toHaveClass('border-blue-600');
   });
 
   it('applies unselected styles when isSelected is false', () => {

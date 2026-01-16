@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardContent } from '@sudobility/components';
+import { Button } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
 import { cn } from './lib/cn';
 import { SubscriptionTile } from './subscription-tile';
@@ -188,124 +188,119 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
   };
 
   return (
-    <Card className={className}>
-      <CardContent className='pt-6'>
-        {/* Custom Header Content */}
-        {headerContent}
+    <div className={className}>
+      {/* Custom Header Content */}
+      {headerContent}
 
-        {/* Current Status Section */}
-        {currentStatus && (
-          <>
-            <h2 className={cn(textVariants.heading.h3(), 'mb-4')}>
-              {currentStatusLabel}
-            </h2>
+      {/* Current Status Section */}
+      {currentStatus && (
+        <>
+          <h2 className={cn(textVariants.heading.h3(), 'mb-4')}>
+            {currentStatusLabel}
+          </h2>
 
-            {currentStatus.isActive ? (
-              <div className='bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6'>
-                <div className='flex items-center mb-2'>
-                  <div className='w-3 h-3 bg-green-500 rounded-full mr-3' />
-                  <span className='font-semibold text-green-800 dark:text-green-300'>
-                    {currentStatus.activeContent?.title ||
-                      'Active Subscription'}
-                  </span>
-                </div>
-                {currentStatus.activeContent?.fields &&
-                  currentStatus.activeContent.fields.length > 0 && (
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
-                      {currentStatus.activeContent.fields.map(
-                        (field, index) => (
-                          <div key={index}>
-                            <p className='text-sm text-green-600 dark:text-green-400'>
-                              {field.label}
-                            </p>
-                            <p className='font-semibold text-green-800 dark:text-green-300'>
-                              {field.value}
-                            </p>
-                          </div>
-                        )
-                      )}
-                    </div>
-                  )}
+          {currentStatus.isActive ? (
+            <div className='bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6'>
+              <div className='flex items-center mb-2'>
+                <div className='w-3 h-3 bg-green-500 rounded-full mr-3' />
+                <span className='font-semibold text-green-800 dark:text-green-300'>
+                  {currentStatus.activeContent?.title || 'Active Subscription'}
+                </span>
               </div>
-            ) : (
-              <div className='bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6'>
-                <div className='flex items-center mb-2'>
-                  <div className='w-3 h-3 bg-yellow-500 rounded-full mr-3' />
-                  <span className='font-semibold text-yellow-800 dark:text-yellow-300'>
-                    {currentStatus.inactiveContent?.title ||
-                      'No Active Subscription'}
-                  </span>
-                </div>
-                {currentStatus.inactiveContent?.message && (
-                  <p className='text-yellow-700 dark:text-yellow-400'>
-                    {currentStatus.inactiveContent.message}
-                  </p>
+              {currentStatus.activeContent?.fields &&
+                currentStatus.activeContent.fields.length > 0 && (
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
+                    {currentStatus.activeContent.fields.map((field, index) => (
+                      <div key={index}>
+                        <p className='text-sm text-green-600 dark:text-green-400'>
+                          {field.label}
+                        </p>
+                        <p className='font-semibold text-green-800 dark:text-green-300'>
+                          {field.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 )}
+            </div>
+          ) : (
+            <div className='bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6'>
+              <div className='flex items-center mb-2'>
+                <div className='w-3 h-3 bg-yellow-500 rounded-full mr-3' />
+                <span className='font-semibold text-yellow-800 dark:text-yellow-300'>
+                  {currentStatus.inactiveContent?.title ||
+                    'No Active Subscription'}
+                </span>
               </div>
-            )}
-          </>
-        )}
-
-        {/* Section Title */}
-        <h2 className={cn(textVariants.heading.h3(), 'mb-4')}>{title}</h2>
-
-        {/* Above Products Content (e.g., billing period selector) */}
-        {aboveProducts}
-
-        {/* Subscription Tiles Grid */}
-        <div style={gridStyle}>
-          {/* Free Tile - only shown in 'cta' variant when enabled */}
-          {shouldShowFreeTile && (
-            <SubscriptionTile
-              id='free'
-              title={freeTileConfig.title}
-              price={freeTileConfig.price}
-              periodLabel={freeTileConfig.periodLabel}
-              features={freeTileConfig.features}
-              isSelected={false}
-              onSelect={() => {}}
-              topBadge={freeTileConfig.topBadge}
-              ctaButton={freeTileConfig.ctaButton}
-            />
+              {currentStatus.inactiveContent?.message && (
+                <p className='text-yellow-700 dark:text-yellow-400'>
+                  {currentStatus.inactiveContent.message}
+                </p>
+              )}
+            </div>
           )}
-          {children}
+        </>
+      )}
+
+      {/* Section Title */}
+      <h2 className={cn(textVariants.heading.h3(), 'mb-4')}>{title}</h2>
+
+      {/* Above Products Content (e.g., billing period selector) */}
+      {aboveProducts}
+
+      {/* Subscription Tiles Grid */}
+      <div style={gridStyle}>
+        {/* Free Tile - only shown in 'cta' variant when enabled */}
+        {shouldShowFreeTile && (
+          <SubscriptionTile
+            id='free'
+            title={freeTileConfig.title}
+            price={freeTileConfig.price}
+            periodLabel={freeTileConfig.periodLabel}
+            features={freeTileConfig.features}
+            isSelected={false}
+            onSelect={() => {}}
+            topBadge={freeTileConfig.topBadge}
+            ctaButton={freeTileConfig.ctaButton}
+          />
+        )}
+        {children}
+      </div>
+
+      {/* Custom Footer Content */}
+      {footerContent}
+
+      {/* Error Message */}
+      {error && (
+        <div className='bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mt-6'>
+          <p className='text-red-600 dark:text-red-400'>{error}</p>
         </div>
+      )}
 
-        {/* Custom Footer Content */}
-        {footerContent}
-
-        {/* Error Message */}
-        {error && (
-          <div className='bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mt-6'>
-            <p className='text-red-600 dark:text-red-400'>{error}</p>
-          </div>
-        )}
-
-        {/* Action Buttons - only shown in 'selection' variant */}
-        {showActionButtons && (
-          <div className='flex flex-col sm:flex-row gap-3 mt-6'>
-            {secondaryAction && (
-              <Button
-                onClick={handleSecondaryClick}
-                disabled={secondaryAction.disabled || secondaryAction.loading}
-                variant='outline'
-                className='sm:flex-shrink-0'
-              >
-                {secondaryAction.label}
-              </Button>
-            )}
-
+      {/* Action Buttons - only shown in 'selection' variant */}
+      {showActionButtons && (
+        <div className='flex flex-col sm:flex-row gap-3 mt-6'>
+          {secondaryAction && (
             <Button
-              onClick={handlePrimaryClick}
-              disabled={primaryAction.disabled || primaryAction.loading}
-              className='flex-1'
+              onClick={handleSecondaryClick}
+              disabled={secondaryAction.disabled || secondaryAction.loading}
+              variant='outline'
+              className='sm:flex-shrink-0'
             >
-              {primaryAction.label}
+              {secondaryAction.label}
             </Button>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          )}
+
+          <Button
+            onClick={handlePrimaryClick}
+            disabled={primaryAction.disabled || primaryAction.loading}
+            className='flex-1'
+          >
+            {primaryAction.label}
+          </Button>
+        </div>
+      )}
+    </div>
   );
 };
 

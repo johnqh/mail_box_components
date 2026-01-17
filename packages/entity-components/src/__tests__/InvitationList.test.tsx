@@ -13,7 +13,7 @@ describe('InvitationList', () => {
     {
       id: 'inv-1',
       email: 'user1@example.com',
-      role: 'admin',
+      role: 'manager',
       status: 'pending',
       token: 'token-1',
       expiresAt: futureDate,

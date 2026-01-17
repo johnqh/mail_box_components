@@ -24,7 +24,7 @@ describe('MemberList', () => {
       id: 'member-2',
       userId: 'user-2',
       entityId: 'entity-1',
-      role: 'admin',
+      role: 'manager',
       isActive: true,
       joinedAt: new Date().toISOString(),
       user: {
@@ -50,7 +50,7 @@ describe('MemberList', () => {
     render(<MemberList members={mockMembers} />);
 
     expect(screen.getByText('owner')).toBeInTheDocument();
-    expect(screen.getByText('admin')).toBeInTheDocument();
+    expect(screen.getByText('manager')).toBeInTheDocument();
   });
 
   it('shows (you) indicator for current user', () => {
@@ -139,8 +139,8 @@ describe('MemberList', () => {
       );
 
       // Should see role selector for user-2
-      const adminButton = screen.getByText('Admin');
-      expect(adminButton).toBeInTheDocument();
+      const managerButton = screen.getByText('Manager');
+      expect(managerButton).toBeInTheDocument();
     });
   });
 

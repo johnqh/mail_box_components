@@ -5,9 +5,11 @@ import { EntityRole } from '@sudobility/types';
 
 describe('MemberRoleSelector', () => {
   it('renders current role', () => {
-    render(<MemberRoleSelector value={EntityRole.ADMIN} onChange={vi.fn()} />);
+    render(
+      <MemberRoleSelector value={EntityRole.MANAGER} onChange={vi.fn()} />
+    );
 
-    expect(screen.getByText('Admin')).toBeInTheDocument();
+    expect(screen.getByText('Manager')).toBeInTheDocument();
   });
 
   it('opens dropdown on click', () => {
@@ -16,7 +18,7 @@ describe('MemberRoleSelector', () => {
     fireEvent.click(screen.getByRole('button'));
 
     expect(screen.getByText('Owner')).toBeInTheDocument();
-    expect(screen.getByText('Admin')).toBeInTheDocument();
+    expect(screen.getByText('Manager')).toBeInTheDocument();
     // Member appears twice: in the button and in the dropdown
     expect(screen.getAllByText('Member').length).toBe(2);
   });
@@ -42,9 +44,9 @@ describe('MemberRoleSelector', () => {
     );
 
     fireEvent.click(screen.getByRole('button'));
-    fireEvent.click(screen.getByText('Admin'));
+    fireEvent.click(screen.getByText('Manager'));
 
-    expect(onChange).toHaveBeenCalledWith(EntityRole.ADMIN);
+    expect(onChange).toHaveBeenCalledWith(EntityRole.MANAGER);
   });
 
   it('closes dropdown after selection', () => {

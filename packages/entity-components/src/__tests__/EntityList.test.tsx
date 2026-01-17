@@ -10,7 +10,7 @@ describe('EntityList', () => {
       displayName: 'Personal Workspace',
       entityType: 'personal',
       entitySlug: 'personal-workspace',
-      userRole: 'admin',
+      userRole: 'manager',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },

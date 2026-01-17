@@ -8,7 +8,7 @@ describe('EntityCard', () => {
     id: 'personal-1',
     displayName: 'Personal Workspace',
     entityType: 'personal',
-    userRole: 'admin',
+    userRole: 'manager',
     description: 'My personal workspace',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -28,7 +28,7 @@ describe('EntityCard', () => {
     render(<EntityCard entity={mockPersonalEntity} />);
 
     expect(screen.getByText('Personal Workspace')).toBeInTheDocument();
-    expect(screen.getByText('admin')).toBeInTheDocument();
+    expect(screen.getByText('manager')).toBeInTheDocument();
     expect(screen.getByText('Personal workspace')).toBeInTheDocument();
   });
 

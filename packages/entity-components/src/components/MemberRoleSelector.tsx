@@ -55,8 +55,8 @@ const roleOptions: RoleOption[] = [
     color: 'text-purple-600 dark:text-purple-400',
   },
   {
-    value: EntityRole.ADMIN,
-    label: 'Admin',
+    value: EntityRole.MANAGER,
+    label: 'Manager',
     description: 'Can manage projects and API keys',
     icon: BriefcaseIcon,
     color: 'text-blue-600 dark:text-blue-400',

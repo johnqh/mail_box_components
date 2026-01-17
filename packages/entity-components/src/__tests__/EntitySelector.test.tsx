@@ -9,7 +9,7 @@ describe('EntitySelector', () => {
       id: 'personal-1',
       displayName: 'Personal Workspace',
       entityType: 'personal',
-      userRole: 'admin',
+      userRole: 'manager',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     },

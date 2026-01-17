@@ -251,10 +251,17 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
   }, [onError]);
 
   /**
-   * Initialize RevenueCat with user ID
+   * Initialize RevenueCat with user ID.
+   * If userId is undefined, clears the current user state.
    */
   const initialize = useCallback(
-    async (userId: string, email?: string) => {
+    async (userId?: string, email?: string) => {
+      // If userId is undefined, clear the user state
+      if (!userId) {
+        resetState();
+        return;
+      }
+
       // Reset if user changed
       if (currentUserId && currentUserId !== userId) {
         resetState();

@@ -144,8 +144,8 @@ export interface SubscriptionContextValue {
   isLoading: boolean;
   /** Error message if any */
   error: string | null;
-  /** Initialize the subscription service */
-  initialize: (userId: string, email?: string) => Promise<void>;
+  /** Initialize the subscription service. If userId is undefined, clears the current user. */
+  initialize: (userId?: string, email?: string) => Promise<void>;
   /** Purchase a subscription. subscriptionUserId identifies which user/entity the subscription is for. */
   purchase: (
     productIdentifier: string,

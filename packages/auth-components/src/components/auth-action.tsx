@@ -10,6 +10,7 @@ import { cn } from '../lib/cn';
  */
 export function AuthAction({
   className,
+  loginButtonClassName,
   loginButtonVariant = 'primary',
   size = 'md',
   loginButtonContent,
@@ -51,6 +52,7 @@ export function AuthAction({
           variant={loginButtonVariant}
           size={buttonSizeMap[size]}
           onClick={handleLoginClick}
+          className={loginButtonClassName}
         >
           {loginButtonContent ?? texts.login}
         </Button>

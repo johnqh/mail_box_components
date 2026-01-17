@@ -300,6 +300,8 @@ export interface AuthMenuItem {
 export interface AuthActionProps {
   /** Custom class name */
   className?: string;
+  /** Custom class name for the login button */
+  loginButtonClassName?: string;
   /** Button variant when not logged in */
   loginButtonVariant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   /** Button size */

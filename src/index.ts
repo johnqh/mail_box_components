@@ -79,9 +79,6 @@ export * from './kyc';
 // === LAYOUT COMPONENTS ===
 export * from './layout';
 
-// === SEO COMPONENTS ===
-export * from './seo';
-
 // === OPTIMIZATION COMPONENTS ===
 export * from './optimization';
 

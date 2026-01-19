@@ -40,7 +40,6 @@ export default defineConfig({
         'clsx',
         'tailwind-merge',
         // Optional peer dependencies
-        'react-helmet-async',
         'react-i18next',
         'i18next',
         'react-router-dom',
@@ -66,7 +65,6 @@ export default defineConfig({
           '@radix-ui/react-slot': 'RadixSlot',
           '@radix-ui/react-switch': 'RadixSwitch',
           '@radix-ui/react-tabs': 'RadixTabs',
-          'react-helmet-async': 'ReactHelmetAsync',
           'react-i18next': 'ReactI18next',
           i18next: 'i18next',
           'react-router-dom': 'ReactRouterDOM',

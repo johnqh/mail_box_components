@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/components",
-  "version": "4.0.162",
+  "version": "4.0.163",
   "description": "Reusable UI components and design system - Reorganized for better maintainability",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -63,6 +63,7 @@
     "i18next": ">=23.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
+    "react-helmet-async": ">=2.0.0",
     "react-i18next": ">=14.0.0",
     "react-router-dom": ">=6.0.0",
     "tailwind-merge": ">=2.0.0",

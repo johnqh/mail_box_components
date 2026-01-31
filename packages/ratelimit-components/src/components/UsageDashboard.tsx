@@ -134,11 +134,15 @@ const UsageBar: React.FC<UsageBarProps> = ({
 
       <div className='flex items-center justify-between text-xs text-gray-500 dark:text-gray-400'>
         {showRemaining && remaining !== null && (
-          <span>{remaining.toLocaleString()} {labels.remainingLabel}</span>
+          <span>
+            {remaining.toLocaleString()} {labels.remainingLabel}
+          </span>
         )}
         {!showRemaining && <span />}
         {resetsAt && (
-          <span>{labels.resetsLabel} {formatResetTime(resetsAt)}</span>
+          <span>
+            {labels.resetsLabel} {formatResetTime(resetsAt)}
+          </span>
         )}
       </div>
     </div>

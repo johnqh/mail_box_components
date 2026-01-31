@@ -24,6 +24,8 @@ export interface UsageBarConfig {
   limit: number | null;
   /** Optional color variant */
   color?: UsageBarColor;
+  /** When this counter resets (ISO 8601 string) */
+  resetsAt?: string;
 }
 
 /**
@@ -40,6 +42,8 @@ export interface UsageDashboardLabels {
   unlimitedLabel?: string;
   /** Label for remaining count */
   remainingLabel?: string;
+  /** Label prefix for reset time (e.g., "Resets") */
+  resetsLabel?: string;
 }
 
 /** Tracking data for UsageDashboard actions */

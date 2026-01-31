@@ -46,6 +46,28 @@ function getAutoColor(used: number, limit: number | null): UsageBarColor {
   return 'blue';
 }
 
+function formatResetTime(resetsAt: string): string {
+  const resetDate = new Date(resetsAt);
+  const now = new Date();
+  const diffMs = resetDate.getTime() - now.getTime();
+
+  if (diffMs <= 0) return 'now';
+
+  const diffMinutes = Math.floor(diffMs / (1000 * 60));
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  if (diffMinutes < 60) {
+    return `${diffMinutes}m`;
+  } else if (diffHours < 24) {
+    const mins = diffMinutes % 60;
+    return mins > 0 ? `${diffHours}h ${mins}m` : `${diffHours}h`;
+  } else {
+    const hours = diffHours % 24;
+    return hours > 0 ? `${diffDays}d ${hours}h` : `${diffDays}d`;
+  }
+}
+
 // =============================================================================
 // UsageBar Component
 // =============================================================================
@@ -59,6 +81,7 @@ interface UsageBarProps {
     limitLabel: string;
     unlimitedLabel: string;
     remainingLabel: string;
+    resetsLabel: string;
   };
 }
 
@@ -68,7 +91,7 @@ const UsageBar: React.FC<UsageBarProps> = ({
   showRemaining = true,
   labels,
 }) => {
-  const { label, used, limit, color } = config;
+  const { label, used, limit, color, resetsAt } = config;
   const percentage = getPercentage(used, limit);
   const autoColor = color ?? getAutoColor(used, limit);
   const remaining = limit !== null ? Math.max(0, limit - used) : null;
@@ -109,11 +132,15 @@ const UsageBar: React.FC<UsageBarProps> = ({
         </div>
       )}
 
-      {showRemaining && remaining !== null && (
-        <p className='text-xs text-gray-500 dark:text-gray-400'>
-          {remaining.toLocaleString()} {labels.remainingLabel}
-        </p>
-      )}
+      <div className='flex items-center justify-between text-xs text-gray-500 dark:text-gray-400'>
+        {showRemaining && remaining !== null && (
+          <span>{remaining.toLocaleString()} {labels.remainingLabel}</span>
+        )}
+        {!showRemaining && <span />}
+        {resetsAt && (
+          <span>{labels.resetsLabel} {formatResetTime(resetsAt)}</span>
+        )}
+      </div>
     </div>
   );
 };
@@ -128,6 +155,7 @@ const defaultLabels = {
   limitLabel: 'limit',
   unlimitedLabel: 'Unlimited',
   remainingLabel: 'remaining',
+  resetsLabel: 'Resets in',
 };
 
 export const UsageDashboard: React.FC<UsageDashboardProps> = ({
@@ -194,6 +222,7 @@ export const UsageDashboard: React.FC<UsageDashboardProps> = ({
                 labels.unlimitedLabel ?? defaultLabels.unlimitedLabel,
               remainingLabel:
                 labels.remainingLabel ?? defaultLabels.remainingLabel,
+              resetsLabel: labels.resetsLabel ?? defaultLabels.resetsLabel,
             }}
           />
         ))}

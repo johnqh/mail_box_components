@@ -34,7 +34,7 @@
     "typescript"
   ],
   "author": "John Q Huang",
-  "license": "MIT",
+  "license": "BUSL-1.1",
   "peerDependencies": {
     "@heroicons/react": "^2.2.0",
     "@sudobility/components": "^4.0.160",

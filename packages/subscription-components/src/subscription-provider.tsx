@@ -169,7 +169,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
     purchasesInstance = null;
   }, []);
 
-  // Export resetState for potential future use
+  // Keep resetState available for potential future use
   void resetState;
 
   /**

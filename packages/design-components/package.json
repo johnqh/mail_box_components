@@ -64,7 +64,7 @@
     "typescript"
   ],
   "author": "",
-  "license": "MIT",
+  "license": "BUSL-1.1",
   "publishConfig": {
     "access": "public"
   },

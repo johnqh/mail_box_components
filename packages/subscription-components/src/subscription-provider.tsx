@@ -15,7 +15,6 @@ import type {
 
 // Dynamic import types for RevenueCat SDK
 type Purchases = import('@revenuecat/purchases-js').Purchases;
-type PurchasesConfig = import('@revenuecat/purchases-js').PurchasesConfig;
 type Package = import('@revenuecat/purchases-js').Package;
 type CustomerInfo = import('@revenuecat/purchases-js').CustomerInfo;
 type Offerings = import('@revenuecat/purchases-js').Offerings;
@@ -170,6 +169,9 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
     purchasesInstance = null;
   }, []);
 
+  // Export resetState for potential future use
+  void resetState;
+
   /**
    * Fetch offerings from RevenueCat
    * Aggregates packages from ALL offerings, each with its own entitlement from metadata
@@ -251,23 +253,22 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
   }, [onError]);
 
   /**
-   * Initialize RevenueCat with user ID.
-   * If userId is undefined, clears the current user state.
+   * Initialize RevenueCat with optional user ID.
+   * If userId is undefined, fetches offerings for anonymous browsing (pricing page).
+   * If userId is provided, also fetches customer subscription info.
    */
   const initialize = useCallback(
     async (userId?: string, email?: string) => {
-      // If userId is undefined, clear the user state
-      if (!userId) {
-        resetState();
-        return;
+      // Reset if user changed (including from anonymous to logged in)
+      if (currentUserId !== userId) {
+        // Don't fully reset - keep offerings if just switching users
+        if (currentUserId) {
+          setCurrentSubscription(null);
+          setError(null);
+        }
       }
 
-      // Reset if user changed
-      if (currentUserId && currentUserId !== userId) {
-        resetState();
-      }
-
-      // Skip if already initialized for this user
+      // Skip if already initialized for this user (or both anonymous)
       if (isInitialized && currentUserId === userId) return;
 
       try {
@@ -283,12 +284,12 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
         } else {
           const SDK = await loadRevenueCatSDK();
 
-          const config: PurchasesConfig = {
-            apiKey,
-            appUserId: userId,
-          };
+          // Configure with userId if provided, otherwise anonymous
+          // Note: RevenueCat supports anonymous users when appUserId is omitted
 
-          purchasesInstance = SDK.Purchases.configure(config);
+          purchasesInstance = SDK.Purchases.configure(
+            userId ? { apiKey, appUserId: userId } : ({ apiKey } as any)
+          );
 
           // Set email attribute if provided
           const emailToSet = email || userEmail;
@@ -300,10 +301,16 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
             }
           }
 
-          await Promise.all([fetchOfferings(), fetchCustomerInfo()]);
+          // Always fetch offerings (for pricing display)
+          // Only fetch customer info if we have a user
+          if (userId) {
+            await Promise.all([fetchOfferings(), fetchCustomerInfo()]);
+          } else {
+            await fetchOfferings();
+          }
         }
 
-        setCurrentUserId(userId);
+        setCurrentUserId(userId ?? null);
         setIsInitialized(true);
       } catch (err) {
         const errorMsg =
@@ -325,7 +332,6 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       fetchOfferings,
       fetchCustomerInfo,
       onError,
-      resetState,
     ]
   );
 

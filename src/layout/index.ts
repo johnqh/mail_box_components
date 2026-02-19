@@ -51,6 +51,9 @@ export {
 // Screen container
 export { ScreenContainer, type ScreenContainerProps } from './ScreenContainer';
 
+// Aspect ratio container
+export { AspectFitView, type AspectFitViewProps } from './AspectFitView';
+
 // Topbar components
 export {
   Topbar,

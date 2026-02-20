@@ -88,6 +88,7 @@ export function MemberRoleSelector({
     left: 0,
   });
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const selectedRole =
     roleOptions.find(r => r.value === value) || roleOptions[2];
@@ -118,12 +119,15 @@ export function MemberRoleSelector({
     setIsOpen(false);
   };
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside (check both trigger and menu refs)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
+        !dropdownRef.current.contains(target) &&
+        menuRef.current &&
+        !menuRef.current.contains(target)
       ) {
         setIsOpen(false);
       }
@@ -181,9 +185,10 @@ export function MemberRoleSelector({
       {/* Dropdown Menu - fixed position to escape overflow-hidden parents */}
       {isOpen && (
         <div
+          ref={menuRef}
           className={cn(
             'fixed z-50',
-            'min-w-[200px] rounded-lg border bg-popover shadow-lg p-1',
+            'min-w-[200px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg p-1',
             'animate-in fade-in-0 zoom-in-95'
           )}
           style={{ top: menuPos.top, left: Math.max(0, menuPos.left) }}

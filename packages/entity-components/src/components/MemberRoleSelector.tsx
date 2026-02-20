@@ -3,7 +3,7 @@
  * @description Dropdown for selecting member roles
  */
 
-import { useState } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import {
   ChevronDownIcon,
   ShieldCheckIcon,
@@ -83,12 +83,28 @@ export function MemberRoleSelector({
   componentName = 'MemberRoleSelector',
 }: MemberRoleSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [menuPos, setMenuPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const selectedRole =
     roleOptions.find(r => r.value === value) || roleOptions[2];
+
+  const updateMenuPosition = useCallback(() => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setMenuPos({
+        top: rect.bottom + 4,
+        left: rect.right - 200,
+      });
+    }
+  }, []);
 
   const handleToggle = () => {
     if (!disabled) {
       onTrack?.({ action: 'toggle', trackingLabel, componentName });
+      if (!isOpen) {
+        updateMenuPosition();
+      }
       setIsOpen(!isOpen);
     }
   };
@@ -99,10 +115,43 @@ export function MemberRoleSelector({
     setIsOpen(false);
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () =>
+        document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isOpen]);
+
+  // Close dropdown on escape
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isOpen]);
+
   return (
-    <div className={cn('relative', className)}>
+    <div ref={dropdownRef} className={cn('relative', className)}>
       {/* Trigger Button */}
       <button
+        ref={triggerRef}
         type='button'
         onClick={handleToggle}
         disabled={disabled}
@@ -113,6 +162,8 @@ export function MemberRoleSelector({
             ? 'opacity-50 cursor-not-allowed'
             : 'hover:bg-muted cursor-pointer'
         )}
+        aria-expanded={isOpen}
+        aria-haspopup='listbox'
       >
         <selectedRole.icon className={cn('h-3.5 w-3.5', selectedRole.color)} />
         <span>{selectedRole.label}</span>
@@ -124,50 +175,46 @@ export function MemberRoleSelector({
         />
       </button>
 
-      {/* Dropdown Menu */}
+      {/* Dropdown Menu - fixed position to escape overflow-hidden parents */}
       {isOpen && (
-        <>
-          {/* Backdrop */}
-          <div
-            className='fixed inset-0 z-40'
-            onClick={() => setIsOpen(false)}
-          />
-
-          {/* Menu */}
-          <div
-            className={cn(
-              'absolute top-full right-0 mt-1 z-50',
-              'min-w-[200px] rounded-lg border bg-popover shadow-lg p-1',
-              'animate-in fade-in-0 zoom-in-95'
-            )}
-          >
-            {roleOptions.map(option => (
-              <button
-                key={option.value}
-                type='button'
-                onClick={() => handleSelect(option.value)}
-                className={cn(
-                  'flex items-start gap-2 w-full px-2 py-2 rounded text-left',
-                  'transition-colors',
-                  option.value === value ? 'bg-primary/10' : 'hover:bg-muted'
-                )}
-              >
-                <option.icon className={cn('h-4 w-4 mt-0.5', option.color)} />
-                <div className='flex-1 min-w-0'>
-                  <div className='flex items-center gap-2'>
-                    <span className='font-medium text-sm'>{option.label}</span>
-                    {option.value === value && (
-                      <CheckIcon className='h-3.5 w-3.5 text-primary' />
-                    )}
-                  </div>
-                  <p className='text-xs text-muted-foreground'>
-                    {option.description}
-                  </p>
+        <div
+          className={cn(
+            'fixed z-50',
+            'min-w-[200px] rounded-lg border bg-popover shadow-lg p-1',
+            'animate-in fade-in-0 zoom-in-95'
+          )}
+          style={{ top: menuPos.top, left: Math.max(0, menuPos.left) }}
+          role='listbox'
+          aria-label='Roles'
+        >
+          {roleOptions.map(option => (
+            <button
+              key={option.value}
+              type='button'
+              onClick={() => handleSelect(option.value)}
+              className={cn(
+                'flex items-start gap-2 w-full px-2 py-2 rounded text-left',
+                'transition-colors',
+                option.value === value ? 'bg-primary/10' : 'hover:bg-muted'
+              )}
+              role='option'
+              aria-selected={option.value === value}
+            >
+              <option.icon className={cn('h-4 w-4 mt-0.5', option.color)} />
+              <div className='flex-1 min-w-0'>
+                <div className='flex items-center gap-2'>
+                  <span className='font-medium text-sm'>{option.label}</span>
+                  {option.value === value && (
+                    <CheckIcon className='h-3.5 w-3.5 text-primary' />
+                  )}
                 </div>
-              </button>
-            ))}
-          </div>
-        </>
+                <p className='text-xs text-muted-foreground'>
+                  {option.description}
+                </p>
+              </div>
+            </button>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -83,7 +83,10 @@ export function MemberRoleSelector({
   componentName = 'MemberRoleSelector',
 }: MemberRoleSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [menuPos, setMenuPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [menuPos, setMenuPos] = useState<{ top: number; left: number }>({
+    top: 0,
+    left: 0,
+  });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const selectedRole =

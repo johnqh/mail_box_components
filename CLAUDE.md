@@ -2,10 +2,10 @@
 
 ## Overview
 
-A comprehensive React component library (`@sudobility/components`) providing 110+ reusable UI components built on Radix UI primitives, styled with Tailwind CSS and a centralized design system (`@sudobility/design`). The library is organized into domain-specific categories (primitives, forms, charts, media, interactive, etc.) and ships as both ES module and UMD bundles with full TypeScript declarations.
+A comprehensive React component library (`@sudobility/components`) providing 110+ reusable UI components built on Radix UI primitives, styled with Tailwind CSS and a centralized design system (`@sudobility/design`). The library is organized into domain-specific categories (primitives, forms, charts, media, interactive, etc.) and ships as both ES module and UMD bundles with full TypeScript declarations. Domain-specific components have been extracted into 48 specialized sub-packages under `packages/`.
 
 - **Package**: `@sudobility/components`
-- **Version**: 5.0.11
+- **Version**: 5.0.13
 - **License**: Public (publishConfig: `"access": "public"`)
 - **Package Manager**: **Bun** (always use `bun` instead of `npm`/`yarn`)
 - **Framework**: React 18/19, TypeScript 5.9+, Vite 7.x
@@ -57,6 +57,55 @@ src/
 ├── platforms/                # Platform detection and style generation
 ├── test/                     # Test setup (vitest + jsdom)
 └── __tests__/                # 29 test files
+packages/                     # 48 domain-specific sub-packages
+├── agriculture-components/
+├── analytics-components/
+├── auth-components/
+├── automotive-components/
+├── collaboration-components/
+├── communication-components/
+├── construction-components/
+├── design-components/
+├── devops-components/
+├── documents-components/
+├── ecommerce-components/
+├── education-components/
+├── email-components/
+├── energy-components/
+├── entertainment-components/
+├── entity-components/
+├── events-components/
+├── finance-components/
+├── fitness-components/
+├── food-components/
+├── gaming-components/
+├── government-components/
+├── healthcare-components/
+├── hr-components/
+├── insurance-components/
+├── interaction-components/
+├── iot-components/
+├── legal-components/
+├── logistics-components/
+├── manufacturing-components/
+├── marketing-components/
+├── media-components/
+├── monitoring-components/
+├── nonprofit-components/
+├── project-management-components/
+├── ratelimit-components/
+├── realestate-components/
+├── retail-components/
+├── scheduling-components/
+├── scientific-components/
+├── search-components/
+├── security-components/
+├── social-components/
+├── subscription-components/
+├── travel-components/
+├── visualization-components/
+├── web3-components/
+└── workflow-components/
 ```
 
 ## Component Categories
@@ -68,12 +117,12 @@ Core building blocks organized into three sub-groups:
 - **Feedback**: Spinner, LoadingOverlay, LoadingDots, LoadingState, SkeletonLoader, Alert, AlertBanner, ActionBanner, FullPageSpinner, DataSkeleton, Toast, ToastNotification, NotificationBadge, NotificationPanel, Badge, BadgeDesigner, StatusBadge, StatusIndicator, StatusPipeline
 
 ### Forms (`src/forms/`)
-- **Inputs**: Input, TextArea, NumberInput, SearchInput, DateInput, TimePicker, PhoneInput, Checkbox, Switch, RadioGroup, Select, MultiSelect, Combobox, EditableSelector, Dropdown, ToggleGroup, Slider, SliderInput, FileInput, TagInput, MentionInput, Label, FormField, FormFieldGroup, FormAlerts, PhoneDirectory, ActionButton
+- **Inputs**: Input, TextArea, NumberInput, SearchInput, DateInput, TimePicker, PhoneInput, Checkbox, Switch, RadioGroup, Select, MultiSelect, Combobox, EditableSelector, Dropdown, ToggleGroup, Slider, SliderInput, FileInput, TagInput, MentionInput, Label, FormField, FormFieldGroup, FormAlerts, PhoneDirectory, ActionButton, OTPInput, PasswordInput, PasswordStrength, FileBrowser, FilePreview, FileTree, FileIcon
 - **Advanced**: DateTimePicker, DateRangePicker, Calendar, TimeSlotPicker, ColorPicker, ColorPickerAdvanced, ColorSwatch, SignaturePad, SignatureRequest, WYSIWYGEditor, MarkdownRenderer, CodeHighlighter, CreditCardInput, CurrencyInput, CurrencyConverter, CurrencyRates
 - **Builders**: FormBuilder, FormValidator, FormTemplate, SchemaValidator, FieldMapper, SurveyBuilder, QuizBuilder
 
 ### UI Components (`src/ui/`)
-111 generic, reusable components. Key examples: Button, Card, Modal, Dialog, Drawer, Sheet, Tabs, Select, Input, Badge, Alert, Spinner, Popover, Tooltip, Table, Breadcrumb, Pagination, Progress, Checkbox, Switch, SkeletonLoader, InfiniteScroll, VirtualList, TreeView, TransferList, MasonryGrid, Confetti, TimerDisplay, VersionBadge, and more.
+111 generic, reusable components in a flat directory structure. Key examples: Button, Card, Modal, Dialog, Drawer, Sheet, Tabs, Select, Input, Badge, Alert, Spinner, Popover, Tooltip, Table, Breadcrumb, Pagination, Progress, Checkbox, Switch, SkeletonLoader, InfiniteScroll, VirtualList, TreeView, TransferList, MasonryGrid, Confetti, TimerDisplay, VersionBadge, SkipNavigation, FocusIndicator, FocusTrap, ParallaxScroll, RevealOnScroll, MorphTransition, and more.
 
 ### Navigation (`src/navigation/`)
 SmartLink, Link, ExternalLink, PreloadLink, BreadcrumbNav, Tabs, NavigationMenu, NavigationList, SideNav, Pagination, PaginationNav, Stepper, StepperNav, TableOfContents
@@ -116,6 +165,9 @@ useClickOutside, useCodeLoader, useCopyToClipboard, useMultipleCopyToClipboard, 
 
 ### Utilities (`src/utils/`)
 cn (clsx + tailwind-merge), formatFileSize/convertFileSize/parseFileSize, CSS optimization, image optimization, tree shaking helpers, lazy loading, navigation helpers, storage utilities, wallet/browser detection, error utilities, analytics utilities
+
+### Platforms (`src/platforms/`)
+WebStyleGenerator - converts design system data to Tailwind CSS classes for web components, with helpers for color, spacing, border radius, typography, and animation conversion.
 
 ## Development Commands
 
@@ -213,6 +265,7 @@ Layout components (Footer, Topbar) use a slot pattern:
 - TypeScript declarations via `vite-plugin-dts`
 - Path alias: `@/` maps to `src/`
 - All peer dependencies externalized in Rollup config
+- `@sudobility/design` externalized but NOT listed in rollupOptions externals (resolved at build time)
 
 ### Testing Architecture
 - **Vitest** with jsdom environment and React Testing Library
@@ -313,8 +366,8 @@ const Switch = React.forwardRef<...>(({ className, ...props }, ref) => (
 | Package | Version |
 |---------|---------|
 | `react` / `react-dom` | >= 18.0.0 |
-| `@sudobility/design` | ^1.1.18 |
-| `@sudobility/types` | ^1.9.51 |
+| `@sudobility/design` | ^1.1.19 |
+| `@sudobility/types` | ^1.9.53 |
 | `@radix-ui/react-dialog` | >= 1.0.0 |
 | `@radix-ui/react-alert-dialog` | >= 1.0.0 |
 | `@radix-ui/react-select` | >= 2.0.0 |
@@ -342,14 +395,9 @@ const Switch = React.forwardRef<...>(({ className, ...props }, ref) => (
 | `prettier` 3.x | Code formatting |
 | `vite-plugin-dts` | TypeScript declaration generation |
 
+### Sub-Packages (48 domain-specific packages in `packages/`)
+Each sub-package is independently versioned and publishable. They include:
+agriculture, analytics, auth, automotive, collaboration, communication, construction, design, devops, documents, ecommerce, education, email, energy, entertainment, entity, events, finance, fitness, food, gaming, government, healthcare, hr, insurance, interaction, iot, legal, logistics, manufacturing, marketing, media, monitoring, nonprofit, project-management, ratelimit, realestate, retail, scheduling, scientific, search, security, social, subscription, travel, visualization, web3, workflow
+
 ### Related Packages (separate repos)
-Domain-specific components have been extracted into their own packages:
-- `@sudobility/web3-components`
-- `@sudobility/email-components`
-- `@sudobility/security-components`
-- `@sudobility/documents-components`
-- `@sudobility/visualization-components`
-- `@sudobility/project-management-components`
-- `@sudobility/scheduling-components`
-- `@sudobility/analytics-components`
-- And 25+ more specialized packages
+The React Native port of this library is `@sudobility/components-rn` in the `mail_box_components_rn` directory.

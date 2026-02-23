@@ -325,7 +325,11 @@ function radiusToTailwind(radius: number): string {
 }
 
 /**
- * Web Platform Style Generator Implementation
+ * Web Platform Style Generator Implementation.
+ *
+ * Converts design system variant data (colors, spacing, typography, animations)
+ * into Tailwind CSS class strings for use in web React components. Handles
+ * hover/focus/disabled state classes and maps pixel values to Tailwind scale.
  */
 export class WebStyleGenerator implements PlatformStyleGenerator {
   generateComponentStyles(variant: any, size?: any): string {

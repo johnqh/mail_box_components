@@ -52,7 +52,7 @@ const buttonVariants = cva('min-h-[44px] touch-manipulation', {
   },
 });
 
-/** Tracking event data for button interactions */
+/** Tracking event data emitted on button interactions. */
 export interface ButtonTrackingData {
   /** Action performed */
   action: 'click';
@@ -62,9 +62,16 @@ export interface ButtonTrackingData {
   componentName?: string;
 }
 
+/**
+ * Props for the Button component.
+ *
+ * Extends native button HTML attributes with CVA variant props,
+ * the Radix `asChild` polymorphic pattern, and optional analytics tracking.
+ */
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+  /** When true, renders the child element instead of a `<button>` using Radix Slot */
   asChild?: boolean;
   /** Optional callback for tracking button clicks */
   onTrack?: (data: ButtonTrackingData) => void;
@@ -74,6 +81,20 @@ export interface ButtonProps
   componentName?: string;
 }
 
+/**
+ * Button component with design system integration, variant support,
+ * animation presets, and optional click tracking.
+ *
+ * Supports the Radix `asChild` pattern for polymorphic rendering.
+ * Styling is composed from CVA variants, the design system, and user overrides.
+ *
+ * @example
+ * ```tsx
+ * <Button variant="primary" size="lg" animation="lift">
+ *   Get Started
+ * </Button>
+ * ```
+ */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {

@@ -1,8 +1,7 @@
 /**
- * @sudobility/components v3.0.0
+ * @sudobility/components
  *
  * A comprehensive React component library and design system.
- * MAJOR VERSION: Reorganized structure for better maintainability.
  *
  * @author John Qiu Huang
  * @license MIT

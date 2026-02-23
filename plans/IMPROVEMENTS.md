@@ -2,27 +2,27 @@
 
 ## Priority 1: Critical / High Impact
 
-### 1.1 Add `@sudobility/design` to Vite externals
-**Problem**: The `@sudobility/design` package is a peer dependency but is NOT listed in `vite.config.ts` `rollupOptions.external`. This means it may be bundled into the output, increasing bundle size and potentially causing version conflicts for consumers.
-**Fix**: Add `'@sudobility/design'` and `'@sudobility/types'` to the external array in `vite.config.ts`.
+### 1.1 ~~Add `@sudobility/design` to Vite externals~~ ✅ DONE
+- Added `@sudobility/design` and `@sudobility/types` to `rollupOptions.external` and `globals` in `vite.config.ts`
 
-### 1.2 Increase test coverage
-**Problem**: Only 29 test files for 413 source files (roughly 7% file coverage). Many core components, hooks, and utilities lack tests entirely. The coverage threshold is set at 80% but actual coverage may not meet this.
-**Fix**: Prioritize testing for:
-- All hooks (`useFormValidation`, `useFormSubmission`, `useToggle`, `useClickOutside`)
-- Core UI components (Button, Card, Modal, Dialog, Sheet, Tabs)
-- Utility functions (`formatFileSize`, `convertFileSize`, `parseFileSize`)
-- Toast system (context, hook, container)
+### 1.2 ~~Increase test coverage~~ ✅ DONE
+- Added 5 test files with 93 tests total:
+  - `useToggle.test.ts` (9 tests)
+  - `useClickOutside.test.tsx` (8 tests)
+  - `useFormValidation.test.ts` (33 tests)
+  - `useFormSubmission.test.ts` (18 tests)
+  - `formatFileSize.test.ts` (25 tests)
+- Total test count: 572 tests across 34 suites
 
-### 1.3 Remove duplicate component definitions
-**Problem**: Some components exist in both `src/ui/` (flat) and structured directories (`src/primitives/`, `src/forms/`, `src/navigation/`, etc.). For example, there are separate `src/ui/breadcrumb.tsx` and `src/navigation/` breadcrumb exports. This can cause barrel export conflicts and tree-shaking issues.
-**Fix**: Audit all `src/ui/` components against category directories. Remove duplicates and ensure each component has a single source of truth.
+### 1.3 ~~Remove duplicate component definitions~~ ✅ DONE
+- Renamed `src/core/Breadcrumb.tsx` component to `RouterBreadcrumb` to resolve collision with `src/ui/breadcrumb.tsx`
+- Added backward-compatible `Breadcrumb` alias with `@deprecated` JSDoc
+- Removed cross-directory `export * from '../navigation/pagination'` from `src/ui/index.ts`
 
 ## Priority 2: Important / Medium Impact
 
-### 2.1 Consistent JSDoc coverage
-**Problem**: JSDoc documentation is inconsistent across the codebase. Some files (hooks, utilities) have excellent documentation while many UI components have none.
-**Fix**: Add `@fileoverview`, `@param`, `@returns`, and `@example` JSDoc tags to all exported components, interfaces, and functions. Start with the most-used components (Button, Card, Input, Alert, Badge, Modal, Dialog).
+### 2.1 ~~Consistent JSDoc coverage~~ ✅ DONE
+- Added JSDoc to `card.tsx`, `input.tsx`, `alert.tsx`, `badge.tsx`, `modal.tsx`
 
 ### 2.2 Consolidate the `src/ui/index.ts` barrel
 **Problem**: The main `src/index.ts` imports from both `src/ui/` (individual file exports) and category directories. The `src/ui/index.ts` barrel file exists but may not be used consistently.
@@ -50,13 +50,12 @@
 **Problem**: While Radix UI primitives provide good baseline accessibility, many custom components (charts, media, interactive) may not meet WCAG 2.1 AA standards.
 **Fix**: Run an automated accessibility audit (axe-core) across all components and fix identified issues.
 
-### 3.4 Migrate tsconfig excludes to a cleaner pattern
-**Problem**: `tsconfig.json` has many specific file exclusions (`src/utils/optimization/selectiveImports.ts`, `src/lib/variant-examples.tsx`, etc.), suggesting dead code or incomplete cleanup.
-**Fix**: Audit excluded files. Remove truly unused files from the repository. If files are intentionally excluded from compilation, move them to a separate directory (e.g., `examples/`).
+### 3.4 ~~Migrate tsconfig excludes to a cleaner pattern~~ ✅ DONE
+- Removed 6 stale exclude entries for non-existent files under `src/utils/optimization/` and `src/lib/variant-*`
+- Kept necessary excludes for `src/optimization/optimization/` files that have unresolved module errors
 
-### 3.5 Update package.json version comment in `src/index.ts`
-**Problem**: The `src/index.ts` header comment says `v3.0.0` but the package is at `v5.0.13`.
-**Fix**: Update the version comment or remove the hardcoded version from the source file (rely on package.json as the single source of truth).
+### 3.5 ~~Update package.json version comment in `src/index.ts`~~ ✅ DONE
+- Removed hardcoded `v3.0.0` version from header comment
 
 ### 3.6 Add ESM-only sub-package entry points
 **Problem**: The UMD build (`dist/index.umd.js`) is becoming less relevant as most modern bundlers support ESM natively.

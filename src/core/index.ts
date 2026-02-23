@@ -3,7 +3,7 @@
  */
 
 // Navigation & Content
-export { Breadcrumb } from './Breadcrumb';
+export { RouterBreadcrumb, Breadcrumb } from './Breadcrumb';
 export { BreadcrumbSection } from './BreadcrumbSection';
 export { CodeBlock } from './CodeBlock';
 export {

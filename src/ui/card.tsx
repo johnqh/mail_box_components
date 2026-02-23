@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '../lib/utils';
 import { textVariants, getCardVariantColors } from '@sudobility/design';
 
+/** Props for the Card component. */
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?:
     | 'default'
@@ -32,6 +33,7 @@ const paddingStyles = {
   lg: 'p-8',
 };
 
+/** A versatile container component with multiple visual variants including info, callout, and status styles. */
 export const Card: React.FC<CardProps> = ({
   variant = 'elevated',
   padding = 'md',

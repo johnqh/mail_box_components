@@ -35,14 +35,8 @@
     "dist",
     "**/*.test.*",
     "**/__tests__/**",
-    "src/utils/optimization/selectiveImports.ts",
-    "src/utils/optimization/web3Optimization.ts",
-    "src/optimization/optimization/selectiveImports.ts",
-    "src/optimization/optimization/web3Optimization.ts",
     "**/*.example.*",
-    "src/lib/variant-examples.tsx",
-    "src/lib/variant-registry.ts",
-    "src/lib/variant-provider.tsx",
-    "src/lib/variant-builder.ts"
+    "src/optimization/optimization/selectiveImports.ts",
+    "src/optimization/optimization/web3Optimization.ts"
   ]
 }

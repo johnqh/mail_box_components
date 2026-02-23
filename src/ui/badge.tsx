@@ -2,6 +2,7 @@ import React from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { cn } from '../lib/utils';
 
+/** Props for the Badge component. */
 export interface BadgeProps {
   /** Badge content */
   children?: React.ReactNode;

@@ -9,6 +9,7 @@ import {
   XCircleIcon,
 } from '@heroicons/react/24/outline';
 
+/** Props for the Alert component. */
 interface AlertProps {
   variant?: 'info' | 'success' | 'warning' | 'attention' | 'error';
   title?: string;
@@ -40,6 +41,7 @@ export const AlertDescription: React.FC<{
   <div className={cn('text-sm break-words', className)}>{children}</div>
 );
 
+/** Displays a contextual alert message with an icon, supporting info, success, warning, attention, and error variants. */
 export const Alert: React.FC<AlertProps> = ({
   variant = 'info',
   title,

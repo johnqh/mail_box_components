@@ -82,7 +82,6 @@ export * from './number-input';
 export * from './overlay';
 export * from './page-container';
 export * from './page-section-header';
-export * from '../navigation/pagination';
 export * from './pagination-nav';
 export * from './parallax-scroll';
 export * from './phone-input';

@@ -340,7 +340,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
   );
 };
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({
+const RouterBreadcrumb: React.FC<BreadcrumbProps> = ({
   items,
   shareConfig,
   className: _className,
@@ -380,4 +380,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   );
 };
 
-export { Breadcrumb, type BreadcrumbProps };
+/** @deprecated Use `RouterBreadcrumb` instead to avoid name collision with `ui/breadcrumb` */
+const Breadcrumb = RouterBreadcrumb;
+
+export { RouterBreadcrumb, Breadcrumb, type BreadcrumbProps };

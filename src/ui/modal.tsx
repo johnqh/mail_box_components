@@ -4,6 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 import { variants } from '@sudobility/design';
 
+/** Props for the Modal component. */
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -21,6 +22,7 @@ export interface ModalProps {
   closeAriaLabel?: string;
 }
 
+/** An accessible modal dialog rendered via a portal with focus management, escape-to-close, and overlay click support. */
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,

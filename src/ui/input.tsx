@@ -12,6 +12,7 @@ export interface InputTrackingData {
   componentName?: string;
 }
 
+/** Props for the Input component, extending native input attributes with optional tracking. */
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /** Optional callback for tracking input interactions */
@@ -22,6 +23,7 @@ export interface InputProps
   componentName?: string;
 }
 
+/** A styled text input with optional interaction tracking for analytics. */
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {

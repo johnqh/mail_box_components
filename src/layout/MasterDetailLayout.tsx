@@ -370,8 +370,11 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           >
             <div
               ref={contentRef}
-              className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 overflow-hidden ${detailClassName}`}
-              style={detailPanelStyle}
+              className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 overflow-y-auto ${stickyMaster ? 'max-h-[calc(100vh-200px)] sticky' : ''} ${detailClassName}`}
+              style={{
+                ...detailPanelStyle,
+                ...(stickyMaster ? { top: `${stickyTopOffset}px` } : {}),
+              }}
             >
               <div className={contentWrapperClass} style={contentWrapperStyle}>
                 {detailTitle && (

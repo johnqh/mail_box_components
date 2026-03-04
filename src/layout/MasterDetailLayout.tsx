@@ -163,6 +163,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   showMasterBackground = true,
   enableAnimations = true,
   animationDuration = 300,
+  contentKey,
   animationRef,
 }) => {
   const { containerClass } = useLayout();
@@ -238,6 +239,13 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
       }
     };
   }, [enableAnimations, animationDuration, animationRef]);
+
+  // Scroll detail panel to top when content changes
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+  }, [contentKey, detailTitle]);
 
   // Detail panel style with animation support
   const detailPanelStyle: React.CSSProperties = enableAnimations

@@ -17,9 +17,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'MailBoxComponents',
-      formats: ['es', 'umd'],
-      fileName: format => `index.${format === 'es' ? 'esm' : format}.js`,
+      formats: ['es'],
+      fileName: () => `index.js`,
     },
     rollupOptions: {
       external: [
@@ -50,31 +49,6 @@ export default defineConfig({
       ],
       output: {
         exports: 'named',
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'ReactJSXRuntime',
-          '@sudobility/design': 'SudobilityDesign',
-          '@sudobility/types': 'SudobilityTypes',
-          clsx: 'clsx',
-          'tailwind-merge': 'tailwindMerge',
-          'class-variance-authority': 'cva',
-          '@heroicons/react/20/solid': 'HeroiconsSolid20',
-          '@heroicons/react/24/outline': 'HeroiconsOutline',
-          '@heroicons/react/24/solid': 'HeroiconsSolid',
-          '@radix-ui/react-alert-dialog': 'RadixAlertDialog',
-          '@radix-ui/react-dialog': 'RadixDialog',
-          '@radix-ui/react-label': 'RadixLabel',
-          '@radix-ui/react-select': 'RadixSelect',
-          '@radix-ui/react-slot': 'RadixSlot',
-          '@radix-ui/react-switch': 'RadixSwitch',
-          '@radix-ui/react-tabs': 'RadixTabs',
-          'react-i18next': 'ReactI18next',
-          i18next: 'i18next',
-          'react-router-dom': 'ReactRouterDOM',
-          'react-share': 'ReactShare',
-          'web-vitals': 'WebVitals',
-        },
       },
     },
   },

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/entity-components",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Entity/Organization UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -69,8 +69,6 @@
     "jsdom": "^24.0.0",
     "@heroicons/react": "^2.2.0",
     "prettier": "^3.6.2",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
     "tailwind-merge": "^3.3.1",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/fitness-components",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Fitness and health tracking UI components for React",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -66,8 +66,6 @@
     "eslint-plugin-react-refresh": "^0.4.0",
     "jsdom": "^27.0.1",
     "prettier": "^3.6.2",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
     "tailwind-merge": "^3.3.1",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",

@@ -12,8 +12,7 @@ export interface LinkTrackingData {
   componentName?: string;
 }
 
-export interface LinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Link URL */
   href: string;
   /** Link content */

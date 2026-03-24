@@ -38,6 +38,7 @@ export default [
         HTMLDivElement: 'readonly',
         HTMLButtonElement: 'readonly',
         HTMLInputElement: 'readonly',
+        HTMLTextAreaElement: 'readonly',
         Event: 'readonly',
         Element: 'readonly',
         Node: 'readonly',

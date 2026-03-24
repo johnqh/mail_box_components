@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-interface OptimizedImageProps
-  extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   placeholder?: string;

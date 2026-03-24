@@ -45,7 +45,8 @@ export interface SmartLinkTrackingData {
 }
 
 export interface SmartLinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  extends
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
     VariantProps<typeof smartLinkVariants> {
   to?: string;
   href?: string;

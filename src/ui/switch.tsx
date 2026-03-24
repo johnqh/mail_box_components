@@ -12,8 +12,9 @@ export interface SwitchTrackingData {
   componentName?: string;
 }
 
-export interface SwitchProps
-  extends React.ComponentPropsWithoutRef<typeof Root> {
+export interface SwitchProps extends React.ComponentPropsWithoutRef<
+  typeof Root
+> {
   /** Optional callback for tracking switch toggle */
   onTrack?: (data: SwitchTrackingData) => void;
   /** Custom label for tracking */

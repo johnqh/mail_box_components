@@ -69,7 +69,8 @@ export interface ButtonTrackingData {
  * the Radix `asChild` polymorphic pattern, and optional analytics tracking.
  */
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   /** When true, renders the child element instead of a `<button>` using Radix Slot */
   asChild?: boolean;

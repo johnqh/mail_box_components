@@ -13,8 +13,7 @@ export interface LinkClickTrackingParams {
 export type LinkTrackingFunction = (params: LinkClickTrackingParams) => void;
 
 // Generic props that work with any Link component
-interface TrackedLinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface TrackedLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children?: React.ReactNode;
   to?: string | { pathname?: string; [key: string]: any };
   href?: string; // For regular anchor tags

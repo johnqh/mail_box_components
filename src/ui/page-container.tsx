@@ -24,8 +24,9 @@ const pageContainerVariants = cva('min-h-screen flex flex-col', {
   },
 });
 
-interface PageContainerProps
-  extends VariantProps<typeof pageContainerVariants> {
+interface PageContainerProps extends VariantProps<
+  typeof pageContainerVariants
+> {
   children: React.ReactNode;
   className?: string;
 }

@@ -3,6 +3,7 @@ import { Button } from '@sudobility/components';
 import { textVariants } from '@sudobility/design';
 import { cn } from './lib/cn';
 import { SubscriptionTile } from './subscription-tile';
+import { PlatformIcon, platformDisplayName } from './platform-icon';
 import type { FreeTileConfig, SubscriptionLayoutTrackingData } from './types';
 
 /**
@@ -20,6 +21,11 @@ export interface SubscriptionStatusConfig {
       label: string;
       value: string;
     }>;
+    /** Subscription platform display */
+    platform?: {
+      label: string;
+      value: 'web' | 'ios' | 'android' | 'macos';
+    };
   };
   /** Content to display when no active subscription */
   inactiveContent?: {
@@ -200,10 +206,10 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
           </h2>
 
           {currentStatus.isActive ? (
-            <div className='bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6'>
+            <div className='bg-gray-50 dark:bg-gray-800/30 border border-gray-200 dark:border-gray-700 rounded-lg p-4 mb-6'>
               <div className='flex items-center mb-2'>
                 <div className='w-3 h-3 bg-green-500 rounded-full mr-3' />
-                <span className='font-semibold text-green-800 dark:text-green-300'>
+                <span className='font-semibold text-gray-800 dark:text-gray-200'>
                   {currentStatus.activeContent?.title || 'Active Subscription'}
                 </span>
               </div>
@@ -212,16 +218,35 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
                     {currentStatus.activeContent.fields.map((field, index) => (
                       <div key={index}>
-                        <p className='text-sm text-green-600 dark:text-green-400'>
+                        <p className='text-sm text-gray-500 dark:text-gray-400'>
                           {field.label}
                         </p>
-                        <p className='font-semibold text-green-800 dark:text-green-300'>
+                        <p className='font-semibold text-gray-700 dark:text-gray-300'>
                           {field.value}
                         </p>
                       </div>
                     ))}
                   </div>
                 )}
+              {currentStatus.activeContent?.platform && (
+                <div className='mt-4'>
+                  <p className='text-sm text-gray-500 dark:text-gray-400'>
+                    {currentStatus.activeContent.platform.label}
+                  </p>
+                  <div className='flex items-center gap-1.5 mt-0.5'>
+                    <PlatformIcon
+                      platform={currentStatus.activeContent.platform.value}
+                      size={16}
+                      className='text-gray-600 dark:text-gray-300'
+                    />
+                    <p className='font-semibold text-gray-700 dark:text-gray-300'>
+                      {platformDisplayName(
+                        currentStatus.activeContent.platform.value
+                      )}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <div className='bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6'>

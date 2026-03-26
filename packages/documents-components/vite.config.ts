@@ -16,6 +16,7 @@ export default defineConfig({
       external: [
         'react',
         'react-dom',
+        'react/jsx-runtime',
         '@sudobility/components',
         '@sudobility/design',
       ],
@@ -23,6 +24,9 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'ReactJSXRuntime',
+          '@sudobility/components': 'SudobilityComponents',
+          '@sudobility/design': 'SudobilityDesign',
         },
       },
     },

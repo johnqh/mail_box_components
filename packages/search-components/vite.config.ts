@@ -20,11 +20,17 @@ export default defineConfig({
       fileName: format => `index.${format === 'es' ? 'esm' : 'umd'}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', '@sudobility/components'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        '@sudobility/components',
+      ],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'ReactJSXRuntime',
           '@sudobility/components': 'SudobilityComponents',
         },
       },

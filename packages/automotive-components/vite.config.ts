@@ -16,6 +16,10 @@ export default defineConfig({
       external: [
         'react',
         'react-dom',
+        'react/jsx-runtime',
+        '@heroicons/react/20/solid',
+        '@heroicons/react/24/outline',
+        '@heroicons/react/24/solid',
         '@sudobility/components',
         '@sudobility/design',
       ],
@@ -23,6 +27,12 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'ReactJSXRuntime',
+          '@heroicons/react/20/solid': 'HeroiconsSolid20',
+          '@heroicons/react/24/outline': 'HeroiconsOutline',
+          '@heroicons/react/24/solid': 'HeroiconsSolid',
+          '@sudobility/components': 'SudobilityComponents',
+          '@sudobility/design': 'SudobilityDesign',
         },
       },
     },

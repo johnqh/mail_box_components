@@ -4,7 +4,7 @@
  */
 
 import { useEffect } from 'react';
-import { Outlet, useParams, useNavigate } from 'react-router-dom';
+import { Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export interface LanguageValidatorProps {
@@ -56,12 +56,33 @@ export function LanguageValidator({
 }: LanguageValidatorProps): React.ReactElement | null {
   const { lang } = useParams<{ lang: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { i18n } = useTranslation();
 
   useEffect(() => {
     // Validate language parameter
     if (!lang || !isLanguageSupported(lang)) {
-      navigate(`/${defaultLanguage}`, { replace: true });
+      // Detect best language: stored preference → browser language → default
+      let detectedLang = defaultLanguage;
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored && isLanguageSupported(stored)) {
+          detectedLang = stored;
+        }
+      } catch {
+        // localStorage not available
+      }
+      if (detectedLang === defaultLanguage) {
+        const browserLang = navigator.language.split('-')[0];
+        if (isLanguageSupported(browserLang)) {
+          detectedLang = browserLang;
+        }
+      }
+
+      // Preserve the full path + query string under the correct language prefix.
+      // e.g. /daily?foo=1 → /en/daily?foo=1
+      const target = `/${detectedLang}${location.pathname}${location.search}${location.hash}`;
+      navigate(target, { replace: true });
       return;
     }
 
@@ -76,7 +97,17 @@ export function LanguageValidator({
     } catch {
       // Ignore localStorage errors (e.g., Safari private browsing)
     }
-  }, [lang, i18n, navigate, isLanguageSupported, defaultLanguage, storageKey]);
+  }, [
+    lang,
+    i18n,
+    navigate,
+    location.pathname,
+    location.search,
+    location.hash,
+    isLanguageSupported,
+    defaultLanguage,
+    storageKey,
+  ]);
 
   // Don't render if language is invalid
   if (!lang || !isLanguageSupported(lang)) {

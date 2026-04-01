@@ -301,7 +301,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         </div>
       </div>
 
-      <div className={`${containerClass} py-8`}>
+      <div className={`${containerClass} py-8 md:py-0 md:flex-1 md:min-h-0`}>
         {/* Mobile Content View */}
         <div
           className={`md:hidden ${
@@ -337,7 +337,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
         {/* Desktop Layout */}
         <div
-          className={`hidden md:flex min-h-full ${gapClass}`}
+          className={`hidden md:flex h-full ${gapClass}`}
           style={{ width: '100%' }}
         >
           {/* Desktop Master Panel (Sidebar) */}

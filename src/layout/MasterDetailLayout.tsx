@@ -360,7 +360,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
                 </p>
               )}
               <div
-                className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 ${
+                className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-2 ${
                   stickyMaster
                     ? 'max-h-[calc(100vh-200px)] overflow-y-auto'
                     : ''

@@ -273,12 +273,12 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
     : {};
 
   return (
-    <>
+    <div className='flex-1 min-h-0 flex flex-col'>
       {/* Mobile Navigation View - Full Width */}
       <div
         className={`md:hidden ${
           mobileView === 'navigation' ? 'block' : 'hidden'
-        } flex-1`}
+        } flex-1 overflow-y-auto`}
       >
         <div
           className={
@@ -301,25 +301,75 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         </div>
       </div>
 
-      <div className={`${containerClass} py-8 md:py-0 md:flex-1 md:min-h-0`}>
-        {/* Mobile Content View */}
+      {/* Mobile Content View */}
+      <div
+        className={`md:hidden ${
+          mobileView === 'content' ? 'flex flex-col flex-1 min-h-0' : 'hidden'
+        } ${containerClass} py-8`}
+      >
+        {/* Mobile back button */}
+        {mobileView === 'content' && onBackToNavigation && (
+          <button
+            onClick={onBackToNavigation}
+            className='mb-4 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex-shrink-0'
+          >
+            ← {buttonText}
+          </button>
+        )}
         <div
-          className={`md:hidden ${
-            mobileView === 'content' ? 'block' : 'hidden'
-          }`}
+          ref={contentRef}
+          className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+          style={detailPanelStyle}
         >
-          {/* Mobile back button - outline button with page/master title */}
-          {mobileView === 'content' && onBackToNavigation && (
-            <button
-              onClick={onBackToNavigation}
-              className='mb-4 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors'
-            >
-              ← {buttonText}
-            </button>
+          <div className={contentWrapperClass} style={contentWrapperStyle}>
+            {detailTitle && (
+              <h1
+                className={`text-4xl font-bold text-gray-900 dark:text-white mb-6 ${detailTitleClassName}`}
+              >
+                {detailTitle}
+              </h1>
+            )}
+            {detailContent}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div
+        className={`hidden md:flex flex-1 min-h-0 ${gapClass}`}
+        style={{ width: '100%' }}
+      >
+        {/* Desktop Master Panel (Sidebar) */}
+        <aside
+          className={`flex-shrink-0 flex flex-col min-h-0${stickyMaster ? ' sticky' : ''}`}
+          style={{
+            width: `${masterWidth}px`,
+            minWidth: `${masterWidth}px`,
+            ...(stickyMaster ? { top: `${stickyTopOffset}px` } : {}),
+          }}
+        >
+          {masterTitle && (
+            <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4 flex-shrink-0'>
+              {masterTitle}
+            </h2>
+          )}
+          {masterSubtitle && (
+            <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all flex-shrink-0'>
+              {masterSubtitle}
+            </p>
           )}
           <div
+            className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
+          >
+            {masterContent}
+          </div>
+        </aside>
+
+        {/* Desktop Detail Panel (Main Content) */}
+        <div className='flex-1 min-w-0 flex flex-col min-h-0'>
+          <div
             ref={contentRef}
-            className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 overflow-hidden ${detailClassName}`}
+            className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
             style={detailPanelStyle}
           >
             <div className={contentWrapperClass} style={contentWrapperStyle}>
@@ -334,73 +384,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             </div>
           </div>
         </div>
-
-        {/* Desktop Layout */}
-        <div
-          className={`hidden md:flex h-full ${gapClass}`}
-          style={{ width: '100%' }}
-        >
-          {/* Desktop Master Panel (Sidebar) */}
-          <aside
-            className='flex-shrink-0'
-            style={{ width: `${masterWidth}px`, minWidth: `${masterWidth}px` }}
-          >
-            <div
-              className={stickyMaster ? 'sticky' : ''}
-              style={stickyMaster ? { top: `${stickyTopOffset}px` } : undefined}
-            >
-              {masterTitle && (
-                <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-                  {masterTitle}
-                </h2>
-              )}
-              {masterSubtitle && (
-                <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all'>
-                  {masterSubtitle}
-                </p>
-              )}
-              <div
-                className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 ${
-                  stickyMaster
-                    ? 'max-h-[calc(100vh-200px)] overflow-y-auto'
-                    : ''
-                } ${masterClassName}`}
-              >
-                {masterContent}
-              </div>
-            </div>
-          </aside>
-
-          {/* Desktop Detail Panel (Main Content) */}
-          <div
-            className='flex-1 min-w-0'
-            style={{ width: `calc(100% - ${masterWidth + desktopGap}px)` }}
-          >
-            <div
-              ref={contentRef}
-              className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 overflow-y-auto ${stickyMaster ? 'max-h-[calc(100vh-200px)] sticky' : ''} ${detailClassName}`}
-              style={{
-                ...detailPanelStyle,
-                ...(stickyMaster ? { top: `${stickyTopOffset}px` } : {}),
-              }}
-            >
-              <div className={contentWrapperClass} style={contentWrapperStyle}>
-                {detailTitle && (
-                  <h1
-                    className={`text-4xl font-bold text-gray-900 dark:text-white mb-6 ${detailTitleClassName}`}
-                  >
-                    {detailTitle}
-                  </h1>
-                )}
-                {detailContent}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom spacer */}
-        <div className='h-8' />
       </div>
-    </>
+    </div>
   );
 };

@@ -273,7 +273,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
     : {};
 
   return (
-    <div className='flex-1 min-h-0 flex flex-col'>
+    <div className='w-full flex-1 min-h-0 flex flex-col'>
       {/* Mobile Navigation View - Full Width */}
       <div
         className={`md:hidden ${

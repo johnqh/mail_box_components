@@ -63,7 +63,7 @@ export const Logo: FC<LogoProps> = ({
       <img src={logoSrc} alt={logoAlt} className={sizeClasses.image} />
       {showText && (
         <div
-          className={`${sizeClasses.text} font-bold text-gray-900 dark:text-gray-100`}
+          className={`${sizeClasses.text} font-bold text-inherit`}
           style={{ fontFamily, fontWeight: '700' }}
         >
           {logoText}

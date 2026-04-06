@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { cn } from '../../lib/utils';
-import { textVariants, ui } from '@sudobility/design';
+import { ui } from '@sudobility/design';
 import { Tooltip } from '../../ui/tooltip';
 
 interface SlotProps {
@@ -9,11 +9,18 @@ interface SlotProps {
 }
 
 /**
- * FooterGrid - Grid container for full footer columns
+ * FooterGrid - Grid container for full footer columns.
+ * Apple-style multi-column layout on desktop, stacked on mobile.
  */
 export const FooterGrid: React.FC<SlotProps> = ({ children, className }) => {
   return (
-    <div className={cn('grid md:grid-cols-5 gap-8', className)}>{children}</div>
+    <nav
+      role='navigation'
+      aria-label='Footer Navigation'
+      className={cn('grid grid-cols-2 gap-x-6 gap-y-8 md:gap-8', className)}
+    >
+      {children}
+    </nav>
   );
 };
 
@@ -33,13 +40,17 @@ export const FooterBrand: React.FC<FooterBrandProps> = ({
   return (
     <div className={className}>
       <div className='mb-4'>{children}</div>
-      {description && <p className={textVariants.body.sm()}>{description}</p>}
+      {description && (
+        <p className='text-xs text-gray-400 leading-relaxed'>{description}</p>
+      )}
     </div>
   );
 };
 
 /**
- * FooterLinkSection - A column of links with a title
+ * FooterLinkSection - Apple-style column section with title and link list.
+ * On mobile: collapsible with chevron toggle.
+ * On desktop: always expanded with compact typography.
  */
 export interface FooterLinkSectionProps extends SlotProps {
   /** Section title */
@@ -51,18 +62,65 @@ export const FooterLinkSection: React.FC<FooterLinkSectionProps> = ({
   children,
   className,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className={className}>
-      <h3 className={cn(textVariants.heading.h5(), 'mb-4 text-white')}>
+      {/* Desktop: static title */}
+      <h3 className='hidden md:block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3'>
         {title}
       </h3>
-      <ul className={cn('space-y-2', textVariants.body.sm())}>{children}</ul>
+
+      {/* Mobile: collapsible title */}
+      <button
+        className='flex w-full items-center justify-between md:hidden py-2 border-b border-gray-700'
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+      >
+        <span className='text-xs font-semibold text-gray-400 uppercase tracking-wider'>
+          {title}
+        </span>
+        <svg
+          className={cn(
+            'w-3 h-3 text-gray-500 transition-transform duration-200',
+            isOpen && 'rotate-180'
+          )}
+          fill='none'
+          viewBox='0 0 10 6'
+          aria-hidden='true'
+        >
+          <path
+            stroke='currentColor'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='1.5'
+            d='M1 1l4 4 4-4'
+          />
+        </svg>
+      </button>
+
+      {/* Desktop: always visible */}
+      <ul className='hidden md:block space-y-2' role='list'>
+        {children}
+      </ul>
+
+      {/* Mobile: collapsible */}
+      <ul
+        className={cn(
+          'md:hidden overflow-hidden transition-all duration-200',
+          isOpen ? 'max-h-96 pt-2 pb-1 space-y-2' : 'max-h-0'
+        )}
+        role='list'
+      >
+        {children}
+      </ul>
     </div>
   );
 };
 
 /**
- * FooterLink - Individual link item in a section
+ * FooterLink - Individual link item in a section.
+ * Apple-style: small, gray text with subtle hover.
  */
 export interface FooterLinkProps {
   /** Link content */
@@ -76,7 +134,13 @@ export const FooterLink: React.FC<FooterLinkProps> = ({
   className,
 }) => {
   return (
-    <li className={cn('hover:text-white transition-colors', className)}>
+    <li
+      className={cn(
+        'text-xs text-gray-400 hover:text-white transition-colors',
+        className
+      )}
+      role='listitem'
+    >
       {children}
     </li>
   );
@@ -89,7 +153,7 @@ export const FooterBottom: React.FC<SlotProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        'border-t mt-8 pt-8 text-center space-y-4',
+        'border-t mt-8 pt-6 text-center space-y-3',
         ui.border.default,
         className
       )}
@@ -118,7 +182,7 @@ export const FooterBottomRow: React.FC<SlotProps> = ({
   return (
     <div
       className={cn(
-        'flex items-center justify-center gap-3 text-gray-400 text-sm',
+        'flex items-center justify-center gap-3 text-gray-500 text-xs',
         className
       )}
     >
@@ -209,9 +273,9 @@ export const FooterCopyright: React.FC<FooterCopyrightProps> = ({
   className,
 }) => {
   return (
-    <span className={className}>
+    <span className={cn('text-xs text-gray-500', className)}>
       &copy; {year}{' '}
-      {companyLink || <span className='text-blue-400'>{companyName}</span>}
+      {companyLink || <span className='text-gray-400'>{companyName}</span>}
       {rightsText && `. ${rightsText}`}
     </span>
   );
@@ -242,7 +306,7 @@ const SocialIcon: React.FC<{
       href={href}
       target='_blank'
       rel='noopener noreferrer'
-      className='text-gray-400 hover:text-white transition-colors'
+      className='text-gray-500 hover:text-white transition-colors'
       aria-label={label}
     >
       {children}
@@ -276,7 +340,7 @@ export const FooterSocialLinks: React.FC<FooterSocialLinksProps> = ({
       {twitterUrl && (
         <SocialIcon href={twitterUrl} label='Twitter / X'>
           <svg
-            className='w-5 h-5'
+            className='w-4 h-4'
             fill='currentColor'
             viewBox='0 0 24 24'
             aria-hidden='true'
@@ -288,7 +352,7 @@ export const FooterSocialLinks: React.FC<FooterSocialLinksProps> = ({
       {redditUrl && (
         <SocialIcon href={redditUrl} label='Reddit'>
           <svg
-            className='w-5 h-5'
+            className='w-4 h-4'
             fill='currentColor'
             viewBox='0 0 24 24'
             aria-hidden='true'
@@ -300,7 +364,7 @@ export const FooterSocialLinks: React.FC<FooterSocialLinksProps> = ({
       {discordUrl && (
         <SocialIcon href={discordUrl} label='Discord'>
           <svg
-            className='w-5 h-5'
+            className='w-4 h-4'
             fill='currentColor'
             viewBox='0 0 24 24'
             aria-hidden='true'
@@ -312,7 +376,7 @@ export const FooterSocialLinks: React.FC<FooterSocialLinksProps> = ({
       {linkedinUrl && (
         <SocialIcon href={linkedinUrl} label='LinkedIn'>
           <svg
-            className='w-5 h-5'
+            className='w-4 h-4'
             fill='currentColor'
             viewBox='0 0 24 24'
             aria-hidden='true'
@@ -324,7 +388,7 @@ export const FooterSocialLinks: React.FC<FooterSocialLinksProps> = ({
       {farcasterUrl && (
         <SocialIcon href={farcasterUrl} label='Farcaster'>
           <svg
-            className='w-5 h-5'
+            className='w-4 h-4'
             fill='currentColor'
             viewBox='0 0 24 24'
             aria-hidden='true'
@@ -336,7 +400,7 @@ export const FooterSocialLinks: React.FC<FooterSocialLinksProps> = ({
       {telegramUrl && (
         <SocialIcon href={telegramUrl} label='Telegram'>
           <svg
-            className='w-5 h-5'
+            className='w-4 h-4'
             fill='currentColor'
             viewBox='0 0 24 24'
             aria-hidden='true'
@@ -348,7 +412,7 @@ export const FooterSocialLinks: React.FC<FooterSocialLinksProps> = ({
       {githubUrl && (
         <SocialIcon href={githubUrl} label='GitHub'>
           <svg
-            className='w-5 h-5'
+            className='w-4 h-4'
             fill='currentColor'
             viewBox='0 0 24 24'
             aria-hidden='true'

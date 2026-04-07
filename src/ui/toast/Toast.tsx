@@ -130,7 +130,7 @@ export function Toast({
   return (
     <div
       className={`
-        flex items-center gap-3 px-4 py-3 rounded-lg border shadow-lg
+        flex items-center gap-3 px-4 py-3 rounded-lg border shadow-lg pointer-events-auto cursor-default
         transition-all duration-200 ease-out
         ${style.container}
         ${isVisible && !isLeaving ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}

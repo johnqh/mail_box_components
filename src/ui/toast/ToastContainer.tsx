@@ -31,7 +31,7 @@ export function ToastContainer({
 
   return (
     <div
-      className={`fixed z-50 flex flex-col gap-2 max-w-sm w-full ${positionClasses[position]}`}
+      className={`fixed z-[9999999] flex flex-col gap-2 max-w-sm w-full pointer-events-none ${positionClasses[position]}`}
       aria-label='Notifications'
     >
       {toasts.map(toast => (

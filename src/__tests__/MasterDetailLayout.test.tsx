@@ -259,7 +259,9 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    expect(screen.getByText('Top Header')).toBeTruthy();
+    // topContent appears twice: once in desktop wrapper, once in mobile nav view
+    const tops = screen.getAllByText('Top Header');
+    expect(tops.length).toBe(2);
   });
 
   it('renders bottomContent when provided', () => {
@@ -271,7 +273,9 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    expect(screen.getByText('Bottom Footer')).toBeTruthy();
+    // bottomContent appears twice: once in desktop wrapper, once in mobile detail view
+    const bottoms = screen.getAllByText('Bottom Footer');
+    expect(bottoms.length).toBe(2);
   });
 
   it('renders both topContent and bottomContent together', () => {
@@ -284,12 +288,12 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    expect(screen.getByText('Top Header')).toBeTruthy();
-    expect(screen.getByText('Bottom Footer')).toBeTruthy();
+    expect(screen.getAllByText('Top Header').length).toBe(2);
+    expect(screen.getAllByText('Bottom Footer').length).toBe(2);
 
-    // Top and bottom should be flex-shrink-0 siblings of the middle area
+    // Desktop: top and bottom should be flex-shrink-0 siblings of the middle area
     const root = container.firstElementChild;
-    expect(root?.children.length).toBe(3); // top + middle + bottom
+    expect(root?.children.length).toBe(3); // desktop top + middle + desktop bottom
     expect(root?.children[0]?.className).toContain('flex-shrink-0');
     expect(root?.children[2]?.className).toContain('flex-shrink-0');
   });

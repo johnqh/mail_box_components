@@ -249,4 +249,61 @@ describe('MasterDetailLayout', () => {
     const titles = screen.getAllByText('Email Management');
     expect(titles.length).toBe(2);
   });
+
+  it('renders topContent when provided', () => {
+    render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        topContent={<div>Top Header</div>}
+      />
+    );
+
+    expect(screen.getByText('Top Header')).toBeTruthy();
+  });
+
+  it('renders bottomContent when provided', () => {
+    render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        bottomContent={<div>Bottom Footer</div>}
+      />
+    );
+
+    expect(screen.getByText('Bottom Footer')).toBeTruthy();
+  });
+
+  it('renders both topContent and bottomContent together', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        topContent={<div>Top Header</div>}
+        bottomContent={<div>Bottom Footer</div>}
+      />
+    );
+
+    expect(screen.getByText('Top Header')).toBeTruthy();
+    expect(screen.getByText('Bottom Footer')).toBeTruthy();
+
+    // Top and bottom should be flex-shrink-0 siblings of the middle area
+    const root = container.firstElementChild;
+    expect(root?.children.length).toBe(3); // top + middle + bottom
+    expect(root?.children[0]?.className).toContain('flex-shrink-0');
+    expect(root?.children[2]?.className).toContain('flex-shrink-0');
+  });
+
+  it('does not render top/bottom wrappers when not provided', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+
+    // Root should have only the middle area (no top/bottom wrappers)
+    const root = container.firstElementChild;
+    expect(root?.children.length).toBe(1);
+  });
 });

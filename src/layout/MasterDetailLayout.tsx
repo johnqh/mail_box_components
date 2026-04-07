@@ -90,6 +90,10 @@ export interface MasterDetailLayoutProps {
   detailContent: ReactNode;
   /** Title for the detail panel - should match the selected item from master list */
   detailTitle?: string;
+  /** Optional content rendered above the master-detail area (non-scrollable) */
+  topContent?: ReactNode;
+  /** Optional content rendered below the master-detail area (non-scrollable) */
+  bottomContent?: ReactNode;
   /** Current mobile view state - "navigation" shows master, "content" shows detail */
   mobileView?: 'navigation' | 'content';
   /** Callback when user wants to switch to navigation view on mobile */
@@ -151,6 +155,8 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   masterContent,
   detailContent,
   detailTitle,
+  topContent,
+  bottomContent,
   mobileView = 'navigation',
   onBackToNavigation,
   masterClassName = '',
@@ -274,99 +280,57 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
   return (
     <div className='w-full flex-1 min-h-0 flex flex-col'>
-      {/* Mobile Navigation View - Full Width */}
-      <div
-        className={`md:hidden ${
-          mobileView === 'navigation' ? 'block' : 'hidden'
-        } flex-1 overflow-y-auto`}
-      >
-        <div
-          className={
-            showMasterBackground ? 'bg-white dark:bg-gray-800 p-6' : 'p-6'
-          }
-        >
-          {masterTitle && (
-            <div className={containerClass}>
-              <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>
-                {masterTitle}
-              </h2>
-              {masterSubtitle && (
-                <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all'>
-                  {masterSubtitle}
-                </p>
-              )}
-            </div>
-          )}
-          <div className={masterClassName}>{masterContent}</div>
-        </div>
-      </div>
+      {/* Desktop: Top Content (non-scrollable) */}
+      {topContent && (
+        <div className='hidden md:block flex-shrink-0'>{topContent}</div>
+      )}
 
-      {/* Mobile Content View */}
-      <div
-        className={`md:hidden ${
-          mobileView === 'content' ? 'flex flex-col flex-1 min-h-0' : 'hidden'
-        } ${containerClass} py-8`}
-      >
-        {/* Mobile back button */}
-        {mobileView === 'content' && onBackToNavigation && (
-          <button
-            onClick={onBackToNavigation}
-            className='mb-4 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex-shrink-0'
-          >
-            ← {buttonText}
-          </button>
-        )}
+      {/* Middle: Master-Detail area (fills remaining space) */}
+      <div className='flex-1 min-h-0 flex flex-col'>
+        {/* Mobile Navigation View - Full Width */}
         <div
-          ref={contentRef}
-          className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
-          style={detailPanelStyle}
+          className={`md:hidden ${
+            mobileView === 'navigation' ? 'block' : 'hidden'
+          } flex-1 overflow-y-auto`}
         >
-          <div className={contentWrapperClass} style={contentWrapperStyle}>
-            {detailTitle && (
-              <h1
-                className={`text-4xl font-bold text-gray-900 dark:text-white mb-6 ${detailTitleClassName}`}
-              >
-                {detailTitle}
-              </h1>
-            )}
-            {detailContent}
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Layout */}
-      <div
-        className={`hidden md:flex flex-1 min-h-0 ${gapClass}`}
-        style={{ width: '100%' }}
-      >
-        {/* Desktop Master Panel (Sidebar) */}
-        <aside
-          className={`flex-shrink-0 flex flex-col min-h-0${stickyMaster ? ' sticky' : ''}`}
-          style={{
-            width: `${masterWidth}px`,
-            minWidth: `${masterWidth}px`,
-            ...(stickyMaster ? { top: `${stickyTopOffset}px` } : {}),
-          }}
-        >
-          {masterTitle && (
-            <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4 flex-shrink-0'>
-              {masterTitle}
-            </h2>
-          )}
-          {masterSubtitle && (
-            <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all flex-shrink-0'>
-              {masterSubtitle}
-            </p>
-          )}
+          {/* Mobile: Top Content scrolls with master list */}
+          {topContent && <div>{topContent}</div>}
           <div
-            className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
+            className={
+              showMasterBackground ? 'bg-white dark:bg-gray-800 p-6' : 'p-6'
+            }
           >
-            {masterContent}
+            {masterTitle && (
+              <div className={containerClass}>
+                <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>
+                  {masterTitle}
+                </h2>
+                {masterSubtitle && (
+                  <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all'>
+                    {masterSubtitle}
+                  </p>
+                )}
+              </div>
+            )}
+            <div className={masterClassName}>{masterContent}</div>
           </div>
-        </aside>
+        </div>
 
-        {/* Desktop Detail Panel (Main Content) */}
-        <div className='flex-1 min-w-0 flex flex-col min-h-0'>
+        {/* Mobile Content View */}
+        <div
+          className={`md:hidden ${
+            mobileView === 'content' ? 'flex flex-col flex-1 min-h-0' : 'hidden'
+          } ${containerClass} py-8`}
+        >
+          {/* Mobile back button */}
+          {mobileView === 'content' && onBackToNavigation && (
+            <button
+              onClick={onBackToNavigation}
+              className='mb-4 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex-shrink-0'
+            >
+              ← {buttonText}
+            </button>
+          )}
           <div
             ref={contentRef}
             className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
@@ -382,9 +346,68 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
               )}
               {detailContent}
             </div>
+            {/* Mobile: Bottom Content scrolls with detail view */}
+            {bottomContent && <div>{bottomContent}</div>}
+          </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <div
+          className={`hidden md:flex flex-1 min-h-0 ${gapClass}`}
+          style={{ width: '100%' }}
+        >
+          {/* Desktop Master Panel (Sidebar) */}
+          <aside
+            className={`flex-shrink-0 flex flex-col min-h-0${stickyMaster ? ' sticky' : ''}`}
+            style={{
+              width: `${masterWidth}px`,
+              minWidth: `${masterWidth}px`,
+              ...(stickyMaster ? { top: `${stickyTopOffset}px` } : {}),
+            }}
+          >
+            {masterTitle && (
+              <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4 flex-shrink-0'>
+                {masterTitle}
+              </h2>
+            )}
+            {masterSubtitle && (
+              <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all flex-shrink-0'>
+                {masterSubtitle}
+              </p>
+            )}
+            <div
+              className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
+            >
+              {masterContent}
+            </div>
+          </aside>
+
+          {/* Desktop Detail Panel (Main Content) */}
+          <div className='flex-1 min-w-0 flex flex-col min-h-0'>
+            <div
+              ref={contentRef}
+              className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+              style={detailPanelStyle}
+            >
+              <div className={contentWrapperClass} style={contentWrapperStyle}>
+                {detailTitle && (
+                  <h1
+                    className={`text-4xl font-bold text-gray-900 dark:text-white mb-6 ${detailTitleClassName}`}
+                  >
+                    {detailTitle}
+                  </h1>
+                )}
+                {detailContent}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Desktop: Bottom Content (non-scrollable) */}
+      {bottomContent && (
+        <div className='hidden md:block flex-shrink-0'>{bottomContent}</div>
+      )}
     </div>
   );
 };

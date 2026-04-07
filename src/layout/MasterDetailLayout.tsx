@@ -282,7 +282,12 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
     <div className='w-full flex-1 min-h-0 flex flex-col'>
       {/* Desktop: Top Content (non-scrollable) */}
       {topContent && (
-        <div className='hidden md:block flex-shrink-0 mb-6'>{topContent}</div>
+        <div
+          className='hidden md:block flex-shrink-0'
+          style={{ marginBottom: '1.5rem' }}
+        >
+          {topContent}
+        </div>
       )}
 
       {/* Middle: Master-Detail area (fills remaining space) */}
@@ -294,7 +299,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           } flex-1 overflow-y-auto`}
         >
           {/* Mobile: Top Content scrolls with master list */}
-          {topContent && <div className='mb-4'>{topContent}</div>}
+          {topContent && (
+            <div style={{ marginBottom: '1rem' }}>{topContent}</div>
+          )}
           <div
             className={
               showMasterBackground ? 'bg-white dark:bg-gray-800 p-6' : 'p-6'
@@ -347,7 +354,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
               {detailContent}
             </div>
             {/* Mobile: Bottom Content scrolls with detail view */}
-            {bottomContent && <div className='mt-6'>{bottomContent}</div>}
+            {bottomContent && (
+              <div style={{ marginTop: '1.5rem' }}>{bottomContent}</div>
+            )}
           </div>
         </div>
 
@@ -406,7 +415,10 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
       {/* Desktop: Bottom Content (non-scrollable) */}
       {bottomContent && (
-        <div className='hidden md:block flex-shrink-0 mt-6'>
+        <div
+          className='hidden md:block flex-shrink-0'
+          style={{ marginTop: '1.5rem' }}
+        >
           {bottomContent}
         </div>
       )}

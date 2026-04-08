@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { cn } from '@sudobility/components';
+import { colors, ui } from '@sudobility/design';
 
 export interface EmojiReaction {
   emoji: string;
@@ -91,17 +92,15 @@ export const Reaction: React.FC<ReactionProps> = ({
             'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all',
             'border-2',
             reaction.reacted
-              ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-500'
-              : 'bg-gray-100 dark:bg-gray-800 border-transparent hover:border-gray-300 dark:hover:border-gray-600'
+              ? `${colors.component.badge.primary.base} ${colors.component.badge.primary.dark} border-blue-500`
+              : `${colors.component.button.secondary.base} ${colors.component.button.secondary.dark} border-transparent`
           )}
         >
           <span className='text-lg leading-none'>{reaction.emoji}</span>
           <span
             className={cn(
               'text-sm font-medium',
-              reaction.reacted
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-700 dark:text-gray-300'
+              reaction.reacted ? ui.text.info : ui.text.label
             )}
           >
             {reaction.count}
@@ -114,7 +113,12 @@ export const Reaction: React.FC<ReactionProps> = ({
         <div className='relative'>
           <button
             onClick={handleTogglePicker}
-            className='inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'
+            className={cn(
+              'inline-flex items-center justify-center w-8 h-8 rounded-full',
+              colors.component.button.ghost.base,
+              colors.component.button.ghost.dark,
+              ui.transition.default
+            )}
           >
             <svg
               className='w-5 h-5 text-gray-600 dark:text-gray-400'
@@ -141,7 +145,15 @@ export const Reaction: React.FC<ReactionProps> = ({
               />
 
               {/* Picker */}
-              <div className='absolute z-20 bottom-full mb-2 right-0 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg p-2'>
+              <div
+                className={cn(
+                  'absolute z-20 bottom-full mb-2 right-0 border p-2',
+                  ui.background.surface,
+                  ui.border.default,
+                  ui.border.radius,
+                  ui.shadow.lg
+                )}
+              >
                 <div className='grid grid-cols-4 gap-1'>
                   {availableEmojis.map(emoji => (
                     <button
@@ -150,7 +162,12 @@ export const Reaction: React.FC<ReactionProps> = ({
                         handleReactionClick(emoji);
                         setIsPickerOpen(false);
                       }}
-                      className='w-10 h-10 flex items-center justify-center text-2xl hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors'
+                      className={cn(
+                        'w-10 h-10 flex items-center justify-center text-2xl rounded',
+                        colors.component.button.ghost.base,
+                        colors.component.button.ghost.dark,
+                        ui.transition.default
+                      )}
                     >
                       {emoji}
                     </button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { textVariants } from '@sudobility/design';
 
 export interface SliderProps {
   /** Current value */
@@ -107,11 +108,11 @@ export const Slider: React.FC<SliderProps> = ({
       {/* Value display */}
       {showValue && (
         <div className='flex justify-between items-center mb-2'>
-          <span className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+          <span className={cn(textVariants.label.default(), 'font-medium')}>
             {formatValue(value)}
           </span>
           {showMinMax && (
-            <span className='text-xs text-gray-500 dark:text-gray-400'>
+            <span className={textVariants.label.helper()}>
               {minLabel || min} - {maxLabel || max}
             </span>
           )}
@@ -183,12 +184,8 @@ export const Slider: React.FC<SliderProps> = ({
       {/* Min/Max labels below */}
       {showMinMax && !showValue && (
         <div className='flex justify-between mt-1'>
-          <span className='text-xs text-gray-500 dark:text-gray-400'>
-            {minLabel || min}
-          </span>
-          <span className='text-xs text-gray-500 dark:text-gray-400'>
-            {maxLabel || max}
-          </span>
+          <span className={textVariants.label.helper()}>{minLabel || min}</span>
+          <span className={textVariants.label.helper()}>{maxLabel || max}</span>
         </div>
       )}
     </div>

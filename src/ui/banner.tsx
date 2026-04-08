@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 import {
   CheckCircleIcon,
   ExclamationTriangleIcon,
@@ -34,47 +35,30 @@ export interface BannerProps {
   closeAriaLabel?: string;
 }
 
+/** Maps InfoType to the design system's alert color key */
+const alertColorKey: Record<InfoType, keyof typeof colors.component.alert> = {
+  [InfoType.INFO]: 'info',
+  [InfoType.SUCCESS]: 'success',
+  [InfoType.WARNING]: 'warning',
+  [InfoType.ERROR]: 'error',
+};
+
 const variantConfig: Record<
   InfoType,
   {
     icon: React.ComponentType<{ className?: string }>;
-    container: string;
-    iconColor: string;
-    titleColor: string;
-    descriptionColor: string;
   }
 > = {
-  [InfoType.INFO]: {
-    icon: InformationCircleIcon,
-    container:
-      'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800',
-    iconColor: 'text-blue-600 dark:text-blue-400',
-    titleColor: 'text-blue-900 dark:text-blue-100',
-    descriptionColor: 'text-blue-700 dark:text-blue-300',
-  },
-  [InfoType.SUCCESS]: {
-    icon: CheckCircleIcon,
-    container:
-      'bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800',
-    iconColor: 'text-green-600 dark:text-green-400',
-    titleColor: 'text-green-900 dark:text-green-100',
-    descriptionColor: 'text-green-700 dark:text-green-300',
-  },
-  [InfoType.WARNING]: {
-    icon: ExclamationTriangleIcon,
-    container:
-      'bg-yellow-50 dark:bg-amber-950 border-yellow-200 dark:border-amber-800',
-    iconColor: 'text-yellow-600 dark:text-amber-400',
-    titleColor: 'text-yellow-900 dark:text-amber-100',
-    descriptionColor: 'text-yellow-700 dark:text-amber-300',
-  },
-  [InfoType.ERROR]: {
-    icon: XCircleIcon,
-    container: 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800',
-    iconColor: 'text-red-600 dark:text-red-400',
-    titleColor: 'text-red-900 dark:text-red-100',
-    descriptionColor: 'text-red-700 dark:text-red-300',
-  },
+  [InfoType.INFO]: { icon: InformationCircleIcon },
+  [InfoType.SUCCESS]: { icon: CheckCircleIcon },
+  [InfoType.WARNING]: { icon: ExclamationTriangleIcon },
+  [InfoType.ERROR]: { icon: XCircleIcon },
+};
+
+/** Resolves design system alert colors for a given variant */
+const getAlertColors = (variant: InfoType) => {
+  const key = alertColorKey[variant];
+  return colors.component.alert[key];
 };
 
 /**
@@ -123,6 +107,7 @@ export const Banner: React.FC<BannerProps> = ({
   );
 
   const config = variantConfig[variant];
+  const alertColors = getAlertColors(variant);
   const IconComponent = config.icon;
 
   const clearTimeouts = useCallback(() => {
@@ -202,22 +187,21 @@ export const Banner: React.FC<BannerProps> = ({
           // Container styles - full width, no rounded corners
           'flex items-start gap-3 p-4 border-b shadow-lg',
           'backdrop-blur-sm',
-          config.container,
+          alertColors.base,
+          alertColors.dark,
           className
         )}
       >
         {/* Icon */}
-        <div className={cn('flex-shrink-0 mt-0.5', config.iconColor)}>
+        <div className={cn('flex-shrink-0 mt-0.5', alertColors.icon)}>
           {icon || <IconComponent className='h-5 w-5' />}
         </div>
 
-        {/* Content */}
+        {/* Content - text color inherited from container via alertColors.base/dark */}
         <div className='flex-1 min-w-0'>
-          <p className={cn('font-semibold', config.titleColor)}>{title}</p>
+          <p className='font-semibold'>{title}</p>
           {description && (
-            <p className={cn('text-sm mt-1', config.descriptionColor)}>
-              {description}
-            </p>
+            <p className='text-sm mt-1 opacity-85'>{description}</p>
           )}
         </div>
 
@@ -233,7 +217,7 @@ export const Banner: React.FC<BannerProps> = ({
           )}
           aria-label={closeAriaLabel}
         >
-          <XMarkIcon className={cn('h-5 w-5', config.iconColor)} />
+          <XMarkIcon className={cn('h-5 w-5', alertColors.icon)} />
         </button>
       </div>
     </div>

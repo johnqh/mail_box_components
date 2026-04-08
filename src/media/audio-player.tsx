@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '../lib/utils';
+import { colors, ui, textVariants, designTokens } from '@sudobility/design';
 
 export interface AudioPlayerProps {
   /** Audio source URL */
@@ -111,7 +112,10 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   return (
     <div
       className={cn(
-        'bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg',
+        ui.background.surface,
+        designTokens.radius.lg,
+        designTokens.shadow.lg,
+        'p-6',
         className
       )}
     >
@@ -120,7 +124,13 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       <div className='flex items-center gap-4 mb-4'>
         {/* Artwork */}
         {artwork && (
-          <div className='w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gray-200 dark:bg-gray-700'>
+          <div
+            className={cn(
+              'w-16 h-16 overflow-hidden flex-shrink-0',
+              designTokens.radius.lg,
+              ui.background.subtle
+            )}
+          >
             <img
               src={artwork}
               alt={title || 'Album artwork'}
@@ -132,14 +142,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         {/* Track info */}
         <div className='flex-1 min-w-0'>
           {title && (
-            <h4 className='font-semibold text-gray-900 dark:text-white truncate'>
+            <h4 className={cn(textVariants.heading.h6(), 'truncate')}>
               {title}
             </h4>
           )}
           {artist && (
-            <p className='text-sm text-gray-600 dark:text-gray-400 truncate'>
-              {artist}
-            </p>
+            <p className={cn(textVariants.body.sm(), 'truncate')}>{artist}</p>
           )}
         </div>
       </div>
@@ -154,7 +162,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           onChange={handleSeek}
           className='w-full accent-blue-500'
         />
-        <div className='flex justify-between text-xs text-gray-600 dark:text-gray-400 mt-1'>
+        <div
+          className={cn(
+            'flex justify-between mt-1',
+            textVariants.caption.default()
+          )}
+        >
           <span>{formatTime(currentTime)}</span>
           <span>{formatTime(duration)}</span>
         </div>
@@ -166,7 +179,11 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           {/* Play/Pause */}
           <button
             onClick={togglePlay}
-            className='w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors'
+            className={cn(
+              'w-10 h-10 rounded-full flex items-center justify-center transition-colors',
+              colors.component.button.primary.base,
+              colors.component.button.primary.dark
+            )}
           >
             {isPlaying ? (
               <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
@@ -186,7 +203,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           {/* Volume */}
           <div className='flex items-center gap-2'>
             <svg
-              className='w-4 h-4 text-gray-600 dark:text-gray-400'
+              className={cn('w-4 h-4', textVariants.caption.default())}
               fill='currentColor'
               viewBox='0 0 24 24'
             >
@@ -205,7 +222,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         </div>
 
         {/* Progress percentage */}
-        <span className='text-sm text-gray-600 dark:text-gray-400'>
+        <span className={cn(textVariants.body.sm())}>
           {progress.toFixed(0)}%
         </span>
       </div>

@@ -5,6 +5,11 @@
  */
 
 import React from 'react';
+import {
+  colors,
+  textVariants,
+  getStatusIndicatorColor,
+} from '@sudobility/design';
 
 export type KYCLevel = 'basic' | 'enhanced' | 'accredited';
 
@@ -60,23 +65,31 @@ export const KYCLevelCard: React.FC<KYCLevelCardProps> = ({
     >
       {isVerified && (
         <div className='absolute top-4 right-4'>
-          <span className='inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800'>
+          <span
+            className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${colors.component.badge.success.base} ${colors.component.badge.success.dark}`}
+          >
             ✓ Verified
           </span>
         </div>
       )}
 
       <h3 className='text-xl font-bold mb-2'>{config.title}</h3>
-      <p className='text-gray-600 mb-4'>{config.description}</p>
+      <p className={`${textVariants.body.md()} mb-4`}>{config.description}</p>
       <p className='text-3xl font-bold mb-4'>
         {price}
-        <span className='text-sm font-normal text-gray-600'>/year</span>
+        <span className={`text-sm font-normal ${textVariants.body.sm()}`}>
+          /year
+        </span>
       </p>
 
       <ul className='space-y-2 mb-6'>
         {features.map((feature, index) => (
           <li key={index} className='flex items-start gap-2'>
-            <span className='text-green-500 mt-0.5'>✓</span>
+            <span
+              className={`${getStatusIndicatorColor('success').replace('bg-', 'text-')} mt-0.5`}
+            >
+              ✓
+            </span>
             <span className='text-sm'>{feature}</span>
           </li>
         ))}
@@ -90,10 +103,10 @@ export const KYCLevelCard: React.FC<KYCLevelCardProps> = ({
             w-full py-2 px-4 rounded font-medium transition-colors
             ${
               isVerified
-                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                ? `${colors.component.badge.default.base} ${colors.component.badge.default.dark} cursor-not-allowed`
                 : isActive
-                  ? 'bg-blue-600 text-white hover:bg-blue-700'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`
+                  : `${colors.component.badge.default.base} ${colors.component.badge.default.dark} hover:bg-gray-300 dark:hover:bg-gray-600`
             }
           `}
         >

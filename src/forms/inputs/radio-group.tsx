@@ -1,5 +1,6 @@
 import React, { useRef, KeyboardEvent } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, textVariants } from '@sudobility/design';
 
 export interface RadioOption {
   /** Option value */
@@ -142,7 +143,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     <div className={cn('w-full', className)}>
       {label && (
         <div className='mb-2'>
-          <span className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+          <span className={textVariants.label.default()}>
             {label}
             {required && <span className='text-red-600 ml-1'>*</span>}
           </span>
@@ -167,7 +168,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
               className={cn(
                 'flex items-start cursor-pointer',
                 isDisabled && 'opacity-50 cursor-not-allowed',
-                error && 'border-red-600 dark:border-red-500'
+                error && colors.component.input.default.error
               )}
             >
               <input
@@ -181,11 +182,12 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                 className={cn(
                   'mt-0.5 mr-2',
                   sizeConfig.radio,
-                  'text-blue-600 bg-white dark:bg-gray-900',
-                  'border-gray-300 dark:border-gray-600',
-                  'focus:ring-blue-500 focus:ring-2',
+                  'text-blue-600',
+                  colors.component.input.default.base,
+                  colors.component.input.default.dark,
+                  colors.component.input.default.focus,
                   'transition-colors',
-                  error && 'border-red-600 dark:border-red-500',
+                  error && colors.component.input.default.error,
                   isDisabled && 'cursor-not-allowed'
                 )}
               />
@@ -196,7 +198,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                   <>
                     <span
                       className={cn(
-                        'font-medium text-gray-700 dark:text-gray-300',
+                        textVariants.label.default(),
                         sizeConfig.label
                       )}
                     >
@@ -205,7 +207,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                     {option.description && (
                       <p
                         className={cn(
-                          'text-gray-500 dark:text-gray-400 mt-0.5',
+                          textVariants.label.helper(),
+                          'mt-0.5',
                           sizeConfig.description
                         )}
                       >
@@ -220,9 +223,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
         })}
       </div>
       {errorMessage && (
-        <p className='mt-1 text-sm text-red-600 dark:text-red-400'>
-          {errorMessage}
-        </p>
+        <p className={cn('mt-1', textVariants.label.error())}>{errorMessage}</p>
       )}
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { ui } from '@sudobility/design';
 
 export interface BlockquoteProps {
   /** Quote content */
@@ -56,10 +57,8 @@ export const Blockquote: React.FC<BlockquoteProps> = ({
 
   // Variant configurations
   const variantClasses = {
-    default:
-      'border-l-4 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50',
-    bordered:
-      'border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800',
+    default: `border-l-4 border-gray-300 dark:border-gray-600 ${ui.background.subtle}`,
+    bordered: `border border-gray-300 dark:border-gray-600 ${ui.background.surface}`,
     accent:
       'border-l-4 border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20',
   };

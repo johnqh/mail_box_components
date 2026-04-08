@@ -1,4 +1,5 @@
 import React from 'react';
+import { textVariants, designTokens } from '@sudobility/design';
 import { cn } from '../lib/utils';
 
 export interface TextProps {
@@ -56,30 +57,37 @@ export const Text: React.FC<TextProps> = ({
   lineClamp,
   className,
 }) => {
-  // Size configurations
-  const sizeClasses = {
-    xs: 'text-xs',
-    sm: 'text-sm',
-    base: 'text-base',
-    lg: 'text-lg',
-    xl: 'text-xl',
-    '2xl': 'text-2xl',
-    '3xl': 'text-3xl',
-    '4xl': 'text-4xl',
+  // Map size prop to design system body variant.
+  // Sizes that have direct body variants use them; larger sizes (2xl+) use
+  // heading variants to get the correct text-size class.
+  const bodyVariantMap: Record<string, () => string> = {
+    xs: textVariants.body.xs,
+    sm: textVariants.body.sm,
+    base: textVariants.body.md,
+    lg: textVariants.body.lg,
+    xl: textVariants.body.xl,
+    '2xl': textVariants.heading.h3, // text-2xl
+    '3xl': textVariants.heading.h2, // text-3xl
+    '4xl': textVariants.heading.h1, // text-4xl
   };
 
-  // Weight configurations
-  const weightClasses = {
-    light: 'font-light',
-    normal: 'font-normal',
-    medium: 'font-medium',
-    semibold: 'font-semibold',
-    bold: 'font-bold',
+  // Get base classes from the design system (includes font-family, size,
+  // weight, leading, tracking, and default color)
+  const baseClasses = bodyVariantMap[size]();
+
+  // Weight overrides from design tokens
+  const weightClasses: Record<string, string> = {
+    light: designTokens.typography.weight.light,
+    normal: designTokens.typography.weight.normal,
+    medium: designTokens.typography.weight.medium,
+    semibold: designTokens.typography.weight.semibold,
+    bold: designTokens.typography.weight.bold,
   };
 
-  // Color configurations
-  const colorClasses = {
-    default: 'text-gray-900 dark:text-gray-100',
+  // Color overrides — 'default' is already provided by the body variant,
+  // so we only apply an explicit class for the other variants
+  const colorOverrides: Record<string, string> = {
+    default: '',
     muted: 'text-gray-600 dark:text-gray-400',
     primary: 'text-blue-600 dark:text-blue-400',
     success: 'text-green-600 dark:text-green-400',
@@ -87,23 +95,12 @@ export const Text: React.FC<TextProps> = ({
     danger: 'text-red-600 dark:text-red-400',
   };
 
-  // Alignment configurations
-  const alignClasses = align
-    ? {
-        left: 'text-left',
-        center: 'text-center',
-        right: 'text-right',
-        justify: 'text-justify',
-      }[align]
-    : '';
+  // Alignment from design tokens
+  const alignClasses = align ? designTokens.typography.align[align] : '';
 
-  // Transform configurations
-  const transformClasses = {
-    none: '',
-    uppercase: 'uppercase',
-    lowercase: 'lowercase',
-    capitalize: 'capitalize',
-  };
+  // Transform from design tokens
+  const transformClasses =
+    transform !== 'none' ? designTokens.typography.transform[transform] : '';
 
   // Line clamp style
   const lineClampStyle = lineClamp
@@ -118,11 +115,11 @@ export const Text: React.FC<TextProps> = ({
   return (
     <Component
       className={cn(
-        sizeClasses[size],
+        baseClasses,
         weightClasses[weight],
-        colorClasses[color],
+        colorOverrides[color],
         alignClasses,
-        transformClasses[transform],
+        transformClasses,
         truncate && 'truncate',
         lineClamp && 'overflow-hidden',
         className

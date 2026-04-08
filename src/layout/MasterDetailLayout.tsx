@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, useState, useRef } from 'react';
 import { useLayout } from './Layout/LayoutContext';
+import { ui, textVariants } from '@sudobility/design';
 
 /**
  * MasterListItem - Standardized list item with rounded selection overlay
@@ -32,7 +33,7 @@ export const MasterListItem: React.FC<MasterListItemProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`relative flex items-start p-4 cursor-pointer transition-all border-b border-gray-200 dark:border-gray-700 last:border-b-0 group ${className}`}
+      className={`relative flex items-start p-4 cursor-pointer transition-all border-b ${ui.border.default} last:border-b-0 group ${className}`}
     >
       {/* Rounded selection overlay - positioned absolutely to create overlay effect */}
       {isSelected && (
@@ -304,16 +305,16 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           )}
           <div
             className={
-              showMasterBackground ? 'bg-white dark:bg-gray-800 p-6' : 'p-6'
+              showMasterBackground ? `${ui.background.surface} p-6` : 'p-6'
             }
           >
             {masterTitle && (
               <div className={containerClass}>
-                <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>
+                <h2 className={`${textVariants.heading.h4()} mb-4`}>
                   {masterTitle}
                 </h2>
                 {masterSubtitle && (
-                  <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all'>
+                  <p className={`${textVariants.body.sm()} mb-6 break-all`}>
                     {masterSubtitle}
                   </p>
                 )}
@@ -333,20 +334,20 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           {mobileView === 'content' && onBackToNavigation && (
             <button
               onClick={onBackToNavigation}
-              className='mb-4 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex-shrink-0'
+              className={`mb-4 px-4 py-2 border ${ui.border.default} rounded-md text-sm font-medium ${ui.background.surface} hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex-shrink-0 ${textVariants.body.sm()}`}
             >
               ← {buttonText}
             </button>
           )}
           <div
             ref={contentRef}
-            className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+            className={`${ui.background.surface} rounded-lg border ${ui.border.default} p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
             style={detailPanelStyle}
           >
             <div className={contentWrapperClass} style={contentWrapperStyle}>
               {detailTitle && (
                 <h1
-                  className={`text-4xl font-bold text-gray-900 dark:text-white mb-6 ${detailTitleClassName}`}
+                  className={`${textVariants.heading.h1()} mb-6 ${detailTitleClassName}`}
                 >
                   {detailTitle}
                 </h1>
@@ -375,17 +376,19 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             }}
           >
             {masterTitle && (
-              <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-4 flex-shrink-0'>
+              <h2 className={`${textVariants.heading.h5()} mb-4 flex-shrink-0`}>
                 {masterTitle}
               </h2>
             )}
             {masterSubtitle && (
-              <p className='text-sm text-gray-600 dark:text-gray-400 mb-6 break-all flex-shrink-0'>
+              <p
+                className={`${textVariants.body.sm()} mb-6 break-all flex-shrink-0`}
+              >
                 {masterSubtitle}
               </p>
             )}
             <div
-              className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
+              className={`${ui.background.surface} rounded-lg border ${ui.border.default} p-4 flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
             >
               {masterContent}
             </div>
@@ -395,13 +398,13 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           <div className='flex-1 min-w-0 flex flex-col min-h-0'>
             <div
               ref={contentRef}
-              className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+              className={`${ui.background.surface} rounded-lg border ${ui.border.default} p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
               style={detailPanelStyle}
             >
               <div className={contentWrapperClass} style={contentWrapperStyle}>
                 {detailTitle && (
                   <h1
-                    className={`text-4xl font-bold text-gray-900 dark:text-white mb-6 ${detailTitleClassName}`}
+                    className={`${textVariants.heading.h1()} mb-6 ${detailTitleClassName}`}
                   >
                     {detailTitle}
                   </h1>

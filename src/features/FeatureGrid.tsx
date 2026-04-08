@@ -1,6 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+import { colors, ui, textVariants } from '@sudobility/design';
 
 const gridVariants = cva('grid gap-8', {
   variants: {
@@ -28,7 +29,7 @@ const cardVariants = cva('group transition-all duration-300', {
       default: 'text-center',
       left: 'text-left',
       hoverable: 'text-center hover:transform hover:scale-105 cursor-pointer',
-      card: 'bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl text-center',
+      card: `${colors.component.card.default.base} ${colors.component.card.default.dark} rounded-2xl p-8 shadow-lg hover:shadow-xl text-center`,
       minimal: 'text-center space-y-4',
     },
     animation: {
@@ -166,7 +167,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
     }
 
     if (iconStyle === 'colorful') {
-      const colors = [
+      const iconColors = [
         { from: '#3B82F6', to: '#1D4ED8' }, // blue
         { from: '#10B981', to: '#059669' }, // emerald
         { from: '#8B5CF6', to: '#7C3AED' }, // violet
@@ -174,7 +175,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
         { from: '#EF4444', to: '#DC2626' }, // red
         { from: '#06B6D4', to: '#0891B2' }, // cyan
       ];
-      const colorSet = colors[index % colors.length];
+      const colorSet = iconColors[index % iconColors.length];
       return {
         background: `linear-gradient(135deg, ${colorSet.from}, ${colorSet.to})`,
       };
@@ -231,22 +232,12 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
         </div>
 
         {/* Title */}
-        <h3
-          className={cn(
-            'text-xl font-bold text-gray-900 dark:text-white mb-4',
-            titleClass
-          )}
-        >
+        <h3 className={cn(textVariants.heading.h5(), 'mb-4', titleClass)}>
           {feature.title}
         </h3>
 
         {/* Description */}
-        <div
-          className={cn(
-            'text-gray-600 dark:text-gray-300 leading-relaxed',
-            descriptionClass
-          )}
-        >
+        <div className={cn(textVariants.body.md(), descriptionClass)}>
           {feature.description}
         </div>
 
@@ -255,7 +246,11 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
           <div className='mt-6'>
             <a
               href={feature.link.href}
-              className='inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors duration-200'
+              className={cn(
+                ui.text.linkSubtle,
+                'inline-flex items-center font-medium',
+                ui.transition.default
+              )}
             >
               {feature.link.text || defaultLinkText}
               <svg

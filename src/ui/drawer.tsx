@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { cn } from '../lib/utils';
+import { ui, colors, textVariants, designTokens } from '@sudobility/design';
 import { Portal } from './portal';
 import { Overlay } from './overlay';
 
@@ -127,8 +128,9 @@ export const Drawer: React.FC<DrawerProps> = ({
       <div
         className={cn(
           'fixed z-50',
-          'bg-white dark:bg-gray-900',
-          'shadow-xl',
+          colors.component.card.default.base,
+          colors.component.card.default.dark,
+          designTokens.shadow.xl,
           'transition-transform duration-300 ease-in-out',
           positionClasses[side],
           sizeClasses[side][size],
@@ -138,16 +140,20 @@ export const Drawer: React.FC<DrawerProps> = ({
       >
         {/* Header */}
         {(title || showCloseButton) && (
-          <div className='flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700'>
-            {title && (
-              <h2 className='text-lg font-semibold text-gray-900 dark:text-white'>
-                {title}
-              </h2>
+          <div
+            className={cn(
+              'flex items-center justify-between px-6 py-4 border-b',
+              ui.border.default
             )}
+          >
+            {title && <h2 className={textVariants.heading.h4()}>{title}</h2>}
             {showCloseButton && (
               <button
                 onClick={onClose}
-                className='text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors'
+                className={cn(
+                  'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200',
+                  ui.transition.default
+                )}
                 aria-label='Close drawer'
               >
                 <svg
@@ -173,7 +179,7 @@ export const Drawer: React.FC<DrawerProps> = ({
 
         {/* Footer */}
         {footer && (
-          <div className='px-6 py-4 border-t border-gray-200 dark:border-gray-700'>
+          <div className={cn('px-6 py-4 border-t', ui.border.default)}>
             {footer}
           </div>
         )}

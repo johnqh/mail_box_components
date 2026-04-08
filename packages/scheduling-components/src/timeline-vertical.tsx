@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { ui, textVariants } from '@sudobility/design';
 
 export interface TimelineEvent {
   id: string;
@@ -63,7 +64,7 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
             {/* Connector line */}
             {showConnectors && !isLast && (
               <div
-                className='absolute left-4 top-8 w-0.5 h-full bg-gray-300 dark:bg-gray-600'
+                className='absolute left-4 top-8 w-0.5 h-full bg-gray-200 dark:bg-gray-700'
                 style={
                   align === 'center'
                     ? { left: '50%' }
@@ -94,17 +95,15 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
             {/* Content */}
             <div className='flex-1 min-w-0'>
               <div className='flex items-center gap-3 mb-1'>
-                <h4 className='font-semibold text-gray-900 dark:text-white'>
-                  {event.title}
-                </h4>
+                <h4 className={textVariants.heading.h6()}>{event.title}</h4>
                 {event.timestamp && (
-                  <span className='text-xs text-gray-600 dark:text-gray-400'>
+                  <span className={cn('text-xs', ui.text.bodySmall)}>
                     {event.timestamp}
                   </span>
                 )}
               </div>
               {event.description && (
-                <p className='text-sm text-gray-600 dark:text-gray-400'>
+                <p className={cn('text-sm', ui.text.bodySmall)}>
                   {event.description}
                 </p>
               )}

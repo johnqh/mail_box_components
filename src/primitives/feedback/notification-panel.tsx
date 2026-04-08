@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { colors, textVariants } from '@sudobility/design';
 
 export interface Notification {
   id: string;
@@ -23,7 +24,9 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
   return (
     <div
       className={cn(
-        'bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-4 max-h-96 overflow-y-auto',
+        'rounded-lg border p-4 max-h-96 overflow-y-auto',
+        colors.component.card.default.base,
+        colors.component.card.default.dark,
         className
       )}
     >
@@ -36,13 +39,13 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
           )}
           onClick={() => onMarkAsRead?.(notif.id)}
         >
-          <h4 className='font-semibold text-gray-900 dark:text-white'>
+          <h4 className={cn('font-semibold', textVariants.body.sm())}>
             {notif.title}
           </h4>
-          <p className='text-sm text-gray-600 dark:text-gray-400'>
+          <p className={cn(textVariants.body.sm(), 'opacity-70')}>
             {notif.message}
           </p>
-          <span className='text-xs text-gray-500 dark:text-gray-500'>
+          <span className={textVariants.caption.default()}>
             {notif.timestamp}
           </span>
         </div>

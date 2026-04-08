@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { ui, getStatusIndicatorColor } from '@sudobility/design';
 
 export interface TimelineItem {
   /** Item ID */
@@ -55,19 +56,19 @@ export const Timeline: React.FC<TimelineProps> = ({
   orientation = 'vertical',
   className,
 }) => {
-  // Status color configurations
+  // Status color configurations using design system
   const statusColors = {
-    completed: 'bg-green-500 border-green-500',
-    active: 'bg-blue-500 border-blue-500',
+    completed: `${getStatusIndicatorColor('success')} border-green-500`,
+    active: `${getStatusIndicatorColor('info')} border-blue-500`,
     pending:
       'bg-gray-300 dark:bg-gray-600 border-gray-300 dark:border-gray-600',
-    error: 'bg-red-500 border-red-500',
+    error: `${getStatusIndicatorColor('error')} border-red-500`,
   };
 
   const statusIconColors = {
     completed: 'text-white',
     active: 'text-white',
-    pending: 'text-gray-500 dark:text-gray-400',
+    pending: ui.text.muted,
     error: 'text-white',
   };
 
@@ -113,16 +114,16 @@ export const Timeline: React.FC<TimelineProps> = ({
 
                   {/* Content */}
                   <div className='mt-4 text-center max-w-[200px]'>
-                    <p className='text-sm font-medium text-gray-900 dark:text-white'>
+                    <p className={cn('text-sm', ui.text.emphasis)}>
                       {item.title}
                     </p>
                     {item.description && (
-                      <p className='text-xs text-gray-600 dark:text-gray-400 mt-1'>
+                      <p className={cn('text-xs mt-1', ui.text.bodySmall)}>
                         {item.description}
                       </p>
                     )}
                     {item.timestamp && (
-                      <p className='text-xs text-gray-500 dark:text-gray-500 mt-1'>
+                      <p className={cn('text-xs mt-1', ui.text.muted)}>
                         {item.timestamp}
                       </p>
                     )}
@@ -131,7 +132,12 @@ export const Timeline: React.FC<TimelineProps> = ({
 
                 {/* Connector Line */}
                 {!isLast && (
-                  <div className='flex-shrink-0 w-16 h-0.5 bg-gray-300 dark:bg-gray-700 mt-5 mx-2 relative'>
+                  <div
+                    className={cn(
+                      'flex-shrink-0 w-16 h-0.5 mt-5 mx-2 relative',
+                      ui.background.muted
+                    )}
+                  >
                     <div
                       className={cn(
                         'absolute left-0 top-0 h-full transition-all duration-300',
@@ -189,7 +195,12 @@ export const Timeline: React.FC<TimelineProps> = ({
 
                 {/* Connector Line */}
                 {!isLast && (
-                  <div className='w-0.5 flex-1 min-h-[32px] bg-gray-300 dark:bg-gray-700 relative mt-2'>
+                  <div
+                    className={cn(
+                      'w-0.5 flex-1 min-h-[32px] relative mt-2',
+                      ui.background.muted
+                    )}
+                  >
                     <div
                       className={cn(
                         'absolute top-0 left-0 w-full transition-all duration-300',
@@ -204,17 +215,22 @@ export const Timeline: React.FC<TimelineProps> = ({
               <div className='flex-1 pb-4'>
                 <div className='flex items-start justify-between'>
                   <div className='flex-1'>
-                    <p className='text-sm font-medium text-gray-900 dark:text-white'>
+                    <p className={cn('text-sm', ui.text.emphasis)}>
                       {item.title}
                     </p>
                     {item.description && (
-                      <p className='text-sm text-gray-600 dark:text-gray-400 mt-1'>
+                      <p className={cn('text-sm mt-1', ui.text.bodySmall)}>
                         {item.description}
                       </p>
                     )}
                   </div>
                   {item.timestamp && (
-                    <p className='text-xs text-gray-500 dark:text-gray-500 ml-4 flex-shrink-0'>
+                    <p
+                      className={cn(
+                        'text-xs ml-4 flex-shrink-0',
+                        ui.text.muted
+                      )}
+                    >
                       {item.timestamp}
                     </p>
                   )}

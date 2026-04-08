@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { variants, colors } from '@sudobility/design';
 
 interface SpinnerProps {
   size?: 'small' | 'default' | 'large' | 'extraLarge';
@@ -16,28 +17,35 @@ export const Spinner: React.FC<SpinnerProps> = ({
   ariaLabel = 'Loading',
   loadingText = 'Loading...',
 }) => {
-  const getSpinnerClass = () => {
-    const sizeClasses = {
-      small: 'w-4 h-4',
-      default: 'w-6 h-6',
-      large: 'w-8 h-8',
+  const getSizeClass = () => {
+    const sizeMap = {
+      small: variants.loading.spinner.small(),
+      default: variants.loading.spinner.default(),
+      large: variants.loading.spinner.large(),
       extraLarge: 'w-16 h-16 border-4',
     };
+    return sizeMap[size];
+  };
 
-    const variantClasses = {
-      default: 'border-gray-300 border-t-blue-600',
+  const getVariantClass = () => {
+    const variantMap = {
+      default: `border-gray-300 border-t-[${colors.component.button.primary.base}]`,
       white: 'border-white/30 border-t-white',
-      success: 'border-gray-300 border-t-green-600',
+      success: `border-gray-300 border-t-green-600`,
       warning: 'border-gray-300 border-t-orange-600',
       error: 'border-gray-300 border-t-red-600',
     };
-
-    return `animate-spin rounded-full border-2 ${sizeClasses[size]} ${variantClasses[variant]}`;
+    return variantMap[variant];
   };
 
   return (
     <div
-      className={cn(getSpinnerClass(), className)}
+      className={cn(
+        variants.loading.spinner.default(),
+        getSizeClass(),
+        getVariantClass(),
+        className
+      )}
       role='status'
       aria-label={ariaLabel}
     >

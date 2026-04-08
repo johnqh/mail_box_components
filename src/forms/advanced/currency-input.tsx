@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, textVariants, ui, designTokens } from '@sudobility/design';
 
 export interface Currency {
   /** Currency code (ISO 4217) */
@@ -183,22 +184,27 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
               onClick={() => !disabled && setIsOpen(!isOpen)}
               disabled={disabled}
               className={cn(
-                'flex items-center gap-2 px-3 py-2 min-w-[100px]',
-                'bg-white dark:bg-gray-900',
-                'border border-gray-300 dark:border-gray-700',
-                'rounded-md',
-                'hover:bg-gray-50 dark:hover:bg-gray-800',
-                'transition-colors',
+                'flex items-center gap-2 px-3 py-2 min-w-[100px] border rounded-md transition-colors',
+                colors.component.input.default.base,
+                colors.component.input.default.dark,
+                colors.component.button.ghost.base,
+                colors.component.button.ghost.dark,
                 'disabled:opacity-50 disabled:cursor-not-allowed',
-                isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
+                isOpen && colors.component.input.default.focus
               )}
             >
-              <span className='text-sm font-medium text-gray-900 dark:text-white'>
+              <span
+                className={cn(
+                  'text-sm font-medium',
+                  textVariants.label.default()
+                )}
+              >
                 {currentCurrency.code}
               </span>
               <svg
                 className={cn(
-                  'w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform',
+                  'w-4 h-4 transition-transform',
+                  textVariants.body.sm(),
                   isOpen && 'rotate-180'
                 )}
                 fill='none'
@@ -216,16 +222,24 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
             {/* Currency dropdown */}
             {isOpen && (
-              <div className='absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50'>
+              <div
+                className={cn(
+                  'absolute top-full left-0 mt-1 w-64 border rounded-md z-50',
+                  colors.component.card.default.base,
+                  colors.component.card.default.dark,
+                  ui.border.default,
+                  designTokens.shadow.lg
+                )}
+              >
                 <div className='max-h-60 overflow-y-auto py-1'>
                   {currencies.map(curr => (
                     <button
                       key={curr.code}
                       onClick={() => handleCurrencyChange(curr.code)}
                       className={cn(
-                        'w-full px-3 py-2 text-left flex items-center gap-3',
-                        'hover:bg-gray-100 dark:hover:bg-gray-800',
-                        'transition-colors',
+                        'w-full px-3 py-2 text-left flex items-center gap-3 transition-colors',
+                        colors.component.button.ghost.base,
+                        colors.component.button.ghost.dark,
                         curr.code === currentCurrency.code &&
                           'bg-blue-50 dark:bg-blue-900/30'
                       )}
@@ -234,10 +248,15 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
                         {curr.symbol}
                       </span>
                       <div className='flex-1'>
-                        <p className='text-sm font-medium text-gray-900 dark:text-white'>
+                        <p
+                          className={cn(
+                            'text-sm font-medium',
+                            textVariants.label.default()
+                          )}
+                        >
                           {curr.code}
                         </p>
-                        <p className='text-xs text-gray-600 dark:text-gray-400'>
+                        <p className={cn('text-xs', textVariants.body.sm())}>
                           {curr.name}
                         </p>
                       </div>
@@ -251,7 +270,12 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
         {/* Amount input */}
         <div className='relative flex-1'>
-          <div className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 text-sm font-medium'>
+          <div
+            className={cn(
+              'absolute left-3 top-1/2 -translate-y-1/2 text-sm font-medium',
+              textVariants.body.sm()
+            )}
+          >
             {currentCurrency.symbol}
           </div>
           <input
@@ -263,11 +287,10 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
             placeholder={placeholder}
             disabled={disabled}
             className={cn(
-              'w-full pl-8 pr-3 py-2 text-sm',
-              'bg-white dark:bg-gray-900',
-              'border border-gray-300 dark:border-gray-700',
-              'rounded-md',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400',
+              'w-full pl-8 pr-3 py-2 text-sm border rounded-md focus:outline-none',
+              colors.component.input.default.base,
+              colors.component.input.default.dark,
+              colors.component.input.default.focus,
               'disabled:opacity-50 disabled:cursor-not-allowed'
             )}
           />
@@ -276,7 +299,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
       {/* Helper text */}
       {(min !== undefined || max !== undefined) && (
-        <p className='mt-1.5 text-xs text-gray-600 dark:text-gray-400'>
+        <p className={cn('mt-1.5 text-xs', textVariants.body.sm())}>
           {min !== undefined && max !== undefined
             ? `Range: ${currentCurrency.symbol}${formatDisplay(min)} - ${currentCurrency.symbol}${formatDisplay(max)}`
             : min !== undefined

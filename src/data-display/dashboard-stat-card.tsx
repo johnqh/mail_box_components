@@ -1,5 +1,10 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import {
+  colors,
+  textVariants,
+  getStatusIndicatorColor,
+} from '@sudobility/design';
 
 export interface DashboardStatCardProps {
   /** Stat title */
@@ -44,26 +49,21 @@ export const DashboardStatCard: React.FC<DashboardStatCardProps> = ({
   variant = 'default',
   className,
 }) => {
+  const cardColors = colors.component.card;
   const variantStyles = {
-    default: 'bg-white dark:bg-gray-900',
-    primary: 'bg-blue-50 dark:bg-blue-900/20',
-    success: 'bg-green-50 dark:bg-green-900/20',
-    warning: 'bg-yellow-50 dark:bg-yellow-900/20',
-    danger: 'bg-red-50 dark:bg-red-900/20',
+    default: `${cardColors.default.base} ${cardColors.default.dark}`,
+    primary: `${cardColors.default.base} ${cardColors.default.dark}`,
+    success: `${cardColors.success.base} ${cardColors.success.dark}`,
+    warning: `${cardColors.warning.base} ${cardColors.warning.dark}`,
+    danger: `${cardColors.error.base} ${cardColors.error.dark}`,
   };
 
   return (
     <div
-      className={cn(
-        'rounded-lg border border-gray-200 dark:border-gray-700 p-6',
-        variantStyles[variant],
-        className
-      )}
+      className={cn('rounded-lg border p-6', variantStyles[variant], className)}
     >
       <div className='flex items-start justify-between mb-2'>
-        <h3 className='text-sm font-medium text-gray-600 dark:text-gray-400'>
-          {title}
-        </h3>
+        <h3 className={cn('text-sm', textVariants.label.helper())}>{title}</h3>
         {icon && <div className='text-gray-400 dark:text-gray-600'>{icon}</div>}
       </div>
 
@@ -78,13 +78,14 @@ export const DashboardStatCard: React.FC<DashboardStatCardProps> = ({
                 className={cn(
                   'text-sm font-medium',
                   change >= 0
-                    ? 'text-green-600 dark:text-green-400'
-                    : 'text-red-600 dark:text-red-400'
+                    ? getStatusIndicatorColor('success').replace('bg-', 'text-')
+                    : getStatusIndicatorColor('error').replace('bg-', 'text-'),
+                  change >= 0 ? 'dark:text-green-400' : 'dark:text-red-400'
                 )}
               >
                 {change >= 0 ? '↑' : '↓'} {Math.abs(change)}%
               </span>
-              <span className='text-xs text-gray-500 dark:text-gray-400'>
+              <span className={cn('text-xs', textVariants.label.helper())}>
                 {changePeriod}
               </span>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { textVariants } from '@sudobility/design';
 
 interface PageHeaderProps {
   title?: string;
@@ -12,11 +13,9 @@ interface PageHeaderProps {
 const PageHeader: React.FC<PageHeaderProps> = ({ title, description }) => {
   return (
     <div className='mb-8'>
-      <h1 className='text-3xl font-bold text-gray-900 dark:text-white'>
-        {title}
-      </h1>
+      <h1 className={textVariants.heading.h1()}>{title}</h1>
       {description && (
-        <p className='mt-2 text-gray-600 dark:text-gray-400'>{description}</p>
+        <p className={`mt-2 ${textVariants.body.sm()}`}>{description}</p>
       )}
     </div>
   );

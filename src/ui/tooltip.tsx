@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
+import { colors, designTokens } from '@sudobility/design';
 
 export interface TooltipProps {
   /** Content to display in the tooltip */
@@ -204,16 +205,17 @@ export const Tooltip: React.FC<TooltipProps> = ({
       'right-full top-1/2 -translate-y-1/2 border-t-transparent border-b-transparent border-l-transparent',
   };
 
-  // Variant styles
+  // Variant styles derived from design system button colors
   const variantClasses = {
     default: 'bg-gray-900 dark:bg-gray-700 text-white',
-    info: 'bg-blue-600 dark:bg-blue-500 text-white',
-    success: 'bg-green-600 dark:bg-green-500 text-white',
+    info: `${colors.component.button.primary.base} ${colors.component.button.primary.dark} text-white`,
+    success: `${colors.component.button.success.base} ${colors.component.button.success.dark} text-white`,
     warning: 'bg-yellow-600 dark:bg-yellow-500 text-white',
-    error: 'bg-red-600 dark:bg-red-500 text-white',
+    error: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark} text-white`,
   };
 
-  // Arrow variant styles
+  // Arrow variant styles - arrow borders must match tooltip bg color per variant
+  // These use CSS border-color tricks for the triangle, so they need explicit border-{side} classes
   const arrowVariantClasses = {
     default: {
       top: 'border-t-gray-900 dark:border-t-gray-700',
@@ -222,16 +224,16 @@ export const Tooltip: React.FC<TooltipProps> = ({
       right: 'border-r-gray-900 dark:border-r-gray-700',
     },
     info: {
-      top: 'border-t-blue-600 dark:border-t-blue-500',
-      bottom: 'border-b-blue-600 dark:border-b-blue-500',
-      left: 'border-l-blue-600 dark:border-l-blue-500',
-      right: 'border-r-blue-600 dark:border-r-blue-500',
+      top: 'border-t-blue-600 dark:border-t-blue-600',
+      bottom: 'border-b-blue-600 dark:border-b-blue-600',
+      left: 'border-l-blue-600 dark:border-l-blue-600',
+      right: 'border-r-blue-600 dark:border-r-blue-600',
     },
     success: {
-      top: 'border-t-green-600 dark:border-t-green-500',
-      bottom: 'border-b-green-600 dark:border-b-green-500',
-      left: 'border-l-green-600 dark:border-l-green-500',
-      right: 'border-r-green-600 dark:border-r-green-500',
+      top: 'border-t-green-600 dark:border-t-green-600',
+      bottom: 'border-b-green-600 dark:border-b-green-600',
+      left: 'border-l-green-600 dark:border-l-green-600',
+      right: 'border-r-green-600 dark:border-r-green-600',
     },
     warning: {
       top: 'border-t-yellow-600 dark:border-t-yellow-500',
@@ -240,10 +242,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
       right: 'border-r-yellow-600 dark:border-r-yellow-500',
     },
     error: {
-      top: 'border-t-red-600 dark:border-t-red-500',
-      bottom: 'border-b-red-600 dark:border-b-red-500',
-      left: 'border-l-red-600 dark:border-l-red-500',
-      right: 'border-r-red-600 dark:border-r-red-500',
+      top: 'border-t-red-600 dark:border-t-red-600',
+      bottom: 'border-b-red-600 dark:border-b-red-600',
+      left: 'border-l-red-600 dark:border-l-red-600',
+      right: 'border-r-red-600 dark:border-r-red-600',
     },
   };
 
@@ -262,7 +264,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
         <div
           ref={tooltipRef}
           className={cn(
-            'absolute z-50 px-2 py-1 text-xs font-medium rounded shadow-lg whitespace-nowrap pointer-events-none',
+            'absolute z-50 px-2 py-1 text-xs font-medium rounded whitespace-nowrap pointer-events-none',
+            designTokens.shadow.lg,
             positionClasses[placement],
             variantClasses[variant],
             className

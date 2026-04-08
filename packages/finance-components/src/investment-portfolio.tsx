@@ -1,4 +1,5 @@
 import { cn } from '@sudobility/components';
+import { colors } from '@sudobility/design';
 
 /**
  * InvestmentPortfolio Component
@@ -26,8 +27,8 @@ export const InvestmentPortfolio = ({
     <div
       className={cn(
         'p-4 rounded-lg border transition-colors',
-        'bg-white dark:bg-gray-900',
-        'border-gray-200 dark:border-gray-700',
+        colors.component.card.default.base,
+        colors.component.card.default.dark,
         'text-gray-900 dark:text-white',
         disabled && 'opacity-50 cursor-not-allowed',
         className

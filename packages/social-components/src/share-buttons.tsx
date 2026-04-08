@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 export type SharePlatform =
   | 'twitter'
@@ -132,7 +133,8 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
               key={platform}
               onClick={() => handleShare(platform)}
               className={cn(
-                'rounded-full text-white flex items-center justify-center transition-colors',
+                'rounded-full text-white flex items-center justify-center',
+                ui.transition.default,
                 sizeClasses[size],
                 config.color
               )}
@@ -148,7 +150,8 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
             key={platform}
             onClick={() => handleShare(platform)}
             className={cn(
-              'rounded text-white font-medium transition-colors',
+              'rounded text-white font-medium',
+              ui.transition.default,
               buttonSizes[size],
               config.color
             )}

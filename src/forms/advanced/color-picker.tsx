@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, textVariants, ui, designTokens } from '@sudobility/design';
 
 export interface ColorPickerProps {
   /** Selected color (hex format) */
@@ -100,19 +101,37 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
   const displayColor = showOpacity ? hexToRgba(value, opacity) : value;
 
   return (
-    <div className={cn('bg-white dark:bg-gray-900 rounded-lg p-4', className)}>
+    <div
+      className={cn(
+        ui.background.surface,
+        designTokens.radius.lg,
+        'p-4',
+        className
+      )}
+    >
       {/* Current color preview */}
       <div className='mb-4'>
         <div className='flex items-center gap-3'>
           <div
-            className='w-16 h-16 rounded-lg border-2 border-gray-200 dark:border-gray-700 shadow-sm'
+            className={cn(
+              'w-16 h-16',
+              designTokens.radius.lg,
+              'border-2',
+              ui.border.default,
+              'shadow-sm'
+            )}
             style={{ backgroundColor: displayColor }}
           />
           <div className='flex-1'>
-            <p className='text-sm font-medium text-gray-900 dark:text-white'>
+            <p
+              className={cn(
+                'text-sm font-medium',
+                textVariants.label.default()
+              )}
+            >
               Selected Color
             </p>
-            <p className='text-xs text-gray-600 dark:text-gray-400 mt-1 font-mono'>
+            <p className={cn('text-xs mt-1 font-mono', textVariants.body.sm())}>
               {value}
               {showOpacity && ` (${opacity}%)`}
             </p>
@@ -122,7 +141,12 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
 
       {/* Preset colors */}
       <div className='mb-4'>
-        <p className='text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
+        <p
+          className={cn(
+            'text-sm font-medium mb-2',
+            textVariants.label.default()
+          )}
+        >
           Preset Colors
         </p>
         <div className='grid grid-cols-6 gap-2'>
@@ -133,8 +157,8 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               className={cn(
                 'w-full aspect-square rounded-md border-2 transition-all hover:scale-110',
                 preset === value
-                  ? 'border-blue-500 dark:border-blue-400 ring-2 ring-blue-200 dark:ring-blue-800'
-                  : 'border-gray-200 dark:border-gray-700'
+                  ? colors.component.input.default.focus
+                  : ui.border.default
               )}
               style={{ backgroundColor: preset }}
               aria-label={`Select color ${preset}`}
@@ -146,7 +170,12 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
       {/* Custom color input */}
       {showInput && (
         <div className='mb-4'>
-          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
+          <label
+            className={cn(
+              'block text-sm font-medium mb-2',
+              textVariants.label.default()
+            )}
+          >
             Custom Color (Hex)
           </label>
           <div className='flex gap-2'>
@@ -155,7 +184,12 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               value={inputValue}
               onChange={handleInputChange}
               placeholder='#000000'
-              className='flex-1 px-3 py-2 text-sm font-mono bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
+              className={cn(
+                'flex-1 px-3 py-2 text-sm font-mono border rounded-md focus:outline-none',
+                colors.component.input.default.base,
+                colors.component.input.default.dark,
+                colors.component.input.default.focus
+              )}
             />
             <input
               type='color'
@@ -170,7 +204,12 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
       {/* Opacity slider */}
       {showOpacity && (
         <div>
-          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
+          <label
+            className={cn(
+              'block text-sm font-medium mb-2',
+              textVariants.label.default()
+            )}
+          >
             Opacity: {opacity}%
           </label>
           <input
@@ -179,7 +218,11 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
             max='100'
             value={opacity}
             onChange={handleOpacityChange}
-            className='w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer'
+            className={cn(
+              'w-full h-2 rounded-lg appearance-none cursor-pointer',
+              colors.component.input.default.base,
+              colors.component.input.default.dark
+            )}
           />
         </div>
       )}

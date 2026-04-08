@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { colors, ui, textVariants, designTokens } from '@sudobility/design';
 
 export type FeatureCardColor =
   | 'green'
@@ -166,12 +167,8 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
       )}
 
       <div className='flex-1'>
-        <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-3'>
-          {title}
-        </h3>
-        <p className='text-gray-600 dark:text-gray-300 mb-4 leading-relaxed'>
-          {description}
-        </p>
+        <h3 className={cn(textVariants.heading.h5(), 'mb-3')}>{title}</h3>
+        <p className={cn(textVariants.body.md(), 'mb-4')}>{description}</p>
 
         {cta && <div className='mt-3 mb-4'>{cta}</div>}
 
@@ -185,9 +182,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
                     `bg-${color}-500`
                   )}
                 />
-                <span className='text-sm text-gray-600 dark:text-gray-400'>
-                  {benefit}
-                </span>
+                <span className={textVariants.body.sm()}>{benefit}</span>
               </li>
             ))}
           </ul>
@@ -198,12 +193,15 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
             {Object.entries(metrics).map(([key, value], index) => (
               <div
                 key={index}
-                className='text-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg'
+                className={cn(
+                  'text-center p-3 rounded-lg',
+                  ui.background.subtle
+                )}
               >
                 <div className={cn('text-lg font-bold', iconColor)}>
                   {value}
                 </div>
-                <div className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
+                <div className={cn(textVariants.caption.default(), 'mt-1')}>
                   {key}
                 </div>
               </div>
@@ -216,12 +214,20 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
 
   // Base card classes
   const baseClasses = cn(
-    'p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200',
+    'p-6',
+    designTokens.radius.xl,
+    designTokens.shadow.lg,
+    'hover:shadow-xl',
+    ui.transition.all,
     borderColor && borderColorClasses[color],
     (interactive || onClick) && 'cursor-pointer hover:scale-[1.02]',
     isHighlight
       ? 'bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800 border'
-      : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 border',
+      : cn(
+          colors.component.card.default.base,
+          colors.component.card.default.dark,
+          'border'
+        ),
     className
   );
 

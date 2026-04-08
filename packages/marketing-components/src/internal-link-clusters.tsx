@@ -1,4 +1,5 @@
 import { cn } from '@sudobility/components';
+import { ui, colors, textVariants } from '@sudobility/design';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,12 +11,10 @@ export interface InternalLinkProps {
 }
 
 const linkVariants = {
-  primary:
-    'text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline font-medium',
+  primary: cn(ui.text.link, 'font-medium'),
   secondary:
     'text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 underline font-medium',
-  subtle:
-    'text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 underline',
+  subtle: cn(ui.text.linkMuted),
 };
 
 export const InternalLink: React.FC<InternalLinkProps> = ({
@@ -109,7 +108,7 @@ const TopicClusterLinks: React.FC<TopicClusterLinksProps> = ({
   };
 
   return (
-    <span className={cn('text-sm text-gray-600 dark:text-gray-400', className)}>
+    <span className={cn('text-sm', textVariants.label.helper(), className)}>
       {Object.entries(links).map(([key, url], index) => (
         <React.Fragment key={key}>
           <InternalLink to={url} variant='primary'>
@@ -143,11 +142,18 @@ const RelatedLinks: React.FC<RelatedLinksProps> = ({
 }) => (
   <div
     className={cn(
-      'mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800',
+      'mt-4 p-3 rounded-lg border',
+      colors.component.alert.info.base,
+      colors.component.alert.info.dark,
       className
     )}
   >
-    <span className='text-sm font-medium text-blue-900 dark:text-blue-200 mr-2'>
+    <span
+      className={cn(
+        'text-sm font-medium mr-2',
+        colors.component.alert.info.icon
+      )}
+    >
       {title}
     </span>
     {links.map((link, index) => (

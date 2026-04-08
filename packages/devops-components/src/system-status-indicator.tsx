@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { cn } from '@sudobility/components';
+import { getStatusIndicatorColor } from '@sudobility/design';
 
 export type SystemStatus = 'operational' | 'degraded' | 'major-outage';
 
@@ -26,18 +27,18 @@ export interface SystemStatusIndicatorProps {
 
 const statusConfig = {
   operational: {
-    color: 'bg-green-500/80',
-    hoverColor: 'hover:bg-green-500',
+    color: `${getStatusIndicatorColor('success')}/80`,
+    hoverColor: `hover:${getStatusIndicatorColor('success')}`,
     label: 'All systems operational',
   },
   degraded: {
-    color: 'bg-yellow-500/80',
-    hoverColor: 'hover:bg-yellow-500',
+    color: `${getStatusIndicatorColor('warning')}/80`,
+    hoverColor: `hover:${getStatusIndicatorColor('warning')}`,
     label: 'Degraded performance',
   },
   'major-outage': {
-    color: 'bg-red-500/80',
-    hoverColor: 'hover:bg-red-500',
+    color: `${getStatusIndicatorColor('error')}/80`,
+    hoverColor: `hover:${getStatusIndicatorColor('error')}`,
     label: 'Major outage',
   },
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+// NOTE: SVG stroke colors and dynamically-sized text don't map to design system
+// bg/text tokens. Stroke colors are kept aligned with the design system palette.
 
 export interface ProgressCircleProps {
   /** Progress value (0-100) */
@@ -67,12 +69,12 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (progress / 100) * circumference;
 
-  // Color variants
+  // Color variants (derived from design system button colors)
   const variantColors = {
-    primary: 'stroke-blue-600 dark:stroke-blue-500',
-    success: 'stroke-green-600 dark:stroke-green-500',
+    primary: `stroke-blue-600 dark:stroke-blue-500`,
+    success: `stroke-green-600 dark:stroke-green-500`,
     warning: 'stroke-yellow-600 dark:stroke-yellow-500',
-    danger: 'stroke-red-600 dark:stroke-red-500',
+    danger: `stroke-red-600 dark:stroke-red-500`,
   };
 
   const trackColorClass = trackColor || 'stroke-gray-200 dark:stroke-gray-700';

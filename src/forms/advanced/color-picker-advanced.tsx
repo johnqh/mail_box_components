@@ -1,4 +1,5 @@
 import { cn } from '../../lib/utils';
+import { colors as designColors } from '@sudobility/design';
 
 export interface ColorPickerAdvancedProps {
   value: string;
@@ -40,7 +41,9 @@ export const ColorPickerAdvanced = ({
             onClick={() => onChange(color)}
             className={cn(
               'w-8 h-8 rounded border-2',
-              value === color ? 'border-blue-500' : 'border-transparent'
+              value === color
+                ? designColors.component.input.default.focus
+                : 'border-transparent'
             )}
             style={{ backgroundColor: color }}
           />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { cn } from '@sudobility/components';
+import { colors, ui } from '@sudobility/design';
 
 export interface TagProps {
   /** Tag label */
@@ -72,18 +73,14 @@ export const Tag: React.FC<TagProps> = ({
     },
   };
 
-  // Color variant configurations
+  // Color variant configurations using design system tokens
+  const badgeColors = colors.component.badge;
   const variantClasses = {
-    default:
-      'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700',
-    primary:
-      'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/50',
-    success:
-      'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-900/50',
-    warning:
-      'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 hover:bg-yellow-200 dark:hover:bg-yellow-900/50',
-    danger:
-      'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-900/50',
+    default: `${badgeColors.default.base} ${badgeColors.default.dark} hover:bg-gray-200 dark:hover:bg-gray-700`,
+    primary: `${badgeColors.primary.base} ${badgeColors.primary.dark} hover:bg-blue-200 dark:hover:bg-blue-900/50`,
+    success: `${badgeColors.success.base} ${badgeColors.success.dark} hover:bg-green-200 dark:hover:bg-green-900/50`,
+    warning: `${badgeColors.warning.base} ${badgeColors.warning.dark} hover:bg-yellow-200 dark:hover:bg-yellow-900/50`,
+    danger: `${badgeColors.error.base} ${badgeColors.error.dark} hover:bg-red-200 dark:hover:bg-red-900/50`,
     info: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 hover:bg-cyan-200 dark:hover:bg-cyan-900/50',
     purple:
       'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-900/50',
@@ -110,7 +107,7 @@ export const Tag: React.FC<TagProps> = ({
       onClick={handleClick}
       className={cn(
         'inline-flex items-center font-medium rounded-full',
-        'transition-colors duration-200',
+        ui.transition.default,
         sizeConfig.tag,
         variantClasses[variant],
         isInteractive && !disabled && 'cursor-pointer',

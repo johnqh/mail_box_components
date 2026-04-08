@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { ui, designTokens } from '@sudobility/design';
 
 export interface BoxProps {
   /** Box content */
@@ -98,12 +99,12 @@ export const Box: React.FC<BoxProps> = ({
     auto: 'auto',
   };
 
-  // Background configurations
+  // Background configurations - aligned with design system ui.background and colors.component
   const bgClasses = bg
     ? {
         transparent: 'bg-transparent',
-        white: 'bg-white dark:bg-gray-900',
-        gray: 'bg-gray-100 dark:bg-gray-800',
+        white: ui.background.surface,
+        gray: ui.background.muted,
         primary: 'bg-blue-50 dark:bg-blue-900/20',
         success: 'bg-green-50 dark:bg-green-900/20',
         warning: 'bg-yellow-50 dark:bg-yellow-900/20',
@@ -111,26 +112,26 @@ export const Box: React.FC<BoxProps> = ({
       }[bg]
     : '';
 
-  // Border radius configurations
+  // Border radius configurations - using design system tokens
   const roundedClasses = rounded
     ? {
-        none: 'rounded-none',
-        sm: 'rounded-sm',
-        md: 'rounded-md',
-        lg: 'rounded-lg',
-        xl: 'rounded-xl',
-        full: 'rounded-full',
+        none: designTokens.radius.none,
+        sm: designTokens.radius.sm,
+        md: designTokens.radius.md,
+        lg: designTokens.radius.lg,
+        xl: designTokens.radius.xl,
+        full: designTokens.radius.full,
       }[rounded]
     : '';
 
-  // Shadow configurations
+  // Shadow configurations - using design system tokens
   const shadowClasses = shadow
     ? {
-        none: 'shadow-none',
-        sm: 'shadow-sm',
-        md: 'shadow-md',
-        lg: 'shadow-lg',
-        xl: 'shadow-xl',
+        none: designTokens.shadow.none,
+        sm: designTokens.shadow.sm,
+        md: designTokens.shadow.md,
+        lg: designTokens.shadow.lg,
+        xl: designTokens.shadow.xl,
       }[shadow]
     : '';
 
@@ -174,7 +175,7 @@ export const Box: React.FC<BoxProps> = ({
         ...paddingClasses,
         ...marginClasses,
         bgClasses,
-        border && 'border border-gray-200 dark:border-gray-700',
+        border && `border ${ui.border.default}`,
         roundedClasses,
         shadowClasses,
         wClasses,

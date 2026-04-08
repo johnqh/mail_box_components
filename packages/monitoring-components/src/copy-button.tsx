@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn, useCopyToClipboard } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 import { ClipboardDocumentIcon, CheckIcon } from '@heroicons/react/24/outline';
 
 export interface CopyButtonProps {
@@ -104,9 +105,10 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
       <button
         onClick={handleClick}
         className={cn(
-          'inline-flex items-center justify-center rounded transition-colors',
+          'inline-flex items-center justify-center rounded',
+          ui.transition.default,
           copied
-            ? 'text-green-600 dark:text-green-400'
+            ? ui.text.success
             : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300',
           sizeConfig.button,
           className
@@ -121,21 +123,18 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
 
   // Text or outline button
   const baseTextClasses = cn(
-    'inline-flex items-center gap-2 rounded font-medium transition-colors',
+    'inline-flex items-center gap-2 rounded font-medium',
+    ui.transition.default,
     sizeConfig.text
   );
 
   const variantClasses = {
-    text: cn(
-      copied
-        ? 'text-green-600 dark:text-green-400'
-        : 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300'
-    ),
+    text: cn(copied ? ui.text.success : ui.text.linkSubtle),
     outline: cn(
       'border',
       copied
         ? 'border-green-600 text-green-600 dark:border-green-400 dark:text-green-400'
-        : 'border-gray-300 text-gray-700 hover:border-gray-400 dark:border-gray-600 dark:text-gray-300 dark:hover:border-gray-500'
+        : `${ui.border.default} text-gray-700 hover:border-gray-400 dark:text-gray-300 dark:hover:border-gray-500`
     ),
   };
 

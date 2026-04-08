@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { Dropdown, StatusBadge, ChainBadge } from '@sudobility/components';
 import { AuthStatus, ChainType, formatWalletAddress } from '@sudobility/types';
+import { colors, textVariants, ui } from '@sudobility/design';
 
 export interface WalletMenuItem {
   id: string;
@@ -110,15 +111,13 @@ export const WalletDropdownMenu: React.FC<WalletDropdownMenuProps> = ({
       align={align}
       trigger={
         <button
-          className={`flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${className}`}
+          className={`flex items-center space-x-2 px-3 py-2 ${ui.border.radius} ${colors.component.button.ghost.base} ${colors.component.button.ghost.dark} ${ui.transition.default} ${className}`}
         >
           {avatar && (
             <img src={avatar} alt={display} className='h-8 w-8 rounded-full' />
           )}
           <div className='hidden md:block text-left'>
-            <div className='text-sm font-medium text-gray-900 dark:text-gray-100'>
-              {display}
-            </div>
+            <div className={textVariants.label.default()}>{display}</div>
             <div className='flex items-center space-x-1'>
               <StatusBadge
                 status={getStatusType(authStatus)}
@@ -131,7 +130,7 @@ export const WalletDropdownMenu: React.FC<WalletDropdownMenuProps> = ({
               />
             </div>
           </div>
-          <ChevronDownIcon className='h-4 w-4 text-gray-500 dark:text-gray-400' />
+          <ChevronDownIcon className={`h-4 w-4 ${ui.text.muted}`} />
         </button>
       }
     />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors, textVariants, ui, designTokens } from '@sudobility/design';
 import { WalletIcon } from './wallet-icon';
 
 /** Tracking data for WalletSelection actions */
@@ -55,9 +56,9 @@ const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
       disabled={disabled || !wallet.available}
       aria-label={`Connect ${wallet.name} wallet for ${wallet.chainType === 'solana' ? 'Solana' : 'Ethereum'} network`}
       className={`
-        w-full flex items-center justify-between p-4 md:p-4 py-5 md:py-4 
-        border border-gray-200 dark:border-gray-700 rounded-lg 
-        hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors 
+        w-full flex items-center justify-between p-4 md:p-4 py-5 md:py-4
+        border ${ui.border.default} ${designTokens.radius.lg}
+        ${colors.component.card.interactive.hover}
         disabled:opacity-50 disabled:cursor-not-allowed
         ${className}
       `}
@@ -68,9 +69,7 @@ const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
           connector={wallet.connector as { icon?: string } | undefined}
         />
         <div className='text-left'>
-          <p className='font-medium text-gray-900 dark:text-white'>
-            {wallet.name}
-          </p>
+          <p className={textVariants.label.default()}>{wallet.name}</p>
           <p
             className={`text-xs ${
               wallet.available
@@ -128,17 +127,17 @@ const WalletTab: React.FC<WalletTabProps> = ({
   };
   const colorClasses = {
     blue: active
-      ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm'
+      ? `${ui.background.surface} text-blue-600 dark:text-blue-400 ${designTokens.shadow.sm}`
       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200',
     purple: active
-      ? 'bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 shadow-sm'
+      ? `${ui.background.surface} text-purple-600 dark:text-purple-400 ${designTokens.shadow.sm}`
       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200',
   };
 
   return (
     <button
       onClick={handleClick}
-      className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${colorClasses[color]}`}
+      className={`flex-1 py-2 px-4 ${designTokens.radius.md} font-medium ${ui.transition.default} ${colorClasses[color]}`}
     >
       <span className='flex items-center justify-center space-x-2'>
         <span>{icon}</span>
@@ -200,7 +199,9 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Tab Navigation */}
-      <div className='flex space-x-1 p-1 bg-gray-100 dark:bg-gray-700 rounded-lg'>
+      <div
+        className={`flex space-x-1 p-1 ${ui.background.muted} ${designTokens.radius.lg}`}
+      >
         <WalletTab
           active={activeTab === 'ethereum'}
           onClick={() => onTabChange('ethereum')}
@@ -243,7 +244,7 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
 
       {/* Help Text */}
       <div className='text-center pt-2'>
-        <p className='text-sm text-gray-600 dark:text-gray-400'>
+        <p className={textVariants.body.sm()}>
           {finalLabels.noWalletText}{' '}
           {activeTab === 'ethereum' ? (
             <a

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 export interface RatingStarsProps {
   /** Current rating value (0-5) */
@@ -101,7 +102,7 @@ export const RatingStars: React.FC<RatingStarsProps> = ({
               onMouseEnter={() => handleMouseEnter(starIndex)}
               onMouseLeave={handleMouseLeave}
               className={cn(
-                'transition-colors',
+                ui.transition.default,
                 !readonly && onChange && 'cursor-pointer hover:scale-110',
                 readonly && 'cursor-default'
               )}
@@ -143,10 +144,7 @@ export const RatingStars: React.FC<RatingStarsProps> = ({
 
               {fill === 'empty' && (
                 <svg
-                  className={cn(
-                    sizeStyles[size],
-                    'text-gray-300 dark:text-gray-600'
-                  )}
+                  className={cn(sizeStyles[size], ui.text.muted)}
                   fill='currentColor'
                   viewBox='0 0 20 20'
                 >
@@ -161,7 +159,7 @@ export const RatingStars: React.FC<RatingStarsProps> = ({
       {showNumber && (
         <span
           className={cn(
-            'font-semibold text-gray-900 dark:text-white',
+            ui.text.strong,
             size === 'sm' && 'text-sm',
             size === 'md' && 'text-base',
             size === 'lg' && 'text-lg',

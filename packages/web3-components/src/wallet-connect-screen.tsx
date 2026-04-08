@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors, textVariants, ui, designTokens } from '@sudobility/design';
 import { WalletSelectionGrid, WalletOption } from './wallet-selection';
 
 export interface WalletConnectScreenProps {
@@ -84,10 +85,10 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
     return (
       <div className={`text-center py-8 ${className}`}>
         <div className='w-16 h-16 border-4 border-blue-600 dark:border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-4' />
-        <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-2'>
+        <h3 className={`${textVariants.heading.h5()} mb-2`}>
           {labels.autoConnectTitle || 'Connecting to Wallet'}
         </h3>
-        <p className='text-gray-600 dark:text-gray-400 text-sm'>
+        <p className={textVariants.body.sm()}>
           {labels.autoConnectDescription ||
             'Please approve the connection in your wallet'}
         </p>
@@ -103,8 +104,14 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
     <div className={`space-y-6 ${className}`}>
       {/* Error message */}
       {error && (
-        <div className='p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg'>
-          <p className='text-sm text-red-600 dark:text-red-400'>{error}</p>
+        <div
+          className={`p-3 border ${colors.component.card.error.base} ${colors.component.card.error.dark} ${designTokens.radius.lg}`}
+        >
+          <p
+            className={`text-sm ${colors.component.badge.error.base} ${colors.component.badge.error.dark}`}
+          >
+            {error}
+          </p>
         </div>
       )}
 
@@ -112,10 +119,12 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
         // Show extension warning for Solana on unsupported browsers
         <>
           {/* Tab Navigation - still show tabs */}
-          <div className='flex space-x-1 p-1 bg-gray-100 dark:bg-gray-700 rounded-lg'>
+          <div
+            className={`flex space-x-1 p-1 ${ui.background.muted} ${designTokens.radius.lg}`}
+          >
             <button
               onClick={() => onTabChange('ethereum')}
-              className='flex-1 py-2 px-3 rounded-md font-medium text-sm transition-colors text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+              className={`flex-1 py-2 px-3 ${designTokens.radius.md} font-medium text-sm ${ui.transition.default} text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200`}
             >
               <span className='flex items-center justify-center space-x-1'>
                 <span>⟠</span>
@@ -124,7 +133,7 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
             </button>
             <button
               onClick={() => onTabChange('solana')}
-              className='flex-1 py-2 px-3 rounded-md font-medium text-sm transition-colors bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 shadow-sm'
+              className={`flex-1 py-2 px-3 ${designTokens.radius.md} font-medium text-sm ${ui.transition.default} ${ui.background.surface} text-purple-600 dark:text-purple-400 ${designTokens.shadow.sm}`}
             >
               <span className='flex items-center justify-center space-x-1'>
                 <span>◎</span>
@@ -134,13 +143,15 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
           </div>
 
           {/* Extension warning message */}
-          <div className='p-6 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800'>
+          <div
+            className={`p-6 border ${ui.border.default} ${designTokens.radius.lg} ${ui.background.subtle}`}
+          >
             <div className='text-center space-y-3'>
-              <p className='text-sm font-medium text-gray-900 dark:text-white'>
+              <p className={`${textVariants.body.sm()} font-medium`}>
                 {labels.extensionsNotSupported ||
                   'Browser extensions are not supported'}
               </p>
-              <p className='text-xs text-gray-600 dark:text-gray-400'>
+              <p className={textVariants.caption.default()}>
                 {labels.useChromeForSolana ||
                   'Please use Chrome, Firefox, or Edge for Solana wallets'}
               </p>

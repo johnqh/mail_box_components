@@ -2,6 +2,7 @@ import { Button } from '@sudobility/components';
 import { useAuthStatus } from '../../context/auth-provider';
 import type { ProviderButtonsProps } from '../../types';
 import { cn } from '../../lib/cn';
+import { ui } from '@sudobility/design';
 
 /**
  * Google icon SVG
@@ -127,10 +128,15 @@ export function ProviderButtons({
       {showEmail && (showGoogle || showApple) && (
         <div className='relative'>
           <div className='absolute inset-0 flex items-center'>
-            <div className='w-full border-t border-gray-300 dark:border-gray-600' />
+            <div className={cn('w-full border-t', ui.border.default)} />
           </div>
           <div className='relative flex justify-center text-sm'>
-            <span className='px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400'>
+            <span
+              className={cn(
+                'px-2 text-muted-foreground',
+                ui.background.surface
+              )}
+            >
               {texts.or}
             </span>
           </div>

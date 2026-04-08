@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from './button';
 import { TrashIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
+import { colors, ui } from '@sudobility/design';
 
 export interface ListItemWithActionProps {
   /** Main content/text to display */
@@ -50,14 +51,20 @@ export const ListItemWithAction: React.FC<ListItemWithActionProps> = ({
   variant = 'default',
   className,
 }) => {
-  const baseClass =
-    'flex items-center justify-between p-4 rounded-lg transition-colors';
+  const baseClass = cn(
+    'flex items-center justify-between p-4 rounded-lg',
+    ui.transition.default
+  );
 
   const variantClasses = {
-    default: 'bg-gray-50 dark:bg-gray-700',
-    compact: 'bg-gray-50 dark:bg-gray-700 py-2 px-3',
-    elevated:
-      'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md',
+    default: ui.background.muted,
+    compact: cn(ui.background.muted, 'py-2 px-3'),
+    elevated: cn(
+      'border',
+      colors.component.card.elevated.base,
+      colors.component.card.elevated.dark,
+      colors.component.card.elevated.hover
+    ),
   };
 
   return (

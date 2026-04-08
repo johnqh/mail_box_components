@@ -1,4 +1,5 @@
 import React from 'react';
+import { designTokens } from '@sudobility/design';
 
 export interface WalletIconProps {
   wallet: string;
@@ -45,7 +46,7 @@ export const WalletIcon: React.FC<WalletIconProps> = ({
       <img
         src={connector.icon}
         alt={`${wallet} wallet`}
-        className={`${className} rounded-lg`}
+        className={`${className} ${designTokens.radius.lg}`}
         onError={e => {
           // If connector icon fails, fallback to our custom icons
           const target = e.target as HTMLImageElement;
@@ -61,7 +62,7 @@ export const WalletIcon: React.FC<WalletIconProps> = ({
     <img
       src={iconPath}
       alt={`${wallet} wallet`}
-      className={`${className} rounded-lg`}
+      className={`${className} ${designTokens.radius.lg}`}
       onError={e => {
         // Fallback to default icon if image fails to load
         const target = e.target as HTMLImageElement;

@@ -3,6 +3,7 @@ import {
   ExclamationCircleIcon,
   InformationCircleIcon,
 } from '@heroicons/react/24/outline';
+import { colors, textVariants } from '@sudobility/design';
 
 interface FormFieldGroupProps {
   label: string;
@@ -36,7 +37,7 @@ export const FormFieldGroup: React.FC<FormFieldGroupProps> = ({
       {/* Label */}
       <div className={isHorizontal ? 'md:col-span-1' : ''}>
         <label
-          className={`block text-sm font-medium text-gray-700 dark:text-gray-300 ${labelClassName}`}
+          className={`block ${textVariants.label.default()} ${labelClassName}`}
         >
           {label}
           {required && <span className='text-red-500 ml-1'>*</span>}
@@ -44,7 +45,7 @@ export const FormFieldGroup: React.FC<FormFieldGroupProps> = ({
         {helpText && !error && (
           <div className='mt-1 flex items-start'>
             <InformationCircleIcon className='h-4 w-4 text-gray-400 mr-1 mt-0.5 flex-shrink-0' />
-            <p className='text-xs text-gray-500 dark:text-gray-400'>
+            <p className={`text-xs ${textVariants.label.helper()}`}>
               {helpText}
             </p>
           </div>
@@ -61,7 +62,7 @@ export const FormFieldGroup: React.FC<FormFieldGroupProps> = ({
         {error && (
           <div className='mt-1 flex items-start'>
             <ExclamationCircleIcon className='h-4 w-4 text-red-500 mr-1 mt-0.5 flex-shrink-0' />
-            <p className='text-xs text-red-600 dark:text-red-400'>{error}</p>
+            <p className={`text-xs ${textVariants.label.error()}`}>{error}</p>
           </div>
         )}
       </div>
@@ -111,14 +112,10 @@ export const TextField: React.FC<TextFieldProps> = ({
         placeholder={placeholder}
         className={`
           block w-full px-3 py-2 border rounded-md shadow-sm
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-          dark:bg-gray-800 dark:border-gray-600 dark:text-white
+          focus:outline-none ${colors.component.input.default.focus}
+          ${colors.component.input.default.base} ${colors.component.input.default.dark}
           transition-colors duration-200
-          ${
-            error
-              ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-              : 'border-gray-300 dark:border-gray-600'
-          }
+          ${error ? colors.component.input.default.error : ''}
         `}
       />
     </FormFieldGroup>
@@ -166,14 +163,10 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
         rows={rows}
         className={`
           block w-full px-3 py-2 border rounded-md shadow-sm
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-          dark:bg-gray-800 dark:border-gray-600 dark:text-white
+          focus:outline-none ${colors.component.input.default.focus}
+          ${colors.component.input.default.base} ${colors.component.input.default.dark}
           transition-colors duration-200 resize-vertical
-          ${
-            error
-              ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-              : 'border-gray-300 dark:border-gray-600'
-          }
+          ${error ? colors.component.input.default.error : ''}
         `}
       />
     </FormFieldGroup>
@@ -219,14 +212,10 @@ export const SelectField: React.FC<SelectFieldProps> = ({
         onChange={e => onChange(e.target.value)}
         className={`
           block w-full px-3 py-2 border rounded-md shadow-sm
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-          dark:bg-gray-800 dark:border-gray-600 dark:text-white
+          focus:outline-none ${colors.component.input.default.focus}
+          ${colors.component.input.default.base} ${colors.component.input.default.dark}
           transition-colors duration-200
-          ${
-            error
-              ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-              : 'border-gray-300 dark:border-gray-600'
-          }
+          ${error ? colors.component.input.default.error : ''}
         `}
       >
         {placeholder && (

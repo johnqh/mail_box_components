@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors } from '@sudobility/design';
 import { cn } from '../lib/utils';
 
 export interface NavItem {
@@ -25,14 +26,26 @@ export const SideNav: React.FC<SideNavProps> = ({ items, className }) => {
           className={cn(
             'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors',
             item.active
-              ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+              ? cn(
+                  colors.component.button.primary.base,
+                  colors.component.button.primary.dark
+                )
+              : cn(
+                  colors.component.button.ghost.base,
+                  colors.component.button.ghost.dark
+                )
           )}
         >
           {item.icon && <span className='w-5 h-5'>{item.icon}</span>}
           <span className='flex-1 text-left font-medium'>{item.label}</span>
           {item.badge && (
-            <span className='px-2 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs'>
+            <span
+              className={cn(
+                'px-2 py-0.5 rounded text-xs',
+                colors.component.badge.default.base,
+                colors.component.badge.default.dark
+              )}
+            >
               {item.badge}
             </span>
           )}

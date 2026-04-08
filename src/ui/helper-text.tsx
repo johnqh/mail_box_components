@@ -4,6 +4,7 @@ import {
   CheckCircleIcon,
   InformationCircleIcon,
 } from '@heroicons/react/24/outline';
+import { textVariants } from '@sudobility/design';
 import { cn } from '../lib/utils';
 
 export interface HelperTextProps {
@@ -57,22 +58,22 @@ export const HelperText: React.FC<HelperTextProps> = ({
     base: 'h-5 w-5',
   };
 
-  // Variant configurations
+  // Variant configurations (colors from design system)
   const variantConfig = {
     default: {
-      text: 'text-gray-600 dark:text-gray-400',
+      text: textVariants.label.helper(),
       icon: InformationCircleIcon,
     },
     error: {
-      text: 'text-red-600 dark:text-red-400',
+      text: textVariants.label.error(),
       icon: ExclamationCircleIcon,
     },
     success: {
-      text: 'text-green-600 dark:text-green-400',
+      text: textVariants.label.success(),
       icon: CheckCircleIcon,
     },
     warning: {
-      text: 'text-yellow-600 dark:text-yellow-400',
+      text: 'text-orange-600 dark:text-orange-400',
       icon: ExclamationCircleIcon,
     },
   };
@@ -87,7 +88,7 @@ export const HelperText: React.FC<HelperTextProps> = ({
           className={cn(iconSize[size], config.text, 'flex-shrink-0 mt-0.5')}
         />
       )}
-      <p className={cn(sizeClasses[size], config.text)}>{children}</p>
+      <p className={cn(config.text, sizeClasses[size])}>{children}</p>
     </div>
   );
 };

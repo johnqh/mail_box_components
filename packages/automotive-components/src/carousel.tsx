@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 export interface CarouselProps {
   /** Carousel items */
@@ -104,7 +105,9 @@ export const Carousel: React.FC<CarouselProps> = ({
   }
 
   return (
-    <div className={cn('relative overflow-hidden rounded-lg', className)}>
+    <div
+      className={cn('relative overflow-hidden', ui.border.radius, className)}
+    >
       {/* Slides */}
       <div
         className='flex transition-transform duration-500 ease-in-out'
@@ -128,10 +131,10 @@ export const Carousel: React.FC<CarouselProps> = ({
               'w-10 h-10 rounded-full',
               'bg-white/80 dark:bg-gray-900/80',
               'hover:bg-white dark:hover:bg-gray-900',
-              'disabled:opacity-50 disabled:cursor-not-allowed',
+              ui.states.disabled,
               'flex items-center justify-center',
-              'transition-all',
-              'shadow-lg'
+              ui.transition.all,
+              ui.shadow.lg
             )}
             aria-label='Previous slide'
           >
@@ -158,10 +161,10 @@ export const Carousel: React.FC<CarouselProps> = ({
               'w-10 h-10 rounded-full',
               'bg-white/80 dark:bg-gray-900/80',
               'hover:bg-white dark:hover:bg-gray-900',
-              'disabled:opacity-50 disabled:cursor-not-allowed',
+              ui.states.disabled,
               'flex items-center justify-center',
-              'transition-all',
-              'shadow-lg'
+              ui.transition.all,
+              ui.shadow.lg
             )}
             aria-label='Next slide'
           >

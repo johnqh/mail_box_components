@@ -1,6 +1,7 @@
 import React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '../lib/cn';
+import { colors, ui, textVariants } from '@sudobility/design';
 import type {
   UsageDashboardProps,
   UsageBarConfig,
@@ -100,10 +101,8 @@ const UsageBar: React.FC<UsageBarProps> = ({
   return (
     <div className='space-y-2'>
       <div className='flex items-center justify-between'>
-        <span className='text-sm font-medium text-gray-700 dark:text-gray-300'>
-          {label}
-        </span>
-        <span className='text-sm text-gray-500 dark:text-gray-400'>
+        <span className={cn('text-sm', ui.text.label)}>{label}</span>
+        <span className={cn('text-sm', ui.text.muted)}>
           {used.toLocaleString()} {labels.usedLabel}
           {!isUnlimited && ` / ${limit.toLocaleString()} ${labels.limitLabel}`}
           {isUnlimited && ` (${labels.unlimitedLabel})`}
@@ -112,14 +111,16 @@ const UsageBar: React.FC<UsageBarProps> = ({
 
       {!isUnlimited && (
         <div className='relative'>
-          <div className='h-3 w-full rounded-full bg-gray-200 dark:bg-gray-700'>
+          <div className={cn('h-3 w-full rounded-full', ui.background.muted)}>
             <div
               className={cn(progressBarVariants({ color: autoColor }))}
               style={{ width: `${percentage}%` }}
             />
           </div>
           {showPercentage && (
-            <span className='absolute right-0 top-4 text-xs text-gray-500 dark:text-gray-400'>
+            <span
+              className={cn('absolute right-0 top-4 text-xs', ui.text.muted)}
+            >
               {percentage.toFixed(0)}%
             </span>
           )}
@@ -132,7 +133,12 @@ const UsageBar: React.FC<UsageBarProps> = ({
         </div>
       )}
 
-      <div className='flex items-center justify-between text-xs text-gray-500 dark:text-gray-400'>
+      <div
+        className={cn(
+          'flex items-center justify-between text-xs',
+          ui.text.muted
+        )}
+      >
         {showRemaining && remaining !== null && (
           <span>
             {remaining.toLocaleString()} {labels.remainingLabel}
@@ -185,26 +191,32 @@ export const UsageDashboard: React.FC<UsageDashboardProps> = ({
   return (
     <div
       className={cn(
-        'rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800',
+        'rounded-lg border p-6',
+        colors.component.card.default.base,
+        colors.component.card.default.dark,
         className
       )}
     >
       {/* Header */}
       <div className='mb-6 flex items-center justify-between'>
         <div>
-          <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>
+          <h3 className={cn(textVariants.heading.h5(), 'text-lg')}>
             {labels.title}
           </h3>
           {currentTierName && (
-            <p className='text-sm text-gray-500 dark:text-gray-400'>
-              {currentTierName}
-            </p>
+            <p className={cn('text-sm', ui.text.muted)}>{currentTierName}</p>
           )}
         </div>
         {onUpgradeClick && (
           <button
             onClick={handleUpgradeClick}
-            className='rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800'
+            className={cn(
+              'rounded-md px-4 py-2 text-sm font-medium',
+              colors.component.button.primary.base,
+              colors.component.button.primary.dark,
+              colors.component.button.primary.focus,
+              ui.transition.default
+            )}
           >
             {upgradeButtonLabel}
           </button>

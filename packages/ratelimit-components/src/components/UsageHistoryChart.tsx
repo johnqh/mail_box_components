@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { cn } from '../lib/cn';
+import { colors, ui, textVariants } from '@sudobility/design';
 import type { UsageHistoryChartProps, PeriodType } from '../types';
 
 // =============================================================================
@@ -82,16 +83,20 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
   const value = payload[0].value;
 
   return (
-    <div className='rounded-lg border border-gray-200 bg-white p-3 shadow-lg dark:border-gray-700 dark:bg-gray-800'>
-      <p className='mb-1 text-sm font-medium text-gray-900 dark:text-white'>
-        {label}
-      </p>
-      <p className='text-sm text-gray-600 dark:text-gray-400'>
+    <div
+      className={cn(
+        'rounded-lg border p-3 shadow-lg',
+        colors.component.card.default.base,
+        colors.component.card.default.dark
+      )}
+    >
+      <p className={cn('mb-1 text-sm', ui.text.emphasis)}>{label}</p>
+      <p className={cn('text-sm', ui.text.bodySmall)}>
         {labels.requestsLabel}:{' '}
         <span className='font-medium'>{value.toLocaleString()}</span>
       </p>
       {limit !== null && (
-        <p className='text-sm text-gray-600 dark:text-gray-400'>
+        <p className={cn('text-sm', ui.text.bodySmall)}>
           {labels.limitLabel}:{' '}
           <span className='font-medium'>{limit.toLocaleString()}</span>
         </p>
@@ -143,12 +148,14 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
     return (
       <div
         className={cn(
-          'flex items-center justify-center rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800',
+          'flex items-center justify-center rounded-lg border p-6',
+          colors.component.card.default.base,
+          colors.component.card.default.dark,
           className
         )}
         style={{ height }}
       >
-        <p className='text-gray-500 dark:text-gray-400'>{labels.noDataLabel}</p>
+        <p className={ui.text.muted}>{labels.noDataLabel}</p>
       </div>
     );
   }
@@ -156,13 +163,15 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
   return (
     <div
       className={cn(
-        'rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800',
+        'rounded-lg border p-6',
+        colors.component.card.default.base,
+        colors.component.card.default.dark,
         className
       )}
     >
       {/* Title */}
       {labels.title && (
-        <h3 className='mb-4 text-lg font-semibold text-gray-900 dark:text-white'>
+        <h3 className={cn(textVariants.heading.h5(), 'mb-4 text-lg')}>
           {labels.title}
         </h3>
       )}
@@ -224,7 +233,7 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
             className='h-0.5 w-4 rounded'
             style={{ backgroundColor: barColor }}
           />
-          <span className='text-sm text-gray-600 dark:text-gray-400'>
+          <span className={cn('text-sm', ui.text.bodySmall)}>
             {labels.requestsLabel}
           </span>
         </div>
@@ -237,7 +246,7 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
                 borderStyle: 'dashed',
               }}
             />
-            <span className='text-sm text-gray-600 dark:text-gray-400'>
+            <span className={cn('text-sm', ui.text.bodySmall)}>
               {labels.limitLabel}
             </span>
           </div>

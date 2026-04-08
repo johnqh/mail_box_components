@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@sudobility/components';
+import { colors, ui } from '@sudobility/design';
 
 export interface User {
   id: string;
@@ -144,13 +145,27 @@ export const UserMention: React.FC<UserMentionProps> = ({
         onChange={e => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className='w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white resize-none focus:outline-none focus:ring-2 focus:ring-blue-500'
+        className={cn(
+          'w-full px-4 py-3 border resize-none focus:outline-none',
+          colors.component.input.default.base,
+          colors.component.input.default.dark,
+          colors.component.input.default.focus,
+          ui.border.radius
+        )}
         rows={4}
       />
 
       {/* Suggestions dropdown */}
       {showSuggestions && (
-        <div className='absolute z-10 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg max-h-60 overflow-y-auto'>
+        <div
+          className={cn(
+            'absolute z-10 mt-1 w-full border max-h-60 overflow-y-auto',
+            ui.background.surface,
+            ui.border.default,
+            ui.border.radius,
+            ui.shadow.lg
+          )}
+        >
           {filteredUsers.map((user, index) => (
             <button
               key={user.id}
@@ -169,7 +184,12 @@ export const UserMention: React.FC<UserMentionProps> = ({
                   className='w-8 h-8 rounded-full'
                 />
               ) : (
-                <div className='w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-white font-semibold text-sm'>
+                <div
+                  className={cn(
+                    'w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold text-sm',
+                    ui.background.muted
+                  )}
+                >
                   {user.name.charAt(0).toUpperCase()}
                 </div>
               )}

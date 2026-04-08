@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 export interface TypingIndicatorProps {
   /** Show indicator */
@@ -44,7 +45,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
     <div
       className={cn(
         'inline-flex items-center gap-1 rounded-2xl',
-        'bg-gray-200 dark:bg-gray-700',
+        ui.background.muted,
         containerSizes[size],
         className
       )}

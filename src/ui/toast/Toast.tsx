@@ -3,6 +3,7 @@
  */
 
 import { useEffect, useState } from 'react';
+import { colors } from '@sudobility/design';
 import type { ToastComponentProps } from './types';
 
 /**
@@ -72,32 +73,35 @@ const icons = {
 };
 
 /**
- * Style mappings for different toast types
+ * Style mappings for different toast types (from design system)
  */
+const alertColors = {
+  success: colors.component.alert.success,
+  error: colors.component.alert.error,
+  warning: colors.component.alert.warning,
+  info: colors.component.alert.info,
+};
+
 const styles = {
   success: {
-    container:
-      'bg-green-50 border-green-200 dark:bg-green-900/30 dark:border-green-800',
-    icon: 'text-green-500 dark:text-green-400',
-    text: 'text-green-800 dark:text-green-200',
+    container: `${alertColors.success.base} ${alertColors.success.dark}`,
+    icon: alertColors.success.icon,
+    text: '',
   },
   error: {
-    container:
-      'bg-red-50 border-red-200 dark:bg-red-900/30 dark:border-red-800',
-    icon: 'text-red-500 dark:text-red-400',
-    text: 'text-red-800 dark:text-red-200',
+    container: `${alertColors.error.base} ${alertColors.error.dark}`,
+    icon: alertColors.error.icon,
+    text: '',
   },
   warning: {
-    container:
-      'bg-yellow-50 border-yellow-200 dark:bg-yellow-900/30 dark:border-yellow-800',
-    icon: 'text-yellow-500 dark:text-yellow-400',
-    text: 'text-yellow-800 dark:text-yellow-200',
+    container: `${alertColors.warning.base} ${alertColors.warning.dark}`,
+    icon: alertColors.warning.icon,
+    text: '',
   },
   info: {
-    container:
-      'bg-blue-50 border-blue-200 dark:bg-blue-900/30 dark:border-blue-800',
-    icon: 'text-blue-500 dark:text-blue-400',
-    text: 'text-blue-800 dark:text-blue-200',
+    container: `${alertColors.info.base} ${alertColors.info.dark}`,
+    icon: alertColors.info.icon,
+    text: '',
   },
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors, ui } from '@sudobility/design';
 
 export interface QuickAction {
   id: string;
@@ -47,12 +48,23 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
   className,
 }) => {
   const variantStyles = {
-    default:
-      'bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-white border-gray-200 dark:border-gray-700',
-    primary: 'bg-blue-500 hover:bg-blue-600 text-white border-blue-500',
-    success: 'bg-green-500 hover:bg-green-600 text-white border-green-500',
+    default: cn(
+      colors.component.button.outline.base,
+      colors.component.button.outline.dark
+    ),
+    primary: cn(
+      colors.component.button.primary.base,
+      colors.component.button.primary.dark
+    ),
+    success: cn(
+      colors.component.button.success.base,
+      colors.component.button.success.dark
+    ),
     warning: 'bg-yellow-500 hover:bg-yellow-600 text-white border-yellow-500',
-    danger: 'bg-red-500 hover:bg-red-600 text-white border-red-500',
+    danger: cn(
+      colors.component.button.destructive.base,
+      colors.component.button.destructive.dark
+    ),
   };
 
   const layoutClasses = {
@@ -80,7 +92,8 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
           onClick={action.onClick}
           disabled={action.disabled}
           className={cn(
-            'flex items-center justify-center gap-2 px-4 py-3 rounded-lg border transition-colors font-medium',
+            'flex items-center justify-center gap-2 px-4 py-3 rounded-lg border font-medium',
+            ui.transition.default,
             variantStyles[action.variant || 'default'],
             action.disabled && 'opacity-50 cursor-not-allowed'
           )}

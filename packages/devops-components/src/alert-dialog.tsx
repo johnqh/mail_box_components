@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors } from '@sudobility/design';
 import { cn, Portal, Overlay } from '@sudobility/components';
 
 export interface AlertDialogProps {
@@ -188,7 +189,8 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
         <div
           className={cn(
             'relative w-full max-w-md',
-            'bg-white dark:bg-gray-900',
+            colors.component.card.default.base,
+            colors.component.card.default.dark,
             'rounded-lg shadow-xl',
             'animate-in fade-in zoom-in-95 duration-200',
             className

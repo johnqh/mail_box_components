@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { textVariants } from '@sudobility/design';
 
 export interface NavStep {
   id: string;
@@ -52,13 +53,9 @@ export const StepperNav: React.FC<StepperNavProps> = ({
               {index < currentStep ? '✓' : index + 1}
             </button>
             <div>
-              <p className='font-medium text-gray-900 dark:text-white'>
-                {step.label}
-              </p>
+              <p className={textVariants.label.default()}>{step.label}</p>
               {step.description && (
-                <p className='text-sm text-gray-600 dark:text-gray-400'>
-                  {step.description}
-                </p>
+                <p className={textVariants.body.sm()}>{step.description}</p>
               )}
             </div>
           </div>

@@ -104,7 +104,7 @@ describe('Switch Component', () => {
     const switchElement = screen.getByRole('switch');
 
     expect(switchElement).toHaveClass('data-[state=checked]:bg-blue-600');
-    expect(switchElement).toHaveClass('dark:data-[state=checked]:bg-blue-500');
+    expect(switchElement).toHaveClass('dark:data-[state=checked]:bg-blue-600');
   });
 
   it('applies correct styles when unchecked', () => {

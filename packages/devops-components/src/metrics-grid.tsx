@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { colors, ui } from '@sudobility/design';
 
 export interface MetricItem {
   value: string | number;
@@ -49,13 +50,9 @@ export const MetricsGrid: React.FC<MetricsGridProps> = ({
       <div className={containerClass}>
         {(title || description) && (
           <div className='text-center mb-12'>
-            {title && (
-              <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
-                {title}
-              </h2>
-            )}
+            {title && <h2 className={cn(ui.text.h2, 'mb-4')}>{title}</h2>}
             {description && (
-              <p className='text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto'>
+              <p className={cn(ui.text.lead, 'max-w-3xl mx-auto')}>
                 {description}
               </p>
             )}
@@ -71,7 +68,12 @@ export const MetricsGrid: React.FC<MetricsGridProps> = ({
             return (
               <div
                 key={index}
-                className='bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 text-center hover:shadow-lg transition-shadow'
+                className={cn(
+                  'rounded-xl p-6 border text-center',
+                  colors.component.card.default.base,
+                  colors.component.card.default.dark,
+                  colors.component.card.default.hover
+                )}
               >
                 {metric.icon && (
                   <div className={cn('flex justify-center mb-4', colorClass)}>
@@ -84,17 +86,15 @@ export const MetricsGrid: React.FC<MetricsGridProps> = ({
                     {metric.value}
                   </div>
 
-                  <div className='text-gray-600 dark:text-gray-400 font-medium'>
-                    {metric.label}
-                  </div>
+                  <div className={cn(ui.text.label)}>{metric.label}</div>
 
                   {metric.trend && (
                     <div
                       className={cn(
                         'text-sm font-semibold',
                         metric.trend.direction === 'up'
-                          ? 'text-green-600 dark:text-green-400'
-                          : 'text-red-600 dark:text-red-400'
+                          ? ui.text.success
+                          : ui.text.error
                       )}
                     >
                       {metric.trend.direction === 'up' ? '↑' : '↓'}{' '}

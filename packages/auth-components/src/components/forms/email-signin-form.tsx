@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Button, Input, Text } from '@sudobility/components';
 import { useAuthStatus } from '../../context/auth-provider';
 import type { EmailSignInFormProps } from '../../types';
+import { textVariants } from '@sudobility/design';
 
 /**
  * Email sign-in form component
@@ -51,7 +52,7 @@ export function EmailSignInForm({
         <div>
           <label
             htmlFor='signin-email'
-            className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+            className={`block mb-1 ${textVariants.label.default()}`}
           >
             {texts.email}
           </label>
@@ -70,7 +71,7 @@ export function EmailSignInForm({
         <div>
           <label
             htmlFor='signin-password'
-            className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+            className={`block mb-1 ${textVariants.label.default()}`}
           >
             {texts.password}
           </label>
@@ -92,7 +93,7 @@ export function EmailSignInForm({
         <button
           type='button'
           onClick={handleSwitchToForgotPassword}
-          className='text-sm text-blue-600 dark:text-blue-400 hover:underline'
+          className='text-sm text-primary hover:underline'
         >
           {texts.forgotPassword}
         </button>
@@ -100,7 +101,7 @@ export function EmailSignInForm({
 
       {/* Error message */}
       {error && (
-        <Text size='sm' className='text-red-600 dark:text-red-400'>
+        <Text size='sm' className={textVariants.label.error()}>
           {error}
         </Text>
       )}
@@ -123,7 +124,7 @@ export function EmailSignInForm({
           <button
             type='button'
             onClick={handleSwitchToSignUp}
-            className='text-blue-600 dark:text-blue-400 hover:underline font-medium'
+            className='text-primary hover:underline font-medium'
           >
             {texts.signUp}
           </button>

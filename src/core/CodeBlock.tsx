@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ClipboardDocumentIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from 'react-i18next';
 import { useCodeLoader } from '../hooks/useCodeLoader';
+import { ui, designTokens } from '@sudobility/design';
 
 interface CodeBlockProps {
   filename?: string;
@@ -107,9 +108,9 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   if (filename && loading) {
     return (
       <div
-        className={`bg-gray-900 text-green-400 rounded-lg p-4 font-mono text-sm ${className}`}
+        className={`bg-gray-900 text-green-400 ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
       >
-        <div className='animate-pulse text-gray-500'>
+        <div className={`${ui.states.loading} text-gray-500`}>
           {t('loadingCode', 'Loading code...')}
         </div>
       </div>
@@ -120,7 +121,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   if (filename && error) {
     return (
       <div
-        className={`bg-gray-900 text-red-400 rounded-lg p-4 font-mono text-sm ${className}`}
+        className={`bg-gray-900 text-red-400 ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
       >
         {t('error', 'Error')}: {error}
       </div>
@@ -131,7 +132,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   if (!code) {
     return (
       <div
-        className={`bg-gray-900 text-gray-400 rounded-lg p-4 font-mono text-sm ${className}`}
+        className={`bg-gray-900 text-gray-400 ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
       >
         {t('noCode', 'No code to display')}
       </div>
@@ -140,7 +141,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
 
   return (
     <div
-      className={`bg-gray-900 rounded-lg border border-green-500/20 shadow-lg shadow-green-500/10 ${className}`}
+      className={`bg-gray-900 ${designTokens.radius.lg} border border-green-500/20 ${designTokens.shadow.lg} shadow-green-500/10 ${className}`}
     >
       {/* Header with filename/title and copy button */}
       {showHeader && (
@@ -151,7 +152,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           {showCopy && (
             <button
               onClick={handleCopy}
-              className='p-2 text-gray-400 hover:text-green-400 hover:bg-gray-800 rounded-lg transition-all duration-200 group'
+              className={`p-2 text-gray-400 hover:text-green-400 hover:bg-gray-800 ${designTokens.radius.lg} ${ui.transition.all} group`}
               title={t('copyCode', 'Copy code')}
             >
               {copied ? (

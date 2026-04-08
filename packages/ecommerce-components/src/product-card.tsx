@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { colors, textVariants, ui, designTokens } from '@sudobility/design';
 
 /** Tracking data for ProductCard actions */
 export interface ProductCardTrackingData {
@@ -100,14 +101,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div
       className={cn(
-        'group bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transition-shadow hover:shadow-lg',
+        `group ${colors.component.card.default.base} ${colors.component.card.default.dark} ${designTokens.radius.lg} ${designTokens.shadow.md} overflow-hidden ${colors.component.card.default.hover}`,
         onClick && 'cursor-pointer',
         className
       )}
       onClick={onClick ? handleClick : undefined}
     >
       {/* Image */}
-      <div className='relative aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800'>
+      <div
+        className={`relative aspect-square overflow-hidden ${ui.background.muted}`}
+      >
         <img
           src={image}
           alt={name}
@@ -137,7 +140,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Content */}
       <div className='p-4'>
         {/* Name */}
-        <h3 className='font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2'>
+        <h3 className={`${textVariants.heading.h6()} mb-2 line-clamp-2`}>
           {name}
         </h3>
 
@@ -162,20 +165,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               ))}
             </div>
             {reviewCount !== undefined && (
-              <span className='text-sm text-gray-600 dark:text-gray-400'>
-                ({reviewCount})
-              </span>
+              <span className={textVariants.body.sm()}>({reviewCount})</span>
             )}
           </div>
         )}
 
         {/* Price */}
         <div className='flex items-center gap-2 mb-3'>
-          <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-            ${price.toFixed(2)}
-          </span>
+          <span className={textVariants.heading.h4()}>${price.toFixed(2)}</span>
           {originalPrice && (
-            <span className='text-sm text-gray-500 dark:text-gray-400 line-through'>
+            <span className={`${textVariants.body.muted.sm()} line-through`}>
               ${originalPrice.toFixed(2)}
             </span>
           )}
@@ -185,7 +184,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {onAddToCart && (
           <button
             onClick={handleAddToCart}
-            className='w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium'
+            className={`w-full py-2 ${colors.component.button.primary.base} ${colors.component.button.primary.dark} ${designTokens.radius.lg} ${ui.transition.default} font-medium`}
           >
             Add to Cart
           </button>

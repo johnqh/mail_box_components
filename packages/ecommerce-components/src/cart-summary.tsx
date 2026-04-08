@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { colors, textVariants, ui, designTokens } from '@sudobility/design';
 
 export interface CartItem {
   id: string;
@@ -85,20 +86,20 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   return (
     <div
       className={cn(
-        'bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6',
+        `${colors.component.card.default.base} ${colors.component.card.default.dark} ${designTokens.radius.lg} border p-6`,
         className
       )}
     >
-      <h2 className='text-xl font-bold text-gray-900 dark:text-white mb-4'>
-        Order Summary
-      </h2>
+      <h2 className={`${textVariants.heading.h4()} mb-4`}>Order Summary</h2>
 
       {/* Items */}
       <div className='space-y-3 mb-4 max-h-64 overflow-y-auto'>
         {items.map(item => (
           <div key={item.id} className='flex gap-3'>
             {item.image && (
-              <div className='w-16 h-16 rounded bg-gray-200 dark:bg-gray-800 overflow-hidden flex-shrink-0'>
+              <div
+                className={`w-16 h-16 ${designTokens.radius.md} ${ui.background.muted} overflow-hidden flex-shrink-0`}
+              >
                 <img
                   src={item.image}
                   alt={item.name}
@@ -107,19 +108,17 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
               </div>
             )}
             <div className='flex-1 min-w-0'>
-              <p className='font-medium text-gray-900 dark:text-white truncate'>
+              <p className={`${textVariants.label.default()} truncate`}>
                 {item.name}
               </p>
-              <p className='text-sm text-gray-600 dark:text-gray-400'>
-                Qty: {item.quantity}
-              </p>
+              <p className={textVariants.body.sm()}>Qty: {item.quantity}</p>
             </div>
             <div className='text-right'>
-              <p className='font-semibold text-gray-900 dark:text-white'>
+              <p className={textVariants.body.strong.md()}>
                 {currency}
                 {(item.price * item.quantity).toFixed(2)}
               </p>
-              <p className='text-sm text-gray-600 dark:text-gray-400'>
+              <p className={textVariants.body.sm()}>
                 {currency}
                 {item.price.toFixed(2)} each
               </p>
@@ -129,11 +128,11 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
       </div>
 
       {/* Divider */}
-      <div className='border-t border-gray-200 dark:border-gray-700 my-4' />
+      <div className={`border-t ${ui.border.default} my-4`} />
 
       {/* Summary lines */}
       <div className='space-y-2 mb-4'>
-        <div className='flex justify-between text-gray-700 dark:text-gray-300'>
+        <div className={`flex justify-between ${textVariants.body.md()}`}>
           <span>Subtotal</span>
           <span>
             {currency}
@@ -142,7 +141,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         </div>
 
         {shipping > 0 && (
-          <div className='flex justify-between text-gray-700 dark:text-gray-300'>
+          <div className={`flex justify-between ${textVariants.body.md()}`}>
             <span>Shipping</span>
             <span>
               {currency}
@@ -152,7 +151,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         )}
 
         {tax > 0 && (
-          <div className='flex justify-between text-gray-700 dark:text-gray-300'>
+          <div className={`flex justify-between ${textVariants.body.md()}`}>
             <span>Tax</span>
             <span>
               {currency}
@@ -162,7 +161,9 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         )}
 
         {discount > 0 && (
-          <div className='flex justify-between text-green-600 dark:text-green-400'>
+          <div
+            className={`flex justify-between ${colors.component.alert.success.icon}`}
+          >
             <span>Discount</span>
             <span>
               -{currency}
@@ -173,14 +174,12 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
       </div>
 
       {/* Divider */}
-      <div className='border-t border-gray-200 dark:border-gray-700 my-4' />
+      <div className={`border-t ${ui.border.default} my-4`} />
 
       {/* Total */}
       <div className='flex justify-between items-center mb-4'>
-        <span className='text-lg font-bold text-gray-900 dark:text-white'>
-          Total
-        </span>
-        <span className='text-2xl font-bold text-gray-900 dark:text-white'>
+        <span className={textVariants.heading.h5()}>Total</span>
+        <span className={textVariants.heading.h3()}>
           {currency}
           {total.toFixed(2)}
         </span>
@@ -190,7 +189,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
       {onCheckout && (
         <button
           onClick={handleCheckout}
-          className='w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-semibold'
+          className={`w-full py-3 ${colors.component.button.primary.base} ${colors.component.button.primary.dark} ${designTokens.radius.lg} ${ui.transition.default} font-semibold`}
         >
           Proceed to Checkout
         </button>

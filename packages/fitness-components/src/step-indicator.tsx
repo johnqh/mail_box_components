@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
 import { CheckIcon } from '@heroicons/react/24/solid';
+import { ui } from '@sudobility/design';
 
 export interface Step {
   /** Step label */
@@ -209,19 +210,14 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
               className={cn(
                 'font-medium',
                 sizeConfig.label,
-                status === 'pending'
-                  ? 'text-gray-500 dark:text-gray-400'
-                  : 'text-gray-900 dark:text-gray-100'
+                status === 'pending' ? ui.text.muted : ui.text.emphasis
               )}
             >
               {step.label}
             </div>
             {step.description && (
               <div
-                className={cn(
-                  sizeConfig.description,
-                  'text-gray-600 dark:text-gray-400 mt-0.5'
-                )}
+                className={cn(sizeConfig.description, ui.text.muted, 'mt-0.5')}
               >
                 {step.description}
               </div>

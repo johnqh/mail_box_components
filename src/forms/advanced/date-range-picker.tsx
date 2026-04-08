@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, textVariants, ui, designTokens } from '@sudobility/design';
 
 export interface DateRange {
   /** Start date */
@@ -168,12 +169,23 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
-    <div className={cn('bg-white dark:bg-gray-900 rounded-lg p-4', className)}>
+    <div
+      className={cn(
+        ui.background.surface,
+        designTokens.radius.lg,
+        'p-4',
+        className
+      )}
+    >
       {/* Navigation */}
       <div className='flex items-center justify-between mb-4'>
         <button
           onClick={goToPreviousMonth}
-          className='p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors'
+          className={cn(
+            'p-2 rounded-md transition-colors',
+            colors.component.button.ghost.base,
+            colors.component.button.ghost.dark
+          )}
           aria-label='Previous month'
         >
           <svg
@@ -193,7 +205,11 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
         <button
           onClick={goToNextMonth}
-          className='p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors'
+          className={cn(
+            'p-2 rounded-md transition-colors',
+            colors.component.button.ghost.base,
+            colors.component.button.ghost.dark
+          )}
           aria-label='Next month'
         >
           <svg
@@ -223,7 +239,12 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
           return (
             <div key={i}>
               {/* Month header */}
-              <h3 className='text-base font-semibold text-gray-900 dark:text-white mb-4 text-center'>
+              <h3
+                className={cn(
+                  'text-base font-semibold mb-4 text-center',
+                  textVariants.label.default()
+                )}
+              >
                 {monthName}
               </h3>
 
@@ -232,7 +253,10 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
                 {weekDays.map(day => (
                   <div
                     key={day}
-                    className='text-center text-xs font-medium text-gray-600 dark:text-gray-400 py-2'
+                    className={cn(
+                      'text-center text-xs font-medium py-2',
+                      textVariants.body.sm()
+                    )}
                   >
                     {day}
                   </div>
@@ -268,7 +292,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
                         !isStart &&
                           !isEnd &&
                           !inRange &&
-                          'hover:bg-gray-100 dark:hover:bg-gray-800',
+                          `${colors.component.button.ghost.base} ${colors.component.button.ghost.dark}`,
                         isToday &&
                           !isStart &&
                           !isEnd &&
@@ -287,17 +311,17 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
       {/* Selected range display */}
       {(value.start || value.end) && (
-        <div className='mt-4 pt-4 border-t border-gray-200 dark:border-gray-700'>
+        <div className={cn('mt-4 pt-4 border-t', ui.border.default)}>
           <div className='flex items-center justify-between text-sm'>
             <div>
-              <span className='text-gray-600 dark:text-gray-400'>Start: </span>
-              <span className='font-medium text-gray-900 dark:text-white'>
+              <span className={textVariants.body.sm()}>Start: </span>
+              <span className={cn('font-medium', textVariants.label.default())}>
                 {value.start?.toLocaleDateString() || 'Not selected'}
               </span>
             </div>
             <div>
-              <span className='text-gray-600 dark:text-gray-400'>End: </span>
-              <span className='font-medium text-gray-900 dark:text-white'>
+              <span className={textVariants.body.sm()}>End: </span>
+              <span className={cn('font-medium', textVariants.label.default())}>
                 {value.end?.toLocaleDateString() || 'Not selected'}
               </span>
             </div>

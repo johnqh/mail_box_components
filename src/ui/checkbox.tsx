@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CheckIcon, MinusIcon } from '@heroicons/react/24/solid';
 import { cn } from '../lib/utils';
+import { colors, textVariants } from '@sudobility/design';
 
 /** Tracking event data for checkbox interactions */
 export interface CheckboxTrackingData {
@@ -141,29 +142,25 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     ? (colorMap[color] as typeof variant)
     : variant;
 
+  // Unchecked border colors from design system input defaults
+  const uncheckedBorder = `${colors.component.input.default.base} ${colors.component.input.default.dark}`;
+
+  // Checked state colors from design system button colors
+  const checkedColors = {
+    primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark} border-blue-600`,
+    success: `${colors.component.button.success.base} ${colors.component.button.success.dark} border-green-600`,
+    warning: 'bg-yellow-600 border-yellow-600',
+    error: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark} border-red-600`,
+  };
+
   const getVariantClasses = () => {
     if (error) {
       return checked
-        ? 'bg-red-600 border-red-600'
+        ? `${checkedColors.error}`
         : 'border-red-600 dark:border-red-500';
     }
 
-    const variantClasses = {
-      primary: checked
-        ? 'bg-blue-600 border-blue-600'
-        : 'border-gray-300 dark:border-gray-600',
-      success: checked
-        ? 'bg-green-600 border-green-600'
-        : 'border-gray-300 dark:border-gray-600',
-      warning: checked
-        ? 'bg-yellow-600 border-yellow-600'
-        : 'border-gray-300 dark:border-gray-600',
-      error: checked
-        ? 'bg-red-600 border-red-600'
-        : 'border-gray-300 dark:border-gray-600',
-    };
-
-    return variantClasses[effectiveVariant];
+    return checked ? checkedColors[effectiveVariant] : uncheckedBorder;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -238,7 +235,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           <div
             data-indeterminate={indeterminate ? 'true' : undefined}
             className={cn(
-              'rounded border-2 flex items-center justify-center transition-colors bg-white dark:bg-gray-900',
+              'rounded border-2 flex items-center justify-center transition-colors',
               config.box,
               getVariantClasses(),
               !disabled && 'hover:border-opacity-75'
@@ -258,16 +255,12 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         {(label || description) && (
           <div className='flex flex-col'>
             {label && (
-              <span
-                className={cn('text-gray-900 dark:text-white', config.text)}
-              >
+              <span className={cn(textVariants.label.default(), config.text)}>
                 {label}
               </span>
             )}
             {description && (
-              <span
-                className={cn('text-gray-600 dark:text-gray-400', config.desc)}
-              >
+              <span className={cn(textVariants.body.sm(), config.desc)}>
                 {description}
               </span>
             )}
@@ -275,7 +268,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         )}
       </label>
       {errorMessage && (
-        <span className='mt-1 text-sm text-red-600 dark:text-red-400'>
+        <span className={cn('mt-1', textVariants.label.error())}>
           {errorMessage}
         </span>
       )}

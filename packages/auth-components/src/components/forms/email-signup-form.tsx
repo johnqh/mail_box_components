@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Button, Input, Text } from '@sudobility/components';
 import { useAuthStatus } from '../../context/auth-provider';
 import type { EmailSignUpFormProps } from '../../types';
+import { textVariants } from '@sudobility/design';
 
 /**
  * Email sign-up form component
@@ -61,7 +62,7 @@ export function EmailSignUpForm({
         <div>
           <label
             htmlFor='signup-name'
-            className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+            className={`block mb-1 ${textVariants.label.default()}`}
           >
             {texts.displayName}
           </label>
@@ -79,7 +80,7 @@ export function EmailSignUpForm({
         <div>
           <label
             htmlFor='signup-email'
-            className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+            className={`block mb-1 ${textVariants.label.default()}`}
           >
             {texts.email}
           </label>
@@ -98,7 +99,7 @@ export function EmailSignUpForm({
         <div>
           <label
             htmlFor='signup-password'
-            className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+            className={`block mb-1 ${textVariants.label.default()}`}
           >
             {texts.password}
           </label>
@@ -117,7 +118,7 @@ export function EmailSignUpForm({
         <div>
           <label
             htmlFor='signup-confirm'
-            className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+            className={`block mb-1 ${textVariants.label.default()}`}
           >
             {texts.confirmPassword}
           </label>
@@ -136,7 +137,7 @@ export function EmailSignUpForm({
 
       {/* Error message */}
       {displayError && (
-        <Text size='sm' className='text-red-600 dark:text-red-400'>
+        <Text size='sm' className={textVariants.label.error()}>
           {displayError}
         </Text>
       )}
@@ -159,7 +160,7 @@ export function EmailSignUpForm({
           <button
             type='button'
             onClick={handleSwitchToSignIn}
-            className='text-blue-600 dark:text-blue-400 hover:underline font-medium'
+            className='text-primary hover:underline font-medium'
           >
             {texts.signIn}
           </button>

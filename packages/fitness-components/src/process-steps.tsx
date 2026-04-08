@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 export interface ProcessStep {
   step: number | string;
@@ -68,13 +69,9 @@ export const ProcessSteps: React.FC<ProcessStepsProps> = ({
       <div className={containerClass}>
         {(title || description) && (
           <div className='text-center mb-12'>
-            {title && (
-              <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
-                {title}
-              </h2>
-            )}
+            {title && <h2 className={cn(ui.text.h2, 'mb-4')}>{title}</h2>}
             {description && (
-              <p className='text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto'>
+              <p className={cn(ui.text.lead, 'max-w-3xl mx-auto')}>
                 {description}
               </p>
             )}
@@ -129,12 +126,8 @@ export const ProcessSteps: React.FC<ProcessStepsProps> = ({
                   orientation === 'horizontal' ? 'flex-1' : 'flex-1 min-w-0'
                 )}
               >
-                <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-2'>
-                  {step.title}
-                </h3>
-                <p className='text-gray-600 dark:text-gray-300 mb-3'>
-                  {step.description}
-                </p>
+                <h3 className={cn(ui.text.h4, 'mb-2')}>{step.title}</h3>
+                <p className={cn(ui.text.body, 'mb-3')}>{step.description}</p>
 
                 {step.details && step.details.length > 0 && (
                   <ul className='space-y-1'>
@@ -146,9 +139,7 @@ export const ProcessSteps: React.FC<ProcessStepsProps> = ({
                             colors.bg
                           )}
                         />
-                        <span className='text-sm text-gray-600 dark:text-gray-400'>
-                          {detail}
-                        </span>
+                        <span className={ui.text.bodySmall}>{detail}</span>
                       </li>
                     ))}
                   </ul>

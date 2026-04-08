@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { getStatusIndicatorColor } from '@sudobility/design';
 
 export interface ToastNotificationProps {
   message: string;
@@ -14,18 +15,11 @@ export const ToastNotification: React.FC<ToastNotificationProps> = ({
   onClose,
   className,
 }) => {
-  const variants = {
-    info: 'bg-blue-500',
-    success: 'bg-green-500',
-    warning: 'bg-yellow-500',
-    error: 'bg-red-500',
-  };
-
   return (
     <div
       className={cn(
         'fixed bottom-4 right-4 p-4 rounded-lg text-white shadow-lg flex items-center gap-3',
-        variants[variant],
+        getStatusIndicatorColor(variant),
         className
       )}
     >

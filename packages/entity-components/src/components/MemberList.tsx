@@ -7,6 +7,7 @@ import { UserIcon, TrashIcon } from '@heroicons/react/24/outline';
 import type { EntityMember, EntityRole } from '@sudobility/types';
 import { MemberRoleSelector } from './MemberRoleSelector';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 /** Tracking data for MemberList actions */
 export interface MemberListTrackingData {
@@ -44,10 +45,9 @@ export interface MemberListProps {
  * Role badge styles
  */
 const roleBadgeStyles: Record<EntityRole, string> = {
-  owner:
-    'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
-  manager: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-  member: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+  owner: `${colors.component.badge.warning.base} ${colors.component.badge.warning.dark}`,
+  manager: `${colors.component.badge.primary.base} ${colors.component.badge.primary.dark}`,
+  member: `${colors.component.badge.default.base} ${colors.component.badge.default.dark}`,
 };
 
 /**

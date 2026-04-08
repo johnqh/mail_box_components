@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors, textVariants, ui, designTokens } from '@sudobility/design';
 import { WalletIcon } from './wallet-icon';
 import { ChainType } from '@sudobility/types';
 
@@ -102,8 +103,8 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
 
   // Color classes based on chain
   const chainBadgeClasses = isSolana
-    ? 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300'
-    : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300';
+    ? `${colors.component.badge.solana.base} ${colors.component.badge.solana.dark}`
+    : `${colors.component.badge.ethereum.base} ${colors.component.badge.ethereum.dark}`;
 
   const signSectionClasses = isSolana
     ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800'
@@ -125,15 +126,19 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
     <div className={`space-y-6 ${className}`}>
       {/* Error message */}
       {error && (
-        <div className='p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg'>
-          <p className='text-sm text-red-600 dark:text-red-400'>{error}</p>
+        <div
+          className={`p-3 border ${colors.component.card.error.base} ${colors.component.card.error.dark} ${designTokens.radius.lg}`}
+        >
+          <p className={`text-sm ${colors.component.alert.error.icon}`}>
+            {error}
+          </p>
         </div>
       )}
 
       {/* Connected wallet info */}
-      <div className='bg-gray-50 dark:bg-gray-700 rounded-lg p-4'>
+      <div className={`${ui.background.muted} ${designTokens.radius.lg} p-4`}>
         <div className='flex justify-between items-start mb-2'>
-          <p className='text-sm text-gray-600 dark:text-gray-400'>
+          <p className={textVariants.body.sm()}>
             {labels.connectedWalletLabel}
           </p>
           <span
@@ -150,14 +155,14 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
               className='w-5 h-5'
             />
           )}
-          <p className='font-mono text-sm text-gray-900 dark:text-white break-all'>
-            {walletAddress}
-          </p>
+          <p className={textVariants.web3.address()}>{walletAddress}</p>
         </div>
       </div>
 
       {/* Sign message section */}
-      <div className={`border rounded-lg p-4 ${signSectionClasses}`}>
+      <div
+        className={`border ${designTokens.radius.lg} p-4 ${signSectionClasses}`}
+      >
         <h3 className={`font-semibold mb-2 ${signTitleClasses}`}>
           {signTitle}
         </h3>
@@ -168,7 +173,7 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
       <button
         onClick={onSign}
         disabled={isSigning}
-        className={`w-full py-4 md:py-3 text-lg font-medium text-white rounded-lg transition-all bg-gradient-to-r ${buttonGradient} disabled:opacity-50 disabled:cursor-not-allowed`}
+        className={`w-full py-4 md:py-3 text-lg font-medium text-white ${designTokens.radius.lg} ${ui.transition.all} bg-gradient-to-r ${buttonGradient} disabled:opacity-50 disabled:cursor-not-allowed`}
       >
         {isSigning ? (
           <div className='flex items-center justify-center'>
@@ -183,7 +188,7 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
       {/* Use different wallet link */}
       <button
         onClick={onUseDifferentWallet}
-        className='w-full text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+        className={`w-full ${textVariants.body.sm()} hover:text-gray-900 dark:hover:text-gray-200`}
       >
         {labels.useDifferentWallet}
       </button>

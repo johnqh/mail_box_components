@@ -1,4 +1,5 @@
 import { cn } from './lib/cn';
+import { ui } from '@sudobility/design';
 
 export interface SegmentedControlOption<T extends string> {
   /** Value for this option */
@@ -57,8 +58,9 @@ export function SegmentedControl<T extends string>({
   return (
     <div
       className={cn(
-        'inline-flex rounded-lg bg-gray-100 dark:bg-gray-800 p-1',
-        disabled && 'opacity-50',
+        'inline-flex rounded-lg p-1',
+        ui.background.muted,
+        disabled && ui.states.disabled,
         className
       )}
       role='radiogroup'
@@ -75,10 +77,12 @@ export function SegmentedControl<T extends string>({
             onClick={() => !disabled && onChange(option.value)}
             className={cn(
               sizeClasses[size],
-              'font-medium rounded-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+              'font-medium rounded-md',
+              ui.transition.all,
+              ui.states.focus,
               isSelected
-                ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white',
+                ? `${ui.background.surface} text-gray-900 dark:text-white shadow-sm`
+                : `${ui.text.bodySmall} hover:text-gray-900 dark:hover:text-white`,
               disabled && 'cursor-not-allowed'
             )}
           >

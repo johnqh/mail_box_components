@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { ui } from '@sudobility/design';
 
 export interface BackdropProps {
   /** Whether the backdrop is visible */
@@ -54,10 +55,10 @@ export const Backdrop: React.FC<BackdropProps> = ({
   className,
   children,
 }) => {
-  // Opacity configurations
+  // Opacity configurations - medium aligns with ui.background.overlay
   const opacityClasses = {
     light: 'bg-black/20 dark:bg-black/30',
-    medium: 'bg-black/50 dark:bg-black/60',
+    medium: ui.background.overlay,
     dark: 'bg-black/75 dark:bg-black/80',
   };
 

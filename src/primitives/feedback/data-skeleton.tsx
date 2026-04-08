@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { variants, ui } from '@sudobility/design';
 
 export interface DataSkeletonProps {
   /** Type of skeleton */
@@ -58,10 +59,10 @@ export const DataSkeleton: React.FC<DataSkeletonProps> = ({
   animate = true,
   className,
 }) => {
-  const baseClasses = cn(
-    'bg-gray-200 dark:bg-gray-700 rounded',
-    animate && 'animate-pulse'
-  );
+  // variants.loading.skeleton.default() = 'animate-pulse bg-gray-200 dark:bg-gray-700 rounded'
+  const baseClasses = animate
+    ? variants.loading.skeleton.default()
+    : 'bg-gray-200 dark:bg-gray-700 rounded';
 
   const heightStyle = typeof height === 'number' ? `${height}px` : height;
   const widthStyle = typeof width === 'number' ? `${width}px` : width;
@@ -111,7 +112,7 @@ export const DataSkeleton: React.FC<DataSkeletonProps> = ({
     return (
       <div
         className={cn(
-          'p-4 border border-gray-200 dark:border-gray-700 rounded-lg space-y-4',
+          `p-4 border ${ui.border.default} rounded-lg space-y-4`,
           className
         )}
         style={{ width: widthStyle }}
@@ -152,7 +153,7 @@ export const DataSkeleton: React.FC<DataSkeletonProps> = ({
     return (
       <div
         className={cn(
-          'p-4 border border-gray-200 dark:border-gray-700 rounded-lg space-y-3',
+          `p-4 border ${ui.border.default} rounded-lg space-y-3`,
           className
         )}
         style={{ width: widthStyle }}

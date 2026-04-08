@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui';
+import { ui } from '@sudobility/design';
 import { useLayout } from '../layout/Layout/LayoutContext';
 
 interface CTAButton {
@@ -62,7 +63,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
 
   const gradientClass = getGradientClass();
   const textColorClass =
-    textColor === 'light' ? 'text-white' : 'text-gray-900 dark:text-gray-100';
+    textColor === 'light' ? 'text-white' : ui.text.emphasis;
 
   const sizeClasses = {
     sm: 'py-12',

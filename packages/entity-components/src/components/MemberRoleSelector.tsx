@@ -14,6 +14,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
+import { colors, ui, designTokens } from '@sudobility/design';
 
 /** Tracking data for MemberRoleSelector actions */
 export interface MemberRoleSelectorTrackingData {
@@ -60,14 +61,14 @@ const roleOptions: RoleOption[] = [
     label: 'Manager',
     description: 'Can manage projects and API keys',
     icon: BriefcaseIcon,
-    color: 'text-blue-600 dark:text-blue-400',
+    color: 'text-primary',
   },
   {
     value: EntityRole.MEMBER,
     label: 'Member',
     description: 'Read-only access',
     icon: EyeIcon,
-    color: 'text-gray-600 dark:text-gray-400',
+    color: 'text-muted-foreground',
   },
 ];
 
@@ -159,7 +160,14 @@ export function MemberRoleSelector({
             />
             {/* Menu */}
             <div
-              className='fixed z-[999999] w-52 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-1'
+              className={cn(
+                'fixed z-[999999] w-52 py-1',
+                ui.background.surface,
+                designTokens.radius.lg,
+                designTokens.shadow.lg,
+                'border',
+                ui.border.default
+              )}
               style={{ top: menuPos.top, right: menuPos.right }}
               role='listbox'
               aria-label='Roles'
@@ -171,10 +179,11 @@ export function MemberRoleSelector({
                   onClick={() => handleSelect(option.value)}
                   className={cn(
                     'flex items-start gap-2 w-full px-3 py-2 text-left',
-                    'transition-colors cursor-pointer',
+                    ui.transition.default,
+                    'cursor-pointer',
                     option.value === value
-                      ? 'bg-gray-100 dark:bg-gray-700'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+                      ? ui.background.subtle
+                      : `${colors.component.button.ghost.base} ${colors.component.button.ghost.dark}`
                   )}
                   role='option'
                   aria-selected={option.value === value}
@@ -182,14 +191,14 @@ export function MemberRoleSelector({
                   <option.icon className={cn('h-4 w-4 mt-0.5', option.color)} />
                   <div className='flex-1 min-w-0'>
                     <div className='flex items-center gap-2'>
-                      <span className='font-medium text-sm text-gray-900 dark:text-gray-100'>
+                      <span className='font-medium text-sm text-foreground'>
                         {option.label}
                       </span>
                       {option.value === value && (
-                        <CheckIcon className='h-3.5 w-3.5 text-blue-600 dark:text-blue-400' />
+                        <CheckIcon className='h-3.5 w-3.5 text-primary' />
                       )}
                     </div>
-                    <p className='text-xs text-gray-500 dark:text-gray-400'>
+                    <p className='text-xs text-muted-foreground'>
                       {option.description}
                     </p>
                   </div>

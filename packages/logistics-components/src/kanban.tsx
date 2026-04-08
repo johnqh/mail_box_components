@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { colors, ui } from '@sudobility/design';
 
 export interface KanbanCard {
   id: string;
@@ -54,7 +55,10 @@ export const Kanban: React.FC<KanbanProps> = ({
       {columns.map(column => (
         <div
           key={column.id}
-          className='flex-shrink-0 w-80 bg-gray-100 dark:bg-gray-800 rounded-lg p-4'
+          className={cn(
+            'flex-shrink-0 w-80 rounded-lg p-4',
+            ui.background.subtle
+          )}
         >
           {/* Column header */}
           <div
@@ -64,7 +68,12 @@ export const Kanban: React.FC<KanbanProps> = ({
             )}
             onClick={() => onColumnClick?.(column)}
           >
-            <h3 className='font-semibold text-gray-900 dark:text-white flex items-center gap-2'>
+            <h3
+              className={cn(
+                'font-semibold flex items-center gap-2',
+                ui.text.strong
+              )}
+            >
               {column.color && (
                 <div
                   className='w-3 h-3 rounded-full'
@@ -73,7 +82,7 @@ export const Kanban: React.FC<KanbanProps> = ({
               )}
               {column.title}
             </h3>
-            <span className='text-sm text-gray-600 dark:text-gray-400'>
+            <span className={cn('text-sm', ui.text.muted)}>
               {column.cards.length}
             </span>
           </div>
@@ -84,18 +93,23 @@ export const Kanban: React.FC<KanbanProps> = ({
               <div
                 key={card.id}
                 className={cn(
-                  'bg-white dark:bg-gray-900 rounded-lg p-3 shadow-sm',
-                  'border border-gray-200 dark:border-gray-700',
+                  'rounded-lg p-3',
+                  ui.shadow.sm,
+                  'border',
+                  colors.component.card.default.base,
+                  colors.component.card.default.dark,
                   onCardClick &&
                     'cursor-pointer hover:shadow-md transition-shadow'
                 )}
                 onClick={() => onCardClick?.(card, column.id)}
               >
-                <h4 className='font-medium text-gray-900 dark:text-white text-sm mb-1'>
+                <h4
+                  className={cn('font-medium text-sm mb-1', ui.text.emphasis)}
+                >
                   {card.title}
                 </h4>
                 {card.content && (
-                  <div className='text-sm text-gray-600 dark:text-gray-400'>
+                  <div className={cn('text-sm', ui.text.muted)}>
                     {card.content}
                   </div>
                 )}

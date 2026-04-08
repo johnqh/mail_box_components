@@ -6,6 +6,7 @@
 import { BuildingOffice2Icon, UserIcon } from '@heroicons/react/24/outline';
 import type { EntityWithRole, EntityRole } from '@sudobility/types';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 /** Tracking data for EntityCard actions */
 export interface EntityCardTrackingData {
@@ -35,10 +36,9 @@ export interface EntityCardProps {
  * Role badge colors
  */
 const roleBadgeStyles: Record<EntityRole, string> = {
-  owner:
-    'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
-  manager: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-  member: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+  owner: `${colors.component.badge.warning.base} ${colors.component.badge.warning.dark}`,
+  manager: `${colors.component.badge.primary.base} ${colors.component.badge.primary.dark}`,
+  member: `${colors.component.badge.default.base} ${colors.component.badge.default.dark}`,
 };
 
 /**
@@ -78,8 +78,8 @@ export function EntityCard({
           className={cn(
             'flex h-10 w-10 items-center justify-center rounded-full',
             isPersonal
-              ? 'bg-blue-100 dark:bg-blue-900'
-              : 'bg-purple-100 dark:bg-purple-900'
+              ? `${colors.component.badge.primary.base} ${colors.component.badge.primary.dark}`
+              : `${colors.component.badge.warning.base} ${colors.component.badge.warning.dark}`
           )}
         >
           {entity.avatarUrl ? (
@@ -93,7 +93,7 @@ export function EntityCard({
               className={cn(
                 'h-5 w-5',
                 isPersonal
-                  ? 'text-blue-600 dark:text-blue-400'
+                  ? 'text-primary'
                   : 'text-purple-600 dark:text-purple-400'
               )}
             />

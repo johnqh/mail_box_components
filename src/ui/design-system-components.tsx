@@ -1,21 +1,28 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
+import {
+  colors,
+  ui,
+  designTokens,
+  textVariants,
+  getStatusIndicatorColor,
+} from '@sudobility/design';
 
 // Stat Card Component
 const statCardVariants = cva(
-  `bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-200`,
+  `${colors.component.card.default.base} ${colors.component.card.default.dark} ${designTokens.radius.lg} shadow-md p-6 transition-all duration-200`,
   {
     variants: {
       variant: {
-        default: `border-gray-200 dark:border-gray-700 border hover:shadow-lg`,
+        default: `${ui.border.default} border ${colors.component.card.default.hover}`,
         elevated: `shadow-lg hover:shadow-xl`,
         minimal: 'bg-transparent shadow-none border-none p-4',
       },
       trend: {
         none: '',
-        up: 'border-l-4 border-green-500',
-        down: 'border-l-4 border-red-500',
+        up: `border-l-4 ${getStatusIndicatorColor('success').replace('bg-', 'border-')}`,
+        down: `border-l-4 ${getStatusIndicatorColor('error').replace('bg-', 'border-')}`,
         neutral: 'border-l-4 border-gray-400',
       },
     },
@@ -45,10 +52,10 @@ export const StatCard: React.FC<StatCardProps> = ({
   className,
 }) => {
   const trendColors = {
-    up: 'text-green-600 dark:text-green-400',
-    down: 'text-red-600 dark:text-red-400',
-    neutral: 'text-gray-600 dark:text-gray-400',
-    none: 'text-gray-600 dark:text-gray-400',
+    up: ui.text.success,
+    down: ui.text.error,
+    neutral: ui.text.muted,
+    none: ui.text.muted,
   };
 
   const trendIcons = {
@@ -62,12 +69,8 @@ export const StatCard: React.FC<StatCardProps> = ({
     <div className={cn(statCardVariants({ variant, trend }), className)}>
       <div className='flex items-center justify-between'>
         <div>
-          <p className='text-sm font-medium text-gray-600 dark:text-gray-400 mb-1'>
-            {label}
-          </p>
-          <p className='text-2xl font-bold text-gray-900 dark:text-white'>
-            {value}
-          </p>
+          <p className={cn(textVariants.label.default(), 'mb-1')}>{label}</p>
+          <p className={cn(textVariants.heading.h4(), 'text-2xl')}>{value}</p>
           {change && (
             <p
               className={cn(
@@ -91,7 +94,7 @@ const formSectionVariants = cva('space-y-6', {
   variants: {
     variant: {
       default: '',
-      card: `bg-white dark:bg-gray-800 rounded-lg border-gray-200 dark:border-gray-700 border p-6`,
+      card: `${colors.component.card.default.base} ${colors.component.card.default.dark} ${designTokens.radius.lg} border p-6`,
       minimal: 'space-y-4',
     },
     spacing: {
@@ -126,15 +129,9 @@ export const FormSection: React.FC<FormSectionProps> = ({
     <div className={cn(formSectionVariants({ variant, spacing }), className)}>
       {(title || description) && (
         <div className='space-y-1'>
-          {title && (
-            <h3 className='text-lg font-medium text-gray-900 dark:text-white'>
-              {title}
-            </h3>
-          )}
+          {title && <h3 className={textVariants.heading.h5()}>{title}</h3>}
           {description && (
-            <p className='text-sm text-gray-600 dark:text-gray-400'>
-              {description}
-            </p>
+            <p className={textVariants.body.sm()}>{description}</p>
           )}
         </div>
       )}
@@ -199,10 +196,8 @@ export const FeatureBlock: React.FC<FeatureBlockProps> = ({
     >
       <div className='text-4xl mb-4 flex-shrink-0'>{icon}</div>
       <div className='space-y-2'>
-        <h3 className='text-xl font-bold text-gray-900 dark:text-white'>
-          {title}
-        </h3>
-        <div className='text-gray-600 dark:text-gray-300 leading-relaxed'>
+        <h3 className={textVariants.heading.h4()}>{title}</h3>
+        <div className={cn(textVariants.body.md(), 'leading-relaxed')}>
           {description}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { colors, textVariants } from '@sudobility/design';
 
 export type CardType = 'visa' | 'mastercard' | 'amex' | 'discover' | 'unknown';
 
@@ -206,7 +207,12 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
     <div className={cn('w-full space-y-3', className)}>
       {/* Card number */}
       <div>
-        <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'>
+        <label
+          className={cn(
+            'block text-sm font-medium mb-1',
+            textVariants.label.default()
+          )}
+        >
           Card number
         </label>
         <div className='relative'>
@@ -217,11 +223,10 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
             placeholder='1234 5678 9012 3456'
             disabled={disabled}
             className={cn(
-              'w-full px-3 py-2 pr-12 text-sm',
-              'bg-white dark:bg-gray-900',
-              'border border-gray-300 dark:border-gray-700',
-              'rounded-md',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400',
+              'w-full px-3 py-2 pr-12 text-sm border rounded-md focus:outline-none',
+              colors.component.input.default.base,
+              colors.component.input.default.dark,
+              colors.component.input.default.focus,
               'disabled:opacity-50 disabled:cursor-not-allowed'
             )}
           />
@@ -235,7 +240,12 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
       {showAllFields && (
         <div className='grid grid-cols-2 gap-3'>
           <div>
-            <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'>
+            <label
+              className={cn(
+                'block text-sm font-medium mb-1',
+                textVariants.label.default()
+              )}
+            >
               Expiry date
             </label>
             <input
@@ -245,18 +255,22 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
               placeholder='MM/YY'
               disabled={disabled}
               className={cn(
-                'w-full px-3 py-2 text-sm',
-                'bg-white dark:bg-gray-900',
-                'border border-gray-300 dark:border-gray-700',
-                'rounded-md',
-                'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400',
+                'w-full px-3 py-2 text-sm border rounded-md focus:outline-none',
+                colors.component.input.default.base,
+                colors.component.input.default.dark,
+                colors.component.input.default.focus,
                 'disabled:opacity-50 disabled:cursor-not-allowed'
               )}
             />
           </div>
 
           <div>
-            <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'>
+            <label
+              className={cn(
+                'block text-sm font-medium mb-1',
+                textVariants.label.default()
+              )}
+            >
               CVV
             </label>
             <input
@@ -266,11 +280,10 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
               placeholder={cardType === 'amex' ? '1234' : '123'}
               disabled={disabled}
               className={cn(
-                'w-full px-3 py-2 text-sm',
-                'bg-white dark:bg-gray-900',
-                'border border-gray-300 dark:border-gray-700',
-                'rounded-md',
-                'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400',
+                'w-full px-3 py-2 text-sm border rounded-md focus:outline-none',
+                colors.component.input.default.base,
+                colors.component.input.default.dark,
+                colors.component.input.default.focus,
                 'disabled:opacity-50 disabled:cursor-not-allowed'
               )}
             />
@@ -281,7 +294,12 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
       {/* Cardholder name */}
       {showAllFields && (
         <div>
-          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'>
+          <label
+            className={cn(
+              'block text-sm font-medium mb-1',
+              textVariants.label.default()
+            )}
+          >
             Cardholder name
           </label>
           <input
@@ -291,11 +309,10 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
             placeholder='John Doe'
             disabled={disabled}
             className={cn(
-              'w-full px-3 py-2 text-sm',
-              'bg-white dark:bg-gray-900',
-              'border border-gray-300 dark:border-gray-700',
-              'rounded-md',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400',
+              'w-full px-3 py-2 text-sm border rounded-md focus:outline-none',
+              colors.component.input.default.base,
+              colors.component.input.default.dark,
+              colors.component.input.default.focus,
               'disabled:opacity-50 disabled:cursor-not-allowed'
             )}
           />

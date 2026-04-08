@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import { Label } from '@sudobility/components';
+import { Label, cn } from '@sudobility/components';
+import { colors, ui } from '@sudobility/design';
 
 /** Tracking data for EmailInputGroup actions */
 export interface EmailInputGroupTrackingData {
@@ -30,10 +31,7 @@ export const EmailInputField: React.FC<EmailInputFieldProps> = ({
 }) => {
   return (
     <div className={className}>
-      <Label
-        htmlFor={label.toLowerCase()}
-        className='text-sm font-medium text-gray-700 dark:text-gray-300'
-      >
+      <Label htmlFor={label.toLowerCase()} className={ui.text.label}>
         {label} {required && <span className='text-red-500'>*</span>}
       </Label>
       <input
@@ -42,20 +40,16 @@ export const EmailInputField: React.FC<EmailInputFieldProps> = ({
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`
-          mt-1 block w-full px-3 py-2 border rounded-md shadow-sm 
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-          dark:bg-gray-800 dark:border-gray-600 dark:text-white
-          ${
-            error
-              ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-              : 'border-gray-300 dark:border-gray-600'
-          }
-        `}
+        className={cn(
+          'mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none',
+          colors.component.input.default.base,
+          colors.component.input.default.dark,
+          error
+            ? colors.component.input.default.error
+            : colors.component.input.default.focus
+        )}
       />
-      {error && (
-        <p className='mt-1 text-sm text-red-600 dark:text-red-400'>{error}</p>
-      )}
+      {error && <p className={cn('mt-1 text-sm', ui.text.error)}>{error}</p>}
     </div>
   );
 };

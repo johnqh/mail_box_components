@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, ui } from '@sudobility/design';
 
 export interface MentionOption {
   /** Option ID */
@@ -187,10 +188,11 @@ export const MentionInput: React.FC<MentionInputProps> = ({
         disabled={disabled}
         className={cn(
           'w-full px-3 py-2 text-sm',
-          'bg-white dark:bg-gray-900',
-          'border border-gray-300 dark:border-gray-700',
-          'rounded-md',
-          'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400',
+          colors.component.input.default.base,
+          colors.component.input.default.dark,
+          'border rounded-md',
+          'focus:outline-none',
+          colors.component.input.default.focus,
           'disabled:opacity-50 disabled:cursor-not-allowed',
           'resize-none',
           'min-h-[100px]'
@@ -201,7 +203,12 @@ export const MentionInput: React.FC<MentionInputProps> = ({
       {showSuggestions && (
         <div
           ref={suggestionsRef}
-          className='absolute z-50 w-full mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto'
+          className={cn(
+            'absolute z-50 w-full mt-1 border rounded-md shadow-lg max-h-60 overflow-y-auto',
+            colors.component.card.default.base,
+            colors.component.card.default.dark,
+            ui.border.default
+          )}
         >
           {filteredMentions.map((mention, index) => (
             <button

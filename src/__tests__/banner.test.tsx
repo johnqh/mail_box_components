@@ -135,7 +135,7 @@ describe('Banner', () => {
       );
 
       // Banner renders via portal to document.body
-      const banner = document.body.querySelector('[class*="yellow"]');
+      const banner = document.body.querySelector('[class*="orange"]');
       expect(banner).toBeInTheDocument();
     });
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PhotoIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
+import { ui } from '@sudobility/design';
 
 export interface ImageProps {
   /** Image source URL */
@@ -130,9 +131,10 @@ export const Image: React.FC<ImageProps> = ({
   return (
     <div
       className={cn(
-        'relative inline-block overflow-hidden bg-gray-100 dark:bg-gray-800',
+        'relative inline-block overflow-hidden',
+        ui.background.subtle,
         roundedClasses[rounded],
-        border && 'border border-gray-200 dark:border-gray-700',
+        border && `border ${ui.border.default}`,
         className
       )}
       style={containerStyles}

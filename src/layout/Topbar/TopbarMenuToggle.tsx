@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, ui } from '@sudobility/design';
 import { useTopbar } from './TopbarContext';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import type { TopbarNavItem } from './TopbarNav';
@@ -128,11 +129,10 @@ export const TopbarMenuToggle: React.FC<TopbarMenuToggleProps> = ({
         className={cn(
           // Base styles
           'p-2 rounded-lg',
-          'text-gray-600 dark:text-gray-400',
-          'hover:bg-gray-100 dark:hover:bg-gray-700',
-          'hover:text-gray-900 dark:hover:text-gray-100',
-          'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
-          'transition-colors duration-200',
+          colors.component.button.ghost.base,
+          colors.component.button.ghost.dark,
+          colors.component.button.ghost.focus,
+          ui.transition.default,
           className
         )}
         aria-label={ariaLabel}
@@ -155,8 +155,9 @@ export const TopbarMenuToggle: React.FC<TopbarMenuToggleProps> = ({
           className={cn(
             'absolute left-0 top-full mt-2',
             'min-w-[200px] py-2 rounded-lg',
-            'bg-white dark:bg-gray-800',
-            'border border-gray-200 dark:border-gray-700',
+            colors.component.card.default.base,
+            colors.component.card.default.dark,
+            'border',
             'shadow-lg',
             'z-50'
           )}
@@ -172,10 +173,9 @@ export const TopbarMenuToggle: React.FC<TopbarMenuToggleProps> = ({
 
             const itemClasses = cn(
               'flex items-center w-full px-4 py-2.5 text-sm font-medium',
-              'text-gray-700 dark:text-gray-300',
-              'hover:bg-gray-100 dark:hover:bg-gray-700',
-              'hover:text-gray-900 dark:hover:text-gray-100',
-              'transition-colors duration-150',
+              colors.component.button.ghost.base,
+              colors.component.button.ghost.dark,
+              ui.transition.fast,
               item.active &&
                 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
               item.disabled && 'opacity-50 cursor-not-allowed'

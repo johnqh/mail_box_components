@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, ui } from '@sudobility/design';
 import { TopbarProvider, TopbarVariant } from './TopbarContext';
 import { useLayout } from '../Layout/LayoutContext';
 
@@ -29,9 +30,8 @@ const heightClasses = {
 };
 
 const variantClasses: Record<TopbarVariant, string> = {
-  default:
-    'bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700',
-  app: 'bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm',
+  default: `${colors.component.card.default.base} ${colors.component.card.default.dark} border-b`,
+  app: `${colors.component.card.default.base} ${colors.component.card.default.dark} border-b shadow-sm`,
   minimal: 'bg-transparent',
   transparent:
     'bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-700/50',
@@ -92,14 +92,18 @@ export const Topbar: React.FC<TopbarProps> = ({
           // Backdrop blur for transparent variant
           blur && 'backdrop-blur-md',
           // Transition for smooth theme changes
-          'transition-colors duration-200',
+          ui.transition.default,
           className
         )}
       >
         {/* Skip to main content link for accessibility */}
         <a
           href='#main-content'
-          className='sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-blue-600 text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+          className={cn(
+            'sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+            colors.component.button.primary.base,
+            colors.component.button.primary.dark
+          )}
         >
           Skip to main content
         </a>

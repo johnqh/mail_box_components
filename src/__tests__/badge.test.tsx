@@ -37,7 +37,7 @@ describe('Badge', () => {
     const { container } = render(<Badge variant='warning'>Warning</Badge>);
 
     expect(screen.getByText('Warning')).toBeInTheDocument();
-    const badge = container.querySelector('[class*="bg-yellow"]');
+    const badge = container.querySelector('[class*="bg-orange"]');
     expect(badge).toBeInTheDocument();
   });
 

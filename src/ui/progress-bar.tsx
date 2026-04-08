@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface ProgressBarProps {
   /** Progress value (0-100) */
@@ -66,12 +67,12 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
   const displayLabel = label || `${Math.round(percentage)}%`;
 
-  // Color variant configurations
+  // Color variant configurations (design system where available)
   const variantClasses = {
-    primary: 'bg-blue-600 dark:bg-blue-500',
-    success: 'bg-green-600 dark:bg-green-500',
+    primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
+    success: `${colors.component.button.success.base} ${colors.component.button.success.dark}`,
     warning: 'bg-yellow-600 dark:bg-yellow-500',
-    danger: 'bg-red-600 dark:bg-red-500',
+    danger: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark}`,
     purple: 'bg-purple-600 dark:bg-purple-500',
     gray: 'bg-gray-600 dark:bg-gray-500',
   };

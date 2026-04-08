@@ -3,6 +3,7 @@
  */
 
 import type { ReactNode } from 'react';
+import { textVariants, colors, designTokens } from '@sudobility/design';
 
 export interface DetailErrorStateProps {
   /**
@@ -126,21 +127,21 @@ export function DetailErrorState({
       className={`flex flex-col items-center justify-center py-12 px-4 ${className}`}
     >
       <div className='flex flex-col items-center max-w-md text-center'>
-        <div className='w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-4'>
+        <div
+          className={`w-16 h-16 ${designTokens.radius.full} ${colors.component.card.error.base} ${colors.component.card.error.dark} flex items-center justify-center mb-4`}
+        >
           {icon ?? <WarningIcon />}
         </div>
 
-        <h3 className='text-lg font-semibold text-theme-text-primary mb-2'>
-          {title}
-        </h3>
+        <h3 className={`${textVariants.heading.h3()} mb-2`}>{title}</h3>
 
-        <p className='text-sm text-theme-text-secondary mb-6'>{message}</p>
+        <p className={`${textVariants.body.sm()} mb-6`}>{message}</p>
 
         {onRetry && (
           <button
             onClick={onRetry}
             disabled={isRetrying}
-            className='inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50'
+            className={`inline-flex items-center gap-2 px-4 py-2 ${colors.component.button.primary.base} ${designTokens.radius.lg} transition-colors disabled:opacity-50`}
           >
             <RefreshIcon spinning={isRetrying} />
             {isRetrying ? loadingText : retryText}

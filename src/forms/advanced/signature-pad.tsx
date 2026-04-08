@@ -1,4 +1,5 @@
 import { cn } from '../../lib/utils';
+import { colors, ui } from '@sudobility/design';
 
 export interface SignaturePadProps {
   onSave?: (signature: string) => void;
@@ -14,24 +15,25 @@ export const SignaturePad = ({
   className,
 }: SignaturePadProps) => {
   return (
-    <div
-      className={cn(
-        'border border-gray-300 dark:border-gray-700 rounded-lg',
-        className
-      )}
-    >
-      <canvas
-        width={width}
-        height={height}
-        className='bg-white dark:bg-gray-900'
-      />
+    <div className={cn('border rounded-lg', ui.border.default, className)}>
+      <canvas width={width} height={height} className={ui.background.surface} />
       <div className='flex gap-2 p-2'>
-        <button className='px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600'>
+        <button
+          className={cn(
+            'px-3 py-1 rounded',
+            colors.component.button.ghost.base,
+            colors.component.button.ghost.dark
+          )}
+        >
           Clear
         </button>
         <button
           onClick={() => onSave?.('')}
-          className='px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600'
+          className={cn(
+            'px-3 py-1 rounded',
+            colors.component.button.primary.base,
+            colors.component.button.primary.dark
+          )}
         >
           Save
         </button>

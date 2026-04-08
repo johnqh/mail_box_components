@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { textVariants } from '@sudobility/design';
 
 export interface StepperStep {
   /** Step ID */
@@ -158,7 +159,9 @@ export const Stepper: React.FC<StepperProps> = ({
                       {step.label}
                     </p>
                     {step.description && (
-                      <p className='text-xs text-gray-500 dark:text-gray-400 mt-0.5'>
+                      <p
+                        className={cn(textVariants.caption.default(), 'mt-0.5')}
+                      >
                         {step.description}
                       </p>
                     )}
@@ -278,7 +281,7 @@ export const Stepper: React.FC<StepperProps> = ({
                   {step.label}
                 </p>
                 {step.description && (
-                  <p className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
+                  <p className={cn(textVariants.caption.default(), 'mt-1')}>
                     {step.description}
                   </p>
                 )}

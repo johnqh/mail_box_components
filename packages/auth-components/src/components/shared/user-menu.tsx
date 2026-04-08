@@ -4,6 +4,7 @@ import { useAuthStatus } from '../../context/auth-provider';
 import { Avatar } from './avatar';
 import type { AuthMenuItem, AuthUser } from '../../types';
 import { cn } from '../../lib/cn';
+import { colors, ui, designTokens } from '@sudobility/design';
 
 interface UserMenuProps {
   menuItems?: AuthMenuItem[];
@@ -107,15 +108,19 @@ export function UserMenu({
       {isOpen && (
         <div
           className={cn(
-            'absolute top-full mt-2 w-56 rounded-lg shadow-lg',
-            'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
+            'absolute top-full mt-2 w-56',
+            designTokens.radius.lg,
+            designTokens.shadow.lg,
+            ui.background.surface,
+            'border',
+            ui.border.default,
             'py-1 z-50',
             dropdownAlign === 'right' ? 'right-0' : 'left-0'
           )}
         >
           {/* User info section */}
           {showUserInfo && (
-            <div className='px-4 py-3 border-b border-gray-200 dark:border-gray-700'>
+            <div className={cn('px-4 py-3 border-b', ui.border.default)}>
               {renderUserInfo ? (
                 renderUserInfo(user)
               ) : (
@@ -144,9 +149,10 @@ export function UserMenu({
                 disabled={item.disabled}
                 className={cn(
                   'w-full px-4 py-2 text-left flex items-center gap-2',
-                  'text-gray-700 dark:text-gray-300',
-                  'hover:bg-gray-100 dark:hover:bg-gray-700',
-                  'transition-colors',
+                  'text-foreground',
+                  colors.component.button.ghost.base,
+                  colors.component.button.ghost.dark,
+                  ui.transition.default,
                   item.disabled && 'opacity-50 cursor-not-allowed'
                 )}
               >
@@ -154,7 +160,7 @@ export function UserMenu({
                 <span>{item.label}</span>
               </button>
               {item.dividerAfter && (
-                <div className='my-1 border-t border-gray-200 dark:border-gray-700' />
+                <div className={cn('my-1 border-t', ui.border.default)} />
               )}
             </div>
           ))}
@@ -162,7 +168,7 @@ export function UserMenu({
           {/* Divider before logout if there are menu items */}
           {menuItems.length > 0 &&
             !menuItems[menuItems.length - 1]?.dividerAfter && (
-              <div className='my-1 border-t border-gray-200 dark:border-gray-700' />
+              <div className={cn('my-1 border-t', ui.border.default)} />
             )}
 
           {/* Logout button */}
@@ -171,9 +177,10 @@ export function UserMenu({
             onClick={handleLogout}
             className={cn(
               'w-full px-4 py-2 text-left',
-              'text-red-600 dark:text-red-400',
-              'hover:bg-gray-100 dark:hover:bg-gray-700',
-              'transition-colors'
+              'text-destructive',
+              colors.component.button.ghost.base,
+              colors.component.button.ghost.dark,
+              ui.transition.default
             )}
           >
             {texts.logout}

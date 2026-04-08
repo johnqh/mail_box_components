@@ -1,4 +1,5 @@
 import React from 'react';
+import { textVariants, designTokens } from '@sudobility/design';
 import { cn } from '../lib/utils';
 
 export interface HeadingProps {
@@ -47,6 +48,16 @@ export const Heading: React.FC<HeadingProps> = ({
   align,
   className,
 }) => {
+  // Map sizes to heading variant levels (size -> equivalent heading level)
+  const sizeToLevel = {
+    '4xl': 'h1',
+    '3xl': 'h2',
+    '2xl': 'h3',
+    xl: 'h4',
+    lg: 'h5',
+    base: 'h6',
+  } as const;
+
   // Default sizes based on level if not explicitly provided
   const defaultSizes = {
     1: '4xl',
@@ -59,40 +70,31 @@ export const Heading: React.FC<HeadingProps> = ({
 
   const actualSize = size || defaultSizes[level];
 
-  // Size configurations
-  const sizeClasses = {
-    '4xl': 'text-4xl',
-    '3xl': 'text-3xl',
-    '2xl': 'text-2xl',
-    xl: 'text-xl',
-    lg: 'text-lg',
-    base: 'text-base',
+  // Get base heading classes from design system (includes size, font-family,
+  // default weight, leading, tracking, and default color)
+  const headingLevel = sizeToLevel[actualSize];
+  const baseClasses = textVariants.heading[headingLevel]();
+
+  // Weight overrides from design tokens (only override when not using the
+  // default bold weight already baked into the heading variant)
+  const weightClasses: Record<string, string> = {
+    normal: designTokens.typography.weight.normal,
+    medium: designTokens.typography.weight.medium,
+    semibold: designTokens.typography.weight.semibold,
+    bold: designTokens.typography.weight.bold,
+    extrabold: designTokens.typography.weight.extrabold,
   };
 
-  // Weight configurations
-  const weightClasses = {
-    normal: 'font-normal',
-    medium: 'font-medium',
-    semibold: 'font-semibold',
-    bold: 'font-bold',
-    extrabold: 'font-extrabold',
-  };
-
-  // Color configurations
-  const colorClasses = {
-    default: 'text-gray-900 dark:text-gray-100',
+  // Color overrides — 'default' is already provided by the heading variant,
+  // so we only need explicit classes for muted and primary
+  const colorOverrides: Record<string, string> = {
+    default: '',
     muted: 'text-gray-700 dark:text-gray-300',
     primary: 'text-blue-600 dark:text-blue-400',
   };
 
-  // Alignment configurations
-  const alignClasses = align
-    ? {
-        left: 'text-left',
-        center: 'text-center',
-        right: 'text-right',
-      }[align]
-    : '';
+  // Alignment from design tokens
+  const alignClasses = align ? designTokens.typography.align[align] : '';
 
   const Component = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
@@ -100,9 +102,9 @@ export const Heading: React.FC<HeadingProps> = ({
     Component,
     {
       className: cn(
-        sizeClasses[actualSize],
+        baseClasses,
         weightClasses[weight],
-        colorClasses[color],
+        colorOverrides[color],
         alignClasses,
         className
       ),

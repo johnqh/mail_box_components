@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { textVariants, ui } from '@sudobility/design';
 
 export interface StepListItem {
   content: React.ReactNode;
@@ -48,7 +49,7 @@ export const StepList: React.FC<StepListProps> = ({
     if (variant === 'enhanced') {
       return cn(
         baseStyles,
-        'relative pl-8 pb-2 border-l-2 border-gray-200 dark:border-gray-700',
+        `relative pl-8 pb-2 border-l-2 ${ui.border.default}`,
         index === items.length - 1 && 'border-l-transparent'
       );
     }
@@ -90,7 +91,9 @@ export const StepList: React.FC<StepListProps> = ({
         <div className='flex-1'>
           <div>{content}</div>
           {subItems && subItems.length > 0 && (
-            <ul className='mt-2 ml-4 space-y-1 list-disc list-inside text-sm text-gray-500 dark:text-gray-500'>
+            <ul
+              className={`mt-2 ml-4 space-y-1 list-disc list-inside ${textVariants.body.sm()}`}
+            >
               {subItems.map((subItem, subIndex) => (
                 <li key={subIndex}>{subItem}</li>
               ))}

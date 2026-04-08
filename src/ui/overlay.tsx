@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../lib/utils';
 import { Portal } from './portal';
+import { ui } from '@sudobility/design';
 
 export interface OverlayProps {
   /** Whether overlay is visible */
@@ -71,10 +72,10 @@ export const Overlay: React.FC<OverlayProps> = ({
 
   if (!isOpen) return null;
 
-  // Opacity configurations
+  // Opacity configurations - medium aligns with ui.background.overlay
   const opacityClasses = {
     light: 'bg-black/20 dark:bg-black/30',
-    medium: 'bg-black/50 dark:bg-black/60',
+    medium: ui.background.overlay,
     dark: 'bg-black/75 dark:bg-black/85',
   };
 

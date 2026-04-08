@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { SEMANTIC_COLOR_MAP } from '@sudobility/design';
 
 export interface IconTextProps {
   /** Icon component to display */
@@ -89,14 +90,14 @@ export const IconText: React.FC<IconTextProps> = ({
     right: 'text-right items-end',
   };
 
-  // Color variant configurations
+  // Color variant configurations from design system
   const variantClasses = {
-    default: 'text-gray-700 dark:text-gray-300',
-    primary: 'text-blue-600 dark:text-blue-400',
-    success: 'text-green-600 dark:text-green-400',
-    warning: 'text-yellow-600 dark:text-yellow-400',
-    danger: 'text-red-600 dark:text-red-400',
-    muted: 'text-gray-500 dark:text-gray-400',
+    default: SEMANTIC_COLOR_MAP.subtle,
+    primary: SEMANTIC_COLOR_MAP.primary,
+    success: SEMANTIC_COLOR_MAP.success,
+    warning: SEMANTIC_COLOR_MAP.warning,
+    danger: SEMANTIC_COLOR_MAP.error,
+    muted: SEMANTIC_COLOR_MAP.muted,
   };
 
   // Layout based on icon position

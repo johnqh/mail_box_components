@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
+import { colors, designTokens } from '@sudobility/design';
 
 export interface PopoverProps {
   /** Trigger element */
@@ -230,10 +231,11 @@ export const Popover: React.FC<PopoverProps> = ({
         <div
           ref={contentRef}
           className={cn(
-            'fixed z-50',
-            'bg-white dark:bg-gray-800',
-            'border border-gray-200 dark:border-gray-700',
-            'rounded-lg shadow-lg',
+            'fixed z-50 border',
+            colors.component.card.elevated.base,
+            colors.component.card.elevated.dark,
+            designTokens.radius.lg,
+            designTokens.shadow.lg,
             'transition-all duration-200',
             'animate-in fade-in zoom-in-95',
             transformOrigin[placement],
@@ -255,7 +257,9 @@ export const Popover: React.FC<PopoverProps> = ({
           {showArrow && (
             <div
               className={cn(
-                'arrow absolute w-2 h-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transform rotate-45',
+                'arrow absolute w-2 h-2 border transform rotate-45',
+                colors.component.card.elevated.base,
+                colors.component.card.elevated.dark,
                 placement.startsWith('top') &&
                   'bottom-[-5px] border-t-0 border-l-0',
                 placement.startsWith('bottom') &&

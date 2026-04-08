@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { cn } from '../lib/utils';
+import { ui, colors, designTokens } from '@sudobility/design';
 import { Portal } from './portal';
 import { Overlay } from './overlay';
 
@@ -104,8 +105,10 @@ export const Dialog: React.FC<DialogProps> = ({
           className={cn(
             'relative w-full',
             sizeClasses[size],
-            'bg-white dark:bg-gray-900',
-            'rounded-lg shadow-xl',
+            colors.component.card.default.base,
+            colors.component.card.default.dark,
+            designTokens.radius.lg,
+            designTokens.shadow.xl,
             'animate-in fade-in zoom-in-95 duration-200',
             className
           )}
@@ -115,7 +118,10 @@ export const Dialog: React.FC<DialogProps> = ({
           {showCloseButton && onClose && (
             <button
               onClick={onClose}
-              className='absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors'
+              className={cn(
+                'absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200',
+                ui.transition.default
+              )}
               aria-label='Close dialog'
             >
               <svg

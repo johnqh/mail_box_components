@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
+import { textVariants } from '@sudobility/design';
 
 /** Tracking event data for link interactions */
 export interface LinkTrackingData {
@@ -77,18 +78,14 @@ export const Link: React.FC<LinkProps> = ({
   const isExternal =
     external || href.startsWith('http://') || href.startsWith('https://');
 
-  // Variant configurations
+  // Variant configurations (design system link variants where available)
   const variantClasses = {
-    default:
-      'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300',
-    primary:
-      'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium',
-    secondary:
-      'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100',
+    default: textVariants.link.default(),
+    primary: `${textVariants.link.subtle()} font-medium`,
+    secondary: textVariants.link.muted(),
     muted:
       'text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300',
-    underline:
-      'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline',
+    underline: textVariants.link.default(),
   };
 
   // External link attributes

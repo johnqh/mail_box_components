@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors, textVariants } from '@sudobility/design';
 
 export interface CodeProps {
   /** Code content */
@@ -38,20 +39,18 @@ export const Code: React.FC<CodeProps> = ({
 }) => {
   // Size configurations
   const sizeClasses = {
-    sm: 'text-xs px-1 py-0.5',
-    md: 'text-sm px-1.5 py-0.5',
+    sm: textVariants.code.small(),
+    md: textVariants.code.inline(),
     lg: 'text-base px-2 py-1',
   };
 
-  // Variant configurations
+  // Variant configurations (default uses design system code styling, colored variants use alert colors)
   const variantClasses = {
-    default: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100',
-    primary: 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
-    success:
-      'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300',
-    warning:
-      'bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300',
-    danger: 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300',
+    default: '',
+    primary: `${colors.component.alert.info.base} ${colors.component.alert.info.dark}`,
+    success: `${colors.component.alert.success.base} ${colors.component.alert.success.dark}`,
+    warning: `${colors.component.alert.warning.base} ${colors.component.alert.warning.dark}`,
+    danger: `${colors.component.alert.error.base} ${colors.component.alert.error.dark}`,
   };
 
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { GRADIENTS } from '@sudobility/design';
 
 export interface GradientIconContainerProps {
   /** Icon component to display */
@@ -72,13 +73,13 @@ export const GradientIconContainer: React.FC<GradientIconContainerProps> = ({
     circle: 'rounded-full',
   };
 
-  // Gradient color variants
+  // Gradient color variants - using design system gradients where available
   const gradientVariants = {
-    'blue-purple': 'bg-gradient-to-r from-blue-600 to-purple-600',
+    'blue-purple': GRADIENTS.buttons.primary.split(' hover:')[0],
     'green-blue': 'bg-gradient-to-r from-green-600 to-blue-600',
     'orange-red': 'bg-gradient-to-r from-orange-600 to-red-600',
     gray: 'bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-700 dark:to-gray-900',
-    custom: gradientClasses || 'bg-gradient-to-r from-blue-600 to-purple-600',
+    custom: gradientClasses || GRADIENTS.buttons.primary.split(' hover:')[0],
   };
 
   const sizeConfig = sizeClasses[size];

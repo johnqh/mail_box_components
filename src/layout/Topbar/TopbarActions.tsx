@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, ui } from '@sudobility/design';
 
 export interface TopbarActionsProps {
   /** Action elements (buttons, icons, etc.) */
@@ -104,11 +105,10 @@ export const TopbarIconButton: React.FC<TopbarIconButtonProps> = ({
       className={cn(
         'relative rounded-lg',
         buttonSizeClasses[size],
-        'text-gray-500 dark:text-gray-400',
-        'hover:bg-gray-100 dark:hover:bg-gray-700',
-        'hover:text-gray-700 dark:hover:text-gray-200',
-        'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
-        'transition-colors duration-200',
+        colors.component.button.ghost.base,
+        colors.component.button.ghost.dark,
+        colors.component.button.ghost.focus,
+        ui.transition.default,
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
@@ -124,7 +124,7 @@ export const TopbarIconButton: React.FC<TopbarIconButtonProps> = ({
             'flex items-center justify-center',
             'text-xs font-medium',
             'bg-red-500 text-white rounded-full',
-            'ring-2 ring-white dark:ring-gray-900'
+            'ring-2 ring-white dark:ring-gray-800'
           )}
           aria-label={`${badge} notifications`}
         >
@@ -215,13 +215,13 @@ export const TopbarSearch: React.FC<TopbarSearchProps> = ({
             widthClasses[width],
             'pl-10 pr-4 py-2',
             'text-sm',
-            'bg-gray-100 dark:bg-gray-800',
+            ui.background.muted,
             'border border-transparent',
             'rounded-lg',
             'text-gray-900 dark:text-gray-100',
             'placeholder:text-gray-500 dark:placeholder:text-gray-400',
             'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-gray-700 focus:border-transparent',
-            'transition-colors duration-200'
+            ui.transition.default
           )}
         />
       </div>

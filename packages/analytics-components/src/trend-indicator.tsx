@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 export interface TrendIndicatorProps {
   /** Current value */
@@ -88,9 +89,7 @@ export const TrendIndicator: React.FC<TrendIndicatorProps> = ({
     <div
       className={cn(
         'inline-flex items-center gap-1 font-semibold',
-        isPositive
-          ? 'text-green-600 dark:text-green-400'
-          : 'text-red-600 dark:text-red-400',
+        isPositive ? ui.text.success : ui.text.error,
         sizeStyles[size],
         className
       )}

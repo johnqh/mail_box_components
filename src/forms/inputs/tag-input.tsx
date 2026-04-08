@@ -1,5 +1,6 @@
 import React, { useState, useRef, KeyboardEvent } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, textVariants } from '@sudobility/design';
 
 export interface TagInputProps {
   /** Tag values */
@@ -72,15 +73,14 @@ export const TagInput: React.FC<TagInputProps> = ({
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Variant classes
+  // Variant classes from design system badge colors
+  const badgeColors = colors.component.badge;
   const variantClasses = {
-    primary: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
-    secondary: 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
-    success:
-      'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300',
-    warning:
-      'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300',
-    error: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',
+    primary: `${badgeColors.primary.base} ${badgeColors.primary.dark}`,
+    secondary: `${badgeColors.default.base} ${badgeColors.default.dark}`,
+    success: `${badgeColors.success.base} ${badgeColors.success.dark}`,
+    warning: `${badgeColors.warning.base} ${badgeColors.warning.dark}`,
+    error: `${badgeColors.error.base} ${badgeColors.error.dark}`,
   };
 
   // Add tag
@@ -165,14 +165,14 @@ export const TagInput: React.FC<TagInputProps> = ({
       <div
         className={cn(
           'min-h-[42px] px-3 py-2 flex flex-wrap gap-2 items-center',
-          'bg-white dark:bg-gray-900',
-          'border border-gray-300 dark:border-gray-700',
-          'rounded-md',
+          colors.component.input.default.base,
+          colors.component.input.default.dark,
+          'border rounded-md',
           'focus-within:ring-2 focus-within:ring-blue-500 dark:focus-within:ring-blue-400',
           'transition-all',
           disabled &&
             'opacity-50 cursor-not-allowed bg-gray-50 dark:bg-gray-800',
-          error && 'border-red-500 dark:border-red-400'
+          error && colors.component.input.default.error
         )}
         onClick={() => !disabled && inputRef.current?.focus()}
       >
@@ -243,8 +243,8 @@ export const TagInput: React.FC<TagInputProps> = ({
           disabled={disabled}
           className={cn(
             'flex-1 min-w-[120px] outline-none bg-transparent',
-            'text-sm text-gray-900 dark:text-white',
-            'placeholder:text-gray-500 dark:placeholder:text-gray-400',
+            'text-sm',
+            'text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400',
             'disabled:cursor-not-allowed'
           )}
         />
@@ -252,14 +252,14 @@ export const TagInput: React.FC<TagInputProps> = ({
 
       {/* Error message */}
       {errorMessage && (
-        <p className='mt-1.5 text-xs text-red-600 dark:text-red-400'>
+        <p className={cn('mt-1.5 text-xs', textVariants.label.error())}>
           {errorMessage}
         </p>
       )}
 
       {/* Helper text */}
       {maxTags && (
-        <p className='mt-1.5 text-xs text-gray-600 dark:text-gray-400'>
+        <p className={cn('mt-1.5 text-xs', textVariants.label.helper())}>
           {value.length} / {maxTags} tags
         </p>
       )}

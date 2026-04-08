@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { colors, ui, textVariants } from '@sudobility/design';
 
 export interface ButtonConfig {
   text: string;
@@ -35,16 +36,15 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
 }) => {
   const containerClass = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8';
 
+  const badgeColors = colors.component.badge;
   const badgeColorClasses = {
-    blue: 'bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700 text-blue-800 dark:text-blue-200',
-    green:
-      'bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-700 text-green-800 dark:text-green-200',
+    blue: `${badgeColors.primary.base} ${badgeColors.primary.dark} border-blue-300 dark:border-blue-700`,
+    green: `${badgeColors.success.base} ${badgeColors.success.dark} border-green-300 dark:border-green-700`,
     purple:
-      'bg-purple-100 dark:bg-purple-900/30 border-purple-300 dark:border-purple-700 text-purple-800 dark:text-purple-200',
-    orange:
-      'bg-orange-100 dark:bg-orange-900/30 border-orange-300 dark:border-orange-700 text-orange-800 dark:text-orange-200',
-    pink: 'bg-pink-100 dark:bg-pink-900/30 border-pink-300 dark:border-pink-700 text-pink-800 dark:text-pink-200',
-    gray: 'bg-gray-100 dark:bg-gray-900/30 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200',
+      'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-300 dark:border-purple-700',
+    orange: `${badgeColors.warning.base} ${badgeColors.warning.dark} border-orange-300 dark:border-orange-700`,
+    pink: 'bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-300 border-pink-300 dark:border-pink-700',
+    gray: `${badgeColors.default.base} ${badgeColors.default.dark} border-gray-300 dark:border-gray-700`,
   };
 
   const badgeClasses = badgeColorClasses[badgeColor];
@@ -62,7 +62,9 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
           <span className='font-semibold'>{badgeText}</span>
         </div>
 
-        <h1 className='text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6'>
+        <h1
+          className={cn(textVariants.heading.h1(), 'text-4xl md:text-6xl mb-6')}
+        >
           {typeof title === 'string' ? (
             <span dangerouslySetInnerHTML={{ __html: title }} />
           ) : (
@@ -75,7 +77,12 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
           )}
         </h1>
 
-        <p className='text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed'>
+        <p
+          className={cn(
+            textVariants.body.lg(),
+            'text-xl mb-8 max-w-4xl mx-auto'
+          )}
+        >
           {description}
         </p>
 
@@ -86,7 +93,10 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
                 <a
                   href={primaryButton.href}
                   className={cn(
-                    'px-8 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors inline-block',
+                    'px-8 py-3 rounded-md inline-block',
+                    colors.component.button.primary.base,
+                    colors.component.button.primary.dark,
+                    ui.transition.default,
                     primaryButton.className
                   )}
                 >
@@ -96,7 +106,10 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
                 <button
                   onClick={primaryButton.onClick}
                   className={cn(
-                    'px-8 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors',
+                    'px-8 py-3 rounded-md',
+                    colors.component.button.primary.base,
+                    colors.component.button.primary.dark,
+                    ui.transition.default,
                     primaryButton.className
                   )}
                 >
@@ -108,7 +121,10 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
                 <a
                   href={secondaryButton.href}
                   className={cn(
-                    'px-8 py-3 rounded-md border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 transition-colors inline-block',
+                    'px-8 py-3 rounded-md border-2 inline-block',
+                    colors.component.button.outline.base,
+                    colors.component.button.outline.dark,
+                    ui.transition.default,
                     secondaryButton.className
                   )}
                 >
@@ -118,7 +134,10 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
                 <button
                   onClick={secondaryButton.onClick}
                   className={cn(
-                    'px-8 py-3 rounded-md border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 transition-colors',
+                    'px-8 py-3 rounded-md border-2',
+                    colors.component.button.outline.base,
+                    colors.component.button.outline.dark,
+                    ui.transition.default,
                     secondaryButton.className
                   )}
                 >

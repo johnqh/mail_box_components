@@ -5,6 +5,7 @@ import { EmailSignInForm } from './forms/email-signin-form';
 import { EmailSignUpForm } from './forms/email-signup-form';
 import { ForgotPasswordForm } from './forms/forgot-password-form';
 import { Text } from '@sudobility/components';
+import { colors, ui } from '@sudobility/design';
 
 /** Extended props with tracking */
 interface AuthContentPropsWithTracking extends AuthContentProps {
@@ -95,11 +96,11 @@ export function AuthContent({
           <button
             type='button'
             onClick={() => handleModeChange('select')}
-            className='p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors'
+            className={`p-1 ${colors.component.button.ghost.base} ${colors.component.button.ghost.dark} rounded ${ui.transition.default}`}
             aria-label='Back'
           >
             <svg
-              className='w-5 h-5 text-gray-600 dark:text-gray-400'
+              className='w-5 h-5 text-muted-foreground'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -141,11 +142,11 @@ export function AuthContent({
           <button
             type='button'
             onClick={() => handleModeChange('email-signin')}
-            className='p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors'
+            className={`p-1 ${colors.component.button.ghost.base} ${colors.component.button.ghost.dark} rounded ${ui.transition.default}`}
             aria-label='Back'
           >
             <svg
-              className='w-5 h-5 text-gray-600 dark:text-gray-400'
+              className='w-5 h-5 text-muted-foreground'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -186,11 +187,11 @@ export function AuthContent({
           <button
             type='button'
             onClick={() => handleModeChange('email-signin')}
-            className='p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors'
+            className={`p-1 ${colors.component.button.ghost.base} ${colors.component.button.ghost.dark} rounded ${ui.transition.default}`}
             aria-label='Back'
           >
             <svg
-              className='w-5 h-5 text-gray-600 dark:text-gray-400'
+              className='w-5 h-5 text-muted-foreground'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'

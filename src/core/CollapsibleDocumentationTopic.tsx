@@ -1,5 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { ui } from '@sudobility/design';
 
 export interface Subsection {
   id: string;
@@ -147,11 +148,11 @@ export const CollapsibleDocumentationTopic: React.FC<
         {hasSubsections && (
           <button
             onClick={handleToggle}
-            className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 transition-all duration-200'
+            className={`p-2 ${ui.border.radiusSm} hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 ${ui.transition.all}`}
             aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
           >
             <ChevronRightIcon
-              className={`h-5 w-5 text-gray-500 transition-transform duration-300 ease-in-out ${
+              className={`h-5 w-5 text-gray-500 ${ui.transition.slow} ease-in-out ${
                 isExpanded ? 'rotate-90' : 'rotate-0'
               }`}
             />

@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Button, Input, Text } from '@sudobility/components';
 import { useAuthStatus } from '../../context/auth-provider';
 import type { ForgotPasswordFormProps } from '../../types';
+import { textVariants, colors } from '@sudobility/design';
 
 /**
  * Forgot password form component
@@ -43,9 +44,11 @@ export function ForgotPasswordForm({
     return (
       <div className={spacing}>
         <div className='text-center'>
-          <div className='mx-auto w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mb-4'>
+          <div
+            className={`mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-4 ${colors.component.alert.success.base} ${colors.component.alert.success.dark}`}
+          >
             <svg
-              className='w-6 h-6 text-green-600 dark:text-green-400'
+              className={`w-6 h-6 ${colors.component.alert.success.icon}`}
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -88,7 +91,7 @@ export function ForgotPasswordForm({
       <div>
         <label
           htmlFor='reset-email'
-          className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+          className={`block mb-1 ${textVariants.label.default()}`}
         >
           {texts.email}
         </label>
@@ -106,7 +109,7 @@ export function ForgotPasswordForm({
 
       {/* Error message */}
       {error && (
-        <Text size='sm' className='text-red-600 dark:text-red-400'>
+        <Text size='sm' className={textVariants.label.error()}>
           {error}
         </Text>
       )}
@@ -127,7 +130,7 @@ export function ForgotPasswordForm({
         <button
           type='button'
           onClick={handleSwitchToSignIn}
-          className='text-sm text-blue-600 dark:text-blue-400 hover:underline'
+          className='text-sm text-primary hover:underline'
         >
           {texts.backToSignIn}
         </button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { EnvelopeIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useLayout } from '../layout/Layout/LayoutContext';
+import { designTokens, ui } from '@sudobility/design';
 
 export interface PromotionalBannerProps {
   title: string;
@@ -86,12 +87,11 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
     if (variant === 'prominent') {
       return 'border-b-2 border-green-200 dark:border-green-700';
     }
-    return 'border-b border-green-200 dark:border-green-700';
+    return `border-b border-green-200 dark:border-green-700`;
   };
 
   const getButtonClasses = () => {
-    const baseClasses =
-      'bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white rounded-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25 inline-flex items-center whitespace-nowrap cursor-pointer';
+    const baseClasses = `bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white ${designTokens.radius.lg} font-bold ${ui.transition.slow} transform hover:scale-105 ${designTokens.shadow.lg} hover:shadow-green-500/25 inline-flex items-center whitespace-nowrap cursor-pointer`;
 
     if (variant === 'prominent') {
       return `${baseClasses} px-8 py-3 text-base`;

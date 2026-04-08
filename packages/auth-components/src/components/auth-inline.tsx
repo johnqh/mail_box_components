@@ -4,6 +4,7 @@ import { useAuthStatus } from '../context/auth-provider';
 import type { AuthInlineProps, AuthMode } from '../types';
 import { AuthContent } from './auth-content';
 import { cn } from '../lib/cn';
+import { ui, designTokens } from '@sudobility/design';
 
 /**
  * AuthInline - Inline authentication component (non-modal)
@@ -38,9 +39,8 @@ export function AuthInline({
   }
 
   const variantStyles = {
-    card: 'bg-white dark:bg-gray-800 rounded-xl shadow-lg',
-    bordered:
-      'bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700',
+    card: `${ui.background.surface} ${designTokens.radius.xl} ${designTokens.shadow.lg}`,
+    bordered: `${ui.background.surface} ${designTokens.radius.xl} border ${ui.border.default}`,
     flat: 'bg-transparent',
   };
 

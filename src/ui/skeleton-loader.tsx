@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { variants } from '@sudobility/design';
 
 export interface SkeletonLoaderProps {
   /** Shape/type of skeleton */
@@ -59,12 +60,12 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
   spacing,
   gap = 'md',
 }) => {
-  // Variant-specific styles
+  // Variant-specific shape styles (base animation/colors applied separately)
   const variantStyles = {
-    text: 'h-4 rounded',
+    text: 'rounded h-4',
     circle: 'rounded-full',
     rectangle: 'rounded-lg',
-    avatar: 'w-10 h-10 rounded-full',
+    avatar: 'rounded-full w-10 h-10',
     button: 'h-10 rounded-lg',
   };
 
@@ -104,7 +105,7 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
       <div
         key={key}
         className={cn(
-          animate && 'animate-pulse',
+          animate && variants.loading.skeleton.default(),
           theme ? themeClasses[theme] : 'bg-gray-200 dark:bg-gray-700',
           variantStyles[variant],
           className

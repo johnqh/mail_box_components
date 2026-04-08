@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { cn } from '../../lib/utils';
+import {
+  colors,
+  textVariants,
+  getStatusIndicatorColor,
+} from '@sudobility/design';
 
 export interface PasswordStrength {
   /** Strength score (0-4) */
@@ -105,7 +110,11 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
   // Calculate password strength
   const calculateStrength = (): PasswordStrength => {
     if (!value) {
-      return { score: 0, label: 'Very Weak', color: 'bg-gray-300' };
+      return {
+        score: 0,
+        label: 'Very Weak',
+        color: getStatusIndicatorColor('neutral'),
+      };
     }
 
     let score = 0;
@@ -129,11 +138,19 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
       | 4;
 
     const strengthMap: Record<0 | 1 | 2 | 3 | 4, PasswordStrength> = {
-      0: { score: 0, label: 'Very Weak', color: 'bg-red-500' },
-      1: { score: 1, label: 'Weak', color: 'bg-orange-500' },
+      0: {
+        score: 0,
+        label: 'Very Weak',
+        color: getStatusIndicatorColor('error'),
+      },
+      1: { score: 1, label: 'Weak', color: getStatusIndicatorColor('warning') },
       2: { score: 2, label: 'Fair', color: 'bg-yellow-500' },
-      3: { score: 3, label: 'Good', color: 'bg-blue-500' },
-      4: { score: 4, label: 'Strong', color: 'bg-green-500' },
+      3: { score: 3, label: 'Good', color: getStatusIndicatorColor('info') },
+      4: {
+        score: 4,
+        label: 'Strong',
+        color: getStatusIndicatorColor('success'),
+      },
     };
 
     return strengthMap[normalizedScore];
@@ -207,10 +224,11 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
           disabled={disabled}
           className={cn(
             'w-full px-3 py-2 pr-10 text-sm',
-            'bg-white dark:bg-gray-900',
-            'border border-gray-300 dark:border-gray-700',
-            'rounded-md',
-            'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400',
+            colors.component.input.default.base,
+            colors.component.input.default.dark,
+            'border rounded-md',
+            'focus:outline-none',
+            colors.component.input.default.focus,
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
         />
@@ -271,10 +289,10 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
       {showStrength && value && (
         <div className='mt-2'>
           <div className='flex items-center justify-between mb-1'>
-            <span className='text-xs text-gray-600 dark:text-gray-400'>
+            <span className={textVariants.label.helper()}>
               Password strength:
             </span>
-            <span className='text-xs font-medium text-gray-900 dark:text-white'>
+            <span className={cn(textVariants.label.default(), 'font-medium')}>
               {strength.label}
             </span>
           </div>
@@ -303,8 +321,8 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
                 className={cn(
                   'w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0',
                   req.met
-                    ? 'bg-green-500 dark:bg-green-600'
-                    : 'bg-gray-300 dark:bg-gray-700'
+                    ? getStatusIndicatorColor('success')
+                    : getStatusIndicatorColor('neutral')
                 )}
               >
                 {req.met && (
@@ -327,8 +345,8 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
                 className={cn(
                   'text-xs',
                   req.met
-                    ? 'text-green-600 dark:text-green-400'
-                    : 'text-gray-600 dark:text-gray-400'
+                    ? getStatusIndicatorColor('success').replace('bg-', 'text-')
+                    : textVariants.label.helper()
                 )}
               >
                 {req.label}

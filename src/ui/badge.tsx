@@ -1,5 +1,6 @@
 import React from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import { colors } from '@sudobility/design';
 import { cn } from '../lib/utils';
 
 /** Props for the Badge component. */
@@ -74,18 +75,16 @@ export const Badge: React.FC<BadgeProps> = ({
   maxCount,
   className,
 }) => {
-  // Color variant configurations for filled style
+  // Color variant configurations for filled style (from design system)
+  const badgeColors = colors.component.badge;
   const variantClasses = {
-    default: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
-    primary: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
-    success:
-      'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
-    warning:
-      'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
-    danger: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
-    info: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
-    purple:
-      'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+    default: `${badgeColors.default.base} ${badgeColors.default.dark}`,
+    primary: `${badgeColors.primary.base} ${badgeColors.primary.dark}`,
+    success: `${badgeColors.success.base} ${badgeColors.success.dark}`,
+    warning: `${badgeColors.warning.base} ${badgeColors.warning.dark}`,
+    danger: `${badgeColors.error.base} ${badgeColors.error.dark}`,
+    info: `${badgeColors.primary.base} ${badgeColors.primary.dark}`,
+    purple: `${badgeColors.solana.base} ${badgeColors.solana.dark}`,
   };
 
   // Color variant configurations for outline style

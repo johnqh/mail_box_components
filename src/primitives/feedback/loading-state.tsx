@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
 import { Spinner } from '../../ui/spinner';
+import { textVariants } from '@sudobility/design';
 interface LoadingStateProps {
   message?: string;
   size?: 'small' | 'default' | 'large';
@@ -26,7 +27,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
 
   const containerClass = fullScreen
     ? 'fixed inset-0 z-50 flex items-center justify-center bg-white/80 dark:bg-gray-900/80'
-    : 'flex flex-col items-center justify-center p-8';
+    : `flex flex-col items-center justify-center p-8`;
 
   const content = (
     <div className={cn(containerClass, className)}>
@@ -50,7 +51,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
         <div className='flex items-center justify-center min-h-full p-4'>
           <Spinner size={config.spinner} variant={variant} className='mb-4' />
           {message && (
-            <p className='text-center text-gray-600 dark:text-gray-400 max-w-sm'>
+            <p className={`text-center max-w-sm ${textVariants.body.sm()}`}>
               {message}
             </p>
           )}

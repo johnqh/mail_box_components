@@ -1,6 +1,7 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 /** Tracking data for Collapsible actions */
 export interface CollapsibleTrackingData {
@@ -111,7 +112,7 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
 
   const variantClasses = {
     default: '',
-    outlined: 'border border-gray-300 dark:border-gray-600 rounded-lg p-4',
+    outlined: cn('border p-4', ui.border.default, ui.border.radius),
   };
 
   return (
@@ -124,7 +125,7 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
         onKeyDown={handleKeyDown}
         className={cn(
           'flex items-center justify-between w-full text-left cursor-pointer',
-          'transition-colors',
+          ui.transition.default,
           !disabled && 'hover:opacity-80',
           disabled && 'opacity-50 cursor-not-allowed',
           variant === 'default' && 'py-2'
@@ -136,7 +137,8 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
         {showIcon && (
           <ChevronDownIcon
             className={cn(
-              'h-5 w-5 text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0',
+              'h-5 w-5 ml-2 flex-shrink-0',
+              ui.text.muted,
               'transition-transform',
               isOpen && 'rotate-180'
             )}

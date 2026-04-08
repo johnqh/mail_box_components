@@ -1,4 +1,6 @@
 import React from 'react';
+import { cn } from '../lib/utils';
+import { textVariants, ui } from '@sudobility/design';
 
 export interface SectionHeaderProps {
   /** The header text/title */
@@ -30,24 +32,23 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   onAdd,
   addButtonTooltip,
   loading,
-  className = '',
+  className,
 }) => {
   return (
-    <div
-      className={`p-4 border-b border-gray-200 dark:border-gray-700 ${className}`}
-    >
+    <div className={cn('p-4 border-b', ui.border.default, className)}>
       <div className='flex items-center justify-between'>
-        <h2 className='text-lg font-semibold text-gray-900 dark:text-gray-100'>
-          {title}
-        </h2>
+        <h2 className={textVariants.heading.h4()}>{title}</h2>
         <div className='flex items-center space-x-2'>
           {loading && (
-            <div className='w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin'></div>
+            <div className='w-5 h-5 border-2 border-blue-600 dark:border-blue-400 border-t-transparent rounded-full animate-spin'></div>
           )}
           {onAdd && (
             <button
               onClick={onAdd}
-              className='p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'
+              className={cn(
+                'p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700',
+                ui.transition.default
+              )}
               title={addButtonTooltip}
               aria-label={addButtonTooltip || 'Add'}
             >

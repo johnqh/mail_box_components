@@ -13,6 +13,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { ui } from '@sudobility/design';
 
 export interface AddressLabelProps {
   /** Blockchain address (EVM or Solana) */
@@ -109,7 +110,7 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
   // Render tooltip content using portal
   const tooltipContent = showTooltip && (
     <div
-      className='fixed z-[9999] px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded shadow-lg whitespace-nowrap pointer-events-none'
+      className={`fixed z-[9999] px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded ${ui.shadow.lg} whitespace-nowrap pointer-events-none`}
       style={{
         top: `${tooltipPosition.top}px`,
         left: `${tooltipPosition.left}px`,
@@ -132,7 +133,7 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
       <code
         ref={elementRef}
         className={`
-          font-mono text-sm text-gray-900 dark:text-gray-100
+          ${ui.text.code}
           ${showCopy ? 'cursor-pointer hover:text-blue-600 dark:hover:text-blue-400' : ''}
           ${className}
         `}

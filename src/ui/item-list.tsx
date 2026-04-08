@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors, textVariants, ui } from '@sudobility/design';
 
 export interface ItemListAction {
   /** Unique identifier for the action */
@@ -105,26 +106,22 @@ export function ItemList<T>({
     variant: ItemListAction['variant'] = 'secondary'
   ) => {
     const base =
-      'inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
+      'inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg';
 
-    switch (variant) {
-      case 'primary':
-        return cn(
-          base,
-          'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600'
-        );
-      case 'ghost':
-        return cn(
-          base,
-          'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
-        );
-      case 'secondary':
-      default:
-        return cn(
-          base,
-          'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
-        );
-    }
+    const variantColors = {
+      primary: colors.component.button.primary,
+      secondary: colors.component.button.secondary,
+      ghost: colors.component.button.ghost,
+    };
+
+    const color = variantColors[variant ?? 'secondary'];
+    return cn(
+      base,
+      color.base,
+      color.dark,
+      color.disabled,
+      ui.transition.default
+    );
   };
 
   return (
@@ -137,13 +134,9 @@ export function ItemList<T>({
         )}
       >
         <div className='min-w-0 flex-1'>
-          <h2 className='text-lg font-semibold text-gray-900 dark:text-gray-100 truncate'>
-            {title}
-          </h2>
+          <h2 className={cn(textVariants.heading.h4(), 'truncate')}>{title}</h2>
           {subtitle && (
-            <p className='mt-0.5 text-sm text-gray-500 dark:text-gray-400'>
-              {subtitle}
-            </p>
+            <p className={cn(textVariants.body.sm(), 'mt-0.5')}>{subtitle}</p>
           )}
         </div>
 
@@ -167,7 +160,12 @@ export function ItemList<T>({
       {/* Loading State */}
       {loading && (
         <div className='flex items-center justify-center py-12'>
-          <div className='w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin' />
+          <div
+            className={cn(
+              'w-6 h-6 border-2 border-t-transparent rounded-full animate-spin',
+              'border-blue-600 dark:border-blue-400'
+            )}
+          />
         </div>
       )}
 
@@ -175,15 +173,19 @@ export function ItemList<T>({
       {!loading && items.length === 0 && (
         <div className='flex flex-col items-center justify-center py-12 text-center'>
           {emptyIcon && (
-            <div className='mb-4 text-gray-400 dark:text-gray-500'>
+            <div className={cn('mb-4', textVariants.caption.default())}>
               {emptyIcon}
             </div>
           )}
-          <p className='text-gray-500 dark:text-gray-400'>{emptyMessage}</p>
+          <p className={textVariants.body.sm()}>{emptyMessage}</p>
           {emptyAction && (
             <button
               onClick={emptyAction.onClick}
-              className='mt-4 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300'
+              className={cn(
+                textVariants.label.default(),
+                'mt-4 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300',
+                ui.transition.default
+              )}
             >
               {emptyAction.label}
             </button>

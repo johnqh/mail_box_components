@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { colors, textVariants, designTokens } from '@sudobility/design';
 
 export interface PriceDisplayProps {
   /** Price amount */
@@ -77,12 +78,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      <span
-        className={cn(
-          'font-bold text-gray-900 dark:text-white',
-          sizeStyles[size]
-        )}
-      >
+      <span className={cn(textVariants.body.strong.md(), sizeStyles[size])}>
         {showCurrency && symbol}
         {formatPrice(amount)}
       </span>
@@ -91,7 +87,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
         <>
           <span
             className={cn(
-              'line-through text-gray-500 dark:text-gray-400',
+              `line-through ${textVariants.body.muted.sm()}`,
               size === 'xl'
                 ? 'text-xl'
                 : size === 'lg'
@@ -106,7 +102,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
           {discount > 0 && (
             <span
               className={cn(
-                'px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded font-semibold',
+                `px-2 py-0.5 ${colors.component.badge.error.base} ${colors.component.badge.error.dark} ${designTokens.radius.md} font-semibold`,
                 size === 'xl'
                   ? 'text-base'
                   : size === 'lg'

@@ -137,7 +137,7 @@ describe('Toast', () => {
 
     expect(screen.getByText('Warning message')).toBeInTheDocument();
     // Check for warning-related classes
-    const toast = container.querySelector('[class*="yellow"]');
+    const toast = container.querySelector('[class*="orange"]');
     expect(toast).toBeInTheDocument();
   });
 

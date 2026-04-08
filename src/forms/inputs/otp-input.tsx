@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '../../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface OtpInputProps {
   /** Number of input boxes */
@@ -201,10 +202,11 @@ export const OtpInput: React.FC<OtpInputProps> = ({
             placeholder={placeholder}
             className={cn(
               'w-12 h-12 text-center text-lg font-semibold',
-              'bg-white dark:bg-gray-900',
-              'border-2 border-gray-300 dark:border-gray-700',
-              'rounded-md',
-              'focus:outline-none focus:border-blue-500 dark:focus:border-blue-400',
+              colors.component.input.default.base,
+              colors.component.input.default.dark,
+              'border-2 rounded-md',
+              'focus:outline-none',
+              colors.component.input.default.focus,
               'transition-colors',
               'disabled:opacity-50 disabled:cursor-not-allowed',
               isFocused && 'ring-2 ring-blue-500 dark:ring-blue-400',

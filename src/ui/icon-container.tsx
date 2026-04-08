@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { GRADIENTS } from '@sudobility/design';
 
 interface IconContainerProps {
   children: React.ReactNode;
@@ -31,18 +32,16 @@ const iconSizeClasses = {
 };
 
 const variantClasses = {
-  primary:
-    'bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 shadow-lg hover:shadow-blue-200',
-  secondary:
-    'bg-gradient-to-br from-purple-100 to-purple-200 text-purple-600 shadow-lg hover:shadow-purple-200',
+  primary: `${GRADIENTS.buttons.primary} text-white shadow-lg hover:shadow-blue-200 dark:hover:shadow-blue-900`,
+  secondary: `${GRADIENTS.buttons.primaryPurple} text-white shadow-lg hover:shadow-purple-200 dark:hover:shadow-purple-900`,
   success:
-    'bg-gradient-to-br from-green-100 to-green-200 text-green-600 shadow-lg hover:shadow-green-200',
+    'bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30 text-green-600 dark:text-green-300 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900',
   warning:
-    'bg-gradient-to-br from-yellow-100 to-yellow-200 text-yellow-600 shadow-lg hover:shadow-yellow-200',
+    'bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-yellow-900/30 dark:to-yellow-800/30 text-yellow-600 dark:text-yellow-300 shadow-lg hover:shadow-yellow-200 dark:hover:shadow-yellow-900',
   error:
-    'bg-gradient-to-br from-red-100 to-red-200 text-red-600 shadow-lg hover:shadow-red-200',
+    'bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30 text-red-600 dark:text-red-300 shadow-lg hover:shadow-red-200 dark:hover:shadow-red-900',
   neutral:
-    'bg-gradient-to-br from-gray-100 to-gray-200 text-gray-600 shadow-lg hover:shadow-gray-200',
+    'bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-600 dark:text-gray-300 shadow-lg hover:shadow-gray-200 dark:hover:shadow-gray-900',
 };
 
 const shapeClasses = {

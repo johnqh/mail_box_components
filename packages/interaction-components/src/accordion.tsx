@@ -1,6 +1,7 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 export interface AccordionItem {
   /** Unique identifier */
@@ -115,19 +116,25 @@ export const Accordion: React.FC<AccordionProps> = ({
       case 'bordered':
         return cn(
           baseClasses,
-          'border border-gray-200 dark:border-gray-700 rounded-lg mb-2 px-4'
+          'border',
+          ui.border.default,
+          ui.border.radius,
+          'mb-2 px-4'
         );
       case 'separated':
         return cn(
           baseClasses,
-          'border-b border-gray-200 dark:border-gray-700 pb-2',
+          'border-b',
+          ui.border.default,
+          'pb-2',
           index < items.length - 1 && 'mb-2'
         );
       case 'default':
       default:
         return cn(
           baseClasses,
-          'border-b border-gray-200 dark:border-gray-700',
+          'border-b',
+          ui.border.default,
           index === items.length - 1 && 'border-b-0'
         );
     }
@@ -180,8 +187,8 @@ export const Accordion: React.FC<AccordionProps> = ({
               disabled={item.disabled}
               className={cn(
                 'flex items-center justify-between w-full text-left',
-                'font-medium text-gray-900 dark:text-gray-100',
-                'transition-colors',
+                ui.text.emphasis,
+                ui.transition.default,
                 !item.disabled &&
                   'hover:text-blue-600 dark:hover:text-blue-400',
                 item.disabled && 'opacity-50 cursor-not-allowed',
@@ -193,7 +200,8 @@ export const Accordion: React.FC<AccordionProps> = ({
               <ChevronDownIcon
                 className={cn(
                   sizeConfig.icon,
-                  'text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0',
+                  ui.text.muted,
+                  'ml-2 flex-shrink-0',
                   'transition-transform',
                   isOpen && 'rotate-180'
                 )}

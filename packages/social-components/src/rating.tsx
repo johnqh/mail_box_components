@@ -1,5 +1,6 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { cn } from '@sudobility/components';
+import { ui } from '@sudobility/design';
 
 export interface RatingProps {
   /** Rating value */
@@ -171,10 +172,7 @@ export const Rating: React.FC<RatingProps> = ({
 
   const displayValue = hoverValue !== null ? hoverValue : value;
 
-  const emptyColorClass = getColorClass(
-    emptyColor,
-    'text-gray-300 dark:text-gray-600'
-  );
+  const emptyColorClass = getColorClass(emptyColor, ui.text.muted);
   const filledColorClass = getColorClass(filledColor, 'text-yellow-400');
 
   const renderIcon = (index: number) => {
@@ -255,9 +253,7 @@ export const Rating: React.FC<RatingProps> = ({
         role='button'
         disabled={disabled}
         onClick={() => handleClick(index, false)}
-        className={cn(
-          'focus:outline-none focus:ring-2 focus:ring-blue-500 rounded'
-        )}
+        className={cn(ui.states.focus, 'rounded')}
         aria-label={`Rate ${index + 1} out of ${max}`}
         tabIndex={-1}
       >
@@ -270,7 +266,7 @@ export const Rating: React.FC<RatingProps> = ({
     <div
       className={cn(
         'inline-flex items-center gap-2',
-        disabled && 'opacity-50 cursor-not-allowed',
+        disabled && ui.states.disabled,
         className
       )}
       role='slider'
@@ -286,9 +282,7 @@ export const Rating: React.FC<RatingProps> = ({
         {Array.from({ length: max }, (_, i) => renderIcon(i))}
       </div>
       {showCount && count !== undefined && (
-        <span className='text-sm text-gray-600 dark:text-gray-400'>
-          ({count})
-        </span>
+        <span className={cn('text-sm', ui.text.bodySmall)}>({count})</span>
       )}
     </div>
   );

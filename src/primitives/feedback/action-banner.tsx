@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { colors, getStatusIndicatorColor } from '@sudobility/design';
 
 export interface ActionBannerProps {
   /** Banner title */
@@ -29,47 +30,17 @@ export interface ActionBannerProps {
   className?: string;
 }
 
-const variantStyles = {
-  info: {
-    container:
-      'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
-    icon: 'text-blue-600 dark:text-blue-400',
-    title: 'text-blue-800 dark:text-blue-200',
-    description: 'text-blue-700 dark:text-blue-300',
-    button: 'bg-blue-600 hover:bg-blue-700 text-white',
-    secondaryButton:
-      'text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200',
-  },
-  success: {
-    container:
-      'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
-    icon: 'text-green-600 dark:text-green-400',
-    title: 'text-green-800 dark:text-green-200',
-    description: 'text-green-700 dark:text-green-300',
-    button: 'bg-green-600 hover:bg-green-700 text-white',
-    secondaryButton:
-      'text-green-700 dark:text-green-300 hover:text-green-800 dark:hover:text-green-200',
-  },
-  warning: {
-    container:
-      'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800',
-    icon: 'text-amber-600 dark:text-amber-400',
-    title: 'text-amber-800 dark:text-amber-200',
-    description: 'text-amber-700 dark:text-amber-300',
-    button: 'bg-amber-600 hover:bg-amber-700 text-white',
-    secondaryButton:
-      'text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-200',
-  },
-  error: {
-    container:
-      'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
-    icon: 'text-red-600 dark:text-red-400',
-    title: 'text-red-800 dark:text-red-200',
-    description: 'text-red-700 dark:text-red-300',
-    button: 'bg-red-600 hover:bg-red-700 text-white',
-    secondaryButton:
-      'text-red-700 dark:text-red-300 hover:text-red-800 dark:hover:text-red-200',
-  },
+type AlertVariant = 'info' | 'success' | 'warning' | 'error';
+
+/** Derives variant styles from the design system alert colors */
+const getVariantStyles = (variant: AlertVariant) => {
+  const alert = colors.component.alert[variant];
+  return {
+    container: cn(alert.base, alert.dark),
+    icon: alert.icon,
+    button: cn(getStatusIndicatorColor(variant), 'hover:opacity-90 text-white'),
+    secondaryButton: cn(alert.icon, 'hover:opacity-80'),
+  };
 };
 
 /**
@@ -104,7 +75,7 @@ export const ActionBanner: React.FC<ActionBannerProps> = ({
   onDismiss,
   className,
 }) => {
-  const styles = variantStyles[variant];
+  const styles = getVariantStyles(variant);
 
   return (
     <div
@@ -114,13 +85,9 @@ export const ActionBanner: React.FC<ActionBannerProps> = ({
       <div className='flex items-start gap-3'>
         {icon && <div className={cn('flex-shrink-0', styles.icon)}>{icon}</div>}
         <div className='flex-1 min-w-0'>
-          <h4 className={cn('text-sm font-semibold mb-1', styles.title)}>
-            {title}
-          </h4>
+          <h4 className='text-sm font-semibold mb-1'>{title}</h4>
           {description && (
-            <p className={cn('text-sm mb-3', styles.description)}>
-              {description}
-            </p>
+            <p className='text-sm mb-3 opacity-90'>{description}</p>
           )}
           {(action || secondaryAction) && (
             <div className='flex items-center gap-2 flex-wrap'>

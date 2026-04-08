@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BreadcrumbItem } from '../utils/navigationHelpers';
+import { ui, textVariants } from '@sudobility/design';
 
 interface ShareConfig {
   title: string;
@@ -261,7 +262,9 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
             className='fixed inset-0 z-[999998]'
             onClick={() => setIsOpen(false)}
           />
-          <div className='absolute right-0 top-10 z-[999999] w-40 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-1'>
+          <div
+            className={`absolute right-0 top-10 z-[999999] w-40 ${ui.background.surface} rounded-lg shadow-xl border ${ui.border.default} py-1`}
+          >
             {sharePlatforms.map(platform => (
               <button
                 key={platform.name}
@@ -276,12 +279,10 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
                 >
                   {platform.svg}
                 </svg>
-                <span className='text-sm text-gray-700 dark:text-gray-300'>
-                  {platform.name}
-                </span>
+                <span className={textVariants.body.sm()}>{platform.name}</span>
               </button>
             ))}
-            <div className='border-t border-gray-200 dark:border-gray-700 my-1' />
+            <div className={`border-t ${ui.border.default} my-1`} />
 
             {/* Native Share API option - shown if available */}
             {hasNativeShare && (
@@ -306,9 +307,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
                     d='M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z'
                   />
                 </svg>
-                <span className='text-sm text-gray-700 dark:text-gray-300'>
-                  More...
-                </span>
+                <span className={textVariants.body.sm()}>More...</span>
               </button>
             )}
 
@@ -329,7 +328,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
                   d='M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1'
                 />
               </svg>
-              <span className='text-sm text-gray-700 dark:text-gray-300'>
+              <span className={textVariants.body.sm()}>
                 {showCopiedFeedback ? 'Copied!' : 'Copy Link'}
               </span>
             </button>
@@ -354,9 +353,7 @@ const RouterBreadcrumb: React.FC<BreadcrumbProps> = ({
             <React.Fragment key={index}>
               <li>
                 {item.current ? (
-                  <span className='text-gray-700 dark:text-gray-300'>
-                    {item.label}
-                  </span>
+                  <span className={textVariants.body.sm()}>{item.label}</span>
                 ) : (
                   <Link
                     to={item.href || '#'}

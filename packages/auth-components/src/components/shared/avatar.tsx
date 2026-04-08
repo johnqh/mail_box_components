@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { AvatarProps } from '../../types';
 import { cn } from '../../lib/cn';
+import { colors } from '@sudobility/design';
 
 /** Extended props with tracking */
 interface AvatarPropsWithTracking extends AvatarProps {
@@ -72,7 +73,12 @@ export function Avatar({
     <button
       type='button'
       onClick={handleClick}
-      className={cn(baseStyles, 'bg-blue-600 text-white font-medium')}
+      className={cn(
+        baseStyles,
+        colors.component.button.primary.base,
+        colors.component.button.primary.dark,
+        'font-medium'
+      )}
       style={{
         width: size,
         height: size,

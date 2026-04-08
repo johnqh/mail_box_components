@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface CodeDisplayProps {
   /** Code or text to display */
@@ -48,16 +49,14 @@ export const CodeDisplay: React.FC<CodeDisplayProps> = ({
   className,
   wrap = false,
 }) => {
-  // Color variant configurations
+  // Color variant configurations (design system alert colors where available)
   const variantClasses = {
-    primary: 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30',
+    primary: `${colors.component.alert.info.base} ${colors.component.alert.info.dark}`,
     secondary:
       'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30',
-    success:
-      'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30',
-    warning:
-      'text-yellow-700 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/30',
-    neutral: 'text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800',
+    success: `${colors.component.alert.success.base} ${colors.component.alert.success.dark}`,
+    warning: `${colors.component.alert.warning.base} ${colors.component.alert.warning.dark}`,
+    neutral: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100',
   };
 
   // Size configurations

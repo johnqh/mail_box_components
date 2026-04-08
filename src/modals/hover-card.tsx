@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '../lib/utils';
 import { Portal } from '../ui/portal';
+import { ui, designTokens } from '@sudobility/design';
 
 export interface HoverCardProps {
   /** Trigger element */
@@ -156,10 +157,10 @@ export const HoverCard: React.FC<HoverCardProps> = ({
             ref={cardRef}
             className={cn(
               'fixed z-50',
-              'bg-white dark:bg-gray-800',
-              'border border-gray-200 dark:border-gray-700',
-              'rounded-lg shadow-lg',
-              'transition-all duration-200',
+              ui.background.surface,
+              `border ${ui.border.default}`,
+              `${designTokens.radius.lg} ${designTokens.shadow.lg}`,
+              ui.transition.all,
               'animate-in fade-in zoom-in-95',
               transformOrigin[placement],
               transformTranslate[placement],

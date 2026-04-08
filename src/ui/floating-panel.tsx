@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { colors, textVariants, designTokens } from '@sudobility/design';
 import { cn } from '../lib/utils';
 
 export interface FloatingPanelProps {
@@ -59,19 +60,26 @@ export const FloatingPanel: React.FC<FloatingPanelProps> = ({
   return (
     <div
       className={cn(
-        'fixed z-50 w-80',
-        'bg-white dark:bg-gray-900',
-        'border border-gray-300 dark:border-gray-700',
-        'rounded-lg shadow-2xl',
+        'fixed z-50 w-80 border',
+        colors.component.card.elevated.base,
+        colors.component.card.elevated.dark,
+        designTokens.radius.lg,
+        'shadow-2xl',
         positionClasses[position],
         className
       )}
     >
       {/* Header */}
       {(title || collapsible || closeable) && (
-        <div className='flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700'>
+        <div
+          className={cn(
+            'flex items-center justify-between p-4 border-b',
+            colors.component.card.default.base,
+            colors.component.card.default.dark
+          )}
+        >
           {title && (
-            <h3 className='font-semibold text-gray-900 dark:text-white'>
+            <h3 className={cn('font-semibold', textVariants.label.default())}>
               {title}
             </h3>
           )}
@@ -80,12 +88,18 @@ export const FloatingPanel: React.FC<FloatingPanelProps> = ({
             {collapsible && (
               <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className='p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors'
+                className={cn(
+                  'p-1 rounded transition-colors',
+                  colors.component.button.ghost.base,
+                  colors.component.button.ghost.dark
+                )}
                 aria-label={isCollapsed ? 'Expand' : 'Collapse'}
               >
                 <svg
                   className={cn(
-                    'w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform',
+                    'w-4 h-4 transition-transform',
+                    colors.component.button.ghost.base,
+                    colors.component.button.ghost.dark,
                     isCollapsed && 'rotate-180'
                   )}
                   fill='none'
@@ -105,11 +119,19 @@ export const FloatingPanel: React.FC<FloatingPanelProps> = ({
             {closeable && (
               <button
                 onClick={onClose}
-                className='p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors'
+                className={cn(
+                  'p-1 rounded transition-colors',
+                  colors.component.button.ghost.base,
+                  colors.component.button.ghost.dark
+                )}
                 aria-label='Close'
               >
                 <svg
-                  className='w-4 h-4 text-gray-600 dark:text-gray-400'
+                  className={cn(
+                    'w-4 h-4',
+                    colors.component.button.ghost.base,
+                    colors.component.button.ghost.dark
+                  )}
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'

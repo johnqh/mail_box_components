@@ -3,6 +3,7 @@ import { useAuthStatus } from '../context/auth-provider';
 import type { AuthModalProps, AuthMode } from '../types';
 import { AuthContent } from './auth-content';
 import { cn } from '../lib/cn';
+import { colors, ui } from '@sudobility/design';
 
 /**
  * AuthModal - Modal dialog for authentication
@@ -101,7 +102,7 @@ export function AuthModal({
       <div
         className={cn(
           'relative w-full max-w-md mx-4',
-          'bg-white dark:bg-gray-800',
+          ui.background.surface,
           'rounded-xl shadow-2xl',
           'animate-in fade-in zoom-in-95 duration-200',
           className
@@ -115,9 +116,11 @@ export function AuthModal({
           onClick={handleClose}
           className={cn(
             'absolute top-4 right-4 p-1',
-            'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300',
-            'hover:bg-gray-100 dark:hover:bg-gray-700 rounded',
-            'transition-colors'
+            'text-muted-foreground hover:text-foreground',
+            colors.component.button.ghost.base,
+            colors.component.button.ghost.dark,
+            'rounded',
+            ui.transition.default
           )}
           aria-label={texts.close}
         >

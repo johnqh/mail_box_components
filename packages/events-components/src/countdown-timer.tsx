@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@sudobility/components';
+import { ui, GRADIENTS } from '@sudobility/design';
 
 export interface CountdownTimerProps {
   /** Target date/time */
@@ -121,11 +122,13 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     if (compact) {
       return (
         <span className='inline-flex items-baseline'>
-          <span className='text-2xl font-bold text-gray-900 dark:text-white tabular-nums'>
+          <span
+            className={cn('text-2xl font-bold tabular-nums', ui.text.strong)}
+          >
             {value.toString().padStart(2, '0')}
           </span>
           {showLabels && (
-            <span className='text-xs text-gray-600 dark:text-gray-400 ml-0.5'>
+            <span className={cn('text-xs ml-0.5', ui.text.muted)}>
               {label[0].toLowerCase()}
             </span>
           )}
@@ -138,8 +141,8 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
         <div
           className={cn(
             'min-w-[60px] px-4 py-3 rounded-lg',
-            'bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700',
-            'shadow-lg'
+            GRADIENTS.buttons.primaryBlue,
+            ui.shadow.lg
           )}
         >
           <span className='text-3xl font-bold text-white tabular-nums'>
@@ -147,7 +150,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
           </span>
         </div>
         {showLabels && (
-          <span className='text-xs font-medium text-gray-600 dark:text-gray-400 mt-2 uppercase tracking-wider'>
+          <span className={cn('text-xs font-medium mt-2', ui.text.uppercase)}>
             {label}
           </span>
         )}
@@ -158,10 +161,10 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
   if (timeLeft.isExpired) {
     return (
       <div className={cn('text-center', className)}>
-        <div className='text-2xl font-bold text-gray-900 dark:text-white'>
+        <div className={cn('text-2xl font-bold', ui.text.strong)}>
           Time's Up!
         </div>
-        <p className='text-sm text-gray-600 dark:text-gray-400 mt-2'>
+        <p className={cn('text-sm mt-2', ui.text.muted)}>
           The countdown has ended
         </p>
       </div>
@@ -178,21 +181,15 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
       >
         {renderTimeUnit(timeLeft.days, 'Days', showDays)}
         {!compact && showDays && showHours && (
-          <div className='text-3xl font-bold text-gray-400 dark:text-gray-600'>
-            :
-          </div>
+          <div className={cn('text-3xl font-bold', ui.text.muted)}>:</div>
         )}
         {renderTimeUnit(timeLeft.hours, 'Hours', showHours)}
         {!compact && showHours && showMinutes && (
-          <div className='text-3xl font-bold text-gray-400 dark:text-gray-600'>
-            :
-          </div>
+          <div className={cn('text-3xl font-bold', ui.text.muted)}>:</div>
         )}
         {renderTimeUnit(timeLeft.minutes, 'Minutes', showMinutes)}
         {!compact && showMinutes && showSeconds && (
-          <div className='text-3xl font-bold text-gray-400 dark:text-gray-600'>
-            :
-          </div>
+          <div className={cn('text-3xl font-bold', ui.text.muted)}>:</div>
         )}
         {renderTimeUnit(timeLeft.seconds, 'Seconds', showSeconds)}
       </div>

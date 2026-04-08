@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { cn } from '../../lib/utils';
+import { colors, ui } from '@sudobility/design';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { useTopbar } from './TopbarContext';
 
@@ -88,10 +89,13 @@ export const TopbarNav: React.FC<TopbarNavProps> = ({
 
     const baseItemClasses = cn(
       'px-3 py-2 rounded-md text-sm font-medium',
-      'transition-colors duration-200',
+      ui.transition.default,
       item.active
         ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700',
+        : cn(
+            colors.component.button.ghost.base,
+            colors.component.button.ghost.dark
+          ),
       item.disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
       isMobile && 'w-full text-left',
       item.className
@@ -134,8 +138,9 @@ export const TopbarNav: React.FC<TopbarNavProps> = ({
               className={cn(
                 'absolute top-full left-0 mt-1 py-1',
                 'min-w-[200px] rounded-md shadow-lg',
-                'bg-white dark:bg-gray-800',
-                'border border-gray-200 dark:border-gray-700',
+                colors.component.card.default.base,
+                colors.component.card.default.dark,
+                'border',
                 'z-50'
               )}
             >
@@ -146,8 +151,8 @@ export const TopbarNav: React.FC<TopbarNavProps> = ({
                   LinkComponent={LinkComponent}
                   className={cn(
                     'block px-4 py-2 text-sm',
-                    'text-gray-700 dark:text-gray-300',
-                    'hover:bg-gray-100 dark:hover:bg-gray-700',
+                    colors.component.button.ghost.base,
+                    colors.component.button.ghost.dark,
                     child.active &&
                       'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
                   )}
@@ -283,8 +288,9 @@ export const TopbarMobileNav: React.FC<TopbarMobileNavProps> = ({
       id='mobile-menu'
       className={cn(
         'lg:hidden',
-        'border-t border-gray-200 dark:border-gray-700',
-        'bg-white dark:bg-gray-900',
+        'border-t',
+        ui.border.default,
+        ui.background.surface,
         'shadow-lg',
         className
       )}
@@ -297,10 +303,13 @@ export const TopbarMobileNav: React.FC<TopbarMobileNavProps> = ({
             LinkComponent={LinkComponent}
             className={cn(
               'flex items-center w-full px-3 py-2 rounded-md text-base font-medium',
-              'transition-colors duration-200',
+              ui.transition.default,
               item.active
                 ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700',
+                : cn(
+                    colors.component.button.ghost.base,
+                    colors.component.button.ghost.dark
+                  ),
               item.className
             )}
             onClick={() => setMobileMenuOpen(false)}

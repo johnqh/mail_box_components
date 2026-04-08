@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { cn } from '../lib/utils';
+import { ui, colors, textVariants, designTokens } from '@sudobility/design';
 import { Portal } from './portal';
 import { Overlay } from './overlay';
 
@@ -138,8 +139,9 @@ export const Sheet: React.FC<SheetProps> = ({
       <div
         className={cn(
           'fixed z-50',
-          'bg-white dark:bg-gray-900',
-          'shadow-xl',
+          colors.component.card.default.base,
+          colors.component.card.default.dark,
+          designTokens.shadow.xl,
           'flex flex-col',
           positionClasses[side],
           sizeClasses[side][size],
@@ -161,16 +163,14 @@ export const Sheet: React.FC<SheetProps> = ({
 
         {/* Header */}
         {(title || description || showCloseButton) && (
-          <div className='px-6 py-4 border-b border-gray-200 dark:border-gray-700'>
+          <div className={cn('px-6 py-4 border-b', ui.border.default)}>
             <div className='flex items-start justify-between'>
               <div className='flex-1'>
                 {title && (
-                  <h2 className='text-lg font-semibold text-gray-900 dark:text-white'>
-                    {title}
-                  </h2>
+                  <h2 className={textVariants.heading.h4()}>{title}</h2>
                 )}
                 {description && (
-                  <p className='mt-1 text-sm text-gray-600 dark:text-gray-400'>
+                  <p className={cn('mt-1', textVariants.body.sm())}>
                     {description}
                   </p>
                 )}
@@ -178,7 +178,10 @@ export const Sheet: React.FC<SheetProps> = ({
               {showCloseButton && (
                 <button
                   onClick={onClose}
-                  className='ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors'
+                  className={cn(
+                    'ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200',
+                    ui.transition.default
+                  )}
                   aria-label='Close sheet'
                 >
                   <svg
@@ -205,7 +208,7 @@ export const Sheet: React.FC<SheetProps> = ({
 
         {/* Footer */}
         {footer && (
-          <div className='px-6 py-4 border-t border-gray-200 dark:border-gray-700'>
+          <div className={cn('px-6 py-4 border-t', ui.border.default)}>
             {footer}
           </div>
         )}

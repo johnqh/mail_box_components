@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { colors } from '@sudobility/design';
 
 export type KYCStatus = 'pending' | 'in_progress' | 'verified' | 'rejected';
 export type KYCLevel = 'basic' | 'enhanced' | 'accredited';
@@ -18,23 +19,19 @@ interface KYCStatusBadgeProps {
 const statusConfig = {
   pending: {
     label: 'Pending',
-    color: 'bg-gray-500',
-    textColor: 'text-white',
+    color: `${colors.component.badge.default.base} ${colors.component.badge.default.dark}`,
   },
   in_progress: {
     label: 'In Progress',
-    color: 'bg-blue-500',
-    textColor: 'text-white',
+    color: `${colors.component.badge.primary.base} ${colors.component.badge.primary.dark}`,
   },
   verified: {
     label: 'Verified',
-    color: 'bg-green-500',
-    textColor: 'text-white',
+    color: `${colors.component.badge.success.base} ${colors.component.badge.success.dark}`,
   },
   rejected: {
     label: 'Rejected',
-    color: 'bg-red-500',
-    textColor: 'text-white',
+    color: `${colors.component.badge.error.base} ${colors.component.badge.error.dark}`,
   },
 };
 
@@ -55,7 +52,7 @@ export const KYCStatusBadge: React.FC<KYCStatusBadgeProps> = ({
   return (
     <div className={`inline-flex items-center gap-2 ${className}`}>
       <span
-        className={`px-3 py-1 rounded-full text-sm font-medium ${config.color} ${config.textColor}`}
+        className={`px-3 py-1 rounded-full text-sm font-medium ${config.color}`}
       >
         {levelLabel}: {config.label}
       </span>

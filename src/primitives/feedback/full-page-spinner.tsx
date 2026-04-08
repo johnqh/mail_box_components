@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
 import { Spinner } from '../../ui/spinner';
+import { textVariants } from '@sudobility/design';
 
 export interface FullPageSpinnerProps {
   /** Size of the spinner */
@@ -65,9 +66,7 @@ export const FullPageSpinner: React.FC<FullPageSpinnerProps> = ({
         loadingText={loadingText}
       />
       {showText && (
-        <p className='mt-4 text-sm text-gray-600 dark:text-gray-400'>
-          {loadingText}
-        </p>
+        <p className={`mt-4 ${textVariants.body.sm()}`}>{loadingText}</p>
       )}
     </div>
   );

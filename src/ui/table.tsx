@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { ui } from '@sudobility/design';
 
 export interface TableColumn<T> {
   /** Column key */
@@ -96,22 +97,21 @@ export function Table<T extends Record<string, any>>({
   };
 
   return (
-    <div className={cn('w-full overflow-x-auto', className)}>
-      <table className='w-full'>
+    <div className={cn(ui.table.wrapper, className)}>
+      <table className={ui.table.base}>
         {/* Header */}
-        <thead className='bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700'>
+        <thead className={cn(ui.table.thead, 'border-b', ui.border.default)}>
           <tr>
             {columns.map(column => (
               <th
                 key={column.key}
                 className={cn(
-                  compact ? 'px-3 py-2' : 'px-6 py-3',
-                  'text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider',
+                  compact ? 'px-3 py-2' : ui.table.th,
+                  'text-xs font-medium uppercase tracking-wider',
                   alignClasses[column.align || 'left'],
                   column.sortable &&
                     'cursor-pointer select-none hover:bg-gray-100 dark:hover:bg-gray-700',
-                  bordered &&
-                    'border-r border-gray-200 dark:border-gray-700 last:border-r-0'
+                  bordered && `border-r ${ui.border.default} last:border-r-0`
                 )}
                 style={{ width: column.width }}
                 onClick={() => column.sortable && handleSort(column)}
@@ -156,7 +156,7 @@ export function Table<T extends Record<string, any>>({
         </thead>
 
         {/* Body */}
-        <tbody className='bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700'>
+        <tbody className={cn(ui.table.tr, ui.table.tbody)}>
           {data.length === 0 ? (
             <tr>
               <td
@@ -171,11 +171,9 @@ export function Table<T extends Record<string, any>>({
               <tr
                 key={keyExtractor(row, rowIndex)}
                 className={cn(
-                  striped &&
-                    rowIndex % 2 === 1 &&
-                    'bg-gray-50 dark:bg-gray-800/50',
+                  striped && rowIndex % 2 === 1 && ui.table.trAlt,
                   hoverable &&
-                    'hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors',
+                    `hover:bg-gray-100 dark:hover:bg-gray-800 ${ui.transition.default}`,
                   onRowClick && 'cursor-pointer'
                 )}
                 onClick={() => onRowClick?.(row, rowIndex)}
@@ -184,11 +182,10 @@ export function Table<T extends Record<string, any>>({
                   <td
                     key={column.key}
                     className={cn(
-                      compact ? 'px-3 py-2' : 'px-6 py-4',
-                      'text-sm text-gray-900 dark:text-white',
+                      compact ? 'px-3 py-2' : ui.table.td,
                       alignClasses[column.align || 'left'],
                       bordered &&
-                        'border-r border-gray-200 dark:border-gray-700 last:border-r-0'
+                        `border-r ${ui.border.default} last:border-r-0`
                     )}
                   >
                     {column.render

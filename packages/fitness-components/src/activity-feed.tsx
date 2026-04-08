@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
+import { colors, ui } from '@sudobility/design';
 
 export interface ActivityItem {
   id: string;
@@ -51,13 +52,13 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
   return (
     <div
       className={cn(
-        'bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6',
+        'rounded-lg border p-6',
+        colors.component.card.default.base,
+        colors.component.card.default.dark,
         className
       )}
     >
-      <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-        Recent Activity
-      </h3>
+      <h3 className={cn(ui.text.h5, 'mb-4')}>Recent Activity</h3>
 
       <div className='space-y-4'>
         {displayItems.map(item => (
@@ -71,7 +72,12 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
                     className='w-10 h-10 rounded-full'
                   />
                 ) : (
-                  <div className='w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-white font-semibold'>
+                  <div
+                    className={cn(
+                      'w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold',
+                      ui.background.muted
+                    )}
+                  >
                     {item.user.charAt(0).toUpperCase()}
                   </div>
                 )}
@@ -79,16 +85,14 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
             )}
 
             <div className='flex-1 min-w-0'>
-              <p className='text-sm text-gray-900 dark:text-white'>
+              <p className={cn('text-sm', ui.text.emphasis)}>
                 <span className='font-semibold'>{item.user}</span>{' '}
-                <span className='text-gray-600 dark:text-gray-400'>
-                  {item.action}
-                </span>{' '}
+                <span className={ui.text.muted}>{item.action}</span>{' '}
                 {item.target && (
                   <span className='font-medium'>{item.target}</span>
                 )}
               </p>
-              <p className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
+              <p className={cn('text-xs mt-1', ui.text.muted)}>
                 {item.timestamp}
               </p>
             </div>

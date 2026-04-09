@@ -1,7 +1,8 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-// NOTE: SVG stroke colors and dynamically-sized text don't map to design system
-// bg/text tokens. Stroke colors are kept aligned with the design system palette.
+import { ui } from '@sudobility/design';
+// NOTE: SVG stroke colors don't map to design system bg/text tokens directly.
+// Stroke colors are kept aligned with the design system palette.
 
 export interface ProgressCircleProps {
   /** Progress value (0-100) */
@@ -69,14 +70,16 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (progress / 100) * circumference;
 
-  // Color variants (derived from design system button colors)
+  // Color variants aligned with design system palette (colors.raw.*)
+  // SVG stroke classes don't have DS token equivalents; kept as Tailwind stroke-* classes
   const variantColors = {
-    primary: `stroke-blue-600 dark:stroke-blue-500`,
-    success: `stroke-green-600 dark:stroke-green-500`,
+    primary: 'stroke-blue-600 dark:stroke-blue-500',
+    success: 'stroke-green-600 dark:stroke-green-500',
     warning: 'stroke-yellow-600 dark:stroke-yellow-500',
-    danger: `stroke-red-600 dark:stroke-red-500`,
+    danger: 'stroke-red-600 dark:stroke-red-500',
   };
 
+  // Track color - stroke-* classes have no direct DS token equivalent
   const trackColorClass = trackColor || 'stroke-gray-200 dark:stroke-gray-700';
 
   return (
@@ -117,7 +120,7 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
           <div className='absolute inset-0 flex flex-col items-center justify-center'>
             {showValue && !label && (
               <span
-                className='text-gray-900 dark:text-white font-bold'
+                className={cn(ui.text.strong, 'font-bold')}
                 style={{ fontSize: size * 0.2 }}
               >
                 {Math.round(progress)}%
@@ -125,7 +128,7 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
             )}
             {label && (
               <span
-                className='text-gray-900 dark:text-white font-medium text-center px-2'
+                className={cn(ui.text.emphasis, 'text-center px-2')}
                 style={{ fontSize: size * 0.15 }}
               >
                 {label}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface SparklineProps {
   /** Data points */
@@ -31,7 +32,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
   data,
   width = 100,
   height = 30,
-  color = '#3b82f6',
+  color = colors.raw.blue[500],
   fill = false,
   className,
 }) => {

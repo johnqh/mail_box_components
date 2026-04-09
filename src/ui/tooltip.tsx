@@ -206,12 +206,13 @@ export const Tooltip: React.FC<TooltipProps> = ({
   };
 
   // Variant styles derived from design system button colors
+  const btnColors = colors.component.button;
   const variantClasses = {
     default: 'bg-gray-900 dark:bg-gray-700 text-white',
-    info: `${colors.component.button.primary.base} ${colors.component.button.primary.dark} text-white`,
-    success: `${colors.component.button.success.base} ${colors.component.button.success.dark} text-white`,
+    info: `${btnColors.primary.base} ${btnColors.primary.dark} text-white`,
+    success: `${btnColors.success.base} ${btnColors.success.dark} text-white`,
     warning: 'bg-yellow-600 dark:bg-yellow-500 text-white',
-    error: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark} text-white`,
+    error: `${btnColors.destructive.base} ${btnColors.destructive.dark} text-white`,
   };
 
   // Arrow variant styles - arrow borders must match tooltip bg color per variant

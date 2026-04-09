@@ -13,6 +13,7 @@
 
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors, ui } from '@sudobility/design';
 
 /** @deprecated Use ProgressBarProps instead */
 export interface ProgressProps {
@@ -81,12 +82,12 @@ export const Progress: React.FC<ProgressProps> = ({
   // Clamp value between 0 and 100
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
 
-  // Color configurations
+  // Color configurations from design system
   const colorClasses = {
-    default: 'bg-blue-600 dark:bg-blue-500',
-    success: 'bg-green-600 dark:bg-green-500',
+    default: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
+    success: `${colors.component.button.success.base} ${colors.component.button.success.dark}`,
     warning: 'bg-yellow-600 dark:bg-yellow-500',
-    danger: 'bg-red-600 dark:bg-red-500',
+    danger: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark}`,
   };
 
   // Size configurations
@@ -100,7 +101,8 @@ export const Progress: React.FC<ProgressProps> = ({
     <div className={cn('w-full', className)}>
       <div
         className={cn(
-          'w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden',
+          'w-full rounded-full overflow-hidden',
+          ui.background.muted,
           sizeClasses[size]
         )}
         role='progressbar'
@@ -129,7 +131,7 @@ export const Progress: React.FC<ProgressProps> = ({
         )}
       </div>
       {(showLabel || label) && (
-        <div className='mt-1 text-xs text-gray-600 dark:text-gray-400 text-right'>
+        <div className={cn('mt-1 text-xs text-right', ui.text.bodySmall)}>
           {label || `${Math.round(percentage)}%`}
         </div>
       )}

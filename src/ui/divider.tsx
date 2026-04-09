@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { textVariants } from '@sudobility/design';
+import { textVariants, ui } from '@sudobility/design';
 
 export interface DividerProps {
   /** Optional text label */
@@ -86,9 +86,9 @@ export const Divider: React.FC<DividerProps> = ({
     },
   };
 
-  // Color variant configurations
+  // Color variant configurations from design system border tokens
   const variantClasses = {
-    light: 'border-gray-200 dark:border-gray-700',
+    light: ui.border.default,
     medium: 'border-gray-300 dark:border-gray-600',
     dark: 'border-gray-400 dark:border-gray-500',
   };

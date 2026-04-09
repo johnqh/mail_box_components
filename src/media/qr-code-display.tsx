@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface QRCodeDisplayProps {
   /** Data to encode */
@@ -48,8 +49,8 @@ export interface QRCodeDisplayProps {
 export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
   value,
   size = 200,
-  fgColor = '#000000',
-  bgColor = '#ffffff',
+  fgColor = colors.raw.neutral[950],
+  bgColor = colors.raw.neutral[0],
   showDownload = false,
   className,
 }) => {

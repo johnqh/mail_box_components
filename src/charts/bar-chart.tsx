@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface BarChartDataPoint {
   label: string;
@@ -53,7 +54,7 @@ export const BarChart: React.FC<BarChartProps> = ({
   className,
 }) => {
   const maxValue = Math.max(...data.map(d => d.value));
-  const defaultColor = '#3b82f6';
+  const defaultColor = colors.raw.blue[500];
 
   return (
     <div className={cn('w-full', className)}>

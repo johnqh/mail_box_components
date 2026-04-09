@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@sudobility/components';
-import { ui, textVariants } from '@sudobility/design';
+import { colors, ui, textVariants } from '@sudobility/design';
 
 export interface TimelineEvent {
   id: string;
@@ -50,7 +50,7 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
     <div className={cn('relative', className)}>
       {events.map((event, index) => {
         const isLast = index === events.length - 1;
-        const color = event.color || '#3b82f6';
+        const color = event.color || colors.raw.blue[500];
 
         return (
           <div

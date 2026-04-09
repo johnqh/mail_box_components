@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface PieChartDataPoint {
   label: string;
@@ -55,12 +56,12 @@ export const PieChart: React.FC<PieChartProps> = ({
 }) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
   const defaultColors = [
-    '#3b82f6',
-    '#10b981',
-    '#f59e0b',
-    '#ef4444',
-    '#8b5cf6',
-    '#ec4899',
+    colors.raw.blue[500],
+    colors.raw.green[500],
+    colors.raw.amber[500],
+    colors.raw.red[500],
+    colors.raw.purple[500],
+    colors.raw.orange[500],
   ];
 
   const slices = data.reduce<

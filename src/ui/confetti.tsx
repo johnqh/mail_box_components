@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 interface Particle {
   id: number;
@@ -30,12 +31,12 @@ export interface ConfettiProps {
 }
 
 const DEFAULT_COLORS = [
-  '#3b82f6',
-  '#10b981',
-  '#f59e0b',
-  '#ef4444',
-  '#8b5cf6',
-  '#ec4899',
+  colors.raw.blue[500],
+  colors.raw.green[500],
+  colors.raw.amber[500],
+  colors.raw.red[500],
+  colors.raw.purple[500],
+  colors.raw.orange[500],
 ];
 
 /**

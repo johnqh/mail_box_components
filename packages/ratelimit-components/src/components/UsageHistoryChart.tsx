@@ -116,8 +116,8 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
   height = 300,
   className,
   formatDate = defaultFormatDate,
-  barColor = '#3b82f6',
-  limitLineColor = '#ef4444',
+  barColor = colors.raw.blue[500],
+  limitLineColor = colors.raw.red[500],
   showLimitLine = true,
 }) => {
   const labels = { ...defaultLabels, ...customLabels };

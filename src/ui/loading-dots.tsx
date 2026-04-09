@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface LoadingDotsProps {
   /** Size variant */
@@ -40,9 +41,10 @@ export const LoadingDots: React.FC<LoadingDotsProps> = ({
     lg: 'w-3 h-3',
   };
 
+  // Color variants from design system (button colors provide the solid bg palette)
   const variantClasses = {
-    primary: 'bg-blue-600 dark:bg-blue-500',
-    secondary: 'bg-gray-600 dark:bg-gray-400',
+    primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
+    secondary: `${colors.component.button.secondary.base} ${colors.component.button.secondary.dark}`,
     white: 'bg-white',
   };
 

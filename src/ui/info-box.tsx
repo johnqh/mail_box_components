@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { textVariants } from '@sudobility/design';
+import { colors, textVariants } from '@sudobility/design';
 
 export interface InfoBoxProps {
   /** Content to display in the info box */
@@ -55,35 +55,37 @@ export const InfoBox: React.FC<InfoBoxProps> = ({
   bordered = true,
   className,
 }) => {
-  // Color variant configurations
+  // Color variant configurations using design system alert icon tokens
+  // Note: alert.*.base combines bg+border+text and can't be split for this
+  // component's structure, so we keep individual classes but use DS icon colors.
   const variantClasses = {
     info: {
       bg: 'bg-blue-50 dark:bg-blue-900/20',
       border: 'border-blue-200 dark:border-blue-800',
       title: 'text-blue-900 dark:text-blue-300',
       text: 'text-blue-800 dark:text-blue-400',
-      icon: 'text-blue-600 dark:text-blue-400',
+      icon: colors.component.alert.info.icon,
     },
     success: {
       bg: 'bg-green-50 dark:bg-green-900/20',
       border: 'border-green-200 dark:border-green-800',
       title: 'text-green-900 dark:text-green-300',
       text: 'text-green-800 dark:text-green-400',
-      icon: 'text-green-600 dark:text-green-400',
+      icon: colors.component.alert.success.icon,
     },
     warning: {
       bg: 'bg-yellow-50 dark:bg-yellow-900/20',
       border: 'border-yellow-200 dark:border-yellow-800',
       title: 'text-yellow-900 dark:text-yellow-300',
       text: 'text-yellow-800 dark:text-yellow-400',
-      icon: 'text-yellow-600 dark:text-yellow-400',
+      icon: colors.component.alert.warning.icon,
     },
     danger: {
       bg: 'bg-red-50 dark:bg-red-900/20',
       border: 'border-red-200 dark:border-red-800',
       title: 'text-red-900 dark:text-red-300',
       text: 'text-red-800 dark:text-red-400',
-      icon: 'text-red-600 dark:text-red-400',
+      icon: colors.component.alert.error.icon,
     },
     neutral: {
       bg: 'bg-gray-50 dark:bg-gray-800',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
-import { textVariants } from '@sudobility/design';
+import { textVariants, ui } from '@sudobility/design';
 
 /** Tracking event data for link interactions */
 export interface LinkTrackingData {
@@ -83,8 +83,7 @@ export const Link: React.FC<LinkProps> = ({
     default: textVariants.link.default(),
     primary: `${textVariants.link.subtle()} font-medium`,
     secondary: textVariants.link.muted(),
-    muted:
-      'text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300',
+    muted: `${ui.text.muted} hover:text-gray-700 dark:hover:text-gray-300`,
     underline: textVariants.link.default(),
   };
 

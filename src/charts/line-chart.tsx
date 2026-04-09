@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface LineChartDataPoint {
   x: number;
@@ -69,7 +70,13 @@ export const LineChart: React.FC<LineChartProps> = ({
   const minY = Math.min(...allPoints.map(p => p.y));
   const maxX = Math.max(...allPoints.map(p => p.x));
 
-  const defaultColors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
+  const defaultColors = [
+    colors.raw.blue[500],
+    colors.raw.green[500],
+    colors.raw.amber[500],
+    colors.raw.red[500],
+    colors.raw.purple[500],
+  ];
 
   const getPath = (data: LineChartDataPoint[]): string => {
     if (data.length === 0) return '';

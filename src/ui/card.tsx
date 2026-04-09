@@ -172,8 +172,12 @@ export const InfoCard: React.FC<InfoCardProps> = ({
       {title && (
         <h3
           className={cn(
-            'font-semibold mb-2',
-            size === 'sm' ? 'text-base' : size === 'lg' ? 'text-xl' : 'text-lg'
+            'mb-2',
+            size === 'sm'
+              ? textVariants.heading.h6()
+              : size === 'lg'
+                ? textVariants.heading.h4()
+                : textVariants.heading.h5()
           )}
         >
           {title}
@@ -233,12 +237,12 @@ export const CalloutBox: React.FC<CalloutBoxProps> = ({
         {title && (
           <h3
             className={cn(
-              'font-bold mb-4',
+              'mb-4 font-bold',
               size === 'sm'
-                ? 'text-lg'
+                ? textVariants.heading.h5()
                 : size === 'lg'
-                  ? 'text-3xl'
-                  : 'text-2xl'
+                  ? textVariants.heading.h2()
+                  : textVariants.heading.h3()
             )}
           >
             {title}
@@ -246,8 +250,11 @@ export const CalloutBox: React.FC<CalloutBoxProps> = ({
         )}
         <div
           className={cn(
-            'text-gray-600 dark:text-gray-400',
-            size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-lg' : 'text-base'
+            size === 'sm'
+              ? textVariants.body.sm()
+              : size === 'lg'
+                ? textVariants.body.lg()
+                : textVariants.body.md()
           )}
         >
           {children}

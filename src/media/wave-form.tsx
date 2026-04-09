@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { colors } from '@sudobility/design';
 
 export interface WaveFormProps {
   /** Audio data (amplitude values 0-1) */
@@ -36,7 +37,7 @@ export const WaveForm: React.FC<WaveFormProps> = ({
   data,
   width = 200,
   height = 40,
-  color = '#3b82f6',
+  color = colors.raw.blue[500],
   gap = 2,
   className,
 }) => {

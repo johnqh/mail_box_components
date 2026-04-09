@@ -49,13 +49,14 @@ export const CodeDisplay: React.FC<CodeDisplayProps> = ({
   className,
   wrap = false,
 }) => {
-  // Color variant configurations (design system alert colors where available)
+  // Color variant configurations from design system alert colors
+  const alertColors = colors.component.alert;
   const variantClasses = {
-    primary: `${colors.component.alert.info.base} ${colors.component.alert.info.dark}`,
+    primary: `${alertColors.info.base} ${alertColors.info.dark}`,
     secondary:
       'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30',
-    success: `${colors.component.alert.success.base} ${colors.component.alert.success.dark}`,
-    warning: `${colors.component.alert.warning.base} ${colors.component.alert.warning.dark}`,
+    success: `${alertColors.success.base} ${alertColors.success.dark}`,
+    warning: `${alertColors.warning.base} ${alertColors.warning.dark}`,
     neutral: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100',
   };
 

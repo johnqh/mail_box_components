@@ -94,6 +94,7 @@ export const TopbarMenuToggle: React.FC<TopbarMenuToggleProps> = ({
 }) => {
   const { mobileMenuOpen, toggleMobileMenu, setMobileMenuOpen } = useTopbar();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(dropdownRef as React.RefObject<HTMLElement>, () => {
@@ -116,6 +117,157 @@ export const TopbarMenuToggle: React.FC<TopbarMenuToggleProps> = ({
   const handleItemClick = () => {
     setDropdownOpen(false);
     setMobileMenuOpen(false);
+    setExpandedItems(new Set());
+  };
+
+  const toggleExpanded = (id: string) => {
+    setExpandedItems(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const renderMenuItem = (item: TopbarNavItem, depth = 0) => {
+    const Icon = item.icon;
+    const hasChildren = item.children && item.children.length > 0;
+    const isExpanded = expandedItems.has(item.id);
+
+    const itemContent = (
+      <>
+        {Icon && <Icon className='h-5 w-5 mr-3 flex-shrink-0' />}
+        <span className='flex-1'>{item.label}</span>
+      </>
+    );
+
+    const itemClasses = cn(
+      'flex items-center w-full px-4 py-2.5 text-sm font-medium',
+      colors.component.button.ghost.base,
+      colors.component.button.ghost.dark,
+      ui.transition.fast,
+      item.active &&
+        'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
+      item.disabled && 'opacity-50 cursor-not-allowed',
+      depth > 0 && 'pl-12'
+    );
+
+    if (hasChildren) {
+      return (
+        <div key={item.id}>
+          <div className='flex items-center'>
+            {item.href && LinkComponent ? (
+              <LinkComponent
+                href={item.href}
+                className={cn(itemClasses, 'flex-1')}
+              >
+                <div
+                  className='flex items-center flex-1'
+                  onClick={handleItemClick}
+                >
+                  {itemContent}
+                </div>
+              </LinkComponent>
+            ) : item.href ? (
+              <a
+                href={item.href}
+                role='menuitem'
+                className={cn(itemClasses, 'flex-1')}
+                onClick={handleItemClick}
+              >
+                {itemContent}
+              </a>
+            ) : (
+              <button
+                type='button'
+                role='menuitem'
+                className={cn(itemClasses, 'flex-1')}
+                onClick={() => {
+                  item.onClick?.();
+                  toggleExpanded(item.id);
+                }}
+                disabled={item.disabled}
+              >
+                {itemContent}
+              </button>
+            )}
+            <button
+              type='button'
+              onClick={() => toggleExpanded(item.id)}
+              className={cn(
+                'p-2.5 mr-2 rounded-md',
+                colors.component.button.ghost.base,
+                colors.component.button.ghost.dark
+              )}
+              aria-expanded={isExpanded}
+              aria-label={`Expand ${item.label}`}
+            >
+              <svg
+                className={cn(
+                  'h-4 w-4 transition-transform duration-200',
+                  isExpanded && 'rotate-180'
+                )}
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M19 9l-7 7-7-7'
+                />
+              </svg>
+            </button>
+          </div>
+          {isExpanded &&
+            item.children?.map(child => renderMenuItem(child, depth + 1))}
+        </div>
+      );
+    }
+
+    if (item.href && LinkComponent) {
+      return (
+        <LinkComponent key={item.id} href={item.href} className={itemClasses}>
+          <div className='flex items-center' onClick={handleItemClick}>
+            {itemContent}
+          </div>
+        </LinkComponent>
+      );
+    }
+
+    if (item.href) {
+      return (
+        <a
+          key={item.id}
+          href={item.href}
+          role='menuitem'
+          className={itemClasses}
+          onClick={handleItemClick}
+        >
+          {itemContent}
+        </a>
+      );
+    }
+
+    return (
+      <button
+        key={item.id}
+        type='button'
+        role='menuitem'
+        className={itemClasses}
+        onClick={() => {
+          handleItemClick();
+          item.onClick?.();
+        }}
+        disabled={item.disabled}
+      >
+        {itemContent}
+      </button>
+    );
   };
 
   return (
@@ -154,7 +306,7 @@ export const TopbarMenuToggle: React.FC<TopbarMenuToggleProps> = ({
           role='menu'
           className={cn(
             'absolute left-0 top-full mt-2',
-            'min-w-[200px] py-2 rounded-lg',
+            'min-w-[240px] py-2 rounded-lg',
             colors.component.card.default.base,
             colors.component.card.default.dark,
             'border',
@@ -162,69 +314,7 @@ export const TopbarMenuToggle: React.FC<TopbarMenuToggleProps> = ({
             'z-50'
           )}
         >
-          {menuItems.map(item => {
-            const Icon = item.icon;
-            const itemContent = (
-              <>
-                {Icon && <Icon className='h-5 w-5 mr-3 flex-shrink-0' />}
-                <span>{item.label}</span>
-              </>
-            );
-
-            const itemClasses = cn(
-              'flex items-center w-full px-4 py-2.5 text-sm font-medium',
-              colors.component.button.ghost.base,
-              colors.component.button.ghost.dark,
-              ui.transition.fast,
-              item.active &&
-                'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
-              item.disabled && 'opacity-50 cursor-not-allowed'
-            );
-
-            if (item.href && LinkComponent) {
-              return (
-                <LinkComponent
-                  key={item.id}
-                  href={item.href}
-                  className={itemClasses}
-                >
-                  <div className='flex items-center' onClick={handleItemClick}>
-                    {itemContent}
-                  </div>
-                </LinkComponent>
-              );
-            }
-
-            if (item.href) {
-              return (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  role='menuitem'
-                  className={itemClasses}
-                  onClick={handleItemClick}
-                >
-                  {itemContent}
-                </a>
-              );
-            }
-
-            return (
-              <button
-                key={item.id}
-                type='button'
-                role='menuitem'
-                className={itemClasses}
-                onClick={() => {
-                  handleItemClick();
-                  item.onClick?.();
-                }}
-                disabled={item.disabled}
-              >
-                {itemContent}
-              </button>
-            );
-          })}
+          {menuItems.map(item => renderMenuItem(item))}
         </div>
       )}
     </div>

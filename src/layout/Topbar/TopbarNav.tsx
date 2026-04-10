@@ -101,37 +101,72 @@ export const TopbarNav: React.FC<TopbarNavProps> = ({
       item.className
     );
 
-    // If item has children, render as dropdown
+    // If item has children, render as dropdown (with optional link on the label)
     if (hasChildren) {
+      const labelContent = (
+        <>
+          {item.icon && <item.icon className='h-4 w-4 mr-1' />}
+          {item.label}
+        </>
+      );
+
       return (
-        <div key={item.id} className='relative' ref={dropdownRef}>
-          <button
-            type='button'
-            onClick={() => setOpenDropdown(isOpen ? null : item.id)}
-            className={cn(baseItemClasses, 'flex items-center gap-1')}
-            aria-expanded={isOpen}
-            aria-haspopup='true'
-            disabled={item.disabled}
+        <div
+          key={item.id}
+          className='relative'
+          ref={dropdownRef}
+          onMouseEnter={() => setOpenDropdown(item.id)}
+          onMouseLeave={() => setOpenDropdown(null)}
+        >
+          <div
+            className={cn(
+              baseItemClasses,
+              'flex items-center gap-1 cursor-pointer'
+            )}
           >
-            {item.icon && <item.icon className='h-4 w-4 mr-1' />}
-            {item.label}
-            <svg
-              className={cn(
-                'h-4 w-4 transition-transform duration-200',
-                isOpen && 'rotate-180'
-              )}
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
+            {item.href && LinkComponent ? (
+              <LinkComponent href={item.href} className='flex items-center'>
+                {labelContent}
+              </LinkComponent>
+            ) : item.href ? (
+              <a href={item.href} className='flex items-center'>
+                {labelContent}
+              </a>
+            ) : (
+              <button
+                type='button'
+                onClick={() => setOpenDropdown(isOpen ? null : item.id)}
+                className='flex items-center'
+                disabled={item.disabled}
+              >
+                {labelContent}
+              </button>
+            )}
+            <button
+              type='button'
+              onClick={() => setOpenDropdown(isOpen ? null : item.id)}
+              className='flex items-center'
+              aria-expanded={isOpen}
+              aria-haspopup='true'
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M19 9l-7 7-7-7'
-              />
-            </svg>
-          </button>
+              <svg
+                className={cn(
+                  'h-4 w-4 transition-transform duration-200',
+                  isOpen && 'rotate-180'
+                )}
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M19 9l-7 7-7-7'
+                />
+              </svg>
+            </button>
+          </div>
 
           {isOpen && (
             <div

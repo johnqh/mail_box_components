@@ -134,7 +134,7 @@ export function Toast({
   return (
     <div
       className={`
-        flex items-center gap-3 px-4 py-3 rounded-lg border shadow-lg pointer-events-auto cursor-default
+        flex items-start gap-3 px-4 py-3 rounded-lg border shadow-lg pointer-events-auto cursor-default
         transition-all duration-200 ease-out
         ${style.container}
         ${isVisible && !isLeaving ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}
@@ -142,14 +142,18 @@ export function Toast({
       role='alert'
       aria-live='polite'
     >
-      <span className={style.icon}>{icons[type]}</span>
-      <span className={`flex-1 text-sm font-medium ${style.text}`}>
+      <span className={`flex-shrink-0 mt-0.5 ${style.icon}`}>
+        {icons[type]}
+      </span>
+      <span
+        className={`flex-1 min-w-0 text-sm font-medium max-h-32 overflow-y-auto ${style.text}`}
+      >
         {message}
       </span>
       <button
         onClick={handleDismiss}
         className={`
-          p-1 rounded-md transition-colors
+          flex-shrink-0 p-1 rounded-md transition-colors
           hover:bg-black/10 dark:hover:bg-white/10
           ${style.text}
         `}

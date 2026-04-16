@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState, useRef } from 'react';
 import { useLayout } from './Layout/LayoutContext';
 import { ui, textVariants } from '@sudobility/design';
+import { Section } from '../primitives/layout/section';
 
 /**
  * MasterListItem - Standardized list item with rounded selection overlay
@@ -91,9 +92,9 @@ export interface MasterDetailLayoutProps {
   detailContent: ReactNode;
   /** Title for the detail panel - should match the selected item from master list */
   detailTitle?: string;
-  /** Optional content rendered above the master-detail area (non-scrollable) */
+  /** Optional content rendered above the master-detail area, sticky to top, full-width via Section */
   topContent?: ReactNode;
-  /** Optional content rendered below the master-detail area (non-scrollable) */
+  /** Optional content rendered below the master-detail area, sticky to bottom, full-width via Section */
   bottomContent?: ReactNode;
   /** Current mobile view state - "navigation" shows master, "content" shows detail */
   mobileView?: 'navigation' | 'content';
@@ -137,6 +138,7 @@ export interface MasterDetailLayoutProps {
  * - Built-in back button for mobile navigation
  * - Dark mode support
  * - Smooth transitions support via refs
+ * - Sticky top/bottom panels using full-width Section
  *
  * @example
  * ```tsx
@@ -279,17 +281,36 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
       }
     : {};
 
+  // Sticky top panel
+  const stickyTop = topContent ? (
+    <div className='sticky z-10' style={{ top: `${stickyTopOffset}px` }}>
+      <Section
+        spacing='sm'
+        background='surface'
+        className={`${ui.border.default} border-b`}
+      >
+        {topContent}
+      </Section>
+    </div>
+  ) : null;
+
+  // Sticky bottom panel
+  const stickyBottom = bottomContent ? (
+    <div className='sticky bottom-0 z-10'>
+      <Section
+        spacing='sm'
+        background='surface'
+        className={`${ui.border.default} border-t`}
+      >
+        {bottomContent}
+      </Section>
+    </div>
+  ) : null;
+
   return (
     <div className='w-full flex-1 min-h-0 flex flex-col'>
-      {/* Desktop: Top Content (non-scrollable) */}
-      {topContent && (
-        <div
-          className='hidden md:block flex-shrink-0'
-          style={{ marginBottom: '1.5rem' }}
-        >
-          {topContent}
-        </div>
-      )}
+      {/* Sticky Top Content */}
+      {stickyTop}
 
       {/* Middle: Master-Detail area (fills remaining space) */}
       <div className='flex-1 min-h-0 flex flex-col'>
@@ -299,10 +320,6 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             mobileView === 'navigation' ? 'block' : 'hidden'
           } flex-1 overflow-y-auto`}
         >
-          {/* Mobile: Top Content scrolls with master list */}
-          {topContent && (
-            <div style={{ marginBottom: '1rem' }}>{topContent}</div>
-          )}
           <div
             className={
               showMasterBackground ? `${ui.background.surface} p-6` : 'p-6'
@@ -354,10 +371,6 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
               )}
               {detailContent}
             </div>
-            {/* Mobile: Bottom Content scrolls with detail view */}
-            {bottomContent && (
-              <div style={{ marginTop: '1.5rem' }}>{bottomContent}</div>
-            )}
           </div>
         </div>
 
@@ -416,15 +429,8 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         </div>
       </div>
 
-      {/* Desktop: Bottom Content (non-scrollable) */}
-      {bottomContent && (
-        <div
-          className='hidden md:block flex-shrink-0'
-          style={{ marginTop: '1.5rem' }}
-        >
-          {bottomContent}
-        </div>
-      )}
+      {/* Sticky Bottom Content */}
+      {stickyBottom}
     </div>
   );
 };

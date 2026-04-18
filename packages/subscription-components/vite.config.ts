@@ -28,6 +28,7 @@ export default defineConfig({
         '@sudobility/components',
         '@sudobility/design',
         '@revenuecat/purchases-js',
+        '@sudobility/subscription_lib',
       ],
       output: {
         exports: 'named',
@@ -41,6 +42,7 @@ export default defineConfig({
           '@sudobility/components': 'SudobilityComponents',
           '@sudobility/design': 'SudobilityDesign',
           '@revenuecat/purchases-js': 'RevenueCatPurchases',
+          '@sudobility/subscription_lib': 'SudobilitySubscriptionLib',
         },
       },
     },

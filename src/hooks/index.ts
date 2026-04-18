@@ -32,6 +32,13 @@ export type {
 // Performance hooks
 export { useRoutePerformance } from './useRoutePerformance';
 
+// Login redirect hooks
+export {
+  useLoginRedirect,
+  type UseLoginRedirectOptions,
+  type UseLoginRedirectResult,
+} from './useLoginRedirect';
+
 // Form hooks
 export {
   useFormValidation,

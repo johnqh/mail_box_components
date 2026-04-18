@@ -2,8 +2,8 @@ import React, {
   createContext,
   useContext,
   useState,
-  useEffect,
   useCallback,
+  useEffect,
   ReactNode,
 } from 'react';
 import type {
@@ -13,100 +13,66 @@ import type {
   SubscriptionProviderConfig,
 } from './types';
 
-// Dynamic import types for RevenueCat SDK
-type Purchases = import('@revenuecat/purchases-js').Purchases;
-type Package = import('@revenuecat/purchases-js').Package;
-type CustomerInfo = import('@revenuecat/purchases-js').CustomerInfo;
-type Offerings = import('@revenuecat/purchases-js').Offerings;
+// Import from subscription_lib — the single source of truth for state.
+// subscription_lib must be initialized by the consuming app before
+// SubscriptionProvider is mounted (via initializeSubscription + adapter).
+import {
+  isSubscriptionInitialized,
+  getSubscriptionInstance,
+  setSubscriptionUserId,
+  refreshSubscription,
+  restoreSubscription,
+  onSubscriptionRefresh,
+} from '@sudobility/subscription_lib';
+import type {
+  SubscriptionOffer,
+  CurrentSubscription,
+} from '@sudobility/subscription_lib';
 
-// RevenueCat SDK lazy loading
-let RevenueCatSDK: typeof import('@revenuecat/purchases-js') | null = null;
-const loadRevenueCatSDK = async () => {
-  if (!RevenueCatSDK) {
-    RevenueCatSDK = await import('@revenuecat/purchases-js');
+// ---------------------------------------------------------------------------
+// Helpers: convert subscription_lib types → subscription-components types
+// ---------------------------------------------------------------------------
+
+function offersToProducts(offers: SubscriptionOffer[]): SubscriptionProduct[] {
+  const products: SubscriptionProduct[] = [];
+  for (const offer of offers) {
+    for (const pkg of offer.packages) {
+      if (!pkg.product) continue;
+      products.push({
+        identifier: pkg.packageId,
+        productId: pkg.product.productId,
+        price: String(pkg.product.price),
+        priceString: pkg.product.priceString,
+        title: pkg.product.name,
+        description: pkg.product.description,
+        period: pkg.product.periodDuration || undefined,
+        introPrice: pkg.product.introPrice,
+        introPricePeriod: pkg.product.introPricePeriod,
+        introPriceCycles: pkg.product.introPriceCycles,
+        freeTrialPeriod: pkg.product.trialPeriod,
+        entitlement: pkg.entitlements?.[0] ?? undefined,
+      });
+    }
   }
-  return RevenueCatSDK;
-};
+  return products;
+}
 
-// Store purchases instance globally
-let purchasesInstance: Purchases | null = null;
-
-/**
- * Convert RevenueCat Package to SubscriptionProduct
- * @param pkg - RevenueCat Package
- * @param offeringMetadata - Optional metadata from the offering containing entitlement info
- */
-const convertPackageToProduct = (
-  pkg: Package,
-  offeringMetadata?: Record<string, unknown>
-): SubscriptionProduct => {
-  const product = pkg.rcBillingProduct;
-  const subscriptionOption = product?.defaultSubscriptionOption;
-
-  // Extract entitlement from offering metadata (set in RevenueCat dashboard)
-  const entitlement =
-    typeof offeringMetadata?.entitlement === 'string'
-      ? offeringMetadata.entitlement
-      : undefined;
-
+function subscriptionToStatus(
+  sub: CurrentSubscription | null
+): SubscriptionStatus | null {
+  if (!sub || !sub.isActive) return null;
   return {
-    identifier: pkg.identifier,
-    productId: product?.identifier || undefined,
-    price: product?.currentPrice?.amountMicros
-      ? (product.currentPrice.amountMicros / 1000000).toFixed(2)
-      : '0',
-    priceString: product?.currentPrice?.formattedPrice || '$0',
-    title: product?.title || pkg.identifier,
-    description: product?.description || '',
-    period: product?.normalPeriodDuration || undefined,
-    introPrice:
-      subscriptionOption?.introPrice?.price?.formattedPrice || undefined,
-    introPriceAmount: subscriptionOption?.introPrice?.price?.amountMicros
-      ? (subscriptionOption.introPrice.price.amountMicros / 1000000).toFixed(2)
-      : undefined,
-    introPricePeriod:
-      subscriptionOption?.introPrice?.periodDuration || undefined,
-    introPriceCycles: subscriptionOption?.introPrice?.cycleCount || undefined,
-    freeTrialPeriod: subscriptionOption?.trial?.periodDuration || undefined,
-    entitlement,
+    isActive: true,
+    expirationDate: sub.expirationDate,
+    productIdentifier: sub.productId,
+    willRenew: sub.willRenew,
+    activeEntitlements: sub.entitlements,
   };
-};
+}
 
-/**
- * Parse CustomerInfo into SubscriptionStatus
- * Checks for any active entitlement and returns the subscription status
- */
-const parseCustomerInfo = (customerInfo: CustomerInfo): SubscriptionStatus => {
-  const activeEntitlementIds = Object.keys(customerInfo.entitlements.active);
-
-  if (activeEntitlementIds.length > 0) {
-    // Use the first active entitlement for status details
-    const firstEntitlementId = activeEntitlementIds[0];
-    const entitlement = customerInfo.entitlements.active[firstEntitlementId];
-
-    return {
-      isActive: true,
-      expirationDate: entitlement.expirationDate
-        ? new Date(entitlement.expirationDate)
-        : undefined,
-      purchaseDate: entitlement.latestPurchaseDate
-        ? new Date(entitlement.latestPurchaseDate)
-        : undefined,
-      productIdentifier: entitlement.productIdentifier,
-      willRenew: entitlement.willRenew,
-      isSandbox: entitlement.isSandbox,
-      unsubscribeDetectedAt: entitlement.unsubscribeDetectedAt
-        ? new Date(entitlement.unsubscribeDetectedAt)
-        : undefined,
-      billingIssueDetectedAt: entitlement.billingIssueDetectedAt
-        ? new Date(entitlement.billingIssueDetectedAt)
-        : undefined,
-      activeEntitlements: activeEntitlementIds,
-    };
-  }
-
-  return { isActive: false };
-};
+// ---------------------------------------------------------------------------
+// Context
+// ---------------------------------------------------------------------------
 
 const SubscriptionContext = createContext<SubscriptionContextValue | undefined>(
   undefined
@@ -117,25 +83,17 @@ export interface SubscriptionProviderProps extends SubscriptionProviderConfig {
 }
 
 /**
- * SubscriptionProvider - Context provider for RevenueCat subscription management
+ * SubscriptionProvider — React context wrapping subscription_lib.
  *
- * Provides subscription state and actions to all child components.
- * Handles RevenueCat SDK initialization, product fetching, and purchase flow.
+ * subscription_lib is the single source of truth for all subscription state.
+ * This provider exposes it via React context for convenience.
  *
- * @example
- * ```tsx
- * <SubscriptionProvider
- *   apiKey="your_revenuecat_api_key"
- *   onError={(error) => console.error(error)}
- *   onPurchaseSuccess={(productId) => analytics.track('purchase', { productId })}
- * >
- *   <App />
- * </SubscriptionProvider>
- * ```
+ * The consuming app must call `initializeSubscription()` from subscription_lib
+ * before mounting this provider (typically done in the app's DI/init layer).
  */
 export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
-  apiKey,
-  userEmail,
+  apiKey: _apiKey,
+  userEmail: _userEmail,
   onError,
   onPurchaseSuccess,
   children,
@@ -145,270 +103,94 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
     useState<SubscriptionStatus | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
-  const [currentOffering, setCurrentOffering] = useState<unknown | null>(null);
-  const [allOfferings, setAllOfferings] = useState<Record<
-    string,
-    unknown
-  > | null>(null);
 
-  const isDevelopment = !apiKey || apiKey === 'your_revenuecat_api_key_here';
-
-  /**
-   * Reset state when user changes
-   */
-  const resetState = useCallback(() => {
-    setProducts([]);
-    setCurrentSubscription(null);
-    setCurrentOffering(null);
-    setAllOfferings(null);
-    setError(null);
-    setIsInitialized(false);
-    setCurrentUserId(null);
-    purchasesInstance = null;
+  // Sync state from subscription_lib on mount and after refreshes
+  const syncState = useCallback(() => {
+    if (!isSubscriptionInitialized()) return;
+    const service = getSubscriptionInstance();
+    const offers = service.getAllOffers();
+    if (offers.length > 0) {
+      setProducts(offersToProducts(offers));
+    }
+    const sub = service.getCurrentSubscription();
+    setCurrentSubscription(subscriptionToStatus(sub));
   }, []);
 
-  // Keep resetState available for potential future use
-  void resetState;
+  useEffect(() => {
+    syncState();
+    const unsubscribe = onSubscriptionRefresh(() => {
+      syncState();
+    });
+    return unsubscribe;
+  }, [syncState]);
 
-  /**
-   * Fetch offerings from RevenueCat
-   * Aggregates packages from ALL offerings, each with its own entitlement from metadata
-   */
-  const fetchOfferings = useCallback(async () => {
-    if (!purchasesInstance) return;
-
-    try {
-      const offerings: Offerings = await purchasesInstance.getOfferings();
-
-      // Store the current offering for purchase flow
-      if (offerings.current) {
-        setCurrentOffering(offerings.current);
-      }
-
-      // Aggregate products from ALL offerings, each with its own entitlement
-      const allOfferingsData = (offerings as { all?: Record<string, unknown> })
-        .all;
-
-      if (allOfferingsData) {
-        // Store all offerings for purchase flow
-        setAllOfferings(allOfferingsData);
-
-        const productList: SubscriptionProduct[] = [];
-
-        for (const offeringKey of Object.keys(allOfferingsData)) {
-          const offering = allOfferingsData[offeringKey] as {
-            availablePackages?: Package[];
-            metadata?: Record<string, unknown>;
-          };
-
-          if (offering?.availablePackages) {
-            // Each offering has its own metadata with entitlement
-            const offeringMetadata = offering.metadata;
-            const productsFromOffering = offering.availablePackages.map(pkg =>
-              convertPackageToProduct(pkg, offeringMetadata)
-            );
-            productList.push(...productsFromOffering);
-          }
-        }
-
-        setProducts(productList);
-      } else if (offerings.current) {
-        // Fallback: if no 'all' property, use current offering
-        const offeringMetadata = (
-          offerings.current as { metadata?: Record<string, unknown> }
-        ).metadata;
-        const productList = offerings.current.availablePackages.map(pkg =>
-          convertPackageToProduct(pkg, offeringMetadata)
-        );
-        setProducts(productList);
-      }
-    } catch (err) {
-      const errorMsg =
-        err instanceof Error ? err.message : 'Failed to load offerings';
-      setError(errorMsg);
-      onError?.(err instanceof Error ? err : new Error(errorMsg));
-    }
-  }, [onError]);
-
-  /**
-   * Fetch customer info from RevenueCat
-   */
-  const fetchCustomerInfo = useCallback(async () => {
-    if (!purchasesInstance) return;
-
-    try {
-      const info = await purchasesInstance.getCustomerInfo();
-      const status = parseCustomerInfo(info);
-      setCurrentSubscription(status.isActive ? status : null);
-    } catch (err) {
-      const errorMsg =
-        err instanceof Error
-          ? err.message
-          : 'Failed to load subscription status';
-      setError(errorMsg);
-      onError?.(err instanceof Error ? err : new Error(errorMsg));
-    }
-  }, [onError]);
-
-  /**
-   * Initialize RevenueCat with optional user ID.
-   * If userId is undefined, fetches offerings for anonymous browsing (pricing page).
-   * If userId is provided, also fetches customer subscription info.
-   */
   const initialize = useCallback(
     async (userId?: string, email?: string) => {
-      // Reset if user changed (including from anonymous to logged in)
-      if (currentUserId !== userId) {
-        // Don't fully reset - keep offerings if just switching users
-        if (currentUserId) {
-          setCurrentSubscription(null);
-          setError(null);
-        }
-      }
-
-      // Skip if already initialized for this user (or both anonymous)
-      if (isInitialized && currentUserId === userId) return;
-
       try {
         setIsLoading(true);
         setError(null);
 
-        if (isDevelopment) {
-          console.warn(
-            '[SubscriptionProvider] RevenueCat API key not configured'
-          );
-          setProducts([]);
-          setCurrentSubscription(null);
-        } else {
-          const SDK = await loadRevenueCatSDK();
+        await setSubscriptionUserId(userId, email);
 
-          // Configure with userId if provided, otherwise anonymous
-          // Note: RevenueCat supports anonymous users when appUserId is omitted
+        if (isSubscriptionInitialized()) {
+          const service = getSubscriptionInstance();
 
-          purchasesInstance = SDK.Purchases.configure(
-            userId ? { apiKey, appUserId: userId } : ({ apiKey } as any)
-          );
-
-          // Set email attribute if provided
-          const emailToSet = email || userEmail;
-          if (emailToSet && purchasesInstance) {
-            try {
-              await purchasesInstance.setAttributes({ email: emailToSet });
-            } catch {
-              // Don't fail initialization if email setting fails
-            }
+          // Ensure offerings are loaded
+          if (!service.hasLoadedOfferings()) {
+            await service.loadOfferings();
           }
 
-          // Always fetch offerings (for pricing display)
-          // Only fetch customer info if we have a user
+          // Load customer info if we have a user
           if (userId) {
-            await Promise.all([fetchOfferings(), fetchCustomerInfo()]);
-          } else {
-            await fetchOfferings();
+            await service.loadCustomerInfo();
           }
-        }
 
-        setCurrentUserId(userId ?? null);
-        setIsInitialized(true);
+          syncState();
+        }
       } catch (err) {
         const errorMsg =
           err instanceof Error ? err.message : 'Failed to initialize';
         setError(errorMsg);
-        setCurrentSubscription(null);
-        setProducts([]);
         onError?.(err instanceof Error ? err : new Error(errorMsg));
       } finally {
         setIsLoading(false);
       }
     },
-    [
-      currentUserId,
-      isInitialized,
-      isDevelopment,
-      apiKey,
-      userEmail,
-      fetchOfferings,
-      fetchCustomerInfo,
-      onError,
-    ]
+    [syncState, onError]
   );
 
-  /**
-   * Purchase a subscription
-   * @param productIdentifier - The product/package identifier to purchase
-   * @param _subscriptionUserId - Optional user ID (for reference; actual user is bound via initialize)
-   */
   const purchase = useCallback(
-    async (
-      productIdentifier: string,
-      _subscriptionUserId?: string
-    ): Promise<boolean> => {
+    async (productIdentifier: string): Promise<boolean> => {
+      if (!isSubscriptionInitialized()) {
+        setError('Subscription service not initialized');
+        return false;
+      }
+
       try {
         setIsLoading(true);
         setError(null);
 
-        if (isDevelopment) {
-          // Simulate purchase in development
-          await new Promise(resolve => setTimeout(resolve, 2000));
-          const mockSubscription: SubscriptionStatus = {
-            isActive: true,
-            expirationDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
-            purchaseDate: new Date(),
-            productIdentifier,
-            willRenew: true,
-          };
-          setCurrentSubscription(mockSubscription);
-          onPurchaseSuccess?.(productIdentifier);
-          return true;
-        }
+        const service = getSubscriptionInstance();
 
-        if (!purchasesInstance || (!currentOffering && !allOfferings)) {
-          throw new Error('Subscription service not initialized');
-        }
-
-        // Find the package by identifier - search across all offerings
-        let packageToPurchase: Package | undefined;
-
-        if (allOfferings) {
-          for (const offeringKey of Object.keys(allOfferings)) {
-            const offering = allOfferings[offeringKey] as {
-              availablePackages?: Package[];
-            };
-            if (offering?.availablePackages) {
-              packageToPurchase = offering.availablePackages.find(
-                (pkg: Package) => pkg.identifier === productIdentifier
-              );
-              if (packageToPurchase) break;
-            }
+        // Find which offering contains this package
+        const offers = service.getAllOffers();
+        let offeringId: string | undefined;
+        for (const offer of offers) {
+          if (offer.packages.some(p => p.packageId === productIdentifier)) {
+            offeringId = offer.offerId;
+            break;
           }
-        } else if (currentOffering) {
-          // Fallback to current offering
-          const packages = (currentOffering as { availablePackages: Package[] })
-            .availablePackages;
-          packageToPurchase = packages.find(
-            (pkg: Package) => pkg.identifier === productIdentifier
-          );
         }
 
-        if (!packageToPurchase) {
-          throw new Error(`Package not found: ${productIdentifier}`);
-        }
-
-        const result = await purchasesInstance.purchase({
-          rcPackage: packageToPurchase,
-          ...(userEmail ? { customerEmail: userEmail } : {}),
+        await service.purchase({
+          packageId: productIdentifier,
+          offeringId: offeringId ?? '',
         });
 
-        const status = parseCustomerInfo(result.customerInfo);
-        setCurrentSubscription(status.isActive ? status : null);
-
-        if (status.isActive) {
-          onPurchaseSuccess?.(productIdentifier);
-        }
-
-        return status.isActive;
+        await refreshSubscription();
+        syncState();
+        onPurchaseSuccess?.(productIdentifier);
+        return true;
       } catch (err) {
         const errorMsg = err instanceof Error ? err.message : 'Purchase failed';
         setError(errorMsg);
@@ -418,93 +200,47 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
         setIsLoading(false);
       }
     },
-    [
-      isDevelopment,
-      currentOffering,
-      allOfferings,
-      userEmail,
-      onPurchaseSuccess,
-      onError,
-    ]
+    [syncState, onPurchaseSuccess, onError]
   );
 
-  /**
-   * Restore previous purchases
-   * @param _subscriptionUserId - Optional user ID (for reference; actual user is bound via initialize)
-   */
-  const restore = useCallback(
-    async (_subscriptionUserId?: string): Promise<boolean> => {
-      try {
-        setIsLoading(true);
-        setError(null);
+  const restore = useCallback(async (): Promise<boolean> => {
+    try {
+      setIsLoading(true);
+      setError(null);
 
-        if (isDevelopment) {
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          setError('No previous purchases found');
-          return false;
-        }
+      const result = await restoreSubscription();
+      syncState();
 
-        if (!purchasesInstance) {
-          throw new Error('Subscription service not initialized');
-        }
-
-        const customerInfo = await purchasesInstance.getCustomerInfo();
-        const status = parseCustomerInfo(customerInfo);
-        setCurrentSubscription(status.isActive ? status : null);
-
-        if (!status.isActive) {
-          setError('No previous purchases found');
-        }
-
-        return status.isActive;
-      } catch (err) {
-        const errorMsg = err instanceof Error ? err.message : 'Restore failed';
-        setError(errorMsg);
-        onError?.(err instanceof Error ? err : new Error(errorMsg));
-        return false;
-      } finally {
-        setIsLoading(false);
+      if (!result?.isActive) {
+        setError('No previous purchases found');
       }
-    },
-    [isDevelopment, onError]
-  );
 
-  /**
-   * Refresh subscription status
-   */
+      return result?.isActive ?? false;
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Restore failed';
+      setError(errorMsg);
+      onError?.(err instanceof Error ? err : new Error(errorMsg));
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [syncState, onError]);
+
   const refresh = useCallback(async () => {
-    if (isDevelopment) return;
-
     try {
       setError(null);
-      await Promise.all([fetchCustomerInfo(), fetchOfferings()]);
+      await refreshSubscription();
+      syncState();
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Refresh failed';
       setError(errorMsg);
       onError?.(err instanceof Error ? err : new Error(errorMsg));
     }
-  }, [isDevelopment, fetchCustomerInfo, fetchOfferings, onError]);
+  }, [syncState, onError]);
 
-  /**
-   * Clear error state
-   */
   const clearError = useCallback(() => {
     setError(null);
   }, []);
-
-  // Auto-refresh customer info periodically
-  useEffect(() => {
-    if (!isInitialized || isDevelopment || !purchasesInstance) return;
-
-    const interval = setInterval(
-      () => {
-        fetchCustomerInfo().catch(() => {});
-      },
-      5 * 60 * 1000
-    ); // Every 5 minutes
-
-    return () => clearInterval(interval);
-  }, [isInitialized, isDevelopment, fetchCustomerInfo]);
 
   const value: SubscriptionContextValue = {
     products,
@@ -527,8 +263,6 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
 
 /**
  * Hook to access subscription context
- *
- * @throws Error if used outside of SubscriptionProvider
  */
 export const useSubscriptionContext = (): SubscriptionContextValue => {
   const context = useContext(SubscriptionContext);
@@ -582,10 +316,6 @@ export const clearRevenueCatCheckoutSessions = (): void => {
  */
 export const closeRevenueCatInstance = (): void => {
   try {
-    if (purchasesInstance) {
-      purchasesInstance.close();
-      purchasesInstance = null;
-    }
     clearRevenueCatCheckoutSessions();
   } catch {
     // Ignore close errors

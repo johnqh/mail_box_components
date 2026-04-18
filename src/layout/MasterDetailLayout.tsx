@@ -300,6 +300,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             mobileView === 'navigation' ? 'block' : 'hidden'
           } flex-1 overflow-y-auto`}
         >
+          {topContent && <div className='flex-shrink-0'>{topContent}</div>}
           <div
             className={
               showMasterBackground ? `${ui.background.surface} p-6` : 'p-6'
@@ -352,6 +353,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
               {detailContent}
             </div>
           </div>
+          {bottomContent && (
+            <div className='flex-shrink-0'>{bottomContent}</div>
+          )}
         </div>
 
         {/* Desktop Layout */}

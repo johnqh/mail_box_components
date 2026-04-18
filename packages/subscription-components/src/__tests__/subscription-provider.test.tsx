@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   SubscriptionProvider,
@@ -7,17 +7,20 @@ import {
   clearRevenueCatCheckoutSessions,
 } from '../subscription-provider';
 
+// Mock subscription_lib
+vi.mock('@sudobility/subscription_lib', () => ({
+  isSubscriptionInitialized: vi.fn(() => false),
+  getSubscriptionInstance: vi.fn(),
+  setSubscriptionUserId: vi.fn(),
+  refreshSubscription: vi.fn(),
+  restoreSubscription: vi.fn(),
+  onSubscriptionRefresh: vi.fn(() => vi.fn()),
+}));
+
 // Test component that uses the context
 const TestConsumer: React.FC = () => {
-  const {
-    products,
-    currentSubscription,
-    isLoading,
-    error,
-    initialize,
-    purchase,
-    restore,
-  } = useSubscriptionContext();
+  const { products, currentSubscription, isLoading, error } =
+    useSubscriptionContext();
 
   return (
     <div>
@@ -27,9 +30,6 @@ const TestConsumer: React.FC = () => {
       <div data-testid='subscription'>
         {currentSubscription?.isActive ? 'Active' : 'Inactive'}
       </div>
-      <button onClick={() => initialize('test-user')}>Initialize</button>
-      <button onClick={() => purchase('test-product')}>Purchase</button>
-      <button onClick={() => restore()}>Restore</button>
     </div>
   );
 };
@@ -43,7 +43,7 @@ describe('SubscriptionProvider', () => {
 
   it('renders children', () => {
     render(
-      <SubscriptionProvider apiKey='' entitlementId='premium'>
+      <SubscriptionProvider apiKey=''>
         <div data-testid='child'>Child Content</div>
       </SubscriptionProvider>
     );
@@ -53,7 +53,7 @@ describe('SubscriptionProvider', () => {
 
   it('provides context to children', () => {
     render(
-      <SubscriptionProvider apiKey='' entitlementId='premium'>
+      <SubscriptionProvider apiKey=''>
         <TestConsumer />
       </SubscriptionProvider>
     );
@@ -65,7 +65,6 @@ describe('SubscriptionProvider', () => {
   });
 
   it('throws error when useSubscriptionContext is used outside provider', () => {
-    // Suppress console.error for this test
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
     expect(() => {
@@ -75,81 +74,6 @@ describe('SubscriptionProvider', () => {
     );
 
     consoleSpy.mockRestore();
-  });
-
-  it('handles development mode without API key', async () => {
-    render(
-      <SubscriptionProvider apiKey='' entitlementId='premium'>
-        <TestConsumer />
-      </SubscriptionProvider>
-    );
-
-    // In development mode, should show warning but not error
-    await act(async () => {
-      screen.getByText('Initialize').click();
-    });
-
-    await waitFor(() => {
-      expect(screen.getByTestId('loading')).toHaveTextContent('Ready');
-    });
-  });
-
-  it('simulates purchase in development mode', async () => {
-    const onPurchaseSuccess = vi.fn();
-
-    render(
-      <SubscriptionProvider
-        apiKey=''
-        entitlementId='premium'
-        onPurchaseSuccess={onPurchaseSuccess}
-      >
-        <TestConsumer />
-      </SubscriptionProvider>
-    );
-
-    await act(async () => {
-      screen.getByText('Initialize').click();
-    });
-
-    await act(async () => {
-      screen.getByText('Purchase').click();
-    });
-
-    // Wait for the simulated delay
-    await waitFor(
-      () => {
-        expect(screen.getByTestId('subscription')).toHaveTextContent('Active');
-      },
-      { timeout: 3000 }
-    );
-
-    expect(onPurchaseSuccess).toHaveBeenCalledWith('test-product');
-  });
-
-  it('simulates restore in development mode', async () => {
-    render(
-      <SubscriptionProvider apiKey='' entitlementId='premium'>
-        <TestConsumer />
-      </SubscriptionProvider>
-    );
-
-    await act(async () => {
-      screen.getByText('Initialize').click();
-    });
-
-    await act(async () => {
-      screen.getByText('Restore').click();
-    });
-
-    // In dev mode, restore returns "No previous purchases found"
-    await waitFor(
-      () => {
-        expect(screen.getByTestId('error')).toHaveTextContent(
-          'No previous purchases found'
-        );
-      },
-      { timeout: 2000 }
-    );
   });
 });
 

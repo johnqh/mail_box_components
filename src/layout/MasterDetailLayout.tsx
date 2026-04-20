@@ -165,8 +165,8 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   detailClassName = '',
   detailTitleClassName = '',
   masterWidth = 320,
-  stickyMaster = true,
-  stickyTopOffset = 96,
+  // stickyMaster and stickyTopOffset are accepted for API compatibility but no longer used
+  // The flex column layout pins top/bottom content without sticky positioning
   desktopGap = 32,
   showMasterBackground = true,
   enableAnimations = true,
@@ -282,14 +282,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
   return (
     <div className='w-full flex-1 min-h-0 flex flex-col'>
-      {/* Sticky Top Content */}
+      {/* Top Content - desktop only (mobile renders topContent inside nav view) */}
       {topContent && (
-        <div
-          className='sticky z-10 flex-shrink-0'
-          style={{ top: `${stickyTopOffset}px` }}
-        >
-          {topContent}
-        </div>
+        <div className='z-10 flex-shrink-0 hidden md:block'>{topContent}</div>
       )}
 
       {/* Middle: Master-Detail area (fills remaining space) */}
@@ -365,11 +360,10 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         >
           {/* Desktop Master Panel (Sidebar) */}
           <aside
-            className={`flex-shrink-0 flex flex-col min-h-0${stickyMaster ? ' sticky' : ''}`}
+            className='flex-shrink-0 flex flex-col min-h-0'
             style={{
               width: `${masterWidth}px`,
               minWidth: `${masterWidth}px`,
-              ...(stickyMaster ? { top: `${stickyTopOffset}px` } : {}),
             }}
           >
             {masterTitle && (
@@ -413,9 +407,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         </div>
       </div>
 
-      {/* Sticky Bottom Content */}
+      {/* Bottom Content - desktop only (mobile renders bottomContent inline) */}
       {bottomContent && (
-        <div className='sticky bottom-0 z-10 flex-shrink-0'>
+        <div className='z-10 flex-shrink-0 hidden md:block'>
           {bottomContent}
         </div>
       )}

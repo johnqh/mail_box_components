@@ -103,7 +103,7 @@ describe('MasterDetailLayout', () => {
     expect(aside?.style.width).toBe('400px');
   });
 
-  it('makes master panel sticky by default', () => {
+  it('renders master panel without sticky positioning', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -111,11 +111,12 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    const stickyDiv = container.querySelector('.sticky');
-    expect(stickyDiv).toBeTruthy();
+    const aside = container.querySelector('aside');
+    expect(aside).toBeTruthy();
+    expect(aside?.classList.contains('sticky')).toBe(false);
   });
 
-  it('disables sticky master when stickyMaster is false', () => {
+  it('accepts stickyMaster prop without error', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -124,11 +125,11 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    const stickyDiv = container.querySelector('.sticky');
-    expect(stickyDiv).toBeFalsy();
+    const aside = container.querySelector('aside');
+    expect(aside).toBeTruthy();
   });
 
-  it('applies custom sticky top offset', () => {
+  it('accepts stickyTopOffset prop without error', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -137,8 +138,8 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    const stickyDiv = container.querySelector('.sticky');
-    expect(stickyDiv?.style.top).toBe('120px');
+    const aside = container.querySelector('aside');
+    expect(aside).toBeTruthy();
   });
 
   it('applies custom class names', () => {

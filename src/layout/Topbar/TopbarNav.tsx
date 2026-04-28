@@ -169,31 +169,31 @@ export const TopbarNav: React.FC<TopbarNavProps> = ({
           </div>
 
           {isOpen && (
-            <div
-              className={cn(
-                'absolute top-full left-0 mt-1 py-1',
-                'min-w-[200px] rounded-md shadow-lg',
-                colors.component.card.default.base,
-                colors.component.card.default.dark,
-                'border',
-                'z-50'
-              )}
-            >
-              {item.children?.map(child => (
-                <NavItemLink
-                  key={child.id}
-                  item={child}
-                  LinkComponent={LinkComponent}
-                  className={cn(
-                    'block px-4 py-2 text-sm',
-                    colors.component.button.ghost.base,
-                    colors.component.button.ghost.dark,
-                    child.active &&
-                      'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-                  )}
-                  onClick={() => setOpenDropdown(null)}
-                />
-              ))}
+            <div className='absolute top-full left-0 z-50 pt-1'>
+              <div
+                className={cn(
+                  'min-w-[200px] rounded-md shadow-lg py-1',
+                  colors.component.card.default.base,
+                  colors.component.card.default.dark,
+                  'border'
+                )}
+              >
+                {item.children?.map(child => (
+                  <NavItemLink
+                    key={child.id}
+                    item={child}
+                    LinkComponent={LinkComponent}
+                    className={cn(
+                      'block px-4 py-2 text-sm',
+                      colors.component.button.ghost.base,
+                      colors.component.button.ghost.dark,
+                      child.active &&
+                        'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                    )}
+                    onClick={() => setOpenDropdown(null)}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>

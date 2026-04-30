@@ -14,7 +14,7 @@
         "@radix-ui/react-slot": "^1.2.3",
         "@radix-ui/react-switch": "^1.2.6",
         "@radix-ui/react-tabs": "^1.1.13",
-        "@sudobility/design": "^1.1.29",
+        "@sudobility/design": "^1.1.30",
         "@sudobility/types": "^1.9.61",
         "@testing-library/dom": "^10.4.1",
         "@testing-library/jest-dom": "^6.9.1",
@@ -63,7 +63,7 @@
         "@radix-ui/react-slot": ">=1.0.0",
         "@radix-ui/react-switch": ">=1.0.0",
         "@radix-ui/react-tabs": ">=1.0.0",
-        "@sudobility/design": "^1.1.29",
+        "@sudobility/design": "^1.1.30",
         "@sudobility/types": "^1.9.61",
         "class-variance-authority": ">=0.7.0",
         "clsx": ">=2.0.0",
@@ -368,7 +368,7 @@
 
     "@rushstack/ts-command-line": ["@rushstack/ts-command-line@5.1.4", "", { "dependencies": { "@rushstack/terminal": "0.19.4", "@types/argparse": "1.0.38", "argparse": "~1.0.9", "string-argv": "~0.3.1" } }, "sha512-H0I6VdJ6sOUbktDFpP2VW5N29w8v4hRoNZOQz02vtEi6ZTYL1Ju8u+TcFiFawUDrUsx/5MQTUhd79uwZZVwVlA=="],
 
-    "@sudobility/design": ["@sudobility/design@1.1.29", "", { "peerDependencies": { "clsx": ">=2.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-M7crdNWhdjetVE++eU/ZGYpPrS3wG7/kEQBbxj5gHBtWQK2htyZuSIP+TvSGOh2pylXImciFxmB23rI0/NssoQ=="],
+    "@sudobility/design": ["@sudobility/design@1.1.30", "", { "peerDependencies": { "clsx": ">=2.0.0", "tailwind-merge": ">=2.0.0" } }, "sha512-yENSXWuMa9fxGGtvZUQFc94a2Iz/6R8qH4k4FU3qdX3eJYgATFWH13I3xNzM/cyt8Pm8THwiSNCnKjV0092NVg=="],
 
     "@sudobility/types": ["@sudobility/types@1.9.61", "", {}, "sha512-SODGpstB/iKfK3H/4BvJx/FBcc1h3gutUjGotyxN19VnOfWyzaDoEmW7eyoxOAYhZyXMXagSiii+NIEZvuxKog=="],
 

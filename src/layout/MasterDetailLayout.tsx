@@ -355,7 +355,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
         {/* Desktop Layout */}
         <div
-          className={`hidden md:flex flex-1 min-h-0 ${gapClass}`}
+          className={`hidden md:flex flex-1 min-h-0 pt-4 ${gapClass}`}
           style={{ width: '100%' }}
         >
           {/* Desktop Master Panel (Sidebar) */}
@@ -367,13 +367,15 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             }}
           >
             {masterTitle && (
-              <h2 className={`${textVariants.heading.h5()} mb-4 flex-shrink-0`}>
+              <h2
+                className={`${textVariants.heading.h5()} mb-4 pl-4 flex-shrink-0`}
+              >
                 {masterTitle}
               </h2>
             )}
             {masterSubtitle && (
               <p
-                className={`${textVariants.body.sm()} mb-6 break-all flex-shrink-0`}
+                className={`${textVariants.body.sm()} mb-6 pl-4 break-all flex-shrink-0`}
               >
                 {masterSubtitle}
               </p>
@@ -387,19 +389,19 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
           {/* Desktop Detail Panel (Main Content) */}
           <div className='flex-1 min-w-0 flex flex-col min-h-0'>
+            {detailTitle && (
+              <h1
+                className={`${textVariants.heading.h1()} mb-4 pl-4 flex-shrink-0 ${detailTitleClassName}`}
+              >
+                {detailTitle}
+              </h1>
+            )}
             <div
               ref={contentRef}
               className={`${ui.background.surface} rounded-lg border ${ui.border.default} p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
               style={detailPanelStyle}
             >
               <div className={contentWrapperClass} style={contentWrapperStyle}>
-                {detailTitle && (
-                  <h1
-                    className={`${textVariants.heading.h1()} mb-6 ${detailTitleClassName}`}
-                  >
-                    {detailTitle}
-                  </h1>
-                )}
                 {detailContent}
               </div>
             </div>

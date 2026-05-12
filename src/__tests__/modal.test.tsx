@@ -72,6 +72,31 @@ describe('Modal Component', () => {
     }
   });
 
+  it('calls onClose when clicking the container area outside modal content', () => {
+    const onClose = vi.fn();
+    render(
+      <Modal isOpen={true} onClose={onClose}>
+        Content
+      </Modal>
+    );
+
+    const dialog = screen.getByRole('dialog');
+    fireEvent.click(dialog);
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not close when clicking inside modal content', () => {
+    const onClose = vi.fn();
+    render(
+      <Modal isOpen={true} onClose={onClose}>
+        <button>Inside</button>
+      </Modal>
+    );
+
+    fireEvent.click(screen.getByText('Inside'));
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
   it('does not close when overlay click is disabled', () => {
     const onClose = vi.fn();
     render(

@@ -108,6 +108,7 @@ export const Modal: React.FC<ModalProps> = ({
         aria-modal='true'
         aria-labelledby={ariaLabelledBy}
         aria-describedby={ariaDescribedBy}
+        onClick={handleOverlayClick}
       >
         <div
           ref={modalRef}

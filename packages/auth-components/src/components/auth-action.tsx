@@ -11,7 +11,7 @@ import { cn } from '../lib/cn';
 export function AuthAction({
   className,
   loginButtonClassName,
-  loginButtonVariant = 'primary',
+  loginButtonVariant: _loginButtonVariant = 'primary',
   size = 'md',
   loginButtonContent,
   avatarSize = 32,
@@ -49,8 +49,9 @@ export function AuthAction({
     return (
       <div className={cn('flex items-center', className)}>
         <Button
-          variant={loginButtonVariant}
+          variant='primary'
           size={buttonSizeMap[size]}
+          animation='none'
           onClick={handleLoginClick}
           className={loginButtonClassName}
         >

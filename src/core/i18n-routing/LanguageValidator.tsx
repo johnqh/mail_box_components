@@ -6,6 +6,7 @@
 import { useEffect } from 'react';
 import { Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { detectLanguage, stripLangPrefix } from './detectLanguage';
 
 export interface LanguageValidatorProps {
   /**
@@ -62,26 +63,16 @@ export function LanguageValidator({
   useEffect(() => {
     // Validate language parameter
     if (!lang || !isLanguageSupported(lang)) {
-      // Detect best language: stored preference → browser language → default
-      let detectedLang = defaultLanguage;
-      try {
-        const stored = localStorage.getItem(storageKey);
-        if (stored && isLanguageSupported(stored)) {
-          detectedLang = stored;
-        }
-      } catch {
-        // localStorage not available
-      }
-      if (detectedLang === defaultLanguage) {
-        const browserLang = navigator.language.split('-')[0];
-        if (isLanguageSupported(browserLang)) {
-          detectedLang = browserLang;
-        }
-      }
+      const detectedLang = detectLanguage(
+        isLanguageSupported,
+        defaultLanguage,
+        storageKey
+      );
 
-      // Preserve the full path + query string under the correct language prefix.
-      // e.g. /daily?foo=1 → /en/daily?foo=1
-      const target = `/${detectedLang}${location.pathname}${location.search}${location.hash}`;
+      // Strip any existing language prefix, then prepend the detected one.
+      const pathWithoutLang = stripLangPrefix(location.pathname);
+      const cleanPath = pathWithoutLang === '/' ? '' : pathWithoutLang;
+      const target = `/${detectedLang}${cleanPath}${location.search}${location.hash}`;
       navigate(target, { replace: true });
       return;
     }

@@ -40,6 +40,11 @@ export type { LocalizedLinkProps } from './LocalizedLink';
 export { LanguageValidator } from './LanguageValidator';
 export type { LanguageValidatorProps } from './LanguageValidator';
 
+export { LanguageRedirect } from './LanguageRedirect';
+export type { LanguageRedirectProps } from './LanguageRedirect';
+
+export { detectLanguage, stripLangPrefix } from './detectLanguage';
+
 // Re-export navigation hook and utilities from hooks
 export {
   useLocalizedNavigate,

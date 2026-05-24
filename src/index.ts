@@ -43,6 +43,7 @@ export * from './ui/section-badge';
 export * from './ui/section-header';
 export * from './ui/settings-list';
 export * from './ui/skip-navigation';
+export * from './ui/select';
 export * from './ui/sort-dropdown';
 export * from './ui/version-badge';
 export * from './ui/visually-hidden';

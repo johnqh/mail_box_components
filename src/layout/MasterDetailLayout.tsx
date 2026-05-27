@@ -167,7 +167,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   masterWidth = 320,
   // stickyMaster and stickyTopOffset are accepted for API compatibility but no longer used
   // The flex column layout pins top/bottom content without sticky positioning
-  desktopGap = 32,
+  desktopGap: _desktopGap = 32,
   showMasterBackground = true,
   enableAnimations = true,
   animationDuration = 300,
@@ -175,7 +175,6 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   animationRef,
 }) => {
   const { containerClass } = useLayout();
-  const gapClass = `gap-${Math.round(desktopGap / 4)}` || 'gap-8';
 
   // Extract first part of title before dash for back button
   const extractFirstPart = (text: string | undefined) => {
@@ -355,7 +354,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
         {/* Desktop Layout */}
         <div
-          className={`hidden md:flex flex-1 min-h-0 pt-4 ${gapClass}`}
+          className={`hidden md:flex flex-1 min-h-0`}
           style={{ width: '100%' }}
         >
           {/* Desktop Master Panel (Sidebar) */}
@@ -381,14 +380,14 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
               </p>
             )}
             <div
-              className={`${ui.background.surface} rounded-lg border ${ui.border.default} p-4 flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
+              className={`border-r ${ui.border.default} flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
             >
               {masterContent}
             </div>
           </aside>
 
           {/* Desktop Detail Panel (Main Content) */}
-          <div className='flex-1 min-w-0 flex flex-col min-h-0'>
+          <div className='flex-1 min-w-0 flex flex-col min-h-0 pl-4'>
             {detailTitle && (
               <h1
                 className={`${textVariants.heading.h1()} mb-4 pl-4 flex-shrink-0 ${detailTitleClassName}`}
@@ -398,7 +397,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             )}
             <div
               ref={contentRef}
-              className={`${ui.background.surface} rounded-lg border ${ui.border.default} p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+              className={`flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
               style={detailPanelStyle}
             >
               <div className={contentWrapperClass} style={contentWrapperStyle}>

@@ -25,6 +25,8 @@ export interface SelectProps extends SelectPrimitive.SelectProps {
   trackingLabel?: string;
   /** Component name for tracking context */
   componentName?: string;
+  /** Select compound component children (SelectTrigger, SelectContent, etc.) */
+  children?: React.ReactNode;
 }
 
 const Select: React.FC<SelectProps> = ({

@@ -5,6 +5,7 @@ import {
   useState,
   useCallback,
   useMemo,
+  useRef,
 } from 'react';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import type { Auth, User } from 'firebase/auth';
@@ -62,6 +63,7 @@ export function AuthProvider({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const explicitSignOutRef = useRef(false);
 
   // Error message resolver - defined before useEffect that uses it
   const getErrorMessage = useCallback(
@@ -96,6 +98,7 @@ export function AuthProvider({
       authInstance,
       async firebaseUser => {
         if (firebaseUser) {
+          explicitSignOutRef.current = false;
           const authUser = mapFirebaseUser(firebaseUser);
           setUser(authUser);
           setLoading(false);
@@ -105,8 +108,11 @@ export function AuthProvider({
             setIsModalOpen(false);
             callbacks?.onSignIn?.(authUser);
           }
-        } else if (providerConfig.enableAnonymous) {
-          // No user - sign in anonymously if enabled
+        } else if (
+          providerConfig.enableAnonymous &&
+          !explicitSignOutRef.current
+        ) {
+          // No user - sign in anonymously if enabled (skip after explicit sign out)
           try {
             await firebaseSignInAnonymously(authInstance);
           } catch (err) {
@@ -262,11 +268,13 @@ export function AuthProvider({
     if (!auth) return;
 
     setError(null);
+    explicitSignOutRef.current = true;
 
     try {
       await firebaseSignOut(auth);
       callbacks?.onSignOut?.();
     } catch (err) {
+      explicitSignOutRef.current = false;
       const firebaseError = err as { code?: string; message?: string };
       const errorMessage = getErrorMessage(firebaseError.code || 'default');
       setError(errorMessage);

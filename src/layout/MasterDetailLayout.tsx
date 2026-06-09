@@ -357,14 +357,34 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           )}
         </div>
 
-        {/* Desktop Layout */}
+        {/* Desktop Layout — Detail rendered first in DOM for SEO, visually ordered via CSS */}
         <div
           className={`hidden md:flex flex-1 min-h-0`}
           style={{ width: '100%' }}
         >
+          {/* Desktop Detail Panel (Main Content) — first in DOM for search engine priority */}
+          <div className='flex-1 min-w-0 flex flex-col min-h-0 pl-4 order-2'>
+            {detailTitle && (
+              <h1
+                className={`${textVariants.heading.h1()} mb-4 pl-4 flex-shrink-0 ${detailTitleClassName}`}
+              >
+                {detailTitle}
+              </h1>
+            )}
+            <div
+              ref={contentRef}
+              className={`flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+              style={detailPanelStyle}
+            >
+              <div className={contentWrapperClass} style={contentWrapperStyle}>
+                {detailContent}
+              </div>
+            </div>
+          </div>
+
           {/* Desktop Master Panel (Sidebar) — hidden from search engines when detail is selected */}
           <aside
-            className='flex-shrink-0 flex flex-col min-h-0'
+            className='flex-shrink-0 flex flex-col min-h-0 order-1'
             style={{
               width: `${masterWidth}px`,
               minWidth: `${masterWidth}px`,
@@ -391,26 +411,6 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
               {masterContent}
             </div>
           </aside>
-
-          {/* Desktop Detail Panel (Main Content) */}
-          <div className='flex-1 min-w-0 flex flex-col min-h-0 pl-4'>
-            {detailTitle && (
-              <h1
-                className={`${textVariants.heading.h1()} mb-4 pl-4 flex-shrink-0 ${detailTitleClassName}`}
-              >
-                {detailTitle}
-              </h1>
-            )}
-            <div
-              ref={contentRef}
-              className={`flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
-              style={detailPanelStyle}
-            >
-              <div className={contentWrapperClass} style={contentWrapperStyle}>
-                {detailContent}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

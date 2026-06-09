@@ -279,6 +279,10 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
       }
     : {};
 
+  // When a detail item is selected, hide master list from search engines
+  // so Google indexes the detail content, not the full navigation list
+  const hasDetailSelection = !!detailTitle;
+
   return (
     <div className='w-full flex-1 min-h-0 flex flex-col'>
       {/* Top Content - desktop only (mobile renders topContent inside nav view) */}
@@ -293,6 +297,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           className={`md:hidden ${
             mobileView === 'navigation' ? 'block' : 'hidden'
           } flex-1 overflow-y-auto`}
+          aria-hidden={hasDetailSelection ? true : undefined}
         >
           {topContent && <div className='flex-shrink-0'>{topContent}</div>}
           <div
@@ -357,13 +362,14 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           className={`hidden md:flex flex-1 min-h-0`}
           style={{ width: '100%' }}
         >
-          {/* Desktop Master Panel (Sidebar) */}
+          {/* Desktop Master Panel (Sidebar) — hidden from search engines when detail is selected */}
           <aside
             className='flex-shrink-0 flex flex-col min-h-0'
             style={{
               width: `${masterWidth}px`,
               minWidth: `${masterWidth}px`,
             }}
+            aria-hidden={hasDetailSelection ? true : undefined}
           >
             {masterTitle && (
               <h2

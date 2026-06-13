@@ -292,72 +292,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
       {/* Middle: Master-Detail area (fills remaining space) */}
       <div className='flex-1 min-h-0 flex flex-col'>
-        {/* Mobile Navigation View - Full Width */}
-        <div
-          className={`md:hidden ${
-            mobileView === 'navigation' ? 'block' : 'hidden'
-          } flex-1 overflow-y-auto`}
-          aria-hidden={hasDetailSelection ? true : undefined}
-        >
-          {topContent && <div className='flex-shrink-0'>{topContent}</div>}
-          <div
-            className={
-              showMasterBackground ? `${ui.background.surface} p-6` : 'p-6'
-            }
-          >
-            {masterTitle && (
-              <div className={containerClass}>
-                <h2 className={`${textVariants.heading.h4()} mb-4`}>
-                  {masterTitle}
-                </h2>
-                {masterSubtitle && (
-                  <p className={`${textVariants.body.sm()} mb-6 break-all`}>
-                    {masterSubtitle}
-                  </p>
-                )}
-              </div>
-            )}
-            <div className={masterClassName}>{masterContent}</div>
-          </div>
-        </div>
-
-        {/* Mobile Content View */}
-        <div
-          className={`md:hidden ${
-            mobileView === 'content' ? 'flex flex-col flex-1 min-h-0' : 'hidden'
-          } ${containerClass} py-8`}
-        >
-          {/* Mobile back button */}
-          {mobileView === 'content' && onBackToNavigation && (
-            <button
-              onClick={onBackToNavigation}
-              className={`mb-4 px-4 py-2 border ${ui.border.default} rounded-md text-sm font-medium ${ui.background.surface} hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex-shrink-0 ${textVariants.body.sm()}`}
-            >
-              ← {buttonText}
-            </button>
-          )}
-          <div
-            ref={contentRef}
-            className={`${ui.background.surface} rounded-lg border ${ui.border.default} p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
-            style={detailPanelStyle}
-          >
-            <div className={contentWrapperClass} style={contentWrapperStyle}>
-              {detailTitle && (
-                <h1
-                  className={`${textVariants.heading.h1()} mb-6 ${detailTitleClassName}`}
-                >
-                  {detailTitle}
-                </h1>
-              )}
-              {detailContent}
-            </div>
-          </div>
-          {bottomContent && (
-            <div className='flex-shrink-0'>{bottomContent}</div>
-          )}
-        </div>
-
-        {/* Desktop Layout — Detail rendered first in DOM for SEO, visually ordered via CSS */}
+        {/* Desktop Layout — rendered FIRST in the DOM (before the mobile views) so
+            the detail-first content leads the HTML source for search engines.
+            Visual layout (master left, detail right) is restored via CSS `order`. */}
         <div
           className={`hidden md:flex flex-1 min-h-0`}
           style={{ width: '100%' }}
@@ -411,6 +348,70 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
               {masterContent}
             </div>
           </aside>
+        </div>
+
+        {/* Mobile Navigation View - Full Width */}
+        <div
+          className={`md:hidden ${
+            mobileView === 'navigation' ? 'block' : 'hidden'
+          } flex-1 overflow-y-auto`}
+          aria-hidden={hasDetailSelection ? true : undefined}
+        >
+          {topContent && <div className='flex-shrink-0'>{topContent}</div>}
+          <div
+            className={
+              showMasterBackground ? `${ui.background.surface} p-6` : 'p-6'
+            }
+          >
+            {masterTitle && (
+              <div className={containerClass}>
+                <h2 className={`${textVariants.heading.h4()} mb-4`}>
+                  {masterTitle}
+                </h2>
+                {masterSubtitle && (
+                  <p className={`${textVariants.body.sm()} mb-6 break-all`}>
+                    {masterSubtitle}
+                  </p>
+                )}
+              </div>
+            )}
+            <div className={masterClassName}>{masterContent}</div>
+          </div>
+        </div>
+
+        {/* Mobile Content View */}
+        <div
+          className={`md:hidden ${
+            mobileView === 'content' ? 'flex flex-col flex-1 min-h-0' : 'hidden'
+          } ${containerClass} py-8`}
+        >
+          {/* Mobile back button */}
+          {mobileView === 'content' && onBackToNavigation && (
+            <button
+              onClick={onBackToNavigation}
+              className={`mb-4 px-4 py-2 border ${ui.border.default} rounded-md text-sm font-medium ${ui.background.surface} hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex-shrink-0 ${textVariants.body.sm()}`}
+            >
+              ← {buttonText}
+            </button>
+          )}
+          <div
+            className={`${ui.background.surface} rounded-lg border ${ui.border.default} p-8 flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+            style={detailPanelStyle}
+          >
+            <div className={contentWrapperClass} style={contentWrapperStyle}>
+              {detailTitle && (
+                <h1
+                  className={`${textVariants.heading.h1()} mb-6 ${detailTitleClassName}`}
+                >
+                  {detailTitle}
+                </h1>
+              )}
+              {detailContent}
+            </div>
+          </div>
+          {bottomContent && (
+            <div className='flex-shrink-0'>{bottomContent}</div>
+          )}
         </div>
       </div>
 

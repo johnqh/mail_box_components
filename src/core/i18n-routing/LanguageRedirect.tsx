@@ -33,7 +33,12 @@ export function LanguageRedirect({
   const lang = detectLanguage(isLanguageSupported, defaultLanguage, storageKey);
 
   const pathWithoutLang = stripLangPrefix(location.pathname);
-  const cleanPath = pathWithoutLang === '/' ? '' : pathWithoutLang;
+  // No trailing slash (source of truth): the language root collapses to '' so
+  // the target is /en (not /en/), and any trailing slash on a sub-path is
+  // stripped to match the canonical URL / hreflang / sitemap convention. Query
+  // strings and hash fragments are appended after.
+  const cleanPath =
+    pathWithoutLang === '/' ? '' : pathWithoutLang.replace(/\/+$/, '');
   const to = `/${lang}${cleanPath}${location.search}${location.hash}`;
 
   return <Navigate to={to} replace />;

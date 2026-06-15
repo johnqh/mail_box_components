@@ -70,8 +70,13 @@ export function LanguageValidator({
       );
 
       // Strip any existing language prefix, then prepend the detected one.
+      // No trailing slash (source of truth): the language root collapses to ''
+      // (target /en, not /en/) and any trailing slash on a sub-path is stripped
+      // to match the canonical URL / hreflang / sitemap convention; query
+      // strings and hash fragments are appended after.
       const pathWithoutLang = stripLangPrefix(location.pathname);
-      const cleanPath = pathWithoutLang === '/' ? '' : pathWithoutLang;
+      const cleanPath =
+        pathWithoutLang === '/' ? '' : pathWithoutLang.replace(/\/+$/, '');
       const target = `/${detectedLang}${cleanPath}${location.search}${location.hash}`;
       navigate(target, { replace: true });
       return;

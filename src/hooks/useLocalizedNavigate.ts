@@ -7,11 +7,27 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 /**
+ * Strip any trailing slash from the path portion, so navigated URLs match the
+ * canonical URL / hreflang / sitemap convention (no trailing slash — source of
+ * truth). Query strings (`?...`) and hash fragments (`#...`) are preserved; the
+ * root "/" is never reduced away.
+ */
+function stripTrailingSlash(path: string): string {
+  const splitIndex = path.search(/[?#]/);
+  const pathname = splitIndex === -1 ? path : path.slice(0, splitIndex);
+  const suffix = splitIndex === -1 ? '' : path.slice(splitIndex);
+  const normalized =
+    pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+  return `${normalized}${suffix}`;
+}
+
+/**
  * Add language prefix to a path
  */
 export function addLanguageToPath(path: string, lang: string): string {
   const cleanPath = removeLanguageFromPath(path);
-  return `/${lang}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+  const localized = `/${lang}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+  return stripTrailingSlash(localized);
 }
 
 /**

@@ -31,6 +31,26 @@ const defaultIsLanguageSupported = (lang: string): boolean => {
 };
 
 /**
+ * Strip any trailing slash from the path portion of an internal route, so
+ * rendered links match the canonical URL / hreflang / sitemap convention
+ * (no trailing slash — source of truth, e.g. `/en`, `/en/techniques/x-wing`).
+ * Without this, a link to `/en/techniques/` resolves to a 200 that
+ * 301-redirects to `/en/techniques`, wasting crawl budget and splitting signals.
+ *
+ * Query strings (`?...`) and hash fragments (`#...`) are preserved; the root
+ * "/" is never reduced away; absolute/external URLs are left as-is.
+ */
+const stripTrailingSlash = (path: string): string => {
+  if (!path.startsWith('/')) return path;
+  const splitIndex = path.search(/[?#]/);
+  const pathname = splitIndex === -1 ? path : path.slice(0, splitIndex);
+  const suffix = splitIndex === -1 ? '' : path.slice(splitIndex);
+  const normalized =
+    pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+  return `${normalized}${suffix}`;
+};
+
+/**
  * A Link component that automatically adds the current language prefix to paths.
  *
  * @example
@@ -59,13 +79,14 @@ export function LocalizedLink({
   // Use provided language or fall back to current
   const targetLang = language || currentLang;
 
-  // Add language prefix if not already present
+  // Add language prefix if not already present, then strip any trailing slash
+  // so the rendered href matches the canonical URL exactly (no trailing slash).
   const localizedTo = to.startsWith(`/${targetLang}`)
     ? to
     : `/${targetLang}${to.startsWith('/') ? to : `/${to}`}`;
 
   return (
-    <Link to={localizedTo} {...props}>
+    <Link to={stripTrailingSlash(localizedTo)} {...props}>
       {children}
     </Link>
   );

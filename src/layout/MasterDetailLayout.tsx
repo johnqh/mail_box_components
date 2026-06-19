@@ -313,7 +313,10 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
               className={`flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
               style={detailPanelStyle}
             >
-              <div className={contentWrapperClass} style={contentWrapperStyle}>
+              <div
+                className={`h-full ${contentWrapperClass}`}
+                style={contentWrapperStyle}
+              >
                 {detailContent}
               </div>
             </div>

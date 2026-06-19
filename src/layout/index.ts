@@ -48,6 +48,9 @@ export {
   type MasterListItemProps,
 } from './MasterDetailLayout';
 
+// Content layout (fixed header/footer + scrollable content)
+export { ContentLayout, type ContentLayoutProps } from './ContentLayout';
+
 // Screen container
 export { ScreenContainer, type ScreenContainerProps } from './ScreenContainer';
 

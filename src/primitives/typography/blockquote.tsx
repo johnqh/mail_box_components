@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { ui } from '@sudobility/design';
 
 export interface BlockquoteProps {
   /** Quote content */
@@ -57,10 +56,9 @@ export const Blockquote: React.FC<BlockquoteProps> = ({
 
   // Variant configurations
   const variantClasses = {
-    default: `border-l-4 border-gray-300 dark:border-gray-600 ${ui.background.subtle}`,
-    bordered: `border border-gray-300 dark:border-gray-600 ${ui.background.surface}`,
-    accent:
-      'border-l-4 border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20',
+    default: 'border-l-4 border-border bg-muted',
+    bordered: 'border border-border bg-card',
+    accent: 'border-l-4 border-primary bg-accent',
   };
 
   return (
@@ -72,14 +70,9 @@ export const Blockquote: React.FC<BlockquoteProps> = ({
         className
       )}
     >
-      <p className='text-gray-800 dark:text-gray-200 italic'>{children}</p>
+      <p className='text-foreground italic'>{children}</p>
       {cite && (
-        <footer
-          className={cn(
-            'mt-2 text-gray-600 dark:text-gray-400',
-            citeSize[size]
-          )}
-        >
+        <footer className={cn('mt-2 text-muted-foreground', citeSize[size])}>
           — <cite className='not-italic font-medium'>{cite}</cite>
         </footer>
       )}

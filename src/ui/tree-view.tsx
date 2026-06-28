@@ -111,8 +111,8 @@ export const TreeView: React.FC<TreeViewProps> = ({
         <div
           className={cn(
             'flex items-center gap-2 px-2 py-1.5 rounded-md transition-colors',
-            !node.disabled && 'hover:bg-gray-100 dark:hover:bg-gray-800',
-            isSelected && 'bg-blue-50 dark:bg-blue-900/30',
+            !node.disabled && 'hover:bg-muted',
+            isSelected && 'bg-accent',
             node.disabled && 'opacity-50 cursor-not-allowed',
             !node.disabled && 'cursor-pointer'
           )}
@@ -126,7 +126,7 @@ export const TreeView: React.FC<TreeViewProps> = ({
                 e.stopPropagation();
                 toggleExpand(node.id);
               }}
-              className='flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors'
+              className='flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-muted rounded transition-colors'
             >
               <svg
                 className={cn(
@@ -151,7 +151,7 @@ export const TreeView: React.FC<TreeViewProps> = ({
 
           {/* Icon */}
           {node.icon && (
-            <span className='flex-shrink-0 w-4 h-4 text-gray-600 dark:text-gray-400'>
+            <span className='flex-shrink-0 w-4 h-4 text-muted-foreground'>
               {node.icon}
             </span>
           )}
@@ -160,9 +160,7 @@ export const TreeView: React.FC<TreeViewProps> = ({
           <span
             className={cn(
               'flex-1 text-sm',
-              isSelected
-                ? 'text-blue-700 dark:text-blue-300 font-medium'
-                : 'text-gray-900 dark:text-white'
+              isSelected ? 'text-primary font-medium' : 'text-foreground'
             )}
           >
             {node.label}
@@ -171,12 +169,7 @@ export const TreeView: React.FC<TreeViewProps> = ({
 
         {/* Children */}
         {hasChildren && isExpanded && (
-          <div
-            className={cn(
-              showLines &&
-                'border-l-2 border-gray-200 dark:border-gray-700 ml-2'
-            )}
-          >
+          <div className={cn(showLines && 'border-l-2 border-border ml-2')}>
             {node.children!.map(child => renderNode(child, level + 1))}
           </div>
         )}

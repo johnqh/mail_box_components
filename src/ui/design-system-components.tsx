@@ -23,7 +23,7 @@ const statCardVariants = cva(
         none: '',
         up: `border-l-4 ${getStatusIndicatorColor('success').replace('bg-', 'border-')}`,
         down: `border-l-4 ${getStatusIndicatorColor('error').replace('bg-', 'border-')}`,
-        neutral: 'border-l-4 border-gray-400',
+        neutral: 'border-l-4 border-muted-foreground',
       },
     },
     defaultVariants: {

@@ -71,16 +71,15 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
   const offset = circumference - (progress / 100) * circumference;
 
   // Color variants aligned with design system palette (colors.raw.*)
-  // SVG stroke classes don't have DS token equivalents; kept as Tailwind stroke-* classes
+  // SVG stroke classes mapped to semantic theme tokens
   const variantColors = {
-    primary: 'stroke-blue-600 dark:stroke-blue-500',
-    success: 'stroke-green-600 dark:stroke-green-500',
-    warning: 'stroke-yellow-600 dark:stroke-yellow-500',
-    danger: 'stroke-red-600 dark:stroke-red-500',
+    primary: 'stroke-primary',
+    success: 'stroke-success',
+    warning: 'stroke-warning',
+    danger: 'stroke-destructive',
   };
 
-  // Track color - stroke-* classes have no direct DS token equivalent
-  const trackColorClass = trackColor || 'stroke-gray-200 dark:stroke-gray-700';
+  const trackColorClass = trackColor || 'stroke-muted';
 
   return (
     <div className={cn('inline-flex items-center justify-center', className)}>

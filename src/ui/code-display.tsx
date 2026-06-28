@@ -53,11 +53,10 @@ export const CodeDisplay: React.FC<CodeDisplayProps> = ({
   const alertColors = colors.component.alert;
   const variantClasses = {
     primary: `${alertColors.info.base} ${alertColors.info.dark}`,
-    secondary:
-      'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30',
+    secondary: 'text-primary bg-primary/10',
     success: `${alertColors.success.base} ${alertColors.success.dark}`,
     warning: `${alertColors.warning.base} ${alertColors.warning.dark}`,
-    neutral: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100',
+    neutral: 'bg-muted text-foreground',
   };
 
   // Size configurations

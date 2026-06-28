@@ -45,20 +45,13 @@ export const CTASection: React.FC<CTASectionProps> = ({
 
     // Predefined gradient classes that work with Tailwind JIT
     const gradientMap: Record<string, string> = {
-      'blue-600-purple-600':
-        'bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700',
-      'orange-900-red-900':
-        'bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-700 dark:to-red-700',
-      'green-600-blue-600':
-        'bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-700 dark:to-blue-700',
-      'purple-600-pink-600':
-        'bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-700 dark:to-pink-700',
+      'blue-600-purple-600': 'bg-gradient-to-r from-primary to-accent',
+      'orange-900-red-900': 'bg-gradient-to-r from-warning to-destructive',
+      'green-600-blue-600': 'bg-gradient-to-r from-success to-primary',
+      'purple-600-pink-600': 'bg-gradient-to-r from-accent to-primary',
     };
 
-    return (
-      gradientMap[key] ||
-      'bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700'
-    );
+    return gradientMap[key] || 'bg-gradient-to-r from-primary to-accent';
   };
 
   const gradientClass = getGradientClass();

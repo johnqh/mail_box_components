@@ -65,10 +65,7 @@ export const ScreenContainer: React.FC<ScreenContainerProps> = ({
   return (
     <LayoutProvider mode={layoutMode}>
       <div
-        className={cn(
-          'min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col',
-          className
-        )}
+        className={cn('min-h-screen bg-background flex flex-col', className)}
       >
         {/* Header containing topbar and breadcrumbs */}
         {hasHeader && (

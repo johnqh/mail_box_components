@@ -47,10 +47,10 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer
       className={cn(
-        'bg-gray-900 text-white transition-all duration-300 ease-in-out',
+        'bg-muted text-foreground transition-all duration-300 ease-in-out',
         isCompact ? 'py-4' : 'py-12',
         sticky
-          ? 'sticky bottom-0 z-50 border-t border-gray-700'
+          ? 'sticky bottom-0 z-50 border-t border-border'
           : 'relative z-10',
         'pointer-events-auto',
         className

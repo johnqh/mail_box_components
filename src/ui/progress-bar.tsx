@@ -71,10 +71,10 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   const variantClasses = {
     primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
     success: `${colors.component.button.success.base} ${colors.component.button.success.dark}`,
-    warning: 'bg-yellow-600 dark:bg-yellow-500',
+    warning: 'bg-warning',
     danger: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark}`,
-    purple: 'bg-purple-600 dark:bg-purple-500',
-    gray: 'bg-gray-600 dark:bg-gray-500',
+    purple: 'bg-accent',
+    gray: 'bg-muted-foreground',
   };
 
   // Size configurations
@@ -89,7 +89,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       <div className='flex items-center gap-3'>
         <div
           className={cn(
-            'flex-1 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden',
+            'flex-1 bg-muted rounded-full overflow-hidden',
             sizeClasses[size]
           )}
         >
@@ -117,7 +117,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           </div>
         </div>
         {showLabel && labelPosition === 'outside' && (
-          <span className='text-sm font-medium text-gray-600 dark:text-gray-400 whitespace-nowrap'>
+          <span className='text-sm font-medium text-muted-foreground whitespace-nowrap'>
             {displayLabel}
           </span>
         )}

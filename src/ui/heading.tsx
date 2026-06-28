@@ -89,8 +89,8 @@ export const Heading: React.FC<HeadingProps> = ({
   // so we only need explicit classes for muted and primary
   const colorOverrides: Record<string, string> = {
     default: '',
-    muted: 'text-gray-700 dark:text-gray-300',
-    primary: 'text-blue-600 dark:text-blue-400',
+    muted: 'text-muted-foreground',
+    primary: 'text-primary',
   };
 
   // Alignment from design tokens

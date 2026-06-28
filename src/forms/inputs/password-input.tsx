@@ -144,7 +144,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
         color: getStatusIndicatorColor('error'),
       },
       1: { score: 1, label: 'Weak', color: getStatusIndicatorColor('warning') },
-      2: { score: 2, label: 'Fair', color: 'bg-yellow-500' },
+      2: { score: 2, label: 'Fair', color: 'bg-warning' },
       3: { score: 3, label: 'Good', color: getStatusIndicatorColor('info') },
       4: {
         score: 4,
@@ -240,8 +240,8 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
           disabled={disabled}
           className={cn(
             'absolute right-2 top-1/2 -translate-y-1/2',
-            'p-1.5 text-gray-600 dark:text-gray-400',
-            'hover:text-gray-900 dark:hover:text-white',
+            'p-1.5 text-muted-foreground',
+            'hover:text-foreground',
             'transition-colors',
             'disabled:cursor-not-allowed'
           )}
@@ -302,9 +302,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
                 key={level}
                 className={cn(
                   'h-1.5 flex-1 rounded-full transition-colors',
-                  level <= strength.score
-                    ? strength.color
-                    : 'bg-gray-200 dark:bg-gray-700'
+                  level <= strength.score ? strength.color : 'bg-muted'
                 )}
               />
             ))}

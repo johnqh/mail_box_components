@@ -53,10 +53,10 @@ export const Gauge: React.FC<GaugeProps> = ({
   const offset = circumference - (percentage / 100) * circumference;
 
   const colors = {
-    primary: 'stroke-blue-600 dark:stroke-blue-500',
-    success: 'stroke-green-600 dark:stroke-green-500',
-    warning: 'stroke-yellow-600 dark:stroke-yellow-500',
-    danger: 'stroke-red-600 dark:stroke-red-500',
+    primary: 'stroke-primary',
+    success: 'stroke-success',
+    warning: 'stroke-warning',
+    danger: 'stroke-destructive',
   };
 
   return (
@@ -65,7 +65,7 @@ export const Gauge: React.FC<GaugeProps> = ({
         <path
           d={`M ${strokeWidth / 2} ${center} A ${radius} ${radius} 0 0 1 ${size - strokeWidth / 2} ${center}`}
           fill='none'
-          className='stroke-gray-200 dark:stroke-gray-700'
+          className='stroke-muted'
           strokeWidth={strokeWidth}
           strokeLinecap='round'
         />
@@ -81,13 +81,11 @@ export const Gauge: React.FC<GaugeProps> = ({
       </svg>
       {showValue && (
         <div className='text-center -mt-8'>
-          <div className='text-2xl font-bold text-gray-900 dark:text-white'>
+          <div className='text-2xl font-bold text-foreground'>
             {Math.round(normalizedValue)}
           </div>
           {label && (
-            <div className='text-xs text-gray-600 dark:text-gray-400'>
-              {label}
-            </div>
+            <div className='text-xs text-muted-foreground'>{label}</div>
           )}
         </div>
       )}

@@ -162,26 +162,24 @@ export const TransferList: React.FC<TransferListProps> = ({
     onSearchChange: (value: string) => void,
     searchPlaceholder: string
   ) => (
-    <div className='flex flex-col flex-1 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900'>
+    <div className='flex flex-col flex-1 border border-input rounded-md bg-background'>
       {/* Header */}
-      <div className='px-3 py-2 border-b border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800'>
-        <h3 className='text-sm font-semibold text-gray-900 dark:text-white'>
-          {title}
-        </h3>
-        <p className='text-xs text-gray-600 dark:text-gray-400'>
+      <div className='px-3 py-2 border-b border-input bg-muted'>
+        <h3 className='text-sm font-semibold text-foreground'>{title}</h3>
+        <p className='text-xs text-muted-foreground'>
           {items.length} item{items.length !== 1 ? 's' : ''}
         </p>
       </div>
 
       {/* Search */}
       {searchable && (
-        <div className='p-2 border-b border-gray-200 dark:border-gray-700'>
+        <div className='p-2 border-b border-border'>
           <input
             type='text'
             value={searchValue}
             onChange={e => onSearchChange(e.target.value)}
             placeholder={searchPlaceholder}
-            className='w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
+            className='w-full px-3 py-2 text-sm bg-muted border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring'
           />
         </div>
       )}
@@ -192,7 +190,7 @@ export const TransferList: React.FC<TransferListProps> = ({
         style={{ height: searchable ? height - 120 : height - 60 }}
       >
         {items.length === 0 ? (
-          <div className='flex items-center justify-center h-full text-sm text-gray-500 dark:text-gray-400'>
+          <div className='flex items-center justify-center h-full text-sm text-muted-foreground'>
             No items
           </div>
         ) : (
@@ -206,10 +204,9 @@ export const TransferList: React.FC<TransferListProps> = ({
                 disabled={item.disabled || disabled}
                 className={cn(
                   'w-full px-3 py-2 text-left rounded-md transition-colors',
-                  'hover:bg-gray-100 dark:hover:bg-gray-800',
+                  'hover:bg-muted',
                   'disabled:opacity-50 disabled:cursor-not-allowed',
-                  isSelected &&
-                    'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700'
+                  isSelected && 'bg-accent border border-primary/30'
                 )}
               >
                 <div className='flex items-start gap-2'>
@@ -217,9 +214,7 @@ export const TransferList: React.FC<TransferListProps> = ({
                   <div
                     className={cn(
                       'w-4 h-4 border-2 rounded flex items-center justify-center flex-shrink-0 mt-0.5',
-                      isSelected
-                        ? 'bg-blue-600 border-blue-600 dark:bg-blue-500 dark:border-blue-500'
-                        : 'border-gray-300 dark:border-gray-600'
+                      isSelected ? 'bg-primary border-primary' : 'border-input'
                     )}
                   >
                     {isSelected && (
@@ -241,11 +236,11 @@ export const TransferList: React.FC<TransferListProps> = ({
 
                   {/* Content */}
                   <div className='flex-1 min-w-0'>
-                    <p className='text-sm font-medium text-gray-900 dark:text-white truncate'>
+                    <p className='text-sm font-medium text-foreground truncate'>
                       {item.label}
                     </p>
                     {item.description && (
-                      <p className='text-xs text-gray-600 dark:text-gray-400 truncate'>
+                      <p className='text-xs text-muted-foreground truncate'>
                         {item.description}
                       </p>
                     )}
@@ -278,10 +273,10 @@ export const TransferList: React.FC<TransferListProps> = ({
           onClick={moveAllToTarget}
           disabled={disabled || source.length === 0}
           className={cn(
-            'px-3 py-2 text-sm bg-white dark:bg-gray-900',
-            'border border-gray-300 dark:border-gray-700',
+            'px-3 py-2 text-sm bg-background',
+            'border border-input',
             'rounded-md',
-            'hover:bg-gray-50 dark:hover:bg-gray-800',
+            'hover:bg-muted',
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
@@ -306,10 +301,10 @@ export const TransferList: React.FC<TransferListProps> = ({
           onClick={moveToTarget}
           disabled={disabled || sourceSelected.size === 0}
           className={cn(
-            'px-3 py-2 text-sm bg-white dark:bg-gray-900',
-            'border border-gray-300 dark:border-gray-700',
+            'px-3 py-2 text-sm bg-background',
+            'border border-input',
             'rounded-md',
-            'hover:bg-gray-50 dark:hover:bg-gray-800',
+            'hover:bg-muted',
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
@@ -334,10 +329,10 @@ export const TransferList: React.FC<TransferListProps> = ({
           onClick={moveToSource}
           disabled={disabled || targetSelected.size === 0}
           className={cn(
-            'px-3 py-2 text-sm bg-white dark:bg-gray-900',
-            'border border-gray-300 dark:border-gray-700',
+            'px-3 py-2 text-sm bg-background',
+            'border border-input',
             'rounded-md',
-            'hover:bg-gray-50 dark:hover:bg-gray-800',
+            'hover:bg-muted',
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
@@ -362,10 +357,10 @@ export const TransferList: React.FC<TransferListProps> = ({
           onClick={moveAllToSource}
           disabled={disabled || target.length === 0}
           className={cn(
-            'px-3 py-2 text-sm bg-white dark:bg-gray-900',
-            'border border-gray-300 dark:border-gray-700',
+            'px-3 py-2 text-sm bg-background',
+            'border border-input',
             'rounded-md',
-            'hover:bg-gray-50 dark:hover:bg-gray-800',
+            'hover:bg-muted',
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}

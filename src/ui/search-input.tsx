@@ -168,7 +168,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           )}
         >
           <MagnifyingGlassIcon
-            className={cn(sizeConfig.icon, 'text-gray-400 dark:text-gray-500')}
+            className={cn(sizeConfig.icon, 'text-muted-foreground')}
           />
         </div>
       )}
@@ -184,11 +184,11 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         disabled={disabled || loading}
         className={cn(
           'block w-full rounded-lg border',
-          'bg-white dark:bg-gray-800',
-          'text-gray-900 dark:text-gray-100',
-          'placeholder-gray-400 dark:placeholder-gray-500',
-          'border-gray-300 dark:border-gray-600',
-          'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+          'bg-background',
+          'text-foreground',
+          'placeholder:text-muted-foreground',
+          'border-input',
+          'focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent',
           'transition-colors duration-200',
           sizeConfig.input,
           sizeConfig.padding,
@@ -206,7 +206,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           disabled={disabled}
           className={cn(
             'absolute inset-y-0 flex items-center',
-            'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300',
+            'text-muted-foreground hover:text-foreground',
             'transition-colors',
             disabled ? 'cursor-not-allowed' : 'cursor-pointer',
             sizeConfig.iconRight
@@ -226,7 +226,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           )}
         >
           <svg
-            className={cn(sizeConfig.icon, 'animate-spin text-gray-400')}
+            className={cn(
+              sizeConfig.icon,
+              'animate-spin text-muted-foreground'
+            )}
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'

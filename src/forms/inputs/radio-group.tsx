@@ -145,7 +145,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
         <div className='mb-2'>
           <span className={textVariants.label.default()}>
             {label}
-            {required && <span className='text-red-600 ml-1'>*</span>}
+            {required && <span className='text-destructive ml-1'>*</span>}
           </span>
         </div>
       )}
@@ -182,7 +182,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                 className={cn(
                   'mt-0.5 mr-2',
                   sizeConfig.radio,
-                  'text-blue-600',
+                  'text-primary',
                   colors.component.input.default.base,
                   colors.component.input.default.dark,
                   colors.component.input.default.focus,

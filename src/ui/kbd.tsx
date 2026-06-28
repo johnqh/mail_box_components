@@ -43,9 +43,9 @@ export const Kbd: React.FC<KbdProps> = ({
       className={cn(
         'inline-flex items-center justify-center',
         'font-mono font-semibold',
-        'bg-gray-100 dark:bg-gray-800',
-        'text-gray-900 dark:text-gray-100',
-        'border border-gray-300 dark:border-gray-600',
+        'bg-muted',
+        'text-foreground',
+        'border border-border',
         'rounded shadow-sm',
         sizeClasses[size],
         className

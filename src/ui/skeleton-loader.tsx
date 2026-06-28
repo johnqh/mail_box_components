@@ -71,8 +71,8 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
 
   // Theme-specific colors
   const themeClasses = {
-    light: 'bg-gray-200',
-    dark: 'bg-gray-700',
+    light: 'bg-muted',
+    dark: 'bg-muted',
   };
 
   // Gap between lines
@@ -106,7 +106,7 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
         key={key}
         className={cn(
           animate && variants.loading.skeleton.default(),
-          theme ? themeClasses[theme] : 'bg-gray-200 dark:bg-gray-700',
+          theme ? themeClasses[theme] : 'bg-muted',
           variantStyles[variant],
           className
         )}

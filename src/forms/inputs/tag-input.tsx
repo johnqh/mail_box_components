@@ -168,10 +168,9 @@ export const TagInput: React.FC<TagInputProps> = ({
           colors.component.input.default.base,
           colors.component.input.default.dark,
           'border rounded-md',
-          'focus-within:ring-2 focus-within:ring-blue-500 dark:focus-within:ring-blue-400',
+          'focus-within:ring-2 focus-within:ring-ring',
           'transition-all',
-          disabled &&
-            'opacity-50 cursor-not-allowed bg-gray-50 dark:bg-gray-800',
+          disabled && 'opacity-50 cursor-not-allowed bg-muted',
           error && colors.component.input.default.error
         )}
         onClick={() => !disabled && inputRef.current?.focus()}
@@ -202,7 +201,7 @@ export const TagInput: React.FC<TagInputProps> = ({
                 }}
                 disabled={disabled}
                 className={cn(
-                  'flex-shrink-0 hover:text-blue-900 dark:hover:text-blue-100',
+                  'flex-shrink-0 hover:text-primary',
                   'transition-colors',
                   'disabled:cursor-not-allowed'
                 )}
@@ -244,7 +243,7 @@ export const TagInput: React.FC<TagInputProps> = ({
           className={cn(
             'flex-1 min-w-[120px] outline-none bg-transparent',
             'text-sm',
-            'text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400',
+            'text-foreground placeholder:text-muted-foreground',
             'disabled:cursor-not-allowed'
           )}
         />

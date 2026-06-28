@@ -163,7 +163,7 @@ export function ItemList<T>({
           <div
             className={cn(
               'w-6 h-6 border-2 border-t-transparent rounded-full animate-spin',
-              'border-blue-600 dark:border-blue-400'
+              'border-primary'
             )}
           />
         </div>
@@ -183,7 +183,7 @@ export function ItemList<T>({
               onClick={emptyAction.onClick}
               className={cn(
                 textVariants.label.default(),
-                'mt-4 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300',
+                'mt-4 text-primary hover:text-primary/80',
                 ui.transition.default
               )}
             >
@@ -198,7 +198,7 @@ export function ItemList<T>({
         <div
           className={cn(
             spacingClasses[spacing],
-            showDividers && 'divide-y divide-gray-200 dark:divide-gray-700',
+            showDividers && 'divide-y divide-border',
             listClassName
           )}
         >

@@ -60,7 +60,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
         mode === 'fullscreen' ? 'fixed' : 'absolute',
         'inset-0 z-50',
         'flex flex-col items-center justify-center',
-        'bg-white/80 dark:bg-gray-900/80',
+        'bg-background/80',
         blur && 'backdrop-blur-sm',
         className
       )}
@@ -70,12 +70,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
     >
       <Spinner size={spinnerSize} />
       {message && (
-        <p
-          className={cn(
-            textVariants.body.md(),
-            'text-gray-700 dark:text-gray-300 mt-4'
-          )}
-        >
+        <p className={cn(textVariants.body.md(), 'text-foreground mt-4')}>
           {message}
         </p>
       )}

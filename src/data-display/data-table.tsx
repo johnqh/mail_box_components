@@ -93,12 +93,8 @@ export const DataTable = <T,>({
   // Show empty state if no data
   if (!data || data.length === 0) {
     return (
-      <div
-        className={`text-center py-8 bg-gray-50 dark:bg-gray-800 rounded-lg ${className}`}
-      >
-        <p
-          className={`${textVariants.body.sm()} text-gray-500 dark:text-gray-400`}
-        >
+      <div className={`text-center py-8 bg-muted rounded-lg ${className}`}>
+        <p className={`${textVariants.body.sm()} text-muted-foreground`}>
           {emptyMessage}
         </p>
       </div>
@@ -110,7 +106,7 @@ export const DataTable = <T,>({
       <div className='overflow-x-auto'>
         <table className='w-full border-collapse'>
           <thead>
-            <tr className='border-b border-gray-200 dark:border-gray-700'>
+            <tr className='border-b border-border'>
               {columns.map((columnTitle, index) => (
                 <th
                   key={index}
@@ -121,7 +117,7 @@ export const DataTable = <T,>({
               ))}
               {hasActions && (
                 <th
-                  className={`${textVariants.label.default()} text-right py-3 px-4 sticky right-0 bg-white dark:bg-gray-900 whitespace-nowrap`}
+                  className={`${textVariants.label.default()} text-right py-3 px-4 sticky right-0 bg-background whitespace-nowrap`}
                 >
                   {/* Empty header for actions column */}
                 </th>
@@ -132,7 +128,7 @@ export const DataTable = <T,>({
             {data.map((item, rowIndex) => (
               <tr
                 key={getRowKey(item, rowIndex)}
-                className='border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                className='border-b border-border hover:bg-muted'
               >
                 {columns.map((_, columnIndex) => {
                   const cellContent = renderCell(item, columnIndex);
@@ -149,7 +145,7 @@ export const DataTable = <T,>({
                   );
                 })}
                 {hasActions && (
-                  <td className='py-3 px-4 text-right sticky right-0 bg-white dark:bg-gray-900'>
+                  <td className='py-3 px-4 text-right sticky right-0 bg-background'>
                     {renderAction?.(item)}
                   </td>
                 )}

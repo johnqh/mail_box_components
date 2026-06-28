@@ -122,7 +122,7 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
         ref={canvasRef}
         width={size}
         height={size}
-        className='border-2 border-gray-200 dark:border-gray-700 rounded-lg'
+        className='border-2 border-border rounded-lg'
       />
 
       {showDownload && (
@@ -130,9 +130,9 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
           onClick={handleDownload}
           className={cn(
             'px-4 py-2 text-sm font-medium',
-            'bg-blue-600 dark:bg-blue-500 text-white',
+            'bg-primary text-primary-foreground',
             'rounded-md',
-            'hover:bg-blue-700 dark:hover:bg-blue-600',
+            'hover:bg-primary/90',
             'transition-colors'
           )}
         >
@@ -140,7 +140,7 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
         </button>
       )}
 
-      <p className='text-xs text-gray-600 dark:text-gray-400 max-w-[200px] text-center break-all'>
+      <p className='text-xs text-muted-foreground max-w-[200px] text-center break-all'>
         {value}
       </p>
     </div>

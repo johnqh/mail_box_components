@@ -216,9 +216,9 @@ export const MentionInput: React.FC<MentionInputProps> = ({
               onClick={() => selectMention(mention)}
               className={cn(
                 'w-full px-3 py-2 text-left flex items-center gap-3',
-                'hover:bg-gray-100 dark:hover:bg-gray-800',
+                'hover:bg-muted',
                 'transition-colors',
-                index === selectedIndex && 'bg-blue-50 dark:bg-blue-900/30'
+                index === selectedIndex && 'bg-accent'
               )}
             >
               {mention.avatar && (
@@ -229,11 +229,11 @@ export const MentionInput: React.FC<MentionInputProps> = ({
                 />
               )}
               <div className='flex-1 min-w-0'>
-                <p className='text-sm font-medium text-gray-900 dark:text-white truncate'>
+                <p className='text-sm font-medium text-foreground truncate'>
                   {mention.label}
                 </p>
                 {mention.metadata && (
-                  <p className='text-xs text-gray-600 dark:text-gray-400 truncate'>
+                  <p className='text-xs text-muted-foreground truncate'>
                     {mention.metadata}
                   </p>
                 )}

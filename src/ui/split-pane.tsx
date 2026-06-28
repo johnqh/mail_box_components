@@ -192,10 +192,10 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
         onMouseDown={handleMouseDown}
         className={cn(
           'flex-shrink-0 group',
-          'bg-gray-300 dark:bg-gray-700',
-          resizable && 'hover:bg-blue-500 dark:hover:bg-blue-400',
+          'bg-border',
+          resizable && 'hover:bg-primary',
           'transition-colors',
-          isDragging && 'bg-blue-500 dark:bg-blue-400',
+          isDragging && 'bg-primary',
           isHorizontal ? 'cursor-col-resize' : 'cursor-row-resize',
           !resizable && 'cursor-default'
         )}
@@ -208,9 +208,9 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
           <div
             className={cn(
               'flex items-center justify-center w-full h-full',
-              'text-gray-600 dark:text-gray-400',
-              'group-hover:text-white',
-              isDragging && 'text-white'
+              'text-muted-foreground',
+              'group-hover:text-primary-foreground',
+              isDragging && 'text-primary-foreground'
             )}
           >
             {isHorizontal ? (

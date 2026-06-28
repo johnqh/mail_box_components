@@ -149,8 +149,7 @@ export const TopbarMenuToggle: React.FC<TopbarMenuToggleProps> = ({
       colors.component.button.ghost.base,
       colors.component.button.ghost.dark,
       ui.transition.fast,
-      item.active &&
-        'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
+      item.active && 'bg-accent text-primary',
       item.disabled && 'opacity-50 cursor-not-allowed',
       depth > 0 && 'pl-12'
     );

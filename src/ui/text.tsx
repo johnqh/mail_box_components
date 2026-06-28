@@ -88,11 +88,11 @@ export const Text: React.FC<TextProps> = ({
   // so we only apply an explicit class for the other variants
   const colorOverrides: Record<string, string> = {
     default: '',
-    muted: 'text-gray-600 dark:text-gray-400',
-    primary: 'text-blue-600 dark:text-blue-400',
-    success: 'text-green-600 dark:text-green-400',
-    warning: 'text-yellow-600 dark:text-yellow-400',
-    danger: 'text-red-600 dark:text-red-400',
+    muted: 'text-muted-foreground',
+    primary: 'text-primary',
+    success: 'text-success',
+    warning: 'text-warning',
+    danger: 'text-destructive',
   };
 
   // Alignment from design tokens

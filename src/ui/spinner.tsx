@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { variants, colors } from '@sudobility/design';
+import { variants } from '@sudobility/design';
 
 interface SpinnerProps {
   size?: 'small' | 'default' | 'large' | 'extraLarge';
@@ -29,11 +29,11 @@ export const Spinner: React.FC<SpinnerProps> = ({
 
   const getVariantClass = () => {
     const variantMap = {
-      default: `border-gray-300 border-t-[${colors.component.button.primary.base}]`,
+      default: 'border-muted border-t-primary',
       white: 'border-white/30 border-t-white',
-      success: `border-gray-300 border-t-green-600`,
-      warning: 'border-gray-300 border-t-orange-600',
-      error: 'border-gray-300 border-t-red-600',
+      success: 'border-muted border-t-success',
+      warning: 'border-muted border-t-warning',
+      error: 'border-muted border-t-destructive',
     };
     return variantMap[variant];
   };

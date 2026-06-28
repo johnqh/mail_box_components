@@ -131,17 +131,15 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
   // Default loader
   const defaultLoader = (
     <div className='flex justify-center items-center py-4'>
-      <div className='w-6 h-6 border-2 border-blue-600 dark:border-blue-400 border-t-transparent rounded-full animate-spin' />
-      <span className='ml-2 text-sm text-gray-600 dark:text-gray-400'>
-        Loading...
-      </span>
+      <div className='w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin' />
+      <span className='ml-2 text-sm text-muted-foreground'>Loading...</span>
     </div>
   );
 
   // Default end message
   const defaultEndMessage = (
     <div className='flex justify-center items-center py-4'>
-      <span className='text-sm text-gray-600 dark:text-gray-400'>
+      <span className='text-sm text-muted-foreground'>
         No more items to load
       </span>
     </div>
@@ -194,12 +192,12 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
           className={cn(
             'absolute bottom-4 right-4',
             'p-3 rounded-full',
-            'bg-blue-600 dark:bg-blue-500',
-            'text-white',
+            'bg-primary',
+            'text-primary-foreground',
             'shadow-lg',
-            'hover:bg-blue-700 dark:hover:bg-blue-600',
+            'hover:bg-primary/90',
             'transition-colors',
-            'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
+            'focus:outline-none focus:ring-2 focus:ring-ring'
           )}
           aria-label='Scroll to top'
         >

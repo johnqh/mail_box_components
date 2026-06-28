@@ -101,15 +101,14 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
   // Variant configurations
   const variantClasses = {
     default: {
-      base: 'bg-gray-100 dark:bg-gray-800',
-      button: 'hover:bg-gray-200 dark:hover:bg-gray-700',
+      base: 'bg-muted',
+      button: 'hover:bg-muted',
       selected: `${colors.component.card.default.base} ${colors.component.card.default.dark} shadow-sm`,
     },
     outline: {
       base: `border ${ui.border.default}`,
-      button: 'hover:bg-gray-50 dark:hover:bg-gray-800',
-      selected:
-        'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600',
+      button: 'hover:bg-muted',
+      selected: 'bg-muted border-border',
     },
   };
 
@@ -139,9 +138,7 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
               selected
                 ? variantClasses[variant].selected
                 : variantClasses[variant].button,
-              selected
-                ? 'text-gray-900 dark:text-white'
-                : 'text-gray-600 dark:text-gray-400'
+              selected ? 'text-foreground' : 'text-muted-foreground'
             )}
             aria-pressed={selected}
           >

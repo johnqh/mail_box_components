@@ -1,9 +1,5 @@
 import type { ReactNode } from 'react';
-import {
-  getCardVariantColors,
-  textVariant,
-  themeColor,
-} from '@sudobility/design';
+import { getCardVariantColors, textVariant } from '@sudobility/design';
 import { cn } from '../lib/utils';
 
 export interface GridTileProps {
@@ -43,7 +39,7 @@ export function GridTile({
   onClick,
   className,
 }: GridTileProps) {
-  const mutedIcon = themeColor('text-gray-400', 'text-gray-500');
+  const mutedIcon = 'text-muted-foreground';
 
   const body = (
     <>
@@ -76,7 +72,7 @@ export function GridTile({
         <div
           className={cn(
             'mt-3 flex flex-wrap items-center gap-1.5 border-t pt-2',
-            themeColor('border-gray-100', 'border-gray-700/60')
+            'border-border'
           )}
         >
           {footer}
@@ -90,11 +86,7 @@ export function GridTile({
       className={cn(
         'relative rounded-lg p-3',
         getCardVariantColors('bordered'),
-        onClick &&
-          cn(
-            'transition-colors',
-            themeColor('hover:bg-gray-50', 'hover:bg-gray-700/50')
-          ),
+        onClick && cn('transition-colors', 'hover:bg-muted'),
         className
       )}
     >

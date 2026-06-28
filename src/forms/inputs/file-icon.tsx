@@ -70,7 +70,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
     ) {
       return {
         Icon: PhotoIcon,
-        color: 'text-blue-600 dark:text-blue-400',
+        color: 'text-primary',
       };
     }
 
@@ -83,7 +83,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
     ) {
       return {
         Icon: FilmIcon,
-        color: 'text-purple-600 dark:text-purple-400',
+        color: 'text-primary',
       };
     }
 
@@ -96,7 +96,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
     ) {
       return {
         Icon: MusicalNoteIcon,
-        color: 'text-pink-600 dark:text-pink-400',
+        color: 'text-primary',
       };
     }
 
@@ -104,7 +104,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
     if (lowerType.includes('pdf') || lowerType.endsWith('.pdf')) {
       return {
         Icon: DocumentArrowDownIcon,
-        color: 'text-red-600 dark:text-red-400',
+        color: 'text-destructive',
       };
     }
 
@@ -116,7 +116,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
     ) {
       return {
         Icon: DocumentTextIcon,
-        color: 'text-blue-700 dark:text-blue-300',
+        color: 'text-primary',
       };
     }
 
@@ -128,7 +128,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
     ) {
       return {
         Icon: TableCellsIcon,
-        color: 'text-green-600 dark:text-green-400',
+        color: 'text-success',
       };
     }
 
@@ -157,7 +157,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
     ) {
       return {
         Icon: CodeBracketIcon,
-        color: 'text-gray-700 dark:text-gray-300',
+        color: 'text-muted-foreground',
       };
     }
 
@@ -172,14 +172,14 @@ export const FileIcon: React.FC<FileIconProps> = ({
     ) {
       return {
         Icon: ArchiveBoxIcon,
-        color: 'text-yellow-600 dark:text-yellow-400',
+        color: 'text-warning',
       };
     }
 
     // Default
     return {
       Icon: DocumentIcon,
-      color: 'text-gray-600 dark:text-gray-400',
+      color: 'text-muted-foreground',
     };
   };
 
@@ -189,7 +189,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
     <Icon
       className={cn(
         sizeClasses[size],
-        colored ? color : 'text-gray-600 dark:text-gray-400',
+        colored ? color : 'text-muted-foreground',
         className
       )}
     />

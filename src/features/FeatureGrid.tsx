@@ -55,11 +55,9 @@ const iconVariants = cva(
       },
       style: {
         gradient:
-          'bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 group-hover:from-blue-200 group-hover:to-blue-300 dark:group-hover:from-blue-800/40 dark:group-hover:to-blue-700/40',
-        solid:
-          'bg-blue-100 dark:bg-blue-900/30 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40',
-        outline:
-          'border-2 border-blue-200 dark:border-blue-800 group-hover:border-blue-300 dark:group-hover:border-blue-700',
+          'bg-gradient-to-br from-primary/10 to-primary/20 group-hover:from-primary/20 group-hover:to-primary/30',
+        solid: 'bg-primary/10 group-hover:bg-primary/20',
+        outline: 'border-2 border-primary/30 group-hover:border-primary/50',
         colorful: 'group-hover:scale-110',
       },
       position: {
@@ -128,12 +126,10 @@ export interface FeatureGridProps extends VariantProps<typeof gridVariants> {
 }
 
 const badgeVariants = {
-  success:
-    'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
-  info: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
-  warning:
-    'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
-  default: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300',
+  success: 'bg-success/10 text-success',
+  info: 'bg-info/10 text-info',
+  warning: 'bg-warning/10 text-warning',
+  default: 'bg-muted text-muted-foreground',
 };
 
 export const FeatureGrid: React.FC<FeatureGridProps> = ({
@@ -223,8 +219,8 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
             className={cn(
               'flex items-center justify-center',
               iconStyle === 'colorful'
-                ? 'text-white'
-                : 'text-blue-600 dark:text-blue-400'
+                ? 'text-primary-foreground'
+                : 'text-primary'
             )}
           >
             {feature.icon}

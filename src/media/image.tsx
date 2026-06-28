@@ -143,7 +143,7 @@ export const Image: React.FC<ImageProps> = ({
       {showLoader && isLoading && (
         <div className='absolute inset-0 flex items-center justify-center'>
           <div className='animate-pulse'>
-            <PhotoIcon className='h-8 w-8 text-gray-400' />
+            <PhotoIcon className='h-8 w-8 text-muted-foreground' />
           </div>
         </div>
       )}
@@ -151,7 +151,7 @@ export const Image: React.FC<ImageProps> = ({
       {/* Error state */}
       {hasError && (
         <div className='absolute inset-0 flex items-center justify-center'>
-          <PhotoIcon className='h-8 w-8 text-gray-400' />
+          <PhotoIcon className='h-8 w-8 text-muted-foreground' />
         </div>
       )}
 

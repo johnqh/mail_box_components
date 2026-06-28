@@ -197,10 +197,10 @@ export const PieChart: React.FC<PieChartProps> = ({
                 className='w-3 h-3 rounded-sm'
                 style={{ backgroundColor: slice.color }}
               />
-              <span className='text-sm text-gray-700 dark:text-gray-300'>
+              <span className='text-sm text-foreground'>
                 {slice.label}
                 {showPercentages && (
-                  <span className='text-gray-500 dark:text-gray-400 ml-1'>
+                  <span className='text-muted-foreground ml-1'>
                     ({Math.round(slice.percentage)}%)
                   </span>
                 )}

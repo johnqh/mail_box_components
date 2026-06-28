@@ -74,7 +74,7 @@ describe('Progress', () => {
   it('applies warning variant', () => {
     const { container } = render(<Progress value={60} variant='warning' />);
 
-    const progressFill = container.querySelector('[class*="bg-yellow"]');
+    const progressFill = container.querySelector('[class*="bg-warning"]');
     expect(progressFill).toBeInTheDocument();
   });
 

@@ -69,9 +69,7 @@ export const ListItemWithAction: React.FC<ListItemWithActionProps> = ({
 
   return (
     <div className={cn(baseClass, variantClasses[variant], className)}>
-      <div className='flex-1 text-sm text-gray-900 dark:text-white'>
-        {children}
-      </div>
+      <div className='flex-1 text-sm text-foreground'>{children}</div>
       <Button
         variant={destructive ? 'ghost' : 'outline'}
         size='sm'
@@ -80,7 +78,7 @@ export const ListItemWithAction: React.FC<ListItemWithActionProps> = ({
         className={cn(
           'ml-4',
           destructive &&
-            'text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
+            'text-destructive hover:text-destructive/90 hover:bg-destructive/10'
         )}
       >
         <ActionIcon className='h-4 w-4 mr-1' />

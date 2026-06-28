@@ -115,20 +115,18 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
         disabled={disabled}
         className={cn(
           'w-full px-3 py-2 text-sm text-left flex items-center justify-between',
-          'bg-white dark:bg-gray-900',
-          'border border-gray-300 dark:border-gray-700',
+          'bg-background',
+          'border border-input',
           'rounded-md',
-          'hover:bg-gray-50 dark:hover:bg-gray-800',
+          'hover:bg-muted',
           'transition-colors',
           'disabled:opacity-50 disabled:cursor-not-allowed',
-          isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
+          isOpen && 'ring-2 ring-ring'
         )}
       >
-        <span className='text-gray-900 dark:text-white'>
-          {formatDisplay(value)}
-        </span>
+        <span className='text-foreground'>{formatDisplay(value)}</span>
         <svg
-          className='w-5 h-5 text-gray-600 dark:text-gray-400'
+          className='w-5 h-5 text-muted-foreground'
           fill='none'
           stroke='currentColor'
           viewBox='0 0 24 24'
@@ -144,11 +142,11 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
 
       {/* Picker dropdown */}
       {isOpen && (
-        <div className='absolute top-full left-0 mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50 p-3'>
+        <div className='absolute top-full left-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 p-3'>
           <div className='space-y-3'>
             {/* Calendar */}
             <div>
-              <label className='block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2'>
+              <label className='block text-xs font-medium text-foreground mb-2'>
                 Select Date
               </label>
               <Calendar
@@ -160,11 +158,11 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
             </div>
 
             {/* Divider */}
-            <div className='h-px bg-gray-200 dark:bg-gray-700' />
+            <div className='h-px bg-border' />
 
             {/* Time picker */}
             <div>
-              <label className='block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2'>
+              <label className='block text-xs font-medium text-foreground mb-2'>
                 Select Time
               </label>
               <TimePicker
@@ -181,10 +179,10 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                 onClick={() => setIsOpen(false)}
                 className={cn(
                   'flex-1 px-3 py-1.5 text-sm',
-                  'bg-gray-100 dark:bg-gray-800',
-                  'text-gray-700 dark:text-gray-300',
+                  'bg-muted',
+                  'text-foreground',
                   'rounded-md',
-                  'hover:bg-gray-200 dark:hover:bg-gray-700',
+                  'hover:bg-muted/80',
                   'transition-colors'
                 )}
               >
@@ -197,10 +195,10 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                 }}
                 className={cn(
                   'flex-1 px-3 py-1.5 text-sm',
-                  'bg-blue-600 dark:bg-blue-500',
-                  'text-white',
+                  'bg-primary',
+                  'text-primary-foreground',
                   'rounded-md',
-                  'hover:bg-blue-700 dark:hover:bg-blue-600',
+                  'hover:bg-primary/90',
                   'transition-colors'
                 )}
               >

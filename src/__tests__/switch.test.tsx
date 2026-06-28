@@ -103,18 +103,14 @@ describe('Switch Component', () => {
     render(<Switch defaultChecked />);
     const switchElement = screen.getByRole('switch');
 
-    expect(switchElement).toHaveClass('data-[state=checked]:bg-blue-600');
-    expect(switchElement).toHaveClass('dark:data-[state=checked]:bg-blue-600');
+    expect(switchElement).toHaveClass('data-[state=checked]:bg-primary');
   });
 
   it('applies correct styles when unchecked', () => {
     render(<Switch defaultChecked={false} />);
     const switchElement = screen.getByRole('switch');
 
-    expect(switchElement).toHaveClass('data-[state=unchecked]:bg-gray-200');
-    expect(switchElement).toHaveClass(
-      'dark:data-[state=unchecked]:bg-gray-700'
-    );
+    expect(switchElement).toHaveClass('data-[state=unchecked]:bg-muted');
   });
 
   it('has focus ring styles', () => {

@@ -94,7 +94,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
               item.separator ? (
                 <div
                   key={item.id}
-                  className='my-1 h-px bg-gray-200 dark:bg-gray-700'
+                  className='my-1 h-px bg-border'
                   role='separator'
                 />
               ) : (

@@ -76,9 +76,9 @@ export const GradientIconContainer: React.FC<GradientIconContainerProps> = ({
   // Gradient color variants - using design system gradients where available
   const gradientVariants = {
     'blue-purple': GRADIENTS.buttons.primary.split(' hover:')[0],
-    'green-blue': 'bg-gradient-to-r from-green-600 to-blue-600',
-    'orange-red': 'bg-gradient-to-r from-orange-600 to-red-600',
-    gray: 'bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-700 dark:to-gray-900',
+    'green-blue': 'bg-gradient-to-r from-success to-primary',
+    'orange-red': 'bg-gradient-to-r from-warning to-destructive',
+    gray: 'bg-gradient-to-r from-muted to-muted-foreground',
     custom: gradientClasses || GRADIENTS.buttons.primary.split(' hover:')[0],
   };
 

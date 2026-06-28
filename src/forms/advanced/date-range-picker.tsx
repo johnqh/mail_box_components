@@ -286,9 +286,9 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
                       className={cn(
                         'aspect-square flex items-center justify-center rounded-md text-sm transition-colors relative',
                         'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent',
-                        inRange && 'bg-blue-100 dark:bg-blue-900/30',
+                        inRange && 'bg-accent',
                         (isStart || isEnd) &&
-                          'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600',
+                          'bg-primary text-primary-foreground hover:bg-primary/90',
                         !isStart &&
                           !isEnd &&
                           !inRange &&
@@ -296,7 +296,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
                         isToday &&
                           !isStart &&
                           !isEnd &&
-                          'border-2 border-blue-600 dark:border-blue-400'
+                          'border-2 border-primary'
                       )}
                     >
                       {date.getDate()}

@@ -107,7 +107,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         <span
           className={cn(
             'inline-flex items-center gap-1.5',
-            'text-gray-900 dark:text-white font-medium'
+            'text-foreground font-medium'
           )}
           aria-current='page'
         >
@@ -125,7 +125,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           className={cn(
             'inline-flex items-center gap-1.5',
             'transition-colors',
-            'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+            'text-muted-foreground hover:text-foreground'
           )}
           aria-current={isCurrent ? 'page' : undefined}
         >
@@ -142,7 +142,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           className={cn(
             'inline-flex items-center gap-1.5',
             'transition-colors',
-            'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+            'text-muted-foreground hover:text-foreground'
           )}
           aria-current={isCurrent ? 'page' : undefined}
         >
@@ -156,9 +156,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       <span
         className={cn(
           'inline-flex items-center gap-1.5',
-          isCurrent
-            ? 'text-gray-900 dark:text-white font-medium'
-            : 'text-gray-600 dark:text-gray-400'
+          isCurrent ? 'text-foreground font-medium' : 'text-muted-foreground'
         )}
         aria-current={isCurrent ? 'page' : undefined}
       >
@@ -181,13 +179,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
               <li key='ellipsis' className='flex items-center gap-2'>
                 <button
                   onClick={() => setIsExpanded(true)}
-                  className='text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-1'
+                  className='text-muted-foreground hover:text-foreground transition-colors px-1'
                   aria-label='Show all breadcrumb items'
                 >
                   ...
                 </button>
                 <span
-                  className='text-gray-400 dark:text-gray-600 select-none'
+                  className='text-muted-foreground select-none'
                   aria-hidden='true'
                 >
                   {separator}
@@ -205,7 +203,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
               {!isLast && (
                 <span
-                  className='text-gray-400 dark:text-gray-600 select-none'
+                  className='text-muted-foreground select-none'
                   aria-hidden='true'
                 >
                   {separator}

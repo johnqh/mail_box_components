@@ -77,12 +77,9 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({
 
   // Color variant configurations
   const variantClasses = {
-    default:
-      'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300',
-    primary:
-      'text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 font-semibold',
-    muted:
-      'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200',
+    default: 'text-primary hover:text-primary/80',
+    primary: 'text-primary hover:text-primary/80 font-semibold',
+    muted: 'text-muted-foreground hover:text-foreground',
   };
 
   const sizeConfig = sizeClasses[size];

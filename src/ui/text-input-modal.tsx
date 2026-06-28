@@ -121,7 +121,7 @@ export const TextInputModal: React.FC<TextInputModalProps> = ({
           {error && (
             <p
               id='text-input-error'
-              className={`${textVariants.body.sm()} text-red-600 dark:text-red-400 mt-2`}
+              className={`${textVariants.body.sm()} text-destructive mt-2`}
               role='alert'
             >
               {error}

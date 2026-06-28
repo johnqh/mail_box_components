@@ -112,8 +112,8 @@ export const SettingsList: React.FC<SettingsListProps> = ({
                   'w-full flex items-center text-left px-3 py-2 rounded-lg transition-colors h-[44px]',
                   textVariants.body.sm(),
                   isSelected
-                    ? 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                    ? 'bg-accent text-primary'
+                    : 'hover:bg-muted text-foreground'
                 )}
                 aria-current={isSelected ? 'page' : undefined}
                 title={setting.description}

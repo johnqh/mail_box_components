@@ -170,20 +170,17 @@ export const Combobox: React.FC<ComboboxProps> = ({
         className={cn(
           'w-full flex items-center justify-between',
           'px-3 py-2 text-sm text-left',
-          'bg-white dark:bg-gray-900',
-          'border border-gray-300 dark:border-gray-700',
+          'bg-background',
+          'border border-input',
           'rounded-md',
-          'hover:bg-gray-50 dark:hover:bg-gray-800',
+          'hover:bg-muted',
           'transition-colors',
           'disabled:opacity-50 disabled:cursor-not-allowed',
-          isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
+          isOpen && 'ring-2 ring-ring'
         )}
       >
         <span
-          className={cn(
-            'truncate',
-            !selectedOption && 'text-gray-500 dark:text-gray-400'
-          )}
+          className={cn('truncate', !selectedOption && 'text-muted-foreground')}
         >
           {selectedOption ? selectedOption.label : placeholder}
         </span>
@@ -207,9 +204,9 @@ export const Combobox: React.FC<ComboboxProps> = ({
 
       {/* Dropdown */}
       {isOpen && (
-        <div className='absolute z-50 w-full mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg'>
+        <div className='absolute z-50 w-full mt-1 bg-background border border-border rounded-md shadow-lg'>
           {/* Search Input */}
-          <div className='p-2 border-b border-gray-200 dark:border-gray-700'>
+          <div className='p-2 border-b border-border'>
             <input
               ref={inputRef}
               type='text'
@@ -217,14 +214,14 @@ export const Combobox: React.FC<ComboboxProps> = ({
               onChange={e => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={searchPlaceholder}
-              className='w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
+              className='w-full px-3 py-2 text-sm bg-muted border-none rounded-md focus:outline-none focus:ring-2 focus:ring-ring'
             />
           </div>
 
           {/* Options List */}
           <div className='max-h-60 overflow-y-auto py-1'>
             {filteredOptions.length === 0 ? (
-              <div className='px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center'>
+              <div className='px-3 py-2 text-sm text-muted-foreground text-center'>
                 {emptyMessage}
               </div>
             ) : (
@@ -238,10 +235,10 @@ export const Combobox: React.FC<ComboboxProps> = ({
                     'transition-colors',
                     'disabled:opacity-50 disabled:cursor-not-allowed',
                     option.value === value
-                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                      ? 'bg-accent text-primary'
                       : index === highlightedIndex
-                        ? 'bg-gray-100 dark:bg-gray-800'
-                        : 'hover:bg-gray-50 dark:hover:bg-gray-800'
+                        ? 'bg-muted'
+                        : 'hover:bg-muted'
                   )}
                 >
                   {option.label}

@@ -110,7 +110,7 @@ export function Table<T extends Record<string, any>>({
                   'text-xs font-medium uppercase tracking-wider',
                   alignClasses[column.align || 'left'],
                   column.sortable &&
-                    'cursor-pointer select-none hover:bg-gray-100 dark:hover:bg-gray-700',
+                    'cursor-pointer select-none hover:bg-muted',
                   bordered && `border-r ${ui.border.default} last:border-r-0`
                 )}
                 style={{ width: column.width }}
@@ -140,7 +140,7 @@ export function Table<T extends Record<string, any>>({
                         )
                       ) : (
                         <svg
-                          className='w-4 h-4 text-gray-400'
+                          className='w-4 h-4 text-muted-foreground'
                           fill='currentColor'
                           viewBox='0 0 20 20'
                         >
@@ -161,7 +161,7 @@ export function Table<T extends Record<string, any>>({
             <tr>
               <td
                 colSpan={columns.length}
-                className='px-6 py-8 text-center text-sm text-gray-500 dark:text-gray-400'
+                className='px-6 py-8 text-center text-sm text-muted-foreground'
               >
                 {emptyMessage}
               </td>
@@ -172,8 +172,7 @@ export function Table<T extends Record<string, any>>({
                 key={keyExtractor(row, rowIndex)}
                 className={cn(
                   striped && rowIndex % 2 === 1 && ui.table.trAlt,
-                  hoverable &&
-                    `hover:bg-gray-100 dark:hover:bg-gray-800 ${ui.transition.default}`,
+                  hoverable && `hover:bg-muted ${ui.transition.default}`,
                   onRowClick && 'cursor-pointer'
                 )}
                 onClick={() => onRowClick?.(row, rowIndex)}

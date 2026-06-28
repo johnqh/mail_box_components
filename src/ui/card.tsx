@@ -24,7 +24,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 // Special handling for callout variant which is not in cardVariantColors
 const calloutStyle =
-  'bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800';
+  'bg-gradient-to-r from-primary/10 to-accent border border-primary/30';
 
 const paddingStyles = {
   none: '',

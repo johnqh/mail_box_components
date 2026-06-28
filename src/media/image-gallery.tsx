@@ -87,7 +87,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
           <div
             key={image.id}
             className={cn(
-              'relative aspect-square overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700',
+              'relative aspect-square overflow-hidden rounded-lg bg-muted',
               lightbox && 'cursor-pointer hover:opacity-90 transition-opacity'
             )}
             onClick={() => handleImageClick(image)}
@@ -114,7 +114,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
         >
           <button
             onClick={handleClose}
-            className='absolute top-4 right-4 text-white hover:text-gray-300 transition-colors'
+            className='absolute top-4 right-4 text-white hover:text-white/70 transition-colors'
           >
             <svg
               className='w-8 h-8'
@@ -136,7 +136,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
               e.stopPropagation();
               handlePrevious();
             }}
-            className='absolute left-4 text-white hover:text-gray-300 transition-colors'
+            className='absolute left-4 text-white hover:text-white/70 transition-colors'
           >
             <svg
               className='w-8 h-8'
@@ -158,7 +158,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
               e.stopPropagation();
               handleNext();
             }}
-            className='absolute right-4 text-white hover:text-gray-300 transition-colors'
+            className='absolute right-4 text-white hover:text-white/70 transition-colors'
           >
             <svg
               className='w-8 h-8'

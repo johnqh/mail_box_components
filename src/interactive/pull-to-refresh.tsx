@@ -135,7 +135,7 @@ export const PullToRefresh: React.FC<PullToRefreshProps> = ({
     >
       {/* Pull indicator */}
       <div
-        className='sticky top-0 left-0 right-0 flex items-center justify-center bg-gradient-to-b from-blue-50/90 to-transparent dark:from-blue-900/20 dark:to-transparent backdrop-blur-sm z-10 transition-all duration-300 ease-out'
+        className='sticky top-0 left-0 right-0 flex items-center justify-center bg-gradient-to-b from-accent to-transparent backdrop-blur-sm z-10 transition-all duration-300 ease-out'
         style={{
           height: `${indicatorHeight}px`,
           marginTop: isPulling ? 0 : `-${indicatorHeight}px`,
@@ -145,7 +145,7 @@ export const PullToRefresh: React.FC<PullToRefreshProps> = ({
       >
         <div className='flex flex-col items-center justify-center gap-2'>
           <ArrowPathIcon
-            className={`w-6 h-6 text-blue-600 dark:text-blue-400 transition-transform duration-200 ${
+            className={`w-6 h-6 text-primary transition-transform duration-200 ${
               isRefreshing ? 'animate-spin' : ''
             }`}
             style={{
@@ -153,7 +153,7 @@ export const PullToRefresh: React.FC<PullToRefreshProps> = ({
             }}
           />
           {pullDistance > 20 && (
-            <span className='text-xs font-medium text-blue-600 dark:text-blue-400'>
+            <span className='text-xs font-medium text-primary'>
               {getStatusText()}
             </span>
           )}

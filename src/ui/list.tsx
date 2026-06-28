@@ -114,7 +114,7 @@ export const List: React.FC<ListProps> = ({
         getMarkerClass(),
         spacingClasses[spacing],
         sizeClasses[size],
-        'text-gray-900 dark:text-gray-100',
+        'text-foreground',
         className
       )}
     >

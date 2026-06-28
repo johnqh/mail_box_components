@@ -31,7 +31,7 @@ export const SliderInput = ({
         className='flex-1 accent-blue-500'
       />
       {showValue && (
-        <span className='w-12 text-center font-semibold text-gray-900 dark:text-white'>
+        <span className='w-12 text-center font-semibold text-foreground'>
           {value}
         </span>
       )}

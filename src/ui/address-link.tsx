@@ -150,8 +150,8 @@ export const AddressLink: React.FC<AddressLinkProps> = ({
           <button
             onClick={handleCopy}
             className={cn(
-              'p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors',
-              'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
+              'p-1 rounded hover:bg-muted transition-colors',
+              'text-muted-foreground hover:text-foreground'
             )}
             title={copied ? 'Copied!' : 'Copy address'}
             aria-label='Copy address'
@@ -194,8 +194,8 @@ export const AddressLink: React.FC<AddressLinkProps> = ({
             target='_blank'
             rel='noopener noreferrer'
             className={cn(
-              'p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors',
-              'text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400'
+              'p-1 rounded hover:bg-muted transition-colors',
+              'text-muted-foreground hover:text-primary'
             )}
             title='View on block explorer'
             aria-label='View on block explorer'

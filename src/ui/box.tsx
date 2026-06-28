@@ -105,10 +105,10 @@ export const Box: React.FC<BoxProps> = ({
         transparent: 'bg-transparent',
         white: ui.background.surface,
         gray: ui.background.muted,
-        primary: 'bg-blue-50 dark:bg-blue-900/20',
-        success: 'bg-green-50 dark:bg-green-900/20',
-        warning: 'bg-yellow-50 dark:bg-yellow-900/20',
-        danger: 'bg-red-50 dark:bg-red-900/20',
+        primary: 'bg-primary/10',
+        success: 'bg-success/10',
+        warning: 'bg-warning/10',
+        danger: 'bg-destructive/10',
       }[bg]
     : '';
 

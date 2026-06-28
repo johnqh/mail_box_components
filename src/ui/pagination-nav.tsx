@@ -37,7 +37,7 @@ export const PaginationNav: React.FC<PaginationNavProps> = ({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className='px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed'
+        className='px-3 py-2 rounded hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed'
       >
         Previous
       </button>
@@ -54,8 +54,8 @@ export const PaginationNav: React.FC<PaginationNavProps> = ({
             className={cn(
               'px-3 py-2 rounded',
               page === currentPage
-                ? 'bg-blue-500 text-white'
-                : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                ? 'bg-primary text-primary-foreground'
+                : 'hover:bg-muted'
             )}
           >
             {page}
@@ -66,7 +66,7 @@ export const PaginationNav: React.FC<PaginationNavProps> = ({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className='px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed'
+        className='px-3 py-2 rounded hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed'
       >
         Next
       </button>

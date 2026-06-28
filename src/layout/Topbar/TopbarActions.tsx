@@ -123,8 +123,8 @@ export const TopbarIconButton: React.FC<TopbarIconButtonProps> = ({
             'min-w-[18px] h-[18px] px-1',
             'flex items-center justify-center',
             'text-xs font-medium',
-            'bg-red-500 text-white rounded-full',
-            'ring-2 ring-white dark:ring-gray-800'
+            'bg-destructive text-destructive-foreground rounded-full',
+            'ring-2 ring-background'
           )}
           aria-label={`${badge} notifications`}
         >
@@ -192,7 +192,7 @@ export const TopbarSearch: React.FC<TopbarSearchProps> = ({
     >
       <div className='relative'>
         <svg
-          className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400'
+          className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground'
           fill='none'
           viewBox='0 0 24 24'
           stroke='currentColor'
@@ -218,9 +218,9 @@ export const TopbarSearch: React.FC<TopbarSearchProps> = ({
             ui.background.muted,
             'border border-transparent',
             'rounded-lg',
-            'text-gray-900 dark:text-gray-100',
-            'placeholder:text-gray-500 dark:placeholder:text-gray-400',
-            'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-gray-700 focus:border-transparent',
+            'text-foreground',
+            'placeholder:text-muted-foreground',
+            'focus:outline-none focus:ring-2 focus:ring-ring focus:bg-background focus:border-transparent',
             ui.transition.default
           )}
         />

@@ -208,10 +208,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
   // Variant styles derived from design system button colors
   const btnColors = colors.component.button;
   const variantClasses = {
-    default: 'bg-gray-900 dark:bg-gray-700 text-white',
+    default: 'bg-foreground text-background',
     info: `${btnColors.primary.base} ${btnColors.primary.dark} text-white`,
     success: `${btnColors.success.base} ${btnColors.success.dark} text-white`,
-    warning: 'bg-yellow-600 dark:bg-yellow-500 text-white',
+    warning: 'bg-warning text-warning-foreground',
     error: `${btnColors.destructive.base} ${btnColors.destructive.dark} text-white`,
   };
 
@@ -219,34 +219,34 @@ export const Tooltip: React.FC<TooltipProps> = ({
   // These use CSS border-color tricks for the triangle, so they need explicit border-{side} classes
   const arrowVariantClasses = {
     default: {
-      top: 'border-t-gray-900 dark:border-t-gray-700',
-      bottom: 'border-b-gray-900 dark:border-b-gray-700',
-      left: 'border-l-gray-900 dark:border-l-gray-700',
-      right: 'border-r-gray-900 dark:border-r-gray-700',
+      top: 'border-t-foreground',
+      bottom: 'border-b-foreground',
+      left: 'border-l-foreground',
+      right: 'border-r-foreground',
     },
     info: {
-      top: 'border-t-blue-600 dark:border-t-blue-600',
-      bottom: 'border-b-blue-600 dark:border-b-blue-600',
-      left: 'border-l-blue-600 dark:border-l-blue-600',
-      right: 'border-r-blue-600 dark:border-r-blue-600',
+      top: 'border-t-primary',
+      bottom: 'border-b-primary',
+      left: 'border-l-primary',
+      right: 'border-r-primary',
     },
     success: {
-      top: 'border-t-green-600 dark:border-t-green-600',
-      bottom: 'border-b-green-600 dark:border-b-green-600',
-      left: 'border-l-green-600 dark:border-l-green-600',
-      right: 'border-r-green-600 dark:border-r-green-600',
+      top: 'border-t-success',
+      bottom: 'border-b-success',
+      left: 'border-l-success',
+      right: 'border-r-success',
     },
     warning: {
-      top: 'border-t-yellow-600 dark:border-t-yellow-500',
-      bottom: 'border-b-yellow-600 dark:border-b-yellow-500',
-      left: 'border-l-yellow-600 dark:border-l-yellow-500',
-      right: 'border-r-yellow-600 dark:border-r-yellow-500',
+      top: 'border-t-warning',
+      bottom: 'border-b-warning',
+      left: 'border-l-warning',
+      right: 'border-r-warning',
     },
     error: {
-      top: 'border-t-red-600 dark:border-t-red-600',
-      bottom: 'border-b-red-600 dark:border-b-red-600',
-      left: 'border-l-red-600 dark:border-l-red-600',
-      right: 'border-r-red-600 dark:border-r-red-600',
+      top: 'border-t-destructive',
+      bottom: 'border-b-destructive',
+      left: 'border-l-destructive',
+      right: 'border-r-destructive',
     },
   };
 

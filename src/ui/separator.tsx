@@ -79,7 +79,7 @@ export const Separator: React.FC<SeparatorProps> = ({
       role='separator'
       aria-orientation={orientation}
       className={cn(
-        'bg-gray-200 dark:bg-gray-700',
+        'bg-border',
         isHorizontal ? 'w-full' : 'h-full',
         thicknessClasses[orientation][thickness],
         spacingClasses[orientation][spacing],

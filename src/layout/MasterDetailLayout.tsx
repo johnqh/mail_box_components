@@ -37,7 +37,7 @@ export const MasterListItem: React.FC<MasterListItemProps> = ({
     >
       {/* Rounded selection overlay - positioned absolutely to create overlay effect */}
       {isSelected && (
-        <div className='absolute inset-1 bg-blue-500/10 dark:bg-blue-400/10 rounded-lg pointer-events-none' />
+        <div className='absolute inset-1 bg-primary/10 rounded-lg pointer-events-none' />
       )}
 
       {/* Content wrapper with z-index to sit above overlay */}
@@ -46,8 +46,8 @@ export const MasterListItem: React.FC<MasterListItemProps> = ({
           <Icon
             className={`h-5 w-5 mt-0.5 mr-3 flex-shrink-0 transition-colors ${
               isSelected
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300'
+                ? 'text-primary'
+                : 'text-muted-foreground group-hover:text-foreground'
             }`}
           />
         )}
@@ -55,8 +55,8 @@ export const MasterListItem: React.FC<MasterListItemProps> = ({
           <div
             className={`font-medium transition-colors ${
               isSelected
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-300'
+                ? 'text-primary'
+                : 'text-foreground group-hover:text-foreground'
             }`}
           >
             {label}
@@ -64,9 +64,7 @@ export const MasterListItem: React.FC<MasterListItemProps> = ({
           {description && (
             <div
               className={`text-xs mt-0.5 transition-colors ${
-                isSelected
-                  ? 'text-blue-500 dark:text-blue-300'
-                  : 'text-gray-500 dark:text-gray-400'
+                isSelected ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
               {description}
@@ -392,7 +390,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           {mobileView === 'content' && onBackToNavigation && (
             <button
               onClick={onBackToNavigation}
-              className={`mb-4 px-4 py-2 border ${ui.border.default} rounded-md text-sm font-medium ${ui.background.surface} hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex-shrink-0 ${textVariants.body.sm()}`}
+              className={`mb-4 px-4 py-2 border ${ui.border.default} rounded-md text-sm font-medium ${ui.background.surface} hover:bg-muted transition-colors flex-shrink-0 ${textVariants.body.sm()}`}
             >
               ← {buttonText}
             </button>

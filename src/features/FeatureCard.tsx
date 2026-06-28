@@ -96,46 +96,47 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   borderColor = false,
   className,
 }) => {
-  // Color class definitions for text and backgrounds
+  // Color class definitions mapped to semantic theme tokens (theme-aware).
+  // Decorative hues collapse to the nearest semantic role.
   const colorClasses: Record<FeatureCardColor, string> = {
-    blue: 'text-blue-600 dark:text-blue-400',
-    green: 'text-green-600 dark:text-green-400',
-    purple: 'text-purple-600 dark:text-purple-400',
-    orange: 'text-orange-600 dark:text-orange-400',
-    pink: 'text-pink-600 dark:text-pink-400',
-    gray: 'text-gray-600 dark:text-gray-400',
-    red: 'text-red-600 dark:text-red-400',
-    indigo: 'text-indigo-600 dark:text-indigo-400',
-    cyan: 'text-cyan-600 dark:text-cyan-400',
-    emerald: 'text-emerald-600 dark:text-emerald-400',
+    blue: 'text-primary',
+    green: 'text-success',
+    purple: 'text-primary',
+    orange: 'text-warning',
+    pink: 'text-primary',
+    gray: 'text-muted-foreground',
+    red: 'text-destructive',
+    indigo: 'text-primary',
+    cyan: 'text-primary',
+    emerald: 'text-success',
   };
 
   // Border color classes for left accent
   const borderColorClasses: Record<FeatureCardColor, string> = {
-    green: 'border-l-4 border-green-500',
-    blue: 'border-l-4 border-blue-500',
-    purple: 'border-l-4 border-purple-500',
-    orange: 'border-l-4 border-orange-500',
-    red: 'border-l-4 border-red-500',
-    indigo: 'border-l-4 border-indigo-500',
-    cyan: 'border-l-4 border-cyan-500',
-    emerald: 'border-l-4 border-emerald-500',
-    pink: 'border-l-4 border-pink-500',
-    gray: 'border-l-4 border-gray-500',
+    green: 'border-l-4 border-success',
+    blue: 'border-l-4 border-primary',
+    purple: 'border-l-4 border-primary',
+    orange: 'border-l-4 border-warning',
+    red: 'border-l-4 border-destructive',
+    indigo: 'border-l-4 border-primary',
+    cyan: 'border-l-4 border-primary',
+    emerald: 'border-l-4 border-success',
+    pink: 'border-l-4 border-primary',
+    gray: 'border-l-4 border-border',
   };
 
   // Icon background classes
   const iconBackgroundClasses: Record<FeatureCardColor, string> = {
-    green: 'bg-green-100 dark:bg-green-900/20',
-    blue: 'bg-blue-100 dark:bg-blue-900/20',
-    purple: 'bg-purple-100 dark:bg-purple-900/20',
-    orange: 'bg-orange-100 dark:bg-orange-900/20',
-    red: 'bg-red-100 dark:bg-red-900/20',
-    indigo: 'bg-indigo-100 dark:bg-indigo-900/20',
-    cyan: 'bg-cyan-100 dark:bg-cyan-900/20',
-    emerald: 'bg-emerald-100 dark:bg-emerald-900/20',
-    pink: 'bg-pink-100 dark:bg-pink-900/20',
-    gray: 'bg-gray-100 dark:bg-gray-900/20',
+    green: 'bg-success/10',
+    blue: 'bg-primary/10',
+    purple: 'bg-primary/10',
+    orange: 'bg-warning/10',
+    red: 'bg-destructive/10',
+    indigo: 'bg-primary/10',
+    cyan: 'bg-primary/10',
+    emerald: 'bg-success/10',
+    pink: 'bg-primary/10',
+    gray: 'bg-muted',
   };
 
   const iconColor = colorClasses[color];
@@ -222,7 +223,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
     borderColor && borderColorClasses[color],
     (interactive || onClick) && 'cursor-pointer hover:scale-[1.02]',
     isHighlight
-      ? 'bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800 border'
+      ? 'bg-gradient-to-br from-primary/10 to-accent border-primary/30 border'
       : cn(
           colors.component.card.default.base,
           colors.component.card.default.dark,

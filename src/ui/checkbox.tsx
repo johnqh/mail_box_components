@@ -147,17 +147,15 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   // Checked state colors from design system button colors
   const checkedColors = {
-    primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark} border-blue-600`,
-    success: `${colors.component.button.success.base} ${colors.component.button.success.dark} border-green-600`,
-    warning: 'bg-yellow-600 border-yellow-600',
-    error: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark} border-red-600`,
+    primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark} border-primary`,
+    success: `${colors.component.button.success.base} ${colors.component.button.success.dark} border-success`,
+    warning: 'bg-warning border-warning',
+    error: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark} border-destructive`,
   };
 
   const getVariantClasses = () => {
     if (error) {
-      return checked
-        ? `${checkedColors.error}`
-        : 'border-red-600 dark:border-red-500';
+      return checked ? `${checkedColors.error}` : 'border-destructive';
     }
 
     return checked ? checkedColors[effectiveVariant] : uncheckedBorder;

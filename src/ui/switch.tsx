@@ -52,8 +52,8 @@ const Switch = React.forwardRef<React.ElementRef<typeof Root>, SwitchProps>(
         className={cn(
           'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
           colors.component.button.primary.focus,
-          'data-[state=checked]:bg-blue-600 dark:data-[state=checked]:bg-blue-600',
-          'data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700',
+          'data-[state=checked]:bg-primary',
+          'data-[state=unchecked]:bg-muted',
           className
         )}
         onCheckedChange={handleCheckedChange}

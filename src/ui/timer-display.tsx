@@ -66,9 +66,7 @@ export const TimerDisplay: React.FC<TimerDisplayProps> = ({
         <svg
           className={cn(
             iconSizes[size],
-            isActive
-              ? 'text-blue-600 dark:text-blue-400'
-              : 'text-gray-400 dark:text-gray-500'
+            isActive ? 'text-primary' : 'text-muted-foreground'
           )}
           fill='none'
           viewBox='0 0 24 24'

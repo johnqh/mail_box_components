@@ -157,7 +157,7 @@ export const Sheet: React.FC<SheetProps> = ({
               side === 'bottom' ? 'pt-3 pb-2' : 'pb-3 pt-2'
             )}
           >
-            <div className='w-12 h-1.5 bg-gray-300 dark:bg-gray-700 rounded-full' />
+            <div className='w-12 h-1.5 bg-muted rounded-full' />
           </div>
         )}
 
@@ -179,7 +179,7 @@ export const Sheet: React.FC<SheetProps> = ({
                 <button
                   onClick={onClose}
                   className={cn(
-                    'ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200',
+                    'ml-4 text-muted-foreground hover:text-foreground',
                     ui.transition.default
                   )}
                   aria-label='Close sheet'

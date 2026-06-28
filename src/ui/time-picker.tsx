@@ -145,26 +145,22 @@ export const TimePicker: React.FC<TimePickerProps> = ({
         disabled={disabled}
         className={cn(
           'w-full px-3 py-2 text-sm text-left flex items-center justify-between',
-          'bg-white dark:bg-gray-900',
-          'border border-gray-300 dark:border-gray-700',
+          'bg-background',
+          'border border-input',
           'rounded-md',
-          'hover:bg-gray-50 dark:hover:bg-gray-800',
+          'hover:bg-muted',
           'transition-colors',
           'disabled:opacity-50 disabled:cursor-not-allowed',
-          isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
+          isOpen && 'ring-2 ring-ring'
         )}
       >
         <span
-          className={cn(
-            value
-              ? 'text-gray-900 dark:text-white'
-              : 'text-gray-500 dark:text-gray-400'
-          )}
+          className={cn(value ? 'text-foreground' : 'text-muted-foreground')}
         >
           {value ? formatDisplay() : 'Select time'}
         </span>
         <svg
-          className='w-5 h-5 text-gray-600 dark:text-gray-400'
+          className='w-5 h-5 text-muted-foreground'
           fill='none'
           stroke='currentColor'
           viewBox='0 0 24 24'
@@ -180,14 +176,14 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
       {/* Time picker dropdown */}
       {isOpen && (
-        <div className='absolute top-full left-0 mt-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50'>
+        <div className='absolute top-full left-0 mt-1 bg-background border border-input rounded-md shadow-lg z-50'>
           <div className='flex gap-1 p-2'>
             {/* Hours */}
             <div className='flex flex-col'>
-              <div className='text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2'>
+              <div className='text-xs font-medium text-foreground text-center mb-1 px-2'>
                 Hour
               </div>
-              <div className='h-48 overflow-y-auto w-16 border border-gray-200 dark:border-gray-700 rounded'>
+              <div className='h-48 overflow-y-auto w-16 border border-border rounded'>
                 {hourOptions.map(hour => (
                   <button
                     key={hour}
@@ -201,10 +197,10 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     }}
                     className={cn(
                       'w-full px-3 py-1.5 text-sm text-center',
-                      'hover:bg-gray-100 dark:hover:bg-gray-800',
+                      'hover:bg-muted',
                       'transition-colors',
                       hour === internalHour &&
-                        'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium'
+                        'bg-accent text-primary font-medium'
                     )}
                   >
                     {hour}
@@ -215,10 +211,10 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
             {/* Minutes */}
             <div className='flex flex-col'>
-              <div className='text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2'>
+              <div className='text-xs font-medium text-foreground text-center mb-1 px-2'>
                 Min
               </div>
-              <div className='h-48 overflow-y-auto w-16 border border-gray-200 dark:border-gray-700 rounded'>
+              <div className='h-48 overflow-y-auto w-16 border border-border rounded'>
                 {minuteOptions.map(minute => (
                   <button
                     key={minute}
@@ -232,10 +228,10 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     }}
                     className={cn(
                       'w-full px-3 py-1.5 text-sm text-center',
-                      'hover:bg-gray-100 dark:hover:bg-gray-800',
+                      'hover:bg-muted',
                       'transition-colors',
                       minute === internalMinute &&
-                        'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium'
+                        'bg-accent text-primary font-medium'
                     )}
                   >
                     {minute}
@@ -247,7 +243,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             {/* AM/PM */}
             {use12Hour && (
               <div className='flex flex-col'>
-                <div className='text-xs font-medium text-gray-700 dark:text-gray-300 text-center mb-1 px-2'>
+                <div className='text-xs font-medium text-foreground text-center mb-1 px-2'>
                   &nbsp;
                 </div>
                 <div className='h-48 flex flex-col justify-center gap-2 w-16'>
@@ -258,10 +254,9 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     }}
                     className={cn(
                       'px-3 py-2 text-sm text-center rounded',
-                      'hover:bg-gray-100 dark:hover:bg-gray-800',
+                      'hover:bg-muted',
                       'transition-colors',
-                      period === 'AM' &&
-                        'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium'
+                      period === 'AM' && 'bg-accent text-primary font-medium'
                     )}
                   >
                     AM
@@ -273,10 +268,9 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     }}
                     className={cn(
                       'px-3 py-2 text-sm text-center rounded',
-                      'hover:bg-gray-100 dark:hover:bg-gray-800',
+                      'hover:bg-muted',
                       'transition-colors',
-                      period === 'PM' &&
-                        'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium'
+                      period === 'PM' && 'bg-accent text-primary font-medium'
                     )}
                   >
                     PM

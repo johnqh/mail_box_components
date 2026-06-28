@@ -147,12 +147,12 @@ export const Calendar: React.FC<CalendarProps> = ({
   });
 
   return (
-    <div className={cn('bg-white dark:bg-gray-900 rounded-lg p-4', className)}>
+    <div className={cn('bg-background rounded-lg p-4', className)}>
       {/* Header */}
       <div className='flex items-center justify-between mb-4'>
         <button
           onClick={goToPreviousMonth}
-          className='p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors'
+          className='p-2 hover:bg-muted rounded-md transition-colors'
           aria-label='Previous month'
         >
           <svg
@@ -170,13 +170,11 @@ export const Calendar: React.FC<CalendarProps> = ({
           </svg>
         </button>
 
-        <h2 className='text-base font-semibold text-gray-900 dark:text-white'>
-          {monthYear}
-        </h2>
+        <h2 className='text-base font-semibold text-foreground'>{monthYear}</h2>
 
         <button
           onClick={goToNextMonth}
-          className='p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors'
+          className='p-2 hover:bg-muted rounded-md transition-colors'
           aria-label='Next month'
         >
           <svg
@@ -200,7 +198,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         {weekDays.map(day => (
           <div
             key={day}
-            className='text-center text-xs font-medium text-gray-600 dark:text-gray-400 py-2'
+            className='text-center text-xs font-medium text-muted-foreground py-2'
           >
             {day}
           </div>
@@ -226,16 +224,12 @@ export const Calendar: React.FC<CalendarProps> = ({
               disabled={isDisabled}
               className={cn(
                 'aspect-square flex items-center justify-center rounded-md text-sm transition-colors',
-                'hover:bg-gray-100 dark:hover:bg-gray-800',
+                'hover:bg-muted',
                 'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent',
-                isCurrentMonth
-                  ? 'text-gray-900 dark:text-white'
-                  : 'text-gray-400 dark:text-gray-600',
+                isCurrentMonth ? 'text-foreground' : 'text-muted-foreground',
                 isSelected &&
-                  'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600',
-                isToday &&
-                  !isSelected &&
-                  'border-2 border-blue-600 dark:border-blue-400'
+                  'bg-primary text-primary-foreground hover:bg-primary/90',
+                isToday && !isSelected && 'border-2 border-primary'
               )}
             >
               {date.getDate()}

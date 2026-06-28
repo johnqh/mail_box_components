@@ -40,20 +40,20 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         <h2 className={textVariants.heading.h4()}>{title}</h2>
         <div className='flex items-center space-x-2'>
           {loading && (
-            <div className='w-5 h-5 border-2 border-blue-600 dark:border-blue-400 border-t-transparent rounded-full animate-spin'></div>
+            <div className='w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin'></div>
           )}
           {onAdd && (
             <button
               onClick={onAdd}
               className={cn(
-                'p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700',
+                'p-1 rounded hover:bg-muted',
                 ui.transition.default
               )}
               title={addButtonTooltip}
               aria-label={addButtonTooltip || 'Add'}
             >
               <svg
-                className='w-5 h-5 text-gray-600 dark:text-gray-400'
+                className='w-5 h-5 text-muted-foreground'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'

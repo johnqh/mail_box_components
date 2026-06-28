@@ -194,7 +194,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
         {/* Close button */}
         <button
           onClick={onClose}
-          className='absolute top-4 right-4 z-10 p-2 text-white hover:text-gray-300 transition-colors'
+          className='absolute top-4 right-4 z-10 p-2 text-white hover:text-white/70 transition-colors'
           aria-label='Close'
         >
           <svg
@@ -216,7 +216,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
         {hasPrev && (
           <button
             onClick={handlePrev}
-            className='absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 text-white hover:text-gray-300 bg-black/50 hover:bg-black/70 rounded-full transition-all'
+            className='absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 text-white hover:text-white/70 bg-black/50 hover:bg-black/70 rounded-full transition-all'
             aria-label='Previous image'
           >
             <svg
@@ -239,7 +239,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
         {hasNext && (
           <button
             onClick={handleNext}
-            className='absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 text-white hover:text-gray-300 bg-black/50 hover:bg-black/70 rounded-full transition-all'
+            className='absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 text-white hover:text-white/70 bg-black/50 hover:bg-black/70 rounded-full transition-all'
             aria-label='Next image'
           >
             <svg
@@ -270,7 +270,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
             <div className='flex gap-1 bg-black/50 rounded-md p-1'>
               <button
                 onClick={handleZoomOut}
-                className='p-1.5 text-white hover:text-gray-300 transition-colors'
+                className='p-1.5 text-white hover:text-white/70 transition-colors'
                 aria-label='Zoom out'
               >
                 <svg
@@ -289,14 +289,14 @@ export const Lightbox: React.FC<LightboxProps> = ({
               </button>
               <button
                 onClick={handleZoomReset}
-                className='px-2 text-white text-sm hover:text-gray-300 transition-colors'
+                className='px-2 text-white text-sm hover:text-white/70 transition-colors'
                 aria-label='Reset zoom'
               >
                 {Math.round(zoom * 100)}%
               </button>
               <button
                 onClick={handleZoomIn}
-                className='p-1.5 text-white hover:text-gray-300 transition-colors'
+                className='p-1.5 text-white hover:text-white/70 transition-colors'
                 aria-label='Zoom in'
               >
                 <svg
@@ -320,7 +320,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
           {showDownload && (
             <button
               onClick={handleDownload}
-              className='p-1.5 bg-black/50 text-white hover:text-gray-300 rounded-md transition-colors'
+              className='p-1.5 bg-black/50 text-white hover:text-white/70 rounded-md transition-colors'
               aria-label='Download image'
             >
               <svg
@@ -376,7 +376,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
                   'border-2 transition-all',
                   i === index
                     ? 'border-white scale-110'
-                    : 'border-transparent opacity-60 hover:opacity-100 hover:border-gray-400'
+                    : 'border-transparent opacity-60 hover:opacity-100 hover:border-white/40'
                 )}
               >
                 <img

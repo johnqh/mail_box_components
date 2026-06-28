@@ -220,27 +220,25 @@ export const FileInput: React.FC<FileInputProps> = ({
             'transition-colors duration-200',
             'cursor-pointer',
             isDragging
-              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/10'
-              : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500',
+              ? 'border-primary bg-accent'
+              : 'border-input hover:border-muted-foreground',
             disabled && 'opacity-50 cursor-not-allowed'
           )}
         >
           <div className='flex flex-col items-center justify-center space-y-3'>
-            <CloudArrowUpIcon className='h-12 w-12 text-gray-400 dark:text-gray-500' />
-            <p className='text-sm text-gray-600 dark:text-gray-400 text-center'>
+            <CloudArrowUpIcon className='h-12 w-12 text-muted-foreground' />
+            <p className='text-sm text-muted-foreground text-center'>
               {dropZoneText}
             </p>
             {maxSize && (
-              <p className='text-xs text-gray-500 dark:text-gray-500'>
+              <p className='text-xs text-muted-foreground'>
                 Max file size: {formatFileSize(maxSize)}
               </p>
             )}
           </div>
         </div>
 
-        {error && (
-          <p className='mt-2 text-sm text-red-600 dark:text-red-400'>{error}</p>
-        )}
+        {error && <p className='mt-2 text-sm text-destructive'>{error}</p>}
 
         {showFileList && files.length > 0 && (
           <FileList files={files} onRemove={handleRemove} />
@@ -267,12 +265,12 @@ export const FileInput: React.FC<FileInputProps> = ({
         onClick={handleClick}
         disabled={disabled}
         className={cn(
-          'inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600',
+          'inline-flex items-center px-4 py-2 border border-input',
           'rounded-lg shadow-sm text-sm font-medium',
-          'text-gray-700 dark:text-gray-300',
-          'bg-white dark:bg-gray-800',
-          'hover:bg-gray-50 dark:hover:bg-gray-700',
-          'focus:outline-none focus:ring-2 focus:ring-blue-500',
+          'text-foreground',
+          'bg-background',
+          'hover:bg-muted',
+          'focus:outline-none focus:ring-2 focus:ring-ring',
           'transition-colors',
           disabled && 'opacity-50 cursor-not-allowed'
         )}
@@ -281,9 +279,7 @@ export const FileInput: React.FC<FileInputProps> = ({
         {buttonText}
       </button>
 
-      {error && (
-        <p className='mt-2 text-sm text-red-600 dark:text-red-400'>{error}</p>
-      )}
+      {error && <p className='mt-2 text-sm text-destructive'>{error}</p>}
 
       {showFileList && files.length > 0 && (
         <FileList files={files} onRemove={handleRemove} />
@@ -304,15 +300,15 @@ const FileList: React.FC<{
       {files.map((file, index) => (
         <div
           key={`${file.name}-${index}`}
-          className='flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700'
+          className='flex items-center justify-between p-2 bg-muted rounded-lg border border-border'
         >
           <div className='flex items-center space-x-2 flex-1 min-w-0'>
-            <DocumentIcon className='h-5 w-5 text-gray-400 flex-shrink-0' />
+            <DocumentIcon className='h-5 w-5 text-muted-foreground flex-shrink-0' />
             <div className='flex-1 min-w-0'>
-              <p className='text-sm font-medium text-gray-900 dark:text-gray-100 truncate'>
+              <p className='text-sm font-medium text-foreground truncate'>
                 {file.name}
               </p>
-              <p className='text-xs text-gray-500 dark:text-gray-400'>
+              <p className='text-xs text-muted-foreground'>
                 {formatFileSize(file.size)}
               </p>
             </div>
@@ -320,7 +316,7 @@ const FileList: React.FC<{
           <button
             type='button'
             onClick={() => onRemove(index)}
-            className='flex-shrink-0 p-1 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors'
+            className='flex-shrink-0 p-1 text-muted-foreground hover:text-destructive transition-colors'
             aria-label='Remove file'
           >
             <XMarkIcon className='h-5 w-5' />

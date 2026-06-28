@@ -209,8 +209,8 @@ export const OtpInput: React.FC<OtpInputProps> = ({
               colors.component.input.default.focus,
               'transition-colors',
               'disabled:opacity-50 disabled:cursor-not-allowed',
-              isFocused && 'ring-2 ring-blue-500 dark:ring-blue-400',
-              digit && 'border-gray-400 dark:border-gray-600'
+              isFocused && 'ring-2 ring-ring',
+              digit && 'border-muted-foreground'
             )}
           />
         );

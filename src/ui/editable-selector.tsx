@@ -239,11 +239,11 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
           className={cn(
             'absolute right-0 top-0 h-full px-3',
             'flex items-center justify-center',
-            'text-gray-500 dark:text-gray-400',
-            'hover:text-gray-700 dark:hover:text-gray-200',
+            'text-muted-foreground',
+            'hover:text-foreground',
             'transition-colors',
             'disabled:opacity-50 disabled:cursor-not-allowed',
-            isOpen && 'text-gray-700 dark:text-gray-200'
+            isOpen && 'text-foreground'
           )}
           aria-label='Toggle dropdown'
         >
@@ -261,14 +261,14 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
         <div
           className={cn(
             'absolute z-50 w-full mt-1',
-            'bg-white dark:bg-gray-900',
-            'border border-gray-300 dark:border-gray-700',
+            'bg-background',
+            'border border-border',
             'rounded-md shadow-lg',
             'max-h-60 overflow-y-auto'
           )}
         >
           {filteredOptions.length === 0 ? (
-            <div className='px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center'>
+            <div className='px-3 py-2 text-sm text-muted-foreground text-center'>
               {emptyMessage}
             </div>
           ) : (
@@ -284,11 +284,11 @@ export const EditableSelector: React.FC<EditableSelectorProps> = ({
                   'transition-colors',
                   'disabled:opacity-50 disabled:cursor-not-allowed',
                   option.value === value
-                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                    ? 'bg-accent text-primary'
                     : index === highlightedIndex
-                      ? 'bg-gray-100 dark:bg-gray-800'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-800',
-                  'text-gray-900 dark:text-gray-100'
+                      ? 'bg-muted'
+                      : 'hover:bg-muted',
+                  'text-foreground'
                 )}
               >
                 {option.label || option.value}

@@ -109,7 +109,7 @@ export const DateInput: React.FC<DateInputProps> = ({
           )}
         >
           <CalendarIcon
-            className={cn(sizeConfig.icon, 'text-gray-400 dark:text-gray-500')}
+            className={cn(sizeConfig.icon, 'text-muted-foreground')}
           />
         </div>
       )}
@@ -125,11 +125,11 @@ export const DateInput: React.FC<DateInputProps> = ({
         placeholder={placeholder}
         className={cn(
           'block w-full rounded-lg border',
-          'bg-white dark:bg-gray-800',
-          'text-gray-900 dark:text-gray-100',
-          'placeholder-gray-400 dark:placeholder-gray-500',
-          'border-gray-300 dark:border-gray-600',
-          'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+          'bg-background',
+          'text-foreground',
+          'placeholder:text-muted-foreground',
+          'border-input',
+          'focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent',
           'transition-colors duration-200',
           sizeConfig.input,
           sizeConfig.padding,

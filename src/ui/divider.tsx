@@ -89,8 +89,8 @@ export const Divider: React.FC<DividerProps> = ({
   // Color variant configurations from design system border tokens
   const variantClasses = {
     light: ui.border.default,
-    medium: 'border-gray-300 dark:border-gray-600',
-    dark: 'border-gray-400 dark:border-gray-500',
+    medium: 'border-border',
+    dark: 'border-muted-foreground',
   };
 
   // Vertical divider
@@ -158,7 +158,7 @@ export const Divider: React.FC<DividerProps> = ({
       <span
         className={cn(
           textVariants.body.sm(),
-          'px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap'
+          'px-3 text-muted-foreground whitespace-nowrap'
         )}
       >
         {label}

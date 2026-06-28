@@ -59,17 +59,14 @@ export const BarChart: React.FC<BarChartProps> = ({
   return (
     <div className={cn('w-full', className)}>
       <div
-        className='relative bg-white dark:bg-gray-900 rounded-lg p-6'
+        className='relative bg-background rounded-lg p-6'
         style={{ height: `${height}px` }}
       >
         {/* Grid lines */}
         {showGrid && (
           <div className='absolute inset-6 flex flex-col justify-between'>
             {[...Array(5)].map((_, i) => (
-              <div
-                key={i}
-                className='border-t border-gray-200 dark:border-gray-700'
-              />
+              <div key={i} className='border-t border-border' />
             ))}
           </div>
         )}
@@ -86,7 +83,7 @@ export const BarChart: React.FC<BarChartProps> = ({
                   style={{ width: `${barWidth}px` }}
                 >
                   {showValues && (
-                    <span className='text-xs text-gray-600 dark:text-gray-400'>
+                    <span className='text-xs text-muted-foreground'>
                       {item.value}
                     </span>
                   )}
@@ -97,7 +94,7 @@ export const BarChart: React.FC<BarChartProps> = ({
                       backgroundColor: item.color || defaultColor,
                     }}
                   />
-                  <span className='text-xs text-gray-600 dark:text-gray-400'>
+                  <span className='text-xs text-muted-foreground'>
                     {item.label}
                   </span>
                 </div>
@@ -110,7 +107,7 @@ export const BarChart: React.FC<BarChartProps> = ({
               const barWidth = (item.value / maxValue) * 100;
               return (
                 <div key={index} className='flex items-center gap-4'>
-                  <span className='text-sm text-gray-600 dark:text-gray-400 w-16 text-right'>
+                  <span className='text-sm text-muted-foreground w-16 text-right'>
                     {item.label}
                   </span>
                   <div className='flex-1 flex items-center gap-2'>
@@ -122,7 +119,7 @@ export const BarChart: React.FC<BarChartProps> = ({
                       }}
                     />
                     {showValues && (
-                      <span className='text-xs text-gray-600 dark:text-gray-400'>
+                      <span className='text-xs text-muted-foreground'>
                         {item.value}
                       </span>
                     )}

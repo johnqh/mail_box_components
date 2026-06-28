@@ -98,8 +98,7 @@ export const Avatar: React.FC<AvatarProps> = ({
         className={cn(
           'flex items-center justify-center overflow-hidden rounded-full',
           sizeClasses[size],
-          !showImage &&
-            'bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200',
+          !showImage && 'bg-muted text-muted-foreground',
           onClick && 'cursor-pointer hover:opacity-80 transition-opacity',
           className
         )}
@@ -121,7 +120,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       {status && (
         <span
           className={cn(
-            'absolute bottom-0 right-0 rounded-full border-2 border-white dark:border-gray-800',
+            'absolute bottom-0 right-0 rounded-full border-2 border-background',
             statusClasses[status],
             statusSizeClasses[size]
           )}

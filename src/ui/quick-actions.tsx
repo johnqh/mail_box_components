@@ -60,7 +60,8 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
       colors.component.button.success.base,
       colors.component.button.success.dark
     ),
-    warning: 'bg-yellow-500 hover:bg-yellow-600 text-white border-yellow-500',
+    warning:
+      'bg-warning hover:bg-warning/90 text-warning-foreground border-warning',
     danger: cn(
       colors.component.button.destructive.base,
       colors.component.button.destructive.dark

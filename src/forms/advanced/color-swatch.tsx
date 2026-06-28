@@ -87,7 +87,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
                 'rounded-lg transition-all relative group',
                 sizeClasses[size],
                 isSelected &&
-                  'ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900',
+                  'ring-2 ring-ring ring-offset-2 ring-offset-background',
                 !isSelected && 'hover:scale-110'
               )}
               style={{ backgroundColor: color.hex }}
@@ -134,11 +134,11 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
             {showNames && (
               <div className='text-center'>
                 {color.name && (
-                  <p className='text-xs font-medium text-gray-900 dark:text-white'>
+                  <p className='text-xs font-medium text-foreground'>
                     {color.name}
                   </p>
                 )}
-                <p className='text-xs text-gray-600 dark:text-gray-400 font-mono'>
+                <p className='text-xs text-muted-foreground font-mono'>
                   {color.hex}
                 </p>
               </div>

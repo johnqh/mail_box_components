@@ -65,29 +65,29 @@ export const StatDisplay: React.FC<StatDisplayProps> = ({
   // Color variant configurations
   const variantClasses = {
     primary: {
-      value: 'text-blue-600 dark:text-blue-400',
-      label: 'text-blue-600/70 dark:text-blue-400/70',
-      icon: 'text-blue-600 dark:text-blue-400',
+      value: 'text-primary',
+      label: 'text-primary/70',
+      icon: 'text-primary',
     },
     success: {
-      value: 'text-green-600 dark:text-green-400',
-      label: 'text-green-600/70 dark:text-green-400/70',
-      icon: 'text-green-600 dark:text-green-400',
+      value: 'text-success',
+      label: 'text-success/70',
+      icon: 'text-success',
     },
     warning: {
-      value: 'text-yellow-600 dark:text-yellow-400',
-      label: 'text-yellow-600/70 dark:text-yellow-400/70',
-      icon: 'text-yellow-600 dark:text-yellow-400',
+      value: 'text-warning',
+      label: 'text-warning/70',
+      icon: 'text-warning',
     },
     danger: {
-      value: 'text-red-600 dark:text-red-400',
-      label: 'text-red-600/70 dark:text-red-400/70',
-      icon: 'text-red-600 dark:text-red-400',
+      value: 'text-destructive',
+      label: 'text-destructive/70',
+      icon: 'text-destructive',
     },
     neutral: {
-      value: 'text-gray-900 dark:text-gray-100',
-      label: 'text-gray-600 dark:text-gray-400',
-      icon: 'text-gray-600 dark:text-gray-400',
+      value: 'text-foreground',
+      label: 'text-muted-foreground',
+      icon: 'text-muted-foreground',
     },
     white: {
       value: 'text-white',

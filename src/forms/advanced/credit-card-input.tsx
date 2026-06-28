@@ -187,7 +187,7 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
       default:
         return (
           <svg
-            className='w-5 h-5 text-gray-400'
+            className='w-5 h-5 text-muted-foreground'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'

@@ -148,16 +148,16 @@ export const TextArea: React.FC<TextAreaProps> = ({
         maxLength={maxLength}
         className={cn(
           'w-full rounded-lg border',
-          'bg-white dark:bg-gray-800',
-          'text-gray-900 dark:text-gray-100',
-          'placeholder-gray-400 dark:placeholder-gray-500',
-          'border-gray-300 dark:border-gray-600',
-          'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+          'bg-background',
+          'text-foreground',
+          'placeholder:text-muted-foreground',
+          'border-input',
+          'focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent',
           'transition-colors duration-200',
           sizeClasses[size],
           resizeClasses[resize],
           disabled && 'opacity-50 cursor-not-allowed',
-          readOnly && 'bg-gray-50 dark:bg-gray-900 cursor-default'
+          readOnly && 'bg-muted cursor-default'
         )}
         {...textareaProps}
       />
@@ -169,11 +169,9 @@ export const TextArea: React.FC<TextAreaProps> = ({
             className={cn(
               'text-xs',
               maxLength && characterCount > maxLength * 0.9
-                ? 'text-yellow-600 dark:text-yellow-400'
-                : 'text-gray-500 dark:text-gray-400',
-              maxLength &&
-                characterCount >= maxLength &&
-                'text-red-600 dark:text-red-400'
+                ? 'text-warning'
+                : 'text-muted-foreground',
+              maxLength && characterCount >= maxLength && 'text-destructive'
             )}
           >
             {characterCount}

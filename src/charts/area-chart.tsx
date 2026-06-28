@@ -119,16 +119,14 @@ export const AreaChart: React.FC<AreaChartProps> = ({
                     s.color || defaultColors[i % defaultColors.length],
                 }}
               />
-              <span className='text-sm text-gray-700 dark:text-gray-300'>
-                {s.name}
-              </span>
+              <span className='text-sm text-foreground'>{s.name}</span>
             </div>
           ))}
         </div>
       )}
 
       {/* Chart */}
-      <div className='bg-white dark:bg-gray-900 rounded-lg p-6'>
+      <div className='bg-background rounded-lg p-6'>
         <div className='relative' style={{ height: `${height}px` }}>
           {/* Grid */}
           {showGrid && (
@@ -136,7 +134,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
               {[...Array(5)].map((_, i) => (
                 <div
                   key={i}
-                  className='absolute w-full border-t border-gray-200 dark:border-gray-700'
+                  className='absolute w-full border-t border-border'
                   style={{ top: `${i * 25}%` }}
                 />
               ))}
@@ -178,10 +176,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
         {xLabels && (
           <div className='flex justify-between mt-2'>
             {xLabels.map((label, i) => (
-              <span
-                key={i}
-                className='text-xs text-gray-600 dark:text-gray-400'
-              >
+              <span key={i} className='text-xs text-muted-foreground'>
                 {label}
               </span>
             ))}

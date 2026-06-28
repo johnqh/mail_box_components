@@ -173,7 +173,7 @@ describe('SmartLink Component', () => {
 
       const link = screen.getByText('Accessible Link');
       expect(link).toHaveClass('focus:ring-2');
-      expect(link).toHaveClass('focus:ring-blue-500');
+      expect(link).toHaveClass('focus:ring-ring');
     });
 
     it('provides proper ARIA attributes for external links', () => {

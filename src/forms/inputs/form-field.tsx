@@ -77,7 +77,7 @@ export const FormField: React.FC<FormFieldProps> = ({
     <div className={cn('space-y-2', className)}>
       <Label htmlFor={id}>
         {label}
-        {required && <span className='text-red-500 ml-1'>*</span>}
+        {required && <span className='text-destructive ml-1'>*</span>}
       </Label>
       <Input
         type={type}
@@ -98,9 +98,7 @@ export const FormField: React.FC<FormFieldProps> = ({
           id={helperId}
           className={cn(
             textVariants.body.sm(),
-            hasError
-              ? 'text-red-600 dark:text-red-400'
-              : 'text-gray-500 dark:text-gray-400'
+            hasError ? 'text-destructive' : 'text-muted-foreground'
           )}
           role={hasError ? 'alert' : undefined}
         >

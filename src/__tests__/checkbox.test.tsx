@@ -93,7 +93,9 @@ describe('Checkbox', () => {
   it('applies error state', () => {
     const { container } = render(<Checkbox error />);
 
-    const errorElement = container.querySelector('[class*="border-red"]');
+    const errorElement = container.querySelector(
+      '[class*="border-destructive"]'
+    );
     expect(errorElement).toBeInTheDocument();
   });
 

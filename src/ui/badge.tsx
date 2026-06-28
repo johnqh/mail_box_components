@@ -89,19 +89,13 @@ export const Badge: React.FC<BadgeProps> = ({
 
   // Color variant configurations for outline style
   const outlineClasses = {
-    default:
-      'border border-gray-300 text-gray-700 dark:border-gray-600 dark:text-gray-300',
-    primary:
-      'border border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400',
-    success:
-      'border border-green-600 text-green-600 dark:border-green-400 dark:text-green-400',
-    warning:
-      'border border-yellow-600 text-yellow-600 dark:border-yellow-400 dark:text-yellow-400',
-    danger:
-      'border border-red-600 text-red-600 dark:border-red-400 dark:text-red-400',
-    info: 'border border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400',
-    purple:
-      'border border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400',
+    default: 'border border-border text-foreground',
+    primary: 'border border-primary text-primary',
+    success: 'border border-success text-success',
+    warning: 'border border-warning text-warning',
+    danger: 'border border-destructive text-destructive',
+    info: 'border border-info text-info',
+    purple: 'border border-primary text-primary',
   };
 
   // Size configurations
@@ -119,13 +113,13 @@ export const Badge: React.FC<BadgeProps> = ({
 
   // Dot color configurations
   const dotColorClasses = {
-    default: 'bg-gray-600 dark:bg-gray-400',
-    primary: 'bg-blue-600 dark:bg-blue-400',
-    success: 'bg-green-600 dark:bg-green-400',
-    warning: 'bg-yellow-600 dark:bg-yellow-400',
-    danger: 'bg-red-600 dark:bg-red-400',
-    info: 'bg-blue-600 dark:bg-blue-400',
-    purple: 'bg-purple-600 dark:bg-purple-400',
+    default: 'bg-muted-foreground',
+    primary: 'bg-primary',
+    success: 'bg-success',
+    warning: 'bg-warning',
+    danger: 'bg-destructive',
+    info: 'bg-info',
+    purple: 'bg-primary',
   };
 
   // Format count display

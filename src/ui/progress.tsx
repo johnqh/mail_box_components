@@ -86,7 +86,7 @@ export const Progress: React.FC<ProgressProps> = ({
   const colorClasses = {
     default: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
     success: `${colors.component.button.success.base} ${colors.component.button.success.dark}`,
-    warning: 'bg-yellow-600 dark:bg-yellow-500',
+    warning: 'bg-warning',
     danger: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark}`,
   };
 

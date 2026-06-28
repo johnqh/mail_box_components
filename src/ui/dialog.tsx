@@ -119,7 +119,7 @@ export const Dialog: React.FC<DialogProps> = ({
             <button
               onClick={onClose}
               className={cn(
-                'absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200',
+                'absolute top-4 right-4 z-10 text-muted-foreground hover:text-foreground',
                 ui.transition.default
               )}
               aria-label='Close dialog'

@@ -5,7 +5,7 @@ import { cn } from '../lib/utils';
 import { textVariants } from '@sudobility/design';
 
 const smartLinkVariants = cva(
-  'transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm',
+  'transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm',
   {
     variants: {
       variant: {
@@ -19,7 +19,7 @@ const smartLinkVariants = cva(
         external: textVariants.link.external(),
         // Inherit parent styling with minimal changes
         inherit:
-          'text-inherit hover:text-blue-600 dark:hover:text-blue-400 underline-offset-2 hover:underline transition-colors duration-200',
+          'text-inherit hover:text-primary underline-offset-2 hover:underline transition-colors duration-200',
       },
       size: {
         sm: 'text-sm',

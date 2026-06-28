@@ -1,10 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import {
-  colors,
-  textVariants,
-  getStatusIndicatorColor,
-} from '@sudobility/design';
+import { colors, textVariants } from '@sudobility/design';
 
 export interface DashboardStatCardProps {
   /** Stat title */
@@ -64,23 +60,18 @@ export const DashboardStatCard: React.FC<DashboardStatCardProps> = ({
     >
       <div className='flex items-start justify-between mb-2'>
         <h3 className={cn('text-sm', textVariants.label.helper())}>{title}</h3>
-        {icon && <div className='text-gray-400 dark:text-gray-600'>{icon}</div>}
+        {icon && <div className='text-muted-foreground'>{icon}</div>}
       </div>
 
       <div className='flex items-end justify-between'>
         <div>
-          <p className='text-3xl font-bold text-gray-900 dark:text-white'>
-            {value}
-          </p>
+          <p className='text-3xl font-bold text-foreground'>{value}</p>
           {change !== undefined && (
             <div className='flex items-center gap-1 mt-2'>
               <span
                 className={cn(
                   'text-sm font-medium',
-                  change >= 0
-                    ? getStatusIndicatorColor('success').replace('bg-', 'text-')
-                    : getStatusIndicatorColor('error').replace('bg-', 'text-'),
-                  change >= 0 ? 'dark:text-green-400' : 'dark:text-red-400'
+                  change >= 0 ? 'text-success' : 'text-destructive'
                 )}
               >
                 {change >= 0 ? '↑' : '↓'} {Math.abs(change)}%

@@ -83,7 +83,7 @@ export const Link: React.FC<LinkProps> = ({
     default: textVariants.link.default(),
     primary: `${textVariants.link.subtle()} font-medium`,
     secondary: textVariants.link.muted(),
-    muted: `${ui.text.muted} hover:text-gray-700 dark:hover:text-gray-300`,
+    muted: `${ui.text.muted} hover:text-foreground`,
     underline: textVariants.link.default(),
   };
 

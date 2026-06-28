@@ -73,7 +73,7 @@ export const HelperText: React.FC<HelperTextProps> = ({
       icon: CheckCircleIcon,
     },
     warning: {
-      text: 'text-orange-600 dark:text-orange-400',
+      text: 'text-warning',
       icon: ExclamationCircleIcon,
     },
   };

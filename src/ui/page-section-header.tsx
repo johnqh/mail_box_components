@@ -85,18 +85,9 @@ export const PageSectionHeader: React.FC<PageSectionHeaderProps> = ({
     <div className={cn('flex items-start justify-between gap-4', className)}>
       <div className='flex-1 min-w-0'>
         <div className='flex items-center gap-3 flex-wrap'>
-          <h2
-            className={cn(sizeConfig.title, 'text-gray-900 dark:text-gray-100')}
-          >
-            {title}
-          </h2>
+          <h2 className={cn(sizeConfig.title, 'text-foreground')}>{title}</h2>
           {count !== undefined && (
-            <span
-              className={cn(
-                sizeConfig.count,
-                'text-gray-500 dark:text-gray-400'
-              )}
-            >
+            <span className={cn(sizeConfig.count, 'text-muted-foreground')}>
               ({count}
               {countLabel && ` ${countLabel}`})
             </span>
@@ -105,20 +96,17 @@ export const PageSectionHeader: React.FC<PageSectionHeaderProps> = ({
             <span
               className={cn(
                 sizeConfig.count,
-                'text-gray-500 dark:text-gray-400 flex items-center gap-2'
+                'text-muted-foreground flex items-center gap-2'
               )}
             >
-              <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600' />
+              <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-primary' />
               {loadingText}
             </span>
           )}
         </div>
         {description && (
           <p
-            className={cn(
-              sizeConfig.description,
-              'mt-1 text-gray-600 dark:text-gray-400'
-            )}
+            className={cn(sizeConfig.description, 'mt-1 text-muted-foreground')}
           >
             {description}
           </p>

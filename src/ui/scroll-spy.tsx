@@ -178,10 +178,10 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
             'w-full text-left px-3 py-1.5 text-sm rounded-md transition-colors',
             level === 0 ? 'font-medium' : 'pl-6 text-sm',
             isActive
-              ? 'text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30'
+              ? 'text-primary bg-accent'
               : hasActiveChild
-                ? 'text-gray-700 dark:text-gray-300'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                ? 'text-foreground'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted'
           )}
           style={{ paddingLeft: `${level * 0.75 + 0.75}rem` }}
         >
@@ -192,7 +192,7 @@ export const ScrollSpy: React.FC<ScrollSpyProps> = ({
         {showSubsections &&
           section.subsections &&
           section.subsections.length > 0 && (
-            <div className='ml-2 border-l-2 border-gray-200 dark:border-gray-700'>
+            <div className='ml-2 border-l-2 border-border'>
               {section.subsections.map(subsection =>
                 renderSection(subsection, level + 1)
               )}

@@ -150,22 +150,22 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
             disabled={disabled}
             className={cn(
               'flex items-center gap-2 px-3 py-2 min-w-[120px]',
-              'bg-white dark:bg-gray-900',
-              'border border-gray-300 dark:border-gray-700',
+              'bg-background',
+              'border border-input',
               'rounded-md',
-              'hover:bg-gray-50 dark:hover:bg-gray-800',
+              'hover:bg-muted',
               'transition-colors',
               'disabled:opacity-50 disabled:cursor-not-allowed',
-              isOpen && 'ring-2 ring-blue-500 dark:ring-blue-400'
+              isOpen && 'ring-2 ring-ring'
             )}
           >
             <span className='text-xl'>{selectedCountry?.flag}</span>
-            <span className='text-sm font-medium text-gray-900 dark:text-white'>
+            <span className='text-sm font-medium text-foreground'>
               {selectedCountry?.dialCode}
             </span>
             <svg
               className={cn(
-                'w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform',
+                'w-4 h-4 text-muted-foreground transition-transform',
                 isOpen && 'rotate-180'
               )}
               fill='none'
@@ -183,15 +183,15 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
 
           {/* Country dropdown */}
           {isOpen && (
-            <div className='absolute top-full left-0 mt-1 w-72 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-50'>
+            <div className='absolute top-full left-0 mt-1 w-72 bg-background border border-input rounded-md shadow-lg z-50'>
               {/* Search */}
-              <div className='p-2 border-b border-gray-200 dark:border-gray-700'>
+              <div className='p-2 border-b border-border'>
                 <input
                   type='text'
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   placeholder='Search countries...'
-                  className='w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400'
+                  className='w-full px-3 py-2 text-sm bg-muted border-none rounded-md focus:outline-none focus:ring-2 focus:ring-ring'
                   onClick={e => e.stopPropagation()}
                 />
               </div>
@@ -199,7 +199,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
               {/* Countries list */}
               <div className='max-h-60 overflow-y-auto py-1'>
                 {filteredCountries.length === 0 ? (
-                  <div className='px-3 py-2 text-sm text-gray-500 dark:text-gray-400 text-center'>
+                  <div className='px-3 py-2 text-sm text-muted-foreground text-center'>
                     No countries found
                   </div>
                 ) : (
@@ -209,17 +209,16 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
                       onClick={() => handleCountrySelect(country.code)}
                       className={cn(
                         'w-full px-3 py-2 text-left flex items-center gap-3',
-                        'hover:bg-gray-100 dark:hover:bg-gray-800',
+                        'hover:bg-muted',
                         'transition-colors',
-                        country.code === selectedCountryCode &&
-                          'bg-blue-50 dark:bg-blue-900/30'
+                        country.code === selectedCountryCode && 'bg-accent'
                       )}
                     >
                       <span className='text-xl'>{country.flag}</span>
-                      <span className='flex-1 text-sm text-gray-900 dark:text-white'>
+                      <span className='flex-1 text-sm text-foreground'>
                         {country.name}
                       </span>
-                      <span className='text-sm text-gray-600 dark:text-gray-400'>
+                      <span className='text-sm text-muted-foreground'>
                         {country.dialCode}
                       </span>
                     </button>
@@ -239,10 +238,10 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
           disabled={disabled}
           className={cn(
             'flex-1 px-3 py-2 text-sm',
-            'bg-white dark:bg-gray-900',
-            'border border-gray-300 dark:border-gray-700',
+            'bg-background',
+            'border border-input',
             'rounded-md',
-            'focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400',
+            'focus:outline-none focus:ring-2 focus:ring-ring',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
         />
@@ -250,7 +249,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
 
       {/* Full number display */}
       {value && selectedCountry && (
-        <p className='mt-1.5 text-xs text-gray-600 dark:text-gray-400'>
+        <p className='mt-1.5 text-xs text-muted-foreground'>
           Full number: {selectedCountry.dialCode} {value}
         </p>
       )}

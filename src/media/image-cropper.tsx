@@ -95,7 +95,7 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
 
         {/* Crop overlay */}
         <div
-          className='absolute border-2 border-blue-500 bg-blue-500/20'
+          className='absolute border-2 border-primary bg-primary/20'
           style={{
             left: `${cropArea.x}px`,
             top: `${cropArea.y}px`,
@@ -104,10 +104,10 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
             cursor: 'move',
           }}
         >
-          <div className='absolute -top-1 -left-1 w-3 h-3 bg-blue-500 rounded-full cursor-nw-resize' />
-          <div className='absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full cursor-ne-resize' />
-          <div className='absolute -bottom-1 -left-1 w-3 h-3 bg-blue-500 rounded-full cursor-sw-resize' />
-          <div className='absolute -bottom-1 -right-1 w-3 h-3 bg-blue-500 rounded-full cursor-se-resize' />
+          <div className='absolute -top-1 -left-1 w-3 h-3 bg-primary rounded-full cursor-nw-resize' />
+          <div className='absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full cursor-ne-resize' />
+          <div className='absolute -bottom-1 -left-1 w-3 h-3 bg-primary rounded-full cursor-sw-resize' />
+          <div className='absolute -bottom-1 -right-1 w-3 h-3 bg-primary rounded-full cursor-se-resize' />
         </div>
       </div>
 
@@ -116,9 +116,9 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
           onClick={handleCrop}
           className={cn(
             'px-4 py-2 text-sm font-medium',
-            'bg-blue-600 dark:bg-blue-500 text-white',
+            'bg-primary text-primary-foreground',
             'rounded-md',
-            'hover:bg-blue-700 dark:hover:bg-blue-600',
+            'hover:bg-primary/90',
             'transition-colors'
           )}
         >
@@ -133,9 +133,9 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
           }
           className={cn(
             'px-4 py-2 text-sm font-medium',
-            'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white',
+            'bg-muted text-foreground',
             'rounded-md',
-            'hover:bg-gray-300 dark:hover:bg-gray-600',
+            'hover:bg-muted/80',
             'transition-colors'
           )}
         >
@@ -143,7 +143,7 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
         </button>
       </div>
 
-      <p className='text-xs text-gray-600 dark:text-gray-400'>
+      <p className='text-xs text-muted-foreground'>
         Drag to adjust crop area. Click "Crop Image" to export.
       </p>
     </div>

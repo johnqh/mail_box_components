@@ -24,15 +24,13 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
         className
       )}
     >
-      {icon && (
-        <div className='mb-4 text-gray-400 dark:text-gray-600'>{icon}</div>
-      )}
+      {icon && <div className='mb-4 text-muted-foreground'>{icon}</div>}
       <h3 className={cn(textVariants.heading.h3(), 'mb-2')}>{title}</h3>
       {description && (
         <p
           className={cn(
             textVariants.body.sm(),
-            'text-gray-600 dark:text-gray-400 max-w-sm mb-6'
+            'text-muted-foreground max-w-sm mb-6'
           )}
         >
           {description}

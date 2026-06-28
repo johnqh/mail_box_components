@@ -144,12 +144,12 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
         className={cn(
           'border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors',
           isDragging
-            ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-            : 'border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
+            ? 'border-primary bg-accent'
+            : 'border-border hover:border-muted-foreground'
         )}
       >
         <svg
-          className='w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-600'
+          className='w-12 h-12 mx-auto mb-4 text-muted-foreground'
           fill='none'
           stroke='currentColor'
           viewBox='0 0 24 24'
@@ -161,10 +161,10 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
             d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'
           />
         </svg>
-        <p className='text-gray-700 dark:text-gray-300 mb-2'>
+        <p className='text-foreground mb-2'>
           Drag and drop files here, or click to browse
         </p>
-        <p className='text-sm text-gray-500 dark:text-gray-400'>
+        <p className='text-sm text-muted-foreground'>
           Max {maxFiles} files, {formatFileSize(maxSize)} each
         </p>
 
@@ -184,7 +184,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
           {uploadedFiles.map(uploadedFile => (
             <div
               key={uploadedFile.id}
-              className='relative aspect-square rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800'
+              className='relative aspect-square rounded-lg overflow-hidden bg-muted'
             >
               {uploadedFile.preview ? (
                 <img
@@ -195,7 +195,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
               ) : (
                 <div className='w-full h-full flex items-center justify-center'>
                   <svg
-                    className='w-12 h-12 text-gray-400'
+                    className='w-12 h-12 text-muted-foreground'
                     fill='currentColor'
                     viewBox='0 0 24 24'
                   >
@@ -206,7 +206,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
 
               <button
                 onClick={() => handleRemove(uploadedFile.id)}
-                className='absolute top-2 right-2 w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors'
+                className='absolute top-2 right-2 w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center hover:bg-destructive/90 transition-colors'
               >
                 <svg
                   className='w-4 h-4'
@@ -225,7 +225,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
 
               <div className='absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs p-2'>
                 <p className='truncate'>{uploadedFile.file.name}</p>
-                <p className='text-gray-300'>
+                <p className='text-white/70'>
                   {formatFileSize(uploadedFile.file.size)}
                 </p>
               </div>

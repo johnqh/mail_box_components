@@ -60,7 +60,7 @@ export const TopbarLogo: React.FC<TopbarLogoProps> = ({
   const baseClasses = cn(
     'flex items-center',
     'hover:opacity-80 transition-opacity duration-200',
-    'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md',
+    'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md',
     className
   );
 

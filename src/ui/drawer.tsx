@@ -151,7 +151,7 @@ export const Drawer: React.FC<DrawerProps> = ({
               <button
                 onClick={onClose}
                 className={cn(
-                  'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200',
+                  'text-muted-foreground hover:text-foreground',
                   ui.transition.default
                 )}
                 aria-label='Close drawer'

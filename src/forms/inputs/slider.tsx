@@ -125,7 +125,7 @@ export const Slider: React.FC<SliderProps> = ({
         <div
           className={cn(
             'absolute inset-0 rounded-full',
-            'bg-gray-200 dark:bg-gray-700',
+            'bg-muted',
             sizeClasses[size]
           )}
         />
@@ -152,7 +152,7 @@ export const Slider: React.FC<SliderProps> = ({
           disabled={disabled}
           className={cn(
             'relative w-full appearance-none bg-transparent cursor-pointer',
-            'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
+            'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring',
             'rounded-lg',
             sizeClasses[size],
             variantClasses[variant],

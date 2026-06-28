@@ -40,11 +40,11 @@ export const FormFieldGroup: React.FC<FormFieldGroupProps> = ({
           className={`block ${textVariants.label.default()} ${labelClassName}`}
         >
           {label}
-          {required && <span className='text-red-500 ml-1'>*</span>}
+          {required && <span className='text-destructive ml-1'>*</span>}
         </label>
         {helpText && !error && (
           <div className='mt-1 flex items-start'>
-            <InformationCircleIcon className='h-4 w-4 text-gray-400 mr-1 mt-0.5 flex-shrink-0' />
+            <InformationCircleIcon className='h-4 w-4 text-muted-foreground mr-1 mt-0.5 flex-shrink-0' />
             <p className={`text-xs ${textVariants.label.helper()}`}>
               {helpText}
             </p>
@@ -61,7 +61,7 @@ export const FormFieldGroup: React.FC<FormFieldGroupProps> = ({
         {/* Error Message */}
         {error && (
           <div className='mt-1 flex items-start'>
-            <ExclamationCircleIcon className='h-4 w-4 text-red-500 mr-1 mt-0.5 flex-shrink-0' />
+            <ExclamationCircleIcon className='h-4 w-4 text-destructive mr-1 mt-0.5 flex-shrink-0' />
             <p className={`text-xs ${textVariants.label.error()}`}>{error}</p>
           </div>
         )}

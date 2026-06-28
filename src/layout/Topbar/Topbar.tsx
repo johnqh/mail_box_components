@@ -33,8 +33,7 @@ const variantClasses: Record<TopbarVariant, string> = {
   default: `${colors.component.card.default.base} ${colors.component.card.default.dark} border-b`,
   app: `${colors.component.card.default.base} ${colors.component.card.default.dark} border-b shadow-sm`,
   minimal: 'bg-transparent',
-  transparent:
-    'bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-700/50',
+  transparent: 'bg-background/80 border-b border-border/50',
 };
 
 const zIndexClasses = {
@@ -100,7 +99,7 @@ export const Topbar: React.FC<TopbarProps> = ({
         <a
           href='#main-content'
           className={cn(
-            'sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+            'sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
             colors.component.button.primary.base,
             colors.component.button.primary.dark
           )}

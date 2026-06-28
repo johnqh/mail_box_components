@@ -66,10 +66,7 @@ export const TopbarDivider: React.FC<{ className?: string }> = ({
 }) => {
   return (
     <div
-      className={cn(
-        'hidden md:block h-6 w-px bg-gray-200 dark:bg-gray-700 mx-2',
-        className
-      )}
+      className={cn('hidden md:block h-6 w-px bg-border mx-2', className)}
       role='separator'
       aria-orientation='vertical'
     />

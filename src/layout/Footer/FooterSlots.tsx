@@ -41,7 +41,9 @@ export const FooterBrand: React.FC<FooterBrandProps> = ({
     <div className={className}>
       <div className='mb-4'>{children}</div>
       {description && (
-        <p className='text-xs text-gray-400 leading-relaxed'>{description}</p>
+        <p className='text-xs text-muted-foreground leading-relaxed'>
+          {description}
+        </p>
       )}
     </div>
   );
@@ -67,22 +69,22 @@ export const FooterLinkSection: React.FC<FooterLinkSectionProps> = ({
   return (
     <div className={className}>
       {/* Desktop: static title */}
-      <h3 className='hidden md:block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3'>
+      <h3 className='hidden md:block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3'>
         {title}
       </h3>
 
       {/* Mobile: collapsible title */}
       <button
-        className='flex w-full items-center justify-between md:hidden py-2 border-b border-gray-700'
+        className='flex w-full items-center justify-between md:hidden py-2 border-b border-border'
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
-        <span className='text-xs font-semibold text-gray-400 uppercase tracking-wider'>
+        <span className='text-xs font-semibold text-muted-foreground uppercase tracking-wider'>
           {title}
         </span>
         <svg
           className={cn(
-            'w-3 h-3 text-gray-500 transition-transform duration-200',
+            'w-3 h-3 text-muted-foreground transition-transform duration-200',
             isOpen && 'rotate-180'
           )}
           fill='none'
@@ -136,7 +138,7 @@ export const FooterLink: React.FC<FooterLinkProps> = ({
   return (
     <li
       className={cn(
-        'text-xs text-gray-400 hover:text-white transition-colors',
+        'text-xs text-muted-foreground hover:text-foreground transition-colors',
         className
       )}
       role='listitem'
@@ -182,7 +184,7 @@ export const FooterBottomRow: React.FC<SlotProps> = ({
   return (
     <div
       className={cn(
-        'flex items-center justify-center gap-3 text-gray-500 text-xs',
+        'flex items-center justify-center gap-3 text-muted-foreground text-xs',
         className
       )}
     >
@@ -216,7 +218,10 @@ export const FooterCompactLeft: React.FC<SlotProps> = ({
 }) => {
   return (
     <div
-      className={cn('flex items-center gap-3 text-gray-400 text-sm', className)}
+      className={cn(
+        'flex items-center gap-3 text-muted-foreground text-sm',
+        className
+      )}
     >
       {children}
     </div>
@@ -247,7 +252,9 @@ export const FooterVersion: React.FC<FooterVersionProps> = ({
   version,
   className,
 }) => {
-  return <span className={cn('text-gray-500', className)}>v{version}</span>;
+  return (
+    <span className={cn('text-muted-foreground', className)}>v{version}</span>
+  );
 };
 
 /**
@@ -273,9 +280,11 @@ export const FooterCopyright: React.FC<FooterCopyrightProps> = ({
   className,
 }) => {
   return (
-    <span className={cn('text-xs text-gray-500', className)}>
+    <span className={cn('text-xs text-muted-foreground', className)}>
       &copy; {year}{' '}
-      {companyLink || <span className='text-gray-400'>{companyName}</span>}
+      {companyLink || (
+        <span className='text-muted-foreground'>{companyName}</span>
+      )}
       {rightsText && `. ${rightsText}`}
     </span>
   );
@@ -306,7 +315,7 @@ const SocialIcon: React.FC<{
       href={href}
       target='_blank'
       rel='noopener noreferrer'
-      className='text-gray-500 hover:text-white transition-colors'
+      className='text-muted-foreground hover:text-foreground transition-colors'
       aria-label={label}
     >
       {children}

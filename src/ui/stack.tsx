@@ -148,7 +148,7 @@ export const Stack: React.FC<StackProps> = ({
               {index < React.Children.count(children) - 1 && (
                 <div
                   className={cn(
-                    'bg-gray-200 dark:bg-gray-700',
+                    'bg-border',
                     isVertical ? 'h-px w-full' : 'w-px h-full'
                   )}
                 />

@@ -85,14 +85,14 @@ describe('SkeletonLoader', () => {
   it('applies light theme color', () => {
     const { container } = render(<SkeletonLoader theme='light' />);
 
-    const skeleton = container.querySelector('[class*="bg-gray-200"]');
+    const skeleton = container.querySelector('[class*="bg-muted"]');
     expect(skeleton).toBeInTheDocument();
   });
 
   it('applies dark theme color', () => {
     const { container } = render(<SkeletonLoader theme='dark' />);
 
-    const skeleton = container.querySelector('[class*="bg-gray-700"]');
+    const skeleton = container.querySelector('[class*="bg-muted"]');
     expect(skeleton).toBeInTheDocument();
   });
 

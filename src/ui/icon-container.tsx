@@ -32,16 +32,16 @@ const iconSizeClasses = {
 };
 
 const variantClasses = {
-  primary: `${GRADIENTS.buttons.primary} text-white shadow-lg hover:shadow-blue-200 dark:hover:shadow-blue-900`,
-  secondary: `${GRADIENTS.buttons.primaryPurple} text-white shadow-lg hover:shadow-purple-200 dark:hover:shadow-purple-900`,
+  primary: `${GRADIENTS.buttons.primary} text-white shadow-lg`,
+  secondary: `${GRADIENTS.buttons.primaryPurple} text-white shadow-lg`,
   success:
-    'bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30 text-green-600 dark:text-green-300 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900',
+    'bg-gradient-to-br from-success/20 to-success/30 text-success shadow-lg',
   warning:
-    'bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-yellow-900/30 dark:to-yellow-800/30 text-yellow-600 dark:text-yellow-300 shadow-lg hover:shadow-yellow-200 dark:hover:shadow-yellow-900',
+    'bg-gradient-to-br from-warning/20 to-warning/30 text-warning shadow-lg',
   error:
-    'bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30 text-red-600 dark:text-red-300 shadow-lg hover:shadow-red-200 dark:hover:shadow-red-900',
+    'bg-gradient-to-br from-destructive/20 to-destructive/30 text-destructive shadow-lg',
   neutral:
-    'bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-600 dark:text-gray-300 shadow-lg hover:shadow-gray-200 dark:hover:shadow-gray-900',
+    'bg-gradient-to-br from-muted to-muted text-muted-foreground shadow-lg',
 };
 
 const shapeClasses = {

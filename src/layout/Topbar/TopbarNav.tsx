@@ -91,7 +91,7 @@ export const TopbarNav: React.FC<TopbarNavProps> = ({
       'px-3 py-2 rounded-md text-sm font-medium',
       ui.transition.default,
       item.active
-        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+        ? 'text-primary bg-accent'
         : cn(
             colors.component.button.ghost.base,
             colors.component.button.ghost.dark
@@ -187,8 +187,7 @@ export const TopbarNav: React.FC<TopbarNavProps> = ({
                       'block px-4 py-2 text-sm',
                       colors.component.button.ghost.base,
                       colors.component.button.ghost.dark,
-                      child.active &&
-                        'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                      child.active && 'bg-accent text-primary'
                     )}
                     onClick={() => setOpenDropdown(null)}
                   />
@@ -340,7 +339,7 @@ export const TopbarMobileNav: React.FC<TopbarMobileNavProps> = ({
               'flex items-center w-full px-3 py-2 rounded-md text-base font-medium',
               ui.transition.default,
               item.active
-                ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                ? 'text-primary bg-accent'
                 : cn(
                     colors.component.button.ghost.base,
                     colors.component.button.ghost.dark

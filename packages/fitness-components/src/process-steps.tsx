@@ -31,34 +31,34 @@ export const ProcessSteps: React.FC<ProcessStepsProps> = ({
 
   const colorClasses = {
     blue: {
-      bg: 'bg-blue-600',
-      text: 'text-blue-600 dark:text-blue-400',
-      border: 'border-blue-200 dark:border-blue-800',
+      bg: 'bg-primary',
+      text: 'text-primary',
+      border: 'border-primary/20',
     },
     green: {
-      bg: 'bg-green-600',
-      text: 'text-green-600 dark:text-green-400',
-      border: 'border-green-200 dark:border-green-800',
+      bg: 'bg-success',
+      text: 'text-success',
+      border: 'border-success/20',
     },
     purple: {
-      bg: 'bg-purple-600',
-      text: 'text-purple-600 dark:text-purple-400',
-      border: 'border-purple-200 dark:border-purple-800',
+      bg: 'bg-accent',
+      text: 'text-accent-foreground',
+      border: 'border-accent',
     },
     orange: {
-      bg: 'bg-orange-600',
-      text: 'text-orange-600 dark:text-orange-400',
-      border: 'border-orange-200 dark:border-orange-800',
+      bg: 'bg-warning',
+      text: 'text-warning',
+      border: 'border-warning/20',
     },
     pink: {
-      bg: 'bg-pink-600',
-      text: 'text-pink-600 dark:text-pink-400',
-      border: 'border-pink-200 dark:border-pink-800',
+      bg: 'bg-secondary',
+      text: 'text-secondary-foreground',
+      border: 'border-secondary',
     },
     gray: {
-      bg: 'bg-gray-600',
-      text: 'text-gray-600 dark:text-gray-400',
-      border: 'border-gray-200 dark:border-gray-800',
+      bg: 'bg-muted',
+      text: 'text-muted-foreground',
+      border: 'border-border',
     },
   };
 

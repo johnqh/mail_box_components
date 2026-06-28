@@ -65,11 +65,11 @@ export interface SubscriptionTileProps {
 }
 
 const BADGE_COLORS: Record<BadgeConfig['color'], string> = {
-  purple: 'bg-purple-500',
-  green: 'bg-green-500',
-  blue: 'bg-blue-500',
-  yellow: 'bg-yellow-400 !text-yellow-900',
-  red: 'bg-red-500',
+  purple: 'bg-accent',
+  green: 'bg-success',
+  blue: 'bg-primary',
+  yellow: 'bg-warning !text-warning-foreground',
+  red: 'bg-destructive',
 };
 
 /**
@@ -121,12 +121,12 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
   // - Default: Gray background
   // Note: All states use the same border-2 and shadow-md for consistent layout
   const tileStyles = isSelected
-    ? 'bg-blue-600 text-white border-2 border-blue-600 shadow-md'
+    ? 'bg-primary text-primary-foreground border-2 border-primary shadow-md'
     : isCurrentPlan
-      ? 'bg-gray-100 dark:bg-gray-800 border-2 border-blue-500 dark:border-blue-400 shadow-md'
+      ? 'bg-muted border-2 border-primary shadow-md'
       : !enabled
-        ? 'bg-gray-100 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 opacity-50 shadow-md'
-        : 'bg-gray-100 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-md hover:border-gray-300 dark:hover:border-gray-600';
+        ? 'bg-muted border-2 border-border opacity-50 shadow-md'
+        : 'bg-muted border-2 border-border shadow-md hover:border-border ';
 
   const handleClick = () => {
     if (isInteractive && !isCtaMode) {
@@ -190,7 +190,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
             className={cn(
               textVariants.heading.h4(),
               'mb-2',
-              isSelected ? 'text-white' : ''
+              isSelected ? 'text-primary-foreground' : ''
             )}
           >
             {title}
@@ -199,7 +199,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
             <span
               className={cn(
                 'text-4xl font-bold',
-                isSelected ? 'text-white' : 'text-gray-900 dark:text-gray-100'
+                isSelected ? 'text-primary-foreground' : 'text-foreground'
               )}
             >
               {price}
@@ -209,8 +209,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                 className={cn(
                   'text-lg',
                   isSelected
-                    ? 'text-blue-100'
-                    : 'text-gray-500 dark:text-gray-400'
+                    ? 'text-primary-foreground'
+                    : 'text-muted-foreground'
                 )}
               >
                 {periodLabel}
@@ -224,8 +224,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
               className={cn(
                 'inline-flex items-center px-2 py-1 rounded-full text-sm font-semibold',
                 isSelected
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300'
+                  ? 'bg-primary-foreground/20 text-primary-foreground'
+                  : 'bg-success/10 text-success'
               )}
             >
               {discountBadge.text}
@@ -244,7 +244,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                 <svg
                   className={cn(
                     'w-5 h-5 mr-3 flex-shrink-0',
-                    isSelected ? 'text-blue-200' : 'text-green-500'
+                    isSelected ? 'text-primary-foreground' : 'text-success'
                   )}
                   fill='none'
                   stroke='currentColor'
@@ -261,8 +261,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                   className={cn(
                     'text-sm text-left',
                     isSelected
-                      ? 'text-white'
-                      : 'text-gray-700 dark:text-gray-300'
+                      ? 'text-primary-foreground'
+                      : 'text-muted-foreground'
                   )}
                 >
                   {feature.replace(/^✓\s*/, '')}
@@ -278,7 +278,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
             className={cn(
               'rounded-lg p-4 mb-4',
               isSelected
-                ? 'bg-blue-500/30'
+                ? 'bg-primary/30'
                 : 'bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20'
             )}
           >
@@ -287,8 +287,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                 className={cn(
                   'font-semibold text-sm',
                   isSelected
-                    ? 'text-white'
-                    : 'text-purple-600 dark:text-purple-400'
+                    ? 'text-primary-foreground'
+                    : 'text-accent-foreground'
                 )}
               >
                 {premiumCallout.title}
@@ -297,9 +297,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
             <ul
               className={cn(
                 'text-xs space-y-1',
-                isSelected
-                  ? 'text-blue-100'
-                  : 'text-gray-600 dark:text-gray-400'
+                isSelected ? 'text-primary-foreground' : 'text-muted-foreground'
               )}
             >
               {premiumCallout.features.map((feat, idx) => (
@@ -314,7 +312,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
           <div
             className={cn(
               'text-center text-sm font-medium mb-4',
-              isSelected ? 'text-blue-100' : 'text-blue-600 dark:text-blue-400'
+              isSelected ? 'text-primary-foreground' : 'text-primary'
             )}
           >
             {bottomNote}
@@ -327,16 +325,14 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
             className={cn(
               'p-3 rounded-lg',
               isSelected
-                ? 'bg-blue-500/30'
-                : 'bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800'
+                ? 'bg-primary/30'
+                : 'bg-warning/10 border border-warning/20'
             )}
           >
             <p
               className={cn(
                 'text-sm font-semibold text-center',
-                isSelected
-                  ? 'text-white'
-                  : 'text-yellow-700 dark:text-yellow-300'
+                isSelected ? 'text-primary-foreground' : 'text-warning'
               )}
             >
               {introPriceNote}
@@ -356,8 +352,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                 className={cn(
                   'block w-full py-3 font-semibold rounded-lg text-center transition-colors',
                   isSelected
-                    ? 'bg-white text-blue-600 hover:bg-gray-100'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                    ? 'bg-background text-primary hover:bg-muted'
+                    : 'bg-primary text-primary-foreground hover:bg-primary/90'
                 )}
                 onClick={e => e.stopPropagation()}
               >
@@ -370,8 +366,8 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
                 className={cn(
                   'w-full py-3 font-semibold rounded-lg transition-colors',
                   isSelected
-                    ? 'bg-white text-blue-600 hover:bg-gray-100'
-                    : 'bg-blue-600 text-white hover:bg-blue-700',
+                    ? 'bg-background text-primary hover:bg-muted'
+                    : 'bg-primary text-primary-foreground hover:bg-primary/90',
                   disabled && 'opacity-50 cursor-not-allowed'
                 )}
               >
@@ -387,11 +383,11 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
             className={cn(
               'w-5 h-5 rounded-full border-2 flex items-center justify-center',
               isSelected
-                ? 'border-white bg-white'
-                : 'border-gray-300 dark:border-gray-600'
+                ? 'border-primary-foreground bg-primary-foreground'
+                : 'border-border'
             )}
           >
-            {isSelected && <div className='w-2 h-2 rounded-full bg-blue-600' />}
+            {isSelected && <div className='w-2 h-2 rounded-full bg-primary' />}
           </div>
         )}
       </div>

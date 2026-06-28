@@ -84,7 +84,7 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
   if (isAutoConnecting) {
     return (
       <div className={`text-center py-8 ${className}`}>
-        <div className='w-16 h-16 border-4 border-blue-600 dark:border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-4' />
+        <div className='w-16 h-16 border-4 border-primary  border-t-transparent rounded-full animate-spin mx-auto mb-4' />
         <h3 className={`${textVariants.heading.h5()} mb-2`}>
           {labels.autoConnectTitle || 'Connecting to Wallet'}
         </h3>
@@ -124,7 +124,7 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
           >
             <button
               onClick={() => onTabChange('ethereum')}
-              className={`flex-1 py-2 px-3 ${designTokens.radius.md} font-medium text-sm ${ui.transition.default} text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200`}
+              className={`flex-1 py-2 px-3 ${designTokens.radius.md} font-medium text-sm ${ui.transition.default} text-muted-foreground hover:text-foreground`}
             >
               <span className='flex items-center justify-center space-x-1'>
                 <span>⟠</span>
@@ -133,7 +133,7 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
             </button>
             <button
               onClick={() => onTabChange('solana')}
-              className={`flex-1 py-2 px-3 ${designTokens.radius.md} font-medium text-sm ${ui.transition.default} ${ui.background.surface} text-purple-600 dark:text-purple-400 ${designTokens.shadow.sm}`}
+              className={`flex-1 py-2 px-3 ${designTokens.radius.md} font-medium text-sm ${ui.transition.default} ${ui.background.surface} text-accent-foreground ${designTokens.shadow.sm}`}
             >
               <span className='flex items-center justify-center space-x-1'>
                 <span>◎</span>
@@ -160,7 +160,7 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
                   href='https://www.google.com/chrome/'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-xs text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline'
+                  className='text-xs text-primary hover:text-primary/80 underline'
                 >
                   Chrome
                 </a>
@@ -168,7 +168,7 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
                   href='https://www.mozilla.org/firefox/'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-xs text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline'
+                  className='text-xs text-primary hover:text-primary/80 underline'
                 >
                   Firefox
                 </a>
@@ -176,7 +176,7 @@ export const WalletConnectScreen: React.FC<WalletConnectScreenProps> = ({
                   href='https://www.microsoft.com/edge'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-xs text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline'
+                  className='text-xs text-primary hover:text-primary/80 underline'
                 >
                   Edge
                 </a>

@@ -32,7 +32,7 @@ export const EmailInputField: React.FC<EmailInputFieldProps> = ({
   return (
     <div className={className}>
       <Label htmlFor={label.toLowerCase()} className={ui.text.label}>
-        {label} {required && <span className='text-red-500'>*</span>}
+        {label} {required && <span className='text-destructive'>*</span>}
       </Label>
       <input
         id={label.toLowerCase()}
@@ -89,7 +89,7 @@ export const CollapsibleEmailField: React.FC<CollapsibleEmailFieldProps> = ({
       <button
         type='button'
         onClick={handleToggle}
-        className='flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-2'
+        className='flex items-center text-sm text-primary hover:text-primary/80 mb-2'
       >
         {isVisible ? (
           <ChevronUpIcon className='h-4 w-4 mr-1' />

@@ -129,8 +129,8 @@ export const Carousel: React.FC<CarouselProps> = ({
             className={cn(
               'absolute left-4 top-1/2 -translate-y-1/2',
               'w-10 h-10 rounded-full',
-              'bg-white/80 dark:bg-gray-900/80',
-              'hover:bg-white dark:hover:bg-gray-900',
+              'bg-background/80',
+              'hover:bg-background',
               ui.states.disabled,
               'flex items-center justify-center',
               ui.transition.all,
@@ -139,7 +139,7 @@ export const Carousel: React.FC<CarouselProps> = ({
             aria-label='Previous slide'
           >
             <svg
-              className='w-5 h-5 text-gray-900 dark:text-white'
+              className='w-5 h-5 text-foreground'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -159,8 +159,8 @@ export const Carousel: React.FC<CarouselProps> = ({
             className={cn(
               'absolute right-4 top-1/2 -translate-y-1/2',
               'w-10 h-10 rounded-full',
-              'bg-white/80 dark:bg-gray-900/80',
-              'hover:bg-white dark:hover:bg-gray-900',
+              'bg-background/80',
+              'hover:bg-background',
               ui.states.disabled,
               'flex items-center justify-center',
               ui.transition.all,
@@ -169,7 +169,7 @@ export const Carousel: React.FC<CarouselProps> = ({
             aria-label='Next slide'
           >
             <svg
-              className='w-5 h-5 text-gray-900 dark:text-white'
+              className='w-5 h-5 text-foreground'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -195,8 +195,8 @@ export const Carousel: React.FC<CarouselProps> = ({
               className={cn(
                 'w-2 h-2 rounded-full transition-all',
                 index === currentIndex
-                  ? 'w-8 bg-white'
-                  : 'bg-white/50 hover:bg-white/75'
+                  ? 'w-8 bg-foreground'
+                  : 'bg-foreground/50 hover:bg-foreground/75'
               )}
               aria-label={`Go to slide ${index + 1}`}
             />

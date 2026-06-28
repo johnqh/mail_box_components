@@ -54,7 +54,7 @@ const roleOptions: RoleOption[] = [
     label: 'Owner',
     description: 'Full access to all settings and members',
     icon: ShieldCheckIcon,
-    color: 'text-purple-600 dark:text-purple-400',
+    color: 'text-accent-foreground',
   },
   {
     value: EntityRole.MANAGER,

@@ -12,8 +12,7 @@ export interface InternalLinkProps {
 
 const linkVariants = {
   primary: cn(ui.text.link, 'font-medium'),
-  secondary:
-    'text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 underline font-medium',
+  secondary: 'text-success hover:text-success/80 underline font-medium',
   subtle: cn(ui.text.linkMuted),
 };
 

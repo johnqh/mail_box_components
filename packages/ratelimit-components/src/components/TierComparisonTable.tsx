@@ -57,9 +57,7 @@ export const TierComparisonTable: React.FC<TierComparisonTableProps> = ({
       <span
         className={cn(
           'text-sm',
-          isUnlimited
-            ? 'font-medium text-green-600 dark:text-green-400'
-            : 'text-gray-700 dark:text-gray-300'
+          isUnlimited ? 'font-medium text-success' : 'text-muted-foreground'
         )}
       >
         {formatLimit(limit)}
@@ -68,16 +66,11 @@ export const TierComparisonTable: React.FC<TierComparisonTableProps> = ({
   };
 
   return (
-    <div
-      className={cn(
-        'rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800',
-        className
-      )}
-    >
+    <div className={cn('rounded-lg border border-border bg-card', className)}>
       {/* Title */}
       {labels.title && (
-        <div className='border-b border-gray-200 px-6 py-4 dark:border-gray-700'>
-          <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>
+        <div className='border-b border-border px-6 py-4 '>
+          <h3 className='text-lg font-semibold text-foreground'>
             {labels.title}
           </h3>
         </div>
@@ -87,32 +80,31 @@ export const TierComparisonTable: React.FC<TierComparisonTableProps> = ({
       <div className='overflow-x-auto'>
         <table className='w-full'>
           <thead>
-            <tr className='border-b border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900/50'>
-              <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400'>
+            <tr className='border-b border-border bg-muted'>
+              <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground'>
                 {labels.tierHeader}
               </th>
-              <th className='px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400'>
+              <th className='px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-muted-foreground'>
                 {labels.hourlyHeader}
               </th>
-              <th className='px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400'>
+              <th className='px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-muted-foreground'>
                 {labels.dailyHeader}
               </th>
-              <th className='px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400'>
+              <th className='px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-muted-foreground'>
                 {labels.monthlyHeader}
               </th>
             </tr>
           </thead>
-          <tbody className='divide-y divide-gray-200 dark:divide-gray-700'>
+          <tbody className='divide-y divide-border'>
             {tiers.map(tier => (
               <tr
                 key={tier.id}
                 onClick={() => handleTierSelect(tier.id)}
                 className={cn(
                   'transition-colors',
-                  tier.isHighlighted && 'bg-blue-50 dark:bg-blue-900/20',
-                  tier.isCurrent && 'bg-green-50 dark:bg-green-900/20',
-                  onTierSelect &&
-                    'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                  tier.isHighlighted && 'bg-primary/10',
+                  tier.isCurrent && 'bg-success/10',
+                  onTierSelect && 'cursor-pointer hover:bg-muted'
                 )}
               >
                 {/* Tier Name */}
@@ -122,16 +114,16 @@ export const TierComparisonTable: React.FC<TierComparisonTableProps> = ({
                       className={cn(
                         'text-sm font-medium',
                         tier.isCurrent
-                          ? 'text-green-700 dark:text-green-400'
+                          ? 'text-success'
                           : tier.isHighlighted
-                            ? 'text-blue-700 dark:text-blue-400'
-                            : 'text-gray-900 dark:text-white'
+                            ? 'text-primary'
+                            : 'text-foreground'
                       )}
                     >
                       {tier.name}
                     </span>
                     {tier.isCurrent && (
-                      <span className='inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700 dark:bg-green-900/50 dark:text-green-400'>
+                      <span className='inline-flex items-center rounded-full bg-success/10 px-2 py-0.5 text-xs font-medium text-success'>
                         {labels.currentTierBadge}
                       </span>
                     )}

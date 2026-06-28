@@ -173,7 +173,7 @@ export const Rating: React.FC<RatingProps> = ({
   const displayValue = hoverValue !== null ? hoverValue : value;
 
   const emptyColorClass = getColorClass(emptyColor, ui.text.muted);
-  const filledColorClass = getColorClass(filledColor, 'text-yellow-400');
+  const filledColorClass = getColorClass(filledColor, 'text-warning');
 
   const renderIcon = (index: number) => {
     const isFilled = index < Math.floor(displayValue);

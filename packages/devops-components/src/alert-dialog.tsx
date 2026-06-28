@@ -82,28 +82,25 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
   // Variant configurations
   const variantClasses = {
     default: {
-      icon: 'text-blue-600 dark:text-blue-400',
-      iconBg: 'bg-blue-100 dark:bg-blue-900/30',
-      button:
-        'bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white',
+      icon: 'text-primary',
+      iconBg: 'bg-primary/10',
+      button: 'bg-primary hover:bg-primary/90 text-primary-foreground',
     },
     danger: {
-      icon: 'text-red-600 dark:text-red-400',
-      iconBg: 'bg-red-100 dark:bg-red-900/30',
+      icon: 'text-destructive',
+      iconBg: 'bg-destructive/10',
       button:
-        'bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white',
+        'bg-destructive hover:bg-destructive/90 text-destructive-foreground',
     },
     warning: {
-      icon: 'text-yellow-600 dark:text-yellow-400',
-      iconBg: 'bg-yellow-100 dark:bg-yellow-900/30',
-      button:
-        'bg-yellow-600 hover:bg-yellow-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white',
+      icon: 'text-warning',
+      iconBg: 'bg-warning/10',
+      button: 'bg-warning hover:bg-warning/90 text-warning-foreground',
     },
     success: {
-      icon: 'text-green-600 dark:text-green-400',
-      iconBg: 'bg-green-100 dark:bg-green-900/30',
-      button:
-        'bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white',
+      icon: 'text-success',
+      iconBg: 'bg-success/10',
+      button: 'bg-success hover:bg-success/90 text-success-foreground',
     },
   };
 
@@ -214,27 +211,25 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
 
               <div className='flex-1 min-w-0'>
                 {/* Title */}
-                <h2 className='text-lg font-semibold text-gray-900 dark:text-white mb-2'>
+                <h2 className='text-lg font-semibold text-foreground mb-2'>
                   {title}
                 </h2>
 
                 {/* Description */}
                 {description && (
-                  <p className='text-sm text-gray-600 dark:text-gray-400'>
-                    {description}
-                  </p>
+                  <p className='text-sm text-muted-foreground'>{description}</p>
                 )}
               </div>
             </div>
           </div>
 
           {/* Actions */}
-          <div className='flex gap-3 px-6 py-4 bg-gray-50 dark:bg-gray-800/50 rounded-b-lg'>
+          <div className='flex gap-3 px-6 py-4 bg-card/50 rounded-b-lg'>
             {showCancel && (
               <button
                 onClick={handleCancel}
                 disabled={loading}
-                className='flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+                className='flex-1 px-4 py-2 text-sm font-medium text-muted-foreground bg-card border border-border rounded-md hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
               >
                 {cancelLabel}
               </button>

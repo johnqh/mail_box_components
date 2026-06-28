@@ -104,17 +104,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         'flex items-center gap-3 px-3 py-2',
         'transition-colors duration-150',
         'cursor-pointer select-none',
-        !disabled &&
-          !danger &&
-          !selected &&
-          'hover:bg-gray-100 dark:hover:bg-gray-700',
-        !disabled &&
-          !danger &&
-          selected &&
-          'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
-        !disabled &&
-          danger &&
-          'hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400',
+        !disabled && !danger && !selected && 'hover:bg-muted',
+        !disabled && !danger && selected && 'bg-primary/10 text-primary',
+        !disabled && danger && 'hover:bg-destructive/10 text-destructive',
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
@@ -126,10 +118,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           className={cn(
             'h-5 w-5 flex-shrink-0',
             danger
-              ? 'text-red-600 dark:text-red-400'
+              ? 'text-destructive'
               : selected
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-500 dark:text-gray-400'
+                ? 'text-primary'
+                : 'text-muted-foreground'
           )}
         />
       )}
@@ -139,9 +131,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         <div
           className={cn(
             textVariants.body.md(),
-            danger && 'text-red-600 dark:text-red-400',
-            selected && 'text-blue-700 dark:text-blue-300 font-medium',
-            !danger && !selected && 'text-gray-900 dark:text-gray-100'
+            danger && 'text-destructive',
+            selected && 'text-primary font-medium',
+            !danger && !selected && 'text-foreground'
           )}
         >
           {children}
@@ -150,7 +142,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           <div
             className={cn(
               textVariants.caption.default(),
-              'text-gray-600 dark:text-gray-400 mt-0.5'
+              'text-muted-foreground mt-0.5'
             )}
           >
             {description}
@@ -163,7 +155,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         <span
           className={cn(
             textVariants.caption.default(),
-            'text-gray-500 dark:text-gray-400 flex-shrink-0'
+            'text-muted-foreground flex-shrink-0'
           )}
         >
           {shortcut}

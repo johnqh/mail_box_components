@@ -69,9 +69,9 @@ export const UflipUcard = ({
         'p-4 rounded-lg border transition-colors',
         colors.component.card.default.base,
         colors.component.card.default.dark,
-        'text-gray-900 dark:text-white',
+        'text-foreground',
         disabled && 'opacity-50 cursor-not-allowed',
-        'hover:bg-gray-50 dark:hover:bg-gray-800',
+        'hover:bg-muted',
         className
       )}
       onClick={handleClick}

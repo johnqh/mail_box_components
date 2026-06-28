@@ -42,10 +42,10 @@ export const FeatureListItem: React.FC<FeatureListItemProps> = ({
   className,
 }) => {
   const iconBgClasses = {
-    primary: 'bg-blue-400 text-blue-900',
-    success: 'bg-green-400 text-emerald-900',
-    warning: 'bg-yellow-400 text-yellow-900',
-    info: 'bg-cyan-400 text-cyan-900',
+    primary: 'bg-primary text-primary-foreground',
+    success: 'bg-success text-success-foreground',
+    warning: 'bg-warning text-warning-foreground',
+    info: 'bg-info text-info-foreground',
     gradient: 'bg-gradient-to-br from-blue-400 to-purple-500 text-white',
   };
 
@@ -90,10 +90,7 @@ export const FeatureListItem: React.FC<FeatureListItemProps> = ({
         <h4 className={sizeConfig.title}>{title}</h4>
         {description && (
           <p
-            className={cn(
-              sizeConfig.description,
-              'mt-1 text-gray-600 dark:text-gray-300'
-            )}
+            className={cn(sizeConfig.description, 'mt-1 text-muted-foreground')}
           >
             {description}
           </p>

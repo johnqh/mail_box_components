@@ -76,14 +76,13 @@ export const Tag: React.FC<TagProps> = ({
   // Color variant configurations using design system tokens
   const badgeColors = colors.component.badge;
   const variantClasses = {
-    default: `${badgeColors.default.base} ${badgeColors.default.dark} hover:bg-gray-200 dark:hover:bg-gray-700`,
-    primary: `${badgeColors.primary.base} ${badgeColors.primary.dark} hover:bg-blue-200 dark:hover:bg-blue-900/50`,
-    success: `${badgeColors.success.base} ${badgeColors.success.dark} hover:bg-green-200 dark:hover:bg-green-900/50`,
-    warning: `${badgeColors.warning.base} ${badgeColors.warning.dark} hover:bg-yellow-200 dark:hover:bg-yellow-900/50`,
-    danger: `${badgeColors.error.base} ${badgeColors.error.dark} hover:bg-red-200 dark:hover:bg-red-900/50`,
-    info: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 hover:bg-cyan-200 dark:hover:bg-cyan-900/50',
-    purple:
-      'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-900/50',
+    default: `${badgeColors.default.base} ${badgeColors.default.dark} hover:bg-muted`,
+    primary: `${badgeColors.primary.base} ${badgeColors.primary.dark} hover:bg-primary/20`,
+    success: `${badgeColors.success.base} ${badgeColors.success.dark} hover:bg-success/20`,
+    warning: `${badgeColors.warning.base} ${badgeColors.warning.dark} hover:bg-warning/20`,
+    danger: `${badgeColors.error.base} ${badgeColors.error.dark} hover:bg-destructive/20`,
+    info: 'bg-info/10 text-info hover:bg-info/20',
+    purple: 'bg-accent text-accent-foreground hover:bg-accent/80',
   };
 
   const sizeConfig = sizeClasses[size];

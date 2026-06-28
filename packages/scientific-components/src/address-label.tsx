@@ -110,7 +110,7 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
   // Render tooltip content using portal
   const tooltipContent = showTooltip && (
     <div
-      className={`fixed z-[9999] px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded ${ui.shadow.lg} whitespace-nowrap pointer-events-none`}
+      className={`fixed z-[9999] px-3 py-2 bg-popover text-popover-foreground text-xs rounded ${ui.shadow.lg} whitespace-nowrap pointer-events-none`}
       style={{
         top: `${tooltipPosition.top}px`,
         left: `${tooltipPosition.left}px`,
@@ -119,12 +119,12 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
       }}
     >
       {copied ? (
-        <span className='text-green-300'>✓ Copied!</span>
+        <span className='text-success'>✓ Copied!</span>
       ) : (
         <span className='font-mono'>{address}</span>
       )}
       {/* Arrow */}
-      <div className='absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-700' />
+      <div className='absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-popover' />
     </div>
   );
 
@@ -134,7 +134,7 @@ export const AddressLabel: React.FC<AddressLabelProps> = ({
         ref={elementRef}
         className={`
           ${ui.text.code}
-          ${showCopy ? 'cursor-pointer hover:text-blue-600 dark:hover:text-blue-400' : ''}
+          ${showCopy ? 'cursor-pointer hover:text-primary' : ''}
           ${className}
         `}
         onClick={handleClick}

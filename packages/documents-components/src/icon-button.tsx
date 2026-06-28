@@ -130,8 +130,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   const variantClasses = {
     default: `${colors.component.button.secondary.base} ${colors.component.button.secondary.dark}`,
     primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
-    secondary:
-      'bg-purple-600 text-white hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600',
+    secondary: 'bg-accent text-accent-foreground hover:bg-accent/90',
     danger: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark}`,
     ghost: `${colors.component.button.ghost.base} ${colors.component.button.ghost.dark}`,
     outline: `${colors.component.button.outline.base} ${colors.component.button.outline.dark} border-2`,

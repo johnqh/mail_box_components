@@ -64,7 +64,7 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
             {/* Connector line */}
             {showConnectors && !isLast && (
               <div
-                className='absolute left-4 top-8 w-0.5 h-full bg-gray-200 dark:bg-gray-700'
+                className='absolute left-4 top-8 w-0.5 h-full bg-muted'
                 style={
                   align === 'center'
                     ? { left: '50%' }
@@ -86,7 +86,7 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
                 </div>
               ) : (
                 <div
-                  className='w-4 h-4 rounded-full border-4 border-white dark:border-gray-900'
+                  className='w-4 h-4 rounded-full border-4 border-white '
                   style={{ backgroundColor: color }}
                 />
               )}

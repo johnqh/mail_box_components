@@ -17,11 +17,11 @@ const progressBarVariants = cva(
   {
     variants: {
       color: {
-        blue: 'bg-blue-500',
-        green: 'bg-green-500',
-        yellow: 'bg-yellow-500',
-        red: 'bg-red-500',
-        purple: 'bg-purple-500',
+        blue: 'bg-primary',
+        green: 'bg-success',
+        yellow: 'bg-warning',
+        red: 'bg-destructive',
+        purple: 'bg-accent',
       },
     },
     defaultVariants: {
@@ -128,8 +128,8 @@ const UsageBar: React.FC<UsageBarProps> = ({
       )}
 
       {isUnlimited && (
-        <div className='h-3 w-full rounded-full bg-green-100 dark:bg-green-900/30'>
-          <div className='h-full w-full rounded-full bg-green-500/20' />
+        <div className='h-3 w-full rounded-full bg-success/10'>
+          <div className='h-full w-full rounded-full bg-success/20' />
         </div>
       )}
 

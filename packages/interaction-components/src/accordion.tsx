@@ -189,8 +189,7 @@ export const Accordion: React.FC<AccordionProps> = ({
                 'flex items-center justify-between w-full text-left',
                 ui.text.emphasis,
                 ui.transition.default,
-                !item.disabled &&
-                  'hover:text-blue-600 dark:hover:text-blue-400',
+                !item.disabled && 'hover:text-primary',
                 item.disabled && 'opacity-50 cursor-not-allowed',
                 sizeConfig.title
               )}
@@ -213,7 +212,7 @@ export const Accordion: React.FC<AccordionProps> = ({
             {isOpen && (
               <div
                 className={cn(
-                  'text-gray-600 dark:text-gray-400',
+                  'text-muted-foreground',
                   'overflow-hidden transition-all',
                   'animate-in slide-in-from-top-1 fade-in duration-200',
                   sizeConfig.content

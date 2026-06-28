@@ -25,7 +25,7 @@ export const QaReport = ({ className, children, disabled }: QaReportProps) => {
         'p-4 rounded-lg border transition-colors',
         colors.component.card.default.base,
         colors.component.card.default.dark,
-        'text-gray-900 dark:text-white',
+        'text-foreground',
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}

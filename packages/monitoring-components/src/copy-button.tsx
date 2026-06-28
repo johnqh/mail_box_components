@@ -109,7 +109,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
           ui.transition.default,
           copied
             ? ui.text.success
-            : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300',
+            : 'text-muted-foreground hover:text-foreground',
           sizeConfig.button,
           className
         )}
@@ -133,8 +133,8 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
     outline: cn(
       'border',
       copied
-        ? 'border-green-600 text-green-600 dark:border-green-400 dark:text-green-400'
-        : `${ui.border.default} text-gray-700 hover:border-gray-400 dark:text-gray-300 dark:hover:border-gray-500`
+        ? 'border-success text-success'
+        : `${ui.border.default} text-foreground hover:border-border`
     ),
   };
 

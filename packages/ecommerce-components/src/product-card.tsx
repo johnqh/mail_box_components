@@ -78,9 +78,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   componentName = 'ProductCard',
 }) => {
   const badgeStyles = {
-    sale: 'bg-red-500',
-    new: 'bg-green-500',
-    featured: 'bg-blue-500',
+    sale: 'bg-destructive',
+    new: 'bg-success',
+    featured: 'bg-primary',
   };
 
   const discount = originalPrice
@@ -131,7 +131,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Discount badge */}
         {discount > 0 && (
-          <div className='absolute top-2 right-2 px-2 py-1 rounded bg-orange-500 text-white text-xs font-semibold'>
+          <div className='absolute top-2 right-2 px-2 py-1 rounded bg-warning text-warning-foreground text-xs font-semibold'>
             -{discount}%
           </div>
         )}
@@ -153,9 +153,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   key={star}
                   className={cn(
                     'w-4 h-4',
-                    star <= rating
-                      ? 'text-yellow-400'
-                      : 'text-gray-300 dark:text-gray-600'
+                    star <= rating ? 'text-warning' : 'text-muted-foreground/40'
                   )}
                   fill='currentColor'
                   viewBox='0 0 20 20'

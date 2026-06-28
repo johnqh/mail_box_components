@@ -58,11 +58,10 @@ export const Timeline: React.FC<TimelineProps> = ({
 }) => {
   // Status color configurations using design system
   const statusColors = {
-    completed: `${getStatusIndicatorColor('success')} border-green-500`,
-    active: `${getStatusIndicatorColor('info')} border-blue-500`,
-    pending:
-      'bg-gray-300 dark:bg-gray-600 border-gray-300 dark:border-gray-600',
-    error: `${getStatusIndicatorColor('error')} border-red-500`,
+    completed: `${getStatusIndicatorColor('success')} border-success`,
+    active: `${getStatusIndicatorColor('info')} border-primary`,
+    pending: 'bg-muted dark:bg-muted border-border',
+    error: `${getStatusIndicatorColor('error')} border-destructive`,
   };
 
   const statusIconColors = {
@@ -141,7 +140,7 @@ export const Timeline: React.FC<TimelineProps> = ({
                     <div
                       className={cn(
                         'absolute left-0 top-0 h-full transition-all duration-300',
-                        status === 'completed' ? 'w-full bg-green-500' : 'w-0'
+                        status === 'completed' ? 'w-full bg-success' : 'w-0'
                       )}
                     />
                   </div>
@@ -204,7 +203,7 @@ export const Timeline: React.FC<TimelineProps> = ({
                     <div
                       className={cn(
                         'absolute top-0 left-0 w-full transition-all duration-300',
-                        status === 'completed' ? 'h-full bg-green-500' : 'h-0'
+                        status === 'completed' ? 'h-full bg-success' : 'h-0'
                       )}
                     />
                   </div>

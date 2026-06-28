@@ -53,10 +53,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
       {[0, 1, 2].map(i => (
         <div
           key={i}
-          className={cn(
-            'rounded-full bg-gray-600 dark:bg-gray-400',
-            sizeClasses[size]
-          )}
+          className={cn('rounded-full bg-muted-foreground', sizeClasses[size])}
           style={{
             animation: 'typing-bounce 1.4s infinite ease-in-out',
             animationDelay: `${i * 0.2}s`,

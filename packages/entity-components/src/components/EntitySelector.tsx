@@ -94,7 +94,7 @@ export function EntitySelector({
             {currentEntity.entityType === 'personal' ? (
               <UserIcon className='h-4 w-4 text-primary' />
             ) : (
-              <BuildingOffice2Icon className='h-4 w-4 text-purple-600 dark:text-purple-400' />
+              <BuildingOffice2Icon className='h-4 w-4 text-accent-foreground' />
             )}
             <span className='font-medium text-sm truncate max-w-[150px]'>
               {currentEntity.displayName}
@@ -211,7 +211,7 @@ function EntityMenuItem({ entity, isSelected, onClick }: EntityMenuItemProps) {
       <Icon
         className={cn(
           'h-4 w-4',
-          isPersonal ? 'text-primary' : 'text-purple-600 dark:text-purple-400'
+          isPersonal ? 'text-primary' : 'text-accent-foreground'
         )}
       />
       <span className='flex-1 text-left truncate'>{entity.displayName}</span>

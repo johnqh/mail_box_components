@@ -72,9 +72,7 @@ export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
           <p className={textVariants.label.default()}>{wallet.name}</p>
           <p
             className={`text-xs ${
-              wallet.available
-                ? 'text-green-600 dark:text-green-400'
-                : 'text-red-600 dark:text-red-400'
+              wallet.available ? 'text-success' : 'text-destructive'
             }`}
           >
             {wallet.available
@@ -87,9 +85,7 @@ export const WalletSelectionButton: React.FC<WalletSelectionButtonProps> = ({
       {wallet.connecting && (
         <div
           className={`w-4 h-4 border-2 border-t-transparent rounded-full animate-spin ${
-            wallet.chainType === 'solana'
-              ? 'border-purple-600'
-              : 'border-blue-600'
+            wallet.chainType === 'solana' ? 'border-accent' : 'border-primary'
           }`}
         />
       )}
@@ -127,11 +123,11 @@ export const WalletTab: React.FC<WalletTabProps> = ({
   };
   const colorClasses = {
     blue: active
-      ? `${ui.background.surface} text-blue-600 dark:text-blue-400 ${designTokens.shadow.sm}`
-      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200',
+      ? `${ui.background.surface} text-primary ${designTokens.shadow.sm}`
+      : 'text-muted-foreground hover:text-foreground',
     purple: active
-      ? `${ui.background.surface} text-purple-600 dark:text-purple-400 ${designTokens.shadow.sm}`
-      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200',
+      ? `${ui.background.surface} text-accent-foreground ${designTokens.shadow.sm}`
+      : 'text-muted-foreground hover:text-foreground',
   };
 
   return (
@@ -251,7 +247,7 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
               href='https://metamask.io/download/'
               target='_blank'
               rel='noopener noreferrer'
-              className='text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300'
+              className='text-primary hover:text-primary/80'
             >
               {finalLabels.installMetaMask}
             </a>
@@ -260,7 +256,7 @@ export const WalletSelectionGrid: React.FC<WalletSelectionGridProps> = ({
               href='https://phantom.app/download'
               target='_blank'
               rel='noopener noreferrer'
-              className='text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300'
+              className='text-accent-foreground hover:text-accent-foreground/80'
             >
               {finalLabels.installPhantom}
             </a>

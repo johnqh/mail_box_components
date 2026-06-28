@@ -111,7 +111,7 @@ export const RatingStars: React.FC<RatingStarsProps> = ({
             >
               {fill === 'full' && (
                 <svg
-                  className={cn(sizeStyles[size], 'text-yellow-400')}
+                  className={cn(sizeStyles[size], 'text-warning')}
                   fill='currentColor'
                   viewBox='0 0 20 20'
                 >
@@ -126,12 +126,12 @@ export const RatingStars: React.FC<RatingStarsProps> = ({
                       <stop
                         offset='50%'
                         stopColor='currentColor'
-                        className='text-yellow-400'
+                        className='text-warning'
                       />
                       <stop
                         offset='50%'
                         stopColor='currentColor'
-                        className='text-gray-300 dark:text-gray-600'
+                        className='text-muted-foreground '
                       />
                     </linearGradient>
                   </defs>

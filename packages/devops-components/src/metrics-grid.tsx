@@ -31,12 +31,12 @@ export const MetricsGrid: React.FC<MetricsGridProps> = ({
   const containerClass = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8';
 
   const colorClasses = {
-    blue: 'text-blue-600 dark:text-blue-400',
-    green: 'text-green-600 dark:text-green-400',
-    purple: 'text-purple-600 dark:text-purple-400',
-    orange: 'text-orange-600 dark:text-orange-400',
-    pink: 'text-pink-600 dark:text-pink-400',
-    gray: 'text-gray-600 dark:text-gray-400',
+    blue: 'text-primary',
+    green: 'text-success',
+    purple: 'text-accent-foreground',
+    orange: 'text-warning',
+    pink: 'text-secondary-foreground',
+    gray: 'text-muted-foreground',
   };
 
   const gridClasses = {

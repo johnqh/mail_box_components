@@ -28,12 +28,12 @@ export const UseCaseGrid: React.FC<UseCaseGridProps> = ({
   const containerClass = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8';
 
   const colorClasses = {
-    blue: 'text-blue-600 dark:text-blue-400',
-    green: 'text-green-600 dark:text-green-400',
-    purple: 'text-purple-600 dark:text-purple-400',
-    orange: 'text-orange-600 dark:text-orange-400',
-    pink: 'text-pink-600 dark:text-pink-400',
-    gray: 'text-gray-600 dark:text-gray-400',
+    blue: 'text-primary',
+    green: 'text-success',
+    purple: 'text-accent-foreground',
+    orange: 'text-warning',
+    pink: 'text-secondary-foreground',
+    gray: 'text-muted-foreground',
   };
 
   const gridClasses = {
@@ -48,12 +48,12 @@ export const UseCaseGrid: React.FC<UseCaseGridProps> = ({
         {(title || description) && (
           <div className='text-center mb-12'>
             {title && (
-              <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
+              <h2 className='text-3xl font-bold text-foreground mb-4'>
                 {title}
               </h2>
             )}
             {description && (
-              <p className='text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto'>
+              <p className='text-xl text-muted-foreground max-w-3xl mx-auto'>
                 {description}
               </p>
             )}
@@ -69,23 +69,23 @@ export const UseCaseGrid: React.FC<UseCaseGridProps> = ({
             return (
               <div
                 key={index}
-                className='bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow'
+                className='bg-card rounded-xl p-6 border border-border hover:shadow-lg transition-shadow'
               >
                 <div className={cn('flex-shrink-0 mb-4', iconColor)}>
                   {useCase.icon}
                 </div>
 
-                <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-3'>
+                <h3 className='text-xl font-semibold text-foreground mb-3'>
                   {useCase.title}
                 </h3>
 
-                <p className='text-gray-600 dark:text-gray-300 mb-4'>
+                <p className='text-muted-foreground mb-4'>
                   {useCase.description}
                 </p>
 
                 {useCase.examples && useCase.examples.length > 0 && (
                   <div>
-                    <h4 className='text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2'>
+                    <h4 className='text-sm font-semibold text-muted-foreground mb-2'>
                       Examples:
                     </h4>
                     <ul className='space-y-1'>
@@ -96,10 +96,10 @@ export const UseCaseGrid: React.FC<UseCaseGridProps> = ({
                               'w-1.5 h-1.5 rounded-full mt-2 mr-2 flex-shrink-0',
                               useCase.color
                                 ? `bg-${useCase.color}-500`
-                                : 'bg-blue-500'
+                                : 'bg-primary'
                             )}
                           />
-                          <span className='text-sm text-gray-600 dark:text-gray-400'>
+                          <span className='text-sm text-muted-foreground'>
                             {example}
                           </span>
                         </li>

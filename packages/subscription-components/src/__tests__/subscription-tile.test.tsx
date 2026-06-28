@@ -125,9 +125,9 @@ describe('SubscriptionTile', () => {
       <SubscriptionTile {...defaultProps} isSelected />
     );
 
-    // Selected tiles have blue background with border
-    expect(container.firstChild).toHaveClass('bg-blue-600');
-    expect(container.firstChild).toHaveClass('border-blue-600');
+    // Selected tiles have primary background with border
+    expect(container.firstChild).toHaveClass('bg-primary');
+    expect(container.firstChild).toHaveClass('border-primary');
   });
 
   it('applies unselected styles when isSelected is false', () => {
@@ -135,8 +135,8 @@ describe('SubscriptionTile', () => {
       <SubscriptionTile {...defaultProps} isSelected={false} />
     );
 
-    // Unselected tiles have gray background
-    expect(container.firstChild).toHaveClass('bg-gray-100');
+    // Unselected tiles have muted background
+    expect(container.firstChild).toHaveClass('bg-muted');
     expect(container.firstChild).not.toHaveClass('ring-4');
   });
 
@@ -237,8 +237,8 @@ describe('SubscriptionTile', () => {
       );
 
       const button = screen.getByRole('button', { name: 'Get Started' });
-      expect(button).toHaveClass('bg-white');
-      expect(button).toHaveClass('text-blue-600');
+      expect(button).toHaveClass('bg-background');
+      expect(button).toHaveClass('text-primary');
     });
 
     it('applies correct button styles for unselected tile', () => {
@@ -251,8 +251,8 @@ describe('SubscriptionTile', () => {
       );
 
       const button = screen.getByRole('button', { name: 'Get Started' });
-      expect(button).toHaveClass('bg-blue-600');
-      expect(button).toHaveClass('text-white');
+      expect(button).toHaveClass('bg-primary');
+      expect(button).toHaveClass('text-primary-foreground');
     });
   });
 });

@@ -7,12 +7,10 @@ const bannerVariants = cva('border-b transition-all duration-200', {
   variants: {
     variant: {
       default:
-        'bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-700',
-      compact:
-        'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800',
-      minimal:
-        'bg-gray-50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-700',
-      vibrant: 'bg-gradient-to-r from-blue-600 to-purple-600 border-blue-700',
+        'bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20 border-success/20',
+      compact: 'bg-green-50 dark:bg-green-900/10 border-success/20',
+      minimal: 'bg-muted/50 border-border',
+      vibrant: 'bg-gradient-to-r from-blue-600 to-purple-600 border-primary',
     },
     size: {
       default: 'py-4',
@@ -29,9 +27,9 @@ const bannerVariants = cva('border-b transition-all duration-200', {
 const textVariants = cva('font-semibold', {
   variants: {
     variant: {
-      default: 'text-green-800 dark:text-green-200',
-      compact: 'text-green-700 dark:text-green-300',
-      minimal: 'text-gray-700 dark:text-gray-300',
+      default: 'text-success',
+      compact: 'text-success',
+      minimal: 'text-muted-foreground',
       vibrant: 'text-white',
     },
   },
@@ -46,12 +44,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white focus:ring-green-500',
-        compact:
-          'bg-green-600 hover:bg-green-700 text-white focus:ring-green-500',
-        minimal: 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500',
+          'bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white focus:ring-success',
+        compact: 'bg-success hover:bg-success/90 text-white focus:ring-success',
+        minimal: 'bg-primary hover:bg-primary/90 text-white focus:ring-ring',
         vibrant:
-          'bg-white hover:bg-gray-100 text-blue-600 hover:text-blue-700 focus:ring-white',
+          'bg-white hover:bg-muted text-primary hover:text-primary focus:ring-white',
       },
     },
     defaultVariants: {
@@ -127,8 +124,8 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
                 className={cn(
                   'text-xs font-bold px-3 py-1 rounded-full mr-3 transition-colors',
                   variant === 'vibrant'
-                    ? 'bg-white text-blue-600'
-                    : 'bg-green-500 text-white'
+                    ? 'bg-white text-primary'
+                    : 'bg-success text-white'
                 )}
               >
                 {badgeText}

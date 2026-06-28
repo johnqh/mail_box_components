@@ -182,19 +182,16 @@ export const UsageHistoryChart: React.FC<UsageHistoryChartProps> = ({
           data={chartData}
           margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
         >
-          <CartesianGrid
-            strokeDasharray='3 3'
-            className='stroke-gray-200 dark:stroke-gray-700'
-          />
+          <CartesianGrid strokeDasharray='3 3' className='stroke-border' />
           <XAxis
             dataKey='name'
             tick={{ fontSize: 12 }}
-            className='text-gray-600 dark:text-gray-400'
+            className='text-muted-foreground'
           />
           <YAxis
             domain={[0, maxValue]}
             tick={{ fontSize: 12 }}
-            className='text-gray-600 dark:text-gray-400'
+            className='text-muted-foreground'
             tickFormatter={value => value.toLocaleString()}
           />
           <Tooltip

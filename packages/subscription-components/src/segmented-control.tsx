@@ -81,8 +81,8 @@ export function SegmentedControl<T extends string>({
               ui.transition.all,
               ui.states.focus,
               isSelected
-                ? `${ui.background.surface} text-gray-900 dark:text-white shadow-sm`
-                : `${ui.text.bodySmall} hover:text-gray-900 dark:hover:text-white`,
+                ? `${ui.background.surface} text-foreground shadow-sm`
+                : `${ui.text.bodySmall} hover:text-foreground`,
               disabled && 'cursor-not-allowed'
             )}
           >

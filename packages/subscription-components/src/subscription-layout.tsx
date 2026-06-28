@@ -206,10 +206,10 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
           </h2>
 
           {currentStatus.isActive ? (
-            <div className='bg-gray-50 dark:bg-gray-800/30 border border-gray-200 dark:border-gray-700 rounded-lg p-4 mb-6'>
+            <div className='bg-card/30 border border-border rounded-lg p-4 mb-6'>
               <div className='flex items-center mb-2'>
-                <div className='w-3 h-3 bg-green-500 rounded-full mr-3' />
-                <span className='font-semibold text-gray-800 dark:text-gray-200'>
+                <div className='w-3 h-3 bg-success rounded-full mr-3' />
+                <span className='font-semibold text-foreground'>
                   {currentStatus.activeContent?.title || 'Active Subscription'}
                 </span>
               </div>
@@ -218,10 +218,10 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
                     {currentStatus.activeContent.fields.map((field, index) => (
                       <div key={index}>
-                        <p className='text-sm text-gray-500 dark:text-gray-400'>
+                        <p className='text-sm text-muted-foreground'>
                           {field.label}
                         </p>
-                        <p className='font-semibold text-gray-700 dark:text-gray-300'>
+                        <p className='font-semibold text-muted-foreground'>
                           {field.value}
                         </p>
                       </div>
@@ -230,16 +230,16 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
                 )}
               {currentStatus.activeContent?.platform && (
                 <div className='mt-4'>
-                  <p className='text-sm text-gray-500 dark:text-gray-400'>
+                  <p className='text-sm text-muted-foreground'>
                     {currentStatus.activeContent.platform.label}
                   </p>
                   <div className='flex items-center gap-1.5 mt-0.5'>
                     <PlatformIcon
                       platform={currentStatus.activeContent.platform.value}
                       size={16}
-                      className='text-gray-600 dark:text-gray-300'
+                      className='text-muted-foreground'
                     />
-                    <p className='font-semibold text-gray-700 dark:text-gray-300'>
+                    <p className='font-semibold text-muted-foreground'>
                       {platformDisplayName(
                         currentStatus.activeContent.platform.value
                       )}
@@ -249,16 +249,16 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
               )}
             </div>
           ) : (
-            <div className='bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6'>
+            <div className='bg-warning/10 border border-warning/20 rounded-lg p-4 mb-6'>
               <div className='flex items-center mb-2'>
-                <div className='w-3 h-3 bg-yellow-500 rounded-full mr-3' />
-                <span className='font-semibold text-yellow-800 dark:text-yellow-300'>
+                <div className='w-3 h-3 bg-warning rounded-full mr-3' />
+                <span className='font-semibold text-warning'>
                   {currentStatus.inactiveContent?.title ||
                     'No Active Subscription'}
                 </span>
               </div>
               {currentStatus.inactiveContent?.message && (
-                <p className='text-yellow-700 dark:text-yellow-400'>
+                <p className='text-warning'>
                   {currentStatus.inactiveContent.message}
                 </p>
               )}
@@ -297,8 +297,8 @@ export const SubscriptionLayout: React.FC<SubscriptionLayoutProps> = ({
 
       {/* Error Message */}
       {error && (
-        <div className='bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mt-6'>
-          <p className='text-red-600 dark:text-red-400'>{error}</p>
+        <div className='bg-destructive/10 border border-destructive/20 rounded-lg p-4 mt-6'>
+          <p className='text-destructive'>{error}</p>
         </div>
       )}
 

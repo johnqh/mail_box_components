@@ -69,7 +69,7 @@ export const GradientBanner: React.FC<GradientBannerProps> = ({
     'orange-red': 'bg-gradient-to-r from-orange-600 to-red-600 text-white',
     gray: 'bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-700 dark:to-gray-900 text-white',
     light:
-      'bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-gray-900 dark:text-gray-100',
+      'bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-foreground',
     custom:
       gradientClasses ||
       'bg-gradient-to-r from-blue-600 to-purple-600 text-white',

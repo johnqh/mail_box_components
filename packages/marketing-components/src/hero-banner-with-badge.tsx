@@ -38,13 +38,12 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
 
   const badgeColors = colors.component.badge;
   const badgeColorClasses = {
-    blue: `${badgeColors.primary.base} ${badgeColors.primary.dark} border-blue-300 dark:border-blue-700`,
-    green: `${badgeColors.success.base} ${badgeColors.success.dark} border-green-300 dark:border-green-700`,
-    purple:
-      'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-300 dark:border-purple-700',
-    orange: `${badgeColors.warning.base} ${badgeColors.warning.dark} border-orange-300 dark:border-orange-700`,
-    pink: 'bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-300 border-pink-300 dark:border-pink-700',
-    gray: `${badgeColors.default.base} ${badgeColors.default.dark} border-gray-300 dark:border-gray-700`,
+    blue: `${badgeColors.primary.base} ${badgeColors.primary.dark} border-primary/30`,
+    green: `${badgeColors.success.base} ${badgeColors.success.dark} border-success/30`,
+    purple: 'bg-accent text-accent-foreground border-accent',
+    orange: `${badgeColors.warning.base} ${badgeColors.warning.dark} border-warning/30`,
+    pink: 'bg-secondary text-secondary-foreground border-secondary',
+    gray: `${badgeColors.default.base} ${badgeColors.default.dark} border-border`,
   };
 
   const badgeClasses = badgeColorClasses[badgeColor];
@@ -70,11 +69,7 @@ export const HeroBannerWithBadge: React.FC<HeroBannerWithBadgeProps> = ({
           ) : (
             title
           )}
-          {subtitle && (
-            <span className='text-blue-600 dark:text-blue-400 block'>
-              {subtitle}
-            </span>
-          )}
+          {subtitle && <span className='text-primary block'>{subtitle}</span>}
         </h1>
 
         <p

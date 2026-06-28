@@ -114,28 +114,25 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
   // Color variant configurations
   const variantClasses = {
     primary: {
-      active: 'bg-blue-500 text-white border-blue-500',
-      completed: 'bg-blue-500 text-white border-blue-500',
-      pending:
-        'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
-      connector: 'bg-blue-500',
-      connectorPending: 'bg-gray-300 dark:bg-gray-600',
+      active: 'bg-primary text-primary-foreground border-primary',
+      completed: 'bg-primary text-primary-foreground border-primary',
+      pending: 'bg-card text-muted-foreground border-border',
+      connector: 'bg-primary',
+      connectorPending: 'bg-muted',
     },
     success: {
-      active: 'bg-green-500 text-white border-green-500',
-      completed: 'bg-green-500 text-white border-green-500',
-      pending:
-        'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
-      connector: 'bg-green-500',
-      connectorPending: 'bg-gray-300 dark:bg-gray-600',
+      active: 'bg-success text-success-foreground border-success',
+      completed: 'bg-success text-success-foreground border-success',
+      pending: 'bg-card text-muted-foreground border-border',
+      connector: 'bg-success',
+      connectorPending: 'bg-muted',
     },
     purple: {
-      active: 'bg-purple-500 text-white border-purple-500',
-      completed: 'bg-purple-500 text-white border-purple-500',
-      pending:
-        'bg-white dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-600',
-      connector: 'bg-purple-500',
-      connectorPending: 'bg-gray-300 dark:bg-gray-600',
+      active: 'bg-accent text-accent-foreground border-accent',
+      completed: 'bg-accent text-accent-foreground border-accent',
+      pending: 'bg-card text-muted-foreground border-border',
+      connector: 'bg-accent',
+      connectorPending: 'bg-muted',
     },
   };
 

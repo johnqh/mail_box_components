@@ -62,15 +62,15 @@ const ChainPill: React.FC<{
   const getChainStyle = () => {
     switch (addressType) {
       case AddressType.EVMAddress:
-        return 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/10 dark:text-blue-300 dark:border-blue-800';
+        return 'bg-primary/10 text-primary border-primary/20';
       case AddressType.SolanaAddress:
-        return 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/10 dark:text-purple-300 dark:border-purple-800';
+        return 'bg-accent text-accent-foreground border-accent';
       case AddressType.ENSName:
-        return 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/10 dark:text-green-300 dark:border-green-800';
+        return 'bg-success/10 text-success border-success/20';
       case AddressType.SNSName:
-        return 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/10 dark:text-orange-300 dark:border-orange-800';
+        return 'bg-warning/10 text-warning border-warning/20';
       default:
-        return 'bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-800';
+        return 'bg-muted text-foreground border-border';
     }
   };
 
@@ -128,8 +128,8 @@ const CollapsibleDomainEmails: React.FC<{
               'w-full flex items-center justify-between text-left px-3 py-2 rounded-lg transition-colors h-[44px]',
               textVariants.body.sm(),
               selectedAccount === email.address
-                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-                : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                ? 'bg-primary/10 text-primary'
+                : 'hover:bg-muted'
             )}
           >
             <span className='truncate flex-1'>{email.name}</span>
@@ -165,8 +165,8 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
               textVariants.body.sm(),
               selectedAccount === group.primaryEmail.address &&
                 group.domainEmails.length === 0
-                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-                : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                ? 'bg-primary/10 text-primary'
+                : 'hover:bg-muted'
             )}
             style={
               group.customColor
@@ -187,7 +187,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
                   onTrack?.('toggle_wallet');
                   onToggleWallet(group.walletAddress);
                 }}
-                className='p-1 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer'
+                className='p-1 rounded-lg hover:bg-muted dark:hover:bg-muted transition-colors cursor-pointer'
                 role='button'
                 tabIndex={0}
                 onKeyDown={e => {
@@ -201,7 +201,7 @@ const EmailAccountsList: React.FC<EmailAccountsListProps> = ({
               >
                 <ChevronRightIcon
                   className={cn(
-                    'h-4 w-4 text-gray-500 transition-transform duration-300 ease-in-out',
+                    'h-4 w-4 text-muted-foreground transition-transform duration-300 ease-in-out',
                     expandedWallets.includes(group.walletAddress)
                       ? 'rotate-90'
                       : 'rotate-0'

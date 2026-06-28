@@ -92,9 +92,7 @@ export function EntityCard({
             <Icon
               className={cn(
                 'h-5 w-5',
-                isPersonal
-                  ? 'text-primary'
-                  : 'text-purple-600 dark:text-purple-400'
+                isPersonal ? 'text-primary' : 'text-accent-foreground'
               )}
             />
           )}

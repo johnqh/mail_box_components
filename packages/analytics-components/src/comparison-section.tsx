@@ -25,12 +25,10 @@ const cardVariants = cva('rounded-xl p-6 transition-all duration-300', {
   variants: {
     variant: {
       traditional:
-        'bg-red-50 dark:bg-red-900/20 border-2 border-red-100 dark:border-red-800/30 hover:border-red-200 dark:hover:border-red-700/50',
-      web3: 'bg-green-50 dark:bg-green-900/20 border-2 border-green-100 dark:border-green-800/30 hover:border-green-200 dark:hover:border-green-700/50',
-      neutral:
-        'bg-gray-50 dark:bg-gray-800/50 border-2 border-gray-100 dark:border-gray-700/30 hover:border-gray-200 dark:hover:border-gray-600/50',
-      elevated:
-        'bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700',
+        'bg-destructive/10 border-2 border-destructive/20 hover:border-destructive/40',
+      web3: 'bg-success/10 border-2 border-success/20 hover:border-success/40',
+      neutral: 'bg-card/50 border-2 border-border/30 hover:border-border',
+      elevated: 'bg-card shadow-lg hover:shadow-xl border border-border',
     },
     animation: {
       none: '',
@@ -47,10 +45,10 @@ const cardVariants = cva('rounded-xl p-6 transition-all duration-300', {
 const headerVariants = cva('text-lg font-bold mb-4 flex items-center gap-3', {
   variants: {
     variant: {
-      traditional: 'text-red-600 dark:text-red-400',
-      web3: 'text-green-600 dark:text-green-400',
-      neutral: 'text-gray-900 dark:text-white',
-      elevated: 'text-gray-900 dark:text-white',
+      traditional: 'text-destructive',
+      web3: 'text-success',
+      neutral: 'text-foreground',
+      elevated: 'text-foreground',
     },
   },
   defaultVariants: {
@@ -107,10 +105,10 @@ const defaultIcons = {
 };
 
 const badgeColors = {
-  red: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300',
-  green: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
-  blue: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
-  gray: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300',
+  red: 'bg-destructive/10 text-destructive',
+  green: 'bg-success/10 text-success',
+  blue: 'bg-primary/10 text-primary',
+  gray: 'bg-muted text-muted-foreground',
 };
 
 export const ComparisonSection: React.FC<ComparisonSectionProps> = ({
@@ -181,16 +179,16 @@ export const ComparisonSection: React.FC<ComparisonSectionProps> = ({
                 <span
                   className={cn(
                     data.variant === 'traditional'
-                      ? 'text-gray-700 dark:text-gray-300'
+                      ? 'text-muted-foreground'
                       : data.variant === 'web3'
-                        ? 'text-gray-700 dark:text-gray-300'
-                        : 'text-gray-600 dark:text-gray-400'
+                        ? 'text-muted-foreground'
+                        : 'text-muted-foreground'
                   )}
                 >
                   {item.text}
                 </span>
                 {item.subtext && (
-                  <p className='text-xs text-gray-500 dark:text-gray-500 mt-1'>
+                  <p className='text-xs text-muted-foreground mt-1'>
                     {item.subtext}
                   </p>
                 )}
@@ -210,12 +208,12 @@ export const ComparisonSection: React.FC<ComparisonSectionProps> = ({
       {(title || subtitle) && (
         <div className='text-center space-y-4'>
           {title && (
-            <h2 className='text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white'>
+            <h2 className='text-2xl sm:text-3xl font-bold text-foreground'>
               {title}
             </h2>
           )}
           {subtitle && (
-            <p className='text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto'>
+            <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
               {subtitle}
             </p>
           )}

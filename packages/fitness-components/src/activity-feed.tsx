@@ -98,7 +98,9 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
             </div>
 
             {item.icon && (
-              <div className='flex-shrink-0 text-gray-400'>{item.icon}</div>
+              <div className='flex-shrink-0 text-muted-foreground'>
+                {item.icon}
+              </div>
             )}
           </div>
         ))}

@@ -172,9 +172,7 @@ export const UserMention: React.FC<UserMentionProps> = ({
               onClick={() => insertMention(user)}
               className={cn(
                 'w-full flex items-center gap-3 px-4 py-3 text-left transition-colors',
-                index === selectedIndex
-                  ? 'bg-blue-50 dark:bg-blue-900/20'
-                  : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+                index === selectedIndex ? 'bg-primary/10' : 'hover:bg-muted'
               )}
             >
               {user.avatar ? (
@@ -186,7 +184,7 @@ export const UserMention: React.FC<UserMentionProps> = ({
               ) : (
                 <div
                   className={cn(
-                    'w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold text-sm',
+                    'w-8 h-8 rounded-full flex items-center justify-center text-foreground font-semibold text-sm',
                     ui.background.muted
                   )}
                 >
@@ -194,10 +192,10 @@ export const UserMention: React.FC<UserMentionProps> = ({
                 </div>
               )}
               <div className='flex-1 min-w-0'>
-                <p className='font-medium text-gray-900 dark:text-white truncate'>
+                <p className='font-medium text-foreground truncate'>
                   {user.name}
                 </p>
-                <p className='text-sm text-gray-600 dark:text-gray-400 truncate'>
+                <p className='text-sm text-muted-foreground truncate'>
                   @{user.username}
                 </p>
               </div>

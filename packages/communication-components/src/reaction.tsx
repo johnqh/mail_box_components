@@ -92,7 +92,7 @@ export const Reaction: React.FC<ReactionProps> = ({
             'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all',
             'border-2',
             reaction.reacted
-              ? `${colors.component.badge.primary.base} ${colors.component.badge.primary.dark} border-blue-500`
+              ? `${colors.component.badge.primary.base} ${colors.component.badge.primary.dark} border-primary`
               : `${colors.component.button.secondary.base} ${colors.component.button.secondary.dark} border-transparent`
           )}
         >
@@ -121,7 +121,7 @@ export const Reaction: React.FC<ReactionProps> = ({
             )}
           >
             <svg
-              className='w-5 h-5 text-gray-600 dark:text-gray-400'
+              className='w-5 h-5 text-muted-foreground'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'

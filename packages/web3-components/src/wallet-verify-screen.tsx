@@ -107,16 +107,14 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
     : `${colors.component.badge.ethereum.base} ${colors.component.badge.ethereum.dark}`;
 
   const signSectionClasses = isSolana
-    ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800'
-    : 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800';
+    ? 'bg-accent/50 border-accent'
+    : 'bg-primary/10 border-primary/20';
 
-  const signTitleClasses = isSolana
-    ? 'text-purple-900 dark:text-purple-300'
-    : 'text-blue-900 dark:text-blue-300';
+  const signTitleClasses = isSolana ? 'text-accent-foreground' : 'text-primary';
 
   const signDescriptionClasses = isSolana
-    ? 'text-purple-700 dark:text-purple-400'
-    : 'text-blue-700 dark:text-blue-400';
+    ? 'text-accent-foreground dark:text-accent-foreground'
+    : 'text-primary';
 
   const buttonGradient = isSolana
     ? 'from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
@@ -188,7 +186,7 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
       {/* Use different wallet link */}
       <button
         onClick={onUseDifferentWallet}
-        className={`w-full ${textVariants.body.sm()} hover:text-gray-900 dark:hover:text-gray-200`}
+        className={`w-full ${textVariants.body.sm()} hover:text-foreground`}
       >
         {labels.useDifferentWallet}
       </button>

@@ -24,7 +24,7 @@ export const BundleSection: React.FC<BundleSectionProps> = ({
 
   return (
     <div className={cn('space-y-1', className)}>
-      <h3 className='font-semibold text-blue-400 mb-2 text-xs'>
+      <h3 className='font-semibold text-primary mb-2 text-xs'>
         Bundle Performance
       </h3>
       <div className='space-y-1.5'>

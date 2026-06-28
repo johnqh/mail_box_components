@@ -95,7 +95,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       {/* Color placeholder */}
       {!lowQualitySrc && !isLoaded && (
         <div
-          className='absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse'
+          className='absolute inset-0 bg-muted animate-pulse'
           aria-hidden='true'
         />
       )}
@@ -118,8 +118,8 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
       {/* Error fallback */}
       {hasError && (
-        <div className='absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800'>
-          <div className='text-center text-gray-500 dark:text-gray-400'>
+        <div className='absolute inset-0 flex items-center justify-center bg-muted'>
+          <div className='text-center text-muted-foreground'>
             <svg
               className='mx-auto h-12 w-12 mb-2'
               fill='none'

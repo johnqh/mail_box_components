@@ -182,9 +182,9 @@ export const PerformancePanel: React.FC<PerformancePanelProps> = ({
         className={cn(
           'fixed z-[9999]',
           positionClasses[position],
-          'bg-gray-900 text-white px-3 py-2 rounded-lg',
-          'shadow-lg border border-gray-700',
-          'hover:bg-gray-800 transition-colors',
+          'bg-card text-card-foreground px-3 py-2 rounded-lg',
+          'shadow-lg border border-border',
+          'hover:bg-muted transition-colors',
           'text-xs font-mono'
         )}
         type='button'
@@ -235,8 +235,8 @@ export const PerformancePanel: React.FC<PerformancePanelProps> = ({
       {/* Content */}
       <div
         className={cn(
-          'bg-gray-800 text-gray-100 rounded-b-lg',
-          'shadow-lg border-x border-b border-gray-700',
+          'bg-card text-card-foreground rounded-b-lg',
+          'shadow-lg border-x border-b border-border',
           'overflow-hidden transition-all duration-300 ease-in-out',
           isCollapsed
             ? 'max-h-0 opacity-0'
@@ -251,28 +251,28 @@ export const PerformancePanel: React.FC<PerformancePanelProps> = ({
 
           {/* Bundle Performance */}
           {sections.includes('bundle') && (
-            <div className='pt-3 border-t border-gray-700'>
+            <div className='pt-3 border-t border-border'>
               <BundleSection metrics={bundleMetrics} />
             </div>
           )}
 
           {/* API Calls */}
           {sections.includes('api') && apiMetrics.callCount > 0 && (
-            <div className='pt-3 border-t border-gray-700'>
+            <div className='pt-3 border-t border-border'>
               <ApiSection metrics={apiMetrics} />
             </div>
           )}
 
           {/* Memory */}
           {sections.includes('memory') && (
-            <div className='pt-3 border-t border-gray-700'>
+            <div className='pt-3 border-t border-border'>
               <MemorySection />
             </div>
           )}
 
           {/* Custom Metrics */}
           {hasCustomMetrics && customMetrics.length > 0 && (
-            <div className='pt-3 border-t border-gray-700'>
+            <div className='pt-3 border-t border-border'>
               <CustomSection
                 title={customSectionTitle}
                 metrics={customMetrics}
@@ -281,7 +281,7 @@ export const PerformancePanel: React.FC<PerformancePanelProps> = ({
           )}
 
           {/* Legend */}
-          <div className='pt-3 border-t border-gray-700'>
+          <div className='pt-3 border-t border-border'>
             <ScoreLegend />
           </div>
         </div>

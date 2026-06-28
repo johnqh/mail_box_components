@@ -103,8 +103,8 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
       'flex items-center gap-2 px-4 py-2 text-sm font-medium',
       'transition-colors',
       item.active
-        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-        : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+        ? 'text-primary bg-accent'
+        : 'text-foreground hover:text-foreground hover:bg-muted'
     );
 
     return (
@@ -130,10 +130,10 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
         {hasChildren && isOpen && (
           <div
             className={cn(
-              'bg-gray-50 dark:bg-gray-800/50',
+              'bg-muted',
               orientation === 'horizontal'
                 ? 'pl-4'
-                : 'border-l-2 border-gray-200 dark:border-gray-700 ml-4'
+                : 'border-l-2 border-border ml-4'
             )}
           >
             {item.children!.map((child, childIndex) => (
@@ -146,8 +146,8 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
                       'flex items-center gap-2 px-4 py-2 text-sm',
                       'transition-colors',
                       child.active
-                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? 'text-primary bg-accent'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     )}
                   >
                     {child.icon && (
@@ -164,8 +164,8 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
                       'w-full flex items-center gap-2 px-4 py-2 text-sm',
                       'transition-colors',
                       child.active
-                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? 'text-primary bg-accent'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     )}
                   >
                     {child.icon && (
@@ -187,7 +187,7 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
   return (
     <nav
       className={cn(
-        'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg',
+        'bg-background border border-border rounded-lg',
         orientation === 'horizontal' ? 'flex flex-wrap' : 'flex flex-col',
         className
       )}

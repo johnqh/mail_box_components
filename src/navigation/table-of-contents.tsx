@@ -96,10 +96,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             {section.subsections && section.subsections.length > 0 && (
               <button
                 onClick={() => onToggleSection(section.id)}
-                className={`p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:scale-110 ${ui.transition.all}`}
+                className={`p-1 rounded-md hover:bg-muted hover:scale-110 ${ui.transition.all}`}
               >
                 <ChevronRightIcon
-                  className={`h-4 w-4 text-gray-500 transition-transform duration-300 ease-in-out ${
+                  className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ease-in-out ${
                     expandedSections.includes(section.id)
                       ? 'rotate-90'
                       : 'rotate-0'

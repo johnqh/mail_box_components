@@ -27,14 +27,14 @@ const levelConfig = {
   basic: {
     title: 'Basic KYC',
     description: 'Age & Identity Verification',
-    color: 'border-blue-200',
-    activeColor: 'border-blue-500 bg-blue-50',
+    color: 'border-border',
+    activeColor: 'border-primary bg-accent',
   },
   enhanced: {
     title: 'Enhanced KYC',
     description: 'Basic + Country & Compliance',
-    color: 'border-purple-200',
-    activeColor: 'border-purple-500 bg-purple-50',
+    color: 'border-border',
+    activeColor: 'border-primary bg-accent',
   },
   accredited: {
     title: 'Accredited Investor',
@@ -59,7 +59,7 @@ export const KYCLevelCard: React.FC<KYCLevelCardProps> = ({
     <div
       className={`
         relative border-2 rounded-lg p-6 transition-all
-        ${isActive ? config.activeColor : `${config.color} hover:border-gray-400`}
+        ${isActive ? config.activeColor : `${config.color} hover:border-muted-foreground`}
         ${className}
       `}
     >
@@ -106,7 +106,7 @@ export const KYCLevelCard: React.FC<KYCLevelCardProps> = ({
                 ? `${colors.component.badge.default.base} ${colors.component.badge.default.dark} cursor-not-allowed`
                 : isActive
                   ? `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`
-                  : `${colors.component.badge.default.base} ${colors.component.badge.default.dark} hover:bg-gray-300 dark:hover:bg-gray-600`
+                  : `${colors.component.badge.default.base} ${colors.component.badge.default.dark} hover:bg-muted`
             }
           `}
         >

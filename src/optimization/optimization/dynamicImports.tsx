@@ -6,8 +6,8 @@ import React, { lazy, Suspense, ComponentType } from 'react';
 // Simple loading component replacement
 const LoadingState: React.FC<{ message: string }> = ({ message }) => (
   <div className='flex items-center justify-center p-4'>
-    <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500'></div>
-    <span className='ml-2 text-sm text-gray-600'>{message}</span>
+    <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-primary'></div>
+    <span className='ml-2 text-sm text-muted-foreground'>{message}</span>
   </div>
 );
 
@@ -37,8 +37,8 @@ const getLoadingComponent = (fallback: LoadingFallback): ComponentType => {
     case 'skeleton':
       return () => (
         <div className='animate-pulse'>
-          <div className='h-4 bg-gray-200 rounded w-3/4 mb-2'></div>
-          <div className='h-4 bg-gray-200 rounded w-1/2'></div>
+          <div className='h-4 bg-muted rounded w-3/4 mb-2'></div>
+          <div className='h-4 bg-muted rounded w-1/2'></div>
         </div>
       );
     case 'default':

@@ -56,16 +56,16 @@ export const BorderAccent: React.FC<BorderAccentProps> = ({
   padding = 'md',
   className,
 }) => {
-  // Color variants
+  // Color variants mapped to semantic theme tokens (theme-aware)
   const colorClasses = {
-    blue: 'border-blue-500 dark:border-blue-400',
-    green: 'border-green-500 dark:border-green-400',
-    purple: 'border-purple-500 dark:border-purple-400',
-    indigo: 'border-indigo-500 dark:border-indigo-400',
-    emerald: 'border-emerald-500 dark:border-emerald-400',
-    orange: 'border-orange-500 dark:border-orange-400',
-    red: 'border-red-500 dark:border-red-400',
-    gray: 'border-gray-400 dark:border-gray-500',
+    blue: 'border-primary',
+    green: 'border-success',
+    purple: 'border-accent',
+    indigo: 'border-primary',
+    emerald: 'border-success',
+    orange: 'border-warning',
+    red: 'border-destructive',
+    gray: 'border-border',
   };
 
   // Border position classes

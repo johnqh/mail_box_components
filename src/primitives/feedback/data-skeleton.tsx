@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { variants, ui } from '@sudobility/design';
+import { ui } from '@sudobility/design';
 
 export interface DataSkeletonProps {
   /** Type of skeleton */
@@ -59,10 +59,10 @@ export const DataSkeleton: React.FC<DataSkeletonProps> = ({
   animate = true,
   className,
 }) => {
-  // variants.loading.skeleton.default() = 'animate-pulse bg-gray-200 dark:bg-gray-700 rounded'
+  // Theme-aware skeleton surface via semantic token
   const baseClasses = animate
-    ? variants.loading.skeleton.default()
-    : 'bg-gray-200 dark:bg-gray-700 rounded';
+    ? 'animate-pulse bg-muted rounded'
+    : 'bg-muted rounded';
 
   const heightStyle = typeof height === 'number' ? `${height}px` : height;
   const widthStyle = typeof width === 'number' ? `${width}px` : width;

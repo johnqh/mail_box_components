@@ -24,7 +24,7 @@ export const WebVitalsSection: React.FC<WebVitalsSectionProps> = ({
 
   return (
     <div className={cn('space-y-1', className)}>
-      <h3 className='font-semibold text-yellow-400 mb-2 text-xs'>Web Vitals</h3>
+      <h3 className='font-semibold text-primary mb-2 text-xs'>Web Vitals</h3>
       <div className='space-y-1.5'>
         <MetricRow
           label='LCP'

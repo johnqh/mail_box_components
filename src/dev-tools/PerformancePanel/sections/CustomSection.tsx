@@ -58,7 +58,7 @@ const getCustomMetricRating = (metric: CustomMetric): MetricRating => {
  * ```tsx
  * <CustomSection
  *   title="Web3 Metrics"
- *   titleColor="text-orange-400"
+ *   titleColor="text-primary"
  *   metrics={[
  *     { id: 'walletConnect', label: 'Wallet Connect', value: 245, unit: 'ms', thresholds: { good: 300, poor: 1000 } },
  *     { id: 'txPending', label: 'Pending Txs', value: 3 },
@@ -68,7 +68,7 @@ const getCustomMetricRating = (metric: CustomMetric): MetricRating => {
  */
 export const CustomSection: React.FC<CustomSectionProps> = ({
   title = 'Custom Metrics',
-  titleColor = 'text-orange-400',
+  titleColor = 'text-primary',
   metrics,
   className,
 }) => {

@@ -44,10 +44,9 @@ export const StepperNav: React.FC<StepperNavProps> = ({
               disabled={index > currentStep}
               className={cn(
                 'w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-colors',
-                index < currentStep && 'bg-green-500 text-white',
-                index === currentStep && 'bg-blue-500 text-white',
-                index > currentStep &&
-                  'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                index < currentStep && 'bg-success text-success-foreground',
+                index === currentStep && 'bg-primary text-primary-foreground',
+                index > currentStep && 'bg-muted text-muted-foreground'
               )}
             >
               {index < currentStep ? '✓' : index + 1}
@@ -65,7 +64,7 @@ export const StepperNav: React.FC<StepperNavProps> = ({
                 orientation === 'horizontal'
                   ? 'w-full h-0.5 mx-4'
                   : 'h-8 w-0.5 ml-5 my-2',
-                'bg-gray-300 dark:bg-gray-700'
+                'bg-muted'
               )}
             />
           )}

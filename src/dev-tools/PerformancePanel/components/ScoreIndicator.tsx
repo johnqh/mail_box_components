@@ -20,11 +20,11 @@ const sizeClasses = {
 };
 
 const ratingColors: Record<MetricRating, string> = {
-  good: 'bg-green-500',
-  'needs-improvement': 'bg-yellow-500',
-  poor: 'bg-red-500',
-  unknown: 'bg-gray-400',
-  neutral: 'bg-gray-500',
+  good: 'bg-success',
+  'needs-improvement': 'bg-warning',
+  poor: 'bg-destructive',
+  unknown: 'bg-muted',
+  neutral: 'bg-muted',
 };
 
 const ratingLabels: Record<MetricRating, string> = {
@@ -50,7 +50,9 @@ export const ScoreIndicator: React.FC<ScoreIndicatorProps> = ({
         className={cn('rounded-full', sizeClasses[size], ratingColors[rating])}
       />
       {showLabel && (
-        <span className='text-xs text-gray-400'>{ratingLabels[rating]}</span>
+        <span className='text-xs text-muted-foreground'>
+          {ratingLabels[rating]}
+        </span>
       )}
     </div>
   );
@@ -63,17 +65,19 @@ export const ScoreLegend: React.FC<{ className?: string }> = ({
   className,
 }) => {
   return (
-    <div className={cn('flex gap-3 text-[10px] text-gray-400', className)}>
+    <div
+      className={cn('flex gap-3 text-[10px] text-muted-foreground', className)}
+    >
       <span className='flex items-center gap-1'>
-        <span className='w-2 h-2 rounded-full bg-green-500' />
+        <span className='w-2 h-2 rounded-full bg-success' />
         Good
       </span>
       <span className='flex items-center gap-1'>
-        <span className='w-2 h-2 rounded-full bg-yellow-500' />
+        <span className='w-2 h-2 rounded-full bg-warning' />
         Needs Improvement
       </span>
       <span className='flex items-center gap-1'>
-        <span className='w-2 h-2 rounded-full bg-red-500' />
+        <span className='w-2 h-2 rounded-full bg-destructive' />
         Poor
       </span>
     </div>

@@ -101,7 +101,7 @@ describe('StepList Component', () => {
       <StepList items={['Step 1', 'Step 2']} variant='minimal' type='ordered' />
     );
 
-    const stepNumbers = document.querySelectorAll('.bg-blue-100');
+    const stepNumbers = document.querySelectorAll('.bg-primary\\/10');
     expect(stepNumbers).toHaveLength(2);
     expect(stepNumbers[0]).toHaveTextContent('1');
     expect(stepNumbers[1]).toHaveTextContent('2');
@@ -117,7 +117,7 @@ describe('StepList Component', () => {
     );
 
     const bullets = document.querySelectorAll(
-      '.w-2.h-2.bg-blue-600.rounded-full'
+      '.w-2.h-2.bg-primary.rounded-full'
     );
     expect(bullets).toHaveLength(2);
   });
@@ -171,7 +171,6 @@ describe('StepList Component', () => {
   it('applies correct text colors', () => {
     render(<StepList items={['Item']} />);
     const item = screen.getByText('Item').parentElement?.parentElement;
-    expect(item).toHaveClass('text-gray-600');
-    expect(item).toHaveClass('dark:text-gray-400');
+    expect(item).toHaveClass('text-muted-foreground');
   });
 });

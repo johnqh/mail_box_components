@@ -48,7 +48,7 @@ export interface DetailErrorStateProps {
 function WarningIcon(): React.ReactElement {
   return (
     <svg
-      className='w-8 h-8 text-red-600 dark:text-red-400'
+      className='w-8 h-8 text-destructive'
       fill='none'
       viewBox='0 0 24 24'
       stroke='currentColor'

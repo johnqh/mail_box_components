@@ -108,9 +108,9 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   if (filename && loading) {
     return (
       <div
-        className={`bg-gray-900 text-green-400 ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
+        className={`bg-muted text-muted-foreground ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
       >
-        <div className={`${ui.states.loading} text-gray-500`}>
+        <div className={`${ui.states.loading} text-muted-foreground`}>
           {t('loadingCode', 'Loading code...')}
         </div>
       </div>
@@ -121,7 +121,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   if (filename && error) {
     return (
       <div
-        className={`bg-gray-900 text-red-400 ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
+        className={`bg-muted text-destructive ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
       >
         {t('error', 'Error')}: {error}
       </div>
@@ -132,7 +132,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   if (!code) {
     return (
       <div
-        className={`bg-gray-900 text-gray-400 ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
+        className={`bg-muted text-muted-foreground ${designTokens.radius.lg} p-4 font-mono text-sm ${className}`}
       >
         {t('noCode', 'No code to display')}
       </div>
@@ -141,22 +141,22 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
 
   return (
     <div
-      className={`bg-gray-900 ${designTokens.radius.lg} border border-green-500/20 ${designTokens.shadow.lg} shadow-green-500/10 ${className}`}
+      className={`bg-muted ${designTokens.radius.lg} border border-border ${designTokens.shadow.lg} ${className}`}
     >
       {/* Header with filename/title and copy button */}
       {showHeader && (
-        <div className='flex items-center justify-between px-4 py-2 border-b border-green-500/20 bg-gray-800/50'>
-          <span className='text-sm text-green-400 font-mono'>
+        <div className='flex items-center justify-between px-4 py-2 border-b border-border bg-card'>
+          <span className='text-sm text-foreground font-mono'>
             {title || filename || `${language} code`}
           </span>
           {showCopy && (
             <button
               onClick={handleCopy}
-              className={`p-2 text-gray-400 hover:text-green-400 hover:bg-gray-800 ${designTokens.radius.lg} ${ui.transition.all} group`}
+              className={`p-2 text-muted-foreground hover:text-foreground hover:bg-accent ${designTokens.radius.lg} ${ui.transition.all} group`}
               title={t('copyCode', 'Copy code')}
             >
               {copied ? (
-                <CheckIcon className='h-4 w-4 text-green-400' />
+                <CheckIcon className='h-4 w-4 text-success' />
               ) : (
                 <ClipboardDocumentIcon className='h-4 w-4 group-hover:scale-110 transition-transform' />
               )}
@@ -168,7 +168,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       {/* Code content */}
       <div className='p-4 overflow-x-auto text-left'>
         <pre className={`text-sm language-${language}`}>
-          <code className='text-gray-100'>{code}</code>
+          <code className='text-foreground'>{code}</code>
         </pre>
       </div>
     </div>

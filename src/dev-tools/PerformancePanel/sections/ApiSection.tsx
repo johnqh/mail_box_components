@@ -39,7 +39,7 @@ export const ApiSection: React.FC<ApiSectionProps> = ({
 
   return (
     <div className={cn('space-y-1', className)}>
-      <h3 className='font-semibold text-purple-400 mb-2 text-xs'>API Calls</h3>
+      <h3 className='font-semibold text-primary mb-2 text-xs'>API Calls</h3>
       <div className='space-y-1.5'>
         <MetricRow label='Count' value={metrics.callCount} rating='neutral' />
         <MetricRow

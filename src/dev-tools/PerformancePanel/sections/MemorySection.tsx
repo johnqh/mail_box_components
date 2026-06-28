@@ -91,7 +91,7 @@ export const MemorySection: React.FC<MemorySectionProps> = ({
 
   return (
     <div className={cn('space-y-1', className)}>
-      <h3 className='font-semibold text-cyan-400 mb-2 text-xs'>Memory</h3>
+      <h3 className='font-semibold text-primary mb-2 text-xs'>Memory</h3>
       <div className='space-y-1.5'>
         <MetricRow
           label='Used Heap'

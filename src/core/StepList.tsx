@@ -44,7 +44,7 @@ export const StepList: React.FC<StepListProps> = ({
   };
 
   const getItemStyles = (index: number) => {
-    const baseStyles = 'text-gray-600 dark:text-gray-400';
+    const baseStyles = 'text-muted-foreground';
 
     if (variant === 'enhanced') {
       return cn(
@@ -64,7 +64,7 @@ export const StepList: React.FC<StepListProps> = ({
   const getStepNumber = (index: number) => {
     if (variant === 'enhanced' && type === 'ordered') {
       return (
-        <div className='absolute -left-4 -top-1 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium'>
+        <div className='absolute -left-4 -top-1 w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-medium'>
           {index + 1}
         </div>
       );
@@ -81,12 +81,12 @@ export const StepList: React.FC<StepListProps> = ({
       <li key={index} className={cn(getItemStyles(index), itemClassName)}>
         {getStepNumber(index)}
         {variant === 'minimal' && type === 'ordered' && (
-          <span className='inline-block w-6 h-6 bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium text-center leading-6 mr-3 flex-shrink-0'>
+          <span className='inline-block w-6 h-6 bg-primary/10 text-primary rounded-full text-sm font-medium text-center leading-6 mr-3 flex-shrink-0'>
             {index + 1}
           </span>
         )}
         {variant === 'minimal' && type === 'unordered' && (
-          <span className='inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0' />
+          <span className='inline-block w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0' />
         )}
         <div className='flex-1'>
           <div>{content}</div>

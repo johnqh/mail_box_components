@@ -45,8 +45,8 @@ export const FullPageSpinner: React.FC<FullPageSpinnerProps> = ({
 }) => {
   const backgroundStyles = {
     transparent: 'bg-transparent',
-    themed: 'bg-white dark:bg-gray-900',
-    blur: 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm',
+    themed: 'bg-background',
+    blur: 'bg-background/80 backdrop-blur-sm',
   };
 
   return (

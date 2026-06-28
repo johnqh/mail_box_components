@@ -24,11 +24,11 @@ export interface MetricRowProps {
 }
 
 const ratingColors: Record<MetricRating, string> = {
-  good: 'text-green-500',
-  'needs-improvement': 'text-yellow-500',
-  poor: 'text-red-500',
-  unknown: 'text-gray-400',
-  neutral: 'text-gray-300',
+  good: 'text-success',
+  'needs-improvement': 'text-warning',
+  poor: 'text-destructive',
+  unknown: 'text-muted-foreground',
+  neutral: 'text-muted-foreground',
 };
 
 /**
@@ -52,9 +52,11 @@ export const MetricRow: React.FC<MetricRowProps> = ({
   return (
     <div className={cn('flex justify-between items-center', className)}>
       <div className='flex flex-col'>
-        <span className='text-gray-300'>{label}</span>
+        <span className='text-foreground'>{label}</span>
         {description && (
-          <span className='text-[10px] text-gray-500'>{description}</span>
+          <span className='text-[10px] text-muted-foreground'>
+            {description}
+          </span>
         )}
       </div>
       <span className={cn('font-medium', ratingColors[rating])}>

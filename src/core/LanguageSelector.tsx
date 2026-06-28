@@ -105,12 +105,12 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     return (
       <div className={`relative ${className}`}>
         <Select value={currentLang} onValueChange={handleLanguageChange}>
-          <SelectTrigger className='h-10 w-auto px-3 border-0 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-0 focus:ring-offset-0'>
+          <SelectTrigger className='h-10 w-auto px-3 border-0 bg-transparent hover:bg-muted focus:ring-0 focus:ring-offset-0'>
             <div className='flex items-center space-x-2'>
               <span className='text-lg leading-none'>
                 {currentLanguage?.flag}
               </span>
-              <span className='hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300'>
+              <span className='hidden sm:block text-sm font-medium text-foreground'>
                 {currentLanguage?.name}
               </span>
             </div>
@@ -138,8 +138,8 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
   return (
     <div className={`space-y-2 ${className}`}>
-      <label className='text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center space-x-2'>
-        <LanguageIcon className='h-4 w-4 text-gray-500 dark:text-gray-400' />
+      <label className='text-sm font-medium text-foreground flex items-center space-x-2'>
+        <LanguageIcon className='h-4 w-4 text-muted-foreground' />
         <span>{t('language', 'Language')}</span>
       </label>
       <Select value={currentLang} onValueChange={handleLanguageChange}>
@@ -163,7 +163,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           )}
         </SelectContent>
       </Select>
-      <p className='text-xs text-gray-500 dark:text-gray-400'>
+      <p className='text-xs text-muted-foreground'>
         {t('selectPreferredLanguage', 'Select your preferred language')}
       </p>
     </div>

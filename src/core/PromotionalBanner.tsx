@@ -85,13 +85,13 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
 
   const getBorderClass = () => {
     if (variant === 'prominent') {
-      return 'border-b-2 border-green-200 dark:border-green-700';
+      return 'border-b-2 border-success/30';
     }
-    return `border-b border-green-200 dark:border-green-700`;
+    return `border-b border-success/30`;
   };
 
   const getButtonClasses = () => {
-    const baseClasses = `bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white ${designTokens.radius.lg} font-bold ${ui.transition.slow} transform hover:scale-105 ${designTokens.shadow.lg} hover:shadow-green-500/25 inline-flex items-center whitespace-nowrap cursor-pointer`;
+    const baseClasses = `bg-gradient-to-r from-success to-primary hover:opacity-90 text-primary-foreground ${designTokens.radius.lg} font-bold ${ui.transition.slow} transform hover:scale-105 ${designTokens.shadow.lg} inline-flex items-center whitespace-nowrap cursor-pointer`;
 
     if (variant === 'prominent') {
       return `${baseClasses} px-8 py-3 text-base`;
@@ -101,9 +101,9 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
 
   const getTitleClasses = () => {
     if (variant === 'prominent') {
-      return 'text-green-800 dark:text-green-200 font-semibold text-lg';
+      return 'text-success font-semibold text-lg';
     }
-    return 'text-green-800 dark:text-green-200 font-semibold';
+    return 'text-success font-semibold';
   };
 
   const displayBadgeText =
@@ -113,22 +113,20 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
 
   return (
     <div
-      className={`bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20 ${getBorderClass()} ${className}`}
+      className={`bg-gradient-to-r from-success/10 to-primary/10 ${getBorderClass()} ${className}`}
     >
       <div className={`${containerClass} py-4`}>
         <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
           <div
             className={`flex items-center ${variant === 'prominent' ? 'text-center sm:text-left' : ''}`}
           >
-            <div className='bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full mr-3 animate-pulse'>
+            <div className='bg-success text-success-foreground text-xs font-bold px-3 py-1 rounded-full mr-3 animate-pulse'>
               {displayBadgeText}
             </div>
             <div>
               <span className={getTitleClasses()}>{title}</span>
               {subtitle && (
-                <span className='text-green-700 dark:text-green-300 text-sm block'>
-                  {subtitle}
-                </span>
+                <span className='text-success text-sm block'>{subtitle}</span>
               )}
             </div>
           </div>

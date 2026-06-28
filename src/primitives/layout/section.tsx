@@ -1,17 +1,15 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
-import { GRADIENTS, ui } from '@sudobility/design';
-
 const sectionVariants = cva('', {
   variants: {
     variant: {
       default: '',
       hero: 'relative overflow-hidden',
-      feature: ui.background.surface,
+      feature: 'bg-card',
       cta: 'relative overflow-hidden',
-      testimonial: ui.background.subtle,
-      footer: `${ui.background.surface} ${ui.border.default} border-t`,
+      testimonial: 'bg-muted',
+      footer: 'bg-card border-border border-t',
     },
     spacing: {
       none: '',
@@ -27,17 +25,13 @@ const sectionVariants = cva('', {
     },
     background: {
       none: 'bg-transparent',
-      default: ui.background.subtle,
-      surface: ui.background.surface,
-      gradient: GRADIENTS.backgrounds.main,
-      'gradient-primary':
-        'bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/50 dark:to-indigo-900/50',
-      'gradient-secondary':
-        'bg-gradient-to-br from-green-50 to-blue-100 dark:from-green-900/50 dark:to-blue-900/50',
-      'gradient-tertiary':
-        'bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-gray-800 dark:to-gray-900',
-      'gradient-vibrant':
-        'bg-gradient-to-br from-blue-800 to-purple-800 dark:from-blue-900 dark:to-purple-900',
+      default: 'bg-muted',
+      surface: 'bg-card',
+      gradient: 'bg-gradient-to-br from-muted to-background',
+      'gradient-primary': 'bg-gradient-to-br from-primary/10 to-accent',
+      'gradient-secondary': 'bg-gradient-to-br from-success/10 to-primary/10',
+      'gradient-tertiary': 'bg-gradient-to-r from-success/10 to-muted',
+      'gradient-vibrant': 'bg-gradient-to-br from-primary to-accent',
     },
   },
   defaultVariants: {

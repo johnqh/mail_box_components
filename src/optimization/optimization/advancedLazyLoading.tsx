@@ -173,8 +173,8 @@ export function createAdvancedLazyComponent<
 
     const fallbackComponent = fallback || (
       <div className='flex items-center justify-center p-4'>
-        <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500'></div>
-        <span className='ml-2 text-sm text-gray-600'>
+        <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-primary'></div>
+        <span className='ml-2 text-sm text-muted-foreground'>
           Loading {componentName.replace(/([A-Z])/g, ' $1').trim()}...
         </span>
       </div>
@@ -413,7 +413,7 @@ export const LazyImage: React.FC<{
         fetchPriority={priority === 'high' ? 'high' : 'low'}
       />
       {!loaded && inView && (
-        <div className='absolute inset-0 bg-gray-200 animate-pulse rounded' />
+        <div className='absolute inset-0 bg-muted animate-pulse rounded' />
       )}
     </div>
   );

@@ -35,7 +35,7 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
           key={notif.id}
           className={cn(
             'p-3 rounded mb-2',
-            notif.read ? 'bg-transparent' : 'bg-blue-50 dark:bg-blue-900/20'
+            notif.read ? 'bg-transparent' : 'bg-accent'
           )}
           onClick={() => onMarkAsRead?.(notif.id)}
         >

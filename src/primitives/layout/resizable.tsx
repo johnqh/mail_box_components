@@ -227,8 +227,7 @@ export const Resizable: React.FC<ResizableProps> = ({
         key={direction}
         className={cn(
           'absolute z-10',
-          showHandles &&
-            'bg-blue-500 dark:bg-blue-400 opacity-0 hover:opacity-50',
+          showHandles && 'bg-primary opacity-0 hover:opacity-50',
           handleStyles[direction]
         )}
         onMouseDown={handleMouseDown(direction)}

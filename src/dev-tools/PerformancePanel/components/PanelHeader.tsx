@@ -74,9 +74,9 @@ export const PanelHeader: React.FC<PanelHeaderProps> = ({
   return (
     <div
       className={cn(
-        'bg-gray-900 text-white rounded-t-lg px-3 py-2',
+        'bg-card text-card-foreground rounded-t-lg px-3 py-2',
         'flex items-center justify-between',
-        'shadow-lg border border-gray-700',
+        'shadow-lg border border-border',
         'select-none',
         onMouseDown && 'cursor-grab',
         isDragging && 'cursor-grabbing',
@@ -91,7 +91,7 @@ export const PanelHeader: React.FC<PanelHeaderProps> = ({
       <div className='flex gap-1'>
         <button
           onClick={onToggleCollapse}
-          className='hover:bg-gray-700 rounded p-1 transition-colors'
+          className='hover:bg-muted rounded p-1 transition-colors'
           aria-label={isCollapsed ? 'Expand' : 'Collapse'}
           type='button'
         >
@@ -100,7 +100,7 @@ export const PanelHeader: React.FC<PanelHeaderProps> = ({
         {onClose && (
           <button
             onClick={onClose}
-            className='hover:bg-gray-700 rounded p-1 transition-colors'
+            className='hover:bg-muted rounded p-1 transition-colors'
             aria-label='Close'
             type='button'
           >

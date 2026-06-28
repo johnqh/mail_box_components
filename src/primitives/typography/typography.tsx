@@ -23,11 +23,11 @@ const pageTitleVariants = cva('', {
       right: 'text-right',
     },
     color: {
-      default: 'text-gray-900 dark:text-white',
-      muted: 'text-gray-600 dark:text-gray-400',
-      vibrant: 'text-white',
+      default: 'text-foreground',
+      muted: 'text-muted-foreground',
+      vibrant: 'text-primary-foreground',
       brand:
-        'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent',
+        'bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent',
     },
   },
   defaultVariants: {
@@ -147,9 +147,9 @@ const bodyTextVariants = cva('', {
       caption: textVariants.body.xs(),
     },
     color: {
-      default: 'text-gray-700 dark:text-gray-300',
-      muted: 'text-gray-500 dark:text-gray-500',
-      primary: 'text-gray-900 dark:text-white',
+      default: 'text-foreground',
+      muted: 'text-muted-foreground',
+      primary: 'text-foreground',
     },
     align: {
       left: 'text-left',
@@ -194,7 +194,7 @@ const textLinkVariants = cva(textVariants.link.default(), {
       subtle: textVariants.link.subtle(),
       muted: textVariants.link.muted(),
       button:
-        'inline-flex items-center justify-center px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors',
+        'inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors',
     },
     external: {
       true: 'inline-flex items-center gap-1',

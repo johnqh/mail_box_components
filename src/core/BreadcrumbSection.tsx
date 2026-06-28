@@ -20,7 +20,7 @@ export const BreadcrumbSection: React.FC<BreadcrumbSectionProps> = ({
   const { containerClass } = useLayout();
 
   return (
-    <div className='bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 relative z-50'>
+    <div className='bg-card border-b border-border relative z-50'>
       <div className={`${containerClass} py-3 relative`}>
         <RouterBreadcrumb items={items} shareConfig={shareConfig} />
       </div>

@@ -138,9 +138,9 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   const buttonBaseClasses = cn(
     'inline-flex items-center justify-center',
-    'rounded-md border border-gray-300 dark:border-gray-600',
+    'rounded-md border border-border',
     'transition-all duration-200',
-    'focus:outline-none focus:ring-2 focus:ring-blue-500',
+    'focus:outline-none focus:ring-2 focus:ring-ring',
     'disabled:opacity-50 disabled:cursor-not-allowed'
   );
 
@@ -150,15 +150,15 @@ export const Pagination: React.FC<PaginationProps> = ({
       sizeConfig.button,
       sizeConfig.text,
       isActive
-        ? 'bg-blue-600 text-white border-blue-600 dark:bg-blue-500 dark:border-blue-500'
-        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+        ? 'bg-primary text-primary-foreground border-primary'
+        : 'bg-card text-foreground hover:bg-muted'
     );
 
   const navButtonClasses = cn(
     buttonBaseClasses,
     sizeConfig.button,
-    'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300',
-    'hover:bg-gray-50 dark:hover:bg-gray-700'
+    'bg-card text-foreground',
+    'hover:bg-muted'
   );
 
   return (
@@ -197,7 +197,7 @@ export const Pagination: React.FC<PaginationProps> = ({
               className={cn(
                 'inline-flex items-center justify-center',
                 sizeConfig.button,
-                'text-gray-400 dark:text-gray-500'
+                'text-muted-foreground'
               )}
             >
               ...

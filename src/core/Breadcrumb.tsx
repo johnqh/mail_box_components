@@ -233,11 +233,11 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
       <button
         onClick={handleShareClick}
         disabled={isPreparingShare || isSharing}
-        className='flex items-center justify-center w-8 h-8 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+        className='flex items-center justify-center w-8 h-8 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
         title='Share this page'
       >
         {isPreparingShare || isSharing ? (
-          <div className='w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin' />
+          <div className='w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin' />
         ) : (
           <svg
             className='w-4 h-4'
@@ -269,7 +269,7 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
               <button
                 key={platform.name}
                 onClick={() => handleSocialShare(platform.url)}
-                className='w-full flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors'
+                className='w-full flex items-center px-3 py-1.5 hover:bg-muted cursor-pointer transition-colors'
               >
                 <svg
                   className={`w-4 h-4 mr-2 ${platform.color}`}
@@ -292,10 +292,10 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
                   handleNativeShare();
                 }}
                 disabled={isSharing}
-                className='w-full flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors disabled:opacity-50'
+                className='w-full flex items-center px-3 py-1.5 hover:bg-muted cursor-pointer transition-colors disabled:opacity-50'
               >
                 <svg
-                  className='w-4 h-4 mr-2 text-blue-600 dark:text-blue-400'
+                  className='w-4 h-4 mr-2 text-primary'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
@@ -313,10 +313,10 @@ const ShareDropdown: React.FC<{ shareConfig: ShareConfig }> = ({
 
             <button
               onClick={copyToClipboard}
-              className='w-full flex items-center px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors'
+              className='w-full flex items-center px-3 py-1.5 hover:bg-muted cursor-pointer transition-colors'
             >
               <svg
-                className='w-4 h-4 mr-2 text-gray-600 dark:text-gray-400'
+                className='w-4 h-4 mr-2 text-muted-foreground'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -357,7 +357,7 @@ const RouterBreadcrumb: React.FC<BreadcrumbProps> = ({
                 ) : (
                   <Link
                     to={item.href || '#'}
-                    className='text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors'
+                    className='text-primary hover:text-primary/80 transition-colors'
                   >
                     {item.label}
                   </Link>
@@ -365,7 +365,7 @@ const RouterBreadcrumb: React.FC<BreadcrumbProps> = ({
               </li>
               {index < items.length - 1 && (
                 <li>
-                  <span className='text-gray-400 dark:text-gray-500'>/</span>
+                  <span className='text-muted-foreground'>/</span>
                 </li>
               )}
             </React.Fragment>

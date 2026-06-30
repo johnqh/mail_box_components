@@ -28,7 +28,7 @@ export const SliderInput = ({
         step={step}
         value={value}
         onChange={e => onChange(Number(e.target.value))}
-        className='flex-1 accent-blue-500'
+        className='flex-1 accent-primary'
       />
       {showValue && (
         <span className='w-12 text-center font-semibold text-foreground'>

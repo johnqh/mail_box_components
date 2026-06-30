@@ -91,10 +91,10 @@ export const Slider: React.FC<SliderProps> = ({
 
   // Color variant configurations
   const variantClasses = {
-    primary: 'accent-blue-600 dark:accent-blue-500',
-    success: 'accent-green-600 dark:accent-green-500',
-    warning: 'accent-yellow-600 dark:accent-yellow-500',
-    danger: 'accent-red-600 dark:accent-red-500',
+    primary: 'accent-primary',
+    success: 'accent-success',
+    warning: 'accent-warning',
+    danger: 'accent-destructive',
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

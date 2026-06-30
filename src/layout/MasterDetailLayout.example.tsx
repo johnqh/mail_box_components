@@ -39,8 +39,8 @@ export const DocumentationExample = () => {
           onClick={() => handleSectionSelect(section.id)}
           className={`block w-full text-left px-3 py-4 ${
             selectedSection === section.id
-              ? 'bg-blue-50 dark:bg-blue-900/10 text-blue-700'
-              : 'hover:bg-gray-50 dark:hover:bg-gray-800'
+              ? 'bg-primary/10 text-primary'
+              : 'hover:bg-accent'
           }`}
         >
           {section.title}
@@ -98,8 +98,8 @@ export const SettingsExample = () => {
           onClick={() => handleTabSelect(tab.id)}
           className={`block w-full text-left px-4 py-2 rounded-md ${
             currentTab === tab.id
-              ? 'bg-blue-100 text-blue-700'
-              : 'hover:bg-gray-100'
+              ? 'bg-primary/10 text-primary'
+              : 'hover:bg-accent'
           }`}
         >
           {tab.label}

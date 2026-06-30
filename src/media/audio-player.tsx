@@ -160,7 +160,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           max={duration || 0}
           value={currentTime}
           onChange={handleSeek}
-          className='w-full accent-blue-500'
+          className='w-full accent-primary'
         />
         <div
           className={cn(
@@ -216,7 +216,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               step='0.1'
               value={volume}
               onChange={handleVolumeChange}
-              className='w-24 accent-blue-500'
+              className='w-24 accent-primary'
             />
           </div>
         </div>

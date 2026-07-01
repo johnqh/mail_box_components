@@ -22,7 +22,17 @@ export interface ModalProps {
   closeAriaLabel?: string;
 }
 
-/** An accessible modal dialog rendered via a portal with focus management, escape-to-close, and overlay click support. */
+/**
+ * An accessible modal dialog rendered via a portal with focus management,
+ * escape-to-close, and overlay click support.
+ *
+ * @deprecated For form dialogs, prefer {@link FormModal} (`./form-modal`): it
+ * provides a fixed title/cancel top bar, a vertically scrollable content area,
+ * and a sticky bottom confirmation button, and is responsive (full-screen on
+ * phones, centered dialog on tablet/desktop). This primitive `Modal` (and its
+ * `ModalHeader`/`ModalContent`/`ModalFooter` sub-components) is retained for
+ * non-form/legacy use but should not be used for new form modals.
+ */
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,

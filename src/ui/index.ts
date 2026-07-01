@@ -75,6 +75,7 @@ export * from './loading-overlay';
 export * from './logo';
 export * from './masonry';
 export * from './modal';
+export * from './form-modal';
 export * from './morph-transition';
 export * from './multi-select';
 export * from './navigation-list';

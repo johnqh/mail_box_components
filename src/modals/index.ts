@@ -6,6 +6,7 @@
 
 // Modals
 export * from '../ui/modal';
+export * from '../ui/form-modal';
 export * from '../ui/dialog';
 // Note: alert-dialog is in primitives/feedback
 export * from './confirmation-dialog';

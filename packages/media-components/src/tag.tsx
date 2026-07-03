@@ -122,7 +122,7 @@ export const Tag: React.FC<TagProps> = ({
           disabled={disabled}
           className={cn(
             'inline-flex items-center justify-center rounded-full',
-            'hover:bg-black/10 dark:hover:bg-white/10',
+            'hover:bg-foreground/10',
             'transition-colors',
             disabled ? 'cursor-not-allowed' : 'cursor-pointer'
           )}

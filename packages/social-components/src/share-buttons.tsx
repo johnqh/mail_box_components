@@ -112,12 +112,12 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
     },
     email: {
       name: 'Email',
-      color: 'bg-gray-600 hover:bg-gray-700',
+      color: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       icon: '✉',
     },
     copy: {
       name: copied ? 'Copied!' : 'Copy Link',
-      color: 'bg-gray-700 hover:bg-gray-800',
+      color: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       icon: '🔗',
     },
   };
@@ -133,7 +133,7 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
               key={platform}
               onClick={() => handleShare(platform)}
               className={cn(
-                'rounded-full text-white flex items-center justify-center',
+                'rounded-full text-primary-foreground flex items-center justify-center',
                 ui.transition.default,
                 sizeClasses[size],
                 config.color
@@ -150,7 +150,7 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
             key={platform}
             onClick={() => handleShare(platform)}
             className={cn(
-              'rounded text-white font-medium',
+              'rounded text-primary-foreground font-medium',
               ui.transition.default,
               buttonSizes[size],
               config.color

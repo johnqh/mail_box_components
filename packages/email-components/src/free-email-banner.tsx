@@ -7,9 +7,10 @@ const bannerVariants = cva('border-b transition-all duration-200', {
   variants: {
     variant: {
       default:
-        'bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20 border-success/20',
-      compact: 'bg-green-50 dark:bg-green-900/10 border-success/20',
+        'bg-gradient-to-r from-success/10 to-primary/10 border-success/20',
+      compact: 'bg-success/10 border-success/20',
       minimal: 'bg-muted/50 border-border',
+      // intentional: decorative brand gradient variant (blue→purple has no semantic token)
       vibrant: 'bg-gradient-to-r from-blue-600 to-purple-600 border-primary',
     },
     size: {
@@ -30,7 +31,7 @@ const textVariants = cva('font-semibold', {
       default: 'text-success',
       compact: 'text-success',
       minimal: 'text-muted-foreground',
-      vibrant: 'text-white',
+      vibrant: 'text-white', // intentional: on preserved decorative brand gradient
     },
   },
   defaultVariants: {
@@ -44,11 +45,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white focus:ring-success',
-        compact: 'bg-success hover:bg-success/90 text-white focus:ring-success',
-        minimal: 'bg-primary hover:bg-primary/90 text-white focus:ring-ring',
+          'bg-gradient-to-r from-success to-primary hover:from-success/90 hover:to-primary/90 text-primary-foreground focus:ring-success',
+        compact:
+          'bg-success hover:bg-success/90 text-success-foreground focus:ring-success',
+        minimal:
+          'bg-primary hover:bg-primary/90 text-primary-foreground focus:ring-ring',
         vibrant:
-          'bg-white hover:bg-muted text-primary hover:text-primary focus:ring-white',
+          'bg-card hover:bg-muted text-primary hover:text-primary focus:ring-ring',
       },
     },
     defaultVariants: {
@@ -99,7 +102,7 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
                 onTrack?.('dismiss');
                 onDismiss();
               }}
-              className='absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors'
+              className='absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-foreground/10 transition-colors'
               aria-label={dismissAriaLabel}
             >
               <svg
@@ -124,8 +127,8 @@ export const FreeEmailBanner: React.FC<FreeEmailBannerProps> = ({
                 className={cn(
                   'text-xs font-bold px-3 py-1 rounded-full mr-3 transition-colors',
                   variant === 'vibrant'
-                    ? 'bg-white text-primary'
-                    : 'bg-success text-white'
+                    ? 'bg-card text-primary'
+                    : 'bg-success text-success-foreground'
                 )}
               >
                 {badgeText}

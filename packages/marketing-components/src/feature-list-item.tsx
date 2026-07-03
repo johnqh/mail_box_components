@@ -46,6 +46,7 @@ export const FeatureListItem: React.FC<FeatureListItemProps> = ({
     success: 'bg-success text-success-foreground',
     warning: 'bg-warning text-warning-foreground',
     info: 'bg-info text-info-foreground',
+    // intentional: decorative multi-color gradient variant; text-white is its contrast color
     gradient: 'bg-gradient-to-br from-blue-400 to-purple-500 text-white',
   };
 

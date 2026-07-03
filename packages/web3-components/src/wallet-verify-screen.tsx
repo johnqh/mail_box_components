@@ -116,6 +116,7 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
     ? 'text-accent-foreground dark:text-accent-foreground'
     : 'text-primary';
 
+  // intentional: chain-brand accent gradients (Solana vs Ethereum) signal the active chain
   const buttonGradient = isSolana
     ? 'from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
     : 'from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700';
@@ -168,6 +169,7 @@ export const WalletVerifyScreen: React.FC<WalletVerifyScreenProps> = ({
       </div>
 
       {/* Sign button */}
+      {/* intentional: white sits on the preserved chain-brand gradient surface */}
       <button
         onClick={onSign}
         disabled={isSigning}

@@ -79,6 +79,7 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
             <div className='relative z-10 flex-shrink-0'>
               {event.icon ? (
                 <div
+                  // intentional: white icon for contrast on dynamic per-event color
                   className='w-8 h-8 rounded-full flex items-center justify-center text-white'
                   style={{ backgroundColor: color }}
                 >
@@ -86,7 +87,7 @@ export const TimelineVertical: React.FC<TimelineVerticalProps> = ({
                 </div>
               ) : (
                 <div
-                  className='w-4 h-4 rounded-full border-4 border-white '
+                  className='w-4 h-4 rounded-full border-4 border-background '
                   style={{ backgroundColor: color }}
                 />
               )}

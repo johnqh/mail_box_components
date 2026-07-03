@@ -94,6 +94,7 @@ export function AuthModal({
     <div
       className={cn(
         'fixed inset-0 z-50 flex items-center justify-center',
+        // intentional: modal backdrop scrim (matches ui.background.overlay)
         'bg-black/50 backdrop-blur-sm',
         backdropClassName
       )}

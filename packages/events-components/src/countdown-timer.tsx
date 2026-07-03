@@ -145,7 +145,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
             ui.shadow.lg
           )}
         >
-          <span className='text-3xl font-bold text-white tabular-nums'>
+          <span className='text-3xl font-bold text-primary-foreground tabular-nums'>
             {value.toString().padStart(2, '0')}
           </span>
         </div>

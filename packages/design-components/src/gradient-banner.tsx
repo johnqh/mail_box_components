@@ -63,6 +63,8 @@ export const GradientBanner: React.FC<GradientBannerProps> = ({
   className,
 }) => {
   // Gradient color variants
+  // intentional: decorative gradient color options are a feature of this component;
+  // the from-*/to-* palette colors and text-white on them are preserved on purpose.
   const gradientVariants = {
     'blue-purple': 'bg-gradient-to-r from-blue-600 to-purple-600 text-white',
     'green-blue': 'bg-gradient-to-r from-green-600 to-blue-600 text-white',

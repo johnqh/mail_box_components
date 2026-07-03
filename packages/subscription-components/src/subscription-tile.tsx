@@ -174,7 +174,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
           <span
             className={cn(
               BADGE_COLORS[topBadge.color],
-              'text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap'
+              'text-primary-foreground px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap'
             )}
           >
             {topBadge.text}
@@ -279,7 +279,7 @@ export const SubscriptionTile: React.FC<SubscriptionTileProps> = ({
               'rounded-lg p-4 mb-4',
               isSelected
                 ? 'bg-primary/30'
-                : 'bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20'
+                : 'bg-gradient-to-r from-primary/10 to-accent/10'
             )}
           >
             <div className='flex items-center mb-2'>

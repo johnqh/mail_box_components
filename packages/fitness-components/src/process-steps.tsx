@@ -97,6 +97,7 @@ export const ProcessSteps: React.FC<ProcessStepsProps> = ({
             >
               {/* Step Number/Icon */}
               <div
+                // intentional: text-white is contrast for categorical step colors (colors.bg)
                 className={cn(
                   'flex-shrink-0 flex items-center justify-center rounded-full text-white font-bold',
                   colors.bg,

@@ -78,9 +78,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   componentName = 'ProductCard',
 }) => {
   const badgeStyles = {
-    sale: 'bg-destructive',
-    new: 'bg-success',
-    featured: 'bg-primary',
+    sale: 'bg-destructive text-destructive-foreground',
+    new: 'bg-success text-success-foreground',
+    featured: 'bg-primary text-primary-foreground',
   };
 
   const discount = originalPrice
@@ -121,7 +121,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {badge && (
           <div
             className={cn(
-              'absolute top-2 left-2 px-2 py-1 rounded text-white text-xs font-semibold',
+              'absolute top-2 left-2 px-2 py-1 rounded text-xs font-semibold',
               badgeStyles[badgeVariant]
             )}
           >

@@ -74,7 +74,7 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
                 ) : (
                   <div
                     className={cn(
-                      'w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold',
+                      'w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground font-semibold',
                       ui.background.muted
                     )}
                   >

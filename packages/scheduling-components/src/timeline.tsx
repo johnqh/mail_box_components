@@ -65,10 +65,10 @@ export const Timeline: React.FC<TimelineProps> = ({
   };
 
   const statusIconColors = {
-    completed: 'text-white',
-    active: 'text-white',
+    completed: 'text-success-foreground',
+    active: 'text-primary-foreground',
     pending: ui.text.muted,
-    error: 'text-white',
+    error: 'text-destructive-foreground',
   };
 
   if (orientation === 'horizontal') {
@@ -96,7 +96,7 @@ export const Timeline: React.FC<TimelineProps> = ({
                       </span>
                     ) : status === 'completed' ? (
                       <svg
-                        className='w-5 h-5 text-white'
+                        className='w-5 h-5 text-success-foreground'
                         fill='none'
                         stroke='currentColor'
                         viewBox='0 0 24 24'
@@ -177,7 +177,7 @@ export const Timeline: React.FC<TimelineProps> = ({
                     </span>
                   ) : status === 'completed' ? (
                     <svg
-                      className='w-5 h-5 text-white'
+                      className='w-5 h-5 text-success-foreground'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'

@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer
       className={cn(
-        'bg-muted text-foreground transition-all duration-300 ease-in-out',
+        'bg-card text-foreground transition-all duration-300 ease-in-out',
         isCompact ? 'py-4' : 'py-12',
         sticky
           ? 'sticky bottom-0 z-50 border-t border-border'

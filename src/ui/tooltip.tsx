@@ -209,10 +209,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
   const btnColors = colors.component.button;
   const variantClasses = {
     default: 'bg-foreground text-background',
-    info: `${btnColors.primary.base} ${btnColors.primary.dark} text-white`,
-    success: `${btnColors.success.base} ${btnColors.success.dark} text-white`,
+    info: `${btnColors.primary.base} ${btnColors.primary.dark} text-primary-foreground`,
+    success: `${btnColors.success.base} ${btnColors.success.dark} text-success-foreground`,
     warning: 'bg-warning text-warning-foreground',
-    error: `${btnColors.destructive.base} ${btnColors.destructive.dark} text-white`,
+    error: `${btnColors.destructive.base} ${btnColors.destructive.dark} text-destructive-foreground`,
   };
 
   // Arrow variant styles - arrow borders must match tooltip bg color per variant

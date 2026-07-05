@@ -211,7 +211,7 @@ export const Banner: React.FC<BannerProps> = ({
           onClick={handleDismiss}
           className={cn(
             'flex-shrink-0 p-1 rounded-md transition-colors',
-            'hover:bg-black/10 dark:hover:bg-white/10',
+            'hover:bg-foreground/10',
             'focus:outline-none focus:ring-2 focus:ring-offset-2',
             'focus:ring-current'
           )}

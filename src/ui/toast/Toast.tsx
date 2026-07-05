@@ -154,7 +154,7 @@ export function Toast({
         onClick={handleDismiss}
         className={`
           flex-shrink-0 p-1 rounded-md transition-colors
-          hover:bg-black/10 dark:hover:bg-white/10
+          hover:bg-foreground/10
           ${style.text}
         `}
         aria-label='Dismiss notification'

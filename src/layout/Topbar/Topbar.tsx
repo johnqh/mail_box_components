@@ -29,11 +29,19 @@ const heightClasses = {
   lg: 'min-h-16',
 };
 
-const variantClasses: Record<TopbarVariant, string> = {
-  default: `${colors.component.card.default.base} ${colors.component.card.default.dark} border-b`,
-  app: `${colors.component.card.default.base} ${colors.component.card.default.dark} border-b shadow-sm`,
-  minimal: 'bg-transparent',
-  transparent: 'bg-background/80 border-b border-border/50',
+// Evaluated per render (not at module load) so the theme-aware `ui` getters
+// reflect the theme configured via configureTheme() at app startup.
+const variantClasses = (variant: TopbarVariant): string => {
+  switch (variant) {
+    case 'app':
+      return `${ui.background.surface} ${ui.border.default} border-b shadow-sm`;
+    case 'minimal':
+      return 'bg-transparent';
+    case 'transparent':
+      return 'bg-background/80 border-b border-border/50';
+    default:
+      return `${ui.background.surface} ${ui.border.default} border-b`;
+  }
 };
 
 const zIndexClasses = {
@@ -84,7 +92,7 @@ export const Topbar: React.FC<TopbarProps> = ({
           // Base styles
           'w-full',
           heightClasses[height],
-          variantClasses[variant],
+          variantClasses(variant),
           zIndexClasses[zIndex],
           // Sticky positioning
           sticky && 'sticky top-0',

@@ -133,7 +133,7 @@ export const Slider: React.FC<SliderProps> = ({
         {/* Filled track */}
         <div
           className={cn(
-            'absolute left-0 rounded-full transition-all',
+            'absolute top-0 left-0 rounded-full transition-all',
             'bg-current',
             variantClasses[variant],
             sizeClasses[size]
@@ -151,7 +151,10 @@ export const Slider: React.FC<SliderProps> = ({
           onChange={handleChange}
           disabled={disabled}
           className={cn(
-            'relative w-full appearance-none bg-transparent cursor-pointer',
+            // `block` matters: as an inline element the input's line box adds
+            // descender space below it, making the wrapper taller than the
+            // track/fill divs and drawing them above the input's own bar.
+            'relative block w-full appearance-none bg-transparent cursor-pointer',
             'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring',
             'rounded-lg',
             sizeClasses[size],

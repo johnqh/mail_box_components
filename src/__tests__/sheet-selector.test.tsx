@@ -166,4 +166,39 @@ describe('SheetSelector', () => {
     fireEvent.click(trigger);
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
+
+  describe('grouping', () => {
+    const GROUPED = [
+      { value: 'p1', label: 'Piano', group: 'Keys' },
+      { value: 'p2', label: 'Organ', group: 'Keys' },
+      { value: 'g1', label: 'Guitar', group: 'Strings' },
+    ];
+
+    it('renders one heading per run of options, not one per option', () => {
+      // A heading per option would be noise; the point of grouping a long list
+      // is that the headings are landmarks.
+      render(<SheetSelector options={GROUPED} value='' onChange={vi.fn()} />);
+      fireEvent.click(screen.getByRole('button'));
+
+      expect(screen.getAllByText('Keys')).toHaveLength(1);
+      expect(screen.getAllByText('Strings')).toHaveLength(1);
+    });
+
+    it('keeps every option selectable under its heading', () => {
+      const onChange = vi.fn();
+      render(<SheetSelector options={GROUPED} value='' onChange={onChange} />);
+      fireEvent.click(screen.getByRole('button'));
+
+      expect(screen.getAllByRole('option')).toHaveLength(3);
+      fireEvent.click(screen.getByRole('option', { name: 'Guitar' }));
+      expect(onChange).toHaveBeenCalledWith('g1');
+    });
+
+    it('renders no headings when options are ungrouped', () => {
+      render(<SheetSelector options={OPTIONS} value='' onChange={vi.fn()} />);
+      fireEvent.click(screen.getByRole('button'));
+
+      expect(screen.queryByRole('presentation')).not.toBeInTheDocument();
+    });
+  });
 });

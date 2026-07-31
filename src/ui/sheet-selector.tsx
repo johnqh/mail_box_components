@@ -12,6 +12,12 @@ export interface SheetSelectorOption {
   label?: React.ReactNode;
   /** Disabled state. */
   disabled?: boolean;
+  /**
+   * Optional heading this option sits under. Consecutive options sharing a
+   * group get one heading between them, so the list stays a flat array and
+   * ungrouped callers pay nothing.
+   */
+  group?: string;
 }
 
 /** Props for the {@link SheetSelector} component. */
@@ -196,9 +202,22 @@ export const SheetSelector: React.FC<SheetSelectorProps> = ({
                     {emptyMessage}
                   </p>
                 ) : (
-                  options.map(option => {
+                  options.map((option, index) => {
                     const isSelected = option.value === value;
-                    return (
+                    // One heading per run of options sharing a group, which is
+                    // what keeps a long list navigable.
+                    const heading =
+                      option.group &&
+                      option.group !== options[index - 1]?.group ? (
+                        <div
+                          key={`${option.group}-heading`}
+                          role='presentation'
+                          className='px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground first:pt-1'
+                        >
+                          {option.group}
+                        </div>
+                      ) : null;
+                    const item = (
                       <button
                         key={option.value}
                         type='button'
@@ -218,6 +237,14 @@ export const SheetSelector: React.FC<SheetSelectorProps> = ({
                           <CheckIcon className='h-4 w-4 flex-shrink-0' />
                         )}
                       </button>
+                    );
+                    return heading ? (
+                      <React.Fragment key={option.value}>
+                        {heading}
+                        {item}
+                      </React.Fragment>
+                    ) : (
+                      item
                     );
                   })
                 )}

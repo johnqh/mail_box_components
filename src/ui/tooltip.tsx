@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { cn } from '../lib/utils';
 import { colors, designTokens } from '@sudobility/design';
 
@@ -82,6 +83,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   );
   const tooltipRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
+  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
 
   // Support both controlled and uncontrolled modes
   const isControlled = controlledIsOpen !== undefined;
@@ -198,12 +200,65 @@ export const Tooltip: React.FC<TooltipProps> = ({
   };
 
   // Position classes
-  const positionClasses = {
-    top: 'bottom-full left-1/2 -translate-x-1/2 -translate-y-2',
-    bottom: 'top-full left-1/2 -translate-x-1/2 translate-y-2',
-    left: 'right-full top-1/2 -translate-x-2 -translate-y-1/2',
-    right: 'left-full top-1/2 translate-x-2 -translate-y-1/2',
-  };
+  /**
+   * Where the bubble sits, as a fixed-position offset from the trigger's rect.
+   *
+   * Measured and rendered through a portal rather than positioned as an
+   * absolute child, because an absolute child is clipped by any ancestor whose
+   * overflow is not `visible` — and CSS makes that easy to hit by accident: set
+   * `overflow-x` on a container and the y axis stops being visible too. A
+   * horizontally scrollable toolbar therefore clipped every tooltip inside it
+   * to its own height.
+   */
+  useEffect(() => {
+    if (!isVisible) return;
+    const measure = () => {
+      if (triggerRef.current)
+        setTriggerRect(triggerRef.current.getBoundingClientRect());
+    };
+    measure();
+    // A fixed bubble does not travel with a scrolling page, so follow the
+    // trigger while it is shown.
+    window.addEventListener('scroll', measure, true);
+    window.addEventListener('resize', measure);
+    return () => {
+      window.removeEventListener('scroll', measure, true);
+      window.removeEventListener('resize', measure);
+    };
+  }, [isVisible]);
+
+  const GAP = 8;
+  const bubbleStyle = ((): React.CSSProperties => {
+    if (!triggerRect) return { visibility: 'hidden' };
+    const centerX = triggerRect.left + triggerRect.width / 2;
+    const centerY = triggerRect.top + triggerRect.height / 2;
+    switch (placement) {
+      case 'bottom':
+        return {
+          left: centerX,
+          top: triggerRect.bottom + GAP,
+          transform: 'translateX(-50%)',
+        };
+      case 'left':
+        return {
+          left: triggerRect.left - GAP,
+          top: centerY,
+          transform: 'translate(-100%, -50%)',
+        };
+      case 'right':
+        return {
+          left: triggerRect.right + GAP,
+          top: centerY,
+          transform: 'translateY(-50%)',
+        };
+      default:
+        return {
+          left: centerX,
+          top: triggerRect.top - GAP,
+          transform: 'translate(-50%, -100%)',
+        };
+    }
+  })();
 
   // Arrow position classes
   const arrowClasses = {
@@ -271,30 +326,34 @@ export const Tooltip: React.FC<TooltipProps> = ({
       onClick={handleClick}
     >
       {children}
-      {isVisible && !disabled && (
-        <div
-          ref={tooltipRef}
-          className={cn(
-            'absolute z-50 px-2 py-1 text-xs font-medium rounded whitespace-nowrap pointer-events-none',
-            designTokens.shadow.lg,
-            positionClasses[placement],
-            variantClasses[variant],
-            className
-          )}
-          role='tooltip'
-        >
-          {content}
-          {showArrow && (
-            <div
-              className={cn(
-                'absolute w-0 h-0 border-4 arrow',
-                arrowClasses[placement],
-                arrowVariantClasses[variant][placement]
-              )}
-            />
-          )}
-        </div>
-      )}
+      {isVisible &&
+        !disabled &&
+        typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            ref={tooltipRef}
+            style={bubbleStyle}
+            className={cn(
+              'fixed z-[1000001] px-2 py-1 text-xs font-medium rounded whitespace-nowrap pointer-events-none',
+              designTokens.shadow.lg,
+              variantClasses[variant],
+              className
+            )}
+            role='tooltip'
+          >
+            {content}
+            {showArrow && (
+              <div
+                className={cn(
+                  'absolute w-0 h-0 border-4 arrow',
+                  arrowClasses[placement],
+                  arrowVariantClasses[variant][placement]
+                )}
+              />
+            )}
+          </div>,
+          document.body
+        )}
     </div>
   );
 };

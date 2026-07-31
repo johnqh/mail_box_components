@@ -132,7 +132,7 @@ describe('Tooltip', () => {
   });
 
   it('applies custom className', () => {
-    const { container } = render(
+    render(
       <Tooltip content='Tooltip' className='custom-tooltip'>
         <button>Trigger</button>
       </Tooltip>
@@ -141,7 +141,7 @@ describe('Tooltip', () => {
     const trigger = screen.getByText('Trigger');
     fireEvent.mouseEnter(trigger);
 
-    const tooltip = container.querySelector('.custom-tooltip');
+    const tooltip = document.body.querySelector('.custom-tooltip');
     expect(tooltip).toBeInTheDocument();
   });
 
@@ -173,7 +173,7 @@ describe('Tooltip', () => {
   });
 
   it('renders with arrow when showArrow is true', () => {
-    const { container } = render(
+    render(
       <Tooltip content='Tooltip with arrow' showArrow>
         <button>Trigger</button>
       </Tooltip>
@@ -182,12 +182,12 @@ describe('Tooltip', () => {
     const trigger = screen.getByText('Trigger');
     fireEvent.mouseEnter(trigger);
 
-    const arrow = container.querySelector('[class*="arrow"]');
+    const arrow = document.body.querySelector('[class*="arrow"]');
     expect(arrow).toBeInTheDocument();
   });
 
   it('hides arrow when showArrow is false', () => {
-    const { container } = render(
+    render(
       <Tooltip content='Tooltip without arrow' showArrow={false}>
         <button>Trigger</button>
       </Tooltip>
@@ -198,7 +198,7 @@ describe('Tooltip', () => {
 
     expect(screen.getByText('Tooltip without arrow')).toBeInTheDocument();
 
-    const arrow = container.querySelector('[class*="arrow"]');
+    const arrow = document.body.querySelector('[class*="arrow"]');
     expect(arrow).not.toBeInTheDocument();
   });
 
@@ -233,7 +233,7 @@ describe('Tooltip', () => {
   });
 
   it('applies variant styles', () => {
-    const { container } = render(
+    render(
       <Tooltip content='Info tooltip' variant='info'>
         <button>Trigger</button>
       </Tooltip>
@@ -242,7 +242,7 @@ describe('Tooltip', () => {
     const trigger = screen.getByText('Trigger');
     fireEvent.mouseEnter(trigger);
 
-    const tooltip = container.querySelector('[class*="bg-blue"]');
+    const tooltip = document.body.querySelector('[class*="bg-blue"]');
     expect(tooltip).toBeInTheDocument();
   });
 
@@ -345,5 +345,26 @@ describe('Tooltip', () => {
     const wrapper = container.firstElementChild;
     expect(wrapper).toHaveClass('w-full');
     expect(wrapper).toHaveClass('relative');
+  });
+
+  it('renders through a portal, so a clipping ancestor cannot hide it', () => {
+    // The bubble used to be an absolute child, which any ancestor with a
+    // non-visible overflow clipped -- and CSS makes that easy to hit by
+    // accident, since setting overflow-x alone stops the y axis being visible.
+    // A horizontally scrollable toolbar clipped every tooltip inside it.
+    const { container } = render(
+      <div className='overflow-x-auto'>
+        <Tooltip content='Escapes'>
+          <button>Trigger</button>
+        </Tooltip>
+      </div>
+    );
+
+    fireEvent.mouseEnter(screen.getByText('Trigger'));
+
+    const tooltip = screen.getByRole('tooltip');
+    expect(tooltip).toBeInTheDocument();
+    expect(container.contains(tooltip)).toBe(false);
+    expect(document.body.contains(tooltip)).toBe(true);
   });
 });

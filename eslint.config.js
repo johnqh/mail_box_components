@@ -52,6 +52,7 @@ export default [
         
         // DOM/HTML globals
         HTMLElement: 'readonly',
+        DOMRect: 'readonly',
         HTMLAnchorElement: 'readonly',
         HTMLDivElement: 'readonly',
         HTMLImageElement: 'readonly',

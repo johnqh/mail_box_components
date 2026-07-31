@@ -15,6 +15,15 @@ export interface TooltipProps {
   delayHide?: number;
   /** Additional className for tooltip */
   className?: string;
+  /**
+   * Additional className for the element wrapping `children`.
+   *
+   * The wrapper is `inline-block`, which is right for a button but collapses a
+   * control meant to fill its parent -- a `w-full` range input inside one
+   * shrinks to its intrinsic width. Pass `w-full` (or `block`) to keep such a
+   * control's layout intact.
+   */
+  wrapperClassName?: string;
   /** Disable the tooltip */
   disabled?: boolean;
   /** Show arrow */
@@ -56,6 +65,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   delayShow = 0,
   delayHide = 0,
   className,
+  wrapperClassName,
   disabled = false,
   showArrow = true,
   variant = 'default',
@@ -253,7 +263,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   return (
     <div
       ref={triggerRef}
-      className='relative inline-block'
+      className={cn('relative inline-block', wrapperClassName)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleFocus}

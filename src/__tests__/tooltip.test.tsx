@@ -332,4 +332,18 @@ describe('Tooltip', () => {
     fireEvent.mouseLeave(trigger);
     expect(handleVisibilityChange).toHaveBeenCalledWith(false);
   });
+
+  it('applies wrapperClassName to the element wrapping the trigger', () => {
+    // The wrapper is inline-block, which collapses a control meant to fill its
+    // parent -- a w-full range input inside one shrinks to its intrinsic width.
+    const { container } = render(
+      <Tooltip content='Scrub' wrapperClassName='w-full'>
+        <input type='range' aria-label='Position' className='w-full' />
+      </Tooltip>
+    );
+
+    const wrapper = container.firstElementChild;
+    expect(wrapper).toHaveClass('w-full');
+    expect(wrapper).toHaveClass('relative');
+  });
 });

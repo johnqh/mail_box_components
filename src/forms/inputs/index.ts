@@ -26,6 +26,7 @@ export * from '../../ui/checkbox';
 export * from '../../ui/switch';
 export * from './radio-group';
 export * from '../../ui/select';
+export * from '../../ui/checkable-select';
 export * from '../../ui/multi-select';
 export * from '../../ui/combobox';
 export * from '../../ui/editable-selector';

@@ -5,6 +5,16 @@ import { textVariants } from '@sudobility/design';
 export interface SliderProps {
   /** Current value */
   value: number;
+  /**
+   * Value the filled track grows *from*. Defaults to `min`, the usual
+   * left-anchored bar.
+   *
+   * Set it for a bipolar control — pan, balance, a detune trim — where the
+   * meaningful reading is the distance from centre and in which direction. With
+   * the default fill, a centred pan looks identical to a volume sitting at half,
+   * which says the opposite of what it means.
+   */
+  origin?: number;
   /** Callback when value changes */
   onChange: (value: number) => void;
   /** Minimum value */
@@ -70,6 +80,7 @@ export const Slider: React.FC<SliderProps> = ({
   value,
   onChange,
   min = 0,
+  origin,
   max = 100,
   step = 1,
   disabled = false,
@@ -101,7 +112,13 @@ export const Slider: React.FC<SliderProps> = ({
     onChange(Number(e.target.value));
   };
 
-  const percentage = ((value - min) / (max - min)) * 100;
+  const toPercent = (n: number): number => ((n - min) / (max - min)) * 100;
+  const percentage = toPercent(value);
+  // Clamped so a caller passing an origin outside [min, max] cannot push the
+  // fill off the track.
+  const originPercent = Math.min(100, Math.max(0, toPercent(origin ?? min)));
+  const fillLeft = Math.min(percentage, originPercent);
+  const fillWidth = Math.abs(percentage - originPercent);
 
   return (
     <div className={cn('w-full', className)}>
@@ -130,15 +147,24 @@ export const Slider: React.FC<SliderProps> = ({
           )}
         />
 
+        {/* Origin tick, for bipolar sliders: marks where the fill grows from. */}
+        {origin !== undefined && (
+          <div
+            className={cn('absolute top-0 w-px bg-border', sizeClasses[size])}
+            style={{ left: `${originPercent}%` }}
+            aria-hidden='true'
+          />
+        )}
+
         {/* Filled track */}
         <div
           className={cn(
-            'absolute top-0 left-0 rounded-full transition-all',
+            'absolute top-0 rounded-full transition-all',
             'bg-current',
             variantClasses[variant],
             sizeClasses[size]
           )}
-          style={{ width: `${percentage}%` }}
+          style={{ left: `${fillLeft}%`, width: `${fillWidth}%` }}
         />
 
         {/* Range input */}

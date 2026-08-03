@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import { CheckableSelect } from '../ui/checkable-select';
 
@@ -132,6 +133,33 @@ describe('CheckableSelect', () => {
     expect(screen.getByRole('checkbox', { name: 'Show Gamma' })).toBeDisabled();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Show Gamma' }));
     expect(onCheckedChange).not.toHaveBeenCalled();
+  });
+
+  it('ticks under a real pointer sequence, not just a bare click', async () => {
+    // fireEvent dispatches only `click`, which cannot see this class of bug:
+    // Radix selects an Item on `pointerup`, so without stopping that event the
+    // row is chosen and the menu unmounts before the checkbox's own click
+    // lands -- ticking silently does nothing for a real user while every
+    // fireEvent test still passes.
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+    const onCheckedChange = vi.fn();
+    render(
+      <CheckableSelect
+        options={OPTIONS}
+        value='a'
+        onChange={onChange}
+        checked={['a', 'b', 'c']}
+        onCheckedChange={onCheckedChange}
+        ariaLabel='Pick one'
+      />
+    );
+
+    await user.click(screen.getByLabelText('Pick one'));
+    await user.click(screen.getByRole('checkbox', { name: 'Show Beta' }));
+
+    expect(onCheckedChange).toHaveBeenCalledWith(['a', 'c']);
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   it('never falls below the floor, however the click arrives', () => {

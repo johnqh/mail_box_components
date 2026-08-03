@@ -109,8 +109,14 @@ export const CheckableSelect: React.FC<CheckableSelectProps> = ({
                 // closes the menu. Both are wrong for the checkbox: ticking is
                 // not choosing, and closing after each tick would make setting
                 // several a chore.
-                onClick={e => e.stopPropagation()}
+                //
+                // `pointerup` is the one that actually matters — that is the
+                // event Radix selects on. Without it the row is chosen and the
+                // menu unmounts before the checkbox's own click ever lands, so
+                // ticking silently does nothing.
+                onPointerUp={e => e.stopPropagation()}
                 onPointerDown={e => e.stopPropagation()}
+                onClick={e => e.stopPropagation()}
                 onKeyDown={e => e.stopPropagation()}
                 className='h-4 w-4 flex-shrink-0 accent-current'
               />

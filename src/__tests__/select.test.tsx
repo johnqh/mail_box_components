@@ -165,4 +165,31 @@ describe('Select Component', () => {
     const selectedOption = screen.getByRole('option', { name: 'Option 1' });
     expect(selectedOption).toHaveAttribute('data-state', 'checked');
   });
+
+  it('sizes its menu to its own content, not to the trigger', () => {
+    // An icon-only trigger is ~30px wide. Pinning the menu to that width
+    // clipped every label in it, which is what made an icon-triggered select
+    // unusable.
+    render(
+      <Select defaultOpen>
+        <SelectTrigger aria-label='Articulation' className='w-8'>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value='staccato'>Staccato</SelectItem>
+          <SelectItem value='marcato'>Marcato</SelectItem>
+        </SelectContent>
+      </Select>
+    );
+
+    const item = screen.getByText('Staccato');
+    const content = item.closest('[class*="min-w-"]');
+    expect(content, 'menu grows past the trigger width').not.toBeNull();
+    expect(content?.className).toContain(
+      'min-w-[var(--radix-select-trigger-width)]'
+    );
+    expect(content?.className).not.toContain(
+      ' w-[var(--radix-select-trigger-width)]'
+    );
+  });
 });

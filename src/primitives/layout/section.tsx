@@ -1,5 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { useLayout } from '../../layout/Layout/LayoutContext';
 import { cn } from '../../lib/utils';
 const sectionVariants = cva('', {
   variants: {
@@ -63,7 +64,12 @@ interface SectionProps extends VariantProps<typeof sectionVariants> {
   className?: string;
   /** Classes applied to the inner container div */
   containerClassName?: string;
-  /** Max width of the inner container. Defaults to '7xl' */
+  /**
+   * Max width of the inner container. Defaults to the surrounding
+   * `LayoutProvider`'s mode, so a page's sections line up with its topbar and
+   * footer without every one of them being told the width. Pass this only to
+   * deviate from that deliberately.
+   */
   maxWidth?: MaxWidth;
   as?: keyof React.JSX.IntrinsicElements;
   id?: string;
@@ -77,7 +83,16 @@ interface SectionProps extends VariantProps<typeof sectionVariants> {
  * Section extends full viewport width (for backgrounds), while its inner container
  * is constrained by max-width and has horizontal padding.
  *
- * Use `fullWidth` prop when you need to manage the inner container yourself
+ * That inner width comes from the surrounding `LayoutProvider` unless a
+ * `maxWidth` is passed, so switching a page to `mode="full"` moves the topbar,
+ * the footer and the content together. Setting the width on the sections
+ * instead is the trap: the content goes edge to edge while the topbar stays at
+ * its own width, and the two visibly disagree.
+ *
+ * Outside a provider `useLayout()` reports `standard`, which is the same
+ * `max-w-7xl` this component always defaulted to.
+ *
+ * Use `fullWidth` when you need to manage the inner container yourself
  * (e.g., for sections with custom inner layouts).
  */
 export const Section: React.FC<SectionProps> = ({
@@ -85,19 +100,26 @@ export const Section: React.FC<SectionProps> = ({
   variant = 'default',
   spacing = '3xl',
   background = 'none',
-  maxWidth = '7xl',
+  maxWidth,
   className,
   containerClassName,
   as: Component = 'section',
   id,
   fullWidth = false,
 }) => {
+  const layout = useLayout();
+  // Explicit prop wins, else follow the page's layout mode — the same
+  // precedence `ContentContainer` uses.
+  const widthClass = maxWidth
+    ? maxWidthClasses[maxWidth]
+    : layout.maxWidthClass;
+
   const content = fullWidth ? (
     children
   ) : (
     <div
       className={cn(
-        maxWidthClasses[maxWidth],
+        widthClass,
         'mx-auto px-4 sm:px-6 lg:px-8',
         containerClassName
       )}

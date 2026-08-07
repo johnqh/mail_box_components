@@ -1,8 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useId } from 'react';
 import { createPortal } from 'react-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from '../lib/utils';
 import { Button } from './button';
+import type { ButtonProps } from './button';
+
+/**
+ * One button in the modal's bottom bar.
+ *
+ * Exists so the same shell can carry the footers real dialogs need — a
+ * destructive confirm, a wizard's Back/Next pair, three peer choices — rather
+ * than only the single primary CTA a save-form wants.
+ */
+export interface FormModalAction {
+  /** Button text, also its accessible name unless `ariaLabel` overrides it. */
+  label: string;
+  onClick: () => void;
+  /** Defaults to `'primary'` for the last action and `'ghost'` for the others. */
+  variant?: ButtonProps['variant'];
+  disabled?: boolean;
+  /** Shows `loadingLabel` in place of `label` and disables the button. */
+  loading?: boolean;
+  /** Defaults to `'Working…'`. */
+  loadingLabel?: string;
+  autoFocus?: boolean;
+  /** Overrides the accessible name when `label` is ambiguous elsewhere on the page. */
+  ariaLabel?: string;
+}
 
 /** Props for the {@link FormModal} component. */
 export interface FormModalProps {
@@ -12,14 +36,25 @@ export interface FormModalProps {
   title: string;
   /** Called when the user cancels (top-bar close button, overlay click, or Escape). */
   onClose: () => void;
-  /** Called when the user activates the primary confirmation button. */
-  onSave: () => void;
+  /**
+   * Called when the user activates the primary confirmation button. Renders a
+   * single full-width CTA. Omit it and pass {@link FormModalProps.actions} for
+   * any other footer; omit both for a modal with no actions at all.
+   */
+  onSave?: () => void;
+  /**
+   * Bottom-bar buttons, in visual order — the last is the primary one. Takes
+   * precedence over `onSave`/`saveLabel`. Pass `[]` for no bottom bar.
+   */
+  actions?: FormModalAction[];
   /** Whether the confirm action is in progress (shows a loading button, blocks close). */
   saving?: boolean;
   /** Whether the confirm action is currently allowed. */
   canSave?: boolean;
   /** Label for the primary confirmation button (e.g. "Save", "OK"). */
   saveLabel?: string;
+  /** Label shown on the confirmation button while `saving`. Defaults to `'Saving…'`. */
+  savingLabel?: string;
   /** Dialog width on tablet/desktop. */
   size?: 'small' | 'medium' | 'large';
   closeOnOverlayClick?: boolean;
@@ -62,9 +97,11 @@ export const FormModal: React.FC<FormModalProps> = ({
   title,
   onClose,
   onSave,
+  actions,
   saving = false,
   canSave = true,
   saveLabel = 'Save',
+  savingLabel = 'Saving…',
   size = 'medium',
   closeOnOverlayClick = true,
   closeOnEscape = true,
@@ -73,6 +110,11 @@ export const FormModal: React.FC<FormModalProps> = ({
   className,
   children,
 }) => {
+  // The dialog owns its title, so it must also own the label pointing at it:
+  // a consumer that adds its own heading to `children` would render the title
+  // twice, and one that does not would leave the dialog with no accessible name.
+  const titleId = useId();
+
   useEffect(() => {
     if (!open || !closeOnEscape) return;
     const onKey = (e: KeyboardEvent) => {
@@ -92,6 +134,24 @@ export const FormModal: React.FC<FormModalProps> = ({
 
   if (!open) return null;
 
+  // `actions` wins when given; otherwise `onSave` produces the full-width CTA
+  // this component shipped with, so existing consumers render unchanged.
+  const singleCta = actions === undefined && onSave !== undefined;
+  const footerActions: FormModalAction[] =
+    actions ??
+    (onSave
+      ? [
+          {
+            label: saveLabel,
+            onClick: onSave,
+            variant: 'primary',
+            disabled: !canSave,
+            loading: saving,
+            loadingLabel: savingLabel,
+          },
+        ]
+      : []);
+
   const handleOverlayClick = () => {
     if (closeOnOverlayClick && !saving) onClose();
   };
@@ -106,6 +166,7 @@ export const FormModal: React.FC<FormModalProps> = ({
       <div
         role='dialog'
         aria-modal='true'
+        aria-labelledby={titleId}
         className={cn(
           // Base: flex column so header/footer pin and body scrolls between them.
           'relative z-10 flex w-full flex-col bg-card text-foreground',
@@ -119,7 +180,9 @@ export const FormModal: React.FC<FormModalProps> = ({
       >
         {/* Top bar: title + cancel */}
         <div className='flex shrink-0 items-center justify-between gap-3 border-b border-border px-4 py-3'>
-          <h2 className='truncate text-lg font-semibold'>{title}</h2>
+          <h2 id={titleId} className='truncate text-lg font-semibold'>
+            {title}
+          </h2>
           <div className='flex items-center gap-1'>
             {headerRight}
             <button
@@ -137,18 +200,38 @@ export const FormModal: React.FC<FormModalProps> = ({
         {/* Scrollable content */}
         <div className='flex-1 overflow-y-auto px-4 py-4'>{children}</div>
 
-        {/* Bottom bar: sticky positive CTA */}
-        <div className='shrink-0 border-t border-border px-4 py-3'>
-          <Button
-            type='button'
-            variant='primary'
-            className='w-full'
-            onClick={onSave}
-            disabled={!canSave || saving}
+        {/* Bottom bar: sticky actions */}
+        {footerActions.length > 0 && (
+          <div
+            className={cn(
+              'shrink-0 border-t border-border px-4 py-3',
+              // A lone CTA spans the bar; a set of them is a right-aligned row
+              // that stacks on phones, primary (last) on top.
+              !singleCta &&
+                'flex flex-col-reverse gap-2 sm:flex-row sm:justify-end'
+            )}
           >
-            {saving ? 'Saving…' : saveLabel}
-          </Button>
-        </div>
+            {footerActions.map((action, i) => (
+              <Button
+                key={action.label}
+                type='button'
+                variant={
+                  action.variant ??
+                  (i === footerActions.length - 1 ? 'primary' : 'ghost')
+                }
+                className={singleCta ? 'w-full' : undefined}
+                onClick={action.onClick}
+                disabled={action.disabled || action.loading}
+                autoFocus={action.autoFocus}
+                aria-label={action.ariaLabel}
+              >
+                {action.loading
+                  ? (action.loadingLabel ?? 'Working…')
+                  : action.label}
+              </Button>
+            ))}
+          </div>
+        )}
       </div>
     </div>,
     document.body

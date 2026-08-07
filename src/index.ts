@@ -27,6 +27,9 @@ export * from './ui/button';
 export * from './ui/command';
 export * from './ui/design-system-components';
 export * from './ui/focus-indicator';
+// Responsive form dialog: full-screen on phones, centred dialog from sm up.
+// The deprecated `Modal` points here, so it has to be reachable from the root.
+export * from './ui/form-modal';
 export * from './ui/gradient-icon-container';
 export * from './ui/icon-container';
 export * from './ui/icon-text';
@@ -47,6 +50,7 @@ export * from './ui/select';
 export * from './ui/sort-dropdown';
 export * from './ui/version-badge';
 export * from './ui/visually-hidden';
+export * from './ui/text-input-modal';
 export * from './ui/timer-display';
 export * from './ui/confetti';
 

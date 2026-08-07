@@ -157,7 +157,12 @@ export const FormModal: React.FC<FormModalProps> = ({
   };
 
   return createPortal(
-    <div className='fixed inset-0 z-50 flex sm:items-center sm:justify-center sm:p-4'>
+    // z-[100], not z-50: `Topbar`'s `highest` is z-[60] and it is sticky, so a
+    // z-50 modal renders *under* it. On a phone, where this modal is
+    // full-screen and its top bar sits at y=0, that hid the title and the close
+    // button behind the app header. Same tier as `Banner`, which documents the
+    // rule: above the topbar.
+    <div className='fixed inset-0 z-[100] flex sm:items-center sm:justify-center sm:p-4'>
       <div
         className='absolute inset-0 bg-black/50 backdrop-blur-sm'
         onClick={handleOverlayClick}

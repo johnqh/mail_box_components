@@ -37,6 +37,20 @@ describe('FormModal', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
+  it('stacks above the sticky Topbar', () => {
+    render(
+      <FormModal open title='Import audio' onClose={noop} onSave={noop}>
+        body
+      </FormModal>
+    );
+    // `Topbar`'s `highest` is z-[60] and sticky; at z-50 this modal rendered
+    // under it, hiding the title and close button on a full-screen phone
+    // layout. jsdom cannot resolve Tailwind classes to a computed z-index, so
+    // the class itself is what gets pinned.
+    const overlay = screen.getByRole('dialog').parentElement!;
+    expect(overlay.className).toContain('z-[100]');
+  });
+
   it('confirms with the given label and disables it when canSave is false', async () => {
     const onSave = vi.fn();
     const { rerender } = render(

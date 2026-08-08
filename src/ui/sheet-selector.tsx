@@ -155,7 +155,11 @@ export const SheetSelector: React.FC<SheetSelectorProps> = ({
 
       {open &&
         createPortal(
-          <div className='fixed inset-0 z-50 flex sm:items-center sm:justify-center sm:p-4'>
+          // z-[100], not z-50: `Topbar`'s `highest` is z-[60] and sticky, so a
+          // z-50 sheet renders under it — on a phone, where this is
+          // full-screen, that hid its own header behind the app bar. Same tier
+          // as `Banner` and `FormModal`.
+          <div className='fixed inset-0 z-[100] flex sm:items-center sm:justify-center sm:p-4'>
             <div
               data-testid='sheet-selector-overlay'
               className='absolute inset-0 bg-black/50 backdrop-blur-sm'

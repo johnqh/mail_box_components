@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { act } from 'react';
@@ -366,5 +367,124 @@ describe('Tooltip', () => {
     expect(tooltip).toBeInTheDocument();
     expect(container.contains(tooltip)).toBe(false);
     expect(document.body.contains(tooltip)).toBe(true);
+  });
+});
+
+describe('Tooltip: getting out of the way', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  it('dismisses itself after two seconds', () => {
+    render(
+      <Tooltip content='Tooltip text'>
+        <button>Trigger</button>
+      </Tooltip>
+    );
+
+    fireEvent.mouseEnter(screen.getByText('Trigger').parentElement!);
+    expect(screen.getByText('Tooltip text')).toBeInTheDocument();
+
+    act(() => {
+      vi.advanceTimersByTime(1999);
+    });
+    expect(screen.getByText('Tooltip text')).toBeInTheDocument();
+
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+    expect(screen.queryByText('Tooltip text')).not.toBeInTheDocument();
+  });
+
+  it('reports the dismissal through onVisibilityChange', () => {
+    const onVisibilityChange = vi.fn();
+    render(
+      <Tooltip content='Tooltip text' onVisibilityChange={onVisibilityChange}>
+        <button>Trigger</button>
+      </Tooltip>
+    );
+
+    fireEvent.mouseEnter(screen.getByText('Trigger').parentElement!);
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
+    expect(onVisibilityChange).toHaveBeenLastCalledWith(false);
+  });
+
+  it('is not kept alive by a consumer passing an inline callback', () => {
+    // An inline arrow is a new function on every render. If the callback were a
+    // dependency of the auto-dismiss effect, each re-render would clear and
+    // restart the timer and the tooltip would never go away.
+    const view = render(
+      <Tooltip content='Tooltip text' onVisibilityChange={() => {}}>
+        <button>Trigger</button>
+      </Tooltip>
+    );
+
+    fireEvent.mouseEnter(screen.getByText('Trigger').parentElement!);
+    act(() => {
+      vi.advanceTimersByTime(1500);
+    });
+
+    // A re-render partway through, handing over a fresh callback identity.
+    view.rerender(
+      <Tooltip content='Tooltip text' onVisibilityChange={() => {}}>
+        <button>Trigger</button>
+      </Tooltip>
+    );
+    act(() => {
+      vi.advanceTimersByTime(700);
+    });
+
+    // 2.2s since it appeared: gone. Restarting the timer at 1.5s would leave it
+    // up until 3.5s.
+    expect(screen.queryByText('Tooltip text')).not.toBeInTheDocument();
+  });
+
+  it('stays up when autoHideDelay is 0', () => {
+    render(
+      <Tooltip content='Tooltip text' autoHideDelay={0}>
+        <button>Trigger</button>
+      </Tooltip>
+    );
+
+    fireEvent.mouseEnter(screen.getByText('Trigger').parentElement!);
+    act(() => {
+      vi.advanceTimersByTime(10_000);
+    });
+
+    expect(screen.getByText('Tooltip text')).toBeInTheDocument();
+  });
+
+  it('gets out of the way as soon as the control is clicked', () => {
+    // The reported symptom: hovering a control that opens a menu left the
+    // bubble sitting over the menu's own items.
+    render(
+      <Tooltip content='Tooltip text'>
+        <button>Trigger</button>
+      </Tooltip>
+    );
+
+    const wrapper = screen.getByText('Trigger').parentElement!;
+    fireEvent.mouseEnter(wrapper);
+    expect(screen.getByText('Tooltip text')).toBeInTheDocument();
+
+    fireEvent.click(wrapper);
+    expect(screen.queryByText('Tooltip text')).not.toBeInTheDocument();
+  });
+
+  it('leaves a controlled tooltip to its parent', () => {
+    render(
+      <Tooltip content='Tooltip text' isOpen>
+        <button>Trigger</button>
+      </Tooltip>
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(10_000);
+    });
+
+    expect(screen.getByText('Tooltip text')).toBeInTheDocument();
   });
 });

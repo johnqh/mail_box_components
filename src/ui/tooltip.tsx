@@ -14,6 +14,18 @@ export interface TooltipProps {
   delayShow?: number;
   /** Delay before hiding tooltip (ms) */
   delayHide?: number;
+  /**
+   * How long the tooltip stays up before dismissing itself (ms); `0` keeps it
+   * up for as long as the pointer is on the trigger.
+   *
+   * A tooltip that outstays its welcome stops being a hint and becomes an
+   * obstruction: hovering a control that opens a menu left the bubble sitting
+   * over the menu's own items, so the thing the tooltip described could not be
+   * clicked. Two seconds is long enough to read a short label and short enough
+   * that it is gone before it is in the way. Ignored in controlled mode, where
+   * visibility belongs to the parent.
+   */
+  autoHideDelay?: number;
   /** Additional className for tooltip */
   className?: string;
   /**
@@ -65,6 +77,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   placement = 'top',
   delayShow = 0,
   delayHide = 0,
+  autoHideDelay = 2000,
   className,
   wrapperClassName,
   disabled = false,
@@ -130,6 +143,27 @@ export const Tooltip: React.FC<TooltipProps> = ({
     }
   }, [isControlled, delayHide, onVisibilityChange]);
 
+  /**
+   * `onVisibilityChange` reached through a ref so that a consumer passing an
+   * inline arrow function — the common case — does not re-run the auto-dismiss
+   * effect on every render and restart the timer, which would keep the tooltip
+   * up forever.
+   */
+  const onVisibilityChangeRef = useRef(onVisibilityChange);
+  useEffect(() => {
+    onVisibilityChangeRef.current = onVisibilityChange;
+  }, [onVisibilityChange]);
+
+  // Dismiss itself once it has been up long enough to read.
+  useEffect(() => {
+    if (isControlled || !uncontrolledIsOpen || autoHideDelay <= 0) return;
+    const timeout = setTimeout(() => {
+      setUncontrolledIsOpen(false);
+      onVisibilityChangeRef.current?.(false);
+    }, autoHideDelay);
+    return () => clearTimeout(timeout);
+  }, [isControlled, uncontrolledIsOpen, autoHideDelay]);
+
   // Cleanup effect
   useEffect(() => {
     return () => {
@@ -188,6 +222,15 @@ export const Tooltip: React.FC<TooltipProps> = ({
   };
 
   const handleClick = () => {
+    // A hover tooltip gets out of the way the moment its control is used. The
+    // auto-dismiss above bounds how long it can obstruct; this removes it
+    // immediately in the case that actually hurts — clicking a control that
+    // opens a menu underneath the bubble.
+    if (trigger === 'hover' && !isControlled && isVisible) {
+      setUncontrolledIsOpen(false);
+      onVisibilityChange?.(false);
+      return;
+    }
     if (trigger === 'click' && !isControlled) {
       if (isVisible) {
         setUncontrolledIsOpen(false);

@@ -4,11 +4,20 @@
  * This file demonstrates various ways to use the MasterDetailLayout component
  */
 
-import React, { useState } from 'react';
+import { useRef, useState } from 'react';
 import { MasterDetailLayout } from './MasterDetailLayout';
+
 /**
  * Example 1: Basic Documentation Layout
  * Similar to the DocumentationPage pattern
+ *
+ * `detailTitle` renders the heading for the detail panel, so the content itself
+ * does not need to repeat it.
+ *
+ * `detailMaxWidth` caps the detail panel at a comfortable reading measure: it
+ * stays full width on narrower screens and centers itself in the leftover space
+ * on wide ones. Omit it to let the detail panel fill all the space the master
+ * panel does not use.
  */
 export const DocumentationExample = () => {
   const [mobileView, setMobileView] = useState<'navigation' | 'content'>(
@@ -50,21 +59,18 @@ export const DocumentationExample = () => {
   );
 
   const currentSection = sections.find(s => s.id === selectedSection);
-  const detailContent = (
-    <div>
-      <h1 className='text-4xl font-bold mb-6'>{currentSection?.title}</h1>
-      <div className='prose'>{currentSection?.content}</div>
-    </div>
-  );
 
   return (
     <MasterDetailLayout
       masterTitle='Table of Contents'
+      backButtonText='Documentation'
       masterContent={masterContent}
-      detailContent={detailContent}
+      detailContent={<div className='prose'>{currentSection?.content}</div>}
+      detailTitle={currentSection?.title}
+      detailMaxWidth={720}
+      contentKey={selectedSection}
       mobileView={mobileView}
       onBackToNavigation={() => setMobileView('navigation')}
-      backButtonAriaLabel='Back to navigation'
     />
   );
 };
@@ -108,20 +114,12 @@ export const SettingsExample = () => {
     </nav>
   );
 
-  const detailContent = (
-    <div>
-      <h2 className='text-2xl font-bold mb-4'>
-        {tabs.find(t => t.id === currentTab)?.label}
-      </h2>
-      <div>{/* Settings form content */}</div>
-    </div>
-  );
-
   return (
     <MasterDetailLayout
       masterTitle='Settings'
       masterContent={masterContent}
-      detailContent={detailContent}
+      detailContent={<div>{/* Settings form content */}</div>}
+      detailTitle={tabs.find(t => t.id === currentTab)?.label}
       mobileView={mobileView}
       onBackToNavigation={() => setMobileView('navigation')}
       masterWidth={280}
@@ -130,73 +128,109 @@ export const SettingsExample = () => {
 };
 
 /**
- * Example 3: Custom Styling and Animations
- * Shows advanced usage with custom transitions
+ * Example 3: Coordinated Transitions
+ *
+ * The layout owns the fade/height animation. Pass an `animationRef` and it is
+ * populated with a `triggerTransition` function: call it with the state change
+ * as a callback and the layout fades the old content out, applies the change at
+ * the midpoint, then animates to the new height.
  */
 export const AnimatedExample = () => {
   const [mobileView, setMobileView] = useState<'navigation' | 'content'>(
     'navigation'
   );
-  const [contentHeight, setContentHeight] = useState<number | 'auto'>('auto');
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const detailRef = React.useRef<HTMLDivElement>(null);
+  const [selectedId, setSelectedId] = useState('overview');
 
-  const masterContent = <div>Navigation items...</div>;
+  const animationRef = useRef<{
+    triggerTransition: (onContentChange: () => void) => void;
+  } | null>(null);
 
-  const detailStyle = {
-    height: contentHeight === 'auto' ? 'auto' : `${contentHeight}px`,
-    transition: 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
-    willChange: isTransitioning ? 'height' : 'auto',
+  const items = [
+    { id: 'overview', label: 'Overview', body: 'Overview content...' },
+    { id: 'activity', label: 'Activity', body: 'Activity content...' },
+  ];
+
+  const handleSelect = (id: string) => {
+    setMobileView('content');
+    // Route the state change through the layout so it can animate around it.
+    if (animationRef.current) {
+      animationRef.current.triggerTransition(() => setSelectedId(id));
+    } else {
+      setSelectedId(id);
+    }
   };
 
-  const detailContent = (
-    <div
-      className={`${
-        isTransitioning
-          ? 'opacity-0 transform translate-y-2'
-          : 'opacity-100 transform translate-y-0'
-      }`}
-      style={{
-        transition: 'opacity 300ms ease-in-out, transform 300ms ease-in-out',
-      }}
-    >
-      Content with smooth transitions
-    </div>
+  const masterContent = (
+    <nav className='space-y-1'>
+      {items.map(item => (
+        <button
+          key={item.id}
+          onClick={() => handleSelect(item.id)}
+          className={`block w-full text-left px-4 py-2 rounded-md ${
+            selectedId === item.id
+              ? 'bg-primary/10 text-primary'
+              : 'hover:bg-accent'
+          }`}
+        >
+          {item.label}
+        </button>
+      ))}
+    </nav>
   );
+
+  const currentItem = items.find(item => item.id === selectedId);
 
   return (
     <MasterDetailLayout
       masterTitle='Animated Layout'
       masterContent={masterContent}
-      detailContent={detailContent}
-      detailRef={detailRef}
-      detailStyle={detailStyle}
+      detailContent={<div>{currentItem?.body}</div>}
+      detailTitle={currentItem?.label}
+      contentKey={selectedId}
       mobileView={mobileView}
       onBackToNavigation={() => setMobileView('navigation')}
       masterWidth={350}
-      stickyTopOffset={120}
-      desktopGap={40}
+      animationRef={animationRef}
+      enableAnimations={true}
+      animationDuration={300}
     />
   );
 };
 
 /**
- * Example 4: Non-sticky Master Panel
- * For pages where the master panel should scroll with content
+ * Example 4: Pinned Top and Bottom Content
+ *
+ * `topContent` and `bottomContent` are pinned outside the scrolling panels on
+ * desktop. On mobile they render inline instead — `topContent` inside the
+ * navigation view, `bottomContent` below the detail view.
  */
-export const NonStickyExample = () => {
+export const PinnedContentExample = () => {
   const [mobileView, setMobileView] = useState<'navigation' | 'content'>(
     'navigation'
   );
 
   return (
     <MasterDetailLayout
-      masterTitle='Scrollable Navigation'
+      masterTitle='Inbox'
+      masterSubtitle='0x1234...abcd'
       masterContent={<div>Long navigation list...</div>}
       detailContent={<div>Page content...</div>}
+      topContent={
+        <div className='p-4'>
+          <input
+            type='search'
+            placeholder='Search'
+            className='w-full rounded-md border px-3 py-2'
+          />
+        </div>
+      }
+      bottomContent={
+        <div className='px-4 py-2 text-xs text-muted-foreground'>
+          Synced a moment ago
+        </div>
+      }
       mobileView={mobileView}
       onBackToNavigation={() => setMobileView('navigation')}
-      stickyMaster={false}
     />
   );
 };

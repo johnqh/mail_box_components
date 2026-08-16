@@ -103,6 +103,81 @@ describe('MasterDetailLayout', () => {
     expect(aside?.style.width).toBe('400px');
   });
 
+  it('leaves the detail panel unconstrained when detailMaxWidth is omitted', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+
+    // Desktop detail column -> constraint box
+    const constraintBox = container.querySelector(
+      '.order-2 > div'
+    ) as HTMLElement;
+    expect(constraintBox).toBeTruthy();
+    expect(constraintBox.style.maxWidth).toBe('');
+    expect(constraintBox.style.marginLeft).toBe('');
+    expect(constraintBox.classList.contains('w-full')).toBe(true);
+  });
+
+  it('caps and centers the detail panel when detailMaxWidth is set', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        detailMaxWidth={720}
+      />
+    );
+
+    const constraintBox = container.querySelector(
+      '.order-2 > div'
+    ) as HTMLElement;
+    expect(constraintBox.style.maxWidth).toBe('720px');
+    // Auto margins are what absorb the leftover space, i.e. the centering
+    expect(constraintBox.style.marginLeft).toBe('auto');
+    expect(constraintBox.style.marginRight).toBe('auto');
+    // Still full width when the available space is narrower than the cap
+    expect(constraintBox.classList.contains('w-full')).toBe(true);
+  });
+
+  it('keeps the detail title inside the constrained box', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        detailTitle='Section Title'
+        detailMaxWidth={720}
+      />
+    );
+
+    const constraintBox = container.querySelector(
+      '.order-2 > div'
+    ) as HTMLElement;
+    // Title must share the box with the content so the two stay aligned
+    expect(constraintBox.querySelector('h1')?.textContent).toBe(
+      'Section Title'
+    );
+  });
+
+  it('applies detailMaxWidth to the mobile content view', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        mobileView='content'
+        detailMaxWidth={720}
+      />
+    );
+
+    const mobileContent = container.querySelector(
+      '.md\\:hidden.flex'
+    ) as HTMLElement;
+    expect(mobileContent).toBeTruthy();
+    expect(mobileContent.style.maxWidth).toBe('720px');
+    expect(mobileContent.style.marginLeft).toBe('auto');
+  });
+
   it('renders master panel without sticky positioning', () => {
     const { container } = render(
       <MasterDetailLayout

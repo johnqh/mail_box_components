@@ -105,6 +105,15 @@ export interface MasterDetailLayoutProps {
   detailTitleClassName?: string;
   /** Width of the master panel on desktop (default: 320px) */
   masterWidth?: number;
+  /**
+   * Max width in pixels for the detail panel (default: undefined).
+   *
+   * When undefined the detail panel fills all space left over by the master
+   * panel. When set, the panel stays full width while the available space is
+   * narrower than this value, and caps at this width — horizontally centered in
+   * the available space — once there is room to spare.
+   */
+  detailMaxWidth?: number;
   /** Whether to make the master panel sticky on desktop (default: true) */
   stickyMaster?: boolean;
   /** Top offset for sticky master panel (default: 96px / top-24) */
@@ -132,6 +141,7 @@ export interface MasterDetailLayoutProps {
  * - Desktop: Side-by-side layout with sticky master panel (sidebar)
  * - Mobile: Toggle between master (navigation) and detail (content) views
  * - Customizable widths, gaps, and styling
+ * - Optional `detailMaxWidth` to cap and center the detail panel
  * - Built-in back button for mobile navigation
  * - Dark mode support
  * - Smooth transitions support via refs
@@ -163,6 +173,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   detailClassName = '',
   detailTitleClassName = '',
   masterWidth = 320,
+  detailMaxWidth,
   // stickyMaster and stickyTopOffset are accepted for API compatibility but no longer used
   // The flex column layout pins top/bottom content without sticky positioning
   desktopGap: _desktopGap = 32,
@@ -262,6 +273,18 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
       }
     : { width: '100%', maxWidth: '100%' };
 
+  // Caps the detail panel and centers it in whatever space is available.
+  // `max-width` alone gives the "full width until there is room to spare"
+  // behaviour; the auto margins absorb the leftover space once there is any.
+  const detailConstraintStyle: React.CSSProperties | undefined =
+    detailMaxWidth !== undefined
+      ? {
+          maxWidth: `${detailMaxWidth}px`,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }
+      : undefined;
+
   // Content wrapper style with fade animation
   const contentWrapperClass = enableAnimations
     ? `${
@@ -299,23 +322,30 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         >
           {/* Desktop Detail Panel (Main Content) — first in DOM for search engine priority */}
           <div className='flex-1 min-w-0 flex flex-col min-h-0 pl-4 order-2'>
-            {detailTitle && (
-              <h1
-                className={`${textVariants.heading.h1()} mb-4 pl-4 flex-shrink-0 ${detailTitleClassName}`}
-              >
-                {detailTitle}
-              </h1>
-            )}
+            {/* Constraint box — title and content share it so they stay aligned
+                with each other when the panel is capped and centered. */}
             <div
-              ref={contentRef}
-              className={`flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
-              style={detailPanelStyle}
+              className='w-full min-w-0 flex-1 min-h-0 flex flex-col'
+              style={detailConstraintStyle}
             >
+              {detailTitle && (
+                <h1
+                  className={`${textVariants.heading.h1()} mb-4 pl-4 flex-shrink-0 ${detailTitleClassName}`}
+                >
+                  {detailTitle}
+                </h1>
+              )}
               <div
-                className={`h-full ${contentWrapperClass}`}
-                style={contentWrapperStyle}
+                ref={contentRef}
+                className={`flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+                style={detailPanelStyle}
               >
-                {detailContent}
+                <div
+                  className={`h-full ${contentWrapperClass}`}
+                  style={contentWrapperStyle}
+                >
+                  {detailContent}
+                </div>
               </div>
             </div>
           </div>
@@ -385,6 +415,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           className={`md:hidden ${
             mobileView === 'content' ? 'flex flex-col flex-1 min-h-0' : 'hidden'
           } ${containerClass} py-8`}
+          style={detailConstraintStyle}
         >
           {/* Mobile back button */}
           {mobileView === 'content' && onBackToNavigation && (

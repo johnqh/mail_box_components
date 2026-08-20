@@ -17,6 +17,15 @@ export interface ListItemWithActionProps {
   destructive?: boolean;
   /** Whether the action is in progress */
   isProcessing?: boolean;
+  /**
+   * Render the action as the icon alone.
+   *
+   * A row whose action is "Delete <the thing it is about>" says the thing
+   * twice, and in a narrow column the button then dominates the row it belongs
+   * to. Icon-only keeps `actionText` as the accessible NAME, so the button is
+   * still announced and still reachable — it simply stops being read twice.
+   */
+  iconOnly?: boolean;
   /** Variant of the list item */
   variant?: 'default' | 'compact' | 'elevated';
   /** Additional className for the container */
@@ -48,6 +57,7 @@ export const ListItemWithAction: React.FC<ListItemWithActionProps> = ({
   actionIcon: ActionIcon = TrashIcon,
   destructive = true,
   isProcessing = false,
+  iconOnly = false,
   variant = 'default',
   className,
 }) => {
@@ -75,14 +85,15 @@ export const ListItemWithAction: React.FC<ListItemWithActionProps> = ({
         size='sm'
         onClick={onAction}
         disabled={isProcessing}
+        aria-label={iconOnly ? actionText : undefined}
         className={cn(
-          'ml-4',
+          iconOnly ? 'ml-2 px-2' : 'ml-4',
           destructive &&
             'text-destructive hover:text-destructive/90 hover:bg-destructive/10'
         )}
       >
-        <ActionIcon className='h-4 w-4 mr-1' />
-        {actionText}
+        <ActionIcon className={cn('h-4 w-4', !iconOnly && 'mr-1')} />
+        {iconOnly ? null : actionText}
       </Button>
     </div>
   );

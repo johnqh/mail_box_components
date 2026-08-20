@@ -103,7 +103,7 @@ describe('MasterDetailLayout', () => {
     expect(aside?.style.width).toBe('400px');
   });
 
-  it('leaves the detail panel unconstrained when detailMaxWidth is omitted', () => {
+  it('caps the detail panel at 960px by default', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -116,9 +116,49 @@ describe('MasterDetailLayout', () => {
       '.order-2 > div'
     ) as HTMLElement;
     expect(constraintBox).toBeTruthy();
+    expect(constraintBox.style.maxWidth).toBe('960px');
+    expect(constraintBox.style.marginLeft).toBe('auto');
+    expect(constraintBox.classList.contains('w-full')).toBe(true);
+  });
+
+  it('leaves the detail panel unconstrained when detailMaxWidth is 0', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        detailMaxWidth={0}
+      />
+    );
+
+    // 0 opts out entirely — a literal maxWidth:0px would collapse the panel
+    const constraintBox = container.querySelector(
+      '.order-2 > div'
+    ) as HTMLElement;
     expect(constraintBox.style.maxWidth).toBe('');
     expect(constraintBox.style.marginLeft).toBe('');
     expect(constraintBox.classList.contains('w-full')).toBe(true);
+  });
+
+  it('adds no padding of its own to the master or detail panels', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterTitle='Navigation'
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        detailTitle='Section'
+      />
+    );
+
+    const detailColumn = container.querySelector('.order-2') as HTMLElement;
+    const aside = container.querySelector('aside') as HTMLElement;
+    for (const el of [detailColumn, aside]) {
+      expect(el.className).not.toMatch(/\bp[xylrtb]?-\d/);
+    }
+    // Headings carry margin for rhythm, but no padding inset
+    const h1 = container.querySelector('.order-2 h1') as HTMLElement;
+    const h2 = container.querySelector('aside h2') as HTMLElement;
+    expect(h1.className).not.toMatch(/\bp[xylrtb]?-\d/);
+    expect(h2.className).not.toMatch(/\bp[xylrtb]?-\d/);
   });
 
   it('caps and centers the detail panel when detailMaxWidth is set', () => {

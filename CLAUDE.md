@@ -1,5 +1,10 @@
 # mail_box_components - AI Development Guide
 
+> **Git policy — never auto-commit or auto-push.** Leave your work in the working tree.
+> Run `git commit`, `git push`, `gh pr create`, or `scripts/push_all.sh` **only when the user
+> explicitly asks in that turn**. Approval for an earlier change does not carry forward, and
+> finishing a task is not permission to commit it.
+
 ## Overview
 
 A comprehensive React component library (`@sudobility/components`) providing 110+ reusable UI components built on Radix UI primitives, styled with Tailwind CSS and a centralized design system (`@sudobility/design`). The library is organized into domain-specific categories (primitives, forms, charts, media, interactive, etc.) and ships as both ES module and UMD bundles with full TypeScript declarations. Domain-specific components have been extracted into 48 specialized sub-packages under `packages/`.
@@ -401,3 +406,7 @@ agriculture, analytics, auth, automotive, collaboration, communication, construc
 
 ### Related Packages (separate repos)
 The React Native port of this library is `@sudobility/components-rn` in the `mail_box_components_rn` directory.
+
+## Git Workflow
+
+- Do not use feature branches for code changes. Always stay on the current branch.

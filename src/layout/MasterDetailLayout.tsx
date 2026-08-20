@@ -199,6 +199,58 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
       ? extractFirstPart(masterTitle)
       : 'Back';
 
+  /**
+   * The master↔detail move on a narrow screen, animated.
+   *
+   * The two mobile panes used to swap with `block`/`hidden`, which is a cut:
+   * the list vanishes and the detail is simply there. On a phone — and in a
+   * browser side panel, which is the same shape — that reads as a redraw rather
+   * than as going somewhere, and there is nothing to tell a reader whether they
+   * moved forward or back.
+   *
+   * Animated the way a stack is: the DETAIL slides, the master does not. Going
+   * in, the detail comes from the right over the list; coming out, it leaves the
+   * same way and reveals the list underneath. One direction of travel, so "back"
+   * looks like back.
+   *
+   * The master stays in NORMAL FLOW throughout and only the detail is lifted
+   * into an overlay, and only while it moves. That is what keeps this safe for
+   * every existing caller: at rest the markup is exactly what it was, so no
+   * page that uses this component changes height or layout.
+   */
+  const [slide, setSlide] = useState<null | { direction: 'in' | 'out'; settled: boolean }>(null);
+  const previousView = useRef(mobileView);
+
+  useEffect(() => {
+    if (previousView.current === mobileView) return;
+    const from = previousView.current;
+    previousView.current = mobileView;
+
+    const reducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (!enableAnimations || reducedMotion) return;
+
+    // Starts at the far side, then settles on the next frame — a transform
+    // applied in the same paint as the mount animates from nothing.
+    setSlide({ direction: from === 'navigation' ? 'in' : 'out', settled: false });
+    const frame = requestAnimationFrame(() =>
+      setSlide(current => (current ? { ...current, settled: true } : current))
+    );
+    const done = setTimeout(() => setSlide(null), animationDuration);
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(done);
+    };
+  }, [mobileView, enableAnimations, animationDuration]);
+
+  /** Where the detail sits right now: off to the right, or covering the list. */
+  const detailOffset = slide
+    ? (slide.direction === 'in') === slide.settled
+      ? 'translate-x-0'
+      : 'translate-x-full'
+    : 'translate-x-0';
+
   // Internal animation state
   const [isAnimating, setIsAnimating] = useState(false);
   const [contentHeight, setContentHeight] = useState<number | 'auto'>('auto');
@@ -312,8 +364,13 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         <div className='z-10 flex-shrink-0 hidden md:block'>{topContent}</div>
       )}
 
-      {/* Middle: Master-Detail area (fills remaining space) */}
-      <div className='flex-1 min-h-0 flex flex-col'>
+      {/* Middle: Master-Detail area (fills remaining space).
+          `relative` is inert at rest and is what the sliding detail overlay
+          positions against; the clip is applied only while it moves, so nothing
+          that overflows this box at rest is affected. */}
+      <div
+        className={`relative flex-1 min-h-0 flex flex-col ${slide ? 'overflow-hidden' : ''}`}
+      >
         {/* Desktop Layout — rendered FIRST in the DOM (before the mobile views) so
             the detail-first content leads the HTML source for search engines.
             Visual layout (master left, detail right) is restored via CSS `order`. */}
@@ -383,7 +440,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         {/* Mobile Navigation View - Full Width */}
         <div
           className={`md:hidden ${
-            mobileView === 'navigation' ? 'block' : 'hidden'
+            mobileView === 'navigation' || slide ? 'block' : 'hidden'
           } flex-1 overflow-y-auto`}
           aria-hidden={hasDetailSelection ? true : undefined}
         >
@@ -408,9 +465,17 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         {/* Mobile Content View */}
         <div
           className={`md:hidden ${
-            mobileView === 'content' ? 'flex flex-col flex-1 min-h-0' : 'hidden'
-          } ${maxWidthClass}`}
-          style={detailConstraintStyle}
+            mobileView === 'content' || slide ? 'flex flex-col flex-1 min-h-0' : 'hidden'
+          } ${maxWidthClass} ${
+            slide
+              ? `absolute inset-0 z-10 ${ui.background.surface} transition-transform ease-out ${detailOffset}`
+              : ''
+          }`}
+          style={
+            slide
+              ? { ...detailConstraintStyle, transitionDuration: `${animationDuration}ms` }
+              : detailConstraintStyle
+          }
         >
           {/* Mobile back button */}
           {mobileView === 'content' && onBackToNavigation && (

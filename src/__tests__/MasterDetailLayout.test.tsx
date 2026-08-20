@@ -427,3 +427,56 @@ describe('MasterDetailLayout', () => {
     expect(root?.children.length).toBe(1);
   });
 });
+
+describe('MasterDetailLayout mobile transition', () => {
+  const panes = {
+    masterContent: <div>Master Content</div>,
+    detailContent: <div>Detail Content</div>,
+  };
+
+  it('slides the detail in when moving from the list', async () => {
+    // The two panes used to swap with block/hidden, which is a cut: on a phone
+    // — or a browser side panel, the same shape — that reads as a redraw rather
+    // than as going somewhere.
+    const { container, rerender } = render(
+      <MasterDetailLayout {...panes} mobileView='navigation' />
+    );
+    rerender(<MasterDetailLayout {...panes} mobileView='content' />);
+
+    // Lifted into an overlay for the move, starting off to the right.
+    const sliding = container.querySelector('.absolute.z-10');
+    expect(sliding).toBeTruthy();
+    expect(sliding?.className).toContain('translate-x-full');
+  });
+
+  it('keeps the list in flow underneath, so the move reveals it', async () => {
+    // The master is what gives the box its height while the detail floats over
+    // it, which is what keeps this safe for pages that size themselves.
+    const { container, rerender } = render(
+      <MasterDetailLayout {...panes} mobileView='content' />
+    );
+    rerender(<MasterDetailLayout {...panes} mobileView='navigation' />);
+
+    const master = container.querySelector('.md\\:hidden.block');
+    expect(master).toBeTruthy();
+    expect(master?.className).not.toContain('absolute');
+  });
+
+  it('does not touch the resting layout when nothing is moving', () => {
+    // No caller's page should change shape because this component learned to
+    // animate: at rest the markup is what it always was.
+    const { container } = render(<MasterDetailLayout {...panes} mobileView='content' />);
+    expect(container.querySelector('.absolute.z-10')).toBeNull();
+    expect(container.querySelector('.overflow-hidden.flex-1')).toBeNull();
+  });
+
+  it('cuts straight to the pane when animations are disabled', () => {
+    const { container, rerender } = render(
+      <MasterDetailLayout {...panes} mobileView='navigation' enableAnimations={false} />
+    );
+    rerender(
+      <MasterDetailLayout {...panes} mobileView='content' enableAnimations={false} />
+    );
+    expect(container.querySelector('.absolute.z-10')).toBeNull();
+  });
+});

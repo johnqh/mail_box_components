@@ -93,6 +93,7 @@ export default [
         Response: 'readonly',
         AbortController: 'readonly',
         requestAnimationFrame: 'readonly',
+        cancelAnimationFrame: 'readonly',
         location: 'readonly',
         Image: 'readonly',
         btoa: 'readonly',

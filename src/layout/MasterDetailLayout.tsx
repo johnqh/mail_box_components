@@ -218,7 +218,10 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
    * every existing caller: at rest the markup is exactly what it was, so no
    * page that uses this component changes height or layout.
    */
-  const [slide, setSlide] = useState<null | { direction: 'in' | 'out'; settled: boolean }>(null);
+  const [slide, setSlide] = useState<null | {
+    direction: 'in' | 'out';
+    settled: boolean;
+  }>(null);
   const previousView = useRef(mobileView);
 
   useEffect(() => {
@@ -233,7 +236,10 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
     // Starts at the far side, then settles on the next frame — a transform
     // applied in the same paint as the mount animates from nothing.
-    setSlide({ direction: from === 'navigation' ? 'in' : 'out', settled: false });
+    setSlide({
+      direction: from === 'navigation' ? 'in' : 'out',
+      settled: false,
+    });
     const frame = requestAnimationFrame(() =>
       setSlide(current => (current ? { ...current, settled: true } : current))
     );
@@ -465,7 +471,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         {/* Mobile Content View */}
         <div
           className={`md:hidden ${
-            mobileView === 'content' || slide ? 'flex flex-col flex-1 min-h-0' : 'hidden'
+            mobileView === 'content' || slide
+              ? 'flex flex-col flex-1 min-h-0'
+              : 'hidden'
           } ${maxWidthClass} ${
             slide
               ? `absolute inset-0 z-10 ${ui.background.surface} transition-transform ease-out ${detailOffset}`
@@ -473,7 +481,10 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           }`}
           style={
             slide
-              ? { ...detailConstraintStyle, transitionDuration: `${animationDuration}ms` }
+              ? {
+                  ...detailConstraintStyle,
+                  transitionDuration: `${animationDuration}ms`,
+                }
               : detailConstraintStyle
           }
         >

@@ -465,17 +465,27 @@ describe('MasterDetailLayout mobile transition', () => {
   it('does not touch the resting layout when nothing is moving', () => {
     // No caller's page should change shape because this component learned to
     // animate: at rest the markup is what it always was.
-    const { container } = render(<MasterDetailLayout {...panes} mobileView='content' />);
+    const { container } = render(
+      <MasterDetailLayout {...panes} mobileView='content' />
+    );
     expect(container.querySelector('.absolute.z-10')).toBeNull();
     expect(container.querySelector('.overflow-hidden.flex-1')).toBeNull();
   });
 
   it('cuts straight to the pane when animations are disabled', () => {
     const { container, rerender } = render(
-      <MasterDetailLayout {...panes} mobileView='navigation' enableAnimations={false} />
+      <MasterDetailLayout
+        {...panes}
+        mobileView='navigation'
+        enableAnimations={false}
+      />
     );
     rerender(
-      <MasterDetailLayout {...panes} mobileView='content' enableAnimations={false} />
+      <MasterDetailLayout
+        {...panes}
+        mobileView='content'
+        enableAnimations={false}
+      />
     );
     expect(container.querySelector('.absolute.z-10')).toBeNull();
   });

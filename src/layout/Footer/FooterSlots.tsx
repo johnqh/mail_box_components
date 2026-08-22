@@ -200,7 +200,11 @@ export const FooterCompact: React.FC<SlotProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        'flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0',
+        // Mobile keeps everything on one left-aligned line (wrapping only if it
+        // truly cannot fit) so the footer costs a single row of screen space.
+        // From `sm` up it spreads left/right as before.
+        'flex flex-row flex-wrap items-center gap-x-3 gap-y-1',
+        'justify-start sm:justify-between sm:gap-0',
         className
       )}
     >
@@ -219,7 +223,8 @@ export const FooterCompactLeft: React.FC<SlotProps> = ({
   return (
     <div
       className={cn(
-        'flex items-center gap-3 text-muted-foreground text-sm',
+        'flex items-center gap-2 sm:gap-3 text-muted-foreground',
+        'text-[11px] sm:text-sm',
         className
       )}
     >
@@ -236,7 +241,14 @@ export const FooterCompactRight: React.FC<SlotProps> = ({
   className,
 }) => {
   return (
-    <div className={cn('flex space-x-6 text-sm', className)}>{children}</div>
+    <div
+      className={cn(
+        'flex space-x-3 sm:space-x-6 text-[11px] sm:text-sm',
+        className
+      )}
+    >
+      {children}
+    </div>
   );
 };
 
@@ -280,7 +292,9 @@ export const FooterCopyright: React.FC<FooterCopyrightProps> = ({
   className,
 }) => {
   return (
-    <span className={cn('text-xs text-muted-foreground', className)}>
+    <span
+      className={cn('text-[11px] sm:text-xs text-muted-foreground', className)}
+    >
       &copy; {year}{' '}
       {companyLink || (
         <span className='text-muted-foreground'>{companyName}</span>

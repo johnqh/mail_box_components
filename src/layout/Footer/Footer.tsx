@@ -48,7 +48,8 @@ export const Footer: React.FC<FooterProps> = ({
     <footer
       className={cn(
         'bg-card text-foreground transition-all duration-300 ease-in-out',
-        isCompact ? 'py-4' : 'py-12',
+        // Compact footer runs tighter on mobile to preserve screen space.
+        isCompact ? 'py-2 sm:py-4' : 'py-12',
         sticky
           ? 'sticky bottom-0 z-50 border-t border-border'
           : 'relative z-10',

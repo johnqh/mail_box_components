@@ -32,7 +32,30 @@ export interface ToggleGroupProps {
   variant?: 'default' | 'outline';
   /** Additional className */
   className?: string;
+  /**
+   * What kind of group this is, which decides the ARIA the buttons carry.
+   *
+   * A segmented control looks the same whatever it does, but it does not
+   * always *mean* the same thing, and a screen reader has to be told which:
+   *
+   * - `group` (default) — independent toggles. Buttons, `aria-pressed`.
+   * - `tablist` — the segments switch panels. Tabs, `aria-selected`, and the
+   *   panels are expected to be `tabpanel`s labelled by them. Without this a
+   *   panel switcher announces as four unrelated buttons and the link to the
+   *   panel is lost.
+   * - `radiogroup` — one of N, where the choice is a value rather than a view.
+   *
+   * Presentation is untouched by it; only the roles change.
+   */
+  role?: 'group' | 'tablist' | 'radiogroup';
 }
+
+/** The button role and selected-state attribute each group kind implies. */
+const GROUP_SEMANTICS = {
+  group: { item: undefined, state: 'aria-pressed' },
+  tablist: { item: 'tab', state: 'aria-selected' },
+  radiogroup: { item: 'radio', state: 'aria-checked' },
+} as const;
 
 /**
  * ToggleGroup Component
@@ -73,7 +96,9 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
   size = 'md',
   variant = 'default',
   className,
+  role = 'group',
 }) => {
+  const semantics = GROUP_SEMANTICS[role];
   const handleClick = (optionValue: string, disabled?: boolean) => {
     if (disabled) return;
 
@@ -119,7 +144,7 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
         variantClasses[variant].base,
         className
       )}
-      role='group'
+      role={role}
     >
       {options.map(option => {
         const selected = isSelected(option.value);
@@ -140,7 +165,8 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
                 : variantClasses[variant].button,
               selected ? 'text-foreground' : 'text-muted-foreground'
             )}
-            aria-pressed={selected}
+            {...(semantics.item ? { role: semantics.item } : {})}
+            {...{ [semantics.state]: selected }}
           >
             {option.icon && (
               <span className='flex-shrink-0 w-4 h-4'>{option.icon}</span>

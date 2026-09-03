@@ -1,6 +1,5 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { useLayout } from '../../layout/Layout/LayoutContext';
 import { cn } from '../../lib/utils';
 const sectionVariants = cva('', {
   variants: {
@@ -58,6 +57,28 @@ const maxWidthClasses = {
 
 type MaxWidth = keyof typeof maxWidthClasses;
 
+/**
+ * The reading width a Section caps its content at: `max-w-5xl` is 64rem / 1024px.
+ *
+ * Deliberately independent of the page's layout mode. The band follows the page;
+ * the text inside it should not, or body copy runs to an unreadable line length
+ * on a wide display.
+ */
+const SECTION_CONTENT_WIDTH = 'max-w-5xl';
+
+/**
+ * Break the band out of a parent that caps its width.
+ *
+ * `50% - 50vw` is zero when the parent already spans the viewport, so this is a
+ * no-op on uncapped pages and only does work where a page constrains its content.
+ *
+ * Note this measures against the viewport, which includes the scrollbar. Pages
+ * whose root does not clip horizontal overflow can gain a scrollbar's worth of
+ * horizontal scroll; pass `bleed={false}` there, and for any Section nested
+ * inside a panel it should not escape.
+ */
+const SECTION_BLEED = 'ml-[calc(50%-50vw)] mr-[calc(50%-50vw)]';
+
 interface SectionProps extends VariantProps<typeof sectionVariants> {
   children: React.ReactNode;
   /** Classes applied to the outer section element */
@@ -75,6 +96,14 @@ interface SectionProps extends VariantProps<typeof sectionVariants> {
   id?: string;
   /** If true, children are rendered directly without the inner container */
   fullWidth?: boolean;
+  /**
+   * Let the band span the viewport even when the page caps its content
+   * (default: true).
+   *
+   * Set to false for a Section rendered inside a panel or column, where
+   * escaping the parent is exactly wrong.
+   */
+  bleed?: boolean;
 }
 
 /**
@@ -106,13 +135,13 @@ export const Section: React.FC<SectionProps> = ({
   as: Component = 'section',
   id,
   fullWidth = false,
+  bleed = true,
 }) => {
-  const layout = useLayout();
-  // Explicit prop wins, else follow the page's layout mode — the same
-  // precedence `ContentContainer` uses.
+  // Explicit prop wins, else the reading width. The page's layout mode governs
+  // the band, not the text: a 'full' page still reads at SECTION_CONTENT_WIDTH.
   const widthClass = maxWidth
     ? maxWidthClasses[maxWidth]
-    : layout.maxWidthClass;
+    : SECTION_CONTENT_WIDTH;
 
   const content = fullWidth ? (
     children
@@ -134,6 +163,7 @@ export const Section: React.FC<SectionProps> = ({
       id,
       className: cn(
         sectionVariants({ variant, spacing, background }),
+        bleed && SECTION_BLEED,
         className
       ),
     },

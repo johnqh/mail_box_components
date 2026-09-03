@@ -103,7 +103,7 @@ describe('MasterDetailLayout', () => {
     expect(aside?.style.width).toBe('400px');
   });
 
-  it('caps the detail panel at 960px by default', () => {
+  it('caps the detail panel at 1024px by default', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -116,7 +116,7 @@ describe('MasterDetailLayout', () => {
       '.order-2 > div'
     ) as HTMLElement;
     expect(constraintBox).toBeTruthy();
-    expect(constraintBox.style.maxWidth).toBe('960px');
+    expect(constraintBox.style.maxWidth).toBe('1024px');
     expect(constraintBox.style.marginLeft).toBe('auto');
     expect(constraintBox.classList.contains('w-full')).toBe(true);
   });

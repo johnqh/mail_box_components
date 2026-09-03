@@ -9,19 +9,24 @@ function container(): HTMLElement {
   return screen.getByTestId('content').parentElement as HTMLElement;
 }
 
+/** The outer <section> element, which carries the band background and bleed. */
+function band(): HTMLElement {
+  return container().parentElement as HTMLElement;
+}
+
 describe('Section width', () => {
-  it('defaults to max-w-7xl outside a LayoutProvider', () => {
-    // Backward compatibility: this was the hard-coded default before the
-    // component read layout context at all.
+  it('caps its content at the reading width by default', () => {
     render(
       <Section>
         <div data-testid='content' />
       </Section>
     );
-    expect(container()).toHaveClass('max-w-7xl');
+    expect(container()).toHaveClass('max-w-5xl');
   });
 
-  it('follows the layout mode so it lines up with the topbar and footer', () => {
+  it('keeps that cap regardless of the page layout mode', () => {
+    // The band follows the page width; the text inside it does not. A page in
+    // 'full' mode should still read at the reading width.
     render(
       <LayoutProvider mode='full'>
         <Section>
@@ -29,44 +34,47 @@ describe('Section width', () => {
         </Section>
       </LayoutProvider>
     );
-    expect(container()).toHaveClass('w-full');
-    expect(container()).not.toHaveClass('max-w-7xl');
+    expect(container()).toHaveClass('max-w-5xl');
   });
 
-  it('follows the wide mode too', () => {
+  it('still lets an explicit maxWidth win', () => {
     render(
-      <LayoutProvider mode='wide'>
-        <Section>
-          <div data-testid='content' />
-        </Section>
-      </LayoutProvider>
+      <Section maxWidth='2xl'>
+        <div data-testid='content' />
+      </Section>
     );
-    expect(container()).toHaveClass('max-w-[1920px]');
+    expect(container()).toHaveClass('max-w-2xl');
+    expect(container()).not.toHaveClass('max-w-5xl');
+  });
+});
+
+describe('Section bleed', () => {
+  it('breaks its band out of a capped parent by default', () => {
+    // The negative margin self-cancels to zero when the parent is already full
+    // width, so this is a no-op on uncapped pages.
+    render(
+      <Section>
+        <div data-testid='content' />
+      </Section>
+    );
+    expect(band().className).toContain('50vw');
   });
 
-  it('an explicit maxWidth still wins over the layout mode', () => {
-    // Deviating on purpose stays possible — a text-heavy section inside a
-    // full-width page still wants a reading measure.
+  it('can be told not to bleed, for a Section nested inside a panel', () => {
     render(
-      <LayoutProvider mode='full'>
-        <Section maxWidth='3xl'>
-          <div data-testid='content' />
-        </Section>
-      </LayoutProvider>
+      <Section bleed={false}>
+        <div data-testid='content' />
+      </Section>
     );
-    expect(container()).toHaveClass('max-w-3xl');
-    expect(container()).not.toHaveClass('w-full');
+    expect(band().className).not.toContain('50vw');
   });
 
-  it('fullWidth drops the container entirely', () => {
+  it('does not bleed when rendering children directly', () => {
     render(
-      <LayoutProvider mode='standard'>
-        <Section fullWidth>
-          <div data-testid='content' />
-        </Section>
-      </LayoutProvider>
+      <Section fullWidth bleed={false}>
+        <div data-testid='content' />
+      </Section>
     );
-    expect(container()).not.toHaveClass('max-w-7xl');
-    expect(container().tagName).toBe('SECTION');
+    expect(screen.getByTestId('content')).toBeInTheDocument();
   });
 });

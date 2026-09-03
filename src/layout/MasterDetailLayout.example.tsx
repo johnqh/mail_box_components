@@ -16,7 +16,7 @@ import { MasterDetailLayout } from './MasterDetailLayout';
  *
  * `detailMaxWidth` caps the detail panel at a comfortable reading measure: it
  * stays full width on narrower screens and centers itself in the leftover space
- * on wide ones. Omit it to inherit the 960px default; pass 0 to let the detail
+ * on wide ones. Omit it to inherit the 1024px default; pass 0 to let the detail
  * panel fill all the space the master panel does not use.
  */
 export const DocumentationExample = () => {

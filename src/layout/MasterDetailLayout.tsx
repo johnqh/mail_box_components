@@ -106,7 +106,7 @@ export interface MasterDetailLayoutProps {
   /** Width of the master panel on desktop (default: 320px) */
   masterWidth?: number;
   /**
-   * Max width in pixels for the detail panel (default: 960px).
+   * Max width in pixels for the detail panel (default: 1024px).
    *
    * The panel stays full width while the space left over by the master panel is
    * narrower than this value, and caps at this width — horizontally centered in
@@ -141,7 +141,7 @@ export interface MasterDetailLayoutProps {
  * - Desktop: Side-by-side layout with sticky master panel (sidebar)
  * - Mobile: Toggle between master (navigation) and detail (content) views
  * - Customizable widths, gaps, and styling
- * - Detail panel capped and centered at `detailMaxWidth` (default 960px)
+ * - Detail panel capped and centered at `detailMaxWidth` (default 1024px)
  * - Built-in back button for mobile navigation
  * - Dark mode support
  * - Smooth transitions support via refs
@@ -173,7 +173,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   detailClassName = '',
   detailTitleClassName = '',
   masterWidth = 320,
-  detailMaxWidth = 960,
+  detailMaxWidth = 1024,
   // stickyMaster and stickyTopOffset are accepted for API compatibility but no longer used
   // The flex column layout pins top/bottom content without sticky positioning
   desktopGap: _desktopGap = 32,

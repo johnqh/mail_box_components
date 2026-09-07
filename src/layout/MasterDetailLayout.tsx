@@ -120,7 +120,14 @@ export interface MasterDetailLayoutProps {
   stickyTopOffset?: number;
   /** Gap between master and detail panels on desktop (default: 32px / gap-8) */
   desktopGap?: number;
-  /** Whether to show the master panel background on mobile (default: true) */
+  /**
+   * Whether the master panel paints its own recessed surface (default: true).
+   *
+   * The master list is a different plane from the detail it drives, so it gets
+   * `ui.background.well` — the theme's recessed role, which every theme defines
+   * separately for light and dark. Set false to let the master panel sit flat on
+   * the page background, the way it did before this surface existed.
+   */
   showMasterBackground?: boolean;
   /** Enable smooth fade animations when content changes (default: true) */
   enableAnimations?: boolean;
@@ -139,6 +146,8 @@ export interface MasterDetailLayoutProps {
  *
  * Features:
  * - Desktop: Side-by-side layout with sticky master panel (sidebar)
+ * - Master panel painted with the theme's recessed surface so the list reads as
+ *   a different plane from the detail (opt out with `showMasterBackground`)
  * - Mobile: Toggle between master (navigation) and detail (content) views
  * - Customizable widths, gaps, and styling
  * - Detail panel capped and centered at `detailMaxWidth` (default 1024px)
@@ -416,7 +425,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
 
           {/* Desktop Master Panel (Sidebar) — hidden from search engines when detail is selected */}
           <aside
-            className='flex-shrink-0 flex flex-col min-h-0 order-1'
+            className={`flex-shrink-0 flex flex-col min-h-0 order-1 ${
+              showMasterBackground ? ui.background.well : ''
+            }`}
             style={{
               width: `${masterWidth}px`,
               minWidth: `${masterWidth}px`,
@@ -451,7 +462,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
           aria-hidden={hasDetailSelection ? true : undefined}
         >
           {topContent && <div className='flex-shrink-0'>{topContent}</div>}
-          <div className={showMasterBackground ? ui.background.surface : ''}>
+          <div className={showMasterBackground ? ui.background.well : ''}>
             {masterTitle && (
               <div className={maxWidthClass}>
                 <h2 className={`${textVariants.heading.h4()} mb-4`}>

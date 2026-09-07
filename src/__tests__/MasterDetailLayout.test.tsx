@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { ui } from '@sudobility/design';
 import { MasterDetailLayout } from '../layout/MasterDetailLayout';
 describe('MasterDetailLayout', () => {
   it('renders master and detail content', () => {
@@ -323,6 +324,32 @@ describe('MasterDetailLayout', () => {
     // Check that bg-white class is not applied to mobile master container
     const mobileMaster = container.querySelector('.md\\:hidden.block > div');
     expect(mobileMaster?.className).not.toContain('bg-white');
+
+    // ...and the desktop sidebar sits flat on the page background too.
+    const aside = container.querySelector('aside');
+    expect(aside?.className).not.toContain(ui.background.well);
+  });
+
+  // The master list is a different plane from the detail it drives. It gets the
+  // theme's recessed `well` role rather than a hardcoded gray, so the separation
+  // survives a theme swap and follows light/dark on its own.
+  it('paints the master panel with the recessed theme surface by default', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+
+    const aside = container.querySelector('aside');
+    expect(aside?.className).toContain(ui.background.well);
+
+    const mobileMaster = container.querySelector('.md\\:hidden.block > div');
+    expect(mobileMaster?.className).toContain(ui.background.well);
+  });
+
+  it('keeps the master surface distinct from the detail surface', () => {
+    expect(ui.background.well).not.toBe(ui.background.surface);
   });
 
   it('renders detail title when provided', () => {

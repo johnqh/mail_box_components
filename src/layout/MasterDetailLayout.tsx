@@ -77,7 +77,11 @@ export const MasterListItem: React.FC<MasterListItemProps> = ({
 };
 
 export interface MasterDetailLayoutProps {
-  /** Title shown above the master panel (navigation/sidebar) */
+  /**
+   * Name of the master list. Not rendered as a heading — a title above the list
+   * only repeated what the breadcrumb and the list already say. It labels the
+   * mobile back button when `backButtonText` is not given.
+   */
   masterTitle?: string;
   /** Subtitle shown below master title, above the content list (e.g., wallet address) */
   masterSubtitle?: string;
@@ -121,14 +125,23 @@ export interface MasterDetailLayoutProps {
   /** Gap between master and detail panels on desktop (default: 32px / gap-8) */
   desktopGap?: number;
   /**
-   * Whether the master panel paints its own recessed surface (default: true).
+   * Whether the master panel paints its own recessed surface (default: false).
    *
-   * The master list is a different plane from the detail it drives, so it gets
-   * `ui.background.well` — the theme's recessed role, which every theme defines
-   * separately for light and dark. Set false to let the master panel sit flat on
-   * the page background, the way it did before this surface existed.
+   * By default the master sits flat on the page background and the `border-r`
+   * divider separates it from the detail — a tinted list cost readability. Set
+   * true to paint `ui.background.well`, the theme's recessed role.
    */
   showMasterBackground?: boolean;
+  /**
+   * Inset the detail panel's title and content (default: false).
+   *
+   * For pages that drop their own content padding so the master list runs to the
+   * page edge: the detail then needs its own gutter from the divider and the
+   * viewport. The inset sits inside the scroll container, so the scrollbar stays
+   * at the panel's outer edge. Off by default so pages that already pad their
+   * content are not double-padded.
+   */
+  detailPadding?: boolean;
   /** Enable smooth fade animations when content changes (default: true) */
   enableAnimations?: boolean;
   /** Animation duration in milliseconds (default: 300) */
@@ -146,8 +159,9 @@ export interface MasterDetailLayoutProps {
  *
  * Features:
  * - Desktop: Side-by-side layout with sticky master panel (sidebar)
- * - Master panel painted with the theme's recessed surface so the list reads as
- *   a different plane from the detail (opt out with `showMasterBackground`)
+ * - Master panel sits on the page background, separated by a divider (opt in to
+ *   the theme's recessed surface with `showMasterBackground`)
+ * - Optional detail inset (`detailPadding`) for edge-to-edge pages
  * - Mobile: Toggle between master (navigation) and detail (content) views
  * - Customizable widths, gaps, and styling
  * - Detail panel capped and centered at `detailMaxWidth` (default 1024px)
@@ -159,7 +173,7 @@ export interface MasterDetailLayoutProps {
  * @example
  * ```tsx
  * <MasterDetailLayout
- *   masterTitle="Table of Contents"
+ *   masterTitle="Table of Contents" // mobile back-button label
  *   masterContent={<NavigationMenu items={sections} />}
  *   detailContent={<Article content={currentSection} />}
  *   mobileView={view}
@@ -186,7 +200,8 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   // stickyMaster and stickyTopOffset are accepted for API compatibility but no longer used
   // The flex column layout pins top/bottom content without sticky positioning
   desktopGap: _desktopGap = 32,
-  showMasterBackground = true,
+  showMasterBackground = false,
+  detailPadding = false,
   enableAnimations = true,
   animationDuration = 300,
   contentKey,
@@ -403,7 +418,9 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             >
               {detailTitle && (
                 <h1
-                  className={`${textVariants.heading.h1()} mb-4 flex-shrink-0 ${detailTitleClassName}`}
+                  className={`${textVariants.heading.h1()} mb-4 flex-shrink-0 ${
+                    detailPadding ? 'px-4 sm:px-6 pt-6' : ''
+                  } ${detailTitleClassName}`}
                 >
                   {detailTitle}
                 </h1>
@@ -414,7 +431,11 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
                 style={detailPanelStyle}
               >
                 <div
-                  className={`h-full ${contentWrapperClass}`}
+                  className={`h-full ${
+                    detailPadding
+                      ? `px-4 sm:px-6 pb-6 ${detailTitle ? '' : 'pt-6'}`
+                      : ''
+                  } ${contentWrapperClass}`}
                   style={contentWrapperStyle}
                 >
                   {detailContent}
@@ -434,11 +455,6 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             }}
             aria-hidden={hasDetailSelection ? true : undefined}
           >
-            {masterTitle && (
-              <h2 className={`${textVariants.heading.h5()} mb-4 flex-shrink-0`}>
-                {masterTitle}
-              </h2>
-            )}
             {masterSubtitle && (
               <p
                 className={`${textVariants.body.sm()} mb-6 break-all flex-shrink-0`}
@@ -463,16 +479,11 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
         >
           {topContent && <div className='flex-shrink-0'>{topContent}</div>}
           <div className={showMasterBackground ? ui.background.well : ''}>
-            {masterTitle && (
+            {masterSubtitle && (
               <div className={maxWidthClass}>
-                <h2 className={`${textVariants.heading.h4()} mb-4`}>
-                  {masterTitle}
-                </h2>
-                {masterSubtitle && (
-                  <p className={`${textVariants.body.sm()} mb-6 break-all`}>
-                    {masterSubtitle}
-                  </p>
-                )}
+                <p className={`${textVariants.body.sm()} mb-6 break-all`}>
+                  {masterSubtitle}
+                </p>
               </div>
             )}
             <div className={masterClassName}>{masterContent}</div>
@@ -512,7 +523,10 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
             className={`${ui.background.surface} rounded-lg border ${ui.border.default} flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
             style={detailPanelStyle}
           >
-            <div className={contentWrapperClass} style={contentWrapperStyle}>
+            <div
+              className={`${detailPadding ? 'p-4' : ''} ${contentWrapperClass}`}
+              style={contentWrapperStyle}
+            >
               {detailTitle && (
                 <h1
                   className={`${textVariants.heading.h1()} mb-6 ${detailTitleClassName}`}

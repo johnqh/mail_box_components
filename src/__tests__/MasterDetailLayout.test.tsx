@@ -15,7 +15,9 @@ describe('MasterDetailLayout', () => {
     expect(screen.getAllByText('Detail Content')).toBeTruthy();
   });
 
-  it('renders master title when provided', () => {
+  // The title above the master list repeated what the breadcrumb and the list
+  // already say. `masterTitle` now only labels the mobile back button.
+  it('does not render the master title as a heading', () => {
     render(
       <MasterDetailLayout
         masterTitle='Navigation'
@@ -24,7 +26,55 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    expect(screen.getAllByText('Navigation')).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'Navigation' })).toBeNull();
+    expect(screen.queryByText('Navigation')).toBeNull();
+  });
+
+  it('renders masterSubtitle without a masterTitle', () => {
+    render(
+      <MasterDetailLayout
+        masterSubtitle='0xabc'
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+
+    // Desktop sidebar + mobile navigation view
+    expect(screen.getAllByText('0xabc').length).toBe(2);
+  });
+
+  it('insets the detail panel only when detailPadding is set', () => {
+    const { container, rerender } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        detailTitle='Section'
+      />
+    );
+
+    const desktopTitle = () =>
+      container.querySelector('.order-2 h1') as HTMLElement;
+    const desktopContent = () =>
+      container.querySelector('.order-2 .overflow-y-auto > div') as HTMLElement;
+    expect(desktopTitle().className).not.toContain('px-4');
+    expect(desktopContent().className).not.toContain('px-4');
+
+    rerender(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        detailTitle='Section'
+        detailPadding
+      />
+    );
+
+    expect(desktopTitle().className).toContain('px-4');
+    expect(desktopTitle().className).toContain('sm:px-6');
+    expect(desktopTitle().className).toContain('pt-6');
+    // Inset inside the scroll container, so the scrollbar stays at the edge.
+    expect(desktopContent().className).toContain('px-4');
+    expect(desktopContent().className).toContain('sm:px-6');
+    expect(desktopContent().className).toContain('pb-6');
   });
 
   it('shows navigation view on mobile by default', () => {
@@ -140,7 +190,7 @@ describe('MasterDetailLayout', () => {
     expect(constraintBox.classList.contains('w-full')).toBe(true);
   });
 
-  it('adds no padding of its own to the master or detail panels', () => {
+  it('adds no padding of its own to the master or detail panels by default', () => {
     const { container } = render(
       <MasterDetailLayout
         masterTitle='Navigation'
@@ -155,11 +205,9 @@ describe('MasterDetailLayout', () => {
     for (const el of [detailColumn, aside]) {
       expect(el.className).not.toMatch(/\bp[xylrtb]?-\d/);
     }
-    // Headings carry margin for rhythm, but no padding inset
+    // The heading carries margin for rhythm, but no padding inset
     const h1 = container.querySelector('.order-2 h1') as HTMLElement;
-    const h2 = container.querySelector('aside h2') as HTMLElement;
     expect(h1.className).not.toMatch(/\bp[xylrtb]?-\d/);
-    expect(h2.className).not.toMatch(/\bp[xylrtb]?-\d/);
   });
 
   it('caps and centers the detail panel when detailMaxWidth is set', () => {
@@ -330,14 +378,29 @@ describe('MasterDetailLayout', () => {
     expect(aside?.className).not.toContain(ui.background.well);
   });
 
-  // The master list is a different plane from the detail it drives. It gets the
-  // theme's recessed `well` role rather than a hardcoded gray, so the separation
-  // survives a theme swap and follows light/dark on its own.
-  it('paints the master panel with the recessed theme surface by default', () => {
+  // The tinted master surface cost readability, so the master sits flat on the
+  // page by default and the border-r divider does the separating.
+  it('sits the master panel on the page background by default', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
         detailContent={<div>Detail Content</div>}
+      />
+    );
+
+    const aside = container.querySelector('aside');
+    expect(aside?.className).not.toContain(ui.background.well);
+
+    const mobileMaster = container.querySelector('.md\\:hidden.block > div');
+    expect(mobileMaster?.className).not.toContain(ui.background.well);
+  });
+
+  it('paints the recessed theme surface when showMasterBackground is set', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        showMasterBackground
       />
     );
 

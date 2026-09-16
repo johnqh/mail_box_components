@@ -21,7 +21,7 @@
     "build": "tsc && vite build",
     "dev": "vite build --watch",
     "type-check": "tsc --noEmit",
-    "test": "vitest run",
+    "test:unit": "vitest run",
     "test:watch": "vitest"
   },
   "peerDependencies": {

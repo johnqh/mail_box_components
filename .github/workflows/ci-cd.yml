@@ -116,7 +116,7 @@ jobs:
 
       - name: Test
         working-directory: ./packages/${{ matrix.package }}-components
-        run: npm test
+        run: npm run test:unit
 
   # Publish specialized packages after main package and validation
   publish-specialized:

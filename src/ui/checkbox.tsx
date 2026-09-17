@@ -219,8 +219,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         <div className='relative flex items-center'>
           <input
             type='checkbox'
-            checked={checked}
-            defaultChecked={!isControlled ? defaultChecked : undefined}
+            {...(isControlled ? { checked } : { defaultChecked })}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             disabled={disabled}

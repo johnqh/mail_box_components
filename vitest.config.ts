@@ -6,6 +6,12 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    environmentOptions: {
+      jsdom: {
+        // Give jsdom a non-opaque origin so its native localStorage is available.
+        url: 'http://localhost/',
+      },
+    },
     setupFiles: ['./src/test/setup.ts'],
     coverage: {
       reporter: ['text', 'html', 'json'],

@@ -1,7 +1,30 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { useEffect } from 'react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { ui } from '@sudobility/design';
 import { MasterDetailLayout } from '../layout/MasterDetailLayout';
+
+// `MasterDetailLayout` picks desktop vs. mobile from a real `matchMedia` (`useIsDesktop`), not from
+// Tailwind's `md:` class alone — only one of the two is ever in the DOM now. Simulate a breakpoint the
+// way a real resize does: set `innerWidth`, then dispatch `resize` (the polyfill in `src/test/setup.ts`
+// listens for it). Reset to desktop before every test so no test's viewport leaks into the next one.
+const DESKTOP_WIDTH = 1024;
+const MOBILE_WIDTH = 400;
+function setViewportWidth(px: number) {
+  Object.defineProperty(window, 'innerWidth', {
+    configurable: true,
+    writable: true,
+    value: px,
+  });
+  // Wrapped in act(): when called between two renders of an already-mounted component (unlike the
+  // usual "before the first render" case), the resize dispatch synchronously triggers a real
+  // `setIsDesktop` update via `useIsDesktop`'s `change` listener, outside of React's own batching.
+  act(() => {
+    window.dispatchEvent(new Event('resize'));
+  });
+}
+beforeEach(() => setViewportWidth(DESKTOP_WIDTH));
+
 describe('MasterDetailLayout', () => {
   it('renders master and detail content', () => {
     render(
@@ -30,7 +53,7 @@ describe('MasterDetailLayout', () => {
     expect(screen.queryByText('Navigation')).toBeNull();
   });
 
-  it('renders masterSubtitle without a masterTitle', () => {
+  it('renders masterSubtitle exactly once on desktop', () => {
     render(
       <MasterDetailLayout
         masterSubtitle='0xabc'
@@ -39,8 +62,20 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    // Desktop sidebar + mobile navigation view
-    expect(screen.getAllByText('0xabc').length).toBe(2);
+    expect(screen.getAllByText('0xabc').length).toBe(1);
+  });
+
+  it('renders masterSubtitle exactly once on mobile', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    render(
+      <MasterDetailLayout
+        masterSubtitle='0xabc'
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+
+    expect(screen.getAllByText('0xabc').length).toBe(1);
   });
 
   it('insets the detail panel only when detailPadding is set', () => {
@@ -77,7 +112,20 @@ describe('MasterDetailLayout', () => {
     expect(desktopContent().className).toContain('pb-6');
   });
 
+  it('renders only the desktop layout at a desktop width', () => {
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+
+    expect(container.querySelector('aside')).toBeTruthy();
+    expect(container.querySelector('.md\\:hidden')).toBeNull();
+  });
+
   it('shows navigation view on mobile by default', () => {
+    setViewportWidth(MOBILE_WIDTH);
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -86,12 +134,14 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    // Mobile navigation view should be visible (block)
+    // Mobile navigation view should be visible (block); the desktop aside is gone entirely now.
     const mobileNav = container.querySelector('.md\\:hidden.block');
     expect(mobileNav).toBeTruthy();
+    expect(container.querySelector('aside')).toBeNull();
   });
 
   it('shows content view on mobile when mobileView is content', () => {
+    setViewportWidth(MOBILE_WIDTH);
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -106,6 +156,7 @@ describe('MasterDetailLayout', () => {
   });
 
   it('calls onBackToNavigation when back button is clicked', () => {
+    setViewportWidth(MOBILE_WIDTH);
     const handleBack = vi.fn();
     render(
       <MasterDetailLayout
@@ -124,6 +175,7 @@ describe('MasterDetailLayout', () => {
   });
 
   it('shows master title in back button on mobile', () => {
+    setViewportWidth(MOBILE_WIDTH);
     render(
       <MasterDetailLayout
         masterTitle='Table of Contents'
@@ -250,6 +302,7 @@ describe('MasterDetailLayout', () => {
   });
 
   it('applies detailMaxWidth to the mobile content view', () => {
+    setViewportWidth(MOBILE_WIDTH);
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -360,7 +413,7 @@ describe('MasterDetailLayout', () => {
     expect(container).toBeTruthy();
   });
 
-  it('hides master background when showMasterBackground is false', () => {
+  it('hides master background when showMasterBackground is false, on desktop', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -369,18 +422,28 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    // Check that bg-white class is not applied to mobile master container
-    const mobileMaster = container.querySelector('.md\\:hidden.block > div');
-    expect(mobileMaster?.className).not.toContain('bg-white');
-
-    // ...and the desktop sidebar sits flat on the page background too.
     const aside = container.querySelector('aside');
     expect(aside?.className).not.toContain(ui.background.well);
   });
 
+  it('hides master background when showMasterBackground is false, on mobile', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        showMasterBackground={false}
+      />
+    );
+
+    const mobileMaster = container.querySelector('.md\\:hidden.block > div');
+    expect(mobileMaster).toBeTruthy();
+    expect(mobileMaster?.className ?? '').not.toContain(ui.background.well);
+  });
+
   // The tinted master surface cost readability, so the master sits flat on the
   // page by default and the border-r divider does the separating.
-  it('sits the master panel on the page background by default', () => {
+  it('sits the master panel on the page background by default, on desktop', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -390,12 +453,23 @@ describe('MasterDetailLayout', () => {
 
     const aside = container.querySelector('aside');
     expect(aside?.className).not.toContain(ui.background.well);
-
-    const mobileMaster = container.querySelector('.md\\:hidden.block > div');
-    expect(mobileMaster?.className).not.toContain(ui.background.well);
   });
 
-  it('paints the recessed theme surface when showMasterBackground is set', () => {
+  it('sits the master panel on the page background by default, on mobile', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+
+    const mobileMaster = container.querySelector('.md\\:hidden.block > div');
+    expect(mobileMaster).toBeTruthy();
+    expect(mobileMaster?.className ?? '').not.toContain(ui.background.well);
+  });
+
+  it('paints the recessed theme surface when showMasterBackground is set, on desktop', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -406,9 +480,20 @@ describe('MasterDetailLayout', () => {
 
     const aside = container.querySelector('aside');
     expect(aside?.className).toContain(ui.background.well);
+  });
+
+  it('paints the recessed theme surface when showMasterBackground is set, on mobile', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    const { container } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        showMasterBackground
+      />
+    );
 
     const mobileMaster = container.querySelector('.md\\:hidden.block > div');
-    expect(mobileMaster?.className).toContain(ui.background.well);
+    expect(mobileMaster?.className ?? '').toContain(ui.background.well);
   });
 
   it('keeps the master surface distinct from the detail surface', () => {
@@ -442,7 +527,7 @@ describe('MasterDetailLayout', () => {
     expect(titleElement?.textContent).toBe('Section Title');
   });
 
-  it('renders detail title on both mobile and desktop', () => {
+  it('renders the detail title exactly once on desktop', () => {
     render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -451,12 +536,23 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    // Should appear twice: once in mobile view, once in desktop view
-    const titles = screen.getAllByText('Email Management');
-    expect(titles.length).toBe(2);
+    expect(screen.getAllByText('Email Management').length).toBe(1);
   });
 
-  it('renders topContent when provided', () => {
+  it('renders the detail title exactly once on mobile', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        detailTitle='Email Management'
+      />
+    );
+
+    expect(screen.getAllByText('Email Management').length).toBe(1);
+  });
+
+  it('renders topContent exactly once on desktop', () => {
     render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -465,12 +561,23 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    // topContent appears twice: once in desktop wrapper, once in mobile nav view
-    const tops = screen.getAllByText('Top Header');
-    expect(tops.length).toBe(2);
+    expect(screen.getAllByText('Top Header').length).toBe(1);
   });
 
-  it('renders bottomContent when provided', () => {
+  it('renders topContent exactly once on mobile (inside the nav view)', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        topContent={<div>Top Header</div>}
+      />
+    );
+
+    expect(screen.getAllByText('Top Header').length).toBe(1);
+  });
+
+  it('renders bottomContent exactly once on desktop', () => {
     render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -479,12 +586,23 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    // bottomContent appears twice: once in desktop wrapper, once in mobile detail view
-    const bottoms = screen.getAllByText('Bottom Footer');
-    expect(bottoms.length).toBe(2);
+    expect(screen.getAllByText('Bottom Footer').length).toBe(1);
   });
 
-  it('renders both topContent and bottomContent together', () => {
+  it('renders bottomContent exactly once on mobile (inside the content view)', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        bottomContent={<div>Bottom Footer</div>}
+      />
+    );
+
+    expect(screen.getAllByText('Bottom Footer').length).toBe(1);
+  });
+
+  it('renders both topContent and bottomContent together, once each, on desktop', () => {
     const { container } = render(
       <MasterDetailLayout
         masterContent={<div>Master Content</div>}
@@ -494,14 +612,29 @@ describe('MasterDetailLayout', () => {
       />
     );
 
-    expect(screen.getAllByText('Top Header').length).toBe(2);
-    expect(screen.getAllByText('Bottom Footer').length).toBe(2);
+    expect(screen.getAllByText('Top Header').length).toBe(1);
+    expect(screen.getAllByText('Bottom Footer').length).toBe(1);
 
-    // Desktop: top and bottom should be flex-shrink-0 siblings of the middle area
+    // Desktop: top and bottom are flex-shrink-0 siblings of the middle area
     const root = container.firstElementChild;
     expect(root?.children.length).toBe(3); // desktop top + middle + desktop bottom
     expect(root?.children[0]?.className).toContain('flex-shrink-0');
     expect(root?.children[2]?.className).toContain('flex-shrink-0');
+  });
+
+  it('renders both topContent and bottomContent together, once each, on mobile', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+        topContent={<div>Top Header</div>}
+        bottomContent={<div>Bottom Footer</div>}
+      />
+    );
+
+    expect(screen.getAllByText('Top Header').length).toBe(1);
+    expect(screen.getAllByText('Bottom Footer').length).toBe(1);
   });
 
   it('does not render top/bottom wrappers when not provided', () => {
@@ -518,7 +651,71 @@ describe('MasterDetailLayout', () => {
   });
 });
 
+// The exact bug found and fixed in a real consumer (screenwriter_app): both the desktop layout and the
+// mobile nav/content views used to always be in the DOM (CSS-hidden, not JS-conditional), so a
+// stateful/non-idempotent child — a live, contenteditable editor — ended up mounted twice
+// simultaneously. `useIsDesktop` makes the desktop/mobile choice itself JS-driven; the mobile branch's
+// own nav/content double-buffering (needed for the slide transition below) is untouched.
+describe('MasterDetailLayout single-mount (desktop/mobile)', () => {
+  it('mounts a stateful child once on desktop, not once per breakpoint', () => {
+    let mounts = 0;
+    function StatefulChild() {
+      // A real effect, the way a live editor would register one — counted once means mounted once.
+      useEffect(() => {
+        mounts += 1;
+      }, []);
+      return <div data-testid='stateful'>Stateful</div>;
+    }
+
+    render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<StatefulChild />}
+      />
+    );
+
+    expect(screen.getAllByTestId('stateful').length).toBe(1);
+    expect(mounts).toBe(1);
+  });
+
+  it('mounts a stateful child once on mobile too', () => {
+    setViewportWidth(MOBILE_WIDTH);
+    render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div data-testid='stateful'>Stateful</div>}
+        mobileView='content'
+      />
+    );
+
+    expect(screen.getAllByTestId('stateful').length).toBe(1);
+  });
+
+  it('switches from desktop to mobile markup when the viewport crosses the breakpoint', () => {
+    const { container, rerender } = render(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+    expect(container.querySelector('aside')).toBeTruthy();
+
+    setViewportWidth(MOBILE_WIDTH);
+    rerender(
+      <MasterDetailLayout
+        masterContent={<div>Master Content</div>}
+        detailContent={<div>Detail Content</div>}
+      />
+    );
+    expect(container.querySelector('aside')).toBeNull();
+    expect(container.querySelector('.md\\:hidden')).toBeTruthy();
+  });
+});
+
 describe('MasterDetailLayout mobile transition', () => {
+  // Every test here is exercising the mobile nav<->content slide, so it needs the mobile branch.
+  beforeEach(() => setViewportWidth(MOBILE_WIDTH));
+
   const panes = {
     masterContent: <div>Master Content</div>,
     detailContent: <div>Detail Content</div>,

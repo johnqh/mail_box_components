@@ -2,8 +2,6 @@
  * Theme context and provider for managing theme preferences
  */
 
-/* global MediaQueryListEvent */
-
 import {
   createContext,
   useContext,

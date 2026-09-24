@@ -3,6 +3,39 @@ import { useLayout } from './Layout/LayoutContext';
 import { ui, textVariants } from '@sudobility/design';
 
 /**
+ * JS-driven desktop/mobile split, backed by a real `matchMedia`, not Tailwind's `md:` CSS breakpoint.
+ * `MasterDetailLayout` used to render both the desktop layout and the mobile nav/content views always,
+ * gated only by `hidden md:flex` / `md:hidden` — fine for cheap content, but a real bug for a stateful
+ * child (confirmed directly: a live, contenteditable consumer ended up with two simultaneously-mounted
+ * instances). `typeof window !== 'undefined'` guarded to match this repo's own existing `matchMedia`
+ * usage (`core/theme/theme-context.tsx`); falls back to `false` (mobile) when `matchMedia` is
+ * unavailable — the mobile branch never double-mounts a single content type either way (nav shows only
+ * `masterContent`, content shows only `detailContent`), so this fallback can't reintroduce the bug.
+ */
+function useIsDesktop(breakpointPx: number): boolean {
+  const query = `(min-width: ${breakpointPx}px)`;
+  const [isDesktop, setIsDesktop] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia(query).matches
+  );
+  useEffect(() => {
+    if (
+      typeof window === 'undefined' ||
+      typeof window.matchMedia !== 'function'
+    )
+      return;
+    const mql = window.matchMedia(query);
+    const onChange = () => setIsDesktop(mql.matches);
+    onChange();
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
+  }, [query]);
+  return isDesktop;
+}
+
+/**
  * MasterListItem - Standardized list item with rounded selection overlay
  *
  * Provides consistent selection styling across all master-detail layouts
@@ -210,6 +243,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   // maxWidthClass, not containerClass: the layout adds no padding of its own,
   // so consumers control the inset on both panels.
   const { maxWidthClass } = useLayout();
+  const isDesktop = useIsDesktop(768); // matches Tailwind's default `md:` breakpoint
 
   // Extract first part of title before dash for back button
   const extractFirstPart = (text: string | undefined) => {
@@ -390,7 +424,7 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
   return (
     <div className='w-full flex-1 min-h-0 flex flex-col'>
       {/* Top Content - desktop only (mobile renders topContent inside nav view) */}
-      {topContent && (
+      {topContent && isDesktop && (
         <div className='z-10 flex-shrink-0 hidden md:block'>{topContent}</div>
       )}
 
@@ -403,148 +437,156 @@ export const MasterDetailLayout: React.FC<MasterDetailLayoutProps> = ({
       >
         {/* Desktop Layout — rendered FIRST in the DOM (before the mobile views) so
             the detail-first content leads the HTML source for search engines.
-            Visual layout (master left, detail right) is restored via CSS `order`. */}
-        <div
-          className={`hidden md:flex flex-1 min-h-0`}
-          style={{ width: '100%' }}
-        >
-          {/* Desktop Detail Panel (Main Content) — first in DOM for search engine priority */}
-          <div className='flex-1 min-w-0 flex flex-col min-h-0 order-2'>
-            {/* Constraint box — title and content share it so they stay aligned
+            Visual layout (master left, detail right) is restored via CSS `order`.
+            JS-gated (`isDesktop`), not just CSS-hidden: this and the mobile views below
+            used to both always be in the DOM — see `useIsDesktop`'s own doc comment. */}
+        {isDesktop && (
+          <div
+            className={`hidden md:flex flex-1 min-h-0`}
+            style={{ width: '100%' }}
+          >
+            {/* Desktop Detail Panel (Main Content) — first in DOM for search engine priority */}
+            <div className='flex-1 min-w-0 flex flex-col min-h-0 order-2'>
+              {/* Constraint box — title and content share it so they stay aligned
                 with each other when the panel is capped and centered. */}
-            <div
-              className='w-full min-w-0 flex-1 min-h-0 flex flex-col'
-              style={detailConstraintStyle}
-            >
-              {detailTitle && (
-                <h1
-                  className={`${textVariants.heading.h1()} mb-4 flex-shrink-0 ${
-                    detailPadding ? 'px-4 sm:px-6 pt-6' : ''
-                  } ${detailTitleClassName}`}
-                >
-                  {detailTitle}
-                </h1>
-              )}
               <div
-                ref={contentRef}
-                className={`flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
-                style={detailPanelStyle}
+                className='w-full min-w-0 flex-1 min-h-0 flex flex-col'
+                style={detailConstraintStyle}
               >
+                {detailTitle && (
+                  <h1
+                    className={`${textVariants.heading.h1()} mb-4 flex-shrink-0 ${
+                      detailPadding ? 'px-4 sm:px-6 pt-6' : ''
+                    } ${detailTitleClassName}`}
+                  >
+                    {detailTitle}
+                  </h1>
+                )}
                 <div
-                  className={`h-full ${
-                    detailPadding
-                      ? `px-4 sm:px-6 pb-6 ${detailTitle ? '' : 'pt-6'}`
-                      : ''
-                  } ${contentWrapperClass}`}
-                  style={contentWrapperStyle}
+                  ref={contentRef}
+                  className={`flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+                  style={detailPanelStyle}
                 >
-                  {detailContent}
+                  <div
+                    className={`h-full ${
+                      detailPadding
+                        ? `px-4 sm:px-6 pb-6 ${detailTitle ? '' : 'pt-6'}`
+                        : ''
+                    } ${contentWrapperClass}`}
+                    style={contentWrapperStyle}
+                  >
+                    {detailContent}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Desktop Master Panel (Sidebar) — hidden from search engines when detail is selected */}
-          <aside
-            className={`flex-shrink-0 flex flex-col min-h-0 order-1 ${
-              showMasterBackground ? ui.background.well : ''
-            }`}
-            style={{
-              width: `${masterWidth}px`,
-              minWidth: `${masterWidth}px`,
-            }}
-            aria-hidden={hasDetailSelection ? true : undefined}
-          >
-            {masterSubtitle && (
-              <p
-                className={`${textVariants.body.sm()} mb-6 break-all flex-shrink-0`}
-              >
-                {masterSubtitle}
-              </p>
-            )}
-            <div
-              className={`border-r ${ui.border.default} flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
+            {/* Desktop Master Panel (Sidebar) — hidden from search engines when detail is selected */}
+            <aside
+              className={`flex-shrink-0 flex flex-col min-h-0 order-1 ${
+                showMasterBackground ? ui.background.well : ''
+              }`}
+              style={{
+                width: `${masterWidth}px`,
+                minWidth: `${masterWidth}px`,
+              }}
+              aria-hidden={hasDetailSelection ? true : undefined}
             >
-              {masterContent}
-            </div>
-          </aside>
-        </div>
-
-        {/* Mobile Navigation View - Full Width */}
-        <div
-          className={`md:hidden ${
-            mobileView === 'navigation' || slide ? 'block' : 'hidden'
-          } flex-1 overflow-y-auto`}
-          aria-hidden={hasDetailSelection ? true : undefined}
-        >
-          {topContent && <div className='flex-shrink-0'>{topContent}</div>}
-          <div className={showMasterBackground ? ui.background.well : ''}>
-            {masterSubtitle && (
-              <div className={maxWidthClass}>
-                <p className={`${textVariants.body.sm()} mb-6 break-all`}>
+              {masterSubtitle && (
+                <p
+                  className={`${textVariants.body.sm()} mb-6 break-all flex-shrink-0`}
+                >
                   {masterSubtitle}
                 </p>
-              </div>
-            )}
-            <div className={masterClassName}>{masterContent}</div>
-          </div>
-        </div>
-
-        {/* Mobile Content View */}
-        <div
-          className={`md:hidden ${
-            mobileView === 'content' || slide
-              ? 'flex flex-col flex-1 min-h-0'
-              : 'hidden'
-          } ${maxWidthClass} ${
-            slide
-              ? `absolute inset-0 z-10 ${ui.background.surface} transition-transform ease-out ${detailOffset}`
-              : ''
-          }`}
-          style={
-            slide
-              ? {
-                  ...detailConstraintStyle,
-                  transitionDuration: `${animationDuration}ms`,
-                }
-              : detailConstraintStyle
-          }
-        >
-          {/* Mobile back button */}
-          {mobileView === 'content' && onBackToNavigation && (
-            <button
-              onClick={onBackToNavigation}
-              className={`mb-4 px-4 py-2 border ${ui.border.default} rounded-md text-sm font-medium ${ui.background.surface} hover:bg-muted transition-colors flex-shrink-0 ${textVariants.body.sm()}`}
-            >
-              ← {buttonText}
-            </button>
-          )}
-          <div
-            className={`${ui.background.surface} rounded-lg border ${ui.border.default} flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
-            style={detailPanelStyle}
-          >
-            <div
-              className={`${detailPadding ? 'p-4' : ''} ${contentWrapperClass}`}
-              style={contentWrapperStyle}
-            >
-              {detailTitle && (
-                <h1
-                  className={`${textVariants.heading.h1()} mb-6 ${detailTitleClassName}`}
-                >
-                  {detailTitle}
-                </h1>
               )}
-              {detailContent}
-            </div>
+              <div
+                className={`border-r ${ui.border.default} flex-1 min-h-0 overflow-y-auto ${masterClassName}`}
+              >
+                {masterContent}
+              </div>
+            </aside>
           </div>
-          {bottomContent && (
-            <div className='flex-shrink-0'>{bottomContent}</div>
-          )}
-        </div>
+        )}
+
+        {!isDesktop && (
+          <>
+            {/* Mobile Navigation View - Full Width */}
+            <div
+              className={`md:hidden ${
+                mobileView === 'navigation' || slide ? 'block' : 'hidden'
+              } flex-1 overflow-y-auto`}
+              aria-hidden={hasDetailSelection ? true : undefined}
+            >
+              {topContent && <div className='flex-shrink-0'>{topContent}</div>}
+              <div className={showMasterBackground ? ui.background.well : ''}>
+                {masterSubtitle && (
+                  <div className={maxWidthClass}>
+                    <p className={`${textVariants.body.sm()} mb-6 break-all`}>
+                      {masterSubtitle}
+                    </p>
+                  </div>
+                )}
+                <div className={masterClassName}>{masterContent}</div>
+              </div>
+            </div>
+
+            {/* Mobile Content View */}
+            <div
+              className={`md:hidden ${
+                mobileView === 'content' || slide
+                  ? 'flex flex-col flex-1 min-h-0'
+                  : 'hidden'
+              } ${maxWidthClass} ${
+                slide
+                  ? `absolute inset-0 z-10 ${ui.background.surface} transition-transform ease-out ${detailOffset}`
+                  : ''
+              }`}
+              style={
+                slide
+                  ? {
+                      ...detailConstraintStyle,
+                      transitionDuration: `${animationDuration}ms`,
+                    }
+                  : detailConstraintStyle
+              }
+            >
+              {/* Mobile back button */}
+              {mobileView === 'content' && onBackToNavigation && (
+                <button
+                  onClick={onBackToNavigation}
+                  className={`mb-4 px-4 py-2 border ${ui.border.default} rounded-md text-sm font-medium ${ui.background.surface} hover:bg-muted transition-colors flex-shrink-0 ${textVariants.body.sm()}`}
+                >
+                  ← {buttonText}
+                </button>
+              )}
+              <div
+                className={`${ui.background.surface} rounded-lg border ${ui.border.default} flex-1 min-h-0 overflow-y-auto ${detailClassName}`}
+                style={detailPanelStyle}
+              >
+                <div
+                  className={`${detailPadding ? 'p-4' : ''} ${contentWrapperClass}`}
+                  style={contentWrapperStyle}
+                >
+                  {detailTitle && (
+                    <h1
+                      className={`${textVariants.heading.h1()} mb-6 ${detailTitleClassName}`}
+                    >
+                      {detailTitle}
+                    </h1>
+                  )}
+                  {detailContent}
+                </div>
+              </div>
+              {bottomContent && (
+                <div className='flex-shrink-0'>{bottomContent}</div>
+              )}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Bottom Content - desktop only (mobile renders bottomContent inline) */}
-      {bottomContent && (
+      {bottomContent && isDesktop && (
         <div className='z-10 flex-shrink-0 hidden md:block'>
           {bottomContent}
         </div>

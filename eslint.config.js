@@ -53,6 +53,8 @@ export default [
         // DOM/HTML globals
         HTMLElement: 'readonly',
         DOMRect: 'readonly',
+        MediaQueryList: 'readonly',
+        MediaQueryListEvent: 'readonly',
         HTMLAnchorElement: 'readonly',
         HTMLDivElement: 'readonly',
         HTMLImageElement: 'readonly',

@@ -114,41 +114,58 @@ const SelectScrollDownButton = React.forwardRef<
 SelectScrollDownButton.displayName =
   SelectPrimitive.ScrollDownButton.displayName;
 
+/** How tall the menu wants to be at most (`max-h-96`), in px: what it is measured against before it is laid out. */
+const MENU_MAX_HEIGHT = 384;
+/** Room the menu leaves between itself and the edge of the window. */
+const MENU_EDGE_GAP = 8;
+
+/**
+ * Which side of its trigger a menu opens on: below, unless there is not room for it there and there is more room
+ * above. `wanted` is the height the menu would like (its content, capped).
+ */
+export function chooseMenuSide(
+  trigger: { top: number; bottom: number },
+  viewportHeight: number,
+  wanted: number
+): 'top' | 'bottom' {
+  const below = viewportHeight - trigger.bottom - MENU_EDGE_GAP;
+  const above = trigger.top - MENU_EDGE_GAP;
+  return below < wanted && above > below ? 'top' : 'bottom';
+}
+
 const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
 >(({ className, children, position = 'popper', side, ...props }, ref) => {
-  const contentRef = React.useRef<HTMLDivElement>(null);
   const [autoSide, setAutoSide] = React.useState<'top' | 'bottom'>('bottom');
 
+  // The content element exists only while the menu is open, so this runs on every opening (an effect with no
+  // dependencies ran once, when the closed select mounted, found no content and never chose a side at all).
+  // It runs while React attaches the element, before the browser paints.
   const handleRef = React.useCallback(
     (node: HTMLDivElement | null) => {
-      (contentRef as React.MutableRefObject<HTMLDivElement | null>).current =
-        node;
       if (typeof ref === 'function') ref(node);
       else if (ref)
         (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      if (!node || side) return;
+      const trigger = document.querySelector<HTMLElement>(
+        '[role="combobox"][data-state="open"]'
+      );
+      if (!trigger) return;
+      const wanted = Math.min(
+        MENU_MAX_HEIGHT,
+        node.scrollHeight || MENU_MAX_HEIGHT
+      );
+      setAutoSide(
+        chooseMenuSide(
+          trigger.getBoundingClientRect(),
+          window.innerHeight,
+          wanted
+        )
+      );
     },
-    [ref]
+    [ref, side]
   );
-
-  // Determine optimal side before browser paints
-  React.useLayoutEffect(() => {
-    if (side || !contentRef.current) return;
-    const trigger = document.querySelector<HTMLElement>(
-      '[role="combobox"][data-state="open"]'
-    );
-    if (!trigger) return;
-
-    const triggerRect = trigger.getBoundingClientRect();
-    const contentHeight = contentRef.current.scrollHeight;
-    const spaceBelow = window.innerHeight - triggerRect.bottom;
-    const spaceAbove = triggerRect.top;
-
-    setAutoSide(
-      spaceBelow < contentHeight && spaceAbove > spaceBelow ? 'top' : 'bottom'
-    );
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <SelectPrimitive.Portal>
@@ -156,7 +173,10 @@ const SelectContent = React.forwardRef<
         ref={handleRef}
         className={cn(
           variants.overlays.dropdown.menu(),
-          'z-[1000000] max-h-96 overflow-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+          // `relative`, replacing the variant's `absolute`: the positioning wrapper around the menu takes its size
+          // from the menu, and an absolute menu gives it none. A wrapper of no height placed ABOVE the trigger
+          // still let the menu hang down from it, over the trigger and off the window.
+          'relative z-[1000000] max-h-96 overflow-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
           position === 'popper' &&
             // `min-w`, not `w`: the menu should never be narrower than its own
             // items. Pinning it to the trigger's width broke any select whose
@@ -167,6 +187,15 @@ const SelectContent = React.forwardRef<
         )}
         position={position}
         side={side ?? autoSide}
+        collisionPadding={MENU_EDGE_GAP}
+        // Never taller than the room on the side it opened on: the list scrolls inside the menu instead of running
+        // off the window. As a style, not a class: an arbitrary-value class exists only in an app whose Tailwind
+        // build happens to scan this file.
+        style={{
+          maxHeight:
+            'min(24rem, var(--radix-select-content-available-height, 24rem))',
+          ...props.style,
+        }}
         {...props}
       >
         <SelectScrollUpButton />

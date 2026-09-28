@@ -10,6 +10,7 @@ import {
   SelectGroup,
   SelectLabel,
   SelectSeparator,
+  chooseMenuSide,
 } from '../ui/select';
 
 describe('Select Component', () => {
@@ -191,5 +192,80 @@ describe('Select Component', () => {
     expect(content?.className).not.toContain(
       ' w-[var(--radix-select-trigger-width)]'
     );
+  });
+
+  describe('which way the menu opens', () => {
+    const openAt = (top: number, viewport: number, side?: 'top' | 'bottom') => {
+      const original = Element.prototype.getBoundingClientRect;
+      const height = window.innerHeight;
+      Object.defineProperty(window, 'innerHeight', {
+        value: viewport,
+        configurable: true,
+      });
+      Element.prototype.getBoundingClientRect = function () {
+        const isTrigger = this.getAttribute('role') === 'combobox';
+        return {
+          top: isTrigger ? top : 0,
+          bottom: isTrigger ? top + 36 : 0,
+          left: 0,
+          right: 200,
+          width: 200,
+          height: isTrigger ? 36 : 0,
+          x: 0,
+          y: isTrigger ? top : 0,
+          toJSON: () => ({}),
+        } as DOMRect;
+      };
+      const view = render(
+        <Select>
+          <SelectTrigger data-testid='t'>
+            <SelectValue placeholder='Kind' />
+          </SelectTrigger>
+          <SelectContent side={side}>
+            {Array.from({ length: 24 }, (_, i) => (
+              <SelectItem key={i} value={`k${i}`}>
+                Kind {i}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      );
+      fireEvent.click(screen.getByTestId('t'));
+      const menu = document.querySelector('[role="listbox"]');
+      const found = menu?.getAttribute('data-side') ?? null;
+      const style = menu?.getAttribute('style') ?? '';
+      view.unmount();
+      Element.prototype.getBoundingClientRect = original;
+      Object.defineProperty(window, 'innerHeight', {
+        value: height,
+        configurable: true,
+      });
+      return { side: found, style };
+    };
+
+    it('opens below when there is room, above when the trigger is at the bottom of the window', () => {
+      expect(chooseMenuSide({ top: 100, bottom: 136 }, 900, 384)).toBe(
+        'bottom'
+      );
+      expect(chooseMenuSide({ top: 700, bottom: 736 }, 900, 384)).toBe('top');
+      // room on neither side for all of it: the side with more room
+      expect(chooseMenuSide({ top: 327, bottom: 363 }, 520, 384)).toBe('top');
+      expect(chooseMenuSide({ top: 100, bottom: 136 }, 400, 384)).toBe(
+        'bottom'
+      );
+      // a short menu that fits below stays below, even low in the window
+      expect(chooseMenuSide({ top: 700, bottom: 736 }, 900, 120)).toBe(
+        'bottom'
+      );
+    });
+
+    // Which side the menu ends up on is decided by the positioning library from real geometry, which jsdom does
+    // not have: that is checked in a browser (screenwriter_app's e2e/catalog-extras.e2e.ts). Here: that the menu
+    // is capped to the room it has, whichever side that is.
+    it('is never taller than the room on the side it opened on', () => {
+      expect(openAt(760, 900).style).toContain(
+        '--radix-select-content-available-height'
+      );
+    });
   });
 });

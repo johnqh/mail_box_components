@@ -410,3 +410,13 @@ The React Native port of this library is `@sudobility/components-rn` in the `mai
 ## Git Workflow
 
 - Do not use feature branches for code changes. Always stay on the current branch.
+
+## Select: which way the menu opens
+
+`SelectContent` (`src/ui/select.tsx`) opens below its trigger unless there is not room there and there is more above (`chooseMenuSide`), and is never taller than the room on the side it opened on (`max-height: min(24rem, var(--radix-select-content-available-height))`, as a style: an arbitrary-value class exists only in an app whose Tailwind build scans this file). Three things were wrong before, all needed for a menu at the bottom of a window to work:
+
+- The side was chosen in an effect with no dependencies, which ran once when the CLOSED select mounted, found no content element and never ran again. It is chosen in the content's ref callback now, which runs on every opening.
+- `variants.overlays.dropdown.menu()` makes the menu `absolute`, so Radix's positioning wrapper around it had no height: placed above the trigger, the menu still hung down from it. The menu is `relative` here.
+- Nothing capped the height to the room available, so a long list ran off the window on either side.
+
+Where the menu ends up is decided from real geometry, which jsdom does not have: `screenwriter_app`'s `e2e/catalog-extras.e2e.ts` checks it in a browser.

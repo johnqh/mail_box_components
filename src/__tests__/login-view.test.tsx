@@ -162,6 +162,38 @@ describe('LoginModal', () => {
     ).toBeInTheDocument();
   });
 
+  it('opens on the mode it is asked for, each time it opens', async () => {
+    const user = userEvent.setup();
+    const props = {
+      onClose: vi.fn(),
+      onEmailSignIn: signIn(),
+      onEmailSignUp: signIn(),
+      initialMode: 'signUp' as const,
+    };
+    const { rerender } = render(<LoginModal open {...props} />);
+    expect(
+      screen.getByRole('dialog', { name: 'Create your account' })
+    ).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Sign in' }));
+    rerender(<LoginModal open={false} {...props} />);
+    rerender(<LoginModal open {...props} />);
+    expect(
+      screen.getByRole('dialog', { name: 'Create your account' })
+    ).toBeInTheDocument();
+  });
+
+  it('opens on signing in when it has no way to sign up', () => {
+    render(
+      <LoginModal
+        open
+        onClose={vi.fn()}
+        onEmailSignIn={signIn()}
+        initialMode='signUp'
+      />
+    );
+    expect(screen.getByRole('dialog', { name: 'Sign in' })).toBeInTheDocument();
+  });
+
   it('closes once somebody has signed in', async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();

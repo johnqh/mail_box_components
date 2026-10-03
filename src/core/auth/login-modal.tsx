@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormModal } from '../../ui/form-modal';
 import { LoginView } from './login-view';
 import type { LoginViewMode, LoginViewProps } from './login-view';
@@ -29,6 +29,12 @@ export interface LoginModalProps extends Omit<
   /** The close button, the backdrop, Escape — and a successful sign-in. */
   onClose: () => void;
   modalText?: Partial<LoginModalText>;
+  /**
+   * Which form each opening starts on (default: 'signIn') — a "Create
+   * account" button passes 'signUp'. A mode the form has no way to do opens
+   * on signing in, and the title follows.
+   */
+  initialMode?: LoginViewMode;
 }
 
 /**
@@ -43,10 +49,21 @@ export function LoginModal({
   onClose,
   onSuccess,
   modalText,
+  initialMode = 'signIn',
   ...view
 }: LoginModalProps) {
   const text = { ...DEFAULT_LOGIN_MODAL_TEXT, ...modalText };
-  const [mode, setMode] = useState<LoginViewMode>('signIn');
+  const [requestedMode, setMode] = useState<LoginViewMode>(initialMode);
+  // Every opening starts afresh on `initialMode`, not where the last one
+  // was left.
+  useEffect(() => {
+    if (open) setMode(initialMode);
+  }, [open, initialMode]);
+  const mode: LoginViewMode =
+    (requestedMode === 'signUp' && !view.onEmailSignUp) ||
+    (requestedMode === 'resetPassword' && !view.onPasswordReset)
+      ? 'signIn'
+      : requestedMode;
   return (
     <FormModal
       open={open}

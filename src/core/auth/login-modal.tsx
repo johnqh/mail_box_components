@@ -8,6 +8,8 @@ export interface LoginModalText {
   signInTitle: string;
   /** The bar's title while creating an account. */
   signUpTitle: string;
+  /** The bar's title while sending a link to reset a password. */
+  resetPasswordTitle: string;
   /** The accessible name of the close button. */
   close: string;
 }
@@ -15,6 +17,7 @@ export interface LoginModalText {
 export const DEFAULT_LOGIN_MODAL_TEXT: LoginModalText = {
   signInTitle: 'Sign in',
   signUpTitle: 'Create your account',
+  resetPasswordTitle: 'Reset your password',
   close: 'Close',
 };
 
@@ -47,12 +50,19 @@ export function LoginModal({
   return (
     <FormModal
       open={open}
-      title={mode === 'signUp' ? text.signUpTitle : text.signInTitle}
+      title={
+        mode === 'signUp'
+          ? text.signUpTitle
+          : mode === 'resetPassword'
+            ? text.resetPasswordTitle
+            : text.signInTitle
+      }
       onClose={onClose}
       actions={[]}
       closeAriaLabel={text.close}
-      // The form at its full width, inside the dialog's own padding.
-      className='sm:max-w-[392px]'
+      // The form at its full width (`LOGIN_VIEW_MAX_WIDTH`, 448), inside
+      // the dialog's own 16px of padding either side.
+      className='sm:max-w-[480px]'
     >
       <LoginView
         {...view}

@@ -187,3 +187,116 @@ describe('LoginModal', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });
+
+describe('LoginView password reset', () => {
+  const reset = () => vi.fn().mockResolvedValue(undefined);
+
+  it('offers no way to a forgotten password unless given one', () => {
+    render(<LoginView onEmailSignIn={signIn()} />);
+    expect(
+      screen.queryByRole('button', { name: 'Forgot password?' })
+    ).not.toBeInTheDocument();
+  });
+
+  it('offers it while signing in, and not while creating an account', async () => {
+    const user = userEvent.setup();
+    render(
+      <LoginView
+        onEmailSignIn={signIn()}
+        onEmailSignUp={signIn()}
+        onPasswordReset={reset()}
+      />
+    );
+    expect(
+      screen.getByRole('button', { name: 'Forgot password?' })
+    ).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Sign up' }));
+    expect(
+      screen.queryByRole('button', { name: 'Forgot password?' })
+    ).not.toBeInTheDocument();
+  });
+
+  it('sends the link to the address already typed, and says so', async () => {
+    const user = userEvent.setup();
+    const onPasswordReset = reset();
+    const onSuccess = vi.fn();
+    const onModeChange = vi.fn();
+    render(
+      <LoginView
+        onEmailSignIn={signIn()}
+        onPasswordReset={onPasswordReset}
+        onSuccess={onSuccess}
+        onModeChange={onModeChange}
+      />
+    );
+    await user.type(screen.getByLabelText('Email address'), 'ada@example.com');
+    await user.click(screen.getByRole('button', { name: 'Forgot password?' }));
+    expect(onModeChange).toHaveBeenCalledWith('resetPassword');
+    // The address carries over; there is no password to ask for.
+    expect(screen.queryByLabelText('Password')).not.toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Send reset link' }));
+    expect(onPasswordReset).toHaveBeenCalledWith('ada@example.com');
+    expect(await screen.findByRole('status')).toHaveTextContent(
+      /Check your email/
+    );
+    // Sending a link signs nobody in.
+    expect(onSuccess).not.toHaveBeenCalled();
+  });
+
+  it('does not say whether the address has an account', async () => {
+    const user = userEvent.setup();
+    const onPasswordReset = vi.fn().mockRejectedValue(
+      Object.assign(new Error('There is no user record.'), {
+        code: 'auth/user-not-found',
+      })
+    );
+    render(
+      <LoginView
+        onEmailSignIn={signIn()}
+        onPasswordReset={onPasswordReset}
+        mode='resetPassword'
+      />
+    );
+    await user.type(screen.getByLabelText('Email address'), 'x@y.z');
+    await user.click(screen.getByRole('button', { name: 'Send reset link' }));
+    expect(await screen.findByRole('status')).toBeInTheDocument();
+    expect(
+      screen.queryByText('There is no user record.')
+    ).not.toBeInTheDocument();
+  });
+
+  it('reports any other failure, and leads back to signing in', async () => {
+    const user = userEvent.setup();
+    const onPasswordReset = vi.fn().mockRejectedValue(
+      Object.assign(new Error('Too many requests.'), {
+        code: 'auth/too-many-requests',
+      })
+    );
+    render(
+      <LoginView onEmailSignIn={signIn()} onPasswordReset={onPasswordReset} />
+    );
+    await user.click(screen.getByRole('button', { name: 'Forgot password?' }));
+    await user.type(screen.getByLabelText('Email address'), 'x@y.z');
+    await user.click(screen.getByRole('button', { name: 'Send reset link' }));
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'Too many requests.'
+    );
+    await user.click(screen.getByRole('button', { name: 'Back to sign in' }));
+    expect(screen.getByLabelText('Password')).toBeInTheDocument();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it('titles the modal for what it is doing', async () => {
+    const user = userEvent.setup();
+    render(
+      <LoginModal
+        open
+        onClose={vi.fn()}
+        onEmailSignIn={signIn()}
+        onPasswordReset={reset()}
+      />
+    );
+    await user.click(screen.getByRole('button', { name: 'Forgot password?' }));
+    expect(screen.getByText('Reset your password')).toBeInTheDocument();
+  });
+});

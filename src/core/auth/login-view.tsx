@@ -1,7 +1,12 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
+import {
+  buttonVariant,
+  colors as designColors,
+  focusRing,
+  touchTargetClasses,
+  ui,
+} from '@sudobility/design';
 import { cn } from '../../lib/utils';
-import { Button } from '../../ui/button';
-import { Input } from '../../ui/input';
 
 /**
  * Google's mark. The fills are Google's own trademarked colours and must not
@@ -45,8 +50,11 @@ function AppleIcon({ className }: { className?: string }) {
   );
 }
 
-/** Whether the view is signing somebody in or creating their account. */
-export type LoginViewMode = 'signIn' | 'signUp';
+/**
+ * Whether the view is signing somebody in, creating their account, or sending
+ * a link to reset a forgotten password.
+ */
+export type LoginViewMode = 'signIn' | 'signUp' | 'resetPassword';
 
 /** What a failed attempt reports to `onAuthError`. */
 export interface LoginViewError {
@@ -72,6 +80,16 @@ export interface LoginViewText {
   dontHaveAccount: string;
   /** Shown when an attempt fails with no message of its own. */
   genericError: string;
+  /** The link under the password field that leads to resetting it. */
+  forgotPassword: string;
+  /** What the reset form is for, above its field. */
+  resetPasswordHint: string;
+  /** The reset form's button. */
+  sendResetLink: string;
+  /** Shown once the link has been sent. */
+  resetEmailSent: string;
+  /** The link that leads from the reset form back to signing in. */
+  backToSignIn: string;
 }
 
 export const DEFAULT_LOGIN_VIEW_TEXT: LoginViewText = {
@@ -87,10 +105,21 @@ export const DEFAULT_LOGIN_VIEW_TEXT: LoginViewText = {
   alreadyHaveAccount: 'Already have an account?',
   dontHaveAccount: "Don't have an account?",
   genericError: 'Authentication failed',
+  forgotPassword: 'Forgot password?',
+  resetPasswordHint:
+    "Enter your email address and we'll send you a link to reset your password.",
+  sendResetLink: 'Send reset link',
+  resetEmailSent:
+    'If an account uses that address, a link to reset its password is on its way. Check your email.',
+  backToSignIn: 'Back to sign in',
 };
 
-/** The widest the view is drawn, in pixels, on every platform. */
-export const LOGIN_VIEW_MAX_WIDTH = 360;
+/**
+ * The widest the view is drawn, in pixels: Tailwind's `max-w-md`, the width
+ * building_blocks' `LoginPage` held its form to before it was made of this
+ * view.
+ */
+export const LOGIN_VIEW_MAX_WIDTH = 448;
 
 // Codes that mean the user backed out rather than that something failed.
 const USER_ACTION_ERROR_CODES = [
@@ -107,6 +136,11 @@ export interface LoginViewProps {
    * only when this is given.
    */
   onEmailSignUp?: (email: string, password: string) => Promise<void>;
+  /**
+   * Sends a link to reset the password for an address. Throws on failure.
+   * The way to a forgotten password is offered only when this is given.
+   */
+  onPasswordReset?: (email: string) => Promise<void>;
   /** Signs in with Google. The button is drawn only when this is given. */
   onGoogleSignIn?: () => Promise<void>;
   /** Signs in with Apple. The button is drawn only when this is given. */
@@ -124,6 +158,56 @@ export interface LoginViewProps {
   onModeChange?: (mode: LoginViewMode) => void;
   text?: Partial<LoginViewText>;
   className?: string;
+  /**
+   * The colour of the view's links — the mode toggle and "Forgot password?".
+   * A page with a colour of its own passes it; the default is the theme's
+   * primary.
+   */
+  linkClassName?: string;
+}
+
+/*
+  The form is drawn with the design system's classes for a field, a button
+  and an alert — the classes `LoginPage` in building_blocks drew its own form
+  with before it was made of this view — so the page, the modal and any pane
+  that holds this show one form, pixel for pixel.
+*/
+const FIELD_CLASS = cn(
+  `mt-1 appearance-none block w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm ${designColors.component.input.default.base} ${designColors.component.input.default.dark}`,
+  focusRing
+);
+const BUTTON_CLASS =
+  'w-full inline-flex items-center justify-center font-medium rounded-md sm:text-sm';
+const PROVIDER_BUTTON_CLASS = cn(
+  BUTTON_CLASS,
+  buttonVariant('outline'),
+  `${touchTargetClasses.minHeight} px-3 py-2 ${ui.background.surface} ${ui.text.label} disabled:opacity-50 disabled:cursor-not-allowed`
+);
+
+function Spinner() {
+  return (
+    <svg
+      className='animate-spin -ml-1 mr-2 h-4 w-4'
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      viewBox='0 0 24 24'
+      aria-hidden='true'
+    >
+      <circle
+        className='opacity-25'
+        cx='12'
+        cy='12'
+        r='10'
+        stroke='currentColor'
+        strokeWidth='4'
+      />
+      <path
+        className='opacity-75'
+        fill='currentColor'
+        d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+      />
+    </svg>
+  );
 }
 
 /**
@@ -136,8 +220,8 @@ export interface LoginViewProps {
  * wider.
  *
  * Presentational and provider-agnostic: it takes the handlers and knows
- * nothing of Firebase. The fields and buttons are the design system's own
- * `Input` and `Button`, so they follow its theme.
+ * nothing of Firebase. The fields, buttons and alert are drawn with
+ * `@sudobility/design`'s classes, so they follow its theme.
  *
  * @example
  * ```tsx
@@ -152,6 +236,7 @@ export interface LoginViewProps {
 export function LoginView({
   onEmailSignIn,
   onEmailSignUp,
+  onPasswordReset,
   onGoogleSignIn,
   onAppleSignIn,
   onSuccess,
@@ -160,18 +245,27 @@ export function LoginView({
   onModeChange,
   text: textOverrides,
   className,
+  linkClassName = 'text-primary hover:text-primary/80',
 }: LoginViewProps) {
   const text = { ...DEFAULT_LOGIN_VIEW_TEXT, ...textOverrides };
   const [ownMode, setOwnMode] = useState<LoginViewMode>('signIn');
-  // Creating an account is a mode only where there is a way to create one.
+  // Creating an account, or resetting a password, is a mode only where there
+  // is a way to do it.
   const requestedMode = controlledMode ?? ownMode;
-  const mode: LoginViewMode = onEmailSignUp ? requestedMode : 'signIn';
+  const mode: LoginViewMode =
+    (requestedMode === 'signUp' && !onEmailSignUp) ||
+    (requestedMode === 'resetPassword' && !onPasswordReset)
+      ? 'signIn'
+      : requestedMode;
   const creating = mode === 'signUp';
+  const resetting = mode === 'resetPassword';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  // The reset link has gone: the form says so instead of offering it again.
+  const [resetSent, setResetSent] = useState(false);
   const [popupPending, setPopupPending] = useState(false);
   const popupStartedAt = useRef<number | null>(null);
   // Two views may be on one page — a pane and a modal over it — and an id
@@ -206,10 +300,37 @@ export function LoginView({
     else if (!isUserAction) setError(message);
   };
 
+  /*
+    Sending the link signs nobody in, so `onSuccess` is not told. What it
+    says afterwards is the same whether or not the address has an account —
+    Firebase's own answer, with enumeration protection on, is the same too,
+    and a form that said "no such account" would tell anyone which addresses
+    have one. Without that protection Firebase does say so; this form still
+    does not.
+  */
+  const sendReset = async () => {
+    if (!onPasswordReset) return;
+    try {
+      await onPasswordReset(email.trim());
+      setResetSent(true);
+    } catch (err) {
+      if ((err as { code?: string }).code === 'auth/user-not-found') {
+        setResetSent(true);
+      } else {
+        report(err);
+      }
+    }
+  };
+
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     setBusy(true);
+    if (resetting) {
+      await sendReset();
+      setBusy(false);
+      return;
+    }
     try {
       if (creating && onEmailSignUp) await onEmailSignUp(email, password);
       else await onEmailSignIn(email, password);
@@ -238,12 +359,13 @@ export function LoginView({
     }
   };
 
-  const toggleMode = () => {
-    const next: LoginViewMode = creating ? 'signIn' : 'signUp';
+  const goTo = (next: LoginViewMode) => {
     setError(null);
+    setResetSent(false);
     setOwnMode(next);
     onModeChange?.(next);
   };
+  const toggleMode = () => goTo(creating ? 'signIn' : 'signUp');
 
   return (
     <div
@@ -251,124 +373,170 @@ export function LoginView({
       className={cn('mx-auto w-full bg-transparent', className)}
       style={{ maxWidth: LOGIN_VIEW_MAX_WIDTH }}
     >
-      <form className='space-y-4' onSubmit={submit}>
+      <form className='space-y-6' onSubmit={submit}>
         {error && (
           <div
             role='alert'
-            className='rounded-md border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive'
+            className={`${designColors.component.alert.error.base} ${designColors.component.alert.error.dark} border px-4 py-3 rounded-md text-sm`}
           >
             {error}
           </div>
         )}
 
-        <div className='space-y-1'>
-          <label
-            htmlFor={`${id}-email`}
-            className='block text-sm font-medium text-foreground'
+        {resetting && (
+          <p className={`text-sm ${ui.text.muted}`}>{text.resetPasswordHint}</p>
+        )}
+
+        {resetting && resetSent && (
+          <div
+            role='status'
+            className={`border px-4 py-3 rounded-md text-sm ${ui.border.default} ${ui.background.subtle} ${ui.text.label}`}
           >
-            {text.emailLabel}
-          </label>
-          <Input
-            id={`${id}-email`}
-            name='email'
-            type='email'
-            autoComplete='email'
-            required
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-            placeholder={text.emailPlaceholder}
-            className='w-full'
-          />
+            {text.resetEmailSent}
+          </div>
+        )}
+
+        <div className='space-y-4'>
+          <div>
+            <label htmlFor={`${id}-email`} className={`block ${ui.text.label}`}>
+              {text.emailLabel}
+            </label>
+            <input
+              id={`${id}-email`}
+              name='email'
+              type='email'
+              autoComplete='email'
+              required
+              value={email}
+              onChange={event => setEmail(event.target.value)}
+              placeholder={text.emailPlaceholder}
+              className={FIELD_CLASS}
+            />
+          </div>
+
+          {!resetting && (
+            <div>
+              <label
+                htmlFor={`${id}-password`}
+                className={`block ${ui.text.label}`}
+              >
+                {text.passwordLabel}
+              </label>
+              <input
+                id={`${id}-password`}
+                name='password'
+                type='password'
+                autoComplete={creating ? 'new-password' : 'current-password'}
+                required
+                value={password}
+                onChange={event => setPassword(event.target.value)}
+                placeholder={text.passwordPlaceholder}
+                className={FIELD_CLASS}
+              />
+              {/*
+                Under the field it is about, at its trailing edge, where every
+                sign-in form puts it. Only while signing in: somebody creating
+                an account has no password to forget.
+              */}
+              {onPasswordReset && !creating && (
+                <div className='mt-2 text-right'>
+                  <button
+                    type='button'
+                    onClick={() => goTo('resetPassword')}
+                    className={cn('text-sm font-medium', linkClassName)}
+                  >
+                    {text.forgotPassword}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
-        <div className='space-y-1'>
-          <label
-            htmlFor={`${id}-password`}
-            className='block text-sm font-medium text-foreground'
+        <div>
+          <button
+            type='submit'
+            disabled={busy}
+            className={cn(
+              BUTTON_CLASS,
+              buttonVariant('primary'),
+              'px-3 py-2 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed'
+            )}
           >
-            {text.passwordLabel}
-          </label>
-          <Input
-            id={`${id}-password`}
-            name='password'
-            type='password'
-            autoComplete={creating ? 'new-password' : 'current-password'}
-            required
-            value={password}
-            onChange={event => setPassword(event.target.value)}
-            placeholder={text.passwordPlaceholder}
-            className='w-full'
-          />
+            {busy && <Spinner />}
+            {resetting
+              ? text.sendResetLink
+              : creating
+                ? text.signUp
+                : text.signIn}
+          </button>
         </div>
 
-        <Button
-          type='submit'
-          variant='primary'
-          animation='none'
-          disabled={busy}
-          className='w-full'
-        >
-          {creating ? text.signUp : text.signIn}
-        </Button>
-
-        {(onGoogleSignIn || onAppleSignIn) && (
+        {!resetting && (onGoogleSignIn || onAppleSignIn) && (
           <>
             {/*
               A rule either side of the words, not the words laid over one
               rule: that needs a background behind them to hide the line, and
-              this view has none of its own.
+              this view has none of its own. The gap is the `px-2` the words
+              were padded by.
             */}
-            <div className='flex items-center gap-3'>
-              <div className='h-px flex-1 bg-border' />
-              <span className='text-sm text-muted-foreground'>
-                {text.orContinueWith}
-              </span>
-              <div className='h-px flex-1 bg-border' />
+            <div className='flex items-center gap-2 text-sm'>
+              <div className={`flex-1 border-t ${ui.border.default}`} />
+              <span className={ui.text.muted}>{text.orContinueWith}</span>
+              <div className={`flex-1 border-t ${ui.border.default}`} />
             </div>
 
             <div className='space-y-3'>
               {onGoogleSignIn && (
-                <Button
+                <button
                   type='button'
-                  variant='outline'
-                  animation='none'
                   disabled={busy}
                   onClick={() => void withProvider(onGoogleSignIn)}
-                  className='w-full'
+                  className={PROVIDER_BUTTON_CLASS}
                 >
-                  <GoogleIcon className='mr-2 h-5 w-5' />
+                  <GoogleIcon className='h-5 w-5 mr-2' />
                   {text.signInWithGoogle}
-                </Button>
+                </button>
               )}
               {onAppleSignIn && (
-                <Button
+                <button
                   type='button'
-                  variant='outline'
-                  animation='none'
                   disabled={busy}
                   onClick={() => void withProvider(onAppleSignIn)}
-                  className='w-full'
+                  className={PROVIDER_BUTTON_CLASS}
                 >
-                  <AppleIcon className='mr-2 h-5 w-5' />
+                  <AppleIcon className='h-5 w-5 mr-2' />
                   {text.signInWithApple}
-                </Button>
+                </button>
               )}
             </div>
           </>
         )}
       </form>
 
-      {onEmailSignUp && (
-        <p className='mt-4 text-center text-sm text-muted-foreground'>
-          {creating ? text.alreadyHaveAccount : text.dontHaveAccount}{' '}
+      {resetting ? (
+        <p className={`mt-8 text-center text-sm ${ui.text.muted}`}>
           <button
             type='button'
-            onClick={toggleMode}
-            className='font-medium text-primary underline-offset-4 hover:underline'
+            onClick={() => goTo('signIn')}
+            className={cn('font-medium', linkClassName)}
           >
-            {creating ? text.signIn : text.signUp}
+            {text.backToSignIn}
           </button>
         </p>
+      ) : (
+        onEmailSignUp && (
+          <p className={`mt-8 text-center text-sm ${ui.text.muted}`}>
+            {creating ? text.alreadyHaveAccount : text.dontHaveAccount}{' '}
+            <button
+              type='button'
+              onClick={toggleMode}
+              className={cn('font-medium', linkClassName)}
+            >
+              {creating ? text.signIn : text.signUp}
+            </button>
+          </p>
+        )
       )}
     </div>
   );

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { getCardVariantColors, textVariant } from '@sudobility/design';
+import { getCardVariantColors } from '@sudobility/design';
 import { cn } from '../lib/utils';
 
 export interface GridTileProps {
@@ -22,8 +22,8 @@ export interface GridTileProps {
 /**
  * A compact, clickable card that packs an object's identity vertically so many
  * fit across a wide container — the grid counterpart to a full-width list row.
- * Use inside {@link CardGrid}. Surfaces and text follow the design system
- * (`@sudobility/design` card + text variants).
+ * Use inside {@link CardGrid}. Surfaces follow the design system's card
+ * colours and text its semantic tokens, so both follow the active theme.
  *
  * Layout: `[leading icon ……… topRight badge]` / title (2-line clamp) / subtitle
  * (truncated path) / optional footer badge row. `actions` pin to the top-right
@@ -55,16 +55,16 @@ export function GridTile({
           {topRight != null && <span className='shrink-0'>{topRight}</span>}
         </div>
       )}
-      <div className={cn('mt-2 line-clamp-2', textVariant('sm', 'medium'))}>
+      <div
+        className={cn(
+          'mt-2 line-clamp-2',
+          'text-sm font-medium text-foreground'
+        )}
+      >
         {title}
       </div>
       {subtitle != null && subtitle !== '' && (
-        <div
-          className={cn(
-            'mt-0.5 truncate font-mono',
-            textVariant('xs', 'normal', 'muted')
-          )}
-        >
+        <div className='mt-0.5 truncate font-mono text-xs font-normal text-muted-foreground'>
           {subtitle}
         </div>
       )}

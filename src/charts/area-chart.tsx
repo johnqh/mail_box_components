@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
+import { seriesColors } from '../lib/theme';
 
 export interface AreaChartDataPoint {
   x: number;
@@ -70,13 +70,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
   const minY = Math.min(...allPoints.map(p => p.y));
   const maxX = Math.max(...allPoints.map(p => p.x));
 
-  const defaultColors = [
-    colors.raw.blue[500],
-    colors.raw.green[500],
-    colors.raw.amber[500],
-    colors.raw.red[500],
-    colors.raw.purple[500],
-  ];
+  const defaultColors = seriesColors();
 
   const getAreaPath = (data: AreaChartDataPoint[]): string => {
     if (data.length === 0) return '';
@@ -154,7 +148,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
                   {/* Area fill */}
                   <path
                     d={getAreaPath(s.data)}
-                    fill={color}
+                    style={{ fill: color }}
                     fillOpacity={fillOpacity}
                   />
 
@@ -162,7 +156,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
                   <path
                     d={getLinePath(s.data)}
                     fill='none'
-                    stroke={color}
+                    style={{ stroke: color }}
                     strokeWidth='0.5'
                     vectorEffect='non-scaling-stroke'
                   />

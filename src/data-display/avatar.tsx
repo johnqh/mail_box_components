@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { cn } from '../lib/utils';
-import { getStatusIndicatorColor } from '@sudobility/design';
+import { STATUS_BG } from '../lib/theme';
 
 export interface AvatarProps {
   /** Image source URL */
@@ -66,10 +66,10 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   // Status indicator configurations using design system
   const statusClasses = {
-    online: getStatusIndicatorColor('success'),
-    offline: getStatusIndicatorColor('neutral'),
-    away: getStatusIndicatorColor('warning'),
-    busy: getStatusIndicatorColor('error'),
+    online: STATUS_BG.success,
+    offline: STATUS_BG.neutral,
+    away: STATUS_BG.warning,
+    busy: STATUS_BG.error,
   };
 
   // Generate initials from name

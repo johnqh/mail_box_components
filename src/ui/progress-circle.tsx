@@ -70,7 +70,6 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (progress / 100) * circumference;
 
-  // Color variants aligned with design system palette (colors.raw.*)
   // SVG stroke classes mapped to semantic theme tokens
   const variantColors = {
     primary: 'stroke-primary',

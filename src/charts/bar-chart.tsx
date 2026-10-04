@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
+import { PRIMARY_FALLBACK, themeColor } from '../lib/theme';
 
 export interface BarChartDataPoint {
   label: string;
@@ -54,7 +54,7 @@ export const BarChart: React.FC<BarChartProps> = ({
   className,
 }) => {
   const maxValue = Math.max(...data.map(d => d.value));
-  const defaultColor = colors.raw.blue[500];
+  const defaultColor = themeColor('primary', PRIMARY_FALLBACK);
 
   return (
     <div className={cn('w-full', className)}>

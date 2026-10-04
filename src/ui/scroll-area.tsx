@@ -54,10 +54,22 @@ export const ScrollArea: React.FC<ScrollAreaProps> = ({
     : cn(
         // Custom scrollbar styling
         'scrollbar-thin',
-        'scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600',
-        'scrollbar-track-gray-100 dark:scrollbar-track-gray-800',
-        'hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-gray-500'
+        'scrollbar-thumb-border scrollbar-track-muted',
+        'hover:scrollbar-thumb-muted-foreground'
       );
+
+  /*
+    The classes above need a scrollbar plugin in the consuming app. The
+    standard properties need nothing, and take the theme's colours in light
+    and dark alike (a fixed gray-100 track was a light band in dark mode).
+  */
+  const scrollbarStyle: React.CSSProperties = hideScrollbar
+    ? { scrollbarWidth: 'none' }
+    : {
+        scrollbarWidth: 'thin',
+        scrollbarColor:
+          'hsl(var(--border, 0 0% 80%)) hsl(var(--muted, 0 0% 96%))',
+      };
 
   const maxHeightStyle =
     typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
@@ -70,7 +82,10 @@ export const ScrollArea: React.FC<ScrollAreaProps> = ({
         scrollbarClasses,
         className
       )}
-      style={maxHeightStyle ? { maxHeight: maxHeightStyle } : undefined}
+      style={{
+        ...scrollbarStyle,
+        ...(maxHeightStyle ? { maxHeight: maxHeightStyle } : {}),
+      }}
     >
       {children}
     </div>

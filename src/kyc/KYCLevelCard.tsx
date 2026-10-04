@@ -5,11 +5,8 @@
  */
 
 import React from 'react';
-import {
-  colors,
-  textVariants,
-  getStatusIndicatorColor,
-} from '@sudobility/design';
+import { colors, textVariants } from '@sudobility/design';
+import { STATUS_TEXT } from '../lib/theme';
 
 export type KYCLevel = 'basic' | 'enhanced' | 'accredited';
 
@@ -28,19 +25,20 @@ const levelConfig = {
     title: 'Basic KYC',
     description: 'Age & Identity Verification',
     color: 'border-border',
-    activeColor: 'border-primary bg-accent',
+    activeColor: 'border-primary bg-primary/5',
   },
   enhanced: {
     title: 'Enhanced KYC',
     description: 'Basic + Country & Compliance',
     color: 'border-border',
-    activeColor: 'border-primary bg-accent',
+    activeColor: 'border-primary bg-primary/5',
   },
   accredited: {
     title: 'Accredited Investor',
     description: 'Enhanced + Financial Verification',
-    color: 'border-gold-200',
-    activeColor: 'border-gold-500 bg-gold-50',
+    // Set apart in the theme's warning (gold) tone; there is no gold scale.
+    color: 'border-warning/30',
+    activeColor: 'border-warning bg-warning/10',
   },
 };
 
@@ -85,11 +83,7 @@ export const KYCLevelCard: React.FC<KYCLevelCardProps> = ({
       <ul className='space-y-2 mb-6'>
         {features.map((feature, index) => (
           <li key={index} className='flex items-start gap-2'>
-            <span
-              className={`${getStatusIndicatorColor('success').replace('bg-', 'text-')} mt-0.5`}
-            >
-              ✓
-            </span>
+            <span className={`${STATUS_TEXT.success} mt-0.5`}>✓</span>
             <span className='text-sm'>{feature}</span>
           </li>
         ))}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
+import { PRIMARY_FALLBACK, themeColor } from '../lib/theme';
 
 export interface WaveFormProps {
   /** Audio data (amplitude values 0-1) */
@@ -37,7 +37,7 @@ export const WaveForm: React.FC<WaveFormProps> = ({
   data,
   width = 200,
   height = 40,
-  color = colors.raw.blue[500],
+  color = themeColor('primary', PRIMARY_FALLBACK),
   gap = 2,
   className,
 }) => {
@@ -63,7 +63,7 @@ export const WaveForm: React.FC<WaveFormProps> = ({
             y={y}
             width={barWidth}
             height={barHeight}
-            fill={color}
+            style={{ fill: color }}
             rx={barWidth / 2}
           />
         );

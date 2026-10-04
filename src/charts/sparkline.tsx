@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
+import { PRIMARY_FALLBACK, themeColor } from '../lib/theme';
 
 export interface SparklineProps {
   /** Data points */
@@ -32,7 +32,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
   data,
   width = 100,
   height = 30,
-  color = colors.raw.blue[500],
+  color = themeColor('primary', PRIMARY_FALLBACK),
   fill = false,
   className,
 }) => {
@@ -59,14 +59,14 @@ export const Sparkline: React.FC<SparklineProps> = ({
       {fill && (
         <polygon
           points={`0,${height} ${points} ${width},${height}`}
-          fill={color}
+          style={{ fill: color }}
           opacity='0.2'
         />
       )}
       <polyline
         points={points}
         fill='none'
-        stroke={color}
+        style={{ stroke: color }}
         strokeWidth='2'
         strokeLinejoin='round'
         strokeLinecap='round'

@@ -145,20 +145,34 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   // Unchecked border colors from design system input defaults
   const uncheckedBorder = `${colors.component.input.default.base} ${colors.component.input.default.dark}`;
 
-  // Checked state colors from design system button colors
+  // Checked state: plain fills in the theme's colours. (The button colours
+  // this used to borrow carry hover states and, before a theme is configured,
+  // a fixed palette.)
   const checkedColors = {
-    primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark} border-primary`,
-    success: `${colors.component.button.success.base} ${colors.component.button.success.dark} border-success`,
+    primary: 'bg-primary border-primary',
+    success: 'bg-success border-success',
     warning: 'bg-warning border-warning',
-    error: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark} border-destructive`,
+    error: 'bg-destructive border-destructive',
   };
 
+  // The tick, in the foreground that reads on each checked fill.
+  const checkColors = {
+    primary: 'text-primary-foreground',
+    success: 'text-success-foreground',
+    warning: 'text-warning-foreground',
+    error: 'text-destructive-foreground',
+  };
+  const checkColor = checkColors[error ? 'error' : effectiveVariant];
+
+  // Indeterminate is drawn filled like checked: its dash is in the fill's
+  // foreground, which would vanish on the unchecked field colour.
+  const filled = checked || indeterminate;
   const getVariantClasses = () => {
     if (error) {
-      return checked ? `${checkedColors.error}` : 'border-destructive';
+      return filled ? `${checkedColors.error}` : 'border-destructive';
     }
 
-    return checked ? checkedColors[effectiveVariant] : uncheckedBorder;
+    return filled ? checkedColors[effectiveVariant] : uncheckedBorder;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -239,12 +253,12 @@ export const Checkbox: React.FC<CheckboxProps> = ({
             )}
           >
             {indeterminate ? (
-              <MinusIcon className={cn('text-white', config.check)} />
+              <MinusIcon className={cn(checkColor, config.check)} />
             ) : checked ? (
               icon ? (
                 icon
               ) : (
-                <CheckIcon className={cn('text-white', config.check)} />
+                <CheckIcon className={cn(checkColor, config.check)} />
               )
             ) : null}
           </div>

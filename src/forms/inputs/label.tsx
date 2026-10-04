@@ -3,9 +3,12 @@ import { Root } from '@radix-ui/react-label';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 import { textVariants } from '@sudobility/design';
+import { themedCva } from '../../lib/theme';
 
-const labelVariants = cva(
-  `${textVariants.label.default()} peer-disabled:cursor-not-allowed peer-disabled:opacity-70`
+const labelVariants = themedCva(() =>
+  cva(
+    `${textVariants.label.default()} peer-disabled:cursor-not-allowed peer-disabled:opacity-70`
+  )
 );
 
 const Label = React.forwardRef<

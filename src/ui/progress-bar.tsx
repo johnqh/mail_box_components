@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
+import { STRIPE_STYLE } from '../lib/theme';
 
 export interface ProgressBarProps {
   /** Progress value (0-100) */
@@ -67,14 +67,25 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
   const displayLabel = label || `${Math.round(percentage)}%`;
 
-  // Color variant configurations (design system where available)
+  // Plain fills in the theme's colours. 'purple' keeps its name for
+  // compatibility; `accent` is a near-background grey in some themes (Swiss),
+  // which drew an invisible bar on the muted track, so it is a lighter primary.
   const variantClasses = {
-    primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
-    success: `${colors.component.button.success.base} ${colors.component.button.success.dark}`,
+    primary: 'bg-primary',
+    success: 'bg-success',
     warning: 'bg-warning',
-    danger: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark}`,
-    purple: 'bg-accent',
+    danger: 'bg-destructive',
+    purple: 'bg-primary/70',
     gray: 'bg-muted-foreground',
+  };
+  // The inside label, in the foreground that reads on each bar fill.
+  const labelColors = {
+    primary: 'text-primary-foreground',
+    success: 'text-success-foreground',
+    warning: 'text-warning-foreground',
+    danger: 'text-destructive-foreground',
+    purple: 'text-primary-foreground',
+    gray: 'text-background',
   };
 
   // Size configurations
@@ -99,18 +110,25 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
               sizeClasses[size],
               variantClasses[variant],
               animated && 'transition-all duration-300 ease-in-out',
-              striped &&
-                'bg-gradient-to-r from-transparent via-white/20 to-transparent bg-[length:20px_100%]',
               barClassName
             )}
-            style={{ width: `${percentage}%` }}
+            data-striped={striped || undefined}
+            style={{
+              width: `${percentage}%`,
+              ...(striped ? STRIPE_STYLE : {}),
+            }}
             role='progressbar'
             aria-valuenow={value}
             aria-valuemin={0}
             aria-valuemax={max}
           >
             {showLabel && labelPosition === 'inside' && size === 'lg' && (
-              <span className='flex items-center justify-center h-full text-xs font-medium text-white px-2'>
+              <span
+                className={cn(
+                  'flex items-center justify-center h-full text-xs font-medium px-2',
+                  labelColors[variant]
+                )}
+              >
                 {displayLabel}
               </span>
             )}

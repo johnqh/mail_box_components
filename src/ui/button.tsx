@@ -4,53 +4,73 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 import { variants as v } from '@sudobility/design';
 
-const buttonVariants = cva('min-h-[44px] touch-manipulation', {
-  variants: {
-    variant: {
-      // Clean variant definitions - let the variant system handle the classes
-      default: '',
-      primary: '',
-      secondary: '',
-      outline: '',
-      ghost: '',
-      destructive: '',
-      'destructive-outline': '',
-      success: '',
-      link: '',
-      gradient: '',
-      'gradient-secondary': '',
-      'gradient-success': '',
+/*
+  The design system's gradient and web3 `connect` buttons are a fixed
+  blue-to-purple (and gray, and green-to-emerald) whatever the theme. These
+  restate them in the theme's colours; merged after the design classes, they
+  replace each colour class and keep the rest (shape, shadow, transition).
+*/
+const THEMED_GRADIENTS: Record<string, string> = {
+  primary:
+    'bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground focus-visible:ring-ring',
+  secondary:
+    'bg-gradient-to-r from-secondary to-muted hover:from-secondary/80 hover:to-muted/80 text-secondary-foreground focus-visible:ring-ring',
+  success:
+    'bg-gradient-to-r from-success to-success/80 hover:from-success/90 hover:to-success/70 text-success-foreground focus-visible:ring-ring',
+};
 
-      // Web3 specific variants
-      wallet: '',
-      connect: '',
-      disconnect: '',
+// `ring-offset-background`: the design system's focus ring is offset with no
+// offset colour, which Tailwind fills with white — a halo in dark mode.
+const buttonVariants = cva(
+  'min-h-[44px] touch-manipulation ring-offset-background',
+  {
+    variants: {
+      variant: {
+        // Clean variant definitions - let the variant system handle the classes
+        default: '',
+        primary: '',
+        secondary: '',
+        outline: '',
+        ghost: '',
+        destructive: '',
+        'destructive-outline': '',
+        success: '',
+        link: '',
+        gradient: '',
+        'gradient-secondary': '',
+        'gradient-success': '',
+
+        // Web3 specific variants
+        wallet: '',
+        connect: '',
+        disconnect: '',
+      },
+      size: {
+        default: '', // Size handled by design system tokens
+        sm: 'h-8', // Override height for small
+        lg: 'h-12', // Override height for large
+        icon: 'h-10 w-10 p-0',
+      },
+      animation: {
+        none: 'transition-colors duration-200',
+        hover: 'transition-all duration-200 hover:scale-105',
+        lift: 'transition-all duration-200 hover:scale-105',
+        scale: 'transition-transform duration-200 hover:scale-95',
+        glow: 'transition-all duration-200 hover:shadow-lg',
+        shimmer: 'transition-all duration-200',
+        tap: 'transition-transform duration-100 active:scale-95',
+        connect: 'transition-all duration-200 hover:scale-105',
+        transaction: 'transition-all duration-200 animate-pulse',
+        disconnect: 'transition-all duration-200 hover:opacity-80',
+      },
     },
-    size: {
-      default: '', // Size handled by design system tokens
-      sm: 'h-8', // Override height for small
-      lg: 'h-12', // Override height for large
-      icon: 'h-10 w-10 p-0',
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
+      animation: 'hover',
     },
-    animation: {
-      none: 'transition-colors duration-200',
-      hover: 'transition-all duration-200 hover:scale-105',
-      lift: 'transition-all duration-200 hover:scale-105',
-      scale: 'transition-transform duration-200 hover:scale-95',
-      glow: 'transition-all duration-200 hover:shadow-lg',
-      shimmer: 'transition-all duration-200',
-      tap: 'transition-transform duration-100 active:scale-95',
-      connect: 'transition-all duration-200 hover:scale-105',
-      transaction: 'transition-all duration-200 animate-pulse',
-      disconnect: 'transition-all duration-200 hover:opacity-80',
-    },
-  },
-  defaultVariants: {
-    variant: 'default',
-    size: 'default',
-    animation: 'hover',
-  },
-});
+  }
+);
 
 /** Tracking event data emitted on button interactions. */
 export interface ButtonTrackingData {
@@ -131,23 +151,53 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return sizeMap[size] || size;
     };
 
-    // Handle nested variants for gradients and web3
-    const getButtonClass = () => {
+    /*
+      Resolve the variant to the design system's own classes. Every variant
+      falls back to ITS OWN default before primary's: the design system has no
+      `destructive.large` or `ghost.large`, and falling straight through to
+      primary drew a destructive or ghost button as a primary one at size lg.
+      `destructive-outline` lives at `destructive.outline` (a hyphenated key
+      never matched, so it rendered as primary), and `success` has no design
+      entry at all, so it is primary's shape in the theme's success colours.
+    */
+    const getButtonClass = (): string => {
+      const button = v.button as unknown as Record<
+        string,
+        Record<string, (() => string) | undefined> | undefined
+      >;
+      const sizeType = mapSizeToVariantKey(sizeName);
+      const fromGroup = (group: string, key: string = sizeType) =>
+        button[group]?.[key]?.() ?? button[group]?.default?.();
+
       if (variantName.startsWith('gradient')) {
         const gradientType = variantName
           .replace('gradient-', '')
           .replace('gradient', 'primary');
-        return (
-          v.button.gradient[gradientType]?.() || v.button.primary.default()
-        );
-      } else if (['wallet', 'connect', 'disconnect'].includes(variantName)) {
-        return v.button.web3[variantName]?.() || v.button.primary.default();
-      } else {
-        const sizeType = mapSizeToVariantKey(sizeName);
-        return (
-          v.button[variantName]?.[sizeType]?.() || v.button.primary.default()
+        return cn(
+          fromGroup('gradient', gradientType) ?? v.button.primary.default(),
+          THEMED_GRADIENTS[gradientType] ?? THEMED_GRADIENTS.primary
         );
       }
+      if (['wallet', 'connect', 'disconnect'].includes(variantName)) {
+        const web3 =
+          fromGroup('web3', variantName) ?? v.button.primary.default();
+        return variantName === 'connect'
+          ? cn(web3, THEMED_GRADIENTS.primary)
+          : web3;
+      }
+      if (variantName === 'destructive-outline') {
+        return (
+          fromGroup('destructive', 'outline') ?? v.button.primary.default()
+        );
+      }
+      if (variantName === 'success') {
+        return cn(
+          fromGroup('primary'),
+          'bg-success text-success-foreground hover:bg-success/90 active:bg-success/80'
+        );
+      }
+      const group = variantName === 'default' ? 'primary' : variantName;
+      return fromGroup(group) ?? v.button.primary.default();
     };
     const designSystemClass = getButtonClass();
 

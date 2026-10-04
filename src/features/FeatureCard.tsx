@@ -139,6 +139,21 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
     gray: 'bg-muted',
   };
 
+  // Benefit bullets: a solid dot in the card's colour, written out whole so a
+  // consuming app's Tailwind scan generates every one.
+  const dotColorClasses: Record<FeatureCardColor, string> = {
+    green: 'bg-success',
+    blue: 'bg-primary',
+    purple: 'bg-primary',
+    orange: 'bg-warning',
+    red: 'bg-destructive',
+    indigo: 'bg-primary',
+    cyan: 'bg-primary',
+    emerald: 'bg-success',
+    pink: 'bg-primary',
+    gray: 'bg-muted-foreground',
+  };
+
   const iconColor = colorClasses[color];
   const isEmoji = typeof icon === 'string';
 
@@ -180,7 +195,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
                 <div
                   className={cn(
                     'w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0',
-                    `bg-${color}-500`
+                    dotColorClasses[color]
                   )}
                 />
                 <span className={textVariants.body.sm()}>{benefit}</span>

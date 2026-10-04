@@ -3,35 +3,38 @@ import { Link } from 'react-router-dom';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 import { textVariants } from '@sudobility/design';
+import { themedCva } from '../lib/theme';
 
-const smartLinkVariants = cva(
-  'transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm',
-  {
-    variants: {
-      variant: {
-        // Subtle internal link - barely noticeable color change
-        subtle: textVariants.link.subtle(),
-        // Default internal link
-        default: textVariants.link.default(),
-        // Muted link for secondary navigation
-        muted: textVariants.link.muted(),
-        // External link with indicator
-        external: textVariants.link.external(),
-        // Inherit parent styling with minimal changes
-        inherit:
-          'text-inherit hover:text-primary underline-offset-2 hover:underline transition-colors duration-200',
+const smartLinkVariants = themedCva(() =>
+  cva(
+    'transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-offset-background rounded-sm',
+    {
+      variants: {
+        variant: {
+          // Subtle internal link - barely noticeable color change
+          subtle: textVariants.link.subtle(),
+          // Default internal link
+          default: textVariants.link.default(),
+          // Muted link for secondary navigation
+          muted: textVariants.link.muted(),
+          // External link with indicator
+          external: textVariants.link.external(),
+          // Inherit parent styling with minimal changes
+          inherit:
+            'text-inherit hover:text-primary underline-offset-2 hover:underline transition-colors duration-200',
+        },
+        size: {
+          sm: 'text-sm',
+          default: 'text-base',
+          lg: 'text-lg',
+        },
       },
-      size: {
-        sm: 'text-sm',
-        default: 'text-base',
-        lg: 'text-lg',
+      defaultVariants: {
+        variant: 'subtle',
+        size: 'default',
       },
-    },
-    defaultVariants: {
-      variant: 'subtle',
-      size: 'default',
-    },
-  }
+    }
+  )
 );
 
 /** Tracking event data for smart link interactions */

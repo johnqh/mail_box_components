@@ -181,7 +181,7 @@ export const Slider: React.FC<SliderProps> = ({
             // descender space below it, making the wrapper taller than the
             // track/fill divs and drawing them above the input's own bar.
             'relative block w-full appearance-none bg-transparent cursor-pointer',
-            'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring',
+            'focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-background focus:ring-ring',
             'rounded-lg',
             sizeClasses[size],
             variantClasses[variant],
@@ -191,7 +191,7 @@ export const Slider: React.FC<SliderProps> = ({
             '[&::-webkit-slider-thumb]:w-4',
             '[&::-webkit-slider-thumb]:h-4',
             '[&::-webkit-slider-thumb]:rounded-full',
-            '[&::-webkit-slider-thumb]:bg-white',
+            '[&::-webkit-slider-thumb]:bg-background',
             '[&::-webkit-slider-thumb]:border-2',
             '[&::-webkit-slider-thumb]:border-current',
             '[&::-webkit-slider-thumb]:shadow-md',
@@ -200,7 +200,7 @@ export const Slider: React.FC<SliderProps> = ({
             '[&::-moz-range-thumb]:w-4',
             '[&::-moz-range-thumb]:h-4',
             '[&::-moz-range-thumb]:rounded-full',
-            '[&::-moz-range-thumb]:bg-white',
+            '[&::-moz-range-thumb]:bg-background',
             '[&::-moz-range-thumb]:border-2',
             '[&::-moz-range-thumb]:border-current',
             '[&::-moz-range-thumb]:shadow-md',

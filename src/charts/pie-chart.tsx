@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
+import { seriesColors } from '../lib/theme';
 
 export interface PieChartDataPoint {
   label: string;
@@ -55,14 +55,7 @@ export const PieChart: React.FC<PieChartProps> = ({
   className,
 }) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
-  const defaultColors = [
-    colors.raw.blue[500],
-    colors.raw.green[500],
-    colors.raw.amber[500],
-    colors.raw.red[500],
-    colors.raw.purple[500],
-    colors.raw.orange[500],
-  ];
+  const defaultColors = seriesColors();
 
   const slices = data.reduce<
     Array<{
@@ -182,7 +175,7 @@ export const PieChart: React.FC<PieChartProps> = ({
               slice.startAngle,
               slice.endAngle
             )}
-            fill={slice.color}
+            style={{ fill: slice.color }}
             className='transition-opacity hover:opacity-80'
           />
         ))}

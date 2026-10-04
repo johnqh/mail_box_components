@@ -160,7 +160,7 @@ describe('Checkbox', () => {
   it('applies color variant', () => {
     const { container } = render(<Checkbox checked color='green' />);
 
-    const checkbox = container.querySelector('[class*="bg-green"]');
+    const checkbox = container.querySelector('[class*="bg-success"]');
     expect(checkbox).toBeInTheDocument();
   });
 

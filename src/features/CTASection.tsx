@@ -16,6 +16,13 @@ interface CTASectionProps {
   description: string;
   primaryButton: CTAButton;
   secondaryButton?: CTAButton;
+  /**
+   * Which of the theme's colours the band is drawn in. The palette names are
+   * kept for compatibility and name a theme colour, not a hue:
+   * `blue-600 → purple-600` (the default) and `purple-600 → pink-600` are the
+   * theme's primary, `green-600 → blue-600` its success, `orange-900 →
+   * red-900` its warning. Any other pair falls back to the primary.
+   */
   gradient?: {
     from: string;
     to: string;
@@ -37,26 +44,59 @@ export const CTASection: React.FC<CTASectionProps> = ({
   size = 'lg',
 }) => {
   const { paddingClass } = useLayout();
-  // Map gradient props to safe Tailwind classes with dark mode support
-  const getGradientClass = () => {
-    const key = gradient.via
-      ? `${gradient.from}-${gradient.via}-${gradient.to}`
-      : `${gradient.from}-${gradient.to}`;
-
-    // Predefined gradient classes that work with Tailwind JIT
-    const gradientMap: Record<string, string> = {
-      'blue-600-purple-600': 'bg-gradient-to-r from-primary to-accent',
-      'orange-900-red-900': 'bg-gradient-to-r from-warning to-destructive',
-      'green-600-blue-600': 'bg-gradient-to-r from-success to-primary',
-      'purple-600-pink-600': 'bg-gradient-to-r from-accent to-primary',
-    };
-
-    return gradientMap[key] || 'bg-gradient-to-r from-primary to-accent';
+  /*
+    Each band is one theme colour fading into a lighter step of itself, with
+    the ink that reads on it. A gradient into `accent` used to fade into a
+    near-white grey in some themes (Swiss), under white text. Every class is
+    a whole literal so a consuming app's Tailwind scan finds it.
+  */
+  const tones = {
+    primary: {
+      band: 'bg-gradient-to-r from-primary to-primary/80',
+      ink: 'text-primary-foreground',
+      softInk: 'text-primary-foreground/90',
+      glow: 'bg-primary-foreground/10',
+      solidButton:
+        'bg-primary-foreground text-primary hover:bg-primary-foreground/90 border-transparent',
+      ghostButton:
+        'bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30 backdrop-blur-sm',
+    },
+    success: {
+      band: 'bg-gradient-to-r from-success to-success/80',
+      ink: 'text-success-foreground',
+      softInk: 'text-success-foreground/90',
+      glow: 'bg-success-foreground/10',
+      solidButton:
+        'bg-success-foreground text-success hover:bg-success-foreground/90 border-transparent',
+      ghostButton:
+        'bg-success-foreground/10 hover:bg-success-foreground/20 text-success-foreground border-success-foreground/30 backdrop-blur-sm',
+    },
+    warning: {
+      band: 'bg-gradient-to-r from-warning to-warning/80',
+      ink: 'text-warning-foreground',
+      softInk: 'text-warning-foreground/90',
+      glow: 'bg-warning-foreground/10',
+      solidButton:
+        'bg-warning-foreground text-warning hover:bg-warning-foreground/90 border-transparent',
+      ghostButton:
+        'bg-warning-foreground/10 hover:bg-warning-foreground/20 text-warning-foreground border-warning-foreground/30 backdrop-blur-sm',
+    },
   };
+  const gradientKey = gradient.via
+    ? `${gradient.from}-${gradient.via}-${gradient.to}`
+    : `${gradient.from}-${gradient.to}`;
+  const toneByGradient: Record<string, keyof typeof tones> = {
+    'blue-600-purple-600': 'primary',
+    'purple-600-pink-600': 'primary',
+    'green-600-blue-600': 'success',
+    'orange-900-red-900': 'warning',
+  };
+  const tone = tones[toneByGradient[gradientKey] ?? 'primary'];
 
-  const gradientClass = getGradientClass();
-  const textColorClass =
-    textColor === 'light' ? 'text-white' : ui.text.emphasis;
+  const gradientClass = tone.band;
+  const textColorClass = textColor === 'light' ? tone.ink : ui.text.emphasis;
+  const descriptionColorClass =
+    textColor === 'light' ? tone.softInk : ui.text.emphasis;
 
   const sizeClasses = {
     sm: 'py-12',
@@ -78,7 +118,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
 
   const renderButton = (button: CTAButton, isPrimary: boolean = false) => {
     const getButtonVariant = () => {
-      if (button.variant === 'primary' || isPrimary) return 'gradient';
+      if (button.variant === 'primary' || isPrimary) return 'primary';
       if (button.variant === 'secondary') return 'outline';
       return 'outline';
     };
@@ -87,11 +127,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
       <Button
         variant={getButtonVariant()}
         size='lg'
-        className={
-          isPrimary
-            ? ''
-            : 'bg-white/10 hover:bg-white/20 backdrop-blur-sm border-white/30'
-        }
+        className={isPrimary ? tone.solidButton : tone.ghostButton}
       >
         {button.label}
       </Button>
@@ -112,11 +148,14 @@ export const CTASection: React.FC<CTASectionProps> = ({
     <section
       className={`${gradientClass} ${sizeClasses[size]} relative overflow-hidden ${className}`}
     >
-      {/* Background decoration */}
-      <div className='absolute inset-0 bg-black/20' />
+      {/* Background decoration, in the band's own ink */}
       <div className='absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full'>
-        <div className='absolute top-10 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl' />
-        <div className='absolute bottom-10 right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl' />
+        <div
+          className={`absolute top-10 left-10 w-72 h-72 ${tone.glow} rounded-full blur-3xl`}
+        />
+        <div
+          className={`absolute bottom-10 right-10 w-72 h-72 ${tone.glow} rounded-full blur-3xl`}
+        />
       </div>
 
       <div
@@ -129,7 +168,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
         </h2>
 
         <p
-          className={`${descriptionSizeClasses[size]} ${textColorClass}/90 mb-8 max-w-2xl mx-auto`}
+          className={`${descriptionSizeClasses[size]} ${descriptionColorClass} mb-8 max-w-2xl mx-auto`}
         >
           {description}
         </p>

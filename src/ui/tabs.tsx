@@ -72,7 +72,13 @@ const TabsTrigger = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Trigger
     ref={ref}
-    className={cn(variants.navigation.tabs.trigger(), className)}
+    className={cn(
+      variants.navigation.tabs.trigger(),
+      // The design system's trigger keeps a fixed white ring offset and
+      // gray-950 active text under a theme; these take the theme's own.
+      'ring-offset-background data-[state=active]:text-foreground',
+      className
+    )}
     {...props}
   />
 ));
@@ -84,7 +90,12 @@ const TabsContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Content
     ref={ref}
-    className={cn(variants.navigation.tabs.content(), className)}
+    className={cn(
+      variants.navigation.tabs.content(),
+      // The design system's content keeps a fixed white ring offset.
+      'ring-offset-background',
+      className
+    )}
     {...props}
   />
 ));

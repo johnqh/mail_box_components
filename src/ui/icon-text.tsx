@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { SEMANTIC_COLOR_MAP } from '@sudobility/design';
+import { STATUS_TEXT } from '../lib/theme';
 
 export interface IconTextProps {
   /** Icon component to display */
@@ -92,12 +92,12 @@ export const IconText: React.FC<IconTextProps> = ({
 
   // Color variant configurations from design system
   const variantClasses = {
-    default: SEMANTIC_COLOR_MAP.subtle,
-    primary: SEMANTIC_COLOR_MAP.primary,
-    success: SEMANTIC_COLOR_MAP.success,
-    warning: SEMANTIC_COLOR_MAP.warning,
-    danger: SEMANTIC_COLOR_MAP.error,
-    muted: SEMANTIC_COLOR_MAP.muted,
+    default: 'text-muted-foreground',
+    primary: 'text-primary',
+    success: STATUS_TEXT.success,
+    warning: STATUS_TEXT.warning,
+    danger: STATUS_TEXT.error,
+    muted: 'text-muted-foreground',
   };
 
   // Layout based on icon position

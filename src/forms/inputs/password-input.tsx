@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { cn } from '../../lib/utils';
-import {
-  colors,
-  textVariants,
-  getStatusIndicatorColor,
-} from '@sudobility/design';
+import { colors, textVariants } from '@sudobility/design';
+import { STATUS_BG, STATUS_ON_BG, STATUS_TEXT } from '../../lib/theme';
 
 export interface PasswordStrength {
   /** Strength score (0-4) */
@@ -113,7 +110,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
       return {
         score: 0,
         label: 'Very Weak',
-        color: getStatusIndicatorColor('neutral'),
+        color: STATUS_BG.neutral,
       };
     }
 
@@ -141,15 +138,15 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
       0: {
         score: 0,
         label: 'Very Weak',
-        color: getStatusIndicatorColor('error'),
+        color: STATUS_BG.error,
       },
-      1: { score: 1, label: 'Weak', color: getStatusIndicatorColor('warning') },
+      1: { score: 1, label: 'Weak', color: STATUS_BG.warning },
       2: { score: 2, label: 'Fair', color: 'bg-warning' },
-      3: { score: 3, label: 'Good', color: getStatusIndicatorColor('info') },
+      3: { score: 3, label: 'Good', color: STATUS_BG.info },
       4: {
         score: 4,
         label: 'Strong',
-        color: getStatusIndicatorColor('success'),
+        color: STATUS_BG.success,
       },
     };
 
@@ -318,14 +315,12 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
               <div
                 className={cn(
                   'w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0',
-                  req.met
-                    ? getStatusIndicatorColor('success')
-                    : getStatusIndicatorColor('neutral')
+                  req.met ? STATUS_BG.success : STATUS_BG.neutral
                 )}
               >
                 {req.met && (
                   <svg
-                    className='w-3 h-3 text-white'
+                    className={cn('w-3 h-3', STATUS_ON_BG.success)}
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
@@ -342,9 +337,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
               <span
                 className={cn(
                   'text-xs',
-                  req.met
-                    ? getStatusIndicatorColor('success').replace('bg-', 'text-')
-                    : textVariants.label.helper()
+                  req.met ? STATUS_TEXT.success : textVariants.label.helper()
                 )}
               >
                 {req.label}

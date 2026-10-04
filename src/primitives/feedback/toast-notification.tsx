@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { getStatusIndicatorColor } from '@sudobility/design';
+import { STATUS_BG, STATUS_ON_BG } from '../../lib/theme';
 
 export interface ToastNotificationProps {
   message: string;
@@ -18,8 +18,9 @@ export const ToastNotification: React.FC<ToastNotificationProps> = ({
   return (
     <div
       className={cn(
-        'fixed bottom-4 right-4 p-4 rounded-lg text-white shadow-lg flex items-center gap-3',
-        getStatusIndicatorColor(variant),
+        'fixed bottom-4 right-4 p-4 rounded-lg shadow-lg flex items-center gap-3',
+        STATUS_BG[variant],
+        STATUS_ON_BG[variant],
         className
       )}
     >

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors, ui } from '@sudobility/design';
+import { ui } from '@sudobility/design';
 
 export interface QuickAction {
   id: string;
@@ -47,25 +47,18 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
   columns = 3,
   className,
 }) => {
+  // Each action is a button, in the theme's colours with its own foreground.
   const variantStyles = {
-    default: cn(
-      colors.component.button.outline.base,
-      colors.component.button.outline.dark
-    ),
-    primary: cn(
-      colors.component.button.primary.base,
-      colors.component.button.primary.dark
-    ),
-    success: cn(
-      colors.component.button.success.base,
-      colors.component.button.success.dark
-    ),
+    default:
+      'bg-background hover:bg-accent text-foreground hover:text-accent-foreground border-input',
+    primary:
+      'bg-primary hover:bg-primary/90 text-primary-foreground border-transparent',
+    success:
+      'bg-success hover:bg-success/90 text-success-foreground border-transparent',
     warning:
       'bg-warning hover:bg-warning/90 text-warning-foreground border-warning',
-    danger: cn(
-      colors.component.button.destructive.base,
-      colors.component.button.destructive.dark
-    ),
+    danger:
+      'bg-destructive hover:bg-destructive/90 text-destructive-foreground border-transparent',
   };
 
   const layoutClasses = {

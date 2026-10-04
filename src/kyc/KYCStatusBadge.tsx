@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { colors } from '@sudobility/design';
+import { themed } from '../lib/theme';
 
 export type KYCStatus = 'pending' | 'in_progress' | 'verified' | 'rejected';
 export type KYCLevel = 'basic' | 'enhanced' | 'accredited';
@@ -16,7 +17,8 @@ interface KYCStatusBadgeProps {
   className?: string;
 }
 
-const statusConfig = {
+/** Read on use: the badge colours follow the active theme. */
+const getStatusConfig = themed(() => ({
   pending: {
     label: 'Pending',
     color: `${colors.component.badge.default.base} ${colors.component.badge.default.dark}`,
@@ -33,7 +35,7 @@ const statusConfig = {
     label: 'Rejected',
     color: `${colors.component.badge.error.base} ${colors.component.badge.error.dark}`,
   },
-};
+}));
 
 const levelLabels = {
   basic: 'Basic KYC',
@@ -46,7 +48,7 @@ export const KYCStatusBadge: React.FC<KYCStatusBadgeProps> = ({
   level,
   className = '',
 }) => {
-  const config = statusConfig[status];
+  const config = getStatusConfig()[status];
   const levelLabel = levelLabels[level];
 
   return (

@@ -31,7 +31,10 @@ const sectionVariants = cva('', {
       'gradient-primary': 'bg-gradient-to-br from-primary/10 to-accent',
       'gradient-secondary': 'bg-gradient-to-br from-success/10 to-primary/10',
       'gradient-tertiary': 'bg-gradient-to-r from-success/10 to-muted',
-      'gradient-vibrant': 'bg-gradient-to-br from-primary to-accent',
+      // Into a lighter primary, not into `accent` (a near-white grey in some
+      // themes), and with the primary's own ink for whatever sits on it.
+      'gradient-vibrant':
+        'bg-gradient-to-br from-primary to-primary/80 text-primary-foreground',
     },
   },
   defaultVariants: {

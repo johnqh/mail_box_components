@@ -1,10 +1,9 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
 import {
-  buttonVariant,
   colors as designColors,
-  focusRing,
   touchTargetClasses,
   ui,
+  variants as v,
 } from '@sudobility/design';
 import { cn } from '../../lib/utils';
 
@@ -172,17 +171,25 @@ export interface LoginViewProps {
   with before it was made of this view — so the page, the modal and any pane
   that holds this show one form, pixel for pixel.
 */
-const FIELD_CLASS = cn(
-  `mt-1 appearance-none block w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm ${designColors.component.input.default.base} ${designColors.component.input.default.dark}`,
-  focusRing
-);
-const BUTTON_CLASS =
-  'w-full inline-flex items-center justify-center font-medium rounded-md sm:text-sm';
-const PROVIDER_BUTTON_CLASS = cn(
-  BUTTON_CLASS,
-  buttonVariant('outline'),
-  `${touchTargetClasses.minHeight} px-3 py-2 ${ui.background.surface} ${ui.text.label} disabled:opacity-50 disabled:cursor-not-allowed`
-);
+const fieldClass = () =>
+  cn(
+    `mt-1 appearance-none block w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm ${designColors.component.input.default.base} ${designColors.component.input.default.dark}`,
+    // Not the design system's `focusRing`, which is a fixed blue-500.
+    'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-offset-background'
+  );
+/*
+  The field and buttons take the design system's themed classes, which follow
+  the theme's colours rather than a fixed gray and blue. All are built per
+  render: the design system reads the active theme on access, and an app
+  configures it after this module loads.
+*/
+const submitButtonClass = () =>
+  cn(v.button.primary.fullWidth(), touchTargetClasses.minHeight);
+const providerButtonClass = () =>
+  cn(
+    v.button.outline.default(),
+    `w-full ${touchTargetClasses.minHeight} ${ui.background.surface} ${ui.text.label}`
+  );
 
 function Spinner() {
   return (
@@ -410,7 +417,7 @@ export function LoginView({
               value={email}
               onChange={event => setEmail(event.target.value)}
               placeholder={text.emailPlaceholder}
-              className={FIELD_CLASS}
+              className={fieldClass()}
             />
           </div>
 
@@ -431,7 +438,7 @@ export function LoginView({
                 value={password}
                 onChange={event => setPassword(event.target.value)}
                 placeholder={text.passwordPlaceholder}
-                className={FIELD_CLASS}
+                className={fieldClass()}
               />
               {/*
                 Under the field it is about, at its trailing edge, where every
@@ -454,15 +461,7 @@ export function LoginView({
         </div>
 
         <div>
-          <button
-            type='submit'
-            disabled={busy}
-            className={cn(
-              BUTTON_CLASS,
-              buttonVariant('primary'),
-              'px-3 py-2 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed'
-            )}
-          >
+          <button type='submit' disabled={busy} className={submitButtonClass()}>
             {busy && <Spinner />}
             {resetting
               ? text.sendResetLink
@@ -492,7 +491,7 @@ export function LoginView({
                   type='button'
                   disabled={busy}
                   onClick={() => void withProvider(onGoogleSignIn)}
-                  className={PROVIDER_BUTTON_CLASS}
+                  className={providerButtonClass()}
                 >
                   <GoogleIcon className='h-5 w-5 mr-2' />
                   {text.signInWithGoogle}
@@ -503,7 +502,7 @@ export function LoginView({
                   type='button'
                   disabled={busy}
                   onClick={() => void withProvider(onAppleSignIn)}
-                  className={PROVIDER_BUTTON_CLASS}
+                  className={providerButtonClass()}
                 >
                   <AppleIcon className='h-5 w-5 mr-2' />
                   {text.signInWithApple}

@@ -2,6 +2,7 @@
  * Image optimization utilities for SEO and performance
  */
 
+import { resolveThemeColor } from '../lib/theme';
 // Image SEO metadata
 export interface ImageSEOData {
   src: string;
@@ -323,11 +324,12 @@ export const measureImagePerformance = (
   });
 };
 
-// Placeholder generation for lazy loading
+// Placeholder generation for lazy loading. The default fill is the theme's
+// muted surface, resolved when called (an SVG data URI cannot read CSS vars).
 export const generatePlaceholder = (
   width: number,
   height: number,
-  color: string = '#e0e0e0'
+  color: string = resolveThemeColor('muted', '0 0% 87.8%')
 ): string => {
   const svg = `
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">

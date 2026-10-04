@@ -1,36 +1,33 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import {
-  colors,
-  ui,
-  designTokens,
-  textVariants,
-  getStatusIndicatorColor,
-} from '@sudobility/design';
+import { colors, ui, designTokens, textVariants } from '@sudobility/design';
+import { STATUS_BORDER, themedCva } from '../lib/theme';
 
 // Stat Card Component
-const statCardVariants = cva(
-  `${colors.component.card.default.base} ${colors.component.card.default.dark} ${designTokens.radius.lg} shadow-md p-6 transition-all duration-200`,
-  {
-    variants: {
-      variant: {
-        default: `${ui.border.default} border ${colors.component.card.default.hover}`,
-        elevated: `shadow-lg hover:shadow-xl`,
-        minimal: 'bg-transparent shadow-none border-none p-4',
+const statCardVariants = themedCva(() =>
+  cva(
+    `${colors.component.card.default.base} ${colors.component.card.default.dark} ${designTokens.radius.lg} shadow-md p-6 transition-all duration-200`,
+    {
+      variants: {
+        variant: {
+          default: `${ui.border.default} border ${colors.component.card.default.hover}`,
+          elevated: `shadow-lg hover:shadow-xl`,
+          minimal: 'bg-transparent shadow-none border-none p-4',
+        },
+        trend: {
+          none: '',
+          up: `border-l-4 ${STATUS_BORDER.success}`,
+          down: `border-l-4 ${STATUS_BORDER.error}`,
+          neutral: 'border-l-4 border-muted-foreground',
+        },
       },
-      trend: {
-        none: '',
-        up: `border-l-4 ${getStatusIndicatorColor('success').replace('bg-', 'border-')}`,
-        down: `border-l-4 ${getStatusIndicatorColor('error').replace('bg-', 'border-')}`,
-        neutral: 'border-l-4 border-muted-foreground',
+      defaultVariants: {
+        variant: 'default',
+        trend: 'none',
       },
-    },
-    defaultVariants: {
-      variant: 'default',
-      trend: 'none',
-    },
-  }
+    }
+  )
 );
 
 interface StatCardProps extends VariantProps<typeof statCardVariants> {
@@ -90,25 +87,27 @@ export const StatCard: React.FC<StatCardProps> = ({
 };
 
 // Form Section Component
-const formSectionVariants = cva('space-y-6', {
-  variants: {
-    variant: {
-      default: '',
-      card: `${colors.component.card.default.base} ${colors.component.card.default.dark} ${designTokens.radius.lg} border p-6`,
-      minimal: 'space-y-4',
+const formSectionVariants = themedCva(() =>
+  cva('space-y-6', {
+    variants: {
+      variant: {
+        default: '',
+        card: `${colors.component.card.default.base} ${colors.component.card.default.dark} ${designTokens.radius.lg} border p-6`,
+        minimal: 'space-y-4',
+      },
+      spacing: {
+        tight: 'space-y-3',
+        normal: 'space-y-4',
+        relaxed: 'space-y-6',
+        loose: 'space-y-8',
+      },
     },
-    spacing: {
-      tight: 'space-y-3',
-      normal: 'space-y-4',
-      relaxed: 'space-y-6',
-      loose: 'space-y-8',
+    defaultVariants: {
+      variant: 'default',
+      spacing: 'normal',
     },
-  },
-  defaultVariants: {
-    variant: 'default',
-    spacing: 'normal',
-  },
-});
+  })
+);
 
 interface FormSectionProps extends VariantProps<typeof formSectionVariants> {
   title?: string;

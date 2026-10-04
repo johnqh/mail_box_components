@@ -107,7 +107,7 @@ export const Topbar: React.FC<TopbarProps> = ({
         <a
           href='#main-content'
           className={cn(
-            'sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+            'sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-offset-background',
             colors.component.button.primary.base,
             colors.component.button.primary.dark
           )}

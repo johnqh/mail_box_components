@@ -22,7 +22,7 @@ export const AppLinks: React.FC<AppLinksProps> = ({
 }) => {
   return (
     <div className={cn('flex flex-col items-center gap-4 py-12', className)}>
-      <p className='text-sm text-theme-text-secondary'>{label}</p>
+      <p className='text-sm text-muted-foreground'>{label}</p>
       <div className='flex flex-wrap items-center justify-center gap-6'>
         {links.map(link => (
           <a

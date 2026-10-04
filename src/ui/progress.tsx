@@ -11,9 +11,10 @@
  * - More color variants: 'primary' | 'success' | 'warning' | 'danger' | 'purple' | 'gray'
  */
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { cn } from '../lib/utils';
-import { colors, ui } from '@sudobility/design';
+import { ui } from '@sudobility/design';
+import { animateStripes, STRIPE_STYLE } from '../lib/theme';
 
 /** @deprecated Use ProgressBarProps instead */
 export interface ProgressProps {
@@ -82,13 +83,21 @@ export const Progress: React.FC<ProgressProps> = ({
   // Clamp value between 0 and 100
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
 
-  // Color configurations from design system
+  // Plain fills in the theme's colours. (The button colours this used to
+  // borrow carry hover and border states a bar has no use for.)
   const colorClasses = {
-    default: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
-    success: `${colors.component.button.success.base} ${colors.component.button.success.dark}`,
+    default: 'bg-primary',
+    success: 'bg-success',
     warning: 'bg-warning',
-    danger: `${colors.component.button.destructive.base} ${colors.component.button.destructive.dark}`,
+    danger: 'bg-destructive',
   };
+
+  const fillRef = useRef<HTMLDivElement>(null);
+  const animateFill = striped && animated && !indeterminate;
+  useEffect(
+    () => (animateFill ? animateStripes(fillRef.current) : undefined),
+    [animateFill]
+  );
 
   // Size configurations
   const sizeClasses = {
@@ -120,13 +129,17 @@ export const Progress: React.FC<ProgressProps> = ({
           />
         ) : (
           <div
+            ref={fillRef}
             className={cn(
               'h-full rounded-full transition-all duration-300',
-              colorClasses[variant],
-              striped && 'bg-stripe',
-              striped && animated && 'animate-stripe'
+              colorClasses[variant]
             )}
-            style={{ width: `${percentage}%` }}
+            data-striped={striped || undefined}
+            data-animated={animateFill || undefined}
+            style={{
+              width: `${percentage}%`,
+              ...(striped ? STRIPE_STYLE : {}),
+            }}
           />
         )}
       </div>

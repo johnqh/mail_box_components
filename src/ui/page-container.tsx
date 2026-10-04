@@ -1,27 +1,32 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { ui, GRADIENTS } from '@sudobility/design';
+import { ui } from '@sudobility/design';
+import { themedCva } from '../lib/theme';
 
-const pageContainerVariants = cva('min-h-screen flex flex-col', {
-  variants: {
-    background: {
-      default: ui.background.subtle,
-      surface: ui.background.surface,
-      transparent: 'bg-transparent',
-      gradient: GRADIENTS.backgrounds.main,
+const pageContainerVariants = themedCva(() =>
+  cva('min-h-screen flex flex-col', {
+    variants: {
+      background: {
+        default: ui.background.subtle,
+        surface: ui.background.surface,
+        transparent: 'bg-transparent',
+        // The theme's background fading into its muted surface; the design
+        // system's `GRADIENTS.backgrounds.main` is a fixed blue-purple wash.
+        gradient: 'bg-gradient-to-br from-background via-background to-muted',
+      },
+      overflow: {
+        visible: 'overflow-visible',
+        hidden: 'overflow-hidden',
+        scroll: 'overflow-auto',
+      },
     },
-    overflow: {
-      visible: 'overflow-visible',
-      hidden: 'overflow-hidden',
-      scroll: 'overflow-auto',
+    defaultVariants: {
+      background: 'default',
+      overflow: 'visible',
     },
-  },
-  defaultVariants: {
-    background: 'default',
-    overflow: 'visible',
-  },
-});
+  })
+);
 
 interface PageContainerProps extends VariantProps<
   typeof pageContainerVariants

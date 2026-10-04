@@ -1,5 +1,6 @@
 import React from 'react';
-import { variants, getStatusIndicatorColor } from '@sudobility/design';
+import { variants } from '@sudobility/design';
+import { STATUS_BG } from '../../lib/theme';
 import { ChainType } from '@sudobility/types';
 
 export type StatusType =
@@ -28,17 +29,17 @@ const getStatusDotColor = (status: StatusType) => {
   switch (status) {
     case 'verified':
     case 'success':
-      return getStatusIndicatorColor('success');
+      return STATUS_BG.success;
     case 'connected':
     case 'warning':
-      return getStatusIndicatorColor('warning');
+      return STATUS_BG.warning;
     case 'disconnected':
     case 'error':
-      return getStatusIndicatorColor('error');
+      return STATUS_BG.error;
     case 'pending':
-      return getStatusIndicatorColor('info');
+      return STATUS_BG.info;
     default:
-      return getStatusIndicatorColor('neutral');
+      return STATUS_BG.neutral;
   }
 };
 

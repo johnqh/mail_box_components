@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { getStatusIndicatorColor } from '@sudobility/design';
+import { STATUS_BG } from '../../lib/theme';
 
 interface StatusIndicatorProps {
   status: 'success' | 'error' | 'warning' | 'info' | 'neutral';
@@ -26,7 +26,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({
     <div
       className={cn(
         'rounded-full flex-shrink-0',
-        getStatusIndicatorColor(status),
+        STATUS_BG[status],
         sizeClasses[size],
         pulse && 'animate-pulse',
         className

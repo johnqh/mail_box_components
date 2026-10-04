@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { GRADIENTS } from '@sudobility/design';
 
 export interface GradientIconContainerProps {
   /** Icon component to display */
@@ -73,13 +72,26 @@ export const GradientIconContainer: React.FC<GradientIconContainerProps> = ({
     circle: 'rounded-full',
   };
 
-  // Gradient color variants - using design system gradients where available
+  /*
+    Gradients from the theme's own colours. The variant names are kept for
+    compatibility: 'blue-purple' is the theme's primary, blue or not. Each
+    pairs with the foreground that reads on its starting colour.
+  */
+  const primaryGradient = 'bg-gradient-to-r from-primary to-primary/70';
   const gradientVariants = {
-    'blue-purple': GRADIENTS.buttons.primary.split(' hover:')[0],
+    'blue-purple': primaryGradient,
     'green-blue': 'bg-gradient-to-r from-success to-primary',
     'orange-red': 'bg-gradient-to-r from-warning to-destructive',
-    gray: 'bg-gradient-to-r from-muted to-muted-foreground',
-    custom: gradientClasses || GRADIENTS.buttons.primary.split(' hover:')[0],
+    gray: 'bg-gradient-to-r from-muted-foreground/70 to-muted-foreground',
+    custom: gradientClasses || primaryGradient,
+  };
+  const iconColors = {
+    'blue-purple': 'text-primary-foreground',
+    'green-blue': 'text-success-foreground',
+    'orange-red': 'text-warning-foreground',
+    gray: 'text-background',
+    // A caller's own gradient: its colours are unknown, so white as before.
+    custom: gradientClasses ? 'text-white' : 'text-primary-foreground',
   };
 
   const sizeConfig = sizeClasses[size];
@@ -94,7 +106,9 @@ export const GradientIconContainer: React.FC<GradientIconContainerProps> = ({
         className
       )}
     >
-      <Icon className={cn('text-white', sizeConfig.icon, iconClassName)} />
+      <Icon
+        className={cn(iconColors[variant], sizeConfig.icon, iconClassName)}
+      />
     </div>
   );
 };

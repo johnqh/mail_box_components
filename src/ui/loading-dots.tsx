@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
 
 export interface LoadingDotsProps {
   /** Size variant */
@@ -41,10 +40,12 @@ export const LoadingDots: React.FC<LoadingDotsProps> = ({
     lg: 'w-3 h-3',
   };
 
-  // Color variants from design system (button colors provide the solid bg palette)
+  // Plain fills in the theme's colours. `secondary` is the muted ink rather
+  // than the secondary surface, which in some themes is within a percent of
+  // the background. `white` is literal, for use over imagery or a dark fill.
   const variantClasses = {
-    primary: `${colors.component.button.primary.base} ${colors.component.button.primary.dark}`,
-    secondary: `${colors.component.button.secondary.base} ${colors.component.button.secondary.dark}`,
+    primary: 'bg-primary',
+    secondary: 'bg-muted-foreground',
     white: 'bg-white',
   };
 

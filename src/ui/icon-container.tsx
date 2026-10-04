@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { GRADIENTS } from '@sudobility/design';
 
 interface IconContainerProps {
   children: React.ReactNode;
@@ -32,8 +31,10 @@ const iconSizeClasses = {
 };
 
 const variantClasses = {
-  primary: `${GRADIENTS.buttons.primary} text-white shadow-lg`,
-  secondary: `${GRADIENTS.buttons.primaryPurple} text-white shadow-lg`,
+  primary:
+    'bg-gradient-to-br from-primary to-primary/70 text-primary-foreground shadow-lg',
+  secondary:
+    'bg-gradient-to-br from-secondary to-secondary/70 text-secondary-foreground shadow-lg',
   success:
     'bg-gradient-to-br from-success/20 to-success/30 text-success shadow-lg',
   warning:

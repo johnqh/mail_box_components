@@ -110,7 +110,7 @@ describe('Switch Component', () => {
     render(<Switch defaultChecked={false} />);
     const switchElement = screen.getByRole('switch');
 
-    expect(switchElement).toHaveClass('data-[state=unchecked]:bg-muted');
+    expect(switchElement).toHaveClass('data-[state=unchecked]:bg-input');
   });
 
   it('has focus ring styles', () => {

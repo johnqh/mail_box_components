@@ -212,7 +212,7 @@ export const Banner: React.FC<BannerProps> = ({
           className={cn(
             'flex-shrink-0 p-1 rounded-md transition-colors',
             'hover:bg-foreground/10',
-            'focus:outline-none focus:ring-2 focus:ring-offset-2',
+            'focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-background',
             'focus:ring-current'
           )}
           aria-label={closeAriaLabel}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
+import { seriesColors, themeColor } from '../lib/theme';
 
 interface Particle {
   id: number;
@@ -30,13 +30,13 @@ export interface ConfettiProps {
   className?: string;
 }
 
+/*
+  Particles are divs, so the theme's CSS variables reach them: the first
+  colour follows the theme's primary, the rest a fixed distinct palette.
+*/
 const DEFAULT_COLORS = [
-  colors.raw.blue[500],
-  colors.raw.green[500],
-  colors.raw.amber[500],
-  colors.raw.red[500],
-  colors.raw.purple[500],
-  colors.raw.orange[500],
+  ...seriesColors(),
+  themeColor('destructive', '0 84.2% 60.2%'),
 ];
 
 /**

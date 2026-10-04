@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { colors, getStatusIndicatorColor } from '@sudobility/design';
+import { colors } from '@sudobility/design';
+import { STATUS_BG, STATUS_ON_BG } from '../../lib/theme';
 
 export interface ActionBannerProps {
   /** Banner title */
@@ -38,7 +39,7 @@ const getVariantStyles = (variant: AlertVariant) => {
   return {
     container: cn(alert.base, alert.dark),
     icon: alert.icon,
-    button: cn(getStatusIndicatorColor(variant), 'hover:opacity-90 text-white'),
+    button: cn(STATUS_BG[variant], STATUS_ON_BG[variant], 'hover:opacity-90'),
     secondaryButton: cn(alert.icon, 'hover:opacity-80'),
   };
 };
@@ -121,7 +122,7 @@ export const ActionBanner: React.FC<ActionBannerProps> = ({
           <button
             onClick={onDismiss}
             className={cn(
-              'flex-shrink-0 p-1 rounded hover:bg-black/5 dark:hover:bg-white/5 transition-colors',
+              'flex-shrink-0 p-1 rounded hover:bg-foreground/5 transition-colors',
               styles.icon
             )}
             aria-label='Dismiss'

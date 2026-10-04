@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from 'react';
 import { colors } from '@sudobility/design';
+import { themed } from '../../lib/theme';
 import type { ToastComponentProps } from './types';
 
 /**
@@ -75,35 +76,39 @@ const icons = {
 /**
  * Style mappings for different toast types (from design system)
  */
-const alertColors = {
+const getAlertColors = () => ({
   success: colors.component.alert.success,
   error: colors.component.alert.error,
   warning: colors.component.alert.warning,
   info: colors.component.alert.info,
-};
+});
 
-const styles = {
-  success: {
-    container: `${alertColors.success.base} ${alertColors.success.dark}`,
-    icon: alertColors.success.icon,
-    text: '',
-  },
-  error: {
-    container: `${alertColors.error.base} ${alertColors.error.dark}`,
-    icon: alertColors.error.icon,
-    text: '',
-  },
-  warning: {
-    container: `${alertColors.warning.base} ${alertColors.warning.dark}`,
-    icon: alertColors.warning.icon,
-    text: '',
-  },
-  info: {
-    container: `${alertColors.info.base} ${alertColors.info.dark}`,
-    icon: alertColors.info.icon,
-    text: '',
-  },
-};
+/** Read on use: the alert colours follow the active theme. */
+const getStyles = themed(() => {
+  const alertColors = getAlertColors();
+  return {
+    success: {
+      container: `${alertColors.success.base} ${alertColors.success.dark}`,
+      icon: alertColors.success.icon,
+      text: '',
+    },
+    error: {
+      container: `${alertColors.error.base} ${alertColors.error.dark}`,
+      icon: alertColors.error.icon,
+      text: '',
+    },
+    warning: {
+      container: `${alertColors.warning.base} ${alertColors.warning.dark}`,
+      icon: alertColors.warning.icon,
+      text: '',
+    },
+    info: {
+      container: `${alertColors.info.base} ${alertColors.info.dark}`,
+      icon: alertColors.info.icon,
+      text: '',
+    },
+  };
+});
 
 /**
  * Individual toast notification component
@@ -116,7 +121,7 @@ export function Toast({
   const [isLeaving, setIsLeaving] = useState(false);
 
   const { type, message, id } = toast;
-  const style = styles[type];
+  const style = getStyles()[type];
 
   useEffect(() => {
     // Trigger enter animation

@@ -1,6 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+import { seriesColors, themedCva } from '@/lib/theme';
 import { colors, ui, textVariants } from '@sudobility/design';
 
 const gridVariants = cva('grid gap-8', {
@@ -23,26 +24,28 @@ const gridVariants = cva('grid gap-8', {
   },
 });
 
-const cardVariants = cva('group transition-all duration-300', {
-  variants: {
-    variant: {
-      default: 'text-center',
-      left: 'text-left',
-      hoverable: 'text-center hover:transform hover:scale-105 cursor-pointer',
-      card: `${colors.component.card.default.base} ${colors.component.card.default.dark} rounded-2xl p-8 shadow-lg hover:shadow-xl text-center`,
-      minimal: 'text-center space-y-4',
+const cardVariants = themedCva(() =>
+  cva('group transition-all duration-300', {
+    variants: {
+      variant: {
+        default: 'text-center',
+        left: 'text-left',
+        hoverable: 'text-center hover:transform hover:scale-105 cursor-pointer',
+        card: `${colors.component.card.default.base} ${colors.component.card.default.dark} rounded-2xl p-8 shadow-lg hover:shadow-xl text-center`,
+        minimal: 'text-center space-y-4',
+      },
+      animation: {
+        none: '',
+        hover: 'hover:transform hover:scale-105',
+        float: 'hover:-translate-y-2',
+      },
     },
-    animation: {
-      none: '',
-      hover: 'hover:transform hover:scale-105',
-      float: 'hover:-translate-y-2',
+    defaultVariants: {
+      variant: 'default',
+      animation: 'hover',
     },
-  },
-  defaultVariants: {
-    variant: 'default',
-    animation: 'hover',
-  },
-});
+  })
+);
 
 const iconVariants = cva(
   'flex items-center justify-center rounded-2xl mb-6 transition-all duration-300',
@@ -163,17 +166,23 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
     }
 
     if (iconStyle === 'colorful') {
-      const iconColors = [
-        { from: '#3B82F6', to: '#1D4ED8' }, // blue
-        { from: '#10B981', to: '#059669' }, // emerald
-        { from: '#8B5CF6', to: '#7C3AED' }, // violet
-        { from: '#F59E0B', to: '#D97706' }, // amber
-        { from: '#EF4444', to: '#DC2626' }, // red
-        { from: '#06B6D4', to: '#0891B2' }, // cyan
-      ];
-      const colorSet = iconColors[index % iconColors.length];
+      /*
+        The first icon is the theme's primary, fading toward the background,
+        under the primary's own foreground (the inner element's class). The
+        rest cycle a fixed, distinct palette (see `seriesColors`) of mid-light
+        hues, each fading lighter, under a near-black ink that reads on every
+        one of them in either mode — a theme's foreground does not promise to.
+      */
+      const series = seriesColors();
+      const slot = index % series.length;
+      if (slot === 0) {
+        return {
+          background: `linear-gradient(135deg, ${series[0]}, color-mix(in srgb, ${series[0]} 80%, hsl(var(--background, 0 0% 100%))))`,
+        };
+      }
       return {
-        background: `linear-gradient(135deg, ${colorSet.from}, ${colorSet.to})`,
+        background: `linear-gradient(135deg, ${series[slot]}, color-mix(in srgb, ${series[slot]} 75%, white))`,
+        color: 'hsl(0 0% 9%)',
       };
     }
 
@@ -218,9 +227,12 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
           <div
             className={cn(
               'flex items-center justify-center',
-              iconStyle === 'colorful'
-                ? 'text-primary-foreground'
-                : 'text-primary'
+              iconStyle !== 'colorful'
+                ? 'text-primary'
+                : feature.gradient || index % seriesColors().length === 0
+                  ? 'text-primary-foreground'
+                  : // Inherits the near-black ink set on the tile.
+                    ''
             )}
           >
             {feature.icon}

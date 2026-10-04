@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { colors } from '@sudobility/design';
+import { seriesColors } from '../lib/theme';
 
 export interface LineChartDataPoint {
   x: number;
@@ -70,13 +70,7 @@ export const LineChart: React.FC<LineChartProps> = ({
   const minY = Math.min(...allPoints.map(p => p.y));
   const maxX = Math.max(...allPoints.map(p => p.x));
 
-  const defaultColors = [
-    colors.raw.blue[500],
-    colors.raw.green[500],
-    colors.raw.amber[500],
-    colors.raw.red[500],
-    colors.raw.purple[500],
-  ];
+  const defaultColors = seriesColors();
 
   const getPath = (data: LineChartDataPoint[]): string => {
     if (data.length === 0) return '';
@@ -140,7 +134,7 @@ export const LineChart: React.FC<LineChartProps> = ({
                   <path
                     d={getPath(s.data)}
                     fill='none'
-                    stroke={color}
+                    style={{ stroke: color }}
                     strokeWidth='0.5'
                     vectorEffect='non-scaling-stroke'
                   />
@@ -156,7 +150,7 @@ export const LineChart: React.FC<LineChartProps> = ({
                           cx={x}
                           cy={y}
                           r='1'
-                          fill={color}
+                          style={{ fill: color }}
                           vectorEffect='non-scaling-stroke'
                         />
                       );

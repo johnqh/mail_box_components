@@ -67,7 +67,7 @@ describe('Progress', () => {
   it('applies success variant', () => {
     const { container } = render(<Progress value={80} variant='success' />);
 
-    const progressFill = container.querySelector('[class*="bg-green"]');
+    const progressFill = container.querySelector('[class*="bg-success"]');
     expect(progressFill).toBeInTheDocument();
   });
 
@@ -81,14 +81,14 @@ describe('Progress', () => {
   it('applies danger variant', () => {
     const { container } = render(<Progress value={20} variant='danger' />);
 
-    const progressFill = container.querySelector('[class*="bg-red"]');
+    const progressFill = container.querySelector('[class*="bg-destructive"]');
     expect(progressFill).toBeInTheDocument();
   });
 
   it('applies default variant', () => {
     const { container } = render(<Progress value={50} />);
 
-    const progressFill = container.querySelector('[class*="bg-blue"]');
+    const progressFill = container.querySelector('[class*="bg-primary"]');
     expect(progressFill).toBeInTheDocument();
   });
 
@@ -146,14 +146,17 @@ describe('Progress', () => {
   it('renders with striped style', () => {
     const { container } = render(<Progress value={50} striped />);
 
-    const stripedElement = container.querySelector('[class*="bg-stripe"]');
+    // Stripes are an inline gradient: no stripe utility exists to resolve.
+    const stripedElement =
+      container.querySelector<HTMLElement>('[data-striped]');
     expect(stripedElement).toBeInTheDocument();
+    expect(stripedElement!.style.backgroundImage).toContain('linear-gradient');
   });
 
   it('renders with animated stripes', () => {
     const { container } = render(<Progress value={50} striped animated />);
 
-    const animatedElement = container.querySelector('[class*="animate"]');
+    const animatedElement = container.querySelector('[data-animated]');
     expect(animatedElement).toBeInTheDocument();
   });
 

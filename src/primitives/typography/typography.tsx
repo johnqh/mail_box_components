@@ -2,41 +2,47 @@ import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 import { textVariants } from '@sudobility/design';
+import { themedCva } from '../../lib/theme';
 
 // Page Title Component
-const pageTitleVariants = cva('', {
-  variants: {
-    variant: {
-      hero: textVariants.heading.display.hero(),
-      display: textVariants.heading.display.lg(),
-      h1: textVariants.heading.h1(),
-      h2: textVariants.heading.h2(),
-      h3: textVariants.heading.h3(),
+const pageTitleVariants = themedCva(() =>
+  cva('', {
+    variants: {
+      variant: {
+        hero: textVariants.heading.display.hero(),
+        display: textVariants.heading.display.lg(),
+        h1: textVariants.heading.h1(),
+        h2: textVariants.heading.h2(),
+        h3: textVariants.heading.h3(),
+      },
+      responsive: {
+        true: '', // Responsive sizing handled in variant
+        false: '',
+      },
+      align: {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right',
+      },
+      color: {
+        default: 'text-foreground',
+        muted: 'text-muted-foreground',
+        // For a title on a primary fill (Section's `gradient-vibrant`).
+        vibrant: 'text-primary-foreground',
+        // Into a lighter primary: `accent` is a near-white grey in some
+        // themes, and the title faded out along its length.
+        brand:
+          'bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent',
+      },
     },
-    responsive: {
-      true: '', // Responsive sizing handled in variant
-      false: '',
+    defaultVariants: {
+      variant: 'h1',
+      responsive: true,
+      align: 'left',
+      color: 'default',
     },
-    align: {
-      left: 'text-left',
-      center: 'text-center',
-      right: 'text-right',
-    },
-    color: {
-      default: 'text-foreground',
-      muted: 'text-muted-foreground',
-      vibrant: 'text-primary-foreground',
-      brand:
-        'bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent',
-    },
-  },
-  defaultVariants: {
-    variant: 'h1',
-    responsive: true,
-    align: 'left',
-    color: 'default',
-  },
-});
+  })
+);
 
 interface PageTitleProps extends VariantProps<typeof pageTitleVariants> {
   children: React.ReactNode;
@@ -79,34 +85,36 @@ export const PageTitle: React.FC<PageTitleProps> = ({
 };
 
 // Section Title Component
-const sectionTitleVariants = cva('', {
-  variants: {
-    variant: {
-      h2: textVariants.heading.h2(),
-      h3: textVariants.heading.h3(),
-      h4: textVariants.heading.h4(),
-      h5: textVariants.heading.h5(),
-      h6: textVariants.heading.h6(),
+const sectionTitleVariants = themedCva(() =>
+  cva('', {
+    variants: {
+      variant: {
+        h2: textVariants.heading.h2(),
+        h3: textVariants.heading.h3(),
+        h4: textVariants.heading.h4(),
+        h5: textVariants.heading.h5(),
+        h6: textVariants.heading.h6(),
+      },
+      spacing: {
+        none: '',
+        sm: 'mb-2',
+        md: 'mb-4',
+        lg: 'mb-6',
+        xl: 'mb-8',
+      },
+      align: {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right',
+      },
     },
-    spacing: {
-      none: '',
-      sm: 'mb-2',
-      md: 'mb-4',
-      lg: 'mb-6',
-      xl: 'mb-8',
+    defaultVariants: {
+      variant: 'h2',
+      spacing: 'md',
+      align: 'left',
     },
-    align: {
-      left: 'text-left',
-      center: 'text-center',
-      right: 'text-right',
-    },
-  },
-  defaultVariants: {
-    variant: 'h2',
-    spacing: 'md',
-    align: 'left',
-  },
-});
+  })
+);
 
 interface SectionTitleProps extends VariantProps<typeof sectionTitleVariants> {
   children: React.ReactNode;
@@ -137,33 +145,35 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({
 };
 
 // Body Text Component
-const bodyTextVariants = cva('', {
-  variants: {
-    variant: {
-      body: textVariants.body.md(),
-      lead: textVariants.body.lg(),
-      large: textVariants.body.lg(),
-      small: textVariants.body.sm(),
-      caption: textVariants.body.xs(),
+const bodyTextVariants = themedCva(() =>
+  cva('', {
+    variants: {
+      variant: {
+        body: textVariants.body.md(),
+        lead: textVariants.body.lg(),
+        large: textVariants.body.lg(),
+        small: textVariants.body.sm(),
+        caption: textVariants.body.xs(),
+      },
+      color: {
+        default: 'text-foreground',
+        muted: 'text-muted-foreground',
+        primary: 'text-foreground',
+      },
+      align: {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right',
+        justify: 'text-justify',
+      },
     },
-    color: {
-      default: 'text-foreground',
-      muted: 'text-muted-foreground',
-      primary: 'text-foreground',
+    defaultVariants: {
+      variant: 'body',
+      color: 'default',
+      align: 'left',
     },
-    align: {
-      left: 'text-left',
-      center: 'text-center',
-      right: 'text-right',
-      justify: 'text-justify',
-    },
-  },
-  defaultVariants: {
-    variant: 'body',
-    color: 'default',
-    align: 'left',
-  },
-});
+  })
+);
 
 interface BodyTextProps extends VariantProps<typeof bodyTextVariants> {
   children: React.ReactNode;
@@ -187,25 +197,27 @@ export const BodyText: React.FC<BodyTextProps> = ({
 };
 
 // Text Link Component
-const textLinkVariants = cva(textVariants.link.default(), {
-  variants: {
-    variant: {
-      default: textVariants.link.default(),
-      subtle: textVariants.link.subtle(),
-      muted: textVariants.link.muted(),
-      button:
-        'inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors',
+const textLinkVariants = themedCva(() =>
+  cva(textVariants.link.default(), {
+    variants: {
+      variant: {
+        default: textVariants.link.default(),
+        subtle: textVariants.link.subtle(),
+        muted: textVariants.link.muted(),
+        button:
+          'inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors',
+      },
+      external: {
+        true: 'inline-flex items-center gap-1',
+        false: '',
+      },
     },
-    external: {
-      true: 'inline-flex items-center gap-1',
-      false: '',
+    defaultVariants: {
+      variant: 'default',
+      external: false,
     },
-  },
-  defaultVariants: {
-    variant: 'default',
-    external: false,
-  },
-});
+  })
+);
 
 interface TextLinkProps extends VariantProps<typeof textLinkVariants> {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/components",
-  "version": "5.3.31",
+  "version": "5.3.32",
   "description": "Reusable UI components and design system - Reorganized for better maintainability",
   "type": "module",
   "main": "dist/index.js",
@@ -24,6 +24,7 @@
     "README.md"
   ],
   "scripts": {
+    "generate:cf-env": "curl -sL https://raw.githubusercontent.com/johnqh/workflows/main/scripts/generate-cloudflare-env.ts -o /tmp/generate-cloudflare-env.ts && bunx tsx /tmp/generate-cloudflare-env.ts",
     "build": "NODE_ENV=production tsc && NODE_ENV=production vite build",
     "dev": "vite build --watch",
     "type-check": "tsc --noEmit",

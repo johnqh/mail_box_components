@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UgasUtracker Component
+ * GasTracker Component
  *
- * A reusable UgasUtracker component with full dark mode support.
+ * A reusable GasTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UgasUtracker className="custom-class" />
+ * <GasTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/gas-tracker}
  */
 
-export interface UgasUtrackerProps {
+export interface GasTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UgasUtrackerProps {
   onClick?: () => void;
 }
 
-export const UgasUtracker = ({
+export const GasTracker = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UgasUtrackerProps) => {
+}: GasTrackerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UgasUtracker = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UgasUtracker'
+      aria-label='GasTracker'
     >
-      {children || 'UgasUtracker Component'}
+      {children || 'GasTracker Component'}
     </div>
   );
 };

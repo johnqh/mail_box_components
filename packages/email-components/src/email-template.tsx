@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UemailUtemplate Component
+ * EmailTemplate Component
  *
- * A reusable UemailUtemplate component with full dark mode support.
+ * A reusable EmailTemplate component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UemailUtemplate className="custom-class" />
+ * <EmailTemplate className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/email-template}
  */
 
-export interface UemailUtemplateProps {
+export interface EmailTemplateProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UemailUtemplateProps {
   onTrack?: (action: string) => void;
 }
 
-export const UemailUtemplate = ({
+export const EmailTemplate = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UemailUtemplateProps) => {
+}: EmailTemplateProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.('click');
@@ -62,9 +62,9 @@ export const UemailUtemplate = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UemailUtemplate'
+      aria-label='EmailTemplate'
     >
-      {children || 'UemailUtemplate Component'}
+      {children || 'EmailTemplate Component'}
     </div>
   );
 };

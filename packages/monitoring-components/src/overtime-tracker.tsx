@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UovertimeUtracker Component
+ * OvertimeTracker Component
  *
- * A reusable UovertimeUtracker component with full dark mode support.
+ * A reusable OvertimeTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UovertimeUtracker className="custom-class" />
+ * <OvertimeTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/overtime-tracker}
  */
 
-export interface UovertimeUtrackerProps {
+export interface OvertimeTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UovertimeUtrackerProps {
   onClick?: () => void;
 }
 
-export const UovertimeUtracker = ({
+export const OvertimeTracker = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UovertimeUtrackerProps) => {
+}: OvertimeTrackerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UovertimeUtracker = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UovertimeUtracker'
+      aria-label='OvertimeTracker'
     >
-      {children || 'UovertimeUtracker Component'}
+      {children || 'OvertimeTracker Component'}
     </div>
   );
 };

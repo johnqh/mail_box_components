@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UavailabilityUgrid Component
+ * AvailabilityGrid Component
  *
- * A reusable UavailabilityUgrid component with full dark mode support.
+ * A reusable AvailabilityGrid component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UavailabilityUgrid className="custom-class" />
+ * <AvailabilityGrid className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/availability-grid}
  */
 
-export interface UavailabilityUgridProps {
+export interface AvailabilityGridProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UavailabilityUgridProps {
   onClick?: () => void;
 }
 
-export const UavailabilityUgrid = ({
+export const AvailabilityGrid = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UavailabilityUgridProps) => {
+}: AvailabilityGridProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UavailabilityUgrid = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UavailabilityUgrid'
+      aria-label='AvailabilityGrid'
     >
-      {children || 'UavailabilityUgrid Component'}
+      {children || 'AvailabilityGrid Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UconflictUresolver Component
+ * ConflictResolver Component
  *
- * A reusable UconflictUresolver component with full dark mode support.
+ * A reusable ConflictResolver component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UconflictUresolver className="custom-class" />
+ * <ConflictResolver className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ConflictResolverTrackingData {
   componentName?: string;
 }
 
-export interface UconflictUresolverProps {
+export interface ConflictResolverProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UconflictUresolverProps {
   componentName?: string;
 }
 
-export const UconflictUresolver = ({
+export const ConflictResolver = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UconflictUresolver',
-}: UconflictUresolverProps) => {
+  componentName = 'ConflictResolver',
+}: ConflictResolverProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UconflictUresolver = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UconflictUresolver'
+      aria-label='ConflictResolver'
     >
-      {children || 'UconflictUresolver Component'}
+      {children || 'ConflictResolver Component'}
     </div>
   );
 };

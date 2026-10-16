@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtokenUswap Component
+ * TokenSwap Component
  *
- * A reusable UtokenUswap component with full dark mode support.
+ * A reusable TokenSwap component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtokenUswap className="custom-class" />
+ * <TokenSwap className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/token-swap}
  */
 
-export interface UtokenUswapProps {
+export interface TokenSwapProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UtokenUswapProps {
   onClick?: () => void;
 }
 
-export const UtokenUswap = ({
+export const TokenSwap = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UtokenUswapProps) => {
+}: TokenSwapProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UtokenUswap = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UtokenUswap'
+      aria-label='TokenSwap'
     >
-      {children || 'UtokenUswap Component'}
+      {children || 'TokenSwap Component'}
     </div>
   );
 };

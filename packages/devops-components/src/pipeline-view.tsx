@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpipelineUview Component
+ * PipelineView Component
  *
- * A reusable UpipelineUview component with full dark mode support.
+ * A reusable PipelineView component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpipelineUview className="custom-class" />
+ * <PipelineView className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface PipelineViewTrackingData {
   componentName?: string;
 }
 
-export interface UpipelineUviewProps {
+export interface PipelineViewProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UpipelineUviewProps {
   componentName?: string;
 }
 
-export const UpipelineUview = ({
+export const PipelineView = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UpipelineUview',
-}: UpipelineUviewProps) => {
+  componentName = 'PipelineView',
+}: PipelineViewProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UpipelineUview = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UpipelineUview'
+      aria-label='PipelineView'
     >
-      {children || 'UpipelineUview Component'}
+      {children || 'PipelineView Component'}
     </div>
   );
 };

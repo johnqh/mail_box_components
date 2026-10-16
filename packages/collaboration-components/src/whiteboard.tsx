@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * Uwhiteboard Component
+ * Whiteboard Component
  *
- * A reusable Uwhiteboard component with full dark mode support.
+ * A reusable Whiteboard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <Uwhiteboard className="custom-class" />
+ * <Whiteboard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface WhiteboardTrackingData {
   componentName?: string;
 }
 
-export interface UwhiteboardProps {
+export interface WhiteboardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UwhiteboardProps {
   componentName?: string;
 }
 
-export const Uwhiteboard = ({
+export const Whiteboard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'Uwhiteboard',
-}: UwhiteboardProps) => {
+  componentName = 'Whiteboard',
+}: WhiteboardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const Uwhiteboard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='Uwhiteboard'
+      aria-label='Whiteboard'
     >
-      {children || 'Uwhiteboard Component'}
+      {children || 'Whiteboard Component'}
     </div>
   );
 };

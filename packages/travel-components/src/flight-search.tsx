@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UflightUsearch Component
+ * FlightSearch Component
  *
- * A reusable UflightUsearch component with full dark mode support.
+ * A reusable FlightSearch component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UflightUsearch className="custom-class" />
+ * <FlightSearch className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/flight-search}
  */
 
-export interface UflightUsearchProps {
+export interface FlightSearchProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UflightUsearchProps {
   onTrack?: (action: string) => void;
 }
 
-export const UflightUsearch = ({
+export const FlightSearch = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UflightUsearchProps) => {
+}: FlightSearchProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UflightUsearch = ({
             }
       }
       role='region'
-      aria-label='UflightUsearch'
+      aria-label='FlightSearch'
     >
-      {children || 'UflightUsearch Component'}
+      {children || 'FlightSearch Component'}
     </div>
   );
 };

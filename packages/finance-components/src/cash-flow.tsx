@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcashUflow Component
+ * CashFlow Component
  *
- * A reusable UcashUflow component with full dark mode support.
+ * A reusable CashFlow component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcashUflow className="custom-class" />
+ * <CashFlow className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CashFlowTrackingData {
   componentName?: string;
 }
 
-export interface UcashUflowProps {
+export interface CashFlowProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcashUflowProps {
   componentName?: string;
 }
 
-export const UcashUflow = ({
+export const CashFlow = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcashUflow',
-}: UcashUflowProps) => {
+  componentName = 'CashFlow',
+}: CashFlowProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcashUflow = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcashUflow'
+      aria-label='CashFlow'
     >
-      {children || 'UcashUflow Component'}
+      {children || 'CashFlow Component'}
     </div>
   );
 };

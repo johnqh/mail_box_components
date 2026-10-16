@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UctaUbanner Component
+ * CtaBanner Component
  *
- * A reusable UctaUbanner component with full dark mode support.
+ * A reusable CtaBanner component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UctaUbanner className="custom-class" />
+ * <CtaBanner className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/cta-banner}
  */
 
-export interface UctaUbannerProps {
+export interface CtaBannerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UctaUbannerProps {
   onClick?: () => void;
 }
 
-export const UctaUbanner = ({
+export const CtaBanner = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UctaUbannerProps) => {
+}: CtaBannerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UctaUbanner = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UctaUbanner'
+      aria-label='CtaBanner'
     >
-      {children || 'UctaUbanner Component'}
+      {children || 'CtaBanner Component'}
     </div>
   );
 };

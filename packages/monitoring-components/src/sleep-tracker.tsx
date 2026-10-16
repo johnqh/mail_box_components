@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsleepUtracker Component
+ * SleepTracker Component
  *
- * A reusable UsleepUtracker component with full dark mode support.
+ * A reusable SleepTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsleepUtracker className="custom-class" />
+ * <SleepTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/sleep-tracker}
  */
 
-export interface UsleepUtrackerProps {
+export interface SleepTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UsleepUtrackerProps {
   onClick?: () => void;
 }
 
-export const UsleepUtracker = ({
+export const SleepTracker = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UsleepUtrackerProps) => {
+}: SleepTrackerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UsleepUtracker = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UsleepUtracker'
+      aria-label='SleepTracker'
     >
-      {children || 'UsleepUtracker Component'}
+      {children || 'SleepTracker Component'}
     </div>
   );
 };

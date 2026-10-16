@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UstepUcounter Component
+ * StepCounter Component
  *
- * A reusable UstepUcounter component with full dark mode support.
+ * A reusable StepCounter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UstepUcounter className="custom-class" />
+ * <StepCounter className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface StepCounterTrackingData {
   componentName?: string;
 }
 
-export interface UstepUcounterProps {
+export interface StepCounterProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UstepUcounterProps {
   componentName?: string;
 }
 
-export const UstepUcounter = ({
+export const StepCounter = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UstepUcounter',
-}: UstepUcounterProps) => {
+  componentName = 'StepCounter',
+}: StepCounterProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UstepUcounter = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UstepUcounter'
+      aria-label='StepCounter'
     >
-      {children || 'UstepUcounter Component'}
+      {children || 'StepCounter Component'}
     </div>
   );
 };

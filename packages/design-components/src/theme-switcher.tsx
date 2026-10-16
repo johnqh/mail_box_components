@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UthemeUswitcher Component
+ * ThemeSwitcher Component
  *
- * A reusable UthemeUswitcher component with full dark mode support.
+ * A reusable ThemeSwitcher component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UthemeUswitcher className="custom-class" />
+ * <ThemeSwitcher className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ThemeSwitcherTrackingData {
   componentName?: string;
 }
 
-export interface UthemeUswitcherProps {
+export interface ThemeSwitcherProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UthemeUswitcherProps {
   componentName?: string;
 }
 
-export const UthemeUswitcher = ({
+export const ThemeSwitcher = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UthemeUswitcher',
-}: UthemeUswitcherProps) => {
+  componentName = 'ThemeSwitcher',
+}: ThemeSwitcherProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UthemeUswitcher = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UthemeUswitcher'
+      aria-label='ThemeSwitcher'
     >
-      {children || 'UthemeUswitcher Component'}
+      {children || 'ThemeSwitcher Component'}
     </div>
   );
 };

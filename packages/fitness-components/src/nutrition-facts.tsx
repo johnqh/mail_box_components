@@ -2,15 +2,15 @@ import { cn } from './lib/utils';
 import { colors } from '@sudobility/design';
 
 /**
- * UnutritionUfacts Component
+ * NutritionFacts Component
  *
- * A reusable UnutritionUfacts component with full dark mode support.
+ * A reusable NutritionFacts component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UnutritionUfacts className="custom-class" />
+ * <NutritionFacts className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface NutritionFactsTrackingData {
   componentName?: string;
 }
 
-export interface UnutritionUfactsProps {
+export interface NutritionFactsProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UnutritionUfactsProps {
   componentName?: string;
 }
 
-export const UnutritionUfacts = ({
+export const NutritionFacts = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UnutritionUfacts',
-}: UnutritionUfactsProps) => {
+  componentName = 'NutritionFacts',
+}: NutritionFactsProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UnutritionUfacts = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UnutritionUfacts'
+      aria-label='NutritionFacts'
     >
-      {children || 'UnutritionUfacts Component'}
+      {children || 'NutritionFacts Component'}
     </div>
   );
 };

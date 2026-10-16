@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UinvestmentUtracker Component
+ * InvestmentTracker Component
  *
- * A reusable UinvestmentUtracker component with full dark mode support.
+ * A reusable InvestmentTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UinvestmentUtracker className="custom-class" />
+ * <InvestmentTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface InvestmentTrackerTrackingData {
   componentName?: string;
 }
 
-export interface UinvestmentUtrackerProps {
+export interface InvestmentTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UinvestmentUtrackerProps {
   componentName?: string;
 }
 
-export const UinvestmentUtracker = ({
+export const InvestmentTracker = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UinvestmentUtracker',
-}: UinvestmentUtrackerProps) => {
+  componentName = 'InvestmentTracker',
+}: InvestmentTrackerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UinvestmentUtracker = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UinvestmentUtracker'
+      aria-label='InvestmentTracker'
     >
-      {children || 'UinvestmentUtracker Component'}
+      {children || 'InvestmentTracker Component'}
     </div>
   );
 };

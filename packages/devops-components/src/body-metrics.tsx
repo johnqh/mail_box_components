@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbodyUmetrics Component
+ * BodyMetrics Component
  *
- * A reusable UbodyUmetrics component with full dark mode support.
+ * A reusable BodyMetrics component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbodyUmetrics className="custom-class" />
+ * <BodyMetrics className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface BodyMetricsTrackingData {
   componentName?: string;
 }
 
-export interface UbodyUmetricsProps {
+export interface BodyMetricsProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UbodyUmetricsProps {
   componentName?: string;
 }
 
-export const UbodyUmetrics = ({
+export const BodyMetrics = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UbodyUmetrics',
-}: UbodyUmetricsProps) => {
+  componentName = 'BodyMetrics',
+}: BodyMetricsProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UbodyUmetrics = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UbodyUmetrics'
+      aria-label='BodyMetrics'
     >
-      {children || 'UbodyUmetrics Component'}
+      {children || 'BodyMetrics Component'}
     </div>
   );
 };

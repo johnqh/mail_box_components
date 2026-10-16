@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UrecipeUcard Component
+ * RecipeCard Component
  *
- * A reusable UrecipeUcard component with full dark mode support.
+ * A reusable RecipeCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UrecipeUcard className="custom-class" />
+ * <RecipeCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface RecipeCardTrackingData {
   componentName?: string;
 }
 
-export interface UrecipeUcardProps {
+export interface RecipeCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UrecipeUcardProps {
   componentName?: string;
 }
 
-export const UrecipeUcard = ({
+export const RecipeCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UrecipeUcard',
-}: UrecipeUcardProps) => {
+  componentName = 'RecipeCard',
+}: RecipeCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UrecipeUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UrecipeUcard'
+      aria-label='RecipeCard'
     >
-      {children || 'UrecipeUcard Component'}
+      {children || 'RecipeCard Component'}
     </div>
   );
 };

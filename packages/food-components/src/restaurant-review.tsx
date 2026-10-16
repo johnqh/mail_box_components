@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UrestaurantUreview Component
+ * RestaurantReview Component
  *
- * A reusable UrestaurantUreview component with full dark mode support.
+ * A reusable RestaurantReview component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UrestaurantUreview className="custom-class" />
+ * <RestaurantReview className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface RestaurantReviewTrackingData {
   componentName?: string;
 }
 
-export interface UrestaurantUreviewProps {
+export interface RestaurantReviewProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UrestaurantUreviewProps {
   componentName?: string;
 }
 
-export const UrestaurantUreview = ({
+export const RestaurantReview = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UrestaurantUreview',
-}: UrestaurantUreviewProps) => {
+  componentName = 'RestaurantReview',
+}: RestaurantReviewProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UrestaurantUreview = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UrestaurantUreview'
+      aria-label='RestaurantReview'
     >
-      {children || 'UrestaurantUreview Component'}
+      {children || 'RestaurantReview Component'}
     </div>
   );
 };

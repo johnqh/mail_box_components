@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UshiftUplanner Component
+ * ShiftPlanner Component
  *
- * A reusable UshiftUplanner component with full dark mode support.
+ * A reusable ShiftPlanner component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UshiftUplanner className="custom-class" />
+ * <ShiftPlanner className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/shift-planner}
  */
 
-export interface UshiftUplannerProps {
+export interface ShiftPlannerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UshiftUplannerProps {
   onClick?: () => void;
 }
 
-export const UshiftUplanner = ({
+export const ShiftPlanner = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UshiftUplannerProps) => {
+}: ShiftPlannerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UshiftUplanner = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UshiftUplanner'
+      aria-label='ShiftPlanner'
     >
-      {children || 'UshiftUplanner Component'}
+      {children || 'ShiftPlanner Component'}
     </div>
   );
 };

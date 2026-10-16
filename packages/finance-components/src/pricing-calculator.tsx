@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpricingUcalculator Component
+ * PricingCalculator Component
  *
- * A reusable UpricingUcalculator component with full dark mode support.
+ * A reusable PricingCalculator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpricingUcalculator className="custom-class" />
+ * <PricingCalculator className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface PricingCalculatorTrackingData {
   componentName?: string;
 }
 
-export interface UpricingUcalculatorProps {
+export interface PricingCalculatorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UpricingUcalculatorProps {
   componentName?: string;
 }
 
-export const UpricingUcalculator = ({
+export const PricingCalculator = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UpricingUcalculator',
-}: UpricingUcalculatorProps) => {
+  componentName = 'PricingCalculator',
+}: PricingCalculatorProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UpricingUcalculator = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UpricingUcalculator'
+      aria-label='PricingCalculator'
     >
-      {children || 'UpricingUcalculator Component'}
+      {children || 'PricingCalculator Component'}
     </div>
   );
 };

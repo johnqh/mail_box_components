@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcallUcontrols Component
+ * CallControls Component
  *
- * A reusable UcallUcontrols component with full dark mode support.
+ * A reusable CallControls component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcallUcontrols className="custom-class" />
+ * <CallControls className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CallControlsTrackingData {
   componentName?: string;
 }
 
-export interface UcallUcontrolsProps {
+export interface CallControlsProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcallUcontrolsProps {
   componentName?: string;
 }
 
-export const UcallUcontrols = ({
+export const CallControls = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcallUcontrols',
-}: UcallUcontrolsProps) => {
+  componentName = 'CallControls',
+}: CallControlsProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcallUcontrols = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcallUcontrols'
+      aria-label='CallControls'
     >
-      {children || 'UcallUcontrols Component'}
+      {children || 'CallControls Component'}
     </div>
   );
 };

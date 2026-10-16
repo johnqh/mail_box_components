@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UworkUcalendar Component
+ * WorkCalendar Component
  *
- * A reusable UworkUcalendar component with full dark mode support.
+ * A reusable WorkCalendar component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UworkUcalendar className="custom-class" />
+ * <WorkCalendar className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/work-calendar}
  */
 
-export interface UworkUcalendarProps {
+export interface WorkCalendarProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UworkUcalendarProps {
   onClick?: () => void;
 }
 
-export const UworkUcalendar = ({
+export const WorkCalendar = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UworkUcalendarProps) => {
+}: WorkCalendarProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UworkUcalendar = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UworkUcalendar'
+      aria-label='WorkCalendar'
     >
-      {children || 'UworkUcalendar Component'}
+      {children || 'WorkCalendar Component'}
     </div>
   );
 };

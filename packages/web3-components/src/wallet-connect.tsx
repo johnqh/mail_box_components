@@ -2,15 +2,15 @@ import { cn } from './lib/utils';
 import { colors } from '@sudobility/design';
 
 /**
- * UwalletUconnect Component
+ * WalletConnect Component
  *
- * A reusable UwalletUconnect component with full dark mode support.
+ * A reusable WalletConnect component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UwalletUconnect className="custom-class" />
+ * <WalletConnect className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,14 +23,14 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/wallet-connect}
  */
 
-/** Tracking data for UwalletUconnect actions */
+/** Tracking data for WalletConnect actions */
 export interface WalletConnectTrackingData {
   action: 'click';
   trackingLabel?: string;
   componentName?: string;
 }
 
-export interface UwalletUconnectProps {
+export interface WalletConnectProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UwalletUconnectProps {
   componentName?: string;
 }
 
-export const UwalletUconnect = ({
+export const WalletConnect = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UwalletUconnect',
-}: UwalletUconnectProps) => {
+  componentName = 'WalletConnect',
+}: WalletConnectProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UwalletUconnect = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UwalletUconnect'
+      aria-label='WalletConnect'
     >
-      {children || 'UwalletUconnect Component'}
+      {children || 'WalletConnect Component'}
     </div>
   );
 };

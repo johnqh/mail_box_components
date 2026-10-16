@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UgameUcontrols Component
+ * GameControls Component
  *
- * A reusable UgameUcontrols component with full dark mode support.
+ * A reusable GameControls component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UgameUcontrols className="custom-class" />
+ * <GameControls className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface GameControlsTrackingData {
   componentName?: string;
 }
 
-export interface UgameUcontrolsProps {
+export interface GameControlsProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UgameUcontrolsProps {
   componentName?: string;
 }
 
-export const UgameUcontrols = ({
+export const GameControls = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UgameUcontrols',
-}: UgameUcontrolsProps) => {
+  componentName = 'GameControls',
+}: GameControlsProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UgameUcontrols = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UgameUcontrols'
+      aria-label='GameControls'
     >
-      {children || 'UgameUcontrols Component'}
+      {children || 'GameControls Component'}
     </div>
   );
 };

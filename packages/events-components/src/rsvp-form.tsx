@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UrsvpUform Component
+ * RsvpForm Component
  *
- * A reusable UrsvpUform component with full dark mode support.
+ * A reusable RsvpForm component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UrsvpUform className="custom-class" />
+ * <RsvpForm className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface RsvpFormTrackingData {
   componentName?: string;
 }
 
-export interface UrsvpUformProps {
+export interface RsvpFormProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UrsvpUformProps {
   componentName?: string;
 }
 
-export const UrsvpUform = ({
+export const RsvpForm = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UrsvpUform',
-}: UrsvpUformProps) => {
+  componentName = 'RsvpForm',
+}: RsvpFormProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UrsvpUform = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UrsvpUform'
+      aria-label='RsvpForm'
     >
-      {children || 'UrsvpUform Component'}
+      {children || 'RsvpForm Component'}
     </div>
   );
 };

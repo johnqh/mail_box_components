@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UauroraUbackground Component
+ * AuroraBackground Component
  *
- * A reusable UauroraUbackground component with full dark mode support.
+ * A reusable AuroraBackground component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UauroraUbackground className="custom-class" />
+ * <AuroraBackground className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface AuroraBackgroundTrackingData {
   componentName?: string;
 }
 
-export interface UauroraUbackgroundProps {
+export interface AuroraBackgroundProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UauroraUbackgroundProps {
   componentName?: string;
 }
 
-export const UauroraUbackground = ({
+export const AuroraBackground = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UauroraUbackground',
-}: UauroraUbackgroundProps) => {
+  componentName = 'AuroraBackground',
+}: AuroraBackgroundProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UauroraUbackground = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UauroraUbackground'
+      aria-label='AuroraBackground'
     >
-      {children || 'UauroraUbackground Component'}
+      {children || 'AuroraBackground Component'}
     </div>
   );
 };

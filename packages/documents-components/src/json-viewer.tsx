@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UjsonUviewer Component
+ * JsonViewer Component
  *
- * A reusable UjsonUviewer component with full dark mode support.
+ * A reusable JsonViewer component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UjsonUviewer className="custom-class" />
+ * <JsonViewer className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface JsonViewerTrackingData {
   componentName?: string;
 }
 
-export interface UjsonUviewerProps {
+export interface JsonViewerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UjsonUviewerProps {
   componentName?: string;
 }
 
-export const UjsonUviewer = ({
+export const JsonViewer = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UjsonUviewer',
-}: UjsonUviewerProps) => {
+  componentName = 'JsonViewer',
+}: JsonViewerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UjsonUviewer = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UjsonUviewer'
+      aria-label='JsonViewer'
     >
-      {children || 'UjsonUviewer Component'}
+      {children || 'JsonViewer Component'}
     </div>
   );
 };

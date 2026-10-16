@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UattendeeUbadge Component
+ * AttendeeBadge Component
  *
- * A reusable UattendeeUbadge component with full dark mode support.
+ * A reusable AttendeeBadge component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UattendeeUbadge className="custom-class" />
+ * <AttendeeBadge className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface AttendeeBadgeTrackingData {
   componentName?: string;
 }
 
-export interface UattendeeUbadgeProps {
+export interface AttendeeBadgeProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UattendeeUbadgeProps {
   componentName?: string;
 }
 
-export const UattendeeUbadge = ({
+export const AttendeeBadge = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UattendeeUbadge',
-}: UattendeeUbadgeProps) => {
+  componentName = 'AttendeeBadge',
+}: AttendeeBadgeProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UattendeeUbadge = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UattendeeUbadge'
+      aria-label='AttendeeBadge'
     >
-      {children || 'UattendeeUbadge Component'}
+      {children || 'AttendeeBadge Component'}
     </div>
   );
 };

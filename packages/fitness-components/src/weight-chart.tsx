@@ -2,15 +2,15 @@ import { cn } from './lib/utils';
 import { colors } from '@sudobility/design';
 
 /**
- * UweightUchart Component
+ * WeightChart Component
  *
- * A reusable UweightUchart component with full dark mode support.
+ * A reusable WeightChart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UweightUchart className="custom-class" />
+ * <WeightChart className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface WeightChartTrackingData {
   componentName?: string;
 }
 
-export interface UweightUchartProps {
+export interface WeightChartProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UweightUchartProps {
   componentName?: string;
 }
 
-export const UweightUchart = ({
+export const WeightChart = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UweightUchart',
-}: UweightUchartProps) => {
+  componentName = 'WeightChart',
+}: WeightChartProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UweightUchart = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UweightUchart'
+      aria-label='WeightChart'
     >
-      {children || 'UweightUchart Component'}
+      {children || 'WeightChart Component'}
     </div>
   );
 };

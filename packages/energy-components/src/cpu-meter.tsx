@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcpuUmeter Component
+ * CpuMeter Component
  *
- * A reusable UcpuUmeter component with full dark mode support.
+ * A reusable CpuMeter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcpuUmeter className="custom-class" />
+ * <CpuMeter className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CpuMeterTrackingData {
   componentName?: string;
 }
 
-export interface UcpuUmeterProps {
+export interface CpuMeterProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcpuUmeterProps {
   componentName?: string;
 }
 
-export const UcpuUmeter = ({
+export const CpuMeter = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcpuUmeter',
-}: UcpuUmeterProps) => {
+  componentName = 'CpuMeter',
+}: CpuMeterProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcpuUmeter = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcpuUmeter'
+      aria-label='CpuMeter'
     >
-      {children || 'UcpuUmeter Component'}
+      {children || 'CpuMeter Component'}
     </div>
   );
 };

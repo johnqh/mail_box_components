@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UfeedbackUform Component
+ * FeedbackForm Component
  *
- * A reusable UfeedbackUform component with full dark mode support.
+ * A reusable FeedbackForm component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UfeedbackUform className="custom-class" />
+ * <FeedbackForm className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/feedback-form}
  */
 
-export interface UfeedbackUformProps {
+export interface FeedbackFormProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UfeedbackUformProps {
   onTrack?: (action: string) => void;
 }
 
-export const UfeedbackUform = ({
+export const FeedbackForm = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UfeedbackUformProps) => {
+}: FeedbackFormProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UfeedbackUform = ({
             }
       }
       role='region'
-      aria-label='UfeedbackUform'
+      aria-label='FeedbackForm'
     >
-      {children || 'UfeedbackUform Component'}
+      {children || 'FeedbackForm Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UembedUwidget Component
+ * EmbedWidget Component
  *
- * A reusable UembedUwidget component with full dark mode support.
+ * A reusable EmbedWidget component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UembedUwidget className="custom-class" />
+ * <EmbedWidget className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/embed-widget}
  */
 
-export interface UembedUwidgetProps {
+export interface EmbedWidgetProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UembedUwidgetProps {
   onClick?: () => void;
 }
 
-export const UembedUwidget = ({
+export const EmbedWidget = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UembedUwidgetProps) => {
+}: EmbedWidgetProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UembedUwidget = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UembedUwidget'
+      aria-label='EmbedWidget'
     >
-      {children || 'UembedUwidget Component'}
+      {children || 'EmbedWidget Component'}
     </div>
   );
 };

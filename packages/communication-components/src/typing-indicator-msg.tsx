@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtypingUindicatorUmsg Component
+ * TypingIndicatorMsg Component
  *
- * A reusable UtypingUindicatorUmsg component with full dark mode support.
+ * A reusable TypingIndicatorMsg component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtypingUindicatorUmsg className="custom-class" />
+ * <TypingIndicatorMsg className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/typing-indicator-msg}
  */
 
-export interface UtypingUindicatorUmsgProps {
+export interface TypingIndicatorMsgProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UtypingUindicatorUmsgProps {
   onTrack?: (action: string) => void;
 }
 
-export const UtypingUindicatorUmsg = ({
+export const TypingIndicatorMsg = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UtypingUindicatorUmsgProps) => {
+}: TypingIndicatorMsgProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.('click');
@@ -62,9 +62,9 @@ export const UtypingUindicatorUmsg = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UtypingUindicatorUmsg'
+      aria-label='TypingIndicatorMsg'
     >
-      {children || 'UtypingUindicatorUmsg Component'}
+      {children || 'TypingIndicatorMsg Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UeventUcalendar Component
+ * EventCalendar Component
  *
- * A reusable UeventUcalendar component with full dark mode support.
+ * A reusable EventCalendar component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UeventUcalendar className="custom-class" />
+ * <EventCalendar className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface EventCalendarTrackingData {
   componentName?: string;
 }
 
-export interface UeventUcalendarProps {
+export interface EventCalendarProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UeventUcalendarProps {
   componentName?: string;
 }
 
-export const UeventUcalendar = ({
+export const EventCalendar = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UeventUcalendar',
-}: UeventUcalendarProps) => {
+  componentName = 'EventCalendar',
+}: EventCalendarProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UeventUcalendar = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UeventUcalendar'
+      aria-label='EventCalendar'
     >
-      {children || 'UeventUcalendar Component'}
+      {children || 'EventCalendar Component'}
     </div>
   );
 };

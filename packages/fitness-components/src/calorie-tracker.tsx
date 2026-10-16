@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcalorieUtracker Component
+ * CalorieTracker Component
  *
- * A reusable UcalorieUtracker component with full dark mode support.
+ * A reusable CalorieTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcalorieUtracker className="custom-class" />
+ * <CalorieTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CalorieTrackerTrackingData {
   componentName?: string;
 }
 
-export interface UcalorieUtrackerProps {
+export interface CalorieTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcalorieUtrackerProps {
   componentName?: string;
 }
 
-export const UcalorieUtracker = ({
+export const CalorieTracker = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcalorieUtracker',
-}: UcalorieUtrackerProps) => {
+  componentName = 'CalorieTracker',
+}: CalorieTrackerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcalorieUtracker = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcalorieUtracker'
+      aria-label='CalorieTracker'
     >
-      {children || 'UcalorieUtracker Component'}
+      {children || 'CalorieTracker Component'}
     </div>
   );
 };

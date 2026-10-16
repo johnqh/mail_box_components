@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UdeviceUcontrol Component
+ * DeviceControl Component
  *
- * A reusable UdeviceUcontrol component with full dark mode support.
+ * A reusable DeviceControl component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UdeviceUcontrol className="custom-class" />
+ * <DeviceControl className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/device-control}
  */
 
-export interface UdeviceUcontrolProps {
+export interface DeviceControlProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UdeviceUcontrolProps {
   onClick?: () => void;
 }
 
-export const UdeviceUcontrol = ({
+export const DeviceControl = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UdeviceUcontrolProps) => {
+}: DeviceControlProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UdeviceUcontrol = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UdeviceUcontrol'
+      aria-label='DeviceControl'
     >
-      {children || 'UdeviceUcontrol Component'}
+      {children || 'DeviceControl Component'}
     </div>
   );
 };

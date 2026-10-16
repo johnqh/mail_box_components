@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UdeploymentUstatus Component
+ * DeploymentStatus Component
  *
- * A reusable UdeploymentUstatus component with full dark mode support.
+ * A reusable DeploymentStatus component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UdeploymentUstatus className="custom-class" />
+ * <DeploymentStatus className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface DeploymentStatusTrackingData {
   componentName?: string;
 }
 
-export interface UdeploymentUstatusProps {
+export interface DeploymentStatusProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UdeploymentUstatusProps {
   componentName?: string;
 }
 
-export const UdeploymentUstatus = ({
+export const DeploymentStatus = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UdeploymentUstatus',
-}: UdeploymentUstatusProps) => {
+  componentName = 'DeploymentStatus',
+}: DeploymentStatusProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UdeploymentUstatus = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UdeploymentUstatus'
+      aria-label='DeploymentStatus'
     >
-      {children || 'UdeploymentUstatus Component'}
+      {children || 'DeploymentStatus Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UreportUbuilder Component
+ * ReportBuilder Component
  *
- * A reusable UreportUbuilder component with full dark mode support.
+ * A reusable ReportBuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UreportUbuilder className="custom-class" />
+ * <ReportBuilder className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ReportBuilderTrackingData {
   componentName?: string;
 }
 
-export interface UreportUbuilderProps {
+export interface ReportBuilderProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UreportUbuilderProps {
   componentName?: string;
 }
 
-export const UreportUbuilder = ({
+export const ReportBuilder = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UreportUbuilder',
-}: UreportUbuilderProps) => {
+  componentName = 'ReportBuilder',
+}: ReportBuilderProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UreportUbuilder = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UreportUbuilder'
+      aria-label='ReportBuilder'
     >
-      {children || 'UreportUbuilder Component'}
+      {children || 'ReportBuilder Component'}
     </div>
   );
 };

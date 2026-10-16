@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtourUpackage Component
+ * TourPackage Component
  *
- * A reusable UtourUpackage component with full dark mode support.
+ * A reusable TourPackage component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtourUpackage className="custom-class" />
+ * <TourPackage className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/tour-package}
  */
 
-export interface UtourUpackageProps {
+export interface TourPackageProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UtourUpackageProps {
   onTrack?: (action: string) => void;
 }
 
-export const UtourUpackage = ({
+export const TourPackage = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UtourUpackageProps) => {
+}: TourPackageProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UtourUpackage = ({
             }
       }
       role='region'
-      aria-label='UtourUpackage'
+      aria-label='TourPackage'
     >
-      {children || 'UtourUpackage Component'}
+      {children || 'TourPackage Component'}
     </div>
   );
 };

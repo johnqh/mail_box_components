@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UweatherUforecast Component
+ * WeatherForecast Component
  *
- * A reusable UweatherUforecast component with full dark mode support.
+ * A reusable WeatherForecast component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UweatherUforecast className="custom-class" />
+ * <WeatherForecast className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/weather-forecast}
  */
 
-export interface UweatherUforecastProps {
+export interface WeatherForecastProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UweatherUforecastProps {
   onTrack?: (action: string) => void;
 }
 
-export const UweatherUforecast = ({
+export const WeatherForecast = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UweatherUforecastProps) => {
+}: WeatherForecastProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UweatherUforecast = ({
             }
       }
       role='region'
-      aria-label='UweatherUforecast'
+      aria-label='WeatherForecast'
     >
-      {children || 'UweatherUforecast Component'}
+      {children || 'WeatherForecast Component'}
     </div>
   );
 };

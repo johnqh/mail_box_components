@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UnpsUsurvey Component
+ * NpsSurvey Component
  *
- * A reusable UnpsUsurvey component with full dark mode support.
+ * A reusable NpsSurvey component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UnpsUsurvey className="custom-class" />
+ * <NpsSurvey className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/nps-survey}
  */
 
-export interface UnpsUsurveyProps {
+export interface NpsSurveyProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UnpsUsurveyProps {
   onClick?: () => void;
 }
 
-export const UnpsUsurvey = ({
+export const NpsSurvey = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UnpsUsurveyProps) => {
+}: NpsSurveyProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UnpsUsurvey = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UnpsUsurvey'
+      aria-label='NpsSurvey'
     >
-      {children || 'UnpsUsurvey Component'}
+      {children || 'NpsSurvey Component'}
     </div>
   );
 };

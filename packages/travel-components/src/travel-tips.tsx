@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtravelUtips Component
+ * TravelTips Component
  *
- * A reusable UtravelUtips component with full dark mode support.
+ * A reusable TravelTips component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtravelUtips className="custom-class" />
+ * <TravelTips className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/travel-tips}
  */
 
-export interface UtravelUtipsProps {
+export interface TravelTipsProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UtravelUtipsProps {
   onTrack?: (action: string) => void;
 }
 
-export const UtravelUtips = ({
+export const TravelTips = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UtravelUtipsProps) => {
+}: TravelTipsProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UtravelUtips = ({
             }
       }
       role='region'
-      aria-label='UtravelUtips'
+      aria-label='TravelTips'
     >
-      {children || 'UtravelUtips Component'}
+      {children || 'TravelTips Component'}
     </div>
   );
 };

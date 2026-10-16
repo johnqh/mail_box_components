@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtaxUcalculator Component
+ * TaxCalculator Component
  *
- * A reusable UtaxUcalculator component with full dark mode support.
+ * A reusable TaxCalculator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtaxUcalculator className="custom-class" />
+ * <TaxCalculator className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface TaxCalculatorTrackingData {
   componentName?: string;
 }
 
-export interface UtaxUcalculatorProps {
+export interface TaxCalculatorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UtaxUcalculatorProps {
   componentName?: string;
 }
 
-export const UtaxUcalculator = ({
+export const TaxCalculator = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UtaxUcalculator',
-}: UtaxUcalculatorProps) => {
+  componentName = 'TaxCalculator',
+}: TaxCalculatorProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UtaxUcalculator = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UtaxUcalculator'
+      aria-label='TaxCalculator'
     >
-      {children || 'UtaxUcalculator Component'}
+      {children || 'TaxCalculator Component'}
     </div>
   );
 };

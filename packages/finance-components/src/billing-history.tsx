@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbillingUhistory Component
+ * BillingHistory Component
  *
- * A reusable UbillingUhistory component with full dark mode support.
+ * A reusable BillingHistory component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbillingUhistory className="custom-class" />
+ * <BillingHistory className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface BillingHistoryTrackingData {
   componentName?: string;
 }
 
-export interface UbillingUhistoryProps {
+export interface BillingHistoryProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UbillingUhistoryProps {
   componentName?: string;
 }
 
-export const UbillingUhistory = ({
+export const BillingHistory = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UbillingUhistory',
-}: UbillingUhistoryProps) => {
+  componentName = 'BillingHistory',
+}: BillingHistoryProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UbillingUhistory = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UbillingUhistory'
+      aria-label='BillingHistory'
     >
-      {children || 'UbillingUhistory Component'}
+      {children || 'BillingHistory Component'}
     </div>
   );
 };

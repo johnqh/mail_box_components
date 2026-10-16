@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UexcelUuploader Component
+ * ExcelUploader Component
  *
- * A reusable UexcelUuploader component with full dark mode support.
+ * A reusable ExcelUploader component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UexcelUuploader className="custom-class" />
+ * <ExcelUploader className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ExcelUploaderTrackingData {
   componentName?: string;
 }
 
-export interface UexcelUuploaderProps {
+export interface ExcelUploaderProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UexcelUuploaderProps {
   componentName?: string;
 }
 
-export const UexcelUuploader = ({
+export const ExcelUploader = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UexcelUuploader',
-}: UexcelUuploaderProps) => {
+  componentName = 'ExcelUploader',
+}: ExcelUploaderProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UexcelUuploader = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UexcelUuploader'
+      aria-label='ExcelUploader'
     >
-      {children || 'UexcelUuploader Component'}
+      {children || 'ExcelUploader Component'}
     </div>
   );
 };

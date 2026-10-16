@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcookingUtimer Component
+ * CookingTimer Component
  *
- * A reusable UcookingUtimer component with full dark mode support.
+ * A reusable CookingTimer component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcookingUtimer className="custom-class" />
+ * <CookingTimer className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CookingTimerTrackingData {
   componentName?: string;
 }
 
-export interface UcookingUtimerProps {
+export interface CookingTimerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcookingUtimerProps {
   componentName?: string;
 }
 
-export const UcookingUtimer = ({
+export const CookingTimer = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcookingUtimer',
-}: UcookingUtimerProps) => {
+  componentName = 'CookingTimer',
+}: CookingTimerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcookingUtimer = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcookingUtimer'
+      aria-label='CookingTimer'
     >
-      {children || 'UcookingUtimer Component'}
+      {children || 'CookingTimer Component'}
     </div>
   );
 };

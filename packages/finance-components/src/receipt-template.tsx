@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UreceiptUtemplate Component
+ * ReceiptTemplate Component
  *
- * A reusable UreceiptUtemplate component with full dark mode support.
+ * A reusable ReceiptTemplate component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UreceiptUtemplate className="custom-class" />
+ * <ReceiptTemplate className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ReceiptTemplateTrackingData {
   componentName?: string;
 }
 
-export interface UreceiptUtemplateProps {
+export interface ReceiptTemplateProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UreceiptUtemplateProps {
   componentName?: string;
 }
 
-export const UreceiptUtemplate = ({
+export const ReceiptTemplate = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UreceiptUtemplate',
-}: UreceiptUtemplateProps) => {
+  componentName = 'ReceiptTemplate',
+}: ReceiptTemplateProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UreceiptUtemplate = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UreceiptUtemplate'
+      aria-label='ReceiptTemplate'
     >
-      {children || 'UreceiptUtemplate Component'}
+      {children || 'ReceiptTemplate Component'}
     </div>
   );
 };

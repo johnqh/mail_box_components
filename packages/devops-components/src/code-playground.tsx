@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcodeUplayground Component
+ * CodePlayground Component
  *
- * A reusable UcodeUplayground component with full dark mode support.
+ * A reusable CodePlayground component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcodeUplayground className="custom-class" />
+ * <CodePlayground className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CodePlaygroundTrackingData {
   componentName?: string;
 }
 
-export interface UcodeUplaygroundProps {
+export interface CodePlaygroundProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcodeUplaygroundProps {
   componentName?: string;
 }
 
-export const UcodeUplayground = ({
+export const CodePlayground = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcodeUplayground',
-}: UcodeUplaygroundProps) => {
+  componentName = 'CodePlayground',
+}: CodePlaygroundProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcodeUplayground = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcodeUplayground'
+      aria-label='CodePlayground'
     >
-      {children || 'UcodeUplayground Component'}
+      {children || 'CodePlayground Component'}
     </div>
   );
 };

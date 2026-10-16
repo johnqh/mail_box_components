@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UexportUwizard Component
+ * ExportWizard Component
  *
- * A reusable UexportUwizard component with full dark mode support.
+ * A reusable ExportWizard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UexportUwizard className="custom-class" />
+ * <ExportWizard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ExportWizardTrackingData {
   componentName?: string;
 }
 
-export interface UexportUwizardProps {
+export interface ExportWizardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UexportUwizardProps {
   componentName?: string;
 }
 
-export const UexportUwizard = ({
+export const ExportWizard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UexportUwizard',
-}: UexportUwizardProps) => {
+  componentName = 'ExportWizard',
+}: ExportWizardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UexportUwizard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UexportUwizard'
+      aria-label='ExportWizard'
     >
-      {children || 'UexportUwizard Component'}
+      {children || 'ExportWizard Component'}
     </div>
   );
 };

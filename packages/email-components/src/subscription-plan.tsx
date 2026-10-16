@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsubscriptionUplan Component
+ * SubscriptionPlan Component
  *
- * A reusable UsubscriptionUplan component with full dark mode support.
+ * A reusable SubscriptionPlan component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsubscriptionUplan className="custom-class" />
+ * <SubscriptionPlan className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/subscription-plan}
  */
 
-export interface UsubscriptionUplanProps {
+export interface SubscriptionPlanProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UsubscriptionUplanProps {
   onTrack?: (action: string) => void;
 }
 
-export const UsubscriptionUplan = ({
+export const SubscriptionPlan = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UsubscriptionUplanProps) => {
+}: SubscriptionPlanProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.('click');
@@ -62,9 +62,9 @@ export const UsubscriptionUplan = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UsubscriptionUplan'
+      aria-label='SubscriptionPlan'
     >
-      {children || 'UsubscriptionUplan Component'}
+      {children || 'SubscriptionPlan Component'}
     </div>
   );
 };

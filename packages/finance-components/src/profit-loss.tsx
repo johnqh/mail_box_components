@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UprofitUloss Component
+ * ProfitLoss Component
  *
- * A reusable UprofitUloss component with full dark mode support.
+ * A reusable ProfitLoss component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UprofitUloss className="custom-class" />
+ * <ProfitLoss className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ProfitLossTrackingData {
   componentName?: string;
 }
 
-export interface UprofitUlossProps {
+export interface ProfitLossProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UprofitUlossProps {
   componentName?: string;
 }
 
-export const UprofitUloss = ({
+export const ProfitLoss = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UprofitUloss',
-}: UprofitUlossProps) => {
+  componentName = 'ProfitLoss',
+}: ProfitLossProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UprofitUloss = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UprofitUloss'
+      aria-label='ProfitLoss'
     >
-      {children || 'UprofitUloss Component'}
+      {children || 'ProfitLoss Component'}
     </div>
   );
 };

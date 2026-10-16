@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UspinUwheel Component
+ * SpinWheel Component
  *
- * A reusable UspinUwheel component with full dark mode support.
+ * A reusable SpinWheel component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UspinUwheel className="custom-class" />
+ * <SpinWheel className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface SpinWheelTrackingData {
   componentName?: string;
 }
 
-export interface UspinUwheelProps {
+export interface SpinWheelProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UspinUwheelProps {
   componentName?: string;
 }
 
-export const UspinUwheel = ({
+export const SpinWheel = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UspinUwheel',
-}: UspinUwheelProps) => {
+  componentName = 'SpinWheel',
+}: SpinWheelProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UspinUwheel = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UspinUwheel'
+      aria-label='SpinWheel'
     >
-      {children || 'UspinUwheel Component'}
+      {children || 'SpinWheel Component'}
     </div>
   );
 };

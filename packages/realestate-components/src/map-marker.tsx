@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UmapUmarker Component
+ * MapMarker Component
  *
- * A reusable UmapUmarker component with full dark mode support.
+ * A reusable MapMarker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UmapUmarker className="custom-class" />
+ * <MapMarker className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/map-marker}
  */
 
-export interface UmapUmarkerProps {
+export interface MapMarkerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UmapUmarkerProps {
   onClick?: () => void;
 }
 
-export const UmapUmarker = ({
+export const MapMarker = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UmapUmarkerProps) => {
+}: MapMarkerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UmapUmarker = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UmapUmarker'
+      aria-label='MapMarker'
     >
-      {children || 'UmapUmarker Component'}
+      {children || 'MapMarker Component'}
     </div>
   );
 };

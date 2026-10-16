@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtaskUdependency Component
+ * TaskDependency Component
  *
- * A reusable UtaskUdependency component with full dark mode support.
+ * A reusable TaskDependency component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtaskUdependency className="custom-class" />
+ * <TaskDependency className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/task-dependency}
  */
 
-export interface UtaskUdependencyProps {
+export interface TaskDependencyProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UtaskUdependencyProps {
   onClick?: () => void;
 }
 
-export const UtaskUdependency = ({
+export const TaskDependency = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UtaskUdependencyProps) => {
+}: TaskDependencyProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UtaskUdependency = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UtaskUdependency'
+      aria-label='TaskDependency'
     >
-      {children || 'UtaskUdependency Component'}
+      {children || 'TaskDependency Component'}
     </div>
   );
 };

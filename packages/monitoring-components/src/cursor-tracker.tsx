@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcursorUtracker Component
+ * CursorTracker Component
  *
- * A reusable UcursorUtracker component with full dark mode support.
+ * A reusable CursorTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcursorUtracker className="custom-class" />
+ * <CursorTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/cursor-tracker}
  */
 
-export interface UcursorUtrackerProps {
+export interface CursorTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UcursorUtrackerProps {
   onClick?: () => void;
 }
 
-export const UcursorUtracker = ({
+export const CursorTracker = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UcursorUtrackerProps) => {
+}: CursorTrackerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UcursorUtracker = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UcursorUtracker'
+      aria-label='CursorTracker'
     >
-      {children || 'UcursorUtracker Component'}
+      {children || 'CursorTracker Component'}
     </div>
   );
 };

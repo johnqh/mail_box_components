@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UnetworkUstatus Component
+ * NetworkStatus Component
  *
- * A reusable UnetworkUstatus component with full dark mode support.
+ * A reusable NetworkStatus component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UnetworkUstatus className="custom-class" />
+ * <NetworkStatus className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/network-status}
  */
 
-export interface UnetworkUstatusProps {
+export interface NetworkStatusProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UnetworkUstatusProps {
   onClick?: () => void;
 }
 
-export const UnetworkUstatus = ({
+export const NetworkStatus = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UnetworkUstatusProps) => {
+}: NetworkStatusProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UnetworkUstatus = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UnetworkUstatus'
+      aria-label='NetworkStatus'
     >
-      {children || 'UnetworkUstatus Component'}
+      {children || 'NetworkStatus Component'}
     </div>
   );
 };

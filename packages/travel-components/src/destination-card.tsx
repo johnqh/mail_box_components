@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UdestinationUcard Component
+ * DestinationCard Component
  *
- * A reusable UdestinationUcard component with full dark mode support.
+ * A reusable DestinationCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UdestinationUcard className="custom-class" />
+ * <DestinationCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/destination-card}
  */
 
-export interface UdestinationUcardProps {
+export interface DestinationCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UdestinationUcardProps {
   onTrack?: (action: string) => void;
 }
 
-export const UdestinationUcard = ({
+export const DestinationCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UdestinationUcardProps) => {
+}: DestinationCardProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UdestinationUcard = ({
             }
       }
       role='region'
-      aria-label='UdestinationUcard'
+      aria-label='DestinationCard'
     >
-      {children || 'UdestinationUcard Component'}
+      {children || 'DestinationCard Component'}
     </div>
   );
 };

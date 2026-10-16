@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UeventUgallery Component
+ * EventGallery Component
  *
- * A reusable UeventUgallery component with full dark mode support.
+ * A reusable EventGallery component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UeventUgallery className="custom-class" />
+ * <EventGallery className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface EventGalleryTrackingData {
   componentName?: string;
 }
 
-export interface UeventUgalleryProps {
+export interface EventGalleryProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UeventUgalleryProps {
   componentName?: string;
 }
 
-export const UeventUgallery = ({
+export const EventGallery = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UeventUgallery',
-}: UeventUgalleryProps) => {
+  componentName = 'EventGallery',
+}: EventGalleryProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UeventUgallery = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UeventUgallery'
+      aria-label='EventGallery'
     >
-      {children || 'UeventUgallery Component'}
+      {children || 'EventGallery Component'}
     </div>
   );
 };

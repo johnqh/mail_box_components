@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UworkoutUlog Component
+ * WorkoutLog Component
  *
- * A reusable UworkoutUlog component with full dark mode support.
+ * A reusable WorkoutLog component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UworkoutUlog className="custom-class" />
+ * <WorkoutLog className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface WorkoutLogTrackingData {
   componentName?: string;
 }
 
-export interface UworkoutUlogProps {
+export interface WorkoutLogProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UworkoutUlogProps {
   componentName?: string;
 }
 
-export const UworkoutUlog = ({
+export const WorkoutLog = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UworkoutUlog',
-}: UworkoutUlogProps) => {
+  componentName = 'WorkoutLog',
+}: WorkoutLogProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UworkoutUlog = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UworkoutUlog'
+      aria-label='WorkoutLog'
     >
-      {children || 'UworkoutUlog Component'}
+      {children || 'WorkoutLog Component'}
     </div>
   );
 };

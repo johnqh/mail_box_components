@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UguidedUtour Component
+ * GuidedTour Component
  *
- * A reusable UguidedUtour component with full dark mode support.
+ * A reusable GuidedTour component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UguidedUtour className="custom-class" />
+ * <GuidedTour className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/guided-tour}
  */
 
-export interface UguidedUtourProps {
+export interface GuidedTourProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UguidedUtourProps {
   onTrack?: (action: string) => void;
 }
 
-export const UguidedUtour = ({
+export const GuidedTour = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UguidedUtourProps) => {
+}: GuidedTourProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UguidedUtour = ({
             }
       }
       role='region'
-      aria-label='UguidedUtour'
+      aria-label='GuidedTour'
     >
-      {children || 'UguidedUtour Component'}
+      {children || 'GuidedTour Component'}
     </div>
   );
 };

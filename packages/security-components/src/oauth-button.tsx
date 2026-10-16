@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UoauthUbutton Component
+ * OauthButton Component
  *
- * A reusable UoauthUbutton component with full dark mode support.
+ * A reusable OauthButton component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UoauthUbutton className="custom-class" />
+ * <OauthButton className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/oauth-button}
  */
 
-export interface UoauthUbuttonProps {
+export interface OauthButtonProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UoauthUbuttonProps {
   onClick?: () => void;
 }
 
-export const UoauthUbutton = ({
+export const OauthButton = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UoauthUbuttonProps) => {
+}: OauthButtonProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UoauthUbutton = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UoauthUbutton'
+      aria-label='OauthButton'
     >
-      {children || 'UoauthUbutton Component'}
+      {children || 'OauthButton Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from './lib/utils';
 import { colors } from '@sudobility/design';
 
 /**
- * UcryptoUportfolio Component
+ * CryptoPortfolio Component
  *
- * A reusable UcryptoUportfolio component with full dark mode support.
+ * A reusable CryptoPortfolio component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcryptoUportfolio className="custom-class" />
+ * <CryptoPortfolio className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/crypto-portfolio}
  */
 
-export interface UcryptoUportfolioProps {
+export interface CryptoPortfolioProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UcryptoUportfolioProps {
   onClick?: () => void;
 }
 
-export const UcryptoUportfolio = ({
+export const CryptoPortfolio = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UcryptoUportfolioProps) => {
+}: CryptoPortfolioProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UcryptoUportfolio = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UcryptoUportfolio'
+      aria-label='CryptoPortfolio'
     >
-      {children || 'UcryptoUportfolio Component'}
+      {children || 'CryptoPortfolio Component'}
     </div>
   );
 };

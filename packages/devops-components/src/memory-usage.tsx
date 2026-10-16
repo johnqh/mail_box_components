@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UmemoryUusage Component
+ * MemoryUsage Component
  *
- * A reusable UmemoryUusage component with full dark mode support.
+ * A reusable MemoryUsage component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UmemoryUusage className="custom-class" />
+ * <MemoryUsage className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface MemoryUsageTrackingData {
   componentName?: string;
 }
 
-export interface UmemoryUusageProps {
+export interface MemoryUsageProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UmemoryUusageProps {
   componentName?: string;
 }
 
-export const UmemoryUusage = ({
+export const MemoryUsage = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UmemoryUusage',
-}: UmemoryUusageProps) => {
+  componentName = 'MemoryUsage',
+}: MemoryUsageProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UmemoryUusage = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UmemoryUusage'
+      aria-label='MemoryUsage'
     >
-      {children || 'UmemoryUusage Component'}
+      {children || 'MemoryUsage Component'}
     </div>
   );
 };

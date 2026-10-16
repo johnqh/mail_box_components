@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbalanceUsheet Component
+ * BalanceSheet Component
  *
- * A reusable UbalanceUsheet component with full dark mode support.
+ * A reusable BalanceSheet component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbalanceUsheet className="custom-class" />
+ * <BalanceSheet className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface BalanceSheetTrackingData {
   componentName?: string;
 }
 
-export interface UbalanceUsheetProps {
+export interface BalanceSheetProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UbalanceUsheetProps {
   componentName?: string;
 }
 
-export const UbalanceUsheet = ({
+export const BalanceSheet = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UbalanceUsheet',
-}: UbalanceUsheetProps) => {
+  componentName = 'BalanceSheet',
+}: BalanceSheetProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UbalanceUsheet = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UbalanceUsheet'
+      aria-label='BalanceSheet'
     >
-      {children || 'UbalanceUsheet Component'}
+      {children || 'BalanceSheet Component'}
     </div>
   );
 };

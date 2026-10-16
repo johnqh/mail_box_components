@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UstockUticker Component
+ * StockTicker Component
  *
- * A reusable UstockUticker component with full dark mode support.
+ * A reusable StockTicker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UstockUticker className="custom-class" />
+ * <StockTicker className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface StockTickerTrackingData {
   componentName?: string;
 }
 
-export interface UstockUtickerProps {
+export interface StockTickerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UstockUtickerProps {
   componentName?: string;
 }
 
-export const UstockUticker = ({
+export const StockTicker = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UstockUticker',
-}: UstockUtickerProps) => {
+  componentName = 'StockTicker',
+}: StockTickerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UstockUticker = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UstockUticker'
+      aria-label='StockTicker'
     >
-      {children || 'UstockUticker Component'}
+      {children || 'StockTicker Component'}
     </div>
   );
 };

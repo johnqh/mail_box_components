@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbookingUconfirmation Component
+ * BookingConfirmation Component
  *
- * A reusable UbookingUconfirmation component with full dark mode support.
+ * A reusable BookingConfirmation component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbookingUconfirmation className="custom-class" />
+ * <BookingConfirmation className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/booking-confirmation}
  */
 
-export interface UbookingUconfirmationProps {
+export interface BookingConfirmationProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UbookingUconfirmationProps {
   onTrack?: (action: string) => void;
 }
 
-export const UbookingUconfirmation = ({
+export const BookingConfirmation = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UbookingUconfirmationProps) => {
+}: BookingConfirmationProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UbookingUconfirmation = ({
             }
       }
       role='region'
-      aria-label='UbookingUconfirmation'
+      aria-label='BookingConfirmation'
     >
-      {children || 'UbookingUconfirmation Component'}
+      {children || 'BookingConfirmation Component'}
     </div>
   );
 };

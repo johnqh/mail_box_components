@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UstickyUnote Component
+ * StickyNote Component
  *
- * A reusable UstickyUnote component with full dark mode support.
+ * A reusable StickyNote component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UstickyUnote className="custom-class" />
+ * <StickyNote className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/sticky-note}
  */
 
-export interface UstickyUnoteProps {
+export interface StickyNoteProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UstickyUnoteProps {
   onClick?: () => void;
 }
 
-export const UstickyUnote = ({
+export const StickyNote = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UstickyUnoteProps) => {
+}: StickyNoteProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UstickyUnote = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UstickyUnote'
+      aria-label='StickyNote'
     >
-      {children || 'UstickyUnote Component'}
+      {children || 'StickyNote Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UnutritionUlabel Component
+ * NutritionLabel Component
  *
- * A reusable UnutritionUlabel component with full dark mode support.
+ * A reusable NutritionLabel component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UnutritionUlabel className="custom-class" />
+ * <NutritionLabel className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface NutritionLabelTrackingData {
   componentName?: string;
 }
 
-export interface UnutritionUlabelProps {
+export interface NutritionLabelProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UnutritionUlabelProps {
   componentName?: string;
 }
 
-export const UnutritionUlabel = ({
+export const NutritionLabel = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UnutritionUlabel',
-}: UnutritionUlabelProps) => {
+  componentName = 'NutritionLabel',
+}: NutritionLabelProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UnutritionUlabel = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UnutritionUlabel'
+      aria-label='NutritionLabel'
     >
-      {children || 'UnutritionUlabel Component'}
+      {children || 'NutritionLabel Component'}
     </div>
   );
 };

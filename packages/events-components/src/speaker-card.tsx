@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UspeakerUcard Component
+ * SpeakerCard Component
  *
- * A reusable UspeakerUcard component with full dark mode support.
+ * A reusable SpeakerCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UspeakerUcard className="custom-class" />
+ * <SpeakerCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface SpeakerCardTrackingData {
   componentName?: string;
 }
 
-export interface UspeakerUcardProps {
+export interface SpeakerCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UspeakerUcardProps {
   componentName?: string;
 }
 
-export const UspeakerUcard = ({
+export const SpeakerCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UspeakerUcard',
-}: UspeakerUcardProps) => {
+  componentName = 'SpeakerCard',
+}: SpeakerCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UspeakerUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UspeakerUcard'
+      aria-label='SpeakerCard'
     >
-      {children || 'UspeakerUcard Component'}
+      {children || 'SpeakerCard Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UmenuUdisplay Component
+ * MenuDisplay Component
  *
- * A reusable UmenuUdisplay component with full dark mode support.
+ * A reusable MenuDisplay component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UmenuUdisplay className="custom-class" />
+ * <MenuDisplay className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface MenuDisplayTrackingData {
   componentName?: string;
 }
 
-export interface UmenuUdisplayProps {
+export interface MenuDisplayProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UmenuUdisplayProps {
   componentName?: string;
 }
 
-export const UmenuUdisplay = ({
+export const MenuDisplay = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UmenuUdisplay',
-}: UmenuUdisplayProps) => {
+  componentName = 'MenuDisplay',
+}: MenuDisplayProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UmenuUdisplay = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UmenuUdisplay'
+      aria-label='MenuDisplay'
     >
-      {children || 'UmenuUdisplay Component'}
+      {children || 'MenuDisplay Component'}
     </div>
   );
 };

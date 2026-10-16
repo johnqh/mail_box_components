@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UhotelUbooking Component
+ * HotelBooking Component
  *
- * A reusable UhotelUbooking component with full dark mode support.
+ * A reusable HotelBooking component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UhotelUbooking className="custom-class" />
+ * <HotelBooking className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/hotel-booking}
  */
 
-export interface UhotelUbookingProps {
+export interface HotelBookingProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UhotelUbookingProps {
   onTrack?: (action: string) => void;
 }
 
-export const UhotelUbooking = ({
+export const HotelBooking = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UhotelUbookingProps) => {
+}: HotelBookingProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UhotelUbooking = ({
             }
       }
       role='region'
-      aria-label='UhotelUbooking'
+      aria-label='HotelBooking'
     >
-      {children || 'UhotelUbooking Component'}
+      {children || 'HotelBooking Component'}
     </div>
   );
 };

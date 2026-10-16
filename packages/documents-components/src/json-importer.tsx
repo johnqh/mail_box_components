@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UjsonUimporter Component
+ * JsonImporter Component
  *
- * A reusable UjsonUimporter component with full dark mode support.
+ * A reusable JsonImporter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UjsonUimporter className="custom-class" />
+ * <JsonImporter className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface JsonImporterTrackingData {
   componentName?: string;
 }
 
-export interface UjsonUimporterProps {
+export interface JsonImporterProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UjsonUimporterProps {
   componentName?: string;
 }
 
-export const UjsonUimporter = ({
+export const JsonImporter = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UjsonUimporter',
-}: UjsonUimporterProps) => {
+  componentName = 'JsonImporter',
+}: JsonImporterProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UjsonUimporter = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UjsonUimporter'
+      aria-label='JsonImporter'
     >
-      {children || 'UjsonUimporter Component'}
+      {children || 'JsonImporter Component'}
     </div>
   );
 };

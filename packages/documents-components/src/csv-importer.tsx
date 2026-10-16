@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcsvUimporter Component
+ * CsvImporter Component
  *
- * A reusable UcsvUimporter component with full dark mode support.
+ * A reusable CsvImporter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcsvUimporter className="custom-class" />
+ * <CsvImporter className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CsvImporterTrackingData {
   componentName?: string;
 }
 
-export interface UcsvUimporterProps {
+export interface CsvImporterProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcsvUimporterProps {
   componentName?: string;
 }
 
-export const UcsvUimporter = ({
+export const CsvImporter = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcsvUimporter',
-}: UcsvUimporterProps) => {
+  componentName = 'CsvImporter',
+}: CsvImporterProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcsvUimporter = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcsvUimporter'
+      aria-label='CsvImporter'
     >
-      {children || 'UcsvUimporter Component'}
+      {children || 'CsvImporter Component'}
     </div>
   );
 };

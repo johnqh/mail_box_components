@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UrouteUdisplay Component
+ * RouteDisplay Component
  *
- * A reusable UrouteUdisplay component with full dark mode support.
+ * A reusable RouteDisplay component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UrouteUdisplay className="custom-class" />
+ * <RouteDisplay className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/route-display}
  */
 
-export interface UrouteUdisplayProps {
+export interface RouteDisplayProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UrouteUdisplayProps {
   onClick?: () => void;
 }
 
-export const UrouteUdisplay = ({
+export const RouteDisplay = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UrouteUdisplayProps) => {
+}: RouteDisplayProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UrouteUdisplay = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UrouteUdisplay'
+      aria-label='RouteDisplay'
     >
-      {children || 'UrouteUdisplay Component'}
+      {children || 'RouteDisplay Component'}
     </div>
   );
 };

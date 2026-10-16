@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UwelcomeUscreen Component
+ * WelcomeScreen Component
  *
- * A reusable UwelcomeUscreen component with full dark mode support.
+ * A reusable WelcomeScreen component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UwelcomeUscreen className="custom-class" />
+ * <WelcomeScreen className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/welcome-screen}
  */
 
-export interface UwelcomeUscreenProps {
+export interface WelcomeScreenProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UwelcomeUscreenProps {
   onClick?: () => void;
 }
 
-export const UwelcomeUscreen = ({
+export const WelcomeScreen = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UwelcomeUscreenProps) => {
+}: WelcomeScreenProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UwelcomeUscreen = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UwelcomeUscreen'
+      aria-label='WelcomeScreen'
     >
-      {children || 'UwelcomeUscreen Component'}
+      {children || 'WelcomeScreen Component'}
     </div>
   );
 };

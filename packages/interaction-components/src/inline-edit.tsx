@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UinlineUedit Component
+ * InlineEdit Component
  *
- * A reusable UinlineUedit component with full dark mode support.
+ * A reusable InlineEdit component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UinlineUedit className="custom-class" />
+ * <InlineEdit className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface InlineEditTrackingData {
   componentName?: string;
 }
 
-export interface UinlineUeditProps {
+export interface InlineEditProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,7 +47,7 @@ export interface UinlineUeditProps {
   componentName?: string;
 }
 
-export const UinlineUedit = ({
+export const InlineEdit = ({
   className,
   children,
   disabled = false,
@@ -55,7 +55,7 @@ export const UinlineUedit = ({
   onTrack,
   trackingLabel,
   componentName = 'InlineEdit',
-}: UinlineUeditProps) => {
+}: InlineEditProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -75,9 +75,9 @@ export const UinlineUedit = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UinlineUedit'
+      aria-label='InlineEdit'
     >
-      {children || 'UinlineUedit Component'}
+      {children || 'InlineEdit Component'}
     </div>
   );
 };

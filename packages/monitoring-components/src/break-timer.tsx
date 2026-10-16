@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbreakUtimer Component
+ * BreakTimer Component
  *
- * A reusable UbreakUtimer component with full dark mode support.
+ * A reusable BreakTimer component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbreakUtimer className="custom-class" />
+ * <BreakTimer className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/break-timer}
  */
 
-export interface UbreakUtimerProps {
+export interface BreakTimerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UbreakUtimerProps {
   onClick?: () => void;
 }
 
-export const UbreakUtimer = ({
+export const BreakTimer = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UbreakUtimerProps) => {
+}: BreakTimerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UbreakUtimer = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UbreakUtimer'
+      aria-label='BreakTimer'
     >
-      {children || 'UbreakUtimer Component'}
+      {children || 'BreakTimer Component'}
     </div>
   );
 };

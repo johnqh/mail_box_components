@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcertificateUbuilder Component
+ * CertificateBuilder Component
  *
- * A reusable UcertificateUbuilder component with full dark mode support.
+ * A reusable CertificateBuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcertificateUbuilder className="custom-class" />
+ * <CertificateBuilder className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CertificateBuilderTrackingData {
   componentName?: string;
 }
 
-export interface UcertificateUbuilderProps {
+export interface CertificateBuilderProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcertificateUbuilderProps {
   componentName?: string;
 }
 
-export const UcertificateUbuilder = ({
+export const CertificateBuilder = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcertificateUbuilder',
-}: UcertificateUbuilderProps) => {
+  componentName = 'CertificateBuilder',
+}: CertificateBuilderProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcertificateUbuilder = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcertificateUbuilder'
+      aria-label='CertificateBuilder'
     >
-      {children || 'UcertificateUbuilder Component'}
+      {children || 'CertificateBuilder Component'}
     </div>
   );
 };

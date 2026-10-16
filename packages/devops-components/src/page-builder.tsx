@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpageUbuilder Component
+ * PageBuilder Component
  *
- * A reusable UpageUbuilder component with full dark mode support.
+ * A reusable PageBuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpageUbuilder className="custom-class" />
+ * <PageBuilder className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface PageBuilderTrackingData {
   componentName?: string;
 }
 
-export interface UpageUbuilderProps {
+export interface PageBuilderProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UpageUbuilderProps {
   componentName?: string;
 }
 
-export const UpageUbuilder = ({
+export const PageBuilder = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UpageUbuilder',
-}: UpageUbuilderProps) => {
+  componentName = 'PageBuilder',
+}: PageBuilderProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UpageUbuilder = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UpageUbuilder'
+      aria-label='PageBuilder'
     >
-      {children || 'UpageUbuilder Component'}
+      {children || 'PageBuilder Component'}
     </div>
   );
 };

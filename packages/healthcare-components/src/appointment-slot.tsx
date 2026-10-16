@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UappointmentUslot Component
+ * AppointmentSlot Component
  *
- * A reusable UappointmentUslot component with full dark mode support.
+ * A reusable AppointmentSlot component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UappointmentUslot className="custom-class" />
+ * <AppointmentSlot className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface AppointmentSlotTrackingData {
   componentName?: string;
 }
 
-export interface UappointmentUslotProps {
+export interface AppointmentSlotProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UappointmentUslotProps {
   componentName?: string;
 }
 
-export const UappointmentUslot = ({
+export const AppointmentSlot = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UappointmentUslot',
-}: UappointmentUslotProps) => {
+  componentName = 'AppointmentSlot',
+}: AppointmentSlotProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UappointmentUslot = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UappointmentUslot'
+      aria-label='AppointmentSlot'
     >
-      {children || 'UappointmentUslot Component'}
+      {children || 'AppointmentSlot Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UparticleUeffect Component
+ * ParticleEffect Component
  *
- * A reusable UparticleUeffect component with full dark mode support.
+ * A reusable ParticleEffect component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UparticleUeffect className="custom-class" />
+ * <ParticleEffect className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/particle-effect}
  */
 
-export interface UparticleUeffectProps {
+export interface ParticleEffectProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UparticleUeffectProps {
   onClick?: () => void;
 }
 
-export const UparticleUeffect = ({
+export const ParticleEffect = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UparticleUeffectProps) => {
+}: ParticleEffectProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UparticleUeffect = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UparticleUeffect'
+      aria-label='ParticleEffect'
     >
-      {children || 'UparticleUeffect Component'}
+      {children || 'ParticleEffect Component'}
     </div>
   );
 };

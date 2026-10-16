@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * Ucertificate Component
+ * Certificate Component
  *
- * A reusable Ucertificate component with full dark mode support.
+ * A reusable Certificate component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <Ucertificate className="custom-class" />
+ * <Certificate className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CertificateTrackingData {
   componentName?: string;
 }
 
-export interface UcertificateProps {
+export interface CertificateProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcertificateProps {
   componentName?: string;
 }
 
-export const Ucertificate = ({
+export const Certificate = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'Ucertificate',
-}: UcertificateProps) => {
+  componentName = 'Certificate',
+}: CertificateProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const Ucertificate = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='Ucertificate'
+      aria-label='Certificate'
     >
-      {children || 'Ucertificate Component'}
+      {children || 'Certificate Component'}
     </div>
   );
 };

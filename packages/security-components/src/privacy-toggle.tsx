@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UprivacyUtoggle Component
+ * PrivacyToggle Component
  *
- * A reusable UprivacyUtoggle component with full dark mode support.
+ * A reusable PrivacyToggle component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UprivacyUtoggle className="custom-class" />
+ * <PrivacyToggle className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/privacy-toggle}
  */
 
-export interface UprivacyUtoggleProps {
+export interface PrivacyToggleProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UprivacyUtoggleProps {
   onClick?: () => void;
 }
 
-export const UprivacyUtoggle = ({
+export const PrivacyToggle = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UprivacyUtoggleProps) => {
+}: PrivacyToggleProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UprivacyUtoggle = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UprivacyUtoggle'
+      aria-label='PrivacyToggle'
     >
-      {children || 'UprivacyUtoggle Component'}
+      {children || 'PrivacyToggle Component'}
     </div>
   );
 };

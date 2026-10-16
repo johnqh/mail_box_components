@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbatchUprocessor Component
+ * BatchProcessor Component
  *
- * A reusable UbatchUprocessor component with full dark mode support.
+ * A reusable BatchProcessor component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbatchUprocessor className="custom-class" />
+ * <BatchProcessor className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/batch-processor}
  */
 
-export interface UbatchUprocessorProps {
+export interface BatchProcessorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UbatchUprocessorProps {
   onClick?: () => void;
 }
 
-export const UbatchUprocessor = ({
+export const BatchProcessor = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UbatchUprocessorProps) => {
+}: BatchProcessorProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UbatchUprocessor = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UbatchUprocessor'
+      aria-label='BatchProcessor'
     >
-      {children || 'UbatchUprocessor Component'}
+      {children || 'BatchProcessor Component'}
     </div>
   );
 };

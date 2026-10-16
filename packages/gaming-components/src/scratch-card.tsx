@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UscratchUcard Component
+ * ScratchCard Component
  *
- * A reusable UscratchUcard component with full dark mode support.
+ * A reusable ScratchCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UscratchUcard className="custom-class" />
+ * <ScratchCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ScratchCardTrackingData {
   componentName?: string;
 }
 
-export interface UscratchUcardProps {
+export interface ScratchCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UscratchUcardProps {
   componentName?: string;
 }
 
-export const UscratchUcard = ({
+export const ScratchCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UscratchUcard',
-}: UscratchUcardProps) => {
+  componentName = 'ScratchCard',
+}: ScratchCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UscratchUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UscratchUcard'
+      aria-label='ScratchCard'
     >
-      {children || 'UscratchUcard Component'}
+      {children || 'ScratchCard Component'}
     </div>
   );
 };

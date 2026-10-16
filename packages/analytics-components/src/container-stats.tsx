@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcontainerUstats Component
+ * ContainerStats Component
  *
- * A reusable UcontainerUstats component with full dark mode support.
+ * A reusable ContainerStats component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcontainerUstats className="custom-class" />
+ * <ContainerStats className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ContainerStatsTrackingData {
   componentName?: string;
 }
 
-export interface UcontainerUstatsProps {
+export interface ContainerStatsProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcontainerUstatsProps {
   componentName?: string;
 }
 
-export const UcontainerUstats = ({
+export const ContainerStats = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcontainerUstats',
-}: UcontainerUstatsProps) => {
+  componentName = 'ContainerStats',
+}: ContainerStatsProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcontainerUstats = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcontainerUstats'
+      aria-label='ContainerStats'
     >
-      {children || 'UcontainerUstats Component'}
+      {children || 'ContainerStats Component'}
     </div>
   );
 };

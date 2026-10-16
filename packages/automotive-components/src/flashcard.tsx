@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * Uflashcard Component
+ * Flashcard Component
  *
- * A reusable Uflashcard component with full dark mode support.
+ * A reusable Flashcard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <Uflashcard className="custom-class" />
+ * <Flashcard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface FlashcardTrackingData {
   componentName?: string;
 }
 
-export interface UflashcardProps {
+export interface FlashcardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UflashcardProps {
   componentName?: string;
 }
 
-export const Uflashcard = ({
+export const Flashcard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'Uflashcard',
-}: UflashcardProps) => {
+  componentName = 'Flashcard',
+}: FlashcardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const Uflashcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='Uflashcard'
+      aria-label='Flashcard'
     >
-      {children || 'Uflashcard Component'}
+      {children || 'Flashcard Component'}
     </div>
   );
 };

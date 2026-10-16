@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpreferenceUcard Component
+ * PreferenceCard Component
  *
- * A reusable UpreferenceUcard component with full dark mode support.
+ * A reusable PreferenceCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpreferenceUcard className="custom-class" />
+ * <PreferenceCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface PreferenceCardTrackingData {
   componentName?: string;
 }
 
-export interface UpreferenceUcardProps {
+export interface PreferenceCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UpreferenceUcardProps {
   componentName?: string;
 }
 
-export const UpreferenceUcard = ({
+export const PreferenceCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UpreferenceUcard',
-}: UpreferenceUcardProps) => {
+  componentName = 'PreferenceCard',
+}: PreferenceCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UpreferenceUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UpreferenceUcard'
+      aria-label='PreferenceCard'
     >
-      {children || 'UpreferenceUcard Component'}
+      {children || 'PreferenceCard Component'}
     </div>
   );
 };

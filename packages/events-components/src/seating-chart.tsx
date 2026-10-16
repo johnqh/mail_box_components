@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UseatingUchart Component
+ * SeatingChart Component
  *
- * A reusable UseatingUchart component with full dark mode support.
+ * A reusable SeatingChart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UseatingUchart className="custom-class" />
+ * <SeatingChart className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface SeatingChartTrackingData {
   componentName?: string;
 }
 
-export interface UseatingUchartProps {
+export interface SeatingChartProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UseatingUchartProps {
   componentName?: string;
 }
 
-export const UseatingUchart = ({
+export const SeatingChart = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UseatingUchart',
-}: UseatingUchartProps) => {
+  componentName = 'SeatingChart',
+}: SeatingChartProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UseatingUchart = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UseatingUchart'
+      aria-label='SeatingChart'
     >
-      {children || 'UseatingUchart Component'}
+      {children || 'SeatingChart Component'}
     </div>
   );
 };

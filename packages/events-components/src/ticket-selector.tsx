@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UticketUselector Component
+ * TicketSelector Component
  *
- * A reusable UticketUselector component with full dark mode support.
+ * A reusable TicketSelector component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UticketUselector className="custom-class" />
+ * <TicketSelector className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface TicketSelectorTrackingData {
   componentName?: string;
 }
 
-export interface UticketUselectorProps {
+export interface TicketSelectorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UticketUselectorProps {
   componentName?: string;
 }
 
-export const UticketUselector = ({
+export const TicketSelector = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UticketUselector',
-}: UticketUselectorProps) => {
+  componentName = 'TicketSelector',
+}: TicketSelectorProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UticketUselector = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UticketUselector'
+      aria-label='TicketSelector'
     >
-      {children || 'UticketUselector Component'}
+      {children || 'TicketSelector Component'}
     </div>
   );
 };

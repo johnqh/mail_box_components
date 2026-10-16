@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtimeUtracker Component
+ * TimeTracker Component
  *
- * A reusable UtimeUtracker component with full dark mode support.
+ * A reusable TimeTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtimeUtracker className="custom-class" />
+ * <TimeTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/time-tracker}
  */
 
-export interface UtimeUtrackerProps {
+export interface TimeTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UtimeUtrackerProps {
   onClick?: () => void;
 }
 
-export const UtimeUtracker = ({
+export const TimeTracker = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UtimeUtrackerProps) => {
+}: TimeTrackerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UtimeUtracker = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UtimeUtracker'
+      aria-label='TimeTracker'
     >
-      {children || 'UtimeUtracker Component'}
+      {children || 'TimeTracker Component'}
     </div>
   );
 };

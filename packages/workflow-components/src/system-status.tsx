@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsystemUstatus Component
+ * SystemStatus Component
  *
- * A reusable UsystemUstatus component with full dark mode support.
+ * A reusable SystemStatus component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsystemUstatus className="custom-class" />
+ * <SystemStatus className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/system-status}
  */
 
-export interface UsystemUstatusProps {
+export interface SystemStatusProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UsystemUstatusProps {
   onClick?: () => void;
 }
 
-export const UsystemUstatus = ({
+export const SystemStatus = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UsystemUstatusProps) => {
+}: SystemStatusProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UsystemUstatus = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UsystemUstatus'
+      aria-label='SystemStatus'
     >
-      {children || 'UsystemUstatus Component'}
+      {children || 'SystemStatus Component'}
     </div>
   );
 };

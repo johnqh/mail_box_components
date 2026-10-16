@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcoverageUchart Component
+ * CoverageChart Component
  *
- * A reusable UcoverageUchart component with full dark mode support.
+ * A reusable CoverageChart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcoverageUchart className="custom-class" />
+ * <CoverageChart className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/coverage-chart}
  */
 
-export interface UcoverageUchartProps {
+export interface CoverageChartProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UcoverageUchartProps {
   onClick?: () => void;
 }
 
-export const UcoverageUchart = ({
+export const CoverageChart = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UcoverageUchartProps) => {
+}: CoverageChartProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UcoverageUchart = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UcoverageUchart'
+      aria-label='CoverageChart'
     >
-      {children || 'UcoverageUchart Component'}
+      {children || 'CoverageChart Component'}
     </div>
   );
 };

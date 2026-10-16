@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsentimentUindicator Component
+ * SentimentIndicator Component
  *
- * A reusable UsentimentUindicator component with full dark mode support.
+ * A reusable SentimentIndicator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsentimentUindicator className="custom-class" />
+ * <SentimentIndicator className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/sentiment-indicator}
  */
 
-export interface UsentimentUindicatorProps {
+export interface SentimentIndicatorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UsentimentUindicatorProps {
   onClick?: () => void;
 }
 
-export const UsentimentUindicator = ({
+export const SentimentIndicator = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UsentimentUindicatorProps) => {
+}: SentimentIndicatorProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UsentimentUindicator = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UsentimentUindicator'
+      aria-label='SentimentIndicator'
     >
-      {children || 'UsentimentUindicator Component'}
+      {children || 'SentimentIndicator Component'}
     </div>
   );
 };

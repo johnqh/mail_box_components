@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsecurityUbadge Component
+ * SecurityBadge Component
  *
- * A reusable UsecurityUbadge component with full dark mode support.
+ * A reusable SecurityBadge component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsecurityUbadge className="custom-class" />
+ * <SecurityBadge className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/security-badge}
  */
 
-export interface UsecurityUbadgeProps {
+export interface SecurityBadgeProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UsecurityUbadgeProps {
   onClick?: () => void;
 }
 
-export const UsecurityUbadge = ({
+export const SecurityBadge = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UsecurityUbadgeProps) => {
+}: SecurityBadgeProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UsecurityUbadge = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UsecurityUbadge'
+      aria-label='SecurityBadge'
     >
-      {children || 'UsecurityUbadge Component'}
+      {children || 'SecurityBadge Component'}
     </div>
   );
 };

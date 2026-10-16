@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UfeatureUspotlight Component
+ * FeatureSpotlight Component
  *
- * A reusable UfeatureUspotlight component with full dark mode support.
+ * A reusable FeatureSpotlight component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UfeatureUspotlight className="custom-class" />
+ * <FeatureSpotlight className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/feature-spotlight}
  */
 
-export interface UfeatureUspotlightProps {
+export interface FeatureSpotlightProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UfeatureUspotlightProps {
   onClick?: () => void;
 }
 
-export const UfeatureUspotlight = ({
+export const FeatureSpotlight = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UfeatureUspotlightProps) => {
+}: FeatureSpotlightProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UfeatureUspotlight = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UfeatureUspotlight'
+      aria-label='FeatureSpotlight'
     >
-      {children || 'UfeatureUspotlight Component'}
+      {children || 'FeatureSpotlight Component'}
     </div>
   );
 };

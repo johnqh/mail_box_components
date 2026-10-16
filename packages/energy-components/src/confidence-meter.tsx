@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UconfidenceUmeter Component
+ * ConfidenceMeter Component
  *
- * A reusable UconfidenceUmeter component with full dark mode support.
+ * A reusable ConfidenceMeter component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UconfidenceUmeter className="custom-class" />
+ * <ConfidenceMeter className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ConfidenceMeterTrackingData {
   componentName?: string;
 }
 
-export interface UconfidenceUmeterProps {
+export interface ConfidenceMeterProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UconfidenceUmeterProps {
   componentName?: string;
 }
 
-export const UconfidenceUmeter = ({
+export const ConfidenceMeter = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UconfidenceUmeter',
-}: UconfidenceUmeterProps) => {
+  componentName = 'ConfidenceMeter',
+}: ConfidenceMeterProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UconfidenceUmeter = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UconfidenceUmeter'
+      aria-label='ConfidenceMeter'
     >
-      {children || 'UconfidenceUmeter Component'}
+      {children || 'ConfidenceMeter Component'}
     </div>
   );
 };

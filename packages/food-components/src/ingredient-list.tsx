@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UingredientUlist Component
+ * IngredientList Component
  *
- * A reusable UingredientUlist component with full dark mode support.
+ * A reusable IngredientList component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UingredientUlist className="custom-class" />
+ * <IngredientList className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface IngredientListTrackingData {
   componentName?: string;
 }
 
-export interface UingredientUlistProps {
+export interface IngredientListProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UingredientUlistProps {
   componentName?: string;
 }
 
-export const UingredientUlist = ({
+export const IngredientList = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UingredientUlist',
-}: UingredientUlistProps) => {
+  componentName = 'IngredientList',
+}: IngredientListProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UingredientUlist = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UingredientUlist'
+      aria-label='IngredientList'
     >
-      {children || 'UingredientUlist Component'}
+      {children || 'IngredientList Component'}
     </div>
   );
 };

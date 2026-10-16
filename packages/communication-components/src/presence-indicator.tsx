@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpresenceUindicator Component
+ * PresenceIndicator Component
  *
- * A reusable UpresenceUindicator component with full dark mode support.
+ * A reusable PresenceIndicator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpresenceUindicator className="custom-class" />
+ * <PresenceIndicator className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/presence-indicator}
  */
 
-export interface UpresenceUindicatorProps {
+export interface PresenceIndicatorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UpresenceUindicatorProps {
   onTrack?: (action: string) => void;
 }
 
-export const UpresenceUindicator = ({
+export const PresenceIndicator = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UpresenceUindicatorProps) => {
+}: PresenceIndicatorProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.('click');
@@ -62,9 +62,9 @@ export const UpresenceUindicator = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UpresenceUindicator'
+      aria-label='PresenceIndicator'
     >
-      {children || 'UpresenceUindicator Component'}
+      {children || 'PresenceIndicator Component'}
     </div>
   );
 };

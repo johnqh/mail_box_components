@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UchecklistUprogress Component
+ * ChecklistProgress Component
  *
- * A reusable UchecklistUprogress component with full dark mode support.
+ * A reusable ChecklistProgress component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UchecklistUprogress className="custom-class" />
+ * <ChecklistProgress className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/checklist-progress}
  */
 
-export interface UchecklistUprogressProps {
+export interface ChecklistProgressProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UchecklistUprogressProps {
   onClick?: () => void;
 }
 
-export const UchecklistUprogress = ({
+export const ChecklistProgress = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UchecklistUprogressProps) => {
+}: ChecklistProgressProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UchecklistUprogress = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UchecklistUprogress'
+      aria-label='ChecklistProgress'
     >
-      {children || 'UchecklistUprogress Component'}
+      {children || 'ChecklistProgress Component'}
     </div>
   );
 };

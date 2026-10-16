@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UfacetedUsearch Component
+ * FacetedSearch Component
  *
- * A reusable UfacetedUsearch component with full dark mode support.
+ * A reusable FacetedSearch component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UfacetedUsearch className="custom-class" />
+ * <FacetedSearch className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface FacetedSearchTrackingData {
   componentName?: string;
 }
 
-export interface UfacetedUsearchProps {
+export interface FacetedSearchProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,7 +47,7 @@ export interface UfacetedUsearchProps {
   componentName?: string;
 }
 
-export const UfacetedUsearch = ({
+export const FacetedSearch = ({
   className,
   children,
   disabled = false,
@@ -55,7 +55,7 @@ export const UfacetedUsearch = ({
   onTrack,
   trackingLabel,
   componentName = 'FacetedSearch',
-}: UfacetedUsearchProps) => {
+}: FacetedSearchProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -75,9 +75,9 @@ export const UfacetedUsearch = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UfacetedUsearch'
+      aria-label='FacetedSearch'
     >
-      {children || 'UfacetedUsearch Component'}
+      {children || 'FacetedSearch Component'}
     </div>
   );
 };

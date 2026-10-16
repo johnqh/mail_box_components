@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UportionUcalculator Component
+ * PortionCalculator Component
  *
- * A reusable UportionUcalculator component with full dark mode support.
+ * A reusable PortionCalculator component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UportionUcalculator className="custom-class" />
+ * <PortionCalculator className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface PortionCalculatorTrackingData {
   componentName?: string;
 }
 
-export interface UportionUcalculatorProps {
+export interface PortionCalculatorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UportionUcalculatorProps {
   componentName?: string;
 }
 
-export const UportionUcalculator = ({
+export const PortionCalculator = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UportionUcalculator',
-}: UportionUcalculatorProps) => {
+  componentName = 'PortionCalculator',
+}: PortionCalculatorProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UportionUcalculator = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UportionUcalculator'
+      aria-label='PortionCalculator'
     >
-      {children || 'UportionUcalculator Component'}
+      {children || 'PortionCalculator Component'}
     </div>
   );
 };

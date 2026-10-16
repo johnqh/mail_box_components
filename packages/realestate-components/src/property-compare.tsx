@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpropertyUcompare Component
+ * PropertyCompare Component
  *
- * A reusable UpropertyUcompare component with full dark mode support.
+ * A reusable PropertyCompare component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpropertyUcompare className="custom-class" />
+ * <PropertyCompare className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/property-compare}
  */
 
-export interface UpropertyUcompareProps {
+export interface PropertyCompareProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UpropertyUcompareProps {
   onClick?: () => void;
 }
 
-export const UpropertyUcompare = ({
+export const PropertyCompare = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UpropertyUcompareProps) => {
+}: PropertyCompareProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UpropertyUcompare = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UpropertyUcompare'
+      aria-label='PropertyCompare'
     >
-      {children || 'UpropertyUcompare Component'}
+      {children || 'PropertyCompare Component'}
     </div>
   );
 };

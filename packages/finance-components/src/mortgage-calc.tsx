@@ -2,15 +2,15 @@ import { cn } from './lib/utils';
 import { colors } from '@sudobility/design';
 
 /**
- * UmortgageUcalc Component
+ * MortgageCalc Component
  *
- * A reusable UmortgageUcalc component with full dark mode support.
+ * A reusable MortgageCalc component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UmortgageUcalc className="custom-class" />
+ * <MortgageCalc className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface MortgageCalcTrackingData {
   componentName?: string;
 }
 
-export interface UmortgageUcalcProps {
+export interface MortgageCalcProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UmortgageUcalcProps {
   componentName?: string;
 }
 
-export const UmortgageUcalc = ({
+export const MortgageCalc = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UmortgageUcalc',
-}: UmortgageUcalcProps) => {
+  componentName = 'MortgageCalc',
+}: MortgageCalcProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UmortgageUcalc = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UmortgageUcalc'
+      aria-label='MortgageCalc'
     >
-      {children || 'UmortgageUcalc Component'}
+      {children || 'MortgageCalc Component'}
     </div>
   );
 };

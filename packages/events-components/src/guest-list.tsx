@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UguestUlist Component
+ * GuestList Component
  *
- * A reusable UguestUlist component with full dark mode support.
+ * A reusable GuestList component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UguestUlist className="custom-class" />
+ * <GuestList className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface GuestListTrackingData {
   componentName?: string;
 }
 
-export interface UguestUlistProps {
+export interface GuestListProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UguestUlistProps {
   componentName?: string;
 }
 
-export const UguestUlist = ({
+export const GuestList = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UguestUlist',
-}: UguestUlistProps) => {
+  componentName = 'GuestList',
+}: GuestListProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UguestUlist = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UguestUlist'
+      aria-label='GuestList'
     >
-      {children || 'UguestUlist Component'}
+      {children || 'GuestList Component'}
     </div>
   );
 };

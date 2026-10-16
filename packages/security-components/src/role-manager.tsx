@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UroleUmanager Component
+ * RoleManager Component
  *
- * A reusable UroleUmanager component with full dark mode support.
+ * A reusable RoleManager component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UroleUmanager className="custom-class" />
+ * <RoleManager className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/role-manager}
  */
 
-export interface UroleUmanagerProps {
+export interface RoleManagerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UroleUmanagerProps {
   onClick?: () => void;
 }
 
-export const UroleUmanager = ({
+export const RoleManager = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UroleUmanagerProps) => {
+}: RoleManagerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UroleUmanager = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UroleUmanager'
+      aria-label='RoleManager'
     >
-      {children || 'UroleUmanager Component'}
+      {children || 'RoleManager Component'}
     </div>
   );
 };

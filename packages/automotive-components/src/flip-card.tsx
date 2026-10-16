@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UflipUcard Component
+ * FlipCard Component
  *
- * A reusable UflipUcard component with full dark mode support.
+ * A reusable FlipCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UflipUcard className="custom-class" />
+ * <FlipCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface FlipCardTrackingData {
   componentName?: string;
 }
 
-export interface UflipUcardProps {
+export interface FlipCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UflipUcardProps {
   componentName?: string;
 }
 
-export const UflipUcard = ({
+export const FlipCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UflipUcard',
-}: UflipUcardProps) => {
+  componentName = 'FlipCard',
+}: FlipCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UflipUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UflipUcard'
+      aria-label='FlipCard'
     >
-      {children || 'UflipUcard Component'}
+      {children || 'FlipCard Component'}
     </div>
   );
 };

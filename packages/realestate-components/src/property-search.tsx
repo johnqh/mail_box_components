@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpropertyUsearch Component
+ * PropertySearch Component
  *
- * A reusable UpropertyUsearch component with full dark mode support.
+ * A reusable PropertySearch component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpropertyUsearch className="custom-class" />
+ * <PropertySearch className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/property-search}
  */
 
-export interface UpropertyUsearchProps {
+export interface PropertySearchProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UpropertyUsearchProps {
   onClick?: () => void;
 }
 
-export const UpropertyUsearch = ({
+export const PropertySearch = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UpropertyUsearchProps) => {
+}: PropertySearchProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UpropertyUsearch = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UpropertyUsearch'
+      aria-label='PropertySearch'
     >
-      {children || 'UpropertyUsearch Component'}
+      {children || 'PropertySearch Component'}
     </div>
   );
 };

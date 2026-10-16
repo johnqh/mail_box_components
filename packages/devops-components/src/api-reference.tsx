@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UapiUreference Component
+ * ApiReference Component
  *
- * A reusable UapiUreference component with full dark mode support.
+ * A reusable ApiReference component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UapiUreference className="custom-class" />
+ * <ApiReference className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ApiReferenceTrackingData {
   componentName?: string;
 }
 
-export interface UapiUreferenceProps {
+export interface ApiReferenceProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UapiUreferenceProps {
   componentName?: string;
 }
 
-export const UapiUreference = ({
+export const ApiReference = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UapiUreference',
-}: UapiUreferenceProps) => {
+  componentName = 'ApiReference',
+}: ApiReferenceProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UapiUreference = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UapiUreference'
+      aria-label='ApiReference'
     >
-      {children || 'UapiUreference Component'}
+      {children || 'ApiReference Component'}
     </div>
   );
 };

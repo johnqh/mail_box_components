@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UchangelogUdisplay Component
+ * ChangelogDisplay Component
  *
- * A reusable UchangelogUdisplay component with full dark mode support.
+ * A reusable ChangelogDisplay component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UchangelogUdisplay className="custom-class" />
+ * <ChangelogDisplay className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ChangelogDisplayTrackingData {
   componentName?: string;
 }
 
-export interface UchangelogUdisplayProps {
+export interface ChangelogDisplayProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UchangelogUdisplayProps {
   componentName?: string;
 }
 
-export const UchangelogUdisplay = ({
+export const ChangelogDisplay = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UchangelogUdisplay',
-}: UchangelogUdisplayProps) => {
+  componentName = 'ChangelogDisplay',
+}: ChangelogDisplayProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UchangelogUdisplay = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UchangelogUdisplay'
+      aria-label='ChangelogDisplay'
     >
-      {children || 'UchangelogUdisplay Component'}
+      {children || 'ChangelogDisplay Component'}
     </div>
   );
 };

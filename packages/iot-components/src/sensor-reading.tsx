@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsensorUreading Component
+ * SensorReading Component
  *
- * A reusable UsensorUreading component with full dark mode support.
+ * A reusable SensorReading component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsensorUreading className="custom-class" />
+ * <SensorReading className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/sensor-reading}
  */
 
-export interface UsensorUreadingProps {
+export interface SensorReadingProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UsensorUreadingProps {
   onClick?: () => void;
 }
 
-export const UsensorUreading = ({
+export const SensorReading = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UsensorUreadingProps) => {
+}: SensorReadingProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UsensorUreading = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UsensorUreading'
+      aria-label='SensorReading'
     >
-      {children || 'UsensorUreading Component'}
+      {children || 'SensorReading Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UdiffUviewer Component
+ * DiffViewer Component
  *
- * A reusable UdiffUviewer component with full dark mode support.
+ * A reusable DiffViewer component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UdiffUviewer className="custom-class" />
+ * <DiffViewer className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface DiffViewerTrackingData {
   componentName?: string;
 }
 
-export interface UdiffUviewerProps {
+export interface DiffViewerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UdiffUviewerProps {
   componentName?: string;
 }
 
-export const UdiffUviewer = ({
+export const DiffViewer = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UdiffUviewer',
-}: UdiffUviewerProps) => {
+  componentName = 'DiffViewer',
+}: DiffViewerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UdiffUviewer = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UdiffUviewer'
+      aria-label='DiffViewer'
     >
-      {children || 'UdiffUviewer Component'}
+      {children || 'DiffViewer Component'}
     </div>
   );
 };

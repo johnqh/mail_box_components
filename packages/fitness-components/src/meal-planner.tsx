@@ -2,15 +2,15 @@ import { cn } from './lib/utils';
 import { colors } from '@sudobility/design';
 
 /**
- * UmealUplanner Component
+ * MealPlanner Component
  *
- * A reusable UmealUplanner component with full dark mode support.
+ * A reusable MealPlanner component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UmealUplanner className="custom-class" />
+ * <MealPlanner className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface MealPlannerTrackingData {
   componentName?: string;
 }
 
-export interface UmealUplannerProps {
+export interface MealPlannerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UmealUplannerProps {
   componentName?: string;
 }
 
-export const UmealUplanner = ({
+export const MealPlanner = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UmealUplanner',
-}: UmealUplannerProps) => {
+  componentName = 'MealPlanner',
+}: MealPlannerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UmealUplanner = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UmealUplanner'
+      aria-label='MealPlanner'
     >
-      {children || 'UmealUplanner Component'}
+      {children || 'MealPlanner Component'}
     </div>
   );
 };

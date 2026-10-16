@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpaymentUform Component
+ * PaymentForm Component
  *
- * A reusable UpaymentUform component with full dark mode support.
+ * A reusable PaymentForm component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpaymentUform className="custom-class" />
+ * <PaymentForm className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface PaymentFormTrackingData {
   componentName?: string;
 }
 
-export interface UpaymentUformProps {
+export interface PaymentFormProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UpaymentUformProps {
   componentName?: string;
 }
 
-export const UpaymentUform = ({
+export const PaymentForm = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UpaymentUform',
-}: UpaymentUformProps) => {
+  componentName = 'PaymentForm',
+}: PaymentFormProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UpaymentUform = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UpaymentUform'
+      aria-label='PaymentForm'
     >
-      {children || 'UpaymentUform Component'}
+      {children || 'PaymentForm Component'}
     </div>
   );
 };

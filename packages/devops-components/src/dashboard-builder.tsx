@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UdashboardUbuilder Component
+ * DashboardBuilder Component
  *
- * A reusable UdashboardUbuilder component with full dark mode support.
+ * A reusable DashboardBuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UdashboardUbuilder className="custom-class" />
+ * <DashboardBuilder className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface DashboardBuilderTrackingData {
   componentName?: string;
 }
 
-export interface UdashboardUbuilderProps {
+export interface DashboardBuilderProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UdashboardUbuilderProps {
   componentName?: string;
 }
 
-export const UdashboardUbuilder = ({
+export const DashboardBuilder = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UdashboardUbuilder',
-}: UdashboardUbuilderProps) => {
+  componentName = 'DashboardBuilder',
+}: DashboardBuilderProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UdashboardUbuilder = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UdashboardUbuilder'
+      aria-label='DashboardBuilder'
     >
-      {children || 'UdashboardUbuilder Component'}
+      {children || 'DashboardBuilder Component'}
     </div>
   );
 };

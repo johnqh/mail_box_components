@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UdeliveryUtracker Component
+ * DeliveryTracker Component
  *
- * A reusable UdeliveryUtracker component with full dark mode support.
+ * A reusable DeliveryTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UdeliveryUtracker className="custom-class" />
+ * <DeliveryTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/delivery-tracker}
  */
 
-export interface UdeliveryUtrackerProps {
+export interface DeliveryTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UdeliveryUtrackerProps {
   onClick?: () => void;
 }
 
-export const UdeliveryUtracker = ({
+export const DeliveryTracker = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UdeliveryUtrackerProps) => {
+}: DeliveryTrackerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UdeliveryUtracker = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UdeliveryUtracker'
+      aria-label='DeliveryTracker'
     >
-      {children || 'UdeliveryUtracker Component'}
+      {children || 'DeliveryTracker Component'}
     </div>
   );
 };

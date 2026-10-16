@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UgeofenceUeditor Component
+ * GeofenceEditor Component
  *
- * A reusable UgeofenceUeditor component with full dark mode support.
+ * A reusable GeofenceEditor component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UgeofenceUeditor className="custom-class" />
+ * <GeofenceEditor className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/geofence-editor}
  */
 
-export interface UgeofenceUeditorProps {
+export interface GeofenceEditorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UgeofenceUeditorProps {
   onClick?: () => void;
 }
 
-export const UgeofenceUeditor = ({
+export const GeofenceEditor = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UgeofenceUeditorProps) => {
+}: GeofenceEditorProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UgeofenceUeditor = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UgeofenceUeditor'
+      aria-label='GeofenceEditor'
     >
-      {children || 'UgeofenceUeditor Component'}
+      {children || 'GeofenceEditor Component'}
     </div>
   );
 };

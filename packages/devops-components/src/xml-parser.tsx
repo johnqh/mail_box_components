@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UxmlUparser Component
+ * XmlParser Component
  *
- * A reusable UxmlUparser component with full dark mode support.
+ * A reusable XmlParser component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UxmlUparser className="custom-class" />
+ * <XmlParser className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface XmlParserTrackingData {
   componentName?: string;
 }
 
-export interface UxmlUparserProps {
+export interface XmlParserProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UxmlUparserProps {
   componentName?: string;
 }
 
-export const UxmlUparser = ({
+export const XmlParser = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UxmlUparser',
-}: UxmlUparserProps) => {
+  componentName = 'XmlParser',
+}: XmlParserProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UxmlUparser = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UxmlUparser'
+      aria-label='XmlParser'
     >
-      {children || 'UxmlUparser Component'}
+      {children || 'XmlParser Component'}
     </div>
   );
 };

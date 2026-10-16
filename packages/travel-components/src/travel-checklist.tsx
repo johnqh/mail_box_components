@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtravelUchecklist Component
+ * TravelChecklist Component
  *
- * A reusable UtravelUchecklist component with full dark mode support.
+ * A reusable TravelChecklist component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtravelUchecklist className="custom-class" />
+ * <TravelChecklist className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/travel-checklist}
  */
 
-export interface UtravelUchecklistProps {
+export interface TravelChecklistProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UtravelUchecklistProps {
   onTrack?: (action: string) => void;
 }
 
-export const UtravelUchecklist = ({
+export const TravelChecklist = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UtravelUchecklistProps) => {
+}: TravelChecklistProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UtravelUchecklist = ({
             }
       }
       role='region'
-      aria-label='UtravelUchecklist'
+      aria-label='TravelChecklist'
     >
-      {children || 'UtravelUchecklist Component'}
+      {children || 'TravelChecklist Component'}
     </div>
   );
 };

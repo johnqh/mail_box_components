@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UattendanceUcalendar Component
+ * AttendanceCalendar Component
  *
- * A reusable UattendanceUcalendar component with full dark mode support.
+ * A reusable AttendanceCalendar component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UattendanceUcalendar className="custom-class" />
+ * <AttendanceCalendar className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/attendance-calendar}
  */
 
-export interface UattendanceUcalendarProps {
+export interface AttendanceCalendarProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UattendanceUcalendarProps {
   onClick?: () => void;
 }
 
-export const UattendanceUcalendar = ({
+export const AttendanceCalendar = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UattendanceUcalendarProps) => {
+}: AttendanceCalendarProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UattendanceUcalendar = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UattendanceUcalendar'
+      aria-label='AttendanceCalendar'
     >
-      {children || 'UattendanceUcalendar Component'}
+      {children || 'AttendanceCalendar Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UscreenUshare Component
+ * ScreenShare Component
  *
- * A reusable UscreenUshare component with full dark mode support.
+ * A reusable ScreenShare component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UscreenUshare className="custom-class" />
+ * <ScreenShare className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/screen-share}
  */
 
-export interface UscreenUshareProps {
+export interface ScreenShareProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UscreenUshareProps {
   onTrack?: (action: string) => void;
 }
 
-export const UscreenUshare = ({
+export const ScreenShare = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UscreenUshareProps) => {
+}: ScreenShareProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UscreenUshare = ({
             }
       }
       role='region'
-      aria-label='UscreenUshare'
+      aria-label='ScreenShare'
     >
-      {children || 'UscreenUshare Component'}
+      {children || 'ScreenShare Component'}
     </div>
   );
 };

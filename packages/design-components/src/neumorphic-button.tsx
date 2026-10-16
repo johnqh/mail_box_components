@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UneumorphicUbutton Component
+ * NeumorphicButton Component
  *
- * A reusable UneumorphicUbutton component with full dark mode support.
+ * A reusable NeumorphicButton component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UneumorphicUbutton className="custom-class" />
+ * <NeumorphicButton className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface NeumorphicButtonTrackingData {
   componentName?: string;
 }
 
-export interface UneumorphicUbuttonProps {
+export interface NeumorphicButtonProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UneumorphicUbuttonProps {
   componentName?: string;
 }
 
-export const UneumorphicUbutton = ({
+export const NeumorphicButton = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UneumorphicUbutton',
-}: UneumorphicUbuttonProps) => {
+  componentName = 'NeumorphicButton',
+}: NeumorphicButtonProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UneumorphicUbutton = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UneumorphicUbutton'
+      aria-label='NeumorphicButton'
     >
-      {children || 'UneumorphicUbutton Component'}
+      {children || 'NeumorphicButton Component'}
     </div>
   );
 };

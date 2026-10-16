@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UskillUprogress Component
+ * SkillProgress Component
  *
- * A reusable UskillUprogress component with full dark mode support.
+ * A reusable SkillProgress component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UskillUprogress className="custom-class" />
+ * <SkillProgress className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/skill-progress}
  */
 
-export interface UskillUprogressProps {
+export interface SkillProgressProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UskillUprogressProps {
   onClick?: () => void;
 }
 
-export const UskillUprogress = ({
+export const SkillProgress = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UskillUprogressProps) => {
+}: SkillProgressProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UskillUprogress = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UskillUprogress'
+      aria-label='SkillProgress'
     >
-      {children || 'UskillUprogress Component'}
+      {children || 'SkillProgress Component'}
     </div>
   );
 };

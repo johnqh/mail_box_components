@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UcryptoUportfolio Component
+ * CryptoPortfolio Component
  *
- * A reusable UcryptoUportfolio component with full dark mode support.
+ * A reusable CryptoPortfolio component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UcryptoUportfolio className="custom-class" />
+ * <CryptoPortfolio className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface CryptoPortfolioTrackingData {
   componentName?: string;
 }
 
-export interface UcryptoUportfolioProps {
+export interface CryptoPortfolioProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UcryptoUportfolioProps {
   componentName?: string;
 }
 
-export const UcryptoUportfolio = ({
+export const CryptoPortfolio = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UcryptoUportfolio',
-}: UcryptoUportfolioProps) => {
+  componentName = 'CryptoPortfolio',
+}: CryptoPortfolioProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UcryptoUportfolio = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UcryptoUportfolio'
+      aria-label='CryptoPortfolio'
     >
-      {children || 'UcryptoUportfolio Component'}
+      {children || 'CryptoPortfolio Component'}
     </div>
   );
 };

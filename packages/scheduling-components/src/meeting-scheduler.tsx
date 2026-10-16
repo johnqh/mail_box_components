@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UmeetingUscheduler Component
+ * MeetingScheduler Component
  *
- * A reusable UmeetingUscheduler component with full dark mode support.
+ * A reusable MeetingScheduler component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UmeetingUscheduler className="custom-class" />
+ * <MeetingScheduler className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/meeting-scheduler}
  */
 
-export interface UmeetingUschedulerProps {
+export interface MeetingSchedulerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UmeetingUschedulerProps {
   onClick?: () => void;
 }
 
-export const UmeetingUscheduler = ({
+export const MeetingScheduler = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UmeetingUschedulerProps) => {
+}: MeetingSchedulerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UmeetingUscheduler = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UmeetingUscheduler'
+      aria-label='MeetingScheduler'
     >
-      {children || 'UmeetingUscheduler Component'}
+      {children || 'MeetingScheduler Component'}
     </div>
   );
 };

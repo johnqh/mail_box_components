@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsponsorUgrid Component
+ * SponsorGrid Component
  *
- * A reusable UsponsorUgrid component with full dark mode support.
+ * A reusable SponsorGrid component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsponsorUgrid className="custom-class" />
+ * <SponsorGrid className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface SponsorGridTrackingData {
   componentName?: string;
 }
 
-export interface UsponsorUgridProps {
+export interface SponsorGridProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UsponsorUgridProps {
   componentName?: string;
 }
 
-export const UsponsorUgrid = ({
+export const SponsorGrid = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UsponsorUgrid',
-}: UsponsorUgridProps) => {
+  componentName = 'SponsorGrid',
+}: SponsorGridProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UsponsorUgrid = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UsponsorUgrid'
+      aria-label='SponsorGrid'
     >
-      {children || 'UsponsorUgrid Component'}
+      {children || 'SponsorGrid Component'}
     </div>
   );
 };

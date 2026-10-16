@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtwoUfactorUinput Component
+ * TwoFactorInput Component
  *
- * A reusable UtwoUfactorUinput component with full dark mode support.
+ * A reusable TwoFactorInput component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtwoUfactorUinput className="custom-class" />
+ * <TwoFactorInput className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/two-factor-input}
  */
 
-export interface UtwoUfactorUinputProps {
+export interface TwoFactorInputProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UtwoUfactorUinputProps {
   onClick?: () => void;
 }
 
-export const UtwoUfactorUinput = ({
+export const TwoFactorInput = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UtwoUfactorUinputProps) => {
+}: TwoFactorInputProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UtwoUfactorUinput = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UtwoUfactorUinput'
+      aria-label='TwoFactorInput'
     >
-      {children || 'UtwoUfactorUinput Component'}
+      {children || 'TwoFactorInput Component'}
     </div>
   );
 };

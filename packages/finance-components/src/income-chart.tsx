@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UincomeUchart Component
+ * IncomeChart Component
  *
- * A reusable UincomeUchart component with full dark mode support.
+ * A reusable IncomeChart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UincomeUchart className="custom-class" />
+ * <IncomeChart className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface IncomeChartTrackingData {
   componentName?: string;
 }
 
-export interface UincomeUchartProps {
+export interface IncomeChartProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UincomeUchartProps {
   componentName?: string;
 }
 
-export const UincomeUchart = ({
+export const IncomeChart = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UincomeUchart',
-}: UincomeUchartProps) => {
+  componentName = 'IncomeChart',
+}: IncomeChartProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UincomeUchart = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UincomeUchart'
+      aria-label='IncomeChart'
     >
-      {children || 'UincomeUchart Component'}
+      {children || 'IncomeChart Component'}
     </div>
   );
 };

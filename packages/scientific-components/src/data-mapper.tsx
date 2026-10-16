@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UdataUmapper Component
+ * DataMapper Component
  *
- * A reusable UdataUmapper component with full dark mode support.
+ * A reusable DataMapper component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UdataUmapper className="custom-class" />
+ * <DataMapper className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/data-mapper}
  */
 
-export interface UdataUmapperProps {
+export interface DataMapperProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UdataUmapperProps {
   onClick?: () => void;
 }
 
-export const UdataUmapper = ({
+export const DataMapper = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UdataUmapperProps) => {
+}: DataMapperProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UdataUmapper = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UdataUmapper'
+      aria-label='DataMapper'
     >
-      {children || 'UdataUmapper Component'}
+      {children || 'DataMapper Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UglassmorphismUcard Component
+ * GlassmorphismCard Component
  *
- * A reusable UglassmorphismUcard component with full dark mode support.
+ * A reusable GlassmorphismCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UglassmorphismUcard className="custom-class" />
+ * <GlassmorphismCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface GlassmorphismCardTrackingData {
   componentName?: string;
 }
 
-export interface UglassmorphismUcardProps {
+export interface GlassmorphismCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UglassmorphismUcardProps {
   componentName?: string;
 }
 
-export const UglassmorphismUcard = ({
+export const GlassmorphismCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UglassmorphismUcard',
-}: UglassmorphismUcardProps) => {
+  componentName = 'GlassmorphismCard',
+}: GlassmorphismCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UglassmorphismUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UglassmorphismUcard'
+      aria-label='GlassmorphismCard'
     >
-      {children || 'UglassmorphismUcard Component'}
+      {children || 'GlassmorphismCard Component'}
     </div>
   );
 };

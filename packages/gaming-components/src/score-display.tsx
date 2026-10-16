@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UscoreUdisplay Component
+ * ScoreDisplay Component
  *
- * A reusable UscoreUdisplay component with full dark mode support.
+ * A reusable ScoreDisplay component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UscoreUdisplay className="custom-class" />
+ * <ScoreDisplay className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ScoreDisplayTrackingData {
   componentName?: string;
 }
 
-export interface UscoreUdisplayProps {
+export interface ScoreDisplayProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UscoreUdisplayProps {
   componentName?: string;
 }
 
-export const UscoreUdisplay = ({
+export const ScoreDisplay = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UscoreUdisplay',
-}: UscoreUdisplayProps) => {
+  componentName = 'ScoreDisplay',
+}: ScoreDisplayProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UscoreUdisplay = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UscoreUdisplay'
+      aria-label='ScoreDisplay'
     >
-      {children || 'UscoreUdisplay Component'}
+      {children || 'ScoreDisplay Component'}
     </div>
   );
 };

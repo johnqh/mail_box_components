@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpropertyUcard Component
+ * PropertyCard Component
  *
- * A reusable UpropertyUcard component with full dark mode support.
+ * A reusable PropertyCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpropertyUcard className="custom-class" />
+ * <PropertyCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/property-card}
  */
 
-export interface UpropertyUcardProps {
+export interface PropertyCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UpropertyUcardProps {
   onClick?: () => void;
 }
 
-export const UpropertyUcard = ({
+export const PropertyCard = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UpropertyUcardProps) => {
+}: PropertyCardProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UpropertyUcard = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UpropertyUcard'
+      aria-label='PropertyCard'
     >
-      {children || 'UpropertyUcard Component'}
+      {children || 'PropertyCard Component'}
     </div>
   );
 };

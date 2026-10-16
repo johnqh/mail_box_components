@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbulkUeditor Component
+ * BulkEditor Component
  *
- * A reusable UbulkUeditor component with full dark mode support.
+ * A reusable BulkEditor component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbulkUeditor className="custom-class" />
+ * <BulkEditor className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/bulk-editor}
  */
 
-export interface UbulkUeditorProps {
+export interface BulkEditorProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UbulkUeditorProps {
   onClick?: () => void;
 }
 
-export const UbulkUeditor = ({
+export const BulkEditor = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UbulkUeditorProps) => {
+}: BulkEditorProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UbulkUeditor = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UbulkUeditor'
+      aria-label='BulkEditor'
     >
-      {children || 'UbulkUeditor Component'}
+      {children || 'BulkEditor Component'}
     </div>
   );
 };

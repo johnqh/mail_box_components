@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UachievementUbadge Component
+ * AchievementBadge Component
  *
- * A reusable UachievementUbadge component with full dark mode support.
+ * A reusable AchievementBadge component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UachievementUbadge className="custom-class" />
+ * <AchievementBadge className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface AchievementBadgeTrackingData {
   componentName?: string;
 }
 
-export interface UachievementUbadgeProps {
+export interface AchievementBadgeProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UachievementUbadgeProps {
   componentName?: string;
 }
 
-export const UachievementUbadge = ({
+export const AchievementBadge = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UachievementUbadge',
-}: UachievementUbadgeProps) => {
+  componentName = 'AchievementBadge',
+}: AchievementBadgeProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UachievementUbadge = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UachievementUbadge'
+      aria-label='AchievementBadge'
     >
-      {children || 'UachievementUbadge Component'}
+      {children || 'AchievementBadge Component'}
     </div>
   );
 };

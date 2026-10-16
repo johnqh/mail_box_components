@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UvacationUplanner Component
+ * VacationPlanner Component
  *
- * A reusable UvacationUplanner component with full dark mode support.
+ * A reusable VacationPlanner component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UvacationUplanner className="custom-class" />
+ * <VacationPlanner className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/vacation-planner}
  */
 
-export interface UvacationUplannerProps {
+export interface VacationPlannerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UvacationUplannerProps {
   onTrack?: (action: string) => void;
 }
 
-export const UvacationUplanner = ({
+export const VacationPlanner = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UvacationUplannerProps) => {
+}: VacationPlannerProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UvacationUplanner = ({
             }
       }
       role='region'
-      aria-label='UvacationUplanner'
+      aria-label='VacationPlanner'
     >
-      {children || 'UvacationUplanner Component'}
+      {children || 'VacationPlanner Component'}
     </div>
   );
 };

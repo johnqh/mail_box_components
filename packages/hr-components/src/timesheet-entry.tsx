@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtimesheetUentry Component
+ * TimesheetEntry Component
  *
- * A reusable UtimesheetUentry component with full dark mode support.
+ * A reusable TimesheetEntry component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtimesheetUentry className="custom-class" />
+ * <TimesheetEntry className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/timesheet-entry}
  */
 
-export interface UtimesheetUentryProps {
+export interface TimesheetEntryProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UtimesheetUentryProps {
   onClick?: () => void;
 }
 
-export const UtimesheetUentry = ({
+export const TimesheetEntry = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UtimesheetUentryProps) => {
+}: TimesheetEntryProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UtimesheetUentry = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UtimesheetUentry'
+      aria-label='TimesheetEntry'
     >
-      {children || 'UtimesheetUentry Component'}
+      {children || 'TimesheetEntry Component'}
     </div>
   );
 };

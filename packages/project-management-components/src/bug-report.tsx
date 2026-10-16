@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbugUreport Component
+ * BugReport Component
  *
- * A reusable UbugUreport component with full dark mode support.
+ * A reusable BugReport component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbugUreport className="custom-class" />
+ * <BugReport className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/bug-report}
  */
 
-export interface UbugUreportProps {
+export interface BugReportProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UbugUreportProps {
   onClick?: () => void;
 }
 
-export const UbugUreport = ({
+export const BugReport = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UbugUreportProps) => {
+}: BugReportProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UbugUreport = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UbugUreport'
+      aria-label='BugReport'
     >
-      {children || 'UbugUreport Component'}
+      {children || 'BugReport Component'}
     </div>
   );
 };

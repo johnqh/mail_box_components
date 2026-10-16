@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UneighborhoodUinfo Component
+ * NeighborhoodInfo Component
  *
- * A reusable UneighborhoodUinfo component with full dark mode support.
+ * A reusable NeighborhoodInfo component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UneighborhoodUinfo className="custom-class" />
+ * <NeighborhoodInfo className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/neighborhood-info}
  */
 
-export interface UneighborhoodUinfoProps {
+export interface NeighborhoodInfoProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UneighborhoodUinfoProps {
   onClick?: () => void;
 }
 
-export const UneighborhoodUinfo = ({
+export const NeighborhoodInfo = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UneighborhoodUinfoProps) => {
+}: NeighborhoodInfoProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UneighborhoodUinfo = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UneighborhoodUinfo'
+      aria-label='NeighborhoodInfo'
     >
-      {children || 'UneighborhoodUinfo Component'}
+      {children || 'NeighborhoodInfo Component'}
     </div>
   );
 };

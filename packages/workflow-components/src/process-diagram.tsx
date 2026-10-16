@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UprocessUdiagram Component
+ * ProcessDiagram Component
  *
- * A reusable UprocessUdiagram component with full dark mode support.
+ * A reusable ProcessDiagram component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UprocessUdiagram className="custom-class" />
+ * <ProcessDiagram className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/process-diagram}
  */
 
-export interface UprocessUdiagramProps {
+export interface ProcessDiagramProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UprocessUdiagramProps {
   onClick?: () => void;
 }
 
-export const UprocessUdiagram = ({
+export const ProcessDiagram = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UprocessUdiagramProps) => {
+}: ProcessDiagramProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UprocessUdiagram = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UprocessUdiagram'
+      aria-label='ProcessDiagram'
     >
-      {children || 'UprocessUdiagram Component'}
+      {children || 'ProcessDiagram Component'}
     </div>
   );
 };

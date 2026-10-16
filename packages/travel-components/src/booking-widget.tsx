@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbookingUwidget Component
+ * BookingWidget Component
  *
- * A reusable UbookingUwidget component with full dark mode support.
+ * A reusable BookingWidget component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbookingUwidget className="custom-class" />
+ * <BookingWidget className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/booking-widget}
  */
 
-export interface UbookingUwidgetProps {
+export interface BookingWidgetProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UbookingUwidgetProps {
   onTrack?: (action: string) => void;
 }
 
-export const UbookingUwidget = ({
+export const BookingWidget = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UbookingUwidgetProps) => {
+}: BookingWidgetProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UbookingUwidget = ({
             }
       }
       role='region'
-      aria-label='UbookingUwidget'
+      aria-label='BookingWidget'
     >
-      {children || 'UbookingUwidget Component'}
+      {children || 'BookingWidget Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UwaterUintake Component
+ * WaterIntake Component
  *
- * A reusable UwaterUintake component with full dark mode support.
+ * A reusable WaterIntake component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UwaterUintake className="custom-class" />
+ * <WaterIntake className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/water-intake}
  */
 
-export interface UwaterUintakeProps {
+export interface WaterIntakeProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UwaterUintakeProps {
   onClick?: () => void;
 }
 
-export const UwaterUintake = ({
+export const WaterIntake = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UwaterUintakeProps) => {
+}: WaterIntakeProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UwaterUintake = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UwaterUintake'
+      aria-label='WaterIntake'
     >
-      {children || 'UwaterUintake Component'}
+      {children || 'WaterIntake Component'}
     </div>
   );
 };

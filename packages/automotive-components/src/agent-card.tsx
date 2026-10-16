@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UagentUcard Component
+ * AgentCard Component
  *
- * A reusable UagentUcard component with full dark mode support.
+ * A reusable AgentCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UagentUcard className="custom-class" />
+ * <AgentCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface AgentCardTrackingData {
   componentName?: string;
 }
 
-export interface UagentUcardProps {
+export interface AgentCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UagentUcardProps {
   componentName?: string;
 }
 
-export const UagentUcard = ({
+export const AgentCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UagentUcard',
-}: UagentUcardProps) => {
+  componentName = 'AgentCard',
+}: AgentCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UagentUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UagentUcard'
+      aria-label='AgentCard'
     >
-      {children || 'UagentUcard Component'}
+      {children || 'AgentCard Component'}
     </div>
   );
 };

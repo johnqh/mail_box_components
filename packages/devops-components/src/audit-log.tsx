@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UauditUlog Component
+ * AuditLog Component
  *
- * A reusable UauditUlog component with full dark mode support.
+ * A reusable AuditLog component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UauditUlog className="custom-class" />
+ * <AuditLog className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface AuditLogTrackingData {
   componentName?: string;
 }
 
-export interface UauditUlogProps {
+export interface AuditLogProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UauditUlogProps {
   componentName?: string;
 }
 
-export const UauditUlog = ({
+export const AuditLog = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UauditUlog',
-}: UauditUlogProps) => {
+  componentName = 'AuditLog',
+}: AuditLogProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UauditUlog = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UauditUlog'
+      aria-label='AuditLog'
     >
-      {children || 'UauditUlog Component'}
+      {children || 'AuditLog Component'}
     </div>
   );
 };

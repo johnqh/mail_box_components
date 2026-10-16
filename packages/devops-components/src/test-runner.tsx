@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtestUrunner Component
+ * TestRunner Component
  *
- * A reusable UtestUrunner component with full dark mode support.
+ * A reusable TestRunner component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtestUrunner className="custom-class" />
+ * <TestRunner className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface TestRunnerTrackingData {
   componentName?: string;
 }
 
-export interface UtestUrunnerProps {
+export interface TestRunnerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UtestUrunnerProps {
   componentName?: string;
 }
 
-export const UtestUrunner = ({
+export const TestRunner = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UtestUrunner',
-}: UtestUrunnerProps) => {
+  componentName = 'TestRunner',
+}: TestRunnerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UtestUrunner = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UtestUrunner'
+      aria-label='TestRunner'
     >
-      {children || 'UtestUrunner Component'}
+      {children || 'TestRunner Component'}
     </div>
   );
 };

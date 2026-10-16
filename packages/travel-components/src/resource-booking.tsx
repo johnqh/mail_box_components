@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UresourceUbooking Component
+ * ResourceBooking Component
  *
- * A reusable UresourceUbooking component with full dark mode support.
+ * A reusable ResourceBooking component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UresourceUbooking className="custom-class" />
+ * <ResourceBooking className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/resource-booking}
  */
 
-export interface UresourceUbookingProps {
+export interface ResourceBookingProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UresourceUbookingProps {
   onTrack?: (action: string) => void;
 }
 
-export const UresourceUbooking = ({
+export const ResourceBooking = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UresourceUbookingProps) => {
+}: ResourceBookingProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UresourceUbooking = ({
             }
       }
       role='region'
-      aria-label='UresourceUbooking'
+      aria-label='ResourceBooking'
     >
-      {children || 'UresourceUbooking Component'}
+      {children || 'ResourceBooking Component'}
     </div>
   );
 };

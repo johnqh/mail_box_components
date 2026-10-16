@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UimportUpreview Component
+ * ImportPreview Component
  *
- * A reusable UimportUpreview component with full dark mode support.
+ * A reusable ImportPreview component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UimportUpreview className="custom-class" />
+ * <ImportPreview className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ImportPreviewTrackingData {
   componentName?: string;
 }
 
-export interface UimportUpreviewProps {
+export interface ImportPreviewProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UimportUpreviewProps {
   componentName?: string;
 }
 
-export const UimportUpreview = ({
+export const ImportPreview = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UimportUpreview',
-}: UimportUpreviewProps) => {
+  componentName = 'ImportPreview',
+}: ImportPreviewProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UimportUpreview = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UimportUpreview'
+      aria-label='ImportPreview'
     >
-      {children || 'UimportUpreview Component'}
+      {children || 'ImportPreview Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UfinancialUreport Component
+ * FinancialReport Component
  *
- * A reusable UfinancialUreport component with full dark mode support.
+ * A reusable FinancialReport component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UfinancialUreport className="custom-class" />
+ * <FinancialReport className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface FinancialReportTrackingData {
   componentName?: string;
 }
 
-export interface UfinancialUreportProps {
+export interface FinancialReportProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UfinancialUreportProps {
   componentName?: string;
 }
 
-export const UfinancialUreport = ({
+export const FinancialReport = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UfinancialUreport',
-}: UfinancialUreportProps) => {
+  componentName = 'FinancialReport',
+}: FinancialReportProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UfinancialUreport = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UfinancialUreport'
+      aria-label='FinancialReport'
     >
-      {children || 'UfinancialUreport Component'}
+      {children || 'FinancialReport Component'}
     </div>
   );
 };

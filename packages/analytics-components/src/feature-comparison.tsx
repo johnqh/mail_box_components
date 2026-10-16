@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UfeatureUcomparison Component
+ * FeatureComparison Component
  *
- * A reusable UfeatureUcomparison component with full dark mode support.
+ * A reusable FeatureComparison component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UfeatureUcomparison className="custom-class" />
+ * <FeatureComparison className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface FeatureComparisonTrackingData {
   componentName?: string;
 }
 
-export interface UfeatureUcomparisonProps {
+export interface FeatureComparisonProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UfeatureUcomparisonProps {
   componentName?: string;
 }
 
-export const UfeatureUcomparison = ({
+export const FeatureComparison = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UfeatureUcomparison',
-}: UfeatureUcomparisonProps) => {
+  componentName = 'FeatureComparison',
+}: FeatureComparisonProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UfeatureUcomparison = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UfeatureUcomparison'
+      aria-label='FeatureComparison'
     >
-      {children || 'UfeatureUcomparison Component'}
+      {children || 'FeatureComparison Component'}
     </div>
   );
 };

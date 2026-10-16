@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UuploadUprogress Component
+ * UploadProgress Component
  *
- * A reusable UuploadUprogress component with full dark mode support.
+ * A reusable UploadProgress component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UuploadUprogress className="custom-class" />
+ * <UploadProgress className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface UploadProgressTrackingData {
   componentName?: string;
 }
 
-export interface UuploadUprogressProps {
+export interface UploadProgressProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UuploadUprogressProps {
   componentName?: string;
 }
 
-export const UuploadUprogress = ({
+export const UploadProgress = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UuploadUprogress',
-}: UuploadUprogressProps) => {
+  componentName = 'UploadProgress',
+}: UploadProgressProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UuploadUprogress = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UuploadUprogress'
+      aria-label='UploadProgress'
     >
-      {children || 'UuploadUprogress Component'}
+      {children || 'UploadProgress Component'}
     </div>
   );
 };

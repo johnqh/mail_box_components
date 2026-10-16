@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UmodelUprediction Component
+ * ModelPrediction Component
  *
- * A reusable UmodelUprediction component with full dark mode support.
+ * A reusable ModelPrediction component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UmodelUprediction className="custom-class" />
+ * <ModelPrediction className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ModelPredictionTrackingData {
   componentName?: string;
 }
 
-export interface UmodelUpredictionProps {
+export interface ModelPredictionProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UmodelUpredictionProps {
   componentName?: string;
 }
 
-export const UmodelUprediction = ({
+export const ModelPrediction = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UmodelUprediction',
-}: UmodelUpredictionProps) => {
+  componentName = 'ModelPrediction',
+}: ModelPredictionProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UmodelUprediction = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UmodelUprediction'
+      aria-label='ModelPrediction'
     >
-      {children || 'UmodelUprediction Component'}
+      {children || 'ModelPrediction Component'}
     </div>
   );
 };

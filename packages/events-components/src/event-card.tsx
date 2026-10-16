@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UeventUcard Component
+ * EventCard Component
  *
- * A reusable UeventUcard component with full dark mode support.
+ * A reusable EventCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UeventUcard className="custom-class" />
+ * <EventCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface EventCardTrackingData {
   componentName?: string;
 }
 
-export interface UeventUcardProps {
+export interface EventCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UeventUcardProps {
   componentName?: string;
 }
 
-export const UeventUcard = ({
+export const EventCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UeventUcard',
-}: UeventUcardProps) => {
+  componentName = 'EventCard',
+}: EventCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UeventUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UeventUcard'
+      aria-label='EventCard'
     >
-      {children || 'UeventUcard Component'}
+      {children || 'EventCard Component'}
     </div>
   );
 };

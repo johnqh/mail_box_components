@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UopenUhouse Component
+ * OpenHouse Component
  *
- * A reusable UopenUhouse component with full dark mode support.
+ * A reusable OpenHouse component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UopenUhouse className="custom-class" />
+ * <OpenHouse className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/open-house}
  */
 
-export interface UopenUhouseProps {
+export interface OpenHouseProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UopenUhouseProps {
   onClick?: () => void;
 }
 
-export const UopenUhouse = ({
+export const OpenHouse = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UopenUhouseProps) => {
+}: OpenHouseProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UopenUhouse = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UopenUhouse'
+      aria-label='OpenHouse'
     >
-      {children || 'UopenUhouse Component'}
+      {children || 'OpenHouse Component'}
     </div>
   );
 };

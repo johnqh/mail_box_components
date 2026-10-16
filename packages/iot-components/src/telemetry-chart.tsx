@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtelemetryUchart Component
+ * TelemetryChart Component
  *
- * A reusable UtelemetryUchart component with full dark mode support.
+ * A reusable TelemetryChart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtelemetryUchart className="custom-class" />
+ * <TelemetryChart className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/telemetry-chart}
  */
 
-export interface UtelemetryUchartProps {
+export interface TelemetryChartProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UtelemetryUchartProps {
   onClick?: () => void;
 }
 
-export const UtelemetryUchart = ({
+export const TelemetryChart = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UtelemetryUchartProps) => {
+}: TelemetryChartProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UtelemetryUchart = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UtelemetryUchart'
+      aria-label='TelemetryChart'
     >
-      {children || 'UtelemetryUchart Component'}
+      {children || 'TelemetryChart Component'}
     </div>
   );
 };

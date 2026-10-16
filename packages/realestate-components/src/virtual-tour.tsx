@@ -2,15 +2,15 @@ import { cn } from './lib/utils';
 import { colors } from '@sudobility/design';
 
 /**
- * UvirtualUtour Component
+ * VirtualTour Component
  *
- * A reusable UvirtualUtour component with full dark mode support.
+ * A reusable VirtualTour component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UvirtualUtour className="custom-class" />
+ * <VirtualTour className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/virtual-tour}
  */
 
-export interface UvirtualUtourProps {
+export interface VirtualTourProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UvirtualUtourProps {
   onClick?: () => void;
 }
 
-export const UvirtualUtour = ({
+export const VirtualTour = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UvirtualUtourProps) => {
+}: VirtualTourProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UvirtualUtour = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UvirtualUtour'
+      aria-label='VirtualTour'
     >
-      {children || 'UvirtualUtour Component'}
+      {children || 'VirtualTour Component'}
     </div>
   );
 };

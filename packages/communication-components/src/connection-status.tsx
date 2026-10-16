@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UconnectionUstatus Component
+ * ConnectionStatus Component
  *
- * A reusable UconnectionUstatus component with full dark mode support.
+ * A reusable ConnectionStatus component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UconnectionUstatus className="custom-class" />
+ * <ConnectionStatus className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/connection-status}
  */
 
-export interface UconnectionUstatusProps {
+export interface ConnectionStatusProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UconnectionUstatusProps {
   onTrack?: (action: string) => void;
 }
 
-export const UconnectionUstatus = ({
+export const ConnectionStatus = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UconnectionUstatusProps) => {
+}: ConnectionStatusProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.('click');
@@ -62,9 +62,9 @@ export const UconnectionUstatus = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UconnectionUstatus'
+      aria-label='ConnectionStatus'
     >
-      {children || 'UconnectionUstatus Component'}
+      {children || 'ConnectionStatus Component'}
     </div>
   );
 };

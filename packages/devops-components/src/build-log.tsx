@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbuildUlog Component
+ * BuildLog Component
  *
- * A reusable UbuildUlog component with full dark mode support.
+ * A reusable BuildLog component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbuildUlog className="custom-class" />
+ * <BuildLog className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface BuildLogTrackingData {
   componentName?: string;
 }
 
-export interface UbuildUlogProps {
+export interface BuildLogProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UbuildUlogProps {
   componentName?: string;
 }
 
-export const UbuildUlog = ({
+export const BuildLog = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UbuildUlog',
-}: UbuildUlogProps) => {
+  componentName = 'BuildLog',
+}: BuildLogProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UbuildUlog = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UbuildUlog'
+      aria-label='BuildLog'
     >
-      {children || 'UbuildUlog Component'}
+      {children || 'BuildLog Component'}
     </div>
   );
 };

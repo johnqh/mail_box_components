@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpropertyUmap Component
+ * PropertyMap Component
  *
- * A reusable UpropertyUmap component with full dark mode support.
+ * A reusable PropertyMap component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpropertyUmap className="custom-class" />
+ * <PropertyMap className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/property-map}
  */
 
-export interface UpropertyUmapProps {
+export interface PropertyMapProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UpropertyUmapProps {
   onClick?: () => void;
 }
 
-export const UpropertyUmap = ({
+export const PropertyMap = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UpropertyUmapProps) => {
+}: PropertyMapProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UpropertyUmap = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UpropertyUmap'
+      aria-label='PropertyMap'
     >
-      {children || 'UpropertyUmap Component'}
+      {children || 'PropertyMap Component'}
     </div>
   );
 };

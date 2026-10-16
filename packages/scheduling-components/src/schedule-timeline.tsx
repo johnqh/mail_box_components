@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UscheduleUtimeline Component
+ * ScheduleTimeline Component
  *
- * A reusable UscheduleUtimeline component with full dark mode support.
+ * A reusable ScheduleTimeline component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UscheduleUtimeline className="custom-class" />
+ * <ScheduleTimeline className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/schedule-timeline}
  */
 
-export interface UscheduleUtimelineProps {
+export interface ScheduleTimelineProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UscheduleUtimelineProps {
   onClick?: () => void;
 }
 
-export const UscheduleUtimeline = ({
+export const ScheduleTimeline = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UscheduleUtimelineProps) => {
+}: ScheduleTimelineProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UscheduleUtimeline = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UscheduleUtimeline'
+      aria-label='ScheduleTimeline'
     >
-      {children || 'UscheduleUtimeline Component'}
+      {children || 'ScheduleTimeline Component'}
     </div>
   );
 };

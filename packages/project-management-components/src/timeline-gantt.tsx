@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtimelineUgantt Component
+ * TimelineGantt Component
  *
- * A reusable UtimelineUgantt component with full dark mode support.
+ * A reusable TimelineGantt component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtimelineUgantt className="custom-class" />
+ * <TimelineGantt className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/timeline-gantt}
  */
 
-export interface UtimelineUganttProps {
+export interface TimelineGanttProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UtimelineUganttProps {
   onClick?: () => void;
 }
 
-export const UtimelineUgantt = ({
+export const TimelineGantt = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UtimelineUganttProps) => {
+}: TimelineGanttProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UtimelineUgantt = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UtimelineUgantt'
+      aria-label='TimelineGantt'
     >
-      {children || 'UtimelineUgantt Component'}
+      {children || 'TimelineGantt Component'}
     </div>
   );
 };

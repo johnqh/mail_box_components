@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UfilterUpanel Component
+ * FilterPanel Component
  *
- * A reusable UfilterUpanel component with full dark mode support.
+ * A reusable FilterPanel component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UfilterUpanel className="custom-class" />
+ * <FilterPanel className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface FilterPanelTrackingData {
   componentName?: string;
 }
 
-export interface UfilterUpanelProps {
+export interface FilterPanelProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,7 +47,7 @@ export interface UfilterUpanelProps {
   componentName?: string;
 }
 
-export const UfilterUpanel = ({
+export const FilterPanel = ({
   className,
   children,
   disabled = false,
@@ -55,7 +55,7 @@ export const UfilterUpanel = ({
   onTrack,
   trackingLabel,
   componentName = 'FilterPanel',
-}: UfilterUpanelProps) => {
+}: FilterPanelProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -75,9 +75,9 @@ export const UfilterUpanel = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UfilterUpanel'
+      aria-label='FilterPanel'
     >
-      {children || 'UfilterUpanel Component'}
+      {children || 'FilterPanel Component'}
     </div>
   );
 };

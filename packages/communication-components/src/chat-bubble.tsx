@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UchatUbubble Component
+ * ChatBubble Component
  *
- * A reusable UchatUbubble component with full dark mode support.
+ * A reusable ChatBubble component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UchatUbubble className="custom-class" />
+ * <ChatBubble className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ChatBubbleTrackingData {
   componentName?: string;
 }
 
-export interface UchatUbubbleProps {
+export interface ChatBubbleProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UchatUbubbleProps {
   componentName?: string;
 }
 
-export const UchatUbubble = ({
+export const ChatBubble = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UchatUbubble',
-}: UchatUbubbleProps) => {
+  componentName = 'ChatBubble',
+}: ChatBubbleProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UchatUbubble = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UchatUbubble'
+      aria-label='ChatBubble'
     >
-      {children || 'UchatUbubble Component'}
+      {children || 'ChatBubble Component'}
     </div>
   );
 };

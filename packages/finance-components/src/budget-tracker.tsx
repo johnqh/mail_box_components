@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UbudgetUtracker Component
+ * BudgetTracker Component
  *
- * A reusable UbudgetUtracker component with full dark mode support.
+ * A reusable BudgetTracker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UbudgetUtracker className="custom-class" />
+ * <BudgetTracker className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface BudgetTrackerTrackingData {
   componentName?: string;
 }
 
-export interface UbudgetUtrackerProps {
+export interface BudgetTrackerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UbudgetUtrackerProps {
   componentName?: string;
 }
 
-export const UbudgetUtracker = ({
+export const BudgetTracker = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UbudgetUtracker',
-}: UbudgetUtrackerProps) => {
+  componentName = 'BudgetTracker',
+}: BudgetTrackerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UbudgetUtracker = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UbudgetUtracker'
+      aria-label='BudgetTracker'
     >
-      {children || 'UbudgetUtracker Component'}
+      {children || 'BudgetTracker Component'}
     </div>
   );
 };

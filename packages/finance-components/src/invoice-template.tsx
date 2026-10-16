@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UinvoiceUtemplate Component
+ * InvoiceTemplate Component
  *
- * A reusable UinvoiceUtemplate component with full dark mode support.
+ * A reusable InvoiceTemplate component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UinvoiceUtemplate className="custom-class" />
+ * <InvoiceTemplate className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface InvoiceTemplateTrackingData {
   componentName?: string;
 }
 
-export interface UinvoiceUtemplateProps {
+export interface InvoiceTemplateProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UinvoiceUtemplateProps {
   componentName?: string;
 }
 
-export const UinvoiceUtemplate = ({
+export const InvoiceTemplate = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UinvoiceUtemplate',
-}: UinvoiceUtemplateProps) => {
+  componentName = 'InvoiceTemplate',
+}: InvoiceTemplateProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UinvoiceUtemplate = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UinvoiceUtemplate'
+      aria-label='InvoiceTemplate'
     >
-      {children || 'UinvoiceUtemplate Component'}
+      {children || 'InvoiceTemplate Component'}
     </div>
   );
 };

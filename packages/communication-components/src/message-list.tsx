@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UmessageUlist Component
+ * MessageList Component
  *
- * A reusable UmessageUlist component with full dark mode support.
+ * A reusable MessageList component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UmessageUlist className="custom-class" />
+ * <MessageList className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/message-list}
  */
 
-export interface UmessageUlistProps {
+export interface MessageListProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UmessageUlistProps {
   onTrack?: (action: string) => void;
 }
 
-export const UmessageUlist = ({
+export const MessageList = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UmessageUlistProps) => {
+}: MessageListProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.('click');
@@ -62,9 +62,9 @@ export const UmessageUlist = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UmessageUlist'
+      aria-label='MessageList'
     >
-      {children || 'UmessageUlist Component'}
+      {children || 'MessageList Component'}
     </div>
   );
 };

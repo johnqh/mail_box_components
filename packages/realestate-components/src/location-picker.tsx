@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UlocationUpicker Component
+ * LocationPicker Component
  *
- * A reusable UlocationUpicker component with full dark mode support.
+ * A reusable LocationPicker component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UlocationUpicker className="custom-class" />
+ * <LocationPicker className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/location-picker}
  */
 
-export interface UlocationUpickerProps {
+export interface LocationPickerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UlocationUpickerProps {
   onClick?: () => void;
 }
 
-export const UlocationUpicker = ({
+export const LocationPicker = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UlocationUpickerProps) => {
+}: LocationPickerProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UlocationUpicker = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UlocationUpicker'
+      aria-label='LocationPicker'
     >
-      {children || 'UlocationUpicker Component'}
+      {children || 'LocationPicker Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UapiUplayground Component
+ * ApiPlayground Component
  *
- * A reusable UapiUplayground component with full dark mode support.
+ * A reusable ApiPlayground component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UapiUplayground className="custom-class" />
+ * <ApiPlayground className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ApiPlaygroundTrackingData {
   componentName?: string;
 }
 
-export interface UapiUplaygroundProps {
+export interface ApiPlaygroundProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UapiUplaygroundProps {
   componentName?: string;
 }
 
-export const UapiUplayground = ({
+export const ApiPlayground = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UapiUplayground',
-}: UapiUplaygroundProps) => {
+  componentName = 'ApiPlayground',
+}: ApiPlaygroundProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UapiUplayground = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UapiUplayground'
+      aria-label='ApiPlayground'
     >
-      {children || 'UapiUplayground Component'}
+      {children || 'ApiPlayground Component'}
     </div>
   );
 };

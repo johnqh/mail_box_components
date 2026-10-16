@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UfadeUcarousel Component
+ * FadeCarousel Component
  *
- * A reusable UfadeUcarousel component with full dark mode support.
+ * A reusable FadeCarousel component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UfadeUcarousel className="custom-class" />
+ * <FadeCarousel className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface FadeCarouselTrackingData {
   componentName?: string;
 }
 
-export interface UfadeUcarouselProps {
+export interface FadeCarouselProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UfadeUcarouselProps {
   componentName?: string;
 }
 
-export const UfadeUcarousel = ({
+export const FadeCarousel = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UfadeUcarousel',
-}: UfadeUcarouselProps) => {
+  componentName = 'FadeCarousel',
+}: FadeCarouselProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UfadeUcarousel = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UfadeUcarousel'
+      aria-label='FadeCarousel'
     >
-      {children || 'UfadeUcarousel Component'}
+      {children || 'FadeCarousel Component'}
     </div>
   );
 };

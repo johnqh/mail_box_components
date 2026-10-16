@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UheartUrate Component
+ * HeartRate Component
  *
- * A reusable UheartUrate component with full dark mode support.
+ * A reusable HeartRate component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UheartUrate className="custom-class" />
+ * <HeartRate className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface HeartRateTrackingData {
   componentName?: string;
 }
 
-export interface UheartUrateProps {
+export interface HeartRateProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UheartUrateProps {
   componentName?: string;
 }
 
-export const UheartUrate = ({
+export const HeartRate = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UheartUrate',
-}: UheartUrateProps) => {
+  componentName = 'HeartRate',
+}: HeartRateProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UheartUrate = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UheartUrate'
+      aria-label='HeartRate'
     >
-      {children || 'UheartUrate Component'}
+      {children || 'HeartRate Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UnftUgallery Component
+ * NftGallery Component
  *
- * A reusable UnftUgallery component with full dark mode support.
+ * A reusable NftGallery component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UnftUgallery className="custom-class" />
+ * <NftGallery className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/nft-gallery}
  */
 
-export interface UnftUgalleryProps {
+export interface NftGalleryProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UnftUgalleryProps {
   onClick?: () => void;
 }
 
-export const UnftUgallery = ({
+export const NftGallery = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UnftUgalleryProps) => {
+}: NftGalleryProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UnftUgallery = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UnftUgallery'
+      aria-label='NftGallery'
     >
-      {children || 'UnftUgallery Component'}
+      {children || 'NftGallery Component'}
     </div>
   );
 };

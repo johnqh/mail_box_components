@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UorderUcart Component
+ * OrderCart Component
  *
- * A reusable UorderUcart component with full dark mode support.
+ * A reusable OrderCart component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UorderUcart className="custom-class" />
+ * <OrderCart className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface OrderCartTrackingData {
   componentName?: string;
 }
 
-export interface UorderUcartProps {
+export interface OrderCartProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UorderUcartProps {
   componentName?: string;
 }
 
-export const UorderUcart = ({
+export const OrderCart = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UorderUcart',
-}: UorderUcartProps) => {
+  componentName = 'OrderCart',
+}: OrderCartProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UorderUcart = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UorderUcart'
+      aria-label='OrderCart'
     >
-      {children || 'UorderUcart Component'}
+      {children || 'OrderCart Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsearchUbar Component
+ * SearchBar Component
  *
- * A reusable UsearchUbar component with full dark mode support.
+ * A reusable SearchBar component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsearchUbar className="custom-class" />
+ * <SearchBar className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface SearchBarTrackingData {
   componentName?: string;
 }
 
-export interface UsearchUbarProps {
+export interface SearchBarProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,7 +47,7 @@ export interface UsearchUbarProps {
   componentName?: string;
 }
 
-export const UsearchUbar = ({
+export const SearchBar = ({
   className,
   children,
   disabled = false,
@@ -55,7 +55,7 @@ export const UsearchUbar = ({
   onTrack,
   trackingLabel,
   componentName = 'SearchBar',
-}: UsearchUbarProps) => {
+}: SearchBarProps) => {
   const handleClick = () => {
     if (disabled) return;
     onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -75,9 +75,9 @@ export const UsearchUbar = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UsearchUbar'
+      aria-label='SearchBar'
     >
-      {children || 'UsearchUbar Component'}
+      {children || 'SearchBar Component'}
     </div>
   );
 };

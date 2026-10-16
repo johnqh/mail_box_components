@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtrainingUprogress Component
+ * TrainingProgress Component
  *
- * A reusable UtrainingUprogress component with full dark mode support.
+ * A reusable TrainingProgress component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtrainingUprogress className="custom-class" />
+ * <TrainingProgress className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface TrainingProgressTrackingData {
   componentName?: string;
 }
 
-export interface UtrainingUprogressProps {
+export interface TrainingProgressProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UtrainingUprogressProps {
   componentName?: string;
 }
 
-export const UtrainingUprogress = ({
+export const TrainingProgress = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UtrainingUprogress',
-}: UtrainingUprogressProps) => {
+  componentName = 'TrainingProgress',
+}: TrainingProgressProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UtrainingUprogress = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UtrainingUprogress'
+      aria-label='TrainingProgress'
     >
-      {children || 'UtrainingUprogress Component'}
+      {children || 'TrainingProgress Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UitineraryUbuilder Component
+ * ItineraryBuilder Component
  *
- * A reusable UitineraryUbuilder component with full dark mode support.
+ * A reusable ItineraryBuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UitineraryUbuilder className="custom-class" />
+ * <ItineraryBuilder className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/itinerary-builder}
  */
 
-export interface UitineraryUbuilderProps {
+export interface ItineraryBuilderProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UitineraryUbuilderProps {
   onTrack?: (action: string) => void;
 }
 
-export const UitineraryUbuilder = ({
+export const ItineraryBuilder = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UitineraryUbuilderProps) => {
+}: ItineraryBuilderProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UitineraryUbuilder = ({
             }
       }
       role='region'
-      aria-label='UitineraryUbuilder'
+      aria-label='ItineraryBuilder'
     >
-      {children || 'UitineraryUbuilder Component'}
+      {children || 'ItineraryBuilder Component'}
     </div>
   );
 };

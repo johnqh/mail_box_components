@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UworkflowUtemplate Component
+ * WorkflowTemplate Component
  *
- * A reusable UworkflowUtemplate component with full dark mode support.
+ * A reusable WorkflowTemplate component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UworkflowUtemplate className="custom-class" />
+ * <WorkflowTemplate className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface WorkflowTemplateTrackingData {
   componentName?: string;
 }
 
-export interface UworkflowUtemplateProps {
+export interface WorkflowTemplateProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UworkflowUtemplateProps {
   componentName?: string;
 }
 
-export const UworkflowUtemplate = ({
+export const WorkflowTemplate = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UworkflowUtemplate',
-}: UworkflowUtemplateProps) => {
+  componentName = 'WorkflowTemplate',
+}: WorkflowTemplateProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UworkflowUtemplate = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UworkflowUtemplate'
+      aria-label='WorkflowTemplate'
     >
-      {children || 'UworkflowUtemplate Component'}
+      {children || 'WorkflowTemplate Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UexerciseUtimer Component
+ * ExerciseTimer Component
  *
- * A reusable UexerciseUtimer component with full dark mode support.
+ * A reusable ExerciseTimer component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UexerciseUtimer className="custom-class" />
+ * <ExerciseTimer className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ExerciseTimerTrackingData {
   componentName?: string;
 }
 
-export interface UexerciseUtimerProps {
+export interface ExerciseTimerProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UexerciseUtimerProps {
   componentName?: string;
 }
 
-export const UexerciseUtimer = ({
+export const ExerciseTimer = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UexerciseUtimer',
-}: UexerciseUtimerProps) => {
+  componentName = 'ExerciseTimer',
+}: ExerciseTimerProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UexerciseUtimer = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UexerciseUtimer'
+      aria-label='ExerciseTimer'
     >
-      {children || 'UexerciseUtimer Component'}
+      {children || 'ExerciseTimer Component'}
     </div>
   );
 };

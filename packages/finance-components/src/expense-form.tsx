@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UexpenseUform Component
+ * ExpenseForm Component
  *
- * A reusable UexpenseUform component with full dark mode support.
+ * A reusable ExpenseForm component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UexpenseUform className="custom-class" />
+ * <ExpenseForm className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ExpenseFormTrackingData {
   componentName?: string;
 }
 
-export interface UexpenseUformProps {
+export interface ExpenseFormProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UexpenseUformProps {
   componentName?: string;
 }
 
-export const UexpenseUform = ({
+export const ExpenseForm = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UexpenseUform',
-}: UexpenseUformProps) => {
+  componentName = 'ExpenseForm',
+}: ExpenseFormProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UexpenseUform = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UexpenseUform'
+      aria-label='ExpenseForm'
     >
-      {children || 'UexpenseUform Component'}
+      {children || 'ExpenseForm Component'}
     </div>
   );
 };

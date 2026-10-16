@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtestimonialUslider Component
+ * TestimonialSlider Component
  *
- * A reusable UtestimonialUslider component with full dark mode support.
+ * A reusable TestimonialSlider component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtestimonialUslider className="custom-class" />
+ * <TestimonialSlider className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/testimonial-slider}
  */
 
-export interface UtestimonialUsliderProps {
+export interface TestimonialSliderProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UtestimonialUsliderProps {
   onClick?: () => void;
 }
 
-export const UtestimonialUslider = ({
+export const TestimonialSlider = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UtestimonialUsliderProps) => {
+}: TestimonialSliderProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UtestimonialUslider = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UtestimonialUslider'
+      aria-label='TestimonialSlider'
     >
-      {children || 'UtestimonialUslider Component'}
+      {children || 'TestimonialSlider Component'}
     </div>
   );
 };

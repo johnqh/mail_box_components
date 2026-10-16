@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UfitnessUgoal Component
+ * FitnessGoal Component
  *
- * A reusable UfitnessUgoal component with full dark mode support.
+ * A reusable FitnessGoal component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UfitnessUgoal className="custom-class" />
+ * <FitnessGoal className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface FitnessGoalTrackingData {
   componentName?: string;
 }
 
-export interface UfitnessUgoalProps {
+export interface FitnessGoalProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UfitnessUgoalProps {
   componentName?: string;
 }
 
-export const UfitnessUgoal = ({
+export const FitnessGoal = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UfitnessUgoal',
-}: UfitnessUgoalProps) => {
+  componentName = 'FitnessGoal',
+}: FitnessGoalProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UfitnessUgoal = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UfitnessUgoal'
+      aria-label='FitnessGoal'
     >
-      {children || 'UfitnessUgoal Component'}
+      {children || 'FitnessGoal Component'}
     </div>
   );
 };

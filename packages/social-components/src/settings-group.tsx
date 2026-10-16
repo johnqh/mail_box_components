@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UsettingsUgroup Component
+ * SettingsGroup Component
  *
- * A reusable UsettingsUgroup component with full dark mode support.
+ * A reusable SettingsGroup component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UsettingsUgroup className="custom-class" />
+ * <SettingsGroup className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/settings-group}
  */
 
-export interface UsettingsUgroupProps {
+export interface SettingsGroupProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -36,13 +36,13 @@ export interface UsettingsUgroupProps {
   onTrack?: (action: string) => void;
 }
 
-export const UsettingsUgroup = ({
+export const SettingsGroup = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
-}: UsettingsUgroupProps) => {
+}: SettingsGroupProps) => {
   return (
     <div
       className={cn(
@@ -63,9 +63,9 @@ export const UsettingsUgroup = ({
             }
       }
       role='region'
-      aria-label='UsettingsUgroup'
+      aria-label='SettingsGroup'
     >
-      {children || 'UsettingsUgroup Component'}
+      {children || 'SettingsGroup Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UlandingUbuilder Component
+ * LandingBuilder Component
  *
- * A reusable UlandingUbuilder component with full dark mode support.
+ * A reusable LandingBuilder component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UlandingUbuilder className="custom-class" />
+ * <LandingBuilder className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/landing-builder}
  */
 
-export interface UlandingUbuilderProps {
+export interface LandingBuilderProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UlandingUbuilderProps {
   onClick?: () => void;
 }
 
-export const UlandingUbuilder = ({
+export const LandingBuilder = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UlandingUbuilderProps) => {
+}: LandingBuilderProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UlandingUbuilder = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UlandingUbuilder'
+      aria-label='LandingBuilder'
     >
-      {children || 'UlandingUbuilder Component'}
+      {children || 'LandingBuilder Component'}
     </div>
   );
 };

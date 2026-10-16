@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UtestUresult Component
+ * TestResult Component
  *
- * A reusable UtestUresult component with full dark mode support.
+ * A reusable TestResult component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UtestUresult className="custom-class" />
+ * <TestResult className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface TestResultTrackingData {
   componentName?: string;
 }
 
-export interface UtestUresultProps {
+export interface TestResultProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UtestUresultProps {
   componentName?: string;
 }
 
-export const UtestUresult = ({
+export const TestResult = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UtestUresult',
-}: UtestUresultProps) => {
+  componentName = 'TestResult',
+}: TestResultProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UtestUresult = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UtestUresult'
+      aria-label='TestResult'
     >
-      {children || 'UtestUresult Component'}
+      {children || 'TestResult Component'}
     </div>
   );
 };

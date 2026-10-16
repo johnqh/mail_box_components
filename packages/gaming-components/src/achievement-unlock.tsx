@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UachievementUunlock Component
+ * AchievementUnlock Component
  *
- * A reusable UachievementUunlock component with full dark mode support.
+ * A reusable AchievementUnlock component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UachievementUunlock className="custom-class" />
+ * <AchievementUnlock className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface AchievementUnlockTrackingData {
   componentName?: string;
 }
 
-export interface UachievementUunlockProps {
+export interface AchievementUnlockProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UachievementUunlockProps {
   componentName?: string;
 }
 
-export const UachievementUunlock = ({
+export const AchievementUnlock = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UachievementUunlock',
-}: UachievementUunlockProps) => {
+  componentName = 'AchievementUnlock',
+}: AchievementUnlockProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UachievementUunlock = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UachievementUunlock'
+      aria-label='AchievementUnlock'
     >
-      {children || 'UachievementUunlock Component'}
+      {children || 'AchievementUnlock Component'}
     </div>
   );
 };

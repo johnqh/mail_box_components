@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UreviewUcard Component
+ * ReviewCard Component
  *
- * A reusable UreviewUcard component with full dark mode support.
+ * A reusable ReviewCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UreviewUcard className="custom-class" />
+ * <ReviewCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface ReviewCardTrackingData {
   componentName?: string;
 }
 
-export interface UreviewUcardProps {
+export interface ReviewCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UreviewUcardProps {
   componentName?: string;
 }
 
-export const UreviewUcard = ({
+export const ReviewCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UreviewUcard',
-}: UreviewUcardProps) => {
+  componentName = 'ReviewCard',
+}: ReviewCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UreviewUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UreviewUcard'
+      aria-label='ReviewCard'
     >
-      {children || 'UreviewUcard Component'}
+      {children || 'ReviewCard Component'}
     </div>
   );
 };

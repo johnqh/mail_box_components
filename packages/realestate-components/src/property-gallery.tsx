@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UpropertyUgallery Component
+ * PropertyGallery Component
  *
- * A reusable UpropertyUgallery component with full dark mode support.
+ * A reusable PropertyGallery component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UpropertyUgallery className="custom-class" />
+ * <PropertyGallery className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/property-gallery}
  */
 
-export interface UpropertyUgalleryProps {
+export interface PropertyGalleryProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UpropertyUgalleryProps {
   onClick?: () => void;
 }
 
-export const UpropertyUgallery = ({
+export const PropertyGallery = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UpropertyUgalleryProps) => {
+}: PropertyGalleryProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UpropertyUgallery = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UpropertyUgallery'
+      aria-label='PropertyGallery'
     >
-      {children || 'UpropertyUgallery Component'}
+      {children || 'PropertyGallery Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UrentalUapplication Component
+ * RentalApplication Component
  *
- * A reusable UrentalUapplication component with full dark mode support.
+ * A reusable RentalApplication component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UrentalUapplication className="custom-class" />
+ * <RentalApplication className="custom-class" />
  * ```
  *
  * @remarks
@@ -23,7 +23,7 @@ import { colors } from '@sudobility/design';
  * @see {@link https://docs.example.com/components/rental-application}
  */
 
-export interface UrentalUapplicationProps {
+export interface RentalApplicationProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -34,12 +34,12 @@ export interface UrentalUapplicationProps {
   onClick?: () => void;
 }
 
-export const UrentalUapplication = ({
+export const RentalApplication = ({
   className,
   children,
   disabled = false,
   onClick,
-}: UrentalUapplicationProps) => {
+}: RentalApplicationProps) => {
   return (
     <div
       className={cn(
@@ -53,9 +53,9 @@ export const UrentalUapplication = ({
       )}
       onClick={disabled ? undefined : onClick}
       role='region'
-      aria-label='UrentalUapplication'
+      aria-label='RentalApplication'
     >
-      {children || 'UrentalUapplication Component'}
+      {children || 'RentalApplication Component'}
     </div>
   );
 };

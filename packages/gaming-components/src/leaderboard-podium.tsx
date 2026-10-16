@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UleaderboardUpodium Component
+ * LeaderboardPodium Component
  *
- * A reusable UleaderboardUpodium component with full dark mode support.
+ * A reusable LeaderboardPodium component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UleaderboardUpodium className="custom-class" />
+ * <LeaderboardPodium className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface LeaderboardPodiumTrackingData {
   componentName?: string;
 }
 
-export interface UleaderboardUpodiumProps {
+export interface LeaderboardPodiumProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UleaderboardUpodiumProps {
   componentName?: string;
 }
 
-export const UleaderboardUpodium = ({
+export const LeaderboardPodium = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UleaderboardUpodium',
-}: UleaderboardUpodiumProps) => {
+  componentName = 'LeaderboardPodium',
+}: LeaderboardPodiumProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UleaderboardUpodium = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UleaderboardUpodium'
+      aria-label='LeaderboardPodium'
     >
-      {children || 'UleaderboardUpodium Component'}
+      {children || 'LeaderboardPodium Component'}
     </div>
   );
 };

@@ -2,15 +2,15 @@ import { cn } from '@sudobility/components';
 import { colors } from '@sudobility/design';
 
 /**
- * UquizUcard Component
+ * QuizCard Component
  *
- * A reusable UquizUcard component with full dark mode support.
+ * A reusable QuizCard component with full dark mode support.
  * Optimized for accessibility and AI-assisted development.
  *
  * @component
  * @example
  * ```tsx
- * <UquizUcard className="custom-class" />
+ * <QuizCard className="custom-class" />
  * ```
  *
  * @remarks
@@ -30,7 +30,7 @@ export interface QuizCardTrackingData {
   componentName?: string;
 }
 
-export interface UquizUcardProps {
+export interface QuizCardProps {
   /** Additional CSS classes */
   className?: string;
   /** Component children */
@@ -47,15 +47,15 @@ export interface UquizUcardProps {
   componentName?: string;
 }
 
-export const UquizUcard = ({
+export const QuizCard = ({
   className,
   children,
   disabled = false,
   onClick,
   onTrack,
   trackingLabel,
-  componentName = 'UquizUcard',
-}: UquizUcardProps) => {
+  componentName = 'QuizCard',
+}: QuizCardProps) => {
   const handleClick = () => {
     if (!disabled) {
       onTrack?.({ action: 'click', trackingLabel, componentName });
@@ -76,9 +76,9 @@ export const UquizUcard = ({
       )}
       onClick={handleClick}
       role='region'
-      aria-label='UquizUcard'
+      aria-label='QuizCard'
     >
-      {children || 'UquizUcard Component'}
+      {children || 'QuizCard Component'}
     </div>
   );
 };

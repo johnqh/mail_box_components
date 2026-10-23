@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/workflow-components",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "Business workflow components for checklists, status tracking, and process management",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.esm.js",
@@ -24,14 +24,14 @@
     "test:watch": "vitest"
   },
   "peerDependencies": {
-    "@sudobility/components": "^5.3.19",
+    "@sudobility/components": "^5.3.36",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
-    "@sudobility/components": "^5.3.19",
-    "@sudobility/design": "^1.1.54",
+    "@sudobility/components": "^5.3.36",
+    "@sudobility/design": "^1.1.60",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^24.7.1",

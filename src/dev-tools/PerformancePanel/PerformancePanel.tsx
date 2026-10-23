@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-  useRef,
-  useEffect,
-} from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { cn } from '../../lib/utils';
 import { PanelHeader } from './components/PanelHeader';
 import { ScoreLegend } from './components/ScoreIndicator';
@@ -108,14 +102,6 @@ export const PerformancePanel: React.FC<PerformancePanelProps> = ({
   const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
   const [isVisible, setIsVisible] = useState(defaultVisible);
 
-  // Memoize apiPatterns to prevent infinite re-renders
-  // Use JSON.stringify for deep comparison of array contents
-  const stableApiPatterns = useMemo(
-    () => apiPatterns,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [JSON.stringify(apiPatterns)]
-  );
-
   // Use refs for callbacks to avoid dependency issues in hooks
   const onMetricsUpdateRef = useRef(onMetricsUpdate);
   useEffect(() => {
@@ -134,7 +120,7 @@ export const PerformancePanel: React.FC<PerformancePanelProps> = ({
 
   const { metrics: apiMetrics } = useApiMetrics({
     enabled: isEnabled && sections.includes('api'),
-    patterns: stableApiPatterns,
+    patterns: apiPatterns,
   });
 
   // Call onMetricsUpdate when metrics change (using ref to avoid infinite loops)

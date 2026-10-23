@@ -20,8 +20,7 @@ export interface FirebaseConfig {
  * Firebase auth configuration - either provide config to initialize or existing instance
  */
 export type FirebaseAuthConfig =
-  | { type: 'config'; config: FirebaseConfig }
-  | { type: 'instance'; auth: Auth };
+  { type: 'config'; config: FirebaseConfig } | { type: 'instance'; auth: Auth };
 
 // ============ Auth Provider Types ============
 
@@ -213,10 +212,7 @@ export interface AuthProviderProps {
  * Auth UI mode
  */
 export type AuthMode =
-  | 'select'
-  | 'email-signin'
-  | 'email-signup'
-  | 'forgot-password';
+  'select' | 'email-signin' | 'email-signup' | 'forgot-password';
 
 /**
  * Props for AuthModal component

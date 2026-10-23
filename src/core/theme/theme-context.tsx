@@ -129,8 +129,7 @@ export function ThemeProvider({
 
     // Determine the actual theme to apply
     let actualTheme: Theme.LIGHT | Theme.DARK = theme as
-      | Theme.LIGHT
-      | Theme.DARK;
+      Theme.LIGHT | Theme.DARK;
 
     if (theme === Theme.SYSTEM) {
       const prefersDark = window.matchMedia(

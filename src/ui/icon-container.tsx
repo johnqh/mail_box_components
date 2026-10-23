@@ -5,12 +5,7 @@ interface IconContainerProps {
   children: React.ReactNode;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   variant?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'error'
-    | 'neutral';
+    'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'neutral';
   shape?: 'square' | 'rounded' | 'circle';
   animation?: 'none' | 'float' | 'pulse' | 'bounce';
   className?: string;

@@ -41,10 +41,7 @@ export function isNetworkAccess(): boolean {
 }
 
 export function getEnvironmentType():
-  | 'localhost'
-  | 'network'
-  | 'wallet-browser'
-  | 'production' {
+  'localhost' | 'network' | 'wallet-browser' | 'production' {
   if (isLocalhost()) return 'localhost';
   if (isWalletBrowser()) return 'wallet-browser';
   if (isNetworkAccess()) return 'network';

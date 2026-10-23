@@ -22,12 +22,7 @@ export interface IconButtonProps {
   shape?: 'circle' | 'square' | 'rounded';
   /** Color variant */
   variant?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'danger'
-    | 'ghost'
-    | 'outline';
+    'default' | 'primary' | 'secondary' | 'danger' | 'ghost' | 'outline';
   /** Disabled state */
   disabled?: boolean;
   /** Button type */

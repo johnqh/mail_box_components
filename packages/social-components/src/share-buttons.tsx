@@ -3,12 +3,7 @@ import { cn } from '@sudobility/components';
 import { ui } from '@sudobility/design';
 
 export type SharePlatform =
-  | 'twitter'
-  | 'facebook'
-  | 'linkedin'
-  | 'reddit'
-  | 'email'
-  | 'copy';
+  'twitter' | 'facebook' | 'linkedin' | 'reddit' | 'email' | 'copy';
 
 export interface ShareButtonsProps {
   /** URL to share */

@@ -6,12 +6,7 @@ export interface GradientBannerProps {
   children: React.ReactNode;
   /** Gradient color variant */
   variant?:
-    | 'blue-purple'
-    | 'green-blue'
-    | 'orange-red'
-    | 'gray'
-    | 'light'
-    | 'custom';
+    'blue-purple' | 'green-blue' | 'orange-red' | 'gray' | 'light' | 'custom';
   /** Custom gradient classes (when variant is 'custom') */
   gradientClasses?: string;
   /** Size/padding variant */

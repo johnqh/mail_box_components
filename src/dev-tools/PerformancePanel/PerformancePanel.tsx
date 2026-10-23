@@ -13,11 +13,7 @@ import { useApiMetrics, ApiMetrics } from './hooks/useApiMetrics';
 import { useDraggable } from './hooks/useDraggable';
 
 export type PerformancePanelSection =
-  | 'webVitals'
-  | 'bundle'
-  | 'api'
-  | 'memory'
-  | 'custom';
+  'webVitals' | 'bundle' | 'api' | 'memory' | 'custom';
 
 export interface PerformancePanelProps {
   /** Enable the panel (default: only in development) */

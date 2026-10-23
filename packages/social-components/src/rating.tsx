@@ -182,9 +182,7 @@ export const Rating: React.FC<RatingProps> = ({
     // Custom icon (ReactNode)
     const customIcon = typeof icon !== 'string' ? icon : null;
     const iconType = (typeof icon === 'string' ? icon : 'star') as
-      | 'star'
-      | 'heart'
-      | 'thumbs';
+      'star' | 'heart' | 'thumbs';
 
     const StarContent = (
       <div

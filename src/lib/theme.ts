@@ -106,12 +106,7 @@ export function seriesColors(): string[] {
   full, never assembled, so a consuming app's Tailwind scan finds them.
 */
 export type StatusTone =
-  | 'success'
-  | 'error'
-  | 'warning'
-  | 'attention'
-  | 'info'
-  | 'neutral';
+  'success' | 'error' | 'warning' | 'attention' | 'info' | 'neutral';
 
 /** A solid status fill: a dot, a bar, a filled badge. */
 export const STATUS_BG: Record<StatusTone, string> = {

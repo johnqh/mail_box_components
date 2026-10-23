@@ -60,10 +60,7 @@ export interface PlatformStorage {
 }
 
 export type StorageType =
-  | 'localStorage'
-  | 'sessionStorage'
-  | 'asyncStorage'
-  | 'memory';
+  'localStorage' | 'sessionStorage' | 'asyncStorage' | 'memory';
 
 /**
  * Configuration options for creating a storage manager
@@ -226,8 +223,7 @@ class StorageManager {
   get<T>(key: string, defaultValue?: T): T | undefined {
     try {
       const itemStr = this.platformStorage.getItem(this.getKey(key)) as
-        | string
-        | null;
+        string | null;
       if (!itemStr) return defaultValue;
 
       const item = JSON.parse(itemStr) as StoredItem<T>;

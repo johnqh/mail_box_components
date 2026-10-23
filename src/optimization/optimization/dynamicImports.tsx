@@ -18,10 +18,7 @@ type DynamicImport<T = ComponentType<Record<string, unknown>>> = () => Promise<{
 
 // Loading fallback options
 export type LoadingFallback =
-  | 'default'
-  | 'minimal'
-  | 'skeleton'
-  | ComponentType<Record<string, unknown>>;
+  'default' | 'minimal' | 'skeleton' | ComponentType<Record<string, unknown>>;
 
 // Create loading component based on type
 const getLoadingComponent = (fallback: LoadingFallback): ComponentType => {

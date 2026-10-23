@@ -23,12 +23,7 @@ import { cn } from '@sudobility/components';
 import { getCalloutVariantColors } from '@sudobility/design';
 
 export type CalloutVariant =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'info'
-  | 'purple';
+  'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'purple';
 
 export interface CalloutProps {
   /**

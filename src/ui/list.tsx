@@ -10,13 +10,7 @@ export interface ListProps {
   spacing?: 'none' | 'sm' | 'md' | 'lg';
   /** Marker/bullet style */
   marker?:
-    | 'disc'
-    | 'circle'
-    | 'square'
-    | 'decimal'
-    | 'alpha'
-    | 'roman'
-    | 'none';
+    'disc' | 'circle' | 'square' | 'decimal' | 'alpha' | 'roman' | 'none';
   /** Size variant */
   size?: 'sm' | 'md' | 'lg';
   /** Additional className */

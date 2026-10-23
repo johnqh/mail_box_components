@@ -128,11 +128,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
 
     // Normalize to 0-4 scale
     const normalizedScore = Math.min(4, Math.floor((score / 6) * 4)) as
-      | 0
-      | 1
-      | 2
-      | 3
-      | 4;
+      0 | 1 | 2 | 3 | 4;
 
     const strengthMap: Record<0 | 1 | 2 | 3 | 4, PasswordStrength> = {
       0: {

@@ -2,11 +2,7 @@ import React from 'react';
 import { cn } from '../../../lib/utils';
 
 export type MetricRating =
-  | 'good'
-  | 'needs-improvement'
-  | 'poor'
-  | 'unknown'
-  | 'neutral';
+  'good' | 'needs-improvement' | 'poor' | 'unknown' | 'neutral';
 
 export interface MetricRowProps {
   /** Label for the metric */

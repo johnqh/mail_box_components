@@ -13,10 +13,7 @@ export interface AIContentConfig {
   targetAudience: string[];
   complexityLevel: 'beginner' | 'intermediate' | 'advanced';
   contentPurpose:
-    | 'informational'
-    | 'transactional'
-    | 'navigational'
-    | 'commercial';
+    'informational' | 'transactional' | 'navigational' | 'commercial';
   industryVertical: string;
   technicalTags: string[];
   userIntent: string[];

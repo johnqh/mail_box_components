@@ -106,10 +106,16 @@ jobs:
           if [ "$PUB" = "$LOCAL" ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; else echo "skip=0" >> "$GITHUB_OUTPUT"; fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
+      # Remove the committed bun.lock first: it pins @sudobility/* to an empty
+      # resolution URL, so bun falls back to npmjs and 404s on
+      # GitHub-Packages-only versions. A fresh install re-resolves through
+      # .npmrc, which routes @sudobility to npm.pkg.github.com.
       - name: Install
         if: steps.cv.outputs.skip == '0'
         working-directory: ./packages/${{ matrix.package }}
-        run: bun install
+        run: |
+          rm -f bun.lock
+          bun install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
           BUN_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
